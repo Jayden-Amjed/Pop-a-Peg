@@ -21,6 +21,13 @@ foreach ($tool in $lock.tools) {
     $executables = @(Get-ChildItem -LiteralPath $unpack -Recurse -Filter ($tool.name + '.exe'))
     if ($executables.Count -ne 1) { throw "Expected one $($tool.name).exe in release" }
     Copy-Item -LiteralPath $executables[0].FullName -Destination (Join-Path $toolDir ($tool.name + '.exe')) -Force
-    & (Join-Path $toolDir ($tool.name + '.exe')) --version
-    if ($LASTEXITCODE -ne 0) { throw "Could not run $($tool.name)" }
+    if ($tool.binarySha256) {
+        if ((Get-FileHash (Join-Path $toolDir ($tool.name + '.exe')) -Algorithm SHA256).Hash -ne $tool.binarySha256) {
+            throw "Executable checksum mismatch: $($tool.name)"
+        }
+        Write-Host "$($tool.name) $($tool.version) executable verified"
+    } else {
+        & (Join-Path $toolDir ($tool.name + '.exe')) --version
+        if ($LASTEXITCODE -ne 0) { throw "Could not run $($tool.name)" }
+    }
 }

@@ -53,7 +53,7 @@ Run from the task worktree:
 .\scripts\build.ps1
 ```
 
-The tool pins are Rojo **7.7.1**, StyLua **2.6.0**, and Selene **0.32.0**.
+The tool pins are Rojo **7.7.1**, StyLua **2.6.0**, Selene **0.32.0**, and Luau **0.746**.
 Setup is local to the checkout. Checks use these same tools locally and in CI.
 Record command, environment, source SHA, exit/result, and limitations in the task.
 Use `PASS`, `FAIL`, or `NOT RUN`; existing tests and prior logs are not new runs.
@@ -64,7 +64,7 @@ CI verifies its actual checkout only and does not prove Studio behavior.
 Use the Rojo **7.7.1** Studio plugin with the pinned CLI. Install with
 `& .\.tools\rojo.exe plugin install`, restart Studio, and verify the plugin version.
 Open `build/dev.rbxlx`, emitted by `build.ps1`. Start
-`.\scripts\serve.ps1 -Port 34872`, connect the plugin to `localhost:34872`, and
+`.\scripts\serve.ps1 -Port 34873`, connect the plugin to `localhost:34873`, and
 inspect the proposed changes. Bind one operator and worktree to this target.
 
 **Forward direction:** local edits under the mapped `src/` directories reach Studio
@@ -116,7 +116,7 @@ or a custom MCP bridge into this reusable project.
    The helper copies current shared source into a new `scratch/import-<guid>/shared`,
    runs Rojo `syncback` preview and application against that disposable staging
    project, and prints the review command. It never writes into `src/` automatically.
-4. Compare the staged module with `src/shared/Smoke.luau`; deliberately copy only
+4. Compare the staged module with its matching file under `src/shared/`; copy only
    the reviewed source change. Reject unexpected objects, paths, or content. Run
    checks and inspect `git diff` before reconnecting.
 5. Reconnect to the same checkout, inspect incoming changes, and playtest again.
@@ -132,8 +132,8 @@ syncback operation to resolve conflicts without inspection.
 
 Verify this sequence in the task: local script edit appears in Studio; exported
 module returns to the intended file; the branch transition below preserves work.
-During Play, expected Output is `[Starter] server: shared module OK` and
-`[Starter] client: shared module OK`, with no starter errors. Record actual output
+During Play, expected Output is `[Pop a Peg] Independent run service ready` and
+`[Pop a Peg] Board controls ready`, with no game errors. Record actual output
 and its server/client context rather than merely copying this expectation.
 For multiplayer changes, run a local server with at least two clients and record
 server/client observations. Builds alone do not establish any of these checks.

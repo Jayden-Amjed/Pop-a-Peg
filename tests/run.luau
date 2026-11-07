@@ -1,0 +1,10 @@
+local board = require("./Board.spec")
+local run = require("./Run.spec")
+local profile = require("./Profile.spec")
+
+board()
+print("PASS board: values, quotas, restocks, collisions, and deterministic trajectories")
+local cases = run()
+print("PASS progression: " .. tostring(cases) .. " cases")
+profile()
+print("PASS all gameplay contracts")

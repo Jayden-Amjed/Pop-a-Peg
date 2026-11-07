@@ -1,35 +1,33 @@
 # Current project state
 
-State Version: 1 (proposal; no accepted main predecessor)
+State Version: 2 (proposal dependent on starter version 1; neither accepted on main)
 Reviewed: 2026-11-07, America/Los_Angeles
-Objective: Bootstrap a neutral, reproducible Roblox starter and durable agent workflow.
+Objective: Complete the independent peg-bounce run loop with a fixed 3D board and meaningful upgrade combinations.
 
-Accepted source: `9349530edb7eaf536ceabfed5e922ae5b65499a6` (README-only seed on main).
-Starter implementation and this first status ledger remain proposed in PR #2.
-Implementation evidence: `755ac2539fd913e664dd48fe97a91ea046ec3da0`; see [RBX-001](tasks/RBX-001-bootstrap.md).
+Accepted source: `9349530edb7eaf536ceabfed5e922ae5b65499a6` (README-only main seed).
+Dependency: starter [PR #2](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/2), unmerged,
+at `608c273d9f31022d2f161584c4c92188bb4405cd`.
+Gameplay work remains proposed in [PR #4](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/4),
+which targets the starter branch. Main has no accepted status ledger yet.
 
 | Capability | Verified state |
 | --- | --- |
-| Fresh checkout, pinned Windows tools, build, format/lint | PASS; PowerShell 5.1 and 7 tested |
-| Server/client/shared instance mapping, docs links/fields | PASS; built XML classes and source verified |
-| Studio → MCP source capture → GitHub → rebuilt Studio | PASS with temporary expanding-ball probe |
-| Shared XML → scratch syncback | PASS with generated fixture; real Studio XML export NOT RUN |
-| Rojo serve command | PASS; localhost endpoint responds; stopped after check |
-| Live Rojo plugin propagation / branch reconnect | NOT RUN; explicit build/reopen tested instead |
-| GitHub CI / PR integration | CI PASS at `ade0ab5`; PR #2 OPEN, NOT MERGED |
+| Peg values, quotas, restocks, fixed-step collisions | PASS in standalone Luau tests |
+| Run phases, shop transactions, triggers, reset boundaries | PASS, 14 progression cases |
+| Profile validation and monotonic record merge | PASS in standalone Luau tests |
+| Integrated format/lint/build and mapped source | PASS |
+| 3D presentation and complete server/client loop | Implemented; Studio NOT RUN |
+| GitHub CI for gameplay implementation | NOT RUN; implementation not pushed yet |
+| Published cloud saves and simultaneous clients | NOT RUN |
 
-Studio-tested source: `9a9ee6b57678a551e593cc5df749fda126d6e70d`, Windows Studio
-0.746.0.7461269, Rojo/plugin 7.7.1; server + one client. Probe removed at implementation SHA above.
-Published: NOT PUBLISHED by this starter; no target experience/place selected.
+Studio-tested source: gameplay NOT RUN. Historical starter round-trip evidence is
+in [RBX-001](tasks/RBX-001-bootstrap.md); it does not establish gameplay behavior.
+Published: NOT PUBLISHED; no production experience/place selected.
 
-Active task: [RBX-001 bootstrap](tasks/RBX-001-bootstrap.md), owner Codex coordinator,
-branch `task/RBX-001-bootstrap`, [reservation #1](https://github.com/Jayden-Amjed/Pop-a-Peg/issues/1).
-PR: [#2](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/2) OPEN; task READY FOR REVIEW.
-
-Blockers / dependencies: review and merge remain pending. User authorized main creation
-and PR opening; both completed. Task branch remains the temporary default.
-Rulesets: none; main is unprotected (API, 2026-11-07).
-Unrun: live plugin round trip/branch reconnect, real XML export, two-client test, merge/publish.
-Observed limitation: Studio Output contains asset-type warnings for ID 203785492 (not referenced by starter source).
-Next action: review PR #2 and resolve pending checks; merge only when authorized.
-Repository setup remaining: required CI/review protection and default main after integration.
+Active task: [RBX-003](tasks/RBX-003-peg-run-loop.md), owner Codex gameplay coordinator.
+Branch: `task/RBX-003-peg-run-loop`; PR #4 DRAFT; reservation #3.
+Studio: coordinator only; gameplay target not opened, no live Rojo sync connected.
+Blockers / dependencies: PR #2 remains unmerged; dependent development is proceeding.
+Unrun: gameplay Studio playtest, two-client test, live plugin sync, cloud persistence, merge/publish.
+Next action: verify the built game and controls through Studio MCP.
+Repository administration: main remains unprotected; default branch remains the starter branch.

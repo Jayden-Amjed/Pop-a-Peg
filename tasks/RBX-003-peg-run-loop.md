@@ -7,7 +7,7 @@ Starting main: `9349530edb7eaf536ceabfed5e922ae5b65499a6` (README seed).
 Dependency base: starter PR #2 at `608c273d9f31022d2f161584c4c92188bb4405cd`; unmerged.
 Branch: `task/RBX-003-peg-run-loop`
 Worktree: `C:\Users\Amjedd\Documents\ChatGPT\Pop a Peg\.worktrees\game`
-PR: NOT OPENED yet; will target the starter branch until PR #2 is integrated.
+PR: [#4](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/4), draft; targets the starter branch until PR #2 is integrated.
 Reservation: [issue #3](https://github.com/Jayden-Amjed/Pop-a-Peg/issues/3).
 
 ## Scope and ownership

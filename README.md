@@ -1,19 +1,21 @@
 # Pop a Peg
 
-A small, reusable Roblox starter for **Studio ↔ local files ↔ GitHub**. It provides
-server, client, and shared smoke scripts, a reproducible Rojo build, and task
-records that let people and agents resume work without guessing. It does not
-define a game genre or gameplay framework.
+A Roblox peg-bounce roguelike with a fixed front-view 3D board. Aim a ball through
+numbered pegs, exceed the round quota, grow the board, and build combinations of
+run upgrades. Each player has an independent board and run.
+
+Sources build reproducibly through Rojo. Roblox Studio MCP supports inspection
+and playtests; Git records reviewed implementation and verification evidence.
 
 ## Project purpose
 
-| Decision | This starter |
+| Decision | Pop a Peg |
 | --- | --- |
-| Vision | Make a Roblox project easy to restore, inspect, and continue. |
-| Intended player experience | Not selected; the development place is a smoke-test scene. |
-| Milestone | Establish the source/build/sync and collaborative handoff workflow. |
-| Success criteria | Build from a clean checkout; verify script mappings; demonstrate Studio sync and explicit export; preserve exact evidence and ownership. |
-| Non-goals | Gameplay systems, monetization, production deployment, or full-place round-tripping. |
+| Vision | Turn one carefully aimed shot into satisfying chains of rising numbers. |
+| Intended player experience | Read the board, choose an angle, watch the bounce, then shape the next run upgrade. |
+| Milestone | Complete the round, shop, perk, loss, restart, and endless loop in Roblox. |
+| Success criteria | Playable 3D board with meaningful upgrade combinations, readable counters, reliable collisions, and isolated player state. |
+| Non-goals | Monetization, cooperative boards, production publishing, and permanent power purchases. |
 
 See [PROJECT_STATUS](PROJECT_STATUS.md) for the **only current dashboard**, including
 what has actually passed, active ownership, and the next task.
@@ -31,7 +33,7 @@ Set-Location .\Pop-a-Peg
 .\scripts\check.ps1
 .\scripts\build.ps1
 & .\.tools\rojo.exe plugin install
-.\scripts\serve.ps1 -Port 34872
+.\scripts\serve.ps1 -Port 34873
 ```
 
 If Windows blocks local scripts, invoke the individual script with
@@ -40,16 +42,16 @@ If Windows blocks local scripts, invoke the individual script with
 Setup downloads checksum-locked tools from `tools.lock.json` into ignored
 `.tools/`; no global tool manager is required. Restart Studio after plugin
 installation. Open `build/dev.rbxlx`, then use the **Rojo 7.7.1** plugin to connect to
-`localhost:34872`. Inspect the incoming changes before accepting them. See the
+`localhost:34873`. Inspect the incoming changes before accepting them. See the
 [Studio workflow](docs/WORKFLOW.md#studio-sync-and-explicit-return) for the build
-output, smoke checks, and deliberate Studio-to-file return path.
+output, runtime checks, and deliberate Studio-to-file return path.
 
 | Command | Purpose |
 | --- | --- |
-| `.\scripts\setup.ps1` | Install Rojo 7.7.1, StyLua 2.6.0, and Selene 0.32.0 locally. |
-| `.\scripts\check.ps1` | Run the repository's formatting, lint, build, and documentation checks. |
+| `.\scripts\setup.ps1` | Install pinned Rojo, StyLua, Selene, and Luau tools locally. |
+| `.\scripts\check.ps1` | Run formatting, lint, simulation/progression tests, build, and documentation checks. |
 | `.\scripts\build.ps1` | Generate a development place from source. |
-| `.\scripts\serve.ps1 -Port 34872` | Serve this checkout to one Studio operator. |
+| `.\scripts\serve.ps1 -Port 34873` | Serve this checkout to one Studio operator. |
 | `& .\.tools\stylua.exe src` | Format Luau intentionally. |
 | `.\scripts\import-shared.ps1 -InputModel .\scratch\Shared.rbxmx` | Stage an explicit shared-script export for review; never overwrite source automatically. |
 
@@ -59,8 +61,9 @@ output, smoke checks, and deliberate Studio-to-file return path.
 | --- | --- |
 | `src/server/` | Server-only scripts. |
 | `src/client/` | Per-player client scripts. |
-| `src/shared/` | Modules replicated to server and clients; no secrets. |
-| `default.project.json` | Rojo service mapping and minimal development scene. |
+| `src/shared/` | Board, simulation, run rules, upgrade catalog, number formatting, and profile contract. |
+| `tests/` | Numerical, progression, input-validation, and profile invariants. |
+| `default.project.json` | Rojo service mapping and development lighting. |
 | `assets/` | Intentional source assets mapped to `ReplicatedStorage.Assets`. |
 | `scripts/` | Setup, checks, build, sync, and bounded export import. |
 | `build/`, `scratch/`, `.tools/` | Ignored generated output, staging, and local tools. |
@@ -69,6 +72,22 @@ output, smoke checks, and deliberate Studio-to-file return path.
 [System overview](docs/SYSTEM_OVERVIEW.md) explains boundaries and asset ownership.
 [Workflow](docs/WORKFLOW.md) covers task → isolated checkout → sync/test → evidence
 → PR/merge → handoff. [AGENTS](AGENTS.md) is the short operating contract.
+
+## Play loop
+
+Aim with the pointer and launch through the board. Every pop scores the peg's
+current value, then halves it; a one-point peg disappears. Clearing the whole
+board doubles the shot score. Every quota earned gives a restock and a coin.
+Restocks replenish empty slots and merge equal values for the next round.
+
+Between shots, use one jumble to change the layout. Shops offer items, duplicate
+upgrades, selling, reordering, and extra inventory slots. Perks and events add
+new ways to trigger combinations. Choose a faster simulation speed when desired.
+Run upgrades reset after defeat; records and earned catalog unlocks remain.
+
+Studio uses **session records** so local testing does not touch live player data.
+Published sessions use a versioned DataStore for records/unlocks. The interface
+reports unavailable saving instead of claiming a cloud save succeeded.
 
 ## Reuse for another project
 
