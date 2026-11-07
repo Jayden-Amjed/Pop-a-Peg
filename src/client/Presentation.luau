@@ -192,6 +192,40 @@ end
 
 function Presentation:_buildBoard()
     self.model = make("Model", { Name = "PopAPegLocalBoard" }, workspace)
+    part(self.model, "StageBackdrop", Vector3.new(300, 200, 1), Vector3.new(0, 11, -8), C.ink)
+    part(
+        self.model,
+        "CabinetShadow",
+        Vector3.new(24.4, 32.4, 0.3),
+        Vector3.new(0.45, 10.45, -3),
+        Color3.fromRGB(9, 17, 27)
+    )
+    for _, side in { -1, 1 } do
+        part(
+            self.model,
+            "StagePanel",
+            Vector3.new(8, 39, 0.2),
+            Vector3.new(side * 17.5, 11, -7.25),
+            Color3.fromRGB(18, 30, 44)
+        )
+        part(
+            self.model,
+            "StageTrim",
+            Vector3.new(0.035, 35, 0.1),
+            Vector3.new(side * 13.25, 11, -7),
+            C.edge
+        )
+        for y = -6, 30, 6 do
+            local mark = part(
+                self.model,
+                "StageMark",
+                Vector3.new(0.55, 0.04, 0.1),
+                Vector3.new(side * 14, y, -6.9),
+                C.edge
+            )
+            mark.Transparency = 0.4
+        end
+    end
     part(self.model, "CabinetBack", Vector3.new(22, 30, 1.2), Vector3.new(0, 10.9, -1), C.ink)
     part(
         self.model,
