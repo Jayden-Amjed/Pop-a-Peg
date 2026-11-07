@@ -5,7 +5,7 @@
 - Status: PLANNED
 - Reservation / issue: NOT RESERVED
 - Reviewed: YYYY-MM-DD (timezone)
-- Starting main SHA: UNKNOWN
+- Starting main: UNKNOWN (exact SHA)
 - Branch: task/RBX-###-short-description
 - Worktree / checkout: UNKNOWN
 - PR: NOT OPENED
@@ -45,7 +45,7 @@ evidence from later documentation commits. Link detailed artifacts only when use
 Preserve failures and unrun checks. Separate implemented, checked, Studio verified,
 merged, and published. Do not infer production identity from a playtest.
 
-## Latest session handoff
+## Handoff
 
 - Objective / completed work:
 - Owner / next owner:

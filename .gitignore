@@ -1,0 +1,7 @@
+/.tools/
+/build/
+/scratch/
+/.worktrees/
+*.rbxl.lock
+*.rbxlx.lock
+# Intentional source .rbxm/.rbxmx/.rbxl files under assets/ stay trackable.

@@ -74,6 +74,9 @@ while connected. The filesystem remains authoritative. Inspect Explorer to verif
 
 **Return direction:** this starter uses a deliberate, bounded XML export for the
 shared-script subtree. It does not enable a second live script-sync system.
+Keep Rojo's **Two-Way Sync disabled** for this workflow; Studio changes return
+only through the deliberate export below. Never enable native Script Sync on
+the same subtree.
 
 1. Stop playtesting. Disconnect Rojo before making the Studio-side source edit.
 2. Edit a shared module under `ReplicatedStorage.Shared` in edit mode. Select the
