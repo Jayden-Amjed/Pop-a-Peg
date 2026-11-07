@@ -951,7 +951,10 @@ function Presentation:_updateModal()
     end
     local viewport = self.viewport or Vector2.new(1280, 720)
     local w = math.min(760, viewport.X - 32)
-    local top = self.inventory.AbsolutePosition.Y + self.inventory.AbsoluteSize.Y + 12
+    local top = self.inventory.AbsolutePosition.Y
+        + self.inventory.AbsoluteSize.Y
+        - self.overlay.AbsolutePosition.Y
+        + 12
     local h = math.min(570, math.max(240, viewport.Y - top - 18))
     local modal = frame(self.overlay, "ChoicePanel", C.panel, 11)
     self.modal = modal
