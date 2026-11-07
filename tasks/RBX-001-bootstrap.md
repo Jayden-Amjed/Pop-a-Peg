@@ -1,16 +1,16 @@
 # RBX-001 — Reusable Roblox starter
 
 Owner: Codex bootstrap coordinator; documentation contributor in isolated worktree.
-Status: READY FOR REVIEW (main/PR setup pending explicit approval)
+Status: READY FOR REVIEW (PR #2 open; not merged)
 Objective: Provide the requested neutral starter and small, durable collaboration workflow.
 Scope: source mapping, smoke scripts, pinned tools, build/sync helpers, CI, docs, evidence.
 Non-goals: gameplay framework, game design, production publishing, full-place round trip.
 Starting main: NONE (empty remote inspected 2026-11-07); local seed `9349530edb7eaf536ceabfed5e922ae5b65499a6`.
 Branch: `task/RBX-001-bootstrap`
 Worktree: `C:\Users\Amjedd\Documents\ChatGPT\Pop a Peg`
-PR: NOT CREATED — main is absent.
+PR: [#2](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/2), base `main`, OPEN.
 Reservation: [GitHub issue #1](https://github.com/Jayden-Amjed/Pop-a-Peg/issues/1).
-Dependencies: explicit main initialization approval; installed Studio; GitHub checks after push.
+Dependencies: PR review, current GitHub checks, and merge authorization; pending Studio checks below.
 Overlapping paths: repository-wide bootstrap. Docs contributor owns README, AGENTS, overview/workflow, task/PR templates in `.worktrees/workflow`; coordinator owns implementation and current evidence.
 
 ## Acceptance
@@ -24,7 +24,8 @@ Overlapping paths: repository-wide bootstrap. Docs contributor owns README, AGEN
 - [x] New agent can find purpose, verified state, ownership, and next task (independent review).
 - [x] CI and GitHub settings inspected; unavailable checks remain explicit.
 - [x] Task branch and evidence discoverable; merge/publish distinct.
-- [ ] PR creation and integration (main initialization approval pending).
+- [x] Main initialized from seed and PR #2 opened after explicit user approval.
+- [ ] PR integration (not authorized by the create-main/open-PR approval).
 
 ## Implementation evidence
 
@@ -54,8 +55,9 @@ Studio executable 0.746.0.7461269, matching Rojo plugin installed.
 | Live Rojo plugin sync / branch reconnect | NOT RUN; desktop automation stopped with Escape, no further desktop-control calls |
 | Real Studio XML export; two simultaneous clients | NOT RUN; generated XML and server + one client tested |
 | GitHub rulesets / protection | PASS inspection: empty rulesets, branch `protected: false`; enforcement NOT CONFIGURED |
-| GitHub CI | PASS: [baseline run](https://github.com/Jayden-Amjed/Pop-a-Peg/actions/runs/42423505387), [probe run](https://github.com/Jayden-Amjed/Pop-a-Peg/actions/runs/42423951632) |
-| PR / merge / publish | NOT RUN; main absent; no Roblox production identity selected |
+| GitHub CI | PASS: [baseline run](https://github.com/Jayden-Amjed/Pop-a-Peg/actions/runs/42423505387), [probe run](https://github.com/Jayden-Amjed/Pop-a-Peg/actions/runs/42423951632), [pre-PR evidence run](https://github.com/Jayden-Amjed/Pop-a-Peg/actions/runs/42424275218) at `ade0ab5b7d5160d73136fbb56f8e73e7633b98d4`; PR checks cover subsequent head updates |
+| Main / PR | PASS: main initialized at seed and PR #2 confirmed OPEN on 2026-11-07 |
+| Merge / publish | NOT RUN; no merge authorization or Roblox production identity selected |
 
 Initial Rojo execution in the sandbox failed with OS error 5 (access denied).
 The same pinned command passed with approved execution outside that sandbox.
@@ -99,15 +101,19 @@ Both playtests stopped. No production identity selected. IDs are session evidenc
 not durable selectors; relist Studio before acting.
 Sync: no Rojo plugin connected; serve command stopped; endpoint was `127.0.0.1:34872`.
 Completed: neutral starter, pinned setup/checks/CI, docs, clean clone, explicit MCP round trip.
-Blocker: automatic approval review denied direct main initialization; do not bypass it.
+Resolved blocker: automatic approval review initially denied direct main initialization.
+The user explicitly approved creating main from the minimal seed and opening the PR;
+both completed on 2026-11-07. That approval did not include merging the starter.
 MCP: local `Roblox_Studio` configuration exists; chat tools were not loaded, but a
 read-only stdio diagnostic proved the installed server works. User then authorized
 the MCP workflow test. A temporary ignored client was used; no machine-specific
 bridge or credentials are part of the starter. Prefer normal MCP tools in a fresh
 client session. Do not resume desktop control without user direction.
-Remote main reviewed: absent at last fetch; candidate State Version remains 1.
-Next action: if approved, create main at `9349530edb7eaf536ceabfed5e922ae5b65499a6`
-and open the bootstrap PR. Inspect/configure required `validate` CI protection via
+Remote main reviewed: `9349530edb7eaf536ceabfed5e922ae5b65499a6`, README only,
+confirmed ancestor of the task branch. No accepted status ledger exists, so candidate
+State Version remains 1. The task branch is still the repository's temporary default.
+Next action: review PR #2, check its current CI, and resolve pending validation;
+merge only when authorized. Inspect/configure required `validate` CI protection via
 an admin-capable route; the connector exposes reads but no settings mutation.
 After authorized merge, confirm GitHub's merge result and set default branch main.
 Pending live plugin/XML/two-client checks above must stay explicit.
