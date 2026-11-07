@@ -74,9 +74,39 @@ while connected. The filesystem remains authoritative. Inspect Explorer to verif
 
 **Return direction:** this starter uses a deliberate, bounded XML export for the
 shared-script subtree. It does not enable a second live script-sync system.
-Keep Rojo's **Two-Way Sync disabled** for this workflow; Studio changes return
-only through the deliberate export below. Never enable native Script Sync on
-the same subtree.
+Keep Rojo's **Two-Way Sync disabled**. Studio changes return through a reviewed
+explicit handoff: MCP source capture or the bounded XML/syncback route below.
+Never enable native Script Sync on the same subtree.
+
+### Agent workflow through MCP
+
+Prefer authoring files, building with Rojo, and inspecting/playtesting through
+Roblox Studio MCP. Use `list_roblox_studios` and `get_studio_state` to confirm the
+intended local development session, then target its exact `studio_id`. Keep one
+operator; an MCP connection does not reserve a place. Stop play and disconnect
+Rojo before a deliberate Studio-side edit.
+
+For a bounded Studio-authored script, capture its complete `Source` through MCP
+into ignored `scratch/`; verify the instance path/class, inspect the diff, and
+promote only that source to its mapped `.server.luau`, `.client.luau`, or `.luau`
+file. Run checks, commit, and push. Confirm the remote branch SHA and file content.
+MCP edits do not automatically save local files or push GitHub.
+
+Rebuild from the captured file and test that generated place through MCP. When
+live Rojo is disconnected, a rebuild/reopen is an explicit forward handoff, not
+proof of live plugin propagation. On Windows, Studio's supported CLI can open a
+generated place: `RobloxStudioBeta.exe --task EditFile --localPlaceFile "ABSOLUTE_PATH"`.
+Use `get_console_output` plus bounded runtime assertions to record actual server
+and client behavior; stop play afterward. For a temporary probe, commit its source
+so the evidence remains retrievable, then remove it in a normal cleanup commit.
+
+The built-in MCP launcher is `%LOCALAPPDATA%\Roblox\mcp.bat`. Configuration alone
+does not prove a connection: list the actual studios. If tools are missing from
+the chat, follow the [official connection guidance](https://create.roblox.com/docs/studio/mcp)
+and reload the client connection. Do not copy machine-specific paths, credentials,
+or a custom MCP bridge into this reusable project.
+
+### Shared XML export fallback
 
 1. Stop playtesting. Disconnect Rojo before making the Studio-side source edit.
 2. Edit a shared module under `ReplicatedStorage.Shared` in edit mode. Select the
@@ -93,7 +123,7 @@ the same subtree.
 
 Only reviewed module `Source` may be promoted from this staging output.
 Server/client scripts, models, arbitrary properties, terrain, and the entire place
-are outside this workflow's scope.
+are outside this shared XML helper's scope.
 For those, author the filesystem source or perform a separately reviewed explicit
 asset export under the [ownership policy](SYSTEM_OVERVIEW.md#ownership-and-restoration).
 The Studio file is staging, not a second authoritative copy. Keep intended Studio

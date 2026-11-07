@@ -29,7 +29,7 @@ datastore, external HTTP service, or production credentials.
 
 | Content | Authority and storage policy |
 | --- | --- |
-| Scripts | `src/` is authoritative. Rojo sends filesystem edits to Studio. Deliberate shared-script export may stage Studio edits for review before copying them back. |
+| Scripts | `src/` is authoritative. Rojo sends filesystem edits to Studio. Reviewed MCP `Source` capture or deliberate shared XML export can stage Studio edits before promoting them to files. |
 | Mapped scene properties | `default.project.json` is authoritative. Translate intentional Studio changes into this mapping; do not expect automatic writeback. |
 | Models | An intentionally adopted `.rbxm` or `.rbxmx` in `assets/` may be authoritative, mapped beneath `ReplicatedStorage.Assets`. Record ownership and any additional placement mapping; do not keep a competing authoritative Studio copy. |
 | Terrain | Not represented by this starter's source. A later terrain task must choose a source place template or documented terrain export and prove restoration; a saved generated place alone is not source. |

@@ -25,6 +25,11 @@ and reconcile intended Studio edits, disconnect, inspect Git, change Git state,
 then deliberately reconnect to the correct checkout. Never use blanket conflict
 choices as unexamined resolution.
 
+Prefer Roblox Studio MCP for inspection, bounded edits, and runtime checks when
+available. Select and verify the development session before mutations. MCP does
+not replace Rojo mappings or Git; capture Studio-authored source explicitly as
+described in the workflow, then review and commit it.
+
 Follow [WORKFLOW](docs/WORKFLOW.md) for commands, reservations, status reconciliation,
 validation, and publishing. Fetch again before finalizing and merge updated main
 into published task branches. Reconcile both status content and State Version.
