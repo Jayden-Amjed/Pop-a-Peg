@@ -2,32 +2,35 @@
 
 State Version: 2 (proposal dependent on starter version 1; neither accepted on main)
 Reviewed: 2026-11-07, America/Los_Angeles
-Objective: Complete the independent peg-bounce run loop with a fixed 3D board and meaningful upgrade combinations.
+Objective: A complete independent peg-bounce run with a fixed 3D board and upgrade combinations.
 
-Accepted source: `9349530edb7eaf536ceabfed5e922ae5b65499a6` (README-only main seed).
+Accepted source: `9349530edb7eaf536ceabfed5e922ae5b65499a6` (README-only main seed; fetched again).
 Dependency: starter [PR #2](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/2), unmerged,
-at `608c273d9f31022d2f161584c4c92188bb4405cd`.
-Gameplay work remains proposed in [PR #4](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/4),
-which targets the starter branch. Main has no accepted status ledger yet.
+at `608c273d9f31022d2f161584c4c92188bb4405cd`. Main has no accepted status ledger.
+Implementation: `c73e29012c40053bab943d03d5412ae05b89ad7a` in dependent
+[PR #4](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/4); complete and READY FOR REVIEW.
 
 | Capability | Verified state |
 | --- | --- |
-| Peg values, quotas, restocks, fixed-step collisions | PASS in standalone Luau tests |
-| Run phases, shop transactions, triggers, reset boundaries | PASS, 14 progression cases |
-| Profile validation and monotonic record merge | PASS in standalone Luau tests |
-| Integrated format/lint/build and mapped source | PASS |
-| 3D presentation and complete server/client loop | Implemented; Studio NOT RUN |
-| GitHub CI for gameplay implementation | NOT RUN; implementation not pushed yet |
-| Published cloud saves and simultaneous clients | NOT RUN |
+| Board values, quotas, restocks, swept collisions | PASS standalone and in-engine contracts |
+| Run/shop/perk/event/boss/endless/reset rules | PASS 14 progression cases; natural-action samples include round-80 wins |
+| Profile validation and monotonic merge | PASS; local restart preserves only records/unlocks |
+| Format/lint/build/source mapping/docs | PASS with pinned tools |
+| Studio controls, first shop, purchases, held offers, reorder, restart | PASS server + one client |
+| Six menu layouts and expanded shop | PASS desktop fixture and screenshot checks |
+| GitHub implementation CI | PASS push and PR checks at implementation SHA |
+| Published cloud saves, same-server multiplayer, physical touch | NOT RUN |
 
-Studio-tested source: gameplay NOT RUN. Historical starter round-trip evidence is
-in [RBX-001](tasks/RBX-001-bootstrap.md); it does not establish gameplay behavior.
+Studio-tested source: normal gameplay `d3e7556036925b9c6a09ff923abf52bbb93bde9e`;
+final layout and exact equality of all 11 sources `c73e29012c40053bab943d03d5412ae05b89ad7a`.
+See [RBX-003](tasks/RBX-003-peg-run-loop.md) for commands, evidence, limits, and CI links.
 Published: NOT PUBLISHED; no production experience/place selected.
 
-Active task: [RBX-003](tasks/RBX-003-peg-run-loop.md), owner Codex gameplay coordinator.
-Branch: `task/RBX-003-peg-run-loop`; PR #4 DRAFT; reservation #3.
-Studio: coordinator only; gameplay target not opened, no live Rojo sync connected.
-Blockers / dependencies: PR #2 remains unmerged; dependent development is proceeding.
-Unrun: gameplay Studio playtest, two-client test, live plugin sync, cloud persistence, merge/publish.
-Next action: verify the built game and controls through Studio MCP.
+Active task: RBX-003, owner Codex gameplay coordinator, branch `task/RBX-003-peg-run-loop`.
+Development files: generated `build/peg-run.rbxlx` and `build/peg-run-qa.rbxlx`.
+Studio: QA stopped, normal source restored, Rojo disconnected; user's separate play window left available.
+Blockers / dependencies: no implementation blocker; PR #2 must precede PR #4 integration.
+Unrun: two clients in one server, physical mobile/touch, cloud persistence, live plugin sync, merge/publish.
+Observed limitation: unrelated Studio asset-type warning for 203785492; no project source reference.
+Next action: human playtest and PR review; run multiplayer/mobile/cloud checks before a release.
 Repository administration: main remains unprotected; default branch remains the starter branch.
