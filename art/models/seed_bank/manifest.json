@@ -1,0 +1,358 @@
+{
+  "schema": 1,
+  "id": "seed_bank",
+  "display_name": "Seed Bank",
+  "generator": "scripts/models/seed_bank.py",
+  "blender": "4.5.9 LTS",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "triangles": 2040,
+  "pieces": 8,
+  "bounds_min": [
+    -1.04,
+    -0.74,
+    0.0
+  ],
+  "bounds_max": [
+    1.04,
+    0.74,
+    2.6200001
+  ],
+  "size_blender_studs": [
+    2.0799999,
+    1.48,
+    2.6200001
+  ],
+  "objects": [
+    {
+      "name": "seed_bank__SeedBank_Frame",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "triangles": 540,
+      "vertices": 280,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.1900001
+      ],
+      "compression_span": null,
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.1900001
+      ],
+      "size_blender_studs": [
+        2.02,
+        1.42,
+        2.1999998
+      ],
+      "bounds_min": [
+        -1.01,
+        -0.71,
+        0.09
+      ],
+      "bounds_max": [
+        1.01,
+        0.71,
+        2.29
+      ],
+      "geometry_sha256": "30f84cea7fb397cc2a757821092b9d7c1fd98fa983b758e64713b2693d119762",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "seed_bank__SeedBank_Reservoir",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.45
+      ],
+      "compression_span": null,
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.45
+      ],
+      "size_blender_studs": [
+        1.76,
+        1.16,
+        0.22
+      ],
+      "bounds_min": [
+        -0.88,
+        -0.58,
+        0.34
+      ],
+      "bounds_max": [
+        0.88,
+        0.58,
+        0.56
+      ],
+      "geometry_sha256": "f1a132bb21d6356b5ce8bd638e0d94cfcb2809342793d1be68f5eab018996d46",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "seed_bank__SeedBank_Feet",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "triangles": 216,
+      "vertices": 112,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        -0.0,
+        0.0,
+        0.065
+      ],
+      "compression_span": null,
+      "center_blender_studs": [
+        -0.0,
+        0.0,
+        0.065
+      ],
+      "size_blender_studs": [
+        1.6800001,
+        1.08,
+        0.13
+      ],
+      "bounds_min": [
+        -0.84,
+        -0.54,
+        0.0
+      ],
+      "bounds_max": [
+        0.84,
+        0.54,
+        0.13
+      ],
+      "geometry_sha256": "0e6208ef5a7ce114d497c7eaad9b1df3b5b766b9990b9292cb15e443d19ff6b7",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "seed_bank__SeedBank_Window",
+      "material": "glass",
+      "color_srgb": [
+        145,
+        244,
+        255
+      ],
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.57,
+        1.04
+      ],
+      "compression_span": null,
+      "center_blender_studs": [
+        0.0,
+        -0.57,
+        1.04
+      ],
+      "size_blender_studs": [
+        1.51,
+        0.035,
+        0.96
+      ],
+      "bounds_min": [
+        -0.755,
+        -0.5875,
+        0.5599999
+      ],
+      "bounds_max": [
+        0.755,
+        -0.5525,
+        1.52
+      ],
+      "geometry_sha256": "711de2da2030e64c1a2bd16ea5a39444351d955e821ef1140ff68143f7eece99",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "seed_bank__SeedBank_Cap",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Lid",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        2.39
+      ],
+      "compression_span": null,
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        2.3900001
+      ],
+      "size_blender_studs": [
+        2.0799999,
+        1.48,
+        0.2599998
+      ],
+      "bounds_min": [
+        -1.04,
+        -0.74,
+        2.2600002
+      ],
+      "bounds_max": [
+        1.04,
+        0.74,
+        2.52
+      ],
+      "geometry_sha256": "706878fc919781490b5c7b1aed485d968df30e168bf1fda17734a2d9a3987887",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "seed_bank__SeedBank_Grip",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Lid",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        2.39
+      ],
+      "compression_span": null,
+      "center_blender_studs": [
+        0.0,
+        0.04,
+        2.5550001
+      ],
+      "size_blender_studs": [
+        0.98,
+        0.56,
+        0.1300001
+      ],
+      "bounds_min": [
+        -0.49,
+        -0.24,
+        2.49
+      ],
+      "bounds_max": [
+        0.49,
+        0.32,
+        2.6200001
+      ],
+      "geometry_sha256": "098bd2f96fea7d1686585dd1034acb88f5a3eb99fbf59c633b60555b41735cc6",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "seed_bank__SeedBank_Pods",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "triangles": 672,
+      "vertices": 342,
+      "motion_group": "Seed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.56
+      ],
+      "compression_span": null,
+      "center_blender_studs": [
+        0.0,
+        -0.0125,
+        0.83
+      ],
+      "size_blender_studs": [
+        1.47,
+        0.515,
+        0.5500001
+      ],
+      "bounds_min": [
+        -0.735,
+        -0.27,
+        0.5549999
+      ],
+      "bounds_max": [
+        0.735,
+        0.245,
+        1.105
+      ],
+      "geometry_sha256": "c136f8a1e1a9b5be9a6cba899397a4357660f3adc32a38385f2f3a785647fdf8",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "seed_bank__SeedBank_Sprouts",
+      "material": "green",
+      "color_srgb": [
+        142,
+        220,
+        103
+      ],
+      "triangles": 180,
+      "vertices": 108,
+      "motion_group": "Seed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.56
+      ],
+      "compression_span": null,
+      "center_blender_studs": [
+        0.0,
+        0.0039516,
+        1.3677778
+      ],
+      "size_blender_studs": [
+        1.5018466,
+        0.2338087,
+        0.6595088
+      ],
+      "bounds_min": [
+        -0.7509233,
+        -0.1129527,
+        1.0380235
+      ],
+      "bounds_max": [
+        0.7509233,
+        0.120856,
+        1.6975323
+      ],
+      "geometry_sha256": "1cfb01958f0db10fa442655720d0f92df61956484b295cb24b140ae8fa39c628",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "blend_sha256": "241f3fb445f12c4bcc765340eb9ec5d482d97d6e26d8677eb748a9607b2ea29a",
+  "glb_sha256": "1efc04cfba0c35e8acdf8fad4207a8b3229da5342ea998a8c05edce9d441570c"
+}

@@ -4,4 +4,6 @@
 /.worktrees/
 *.rbxl.lock
 *.rbxlx.lock
+__pycache__/
+*.blend1
 # Intentional source .rbxm/.rbxmx/.rbxl files under assets/ stay trackable.
