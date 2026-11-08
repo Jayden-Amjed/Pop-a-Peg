@@ -9,10 +9,13 @@ are mounted in the preview.
 
 The normal game retains its native geometry. The gallery evaluates the Blender
 catalog; it does not adopt that geometry into gameplay or publish an experience.
-Shared preview lighting and UI depth/contrast styling are separate changes.
+The shared [animation direction](ITEM_ANIMATION_GUIDE.md) gives all 78 models
+individual whole-object reactions and articulated performances. Geometry remains
+unchanged; native gameplay and the Blender inspector share the motion definitions.
 Use [PROJECT_STATUS](../PROJECT_STATUS.md) for current accepted state and
 [RBX-021](../tasks/RBX-021-catalog-lab.md) for exact checks, source SHAs, Studio
-evidence and remaining work. A registered entry is not proof that its remote
+evidence. See [RBX-023](../tasks/RBX-023-expressive-motion.md) for the expressive
+animation pass and its current checks. A registered entry is not proof that its remote
 meshes loaded successfully.
 
 ## Open the inspector

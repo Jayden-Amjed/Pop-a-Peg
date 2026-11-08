@@ -29,7 +29,7 @@ return function(first, last)
             table.insert(report.failures, id .. ": missing mounted model")
             continue
         end
-        for _, pose in { 0, 0.0773, 0.2426, 0.5, 0.75, 1 } do
+        for _, pose in { 0, 0.10, 0.19, 0.27, 0.36, 0.45, 0.54, 0.63, 0.72, 0.81, 0.90, 1 } do
             gui:SetAttribute("Pose", pose)
             task.wait(0.035)
             local camera = viewport.CurrentCamera

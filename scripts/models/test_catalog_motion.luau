@@ -47,6 +47,13 @@ end
 function frameMeta.__sub(a, b)
     return matrix(table.clone(a.r), a.Position - b)
 end
+function frameMeta:Inverse()
+    local r = self.r
+    local inverse = matrix({ r[1], r[4], r[7], r[2], r[5], r[8], r[3], r[6], r[9] }, V.new())
+    inverse.Position = rotate(inverse, self.Position * -1)
+    return inverse
+end
+frameMeta.__index = frameMeta
 function CF.Angles(x, y, z)
     local cx, sx, cy, sy, cz, sz =
         math.cos(x), math.sin(x), math.cos(y), math.sin(y), math.cos(z), math.sin(z)
@@ -117,7 +124,40 @@ local function controller(id, parts)
     function model:GetDescendants()
         return parts
     end
-    return Adapter.new(model, types)
+    function model:GetBoundingBox()
+        local low, high =
+            { math.huge, math.huge, math.huge }, { -math.huge, -math.huge, -math.huge }
+        for _, object in parts do
+            for index, axis in { "X", "Y", "Z" } do
+                low[index] =
+                    math.min(low[index], object.CFrame.Position[axis] - object.Size[axis] / 2)
+                high[index] =
+                    math.max(high[index], object.CFrame.Position[axis] + object.Size[axis] / 2)
+            end
+        end
+        return CF.new(), V.new(high[1] - low[1], high[2] - low[2], high[3] - low[3])
+    end
+    local adapter = Adapter.new(model, types)
+    local apply = adapter.apply
+    -- Check whole-body composition, then strip it to run the mechanism/contact
+    -- invariants in model space. This also catches scaling positions but not sizes.
+    function adapter:apply(t, strength, rootPose)
+        rootPose = rootPose or CF.new()
+        apply(self, t, strength, rootPose)
+        local body = Motion.bodySample(id, t, strength)
+        local size = self.restSize
+        local frame = rootPose
+            * CF.new(body.x * size.X, body.y * size.Y, body.z * size.Z)
+            * CF.Angles(body.rx, body.ry, body.rz)
+        for _, object in parts do
+            local localFrame = frame:Inverse() * object.CFrame
+            object.CFrame = rootPose
+                * CF.new(localFrame.Position / body.scale)
+                * (localFrame - localFrame.Position)
+            object.Size /= body.scale
+        end
+    end
+    return adapter
 end
 
 -- Different source Z values previously separated the barrel's material pieces.
@@ -126,13 +166,17 @@ local b = part("Lens", V.new(0, 0, 0.6), V.new(), V.new(0, 2, 0.6))
 local lens = controller("survey_lens", { a, b })
 for i = 1, 39 do
     lens:apply(i / 40, 2, CF.new())
-    near(distance(a.CFrame.Position, b.CFrame.Position), 1, "Rigid lens assembly split")
+    local state = Motion.sample("survey_lens", "Lens", i / 40, 2, 0, 2, 0.1)
+    near(distance(a.CFrame.Position, b.CFrame.Position), state.scale, "Rigid lens assembly split")
 end
 local sampled = Motion.sample("survey_lens", "Lens", 0.5, 2, 0, 2, 0.1)
 lens:apply(0.5, 2, CF.new())
-near(
-    (a.CFrame.Position.Z + b.CFrame.Position.Z) / 2,
-    0.1 + sampled.z,
+local expectedLens = CF.new(sampled.x, sampled.y, sampled.z)
+    * CF.Angles(sampled.rx, sampled.ry, sampled.rz)
+    * CF.new(0, 0, 0.1 * sampled.scale)
+nearVector(
+    (a.CFrame.Position + b.CFrame.Position) / 2,
+    expectedLens.Position,
     "Must sample authored coordinates"
 )
 local repeated = a.CFrame
@@ -159,7 +203,7 @@ local orbitB = part("Orbit", V.new(1, 0, 0), V.new())
 controller("growth_ring", { orbitA, orbitB }):apply(0.5, 2, CF.new())
 near(
     distance(orbitA.CFrame.Position, orbitB.CFrame.Position),
-    2 * 1.16,
+    2 * Motion.sample("growth_ring", "Orbit", 0.5, 2, 0, 0, 0).scale,
     "Orbit spacing did not grow with its pieces"
 )
 
@@ -196,10 +240,7 @@ end
 local keyA = part("SynthKey", V.new(-0.5, 0, 0), V.new(-0.5, 0, 0))
 local keyB = part("SynthKey", V.new(0.5, 0, 0), V.new(0.5, 0, 0))
 controller("lagoon_synth", { keyA, keyB }):apply(0.25, 1, CF.new())
-assert(
-    math.abs(keyA.CFrame.Position.Y - keyB.CFrame.Position.Y) > 0.01,
-    "Independent key phases collapsed"
-)
+assert(math.abs(keyA.CFrame.r[6] - keyB.CFrame.r[6]) > 0.01, "Independent key phases collapsed")
 
 -- Exercise all 78 profile adapters at both strengths and restore exact originals.
 local profiles = 0

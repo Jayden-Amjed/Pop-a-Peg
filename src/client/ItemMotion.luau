@@ -1,4 +1,7 @@
 local ItemMotion = {}
+local Choreography = if script
+    then require(script.Parent.ItemChoreography)
+    else require("./ItemChoreography")
 
 local profiles = {
     tap_driver = { duration = 0.5, name = "piston-strike" },
@@ -173,7 +176,23 @@ local evolvedProfiles = {
 for id, entry in pairs(evolvedProfiles) do
     profiles[id] = { duration = entry[1], name = entry[2], evolved = true, turns = entry[3] }
 end
+for id, profile in profiles do
+    local performance = assert(Choreography.entries[id], "Missing performance: " .. id)
+    profile.duration, profile.name = performance.duration, performance.name
+    profile.description = performance.description
+end
 ItemMotion.Profiles = table.freeze(profiles)
+ItemMotion.Choreography = Choreography.entries
+
+function ItemMotion.bodySample(id, t, strength)
+    if type(t) ~= "number" or t ~= t then
+        t = 0
+    end
+    if type(strength) ~= "number" or strength ~= strength then
+        strength = 1
+    end
+    return Choreography.body(id, math.clamp(t, 0, 1), math.clamp(strength, 0, 2))
+end
 
 ItemMotion.Idle = table.freeze({
     period = 4.2,
@@ -339,6 +358,7 @@ function ItemMotion.tag(model, id)
 end
 
 local pivots = {
+    Lens = { 0, 0.62, 0.12 },
     MinuteHand = { 0, 0.15, 0.62 },
     HourHand = { 0, 0.15, 0.65 },
     LeftGear = { -0.34, 0.12, 0.36 },
@@ -363,8 +383,20 @@ local pivots = {
 -- Samples are plain numbers so motion envelopes can be checked without rendering.
 function ItemMotion.sample(id, group, t, strength, x, y, z)
     local v = { x = 0, y = 0, z = 0, rx = 0, ry = 0, rz = 0, scale = 1, glow = 0, axial = 1 }
-    if t <= 0 or t >= 1 or group == "Fixed" then
+    if t ~= t or t <= 0 or t >= 1 or group == "Fixed" or strength == 0 then
         return v
+    end
+    local authoredT = t
+    -- Ease the inherited mechanisms into/out of rest without changing the main
+    -- action timing. This polynomial meets the interior with unit velocity and
+    -- starts with zero velocity/acceleration; completed turns remain completed.
+    local function edge(u)
+        return u * u * u * (6 - 8 * u + 3 * u * u)
+    end
+    if t < 0.08 then
+        t = 0.08 * edge(t / 0.08)
+    elseif t > 0.92 then
+        t = 1 - 0.08 * edge((1 - t) / 0.08)
     end
     local a = math.clamp(strength or 1, 0, 2)
     local envelope = math.sin(math.pi * t)
@@ -774,12 +806,15 @@ function ItemMotion.sample(id, group, t, strength, x, y, z)
         v.x = math.sin(t * math.pi * 2) * envelope * -y * 0.4
         v.y = math.sin(t * math.pi * 2) * envelope * x * 0.4
     end
-    return v
+    return Choreography.part(id, group, authoredT, a, x, y, z, v)
 end
 
-function ItemMotion.new(model, id)
+function ItemMotion.new(model, id, options)
     local center = model:GetAttribute("ArtCenter") or Vector3.zero
+    local _, restSize = model:GetBoundingBox()
+    local reducedMotion = options and options.reducedMotion == true
     local records = {}
+    local assemblies = {}
     for _, object in ipairs(model:GetChildren()) do
         if object:IsA("BasePart") then
             local group = object:GetAttribute("MotionGroup") or "Fixed"
@@ -802,39 +837,85 @@ function ItemMotion.new(model, id)
             })
         end
     end
+    for _, record in records do
+        local pivot = record.pivot
+        local key = string.format("%s:%.9g:%.9g:%.9g", record.group, pivot.X, pivot.Y, pivot.Z)
+        local assembly = assemblies[key]
+        if not assembly then
+            assembly = { authored = Vector3.zero, count = 0 }
+            assemblies[key] = assembly
+        end
+        assembly.authored += record.authored
+        assembly.count += 1
+        record.assembly = assembly
+    end
+    for _, assembly in assemblies do
+        assembly.authored /= assembly.count
+    end
     local controller = { duration = profiles[id].duration, profile = profiles[id].name }
     function controller:apply(t, strength, rootPose)
+        rootPose = rootPose or CFrame.new()
+        local body = ItemMotion.bodySample(id, t, strength)
+        if reducedMotion and strength ~= 0 then
+            body = Choreography.Curves.body()
+            body.scale = 1 + 0.04 * Choreography.Curves.pulse(t, 0, 0.35, 1)
+        end
+        local bodyRoot = rootPose
+            * CFrame.new(body.x * restSize.X, body.y * restSize.Y, body.z * restSize.Z)
+            * CFrame.Angles(body.rx, body.ry, body.rz)
         for _, record in ipairs(records) do
             local object, p = record.object, record.authored
-            if t <= 0 or t >= 1 then
+            local phasePosition = record.assembly.authored
+            if t ~= t or t <= 0 or t >= 1 then
                 object.CFrame = rootPose * record.frame
                 object.Size = record.size
                 object.Color = record.color
                 continue
             end
-            local state = ItemMotion.sample(id, record.group, t, strength, p.X, p.Y, p.Z)
+            local state = ItemMotion.sample(
+                id,
+                record.group,
+                if reducedMotion then 0 else t,
+                strength,
+                phasePosition.X,
+                phasePosition.Y,
+                phasePosition.Z
+            )
             local offset = Vector3.new(state.x, state.y, state.z)
-            local transform = CFrame.new(record.pivot)
+            local transform = CFrame.new(record.pivot + offset)
                 * CFrame.Angles(state.rx, state.ry, state.rz)
-                * CFrame.new(-record.pivot)
+            local frame, dimensions
             if id == "spring_coil" and record.springA and t > 0 and t < 1 then
                 local a, b = record.springA, record.springB
                 a = Vector3.new(a.X, -1 + (a.Y + 1) * state.axial, a.Z) - center
                 b = Vector3.new(b.X, -1 + (b.Y + 1) * state.axial, b.Z) - center
-                object.CFrame = rootPose
-                    * CFrame.lookAt((a + b) / 2, b)
-                    * CFrame.Angles(0, math.pi / 2, 0)
-                object.Size = Vector3.new((b - a).Magnitude, record.size.Y, record.size.Z)
+                frame = CFrame.lookAt((a + b) / 2, b) * CFrame.Angles(0, math.pi / 2, 0)
+                dimensions = Vector3.new((b - a).Magnitude, record.size.Y, record.size.Z)
             elseif id == "spring_coil" and record.group == "Shaft" then
                 local position = record.frame.Position
                 local y = -1 + (p.Y + 1) * state.axial - center.Y
-                object.CFrame = rootPose * (record.frame + Vector3.new(0, y - position.Y, 0))
-                object.Size = Vector3.new(record.size.X * state.axial, record.size.Y, record.size.Z)
+                frame = record.frame + Vector3.new(0, y - position.Y, 0)
+                dimensions = Vector3.new(record.size.X * state.axial, record.size.Y, record.size.Z)
+            elseif id == "tidal_engine" and record.group == "EvolvedSpring" then
+                -- Native coil consists of horizontal rings. Move each complete
+                -- ring along the spring axis without inflating its wire gauge.
+                local lift = (record.pivot.Y + center.Y + 0.45) * (state.axial - 1)
+                frame = record.frame + Vector3.new(0, lift, 0)
+                dimensions = record.size
             else
-                object.CFrame = rootPose * CFrame.new(offset) * transform * record.frame
-                object.Size = record.size * state.scale
+                if id == "tidal_engine" and record.group == "EvolvedWeight" then
+                    transform = CFrame.new(
+                        record.pivot + Vector3.new(state.x, state.y * 1.47 / 1.46, state.z)
+                    ) * CFrame.Angles(state.rx, state.ry, state.rz)
+                end
+                frame = transform
+                    * CFrame.new((record.frame.Position - record.pivot) * state.scale)
+                    * record.frame.Rotation
+                dimensions = record.size * state.scale
             end
-            object.Color = record.color:Lerp(Color3.new(1, 1, 1), math.min(0.65, state.glow))
+            object.CFrame = bodyRoot * CFrame.new(frame.Position * body.scale) * frame.Rotation
+            object.Size = dimensions * body.scale
+            object.Color = record.color:Lerp(Color3.new(1, 1, 1), math.clamp(state.glow, 0, 0.22))
         end
     end
     return controller

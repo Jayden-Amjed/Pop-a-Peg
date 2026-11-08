@@ -9,6 +9,75 @@ local function samePose(a, b, tolerance)
 end
 
 return function()
+    local signatures, count, wholeTurns = {}, 0, 0
+    for id, profile in Motion.Profiles do
+        count += 1
+        assert(
+            profile.duration >= 0.65 and profile.duration <= 2.5,
+            "Unreadable performance timing: " .. id
+        )
+        assert(#profile.description > 20, "Missing choreography rationale: " .. id)
+        local signature, growth, travel, turn = {}, 1, 0, 0
+        for index = 0, 100 do
+            local phase = index / 100
+            local normal = Motion.bodySample(id, phase, 1)
+            growth = math.max(growth, normal.scale)
+            travel = math.max(travel, math.abs(normal.x) + math.abs(normal.y) + math.abs(normal.z))
+            turn = math.max(turn, math.abs(normal.rx), math.abs(normal.ry), math.abs(normal.rz))
+            if index % 10 == 0 then
+                for _, key in { "x", "y", "z", "rx", "ry", "rz", "scale" } do
+                    table.insert(signature, string.format("%.3f", normal[key]))
+                end
+            end
+            for _, strength in { 0, 0.25, 1, 2 } do
+                local body = Motion.bodySample(id, phase, strength)
+                for _, value in body do
+                    assert(
+                        value == value and math.abs(value) < 30,
+                        "Invalid whole-model motion: " .. id
+                    )
+                end
+                assert(
+                    body.scale >= 0.65 and body.scale <= 1.65,
+                    "Whole-model size escaped framing: " .. id
+                )
+                if strength == 0 then
+                    samePose(body, Motion.bodySample(id, 0, 1), 0)
+                end
+            end
+        end
+        assert(
+            growth >= 1.07 and travel >= 0.035,
+            "Trigger still lacks a visible body reaction: " .. id
+        )
+        if turn >= math.pi * 1.9 then
+            wholeTurns += 1
+        end
+        local key = table.concat(signature, ",")
+        assert(
+            not signatures[key],
+            "Duplicated whole-model choreography: " .. id .. "/" .. tostring(signatures[key])
+        )
+        signatures[key] = id
+        for _, strength in { 0.25, 1, 2 } do
+            for _, phase in { 0.000001, 0.999999 } do
+                local body = Motion.bodySample(id, phase, strength)
+                assert(math.abs(body.scale - 1) < 0.000001, "Scale snaps at idle: " .. id)
+                assert(
+                    math.abs(body.x) + math.abs(body.y) + math.abs(body.z) < 0.000001,
+                    "Body snaps at idle: " .. id
+                )
+                for _, axis in { "rx", "ry", "rz" } do
+                    assert(
+                        math.abs(math.sin(body[axis])) < 0.000001
+                            and math.cos(body[axis]) > 0.999999,
+                        "Completed spin changes heading at fractional strength: " .. id
+                    )
+                end
+            end
+        end
+    end
+    assert(count == 78 and wholeTurns >= 6, "Incomplete individual performance/spin coverage")
     local quarterSigns = { { -1, 1 }, { 1, -1 }, { -1, -1 }, { 1, 1 } }
     for index, signs in ipairs(quarterSigns) do
         local pose = Motion.idleSample((index - 1) * math.pi / 2)
@@ -123,14 +192,16 @@ return function()
                 )
                 for index = 0, 80 do
                     local pose = Motion.sample(id, group, index / 80, 2, 1, 1, 1)
-                    for _, value in pairs(pose) do
+                    for key, value in pairs(pose) do
                         assert(
-                            value == value and math.abs(value) < 50,
+                            value == value
+                                and math.abs(value)
+                                    < (if key:sub(1, 1) == "r" then math.pi * 20 else 10),
                             "Nonfinite or excessive evolution motion: " .. id
                         )
                     end
                     assert(
-                        pose.scale >= 0.8 and pose.scale <= 1.4,
+                        pose.scale >= 0.65 and pose.scale <= 2,
                         "Evolution scale escaped model envelope"
                     )
                 end
@@ -165,12 +236,34 @@ return function()
             for index = 0, 100 do
                 local pose = Motion.sample(id, group, index / 100, 2, 0.5, 0.6, 0.4)
                 for key, value in pairs(pose) do
-                    assert(value == value and math.abs(value) < 50, "Unbounded new motion: " .. id)
+                    assert(
+                        value == value
+                            and math.abs(value)
+                                < (if key:sub(1, 1) == "r" then math.pi * 20 else 10),
+                        "Unbounded new motion: " .. id
+                    )
                     moved = moved or math.abs(value - neutralPose[key]) > 0.00001
                 end
-                assert(pose.scale >= 0.7 and pose.scale <= 1.4, "New model exceeded scale envelope")
+                assert(
+                    pose.scale >= (if group == "RainDrop" then 0.4 else 0.65) and pose.scale <= 2,
+                    "New model exceeded scale envelope: " .. id .. "/" .. group
+                )
             end
-            assert(moved, "Named motion group has no animation: " .. id .. "/" .. group)
+            -- These connected structures intentionally share the whole-object
+            -- action; an independent bend would split the wand/kite/container.
+            local bodyOnly = {
+                ["bubble_wand/WandStem"] = true,
+                ["bubble_wand/WandLoop"] = true,
+                ["ozone_orb/OzoneShell"] = true,
+                ["aurora_kite/KiteSail"] = true,
+                ["aurora_kite/KiteSpar"] = true,
+                ["lily_pad/LilyPad"] = true,
+                ["biolume_jar/LumeStem"] = true,
+            }
+            assert(
+                moved or bodyOnly[id .. "/" .. group],
+                "Named motion group has no animation: " .. id .. "/" .. group
+            )
             local endPose = Motion.sample(id, group, 0.999999, 1, 0.5, 0.6, 0.4)
             for _, axis in { "rx", "ry", "rz" } do
                 assert(math.abs(math.sin(endPose[axis])) < 0.0001, "Motion snaps at rest: " .. id)

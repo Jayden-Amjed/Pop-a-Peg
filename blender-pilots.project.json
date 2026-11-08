@@ -6,19 +6,50 @@
     "ReplicatedStorage": {
       "PilotLibraries": {
         "$className": "Folder",
-        "ItemModels": { "$path": "src/client/ItemModels.luau" },
-        "ItemMotion": { "$path": "src/client/ItemMotion.luau" },
-        "PreviewLighting": { "$path": "src/client/PreviewLighting.luau" },
-        "PilotMotion": { "$path": "scripts/models/PilotMotion.luau" }
+        "ItemModels": {
+          "$path": "src/client/ItemModels.luau"
+        },
+        "ItemMotion": {
+          "$path": "src/client/ItemMotion.luau"
+        },
+        "PreviewLighting": {
+          "$path": "src/client/PreviewLighting.luau"
+        },
+        "PilotMotion": {
+          "$path": "scripts/models/PilotMotion.luau"
+        },
+        "ItemChoreography": {
+          "$path": "src/client/ItemChoreography.luau"
+        },
+        "motion": {
+          "$path": "src/client/motion"
+        },
+        "CatalogMotion": {
+          "$path": "scripts/models/CatalogMotion.luau"
+        }
       },
-      "BlenderPilots": { "$path": "art/models/BlenderPilots.rbxm" }
+      "BlenderPilots": {
+        "$path": "art/models/BlenderPilots.rbxm"
+      }
     },
     "StarterPlayer": {
       "StarterPlayerScripts": {
-        "PilotGallery": { "$path": "scripts/models/PilotGallery.client.luau" }
+        "PilotGallery": {
+          "$path": "scripts/models/PilotGallery.client.luau"
+        }
       }
     },
-    "Workspace": { "$properties": { "FilteringEnabled": true, "Gravity": 0 } },
-    "Lighting": { "$properties": { "Brightness": 2, "ClockTime": 13 } }
+    "Workspace": {
+      "$properties": {
+        "FilteringEnabled": true,
+        "Gravity": 0
+      }
+    },
+    "Lighting": {
+      "$properties": {
+        "Brightness": 2,
+        "ClockTime": 13
+      }
+    }
   }
 }

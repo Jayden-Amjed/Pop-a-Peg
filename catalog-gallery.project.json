@@ -4,23 +4,61 @@
   "tree": {
     "$className": "DataModel",
     "ReplicatedStorage": {
-      "CatalogAssets": { "$path": "art/catalog/CatalogAssets.rbxm" },
+      "CatalogAssets": {
+        "$path": "art/catalog/CatalogAssets.rbxm"
+      },
       "CatalogLibrary": {
         "$className": "Folder",
-        "ItemModels": { "$path": "src/client/ItemModels.luau" },
-        "ItemMotion": { "$path": "src/client/ItemMotion.luau" },
-        "CatalogMotion": { "$path": "scripts/models/CatalogMotion.luau" },
-        "CatalogInfo": { "$path": "scripts/models/CatalogInfo.luau" },
-        "StudioCatalogAudit": { "$path": "scripts/models/StudioCatalogAudit.luau" },
-        "PreviewLighting": { "$path": "src/client/PreviewLighting.luau" }
+        "ItemModels": {
+          "$path": "src/client/ItemModels.luau"
+        },
+        "ItemMotion": {
+          "$path": "src/client/ItemMotion.luau"
+        },
+        "CatalogMotion": {
+          "$path": "scripts/models/CatalogMotion.luau"
+        },
+        "CatalogInfo": {
+          "$path": "scripts/models/CatalogInfo.luau"
+        },
+        "StudioCatalogAudit": {
+          "$path": "scripts/models/StudioCatalogAudit.luau"
+        },
+        "PreviewLighting": {
+          "$path": "src/client/PreviewLighting.luau"
+        },
+        "ItemChoreography": {
+          "$path": "src/client/ItemChoreography.luau"
+        },
+        "motion": {
+          "$path": "src/client/motion"
+        },
+        "StudioGalleryAudit": {
+          "$path": "scripts/models/StudioGalleryAudit.luau"
+        },
+        "StudioNativeMotionAudit": {
+          "$path": "scripts/models/StudioNativeMotionAudit.luau"
+        }
       }
     },
     "StarterPlayer": {
       "StarterPlayerScripts": {
-        "CatalogGallery": { "$path": "scripts/models/CatalogGallery.client.luau" }
+        "CatalogGallery": {
+          "$path": "scripts/models/CatalogGallery.client.luau"
+        }
       }
     },
-    "Workspace": { "$properties": { "FilteringEnabled": true, "Gravity": 0 } },
-    "Lighting": { "$properties": { "Brightness": 2, "ClockTime": 13 } }
+    "Workspace": {
+      "$properties": {
+        "FilteringEnabled": true,
+        "Gravity": 0
+      }
+    },
+    "Lighting": {
+      "$properties": {
+        "Brightness": 2,
+        "ClockTime": 13
+      }
+    }
   }
 }

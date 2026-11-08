@@ -2370,6 +2370,8 @@ function ItemModels.create(id, level)
     return model
 end
 
+local previewEnvelopes = {}
+
 function ItemModels.mount(viewport, id, level, options)
     assert(viewport:IsA("ViewportFrame"), "ItemModels.mount requires a ViewportFrame")
     local model = ItemModels.create(id, level)
@@ -2389,6 +2391,7 @@ function ItemModels.mount(viewport, id, level, options)
     PreviewLighting.apply(viewport, options and options.lightingPreset)
     local _, size = model:GetBoundingBox()
     local radius = size.Magnitude / 2
+    local focus = V(0, 0, 0)
     local canonical = aliases[id] or id
     if categories[canonical] == "perk" then
         local floorY = -size.Y / 2 - 0.1
@@ -2398,7 +2401,28 @@ function ItemModels.mount(viewport, id, level, options)
         local base = drum(container, P.ceramic, floorRadius * 1.03, 0.035, 0, floorY - 0.036, 0)
         base.Name = "PerkPedestalBase"
     end
-    local motion = ItemMotion.new(model, canonical)
+    local motion = ItemMotion.new(model, canonical, options)
+    -- Fit the complete performance once, then hold the camera still. Cache by
+    -- geometry/level so rebuilding shop cards does not re-sample every mechanism.
+    local envelopeKey = canonical .. ":" .. tostring(level or 1)
+    local envelope = previewEnvelopes[envelopeKey]
+    if not envelope then
+        local lower, upper = -size / 2, size / 2
+        for index = 0, 40 do
+            motion:apply(index / 40, 2, CFrame.new())
+            local boundsFrame, dimensions = model:GetBoundingBox()
+            -- Models have an identity pivot, so bounding-box axes stay in the
+            -- preview coordinate frame even as the individual pieces spin.
+            lower = lower:Min(boundsFrame.Position - dimensions / 2)
+            upper = upper:Max(boundsFrame.Position + dimensions / 2)
+        end
+        motion:apply(0, 1, CFrame.new())
+        envelope = { focus = (lower + upper) / 2, radius = (upper - lower).Magnitude / 2 }
+        if not (options and options.reducedMotion) then
+            previewEnvelopes[envelopeKey] = envelope
+        end
+    end
+    focus, radius = envelope.focus, envelope.radius
     local handle = { model = model }
     local animate = not options or (options.animate ~= false and options.reducedMotion ~= true)
     local hover = ItemMotion.newHover(animate)
@@ -2419,8 +2443,8 @@ function ItemModels.mount(viewport, id, level, options)
             else 1
         local halfFov = math.rad(camera.FieldOfView / 2)
         local limitingFov = math.min(halfFov, math.atan(math.tan(halfFov) * aspect))
-        local distance = radius * 1.28 / math.sin(limitingFov)
-        camera.CFrame = CFrame.lookAt(V(0.72, 0.43, 1).Unit * distance, V(0, 0, 0))
+        local distance = radius * 1.13 / math.sin(limitingFov)
+        camera.CFrame = CFrame.lookAt(focus + V(0.72, 0.43, 1).Unit * distance, focus)
     end
     local function hoverFrame(pose)
         local position = camera.CFrame.RightVector * pose.x * size.X
@@ -2443,7 +2467,7 @@ function ItemModels.mount(viewport, id, level, options)
         if active then
             age += delta
             t = math.min(1, age / motion.duration)
-            if canonical == "split_prism" then
+            if canonical == "split_prism" and not (options and options.reducedMotion) then
                 local aim = if t < 0.18 then t / 0.18 elseif t < 0.54 then 1 else (1 - t) / 0.46
                 aim = aim * aim * (3 - 2 * aim)
                 currentAim = if t < 0.18
@@ -2475,7 +2499,7 @@ function ItemModels.mount(viewport, id, level, options)
         if requestedStrength <= 0 then
             return
         end
-        if active and canonical ~= "split_prism" then
+        if active then
             queuedAmount = math.max(queuedAmount or 0, requestedStrength)
             queuedParams = params
             return

@@ -6,10 +6,10 @@
 - Reviewed: 2026-11-08
 - Starting main: 83a1a611df86f2737179ab9ed54e7ac0f53b9f6b; accepted State Version 11.
 - Branch: task/RBX-023-expressive-motion
-- PR: pending creation
+- PR: [24](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/24)
 - Implementation evidence: pending
 
-## Objective and acceptance
+## Acceptance
 
 The approved models need stronger, distinct trigger performances across all 78
 IDs: anticipation, impact, whole-model bounce/growth, suitable completed spins,
@@ -34,7 +34,7 @@ their commits. Existing checkouts and user-open galleries remain untouched.
 
 Accepted main, clean checkouts, remote branches and reservations inspected.
 No open PR overlaps. Issue19 is a stale reservation for already-merged pilots.
-Implementation and runtime checks: NOT RUN.
+Implementation checks: formatting, lint, 23 suites and catalog adapter contracts pass. All three builds and 39 source mappings pass. Documentation field validation exposed a missing capitalized Acceptance heading, now corrected. Studio runtime checks: NOT RUN.
 
 ## Handoff
 
