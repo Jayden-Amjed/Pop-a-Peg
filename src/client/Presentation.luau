@@ -15,6 +15,9 @@ local ItemModels = require(script.Parent.ItemModels)
 local Feedback = require(script.Parent.Feedback)
 local Selection = require(script.Parent.InventorySelection)
 local ShopLayout = require(script.Parent.ShopLayout)
+local ChoiceLayout = require(script.Parent.ChoiceLayout)
+local HoverInspector = require(script.Parent.HoverInspector)
+local BoardArt = require(script.Parent.BoardArt)
 
 local Presentation = {}
 Presentation.__index = Presentation
@@ -90,41 +93,6 @@ local function itemDefinition(item)
         return nil
     end
     return Catalog.Items[item.id or item]
-end
-
-local function itemColor(definition)
-    local color = definition and definition.color
-    if typeof(color) == "Color3" then
-        return color
-    elseif type(color) == "table" then
-        return Color3.fromRGB(
-            color[1] or color.r or 121,
-            color[2] or color.g or 230,
-            color[3] or color.b or 187
-        )
-    end
-    return C.mint
-end
-
-local function effectText(definition, compact)
-    local pieces = {}
-    for _, text in definition.effectLines or { definition.description } do
-        table.insert(pieces, text)
-    end
-    if definition.tradeoff then
-        table.insert(pieces, "Tradeoff: " .. definition.tradeoff)
-    end
-    local partners = {}
-    for _, id in definition.synergyPartners or {} do
-        local other = Catalog.Items[id]
-        if other then
-            table.insert(partners, other.name)
-        end
-    end
-    if #partners > 0 then
-        table.insert(pieces, "Pairs with " .. table.concat(partners, " + ") .. ".")
-    end
-    return table.concat(pieces, compact and "  " or "\n")
 end
 
 function Presentation:_send(kind, payload)
@@ -245,88 +213,7 @@ function Presentation:_buildBoard()
             scenery.CastShadow = false
         end
     end
-    part(self.model, "PearlShell", Vector3.new(21.5, 29, 1.3), Vector3.new(0, 10.9, -1), C.paper)
-    part(self.model, "Playfield", Vector3.new(20.1, 28.8, 0.5), Vector3.new(0, 10.9, -0.2), C.board)
-    for _, side in { -1, 1 } do
-        local rail = part(
-            self.model,
-            "GlassRail",
-            Vector3.new(29, 0.9, 0.9),
-            Vector3.new(side * 10.45, 10.9, 0.2),
-            C.edge,
-            Enum.Material.Glass,
-            Enum.PartType.Cylinder
-        )
-        rail.CFrame = CFrame.new(side * 10.45, 10.9, 0.2) * CFrame.Angles(0, 0, math.pi / 2)
-        rail.Transparency = 0.12
-        rail.Reflectance = 0.12
-        for _, y in { -3.55, 25.35 } do
-            part(
-                self.model,
-                "PearlCorner",
-                Vector3.new(1.4, 1.4, 1.4),
-                Vector3.new(side * 10.2, y, -0.1),
-                C.paper,
-                nil,
-                Enum.PartType.Ball
-            )
-        end
-        part(
-            self.model,
-            "RailHighlight",
-            Vector3.new(0.08, 27.5, 0.12),
-            Vector3.new(side * 10.15, 11, 0.8),
-            C.paper,
-            Enum.Material.Neon
-        )
-        local fin = part(
-            self.model,
-            "AquaFin",
-            Vector3.new(2.1, 7, 1),
-            Vector3.new(side * 11.1, 18.3, -0.9),
-            C.blue,
-            Enum.Material.Glass,
-            Enum.PartType.Ball
-        )
-        fin.Transparency = 0.18
-        disc(
-            self.model,
-            "FeederLens",
-            0.5,
-            0.15,
-            Vector3.new(side * 11.1, 19.3, -0.25),
-            C.mint,
-            Enum.Material.Glass
-        )
-    end
-    for _, y in { -3.65, 25.5 } do
-        local rail = part(
-            self.model,
-            "PearlCrossbar",
-            Vector3.new(20.5, 0.8, 1),
-            Vector3.new(0, y, 0),
-            C.paper
-        )
-        rail.Reflectance = 0.08
-    end
-    part(
-        self.model,
-        "DrainLight",
-        Vector3.new(19.7, 0.1, 0.1),
-        Vector3.new(0, -3.25, 0.55),
-        C.blue,
-        Enum.Material.Neon
-    )
-    for y = 0, 21, 1.7 do
-        local line = part(
-            self.model,
-            "WaterlineInlay",
-            Vector3.new(19.3, 0.025, 0.025),
-            Vector3.new(0, y, 0.08),
-            C.edge
-        )
-        line.Transparency = 0.86
-    end
+    self.boardArt = BoardArt.new(self.model)
     local launcher = disc(
         self.model,
         "LauncherSocket",
@@ -444,6 +331,7 @@ end
 function Presentation:_mount(viewport, id, level)
     local animate = Catalog.Items[id] ~= nil or Catalog.Perks[id] ~= nil
     local reduced = game:GetService("GuiService").ReducedMotionEnabled
+    local outline = viewport:GetAttribute("NoOutline") ~= true
     local key = tostring(id)
         .. ":"
         .. tostring(level or 1)
@@ -451,6 +339,8 @@ function Presentation:_mount(viewport, id, level)
         .. tostring(animate)
         .. ":"
         .. tostring(reduced)
+        .. ":"
+        .. tostring(outline)
     local current = self.models[viewport]
     if current and current.key == key then
         return
@@ -464,7 +354,7 @@ function Presentation:_mount(viewport, id, level)
             viewport,
             id,
             level or 1,
-            { animate = animate, reducedMotion = reduced }
+            { animate = animate, reducedMotion = reduced, outline = outline }
         ),
     }
 end
@@ -490,6 +380,7 @@ function Presentation:_buildHud()
     self.root = frame(self.gui, "Root", nil, 1)
     self.root.Size = UDim2.fromScale(1, 1)
     self.root.BackgroundTransparency = 1
+    self.inspector = HoverInspector.new(self)
     self.brand = label(self.root, "Brand", "POP A PEG", 37, C.paper, 5)
     self.tag = label(self.root, "Tag", "BUILD A BIGGER BOUNCE!", 18, C.gold, 5)
     self.roundPlate = plate(self.root, "RoundPlate", C.paper, 3)
@@ -552,6 +443,12 @@ function Presentation:_buildHud()
             self:_updateInventory()
             self:_updatePerks()
             self:_updateModal()
+            local item = state.inventory[index]
+            if self.selectedSlot == index and item and item.id ~= "" then
+                self.inspector:show(item.id, item.level, self.itemSlots[index].button, true)
+            else
+                self.inspector:hide()
+            end
         end, 32)
         local border = cell:FindFirstChildWhichIsA("UIStroke")
         local model = self:_viewport(cell, "Equipment", index <= 4 and "restock" or "lock", 1, 34)
@@ -569,6 +466,10 @@ function Presentation:_buildHud()
             level = level,
             name = name,
         }
+        self.inspector:bind(cell, function()
+            local item = self.snapshot and self.snapshot.inventory[index]
+            return item and item.id ~= "" and item.id or nil, item and item.level or 1
+        end)
     end
 
     self.left = frame(self.root, "Resources", nil, 2)
@@ -588,31 +489,6 @@ function Presentation:_buildHud()
     for index = 1, 5 do
         self.reserveIcons[index] = self:_viewport(self.reservePlate, "Ball" .. index, "ball", 1, 5)
     end
-    self.detail = plate(self.left, "EquipmentDetail", C.panel, 3)
-    blockAim(self.detail)
-    self.detailTitle = label(self.detail, "Name", "YOUR COMBO STARTS HERE", 23, C.paper, 5)
-    self.detailTitle.TextWrapped = true
-    self.detailTrigger = label(self.detail, "Trigger", "TAP AN EQUIPMENT SLOT", 18, C.gold, 5)
-    self.detailTrigger.TextWrapped = true
-    self.detailBody = label(
-        self.detail,
-        "Effect",
-        "Shop for gadgets. Match them to upgrade. Every bounce builds your run.",
-        18,
-        C.paper,
-        5
-    )
-    self.detailBody.TextWrapped = true
-    self.detailBody.TextYAlignment = Enum.TextYAlignment.Top
-    self.detailClose = button(self.detail, "CloseDetail", "×", C.coral, function()
-        self.selectedSlot = nil
-        self.selectedPerk = nil
-        self.modalKey = nil
-        self:_updateInventory()
-        self:_updatePerks()
-        self:_updateModal()
-    end, 6)
-    self.detailClose.Visible = false
     self.stats = label(self.left, "ShotStats", "0 POPS   0 WALLS", 19, C.paper, 5)
     self.timer = label(self.left, "Time", "00:00.00", 18, C.muted, 5)
     self.statsPanel = plate(self.root, "TriggerCounts", C.panel, 5)
@@ -695,8 +571,16 @@ function Presentation:_buildHud()
             self.selectedSlot, self.selectedOffer = nil, nil
             self:_updateInventory()
             self:_updatePerks()
+            if self.selectedPerk then
+                self.inspector:show(id, 1, self.perkCells[id].button, true)
+            else
+                self.inspector:hide()
+            end
         end, 8)
         cell.Visible = false
+        self.inspector:bind(cell, function()
+            return id, 1
+        end)
         local viewport = make(
             "ViewportFrame",
             { Name = "PerkModel", BackgroundTransparency = 1, BorderSizePixel = 0, ZIndex = 10 },
@@ -750,7 +634,10 @@ function Presentation:_buildHud()
     self.notice = label(self.root, "Notice", "", 24, C.gold, 70)
     self.notice.TextXAlignment = Enum.TextXAlignment.Center
     self.notice.TextWrapped = true
-    self.settlement = plate(self.root, "Settlement", C.panel, 55)
+    self.settlement = frame(self.root, "Settlement", C.board, 55)
+    self.settlement.BackgroundTransparency = 1
+    self.settlementOutline = stroke(self.settlement, C.paper, 2)
+    self.settlementOutline.Transparency = 1
     self.settlement.Visible = false
     blockAim(self.settlement)
     self.settlementText = label(self.settlement, "Text", "", 26, C.paper, 57)
@@ -781,7 +668,7 @@ end
 
 function Presentation:_layout()
     local camera = workspace.CurrentCamera
-    if not camera or camera.ViewportSize.X < 1 then
+    if not camera or camera.ViewportSize.X < 32 or camera.ViewportSize.Y < 48 then
         return
     end
     local size = camera.ViewportSize
@@ -794,7 +681,13 @@ function Presentation:_layout()
     self.shortWide = (h < 620 or w < 1100) and not self.mobile
     self.compact = self.mobile or self.shortWide
     self.lowDesktop = not self.compact and h < 960
-    local compact, shop = self.compact, self.snapshot and self.snapshot.phase == "shop"
+    local phase = self.snapshot and self.snapshot.phase
+    local compact, shop = self.compact, phase == "shop"
+    local choosing = shop
+        or phase == "perk"
+        or phase == "event"
+        or phase == "gameover"
+        or phase == "victory"
     local boardRect, invWidth, invHeight
     self.brand.Visible, self.tag.Visible = not compact, not compact
     self.roundPlate.Visible = not (shop and self.shortWide)
@@ -806,8 +699,6 @@ function Presentation:_layout()
     self.best.Visible, self.profile.Visible = not compact and h >= 1040, not compact and h >= 1040
     self.stats.Visible, self.timer.Visible = false, false
     self.statsPanel.Visible = true
-    self.detailPopup = compact or self.lowDesktop
-    self.inlineDetail = not self.detailPopup
     self.help.Visible = not compact
     self.soundButton.TextSize = compact and 15 or 18
     self.quota.TextScaled = true
@@ -818,11 +709,11 @@ function Presentation:_layout()
         local uiX = self.shortWide and math.floor(w * 0.43) or 12
         local uiW = w - uiX - 12
         local invTop = self.shortWide and top + 20 or top + 190
-        invWidth, invHeight = uiW, self.shortWide and 78 or 80
-        if shop then
+        invWidth, invHeight = uiW, 88
+        if choosing then
             invHeight = self.shortWide and 60 or 64
         end
-        if shop and self.mobile then
+        if choosing and self.mobile then
             invTop = top + 20
         end
         local invX = shop and self.shortWide and 12 or uiX
@@ -911,19 +802,12 @@ function Presentation:_layout()
             setRect(self.soundButton, 12 + 3 * (unit + 8), h - 48, unit, 36)
         end
         self.primary.TextSize, self.jumbleButton.TextSize = 24, 20
-        local detailW = math.min(540, w - 24)
-        local detailH = 240
-        local detailY = math.max(top + 85, math.min(h - detailH - 15, boardRect.y + 30))
-        setRect(self.detail, (w - detailW) / 2 - uiX, detailY - resourceTop, detailW, detailH)
-        setRect(self.detailTitle, 12, 8, detailW - 66, 32)
-        setRect(self.detailClose, detailW - 48, 8, 36, 32)
-        setRect(self.detailTrigger, 12, 44, detailW - 24, 42)
-        setRect(self.detailBody, 12, 90, detailW - 24, detailH - 100)
     else
         local leftW = math.clamp(w * 0.185, 225, 290)
         local rightW = math.clamp(w * 0.205, 250, 315)
         local rackSpace = w - leftW - rightW - 64
-        invWidth, invHeight = math.min(800, rackSpace), 110
+        invWidth = math.min(shop and 1100 or 1320, rackSpace)
+        invHeight = choosing and 94 or math.clamp(h * 0.17, 124, 180)
         setRect(self.brand, 22, top + 16, leftW, 42)
         self.brand.Font = Enum.Font.SourceSansBold
         self.brand.TextSize = 37
@@ -959,14 +843,6 @@ function Presentation:_layout()
             setRect(icon, 8 + (index - 1) * ((leftW - 16) / 5), 32, (leftW - 16) / 5, 40)
         end
         setRect(self.statsPanel, 22, resourceTop + 186, leftW, 166)
-        local detailW = self.detailPopup and math.min(520, w - 36) or leftW
-        local detailH = self.detailPopup and 224
-            or math.max(220, math.min(290, h - resourceTop - 450))
-        setRect(self.detail, 0, self.detailPopup and 190 or 366, detailW, detailH)
-        setRect(self.detailTitle, 12, 8, detailW - (self.detailPopup and 66 or 24), 36)
-        setRect(self.detailClose, detailW - 48, 8, 36, 32)
-        setRect(self.detailTrigger, 12, 48, detailW - 24, 42)
-        setRect(self.detailBody, 12, 94, detailW - 24, detailH - 106)
         setRect(self.right, w - rightW - 22, resourceTop, rightW, 570)
         setRect(self.scorePlate, 0, 0, rightW, 236)
         setRect(self.scoreCaption, 16, 10, rightW - 32, 30)
@@ -1012,8 +888,12 @@ function Presentation:_layout()
             setRect(self.restockCount, 106, 30, rightW - 118, 54)
             setRect(self.perksPanel, w - rightW - 22, resourceTop + 292, rightW, 130)
         end
-        boardRect =
-            { x = leftW + 44, y = top + 144, w = w - leftW - rightW - 88, h = h - top - 240 }
+        boardRect = {
+            x = leftW + 44,
+            y = top + 22 + invHeight + 14,
+            w = w - leftW - rightW - 88,
+            h = h - (top + 22 + invHeight + 14) - 96,
+        }
         local cw = math.min(440, boardRect.w)
         setRect(self.controls, boardRect.x + (boardRect.w - cw) / 2, h - 83, cw, 54)
         setRect(self.jumbleButton, 0, 0, cw * 0.36 - 5, 54)
@@ -1066,7 +946,7 @@ function Presentation:_layout()
         slot.level.TextSize = compact and 14 or 17
         setRect(slot.name, 3, invHeight - 31, cellW - 10, 21)
         slot.name.Visible = showName
-        slot.name.TextSize = compact and 14 or 19
+        slot.name.TextSize = compact and 14 or (shop and 18 or 23)
         slot.name.Font = Enum.Font.SourceSansBold
     end
     self.boardRect = boardRect
@@ -1078,31 +958,17 @@ function Presentation:_layout()
         40
     )
     self.notice.TextSize = compact and 20 or 24
-    local settleW = math.min(compact and 460 or 600, w - 28, boardRect.w)
-    local settleH = settleW < 320 and 100 or 84
-    setRect(
-        self.settlement,
-        boardRect.x + (boardRect.w - settleW) / 2,
-        math.min(h - settleH - 128, boardRect.y + boardRect.h * 0.5),
-        settleW,
-        settleH
-    )
-    setRect(self.settlementText, 10, 4, settleW - 100, settleH - 19)
-    self.settlementText.TextSize = compact and 20 or 26
-    setRect(self.skipButton, settleW - 83, (settleH - 40) / 2, 70, 40)
-    self.settlementProgress.Position = UDim2.fromOffset(7, settleH - 10)
-    self.settlementProgress.Size =
-        UDim2.new(self.settlementFraction or 0, -14 * (self.settlementFraction or 0), 0, 5)
     self.modalKey = nil
     local vh =
-        math.max(31.5 * h / math.max(120, boardRect.h), 26.8 * h / math.max(170, boardRect.w))
+        math.max(34.5 * h / math.max(120, boardRect.h), 26.8 * h / math.max(170, boardRect.w))
     local distance = vh / (2 * math.tan(math.rad(17.5)))
     local cameraX = (w / 2 - boardRect.x - boardRect.w / 2) * vh / h
-    local cameraY = 11 + (boardRect.y + boardRect.h / 2 - h / 2) * vh / h
+    local cameraY = 11.7 + (boardRect.y + boardRect.h / 2 - h / 2) * vh / h
     self.cameraCFrame =
         CFrame.lookAt(Vector3.new(cameraX, cameraY, distance), Vector3.new(cameraX, cameraY, 0))
     camera.CameraType, camera.FieldOfView, camera.CFrame =
         Enum.CameraType.Scriptable, 35, self.cameraCFrame
+    self:_layoutSettlement()
     self:_renderCounters()
     self:_renderControls()
     self:_updateInventory()
@@ -1213,11 +1079,7 @@ function Presentation:_updateInventory()
         local item = state.inventory[index]
         local definition = itemDefinition(item)
         local locked = index > state.slots
-        Theme.select(
-            cell.button,
-            self.selectedSlot == index,
-            definition and itemColor(definition):Lerp(C.panel, 0.42) or C.panel
-        )
+        Theme.select(cell.button, self.selectedSlot == index, definition and C.panel or C.board)
         cell.name.TextColor3 = self.selectedSlot == index and C.ink or C.paper
         cell.number.TextColor3 = self.selectedSlot == index and C.ink or C.paper
         self:_mount(
@@ -1229,43 +1091,7 @@ function Presentation:_updateInventory()
         cell.name.Text = locked and "5 COINS" or (definition and definition.name or "EMPTY")
         cell.level.Text = definition and ("L" .. tostring(item.level or 1)) or ""
     end
-    local item = self.selectedSlot and state.inventory[self.selectedSlot]
-    local definition = self.selectedPerk and Catalog.Perks[self.selectedPerk]
-        or itemDefinition(item)
-    if definition then
-        self.detailTitle.Text = (self.selectedPerk and "PERK • " or "") .. definition.name
-        self.detailTrigger.Text = definition.triggerText or "PASSIVE EFFECT"
-        self.detailBody.Text = effectText(definition, true)
-        if self.selectedPerk then
-            self.detailBody.Text ..= "  Owned copies: " .. tostring(
-                self.perkCounts[self.selectedPerk] or 0
-            )
-        end
-    else
-        self.detailTitle.Text = ""
-        self.detailTrigger.Text = ""
-        self.detailBody.Text = ""
-    end
-    local showPopup = self.detailPopup
-        and definition ~= nil
-        and not self.busy
-        and (state.phase == "aim" or (state.phase == "flight" and self.selectedPerk ~= nil))
-    self.detail.Visible = definition ~= nil
-        and (state.phase == "aim" or (state.phase == "flight" and self.selectedPerk ~= nil))
-        and not self.busy
-    self.detailClose.Visible = showPopup
-    local detailObjects = self.detail:GetDescendants()
-    table.insert(detailObjects, self.detail)
-    for _, object in detailObjects do
-        if object:IsA("GuiObject") then
-            local original = object:GetAttribute("DetailZ")
-            if not original then
-                original = object.ZIndex
-                object:SetAttribute("DetailZ", original)
-            end
-            object.ZIndex = original + (showPopup and 42 or 0)
-        end
-    end
+    self.inspector:refresh()
 end
 
 function Presentation:_renderCounters()
@@ -1296,8 +1122,8 @@ function Presentation:_renderCounters()
         or C.ink
     self.progressFill.BackgroundColor3 = layers[(completed % #layers) + 1]
     self.progressFill.Size = UDim2.fromScale(math.clamp(remainder / quota, 0, 1), 1)
-    self.scorePlate.BackgroundColor3 = completed > 0 and C.muted or C.paper
-    self.restockPlate.BackgroundColor3 = restocks > 0 and C.muted or C.paper
+    self.scorePlate.BackgroundColor3 = C.paper
+    self.restockPlate.BackgroundColor3 = C.paper
     self.restockHint.Text = restocks > 0 and "Ready to refill + merge your board!"
         or "Fill the meter to grow your board"
     for index, viewport in self.reserveIcons do
@@ -1383,9 +1209,9 @@ end
 
 function Presentation:_shopGeometry()
     local size = self.viewport or Vector2.new(1440, 900)
-    local width = math.min(1100, size.X - 24)
+    local width = math.min(1380, size.X - 24)
     local top = self.inventory.Position.Y.Offset + self.inventory.Size.Y.Offset + 4
-    return width, math.min(680, size.Y - top - 12), top
+    return width, math.min(790, size.Y - top - 12), top
 end
 
 function Presentation:_buildShop(state)
@@ -1444,6 +1270,16 @@ function Presentation:_buildShop(state)
             self:_updateInventory()
             self:_updatePerks()
             self:_refreshShop(self.snapshot)
+            local offer = self.snapshot.shopOffers[index]
+            if self.selectedOffer and offer then
+                self.inspector:show(offer.id, 1, inspect, true)
+            else
+                self.inspector:hide()
+            end
+        end)
+        self.inspector:bind(inspect, function()
+            local offer = self.snapshot and self.snapshot.shopOffers[index]
+            return offer and offer.id, 1
         end)
         local model = make(
             "ViewportFrame",
@@ -1451,26 +1287,56 @@ function Presentation:_buildShop(state)
             inspect
         )
         local bandH = positions.inspect.h
-        local modelSize = math.min(short and 35 or 78, math.max(25, bandH - 3), rect.w * 0.35)
-        setRect(model, 0, math.max(0, (bandH - modelSize) / 2), modelSize, modelSize)
-        local name = label(inspect, "Name", "", short and 17 or 22, C.paper, 30)
+        local nameH = short and 26 or 42
+        local triggerH = index <= 4 and (short and 0 or 34) or 0
+        local modelH = math.max(20, bandH - nameH - triggerH - 8)
+        local modelSize = math.min(rect.w - 12, modelH)
+        setRect(model, (rect.w - modelSize) / 2 - 3, 1, modelSize, modelH)
+        local name = label(inspect, "Name", "", short and 17 or 26, C.paper, 30)
         name.Font = Enum.Font.SourceSansBold
         name.TextWrapped, name.TextScaled = true, true
         make(
             "UITextSizeConstraint",
-            { MinTextSize = short and 14 or 17, MaxTextSize = short and 18 or 24 },
+            { MinTextSize = short and 13 or 18, MaxTextSize = short and 18 or 28 },
             name
         )
-        setRect(name, modelSize + 2, 0, rect.w - modelSize - 11, bandH)
-        local trigger = label(inspect, "Trigger", "", 18, C.gold, 30)
-        trigger.TextWrapped = true
+        setRect(name, 5, modelH + 2, rect.w - 16, nameH)
+        local trigger = label(inspect, "Trigger", "", 20, C.gold, 30)
+        trigger.TextWrapped, trigger.TextScaled = true, true
+        make("UITextSizeConstraint", { MinTextSize = 16, MaxTextSize = 22 }, trigger)
         trigger.TextXAlignment = Enum.TextXAlignment.Center
-        trigger.Visible = bandH >= 150
-        if trigger.Visible then
-            local modelH = math.min(185, rect.w - 14, bandH - 95)
-            setRect(model, (rect.w - modelH) / 2 - 3, 2, modelH, modelH)
-            setRect(name, 5, modelH + 6, rect.w - 16, 40)
-            setRect(trigger, 7, modelH + 50, rect.w - 20, bandH - modelH - 54)
+        trigger.Visible = triggerH > 0
+        setRect(trigger, 5, modelH + nameH + 4, rect.w - 16, triggerH)
+        if short and bandH < 70 then
+            local side = math.max(20, math.min(36, bandH - 2))
+            setRect(model, 1, (bandH - side) / 2, side, side)
+            setRect(name, side + 5, 0, rect.w - side - 14, bandH)
+        end
+        local synergy = frame(card, "Synergy", nil, 28)
+        synergy.BackgroundTransparency = 1
+        place(synergy, positions.synergy)
+        local synergyTitle = label(synergy, "Title", "SYNERGY", short and 12 or 17, C.paper, 30)
+        synergyTitle.Font = Enum.Font.SourceSansBold
+        setRect(synergyTitle, 0, 0, positions.synergy.w, short and 14 or 20)
+        local partners = {}
+        for partnerIndex = 1, 3 do
+            local tile = Theme.tile(synergy, "Pair" .. partnerIndex, C.paper, 29)
+            local status =
+                label(synergy, "Owned" .. partnerIndex, "", short and 10 or 13, C.paper, 31)
+            status.Font = Enum.Font.SourceSansBold
+            status.TextXAlignment = Enum.TextXAlignment.Center
+            local preview = make(
+                "ViewportFrame",
+                { Name = "Item", BackgroundTransparency = 1, BorderSizePixel = 0, ZIndex = 31 },
+                tile
+            )
+            preview:SetAttribute("NoOutline", true)
+            partners[partnerIndex] = { tile = tile, status = status, viewport = preview }
+            self.inspector:bind(tile, function()
+                local offer = self.snapshot and self.snapshot.shopOffers[index]
+                local detail = offer and Catalog.detail(offer.id, 1)
+                return detail and detail.partners[partnerIndex], 1
+            end)
         end
         local buy = button(card, "Buy", "", C.mint, function()
             self:_send("buy", { offer = index })
@@ -1493,11 +1359,6 @@ function Presentation:_buildShop(state)
             end, 29)
             place(hold, positions.hold)
             hold.TextSize = short and 16 or 19
-        else
-            local immediate =
-                label(card, "Immediate", "USE IMMEDIATELY", short and 14 or 16, C.gold, 28)
-            immediate.TextXAlignment = Enum.TextXAlignment.Center
-            place(immediate, positions.hold)
         end
         shop.cards[index] = {
             card = card,
@@ -1511,14 +1372,11 @@ function Presentation:_buildShop(state)
             hold = hold,
             short = short,
             positions = positions,
+            synergy = synergy,
+            synergyTitle = synergyTitle,
+            partners = partners,
         }
     end
-    local detail = plate(modal, "OfferDetail", C.paper, 25)
-    place(detail, layout.detail)
-    shop.description = label(detail, "Description", "", height < 300 and 16 or 18, C.ink, 27)
-    shop.description.TextWrapped = true
-    shop.description.TextYAlignment = Enum.TextYAlignment.Center
-    setRect(shop.description, 8, 2, layout.detail.w - 16, layout.detail.h - 4)
     local footer, fw = layout.footer, (layout.footer.w - 16) / 3
     local function action(name, text, index, color, callback)
         local control = button(modal, name, text, color, callback, 28)
@@ -1568,6 +1426,36 @@ function Presentation:_refreshShop(state)
             cell.name.TextColor3 = selected and C.ink or C.paper
             cell.trigger.TextColor3 = selected and C.board or C.gold
             self:_mount(cell.viewport, offer.id, 1)
+            local detail = Catalog.detail(offer.id, 1)
+            local partnerCount = math.min(3, #detail.partners)
+            cell.synergyTitle.Text = partnerCount > 0 and "SYNERGY" or "ONE SHOT"
+            cell.synergyTitle.TextColor3 = selected and C.ink or C.paper
+            local region = cell.positions.synergy
+            local titleH = cell.short and 14 or 20
+            local statusH = cell.short and 13 or 18
+            local tileSize = math.min(
+                cell.short and 28 or 60,
+                region.h - titleH - statusH - 2,
+                (region.w - 8) / math.max(1, partnerCount)
+            )
+            local rowW = partnerCount * tileSize + math.max(0, partnerCount - 1) * 4
+            local left = (region.w - rowW) / 2
+            for partnerIndex, pair in cell.partners do
+                local id = detail.partners[partnerIndex]
+                pair.tile.Visible, pair.status.Visible, pair.viewport.Visible =
+                    id ~= nil, id ~= nil, id ~= nil
+                if id then
+                    local owned = Catalog.owns(state.inventory, id)
+                    pair.status.Text = owned and "OWNED" or "NEED"
+                    pair.status.TextColor3 = selected and (owned and C.positive or C.ink)
+                        or (owned and C.gold or C.paper)
+                    local x = left + (partnerIndex - 1) * (tileSize + 4)
+                    setRect(pair.status, x - 4, titleH, tileSize + 8, statusH)
+                    setRect(pair.tile, x, titleH + statusH, tileSize, tileSize)
+                    setRect(pair.viewport, 1, 1, tileSize - 2, tileSize - 2)
+                    self:_mount(pair.viewport, id, 1)
+                end
+            end
             local intent = Catalog.purchaseState(state.inventory, state.slots, offer, state.coins)
             local verb = ({ purchase = "", upgrade = "Upgrade ", use = "Use " })[intent.action]
             cell.buy.Text = ({
@@ -1619,17 +1507,6 @@ function Presentation:_refreshShop(state)
             end
         end
     end
-    local definition = self.selectedSlot and itemDefinition(state.inventory[self.selectedSlot])
-    local offer = self.selectedOffer and state.shopOffers[self.selectedOffer]
-    if not definition and offer then
-        definition = Catalog.Items[offer.id]
-    end
-    shop.description.Text = definition
-            and (definition.name .. " • " .. (definition.triggerText or "PASSIVE") .. "  " .. effectText(
-                definition,
-                true
-            ))
-        or "Select an offer to see its trigger, effects, tradeoffs and synergy partners."
     Theme.setEnabled(shop.reroll, (state.rerollsLeft or 0) > 0 and state.coins >= 1, C.gold)
     local selected = self.selectedSlot and state.inventory[self.selectedSlot]
     local occupied = selected and selected.id ~= ""
@@ -1699,32 +1576,39 @@ function Presentation:_updateModal()
         self.modal:Destroy()
     end
     self.shop = nil
+    self.inspector:hide()
     local size = self.viewport or Vector2.new(1440, 900)
-    local width = math.min(940, size.X - 28)
+    local width = math.min(1160, size.X - 28)
     local top = self.inventory.AbsolutePosition.Y
         + self.inventory.AbsoluteSize.Y
         - self.overlay.AbsolutePosition.Y
         + 14
     local height = math.min(680, size.Y - top - 18)
-    local modal = plate(self.overlay, "Choices", C.panel, 22)
+    local modal = plate(self.overlay, "Choices", C.paper, 22)
     self.modal = modal
     setRect(modal, (size.X - width) / 2, top, width, height)
-    local title = label(modal, "Title", "", width < 500 and 26 or 34, C.paper, 25)
+    local title = label(modal, "Title", "", width < 500 and 26 or 36, C.ink, 25)
     if self.shortWide then
         title.TextSize = 28
     end
     setRect(title, 16, self.shortWide and 8 or 9, width - 32, self.shortWide and 32 or 43)
-    local subtitle = label(modal, "Subtitle", "", 18, C.paper, 25)
+    local subtitle = label(modal, "Subtitle", "", 21, C.board, 25)
     subtitle.TextWrapped = true
-    setRect(subtitle, 16, self.shortWide and 44 or 55, width - 32, self.shortWide and 20 or 47)
-    local bodyTop = self.shortWide and 70 or 112
-    local footerY = height - (self.shortWide and 54 or 67)
+    setRect(subtitle, 16, self.shortWide and 44 or 55, width - 32, self.shortWide and 22 or 47)
+    local tinyChoice = (phase == "perk" or phase == "event") and height < 280
+    if tinyChoice then
+        title.TextSize = 24
+        setRect(title, 12, 2, width - 24, 30)
+        subtitle.Visible = false
+    end
+    local bodyTop = tinyChoice and 36 or (self.shortWide and 70 or 112)
+    local footerY = height - (tinyChoice and 44 or (self.shortWide and 54 or 67))
     local body = make("ScrollingFrame", {
         Name = "Content",
         BackgroundTransparency = 1,
         BorderSizePixel = 0,
         ScrollBarThickness = 6,
-        ScrollBarImageColor3 = C.mint,
+        ScrollBarImageColor3 = C.paper,
         CanvasSize = UDim2.fromOffset(0, 0),
         ScrollingDirection = Enum.ScrollingDirection.Y,
         ZIndex = 24,
@@ -1734,11 +1618,11 @@ function Presentation:_updateModal()
         14,
         bodyTop,
         width - 28,
-        math.max(50, footerY - bodyTop - (self.shortWide and 10 or 13))
+        math.max(50, footerY - bodyTop - (tinyChoice and 8 or (self.shortWide and 10 or 13)))
     )
     local function action(name, text, x, buttonWidth, color, callback)
         local result = button(modal, name, text, color, callback, 27)
-        setRect(result, x, footerY, buttonWidth, self.shortWide and 42 or 51)
+        setRect(result, x, footerY, buttonWidth, tinyChoice and 36 or (self.shortWide and 42 or 51))
         result.TextSize = width < 650 and 18 or 24
         result.TextWrapped = true
         return result
@@ -1748,11 +1632,10 @@ function Presentation:_updateModal()
             or (state.eventTitle or "CHOOSE YOUR REWARD")
         subtitle.Text = "Make your next combo even stronger. Pick one."
         local choices = phase == "perk" and state.perkOffers or state.eventChoices
-        local columns = width >= 650 and 2 or 1
-        local cw = (width - 42 - (columns - 1) * 16) / columns
-        local ch = phase == "perk" and 368 or 320
+        body.ScrollingEnabled = false
+        body.ScrollBarThickness = 0
         if phase == "event" then
-            body.Size = UDim2.fromOffset(width - 28, height - bodyTop - 16)
+            body.Size = UDim2.fromOffset(width - 28, height - bodyTop - 8)
         else
             action(
                 "SkipPerk",
@@ -1765,46 +1648,76 @@ function Presentation:_updateModal()
                 end
             )
         end
+        local cards = ChoiceLayout.compute(body.Size.X.Offset, body.Size.Y.Offset, #(choices or {}))
         for index, choice in choices or {} do
             local id = type(choice) == "table" and choice.id or choice
             local data = phase == "perk" and Catalog.Perks[id] or choice
-            local card = plate(body, "Choice" .. index, C.board, 25)
-            setRect(
-                card,
-                ((index - 1) % columns) * (cw + 16) + 3,
-                math.floor((index - 1) / columns) * (ch + 16) + 4,
-                cw,
-                ch
-            )
-            local model = self:_viewport(card, "Reward", id, 1, 27)
-            setRect(model, (cw - 130) / 2, 4, 130, 115)
-            local name = label(card, "Name", data.name, 27, C.paper, 28)
-            name.TextXAlignment = Enum.TextXAlignment.Center
-            name.TextWrapped = true
-            setRect(name, 12, 123, cw - 24, 48)
+            local card = plate(body, "Choice" .. index, C.muted, 25)
             if phase == "perk" then
-                local trigger =
-                    label(card, "Trigger", data.triggerText or "PASSIVE EFFECT", 18, C.gold, 28)
-                trigger.TextWrapped = true
-                trigger.TextXAlignment = Enum.TextXAlignment.Center
-                setRect(trigger, 15, 177, cw - 30, 36)
+                self.inspector:bind(card, function()
+                    return id, 1
+                end)
             end
-            local description = label(card, "Effect", data.description, 19, C.paper, 28)
-            description.TextWrapped = true
-            description.TextYAlignment = Enum.TextYAlignment.Top
-            setRect(
-                description,
-                15,
-                phase == "perk" and 219 or 181,
-                cw - 30,
-                phase == "perk" and 80 or 71
+            local rect = cards[index]
+            setRect(card, rect.x, rect.y, rect.w, rect.h)
+            local positions = ChoiceLayout.card(rect.w, rect.h, phase == "perk")
+            local function place(object, area)
+                setRect(object, area.x, area.y, area.w, area.h)
+            end
+            local model = self:_viewport(card, "Reward", id, 1, 27)
+            place(model, positions.model)
+            local name = label(card, "Name", data.name, positions.nameFont, C.ink, 28)
+            name.Font = Enum.Font.SourceSansBold
+            name.TextXAlignment = positions.stacked and Enum.TextXAlignment.Center
+                or Enum.TextXAlignment.Left
+            name.TextWrapped, name.TextScaled = true, true
+            make(
+                "UITextSizeConstraint",
+                { MinTextSize = positions.tight and 16 or 18, MaxTextSize = positions.nameFont },
+                name
             )
+            place(name, positions.name)
+            local detail = phase == "perk" and Catalog.detail(id, 1)
+            if detail then
+                local trigger =
+                    label(card, "Trigger", detail.trigger, positions.triggerFont, C.trigger, 28)
+                trigger.Font = Enum.Font.SourceSansBold
+                trigger.TextWrapped, trigger.TextScaled = true, true
+                make(
+                    "UITextSizeConstraint",
+                    { MinTextSize = 14, MaxTextSize = positions.triggerFont },
+                    trigger
+                )
+                trigger.TextXAlignment = positions.stacked and Enum.TextXAlignment.Center
+                    or Enum.TextXAlignment.Left
+                place(trigger, positions.trigger)
+            end
+            local effect = detail and detail.effects[1]
+            local description = label(
+                card,
+                "Effect",
+                effect and effect.text or data.description,
+                positions.effectFont,
+                id == "overtime" and C.negative or C.positive,
+                28
+            )
+            description.TextWrapped, description.TextScaled = true, true
+            make(
+                "UITextSizeConstraint",
+                { MinTextSize = positions.tight and 14 or 17, MaxTextSize = positions.effectFont },
+                description
+            )
+            description.TextXAlignment = positions.stacked and Enum.TextXAlignment.Center
+                or Enum.TextXAlignment.Left
+            description.TextYAlignment = Enum.TextYAlignment.Center
+            place(description, positions.effect)
             local choose = button(card, "Choose", "CHOOSE", C.mint, function()
                 self:_send(phase == "perk" and "choosePerk" or "chooseEvent", { index = index })
             end, 29)
-            setRect(choose, 14, ch - 58, cw - 28, 44)
+            place(choose, positions.choose)
+            choose.TextSize = positions.tight and 20 or 27
         end
-        body.CanvasSize = UDim2.fromOffset(0, math.ceil(#(choices or {}) / columns) * (ch + 16) + 5)
+        body.CanvasSize = UDim2.fromOffset(0, body.Size.Y.Offset)
     else
         title.Text = phase == "victory" and "WHAT A RUN!" or "READY FOR ANOTHER RUN?"
         subtitle.Text = "Keep your records and unlocks. Build a new combo next time."
@@ -1821,7 +1734,7 @@ function Presentation:_updateModal()
                 .. "\nBEST ROUND "
                 .. tostring(state.bestRound or 0),
             24,
-            C.paper,
+            C.ink,
             27
         )
         records.TextXAlignment = Enum.TextXAlignment.Center
@@ -1838,7 +1751,7 @@ function Presentation:_updateModal()
             #names > 0 and ("UNLOCKED: " .. table.concat(names, " • "))
                 or "Reach deeper rounds to unlock new equipment.",
             18,
-            C.paper,
+            C.board,
             27
         )
         unlocks.TextWrapped = true
@@ -1932,13 +1845,49 @@ function Presentation:setCounterDisplay(kind, value)
     self:_renderCounters()
 end
 
+function Presentation:_layoutSettlement()
+    local camera = workspace.CurrentCamera
+    if not camera or not self.boardArt then
+        return
+    end
+    local size = self.viewport or camera.ViewportSize
+    if size.X < 32 or size.Y < 48 then
+        return
+    end
+    if self.cameraCFrame then
+        camera.CameraType = Enum.CameraType.Scriptable
+        camera.FieldOfView = 35
+        camera.CFrame = self.cameraCFrame
+    end
+    local first = camera:WorldToViewportPoint(self.boardArt.screenCorners.topLeft)
+    local last = camera:WorldToViewportPoint(self.boardArt.screenCorners.bottomRight)
+    local width, height = math.abs(last.X - first.X), math.abs(last.Y - first.Y)
+    local compact = width < 118
+    local safeTop = math.clamp(self.safeTop or 8, 8, math.max(8, size.Y - 40))
+    local w = math.clamp(math.max(compact and 138 or 0, width), 16, math.max(16, size.X - 16))
+    local h =
+        math.clamp(math.max(compact and 42 or 0, height), 20, math.max(20, size.Y - safeTop - 8))
+    local x = math.clamp(last.X - w, 8, math.max(8, size.X - w - 8))
+    local y = math.clamp(first.Y, safeTop, math.max(safeTop, size.Y - h - 8))
+    setRect(self.settlement, x, y, w, h)
+    self.settlement.BackgroundTransparency = compact and 0 or 1
+    self.settlementOutline.Transparency = compact and 0 or 1
+    self.settlementText.TextScaled = true
+    setRect(self.settlementText, 4, 2, w - 8, h - 10)
+    self.settlementProgress.Position = UDim2.fromOffset(4, h - 5)
+    self.settlementProgress.Size =
+        UDim2.new(self.settlementFraction or 0, -8 * (self.settlementFraction or 0), 0, 3)
+    setRect(self.skipButton, math.max(0, w - 65), h + 5, 65, 28)
+    self.skipButton.TextSize = 16
+end
+
 function Presentation:setSettlement(text, progress, canSkip)
     self.settlement.Visible = type(text) == "string" and text ~= ""
-    self.settlementText.Text = text or ""
     self.settlementFraction = math.clamp(progress or 0, 0, 1)
-    self.settlementProgress.Size =
-        UDim2.new(self.settlementFraction, -14 * self.settlementFraction, 0, 5)
+    self.settlementText.Text =
+        self.boardArt:setStatus(text, progress, self.settlement.Visible, canSkip)
     self.skipButton.Visible = canSkip == true
+    self:_layoutSettlement()
 end
 
 function Presentation:pulseItem(slot, strength, params)
@@ -2097,6 +2046,7 @@ function Presentation:update(snapshot)
     self.snapshot = snapshot
     if previous and previous.phase ~= snapshot.phase then
         self.selectedPerk = nil
+        self.inspector:hide()
     end
     if snapshot.phase == "flight" then
         self.statsCleared = false
@@ -2141,6 +2091,7 @@ function Presentation:step(dt)
     camera.CameraType = Enum.CameraType.Scriptable
     camera.CFrame = self.cameraCFrame or camera.CFrame
     self.feedback:step(dt)
+    self.inspector:step()
     local reduced = game:GetService("GuiService").ReducedMotionEnabled
     for kind, scale in
         { score = self.scoreScale, coins = self.coinScale, restocks = self.restockScale }

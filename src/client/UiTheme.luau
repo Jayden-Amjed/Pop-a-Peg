@@ -12,6 +12,9 @@ Theme.colors = {
     coral = Color3.fromRGB(238, 136, 68),
     gold = Color3.fromRGB(255, 210, 93),
     blue = Color3.fromRGB(62, 184, 224),
+    positive = Color3.fromRGB(38, 135, 63),
+    negative = Color3.fromRGB(192, 54, 66),
+    trigger = Color3.fromRGB(242, 183, 33),
 }
 
 function Theme.make(className, properties, parent)
@@ -90,6 +93,16 @@ end
 
 function Theme.plate(parent, name, color, z)
     return Theme.decorate(Theme.frame(parent, name, color, z), color, z)
+end
+
+function Theme.tile(parent, name, color, z)
+    local object = Theme.plate(parent, name, color, z)
+    for _, child in object:GetDescendants() do
+        if child:IsA("UICorner") then
+            child.CornerRadius = UDim.new(0, 4)
+        end
+    end
+    return object
 end
 
 function Theme.button(parent, name, text, color, callback, z)

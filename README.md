@@ -60,7 +60,7 @@ output, runtime checks, and deliberate Studio-to-file return path.
 | Path | Responsibility |
 | --- | --- |
 | `src/server/` | Server-only scripts. |
-| `src/client/` | Local board, responsive interface, generated models, reward animation, and sound. |
+| `src/client/` | Sculpted board and attached status screen, responsive interface and hover cards, generated models, reward animation, and sound. |
 | `src/shared/` | Board, simulation, run rules, catalog and purchase rules, feedback signatures, reward timeline, number formatting, and profiles. |
 | `tests/` | Numerical, progression, purchase, synergy, selection/layout, reward-sequencing, and profile contracts. |
 | `default.project.json` | Rojo service mapping and development lighting. |
@@ -91,10 +91,14 @@ for another attempt while balls remain.
 Between shots, use one jumble to change the layout. Shops group four equipment
 offers separately from up to two Supplies, available from round 11, that take
 effect immediately without using an inventory slot. All offers stay visible
-without scrolling; selecting an offer updates one inspection area with its trigger,
-effects, tradeoff, and synergy partners. Cards and models stay mounted while
-selection and purchase state change. Selling, reordering, rerolls, held offers,
-and extra slots shape the build.
+without scrolling. Equipment cards show modeled synergy partners in square tiles,
+marked **OWNED** or **NEED** against the current rack. Hover, focus, or tap an item
+to inspect its yellow trigger followed by ordered green benefits and red costs;
+level-1 rows show upgraded values in parentheses where applicable. Partner models appear beneath
+the effect list. The shop has no bottom description bar, leaving more room for
+large item models and text. Cards stay mounted while selection and purchase state
+change. Supplies use an **On purchase** trigger and a single **Use** purchase label.
+Selling, reordering, rerolls, held offers, and extra slots shape the build.
 
 Buying a duplicate level-1 item upgrades it to level 2, including when the rack is
 full. Level 2 is the cap: an owned capped item cannot be bought again as another
@@ -119,18 +123,29 @@ transitions until the next launch or a manual **Next Round** click in the shop.
 | Jumble button / Q | Rearrange the board once before each shot. |
 | End Shot button / E | Finish early without waiting for the ball to drain. |
 | Inventory item | Select it; click again to clear, or another unlocked slot to swap and clear the selection. |
+| Item/perk hover or UI focus | Inspect the trigger, ordered effect rows, and modeled synergy partners. Touch opens a pinned inspection card with a close button. |
 | 1×, 2×, 4× buttons | Change simulation speed. |
 | Skip during rewards | Finish the reward animation and advance with the same earned rewards. |
 | Sound toggle | Mute or unmute feedback sounds. |
 
 Shops and perk/event choices use their own buttons. An owned-perk strip keeps
-chosen perks visible and highlights their activations. Equipment, currencies, and
-rewards appear as source-generated 3D models. Idle models drift through a gentle
-figure eight, pause in place for their activation, then smoothly resume after the
-last queued activation. Targeted effects, score flights, counter pulses, and
-refill/merge motion show the reward sequence. Launching updates the remaining
-balls directly; replenished balls fly to their counter during rewards. Each
-catalog item and perk has a short musical signature; sound remains optional.
+chosen perks visible and highlights their activations. The rack expands during
+play and shrinks for shops and choices. White panel surfaces, larger choice models
+and text, and gold selection outlines carry through the interface. Both perk/event
+choices and their action buttons fit without scrolling, including short windows.
+Score and restock panels retain their white base as the counters update and bounce;
+blue wallet, ball and trigger panels remain part of the palette.
+
+Equipment, currencies, and rewards appear as source-generated 3D models. Perks
+keep their white display circles; equipment, coins and Supplies stand without
+those circles. Primary previews use a black silhouette layer. Idle models cycle
+through a gentle figure eight every 4.2 seconds, pause for their activation, then
+smoothly resume after the last queued activation. Targeted effects, score flights,
+counter pulses, and refill/merge motion show the reward sequence. A small physical
+screen attached to the board's upper-right frame displays settlement progress.
+Launching updates the remaining balls directly; replenished balls fly to their
+counter during rewards. Each catalog item and perk has a short musical signature;
+sound remains optional.
 
 Studio uses **session records** so local testing does not touch live player data.
 Published sessions use a versioned DataStore for records/unlocks. The interface

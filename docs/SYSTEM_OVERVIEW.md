@@ -14,11 +14,14 @@ sound cues use public Roblox audio IDs documented in [Asset sources](ASSETS.md).
 | `src/client/Main.client.luau` | `StarterPlayer.StarterPlayerScripts.Client.Main` | `LocalScript`; copied into each player's `PlayerScripts`. |
 | `src/shared/` | `ReplicatedStorage.Shared` | Modules for board rules, deterministic physics, progression, catalog, profiles, number formatting, and reward timelines. |
 | `src/client/Presentation.luau` | `StarterPlayer.StarterPlayerScripts.Client.Presentation` | Local camera, board, responsive controls, counters, and menus. |
+| `src/client/BoardArt.luau` | `StarterPlayer.StarterPlayerScripts.Client.BoardArt` | Original pearl/aqua enclosure and attached settlement monitor, separate from collision rules. |
+| `src/client/HoverInspector.luau` | `StarterPlayer.StarterPlayerScripts.Client.HoverInspector` | Reusable hover, focus, and touch inspection with ordered effect rows and modeled partners. |
 | `src/client/UiTheme.luau` | `StarterPlayer.StarterPlayerScripts.Client.UiTheme` | Shared interface colors and native GUI constructors. |
 | `src/client/ItemModels.luau` | `StarterPlayer.StarterPlayerScripts.Client.ItemModels` | Original native equipment, perk, currency, and control models with viewport animation. |
 | `src/client/ItemMotion.luau` | `StarterPlayer.StarterPlayerScripts.Client.ItemMotion` | Per-model moving groups, activation samples, and paused/resumed figure-eight idle motion. |
 | `src/client/InventorySelection.luau` | `StarterPlayer.StarterPlayerScripts.Client.InventorySelection` | Pure select, deselect, swap-request, and invalid-phase rules. |
-| `src/client/ShopLayout.luau` | `StarterPlayer.StarterPlayerScripts.Client.ShopLayout` | Fixed offer, inspection, and action regions for shops without scrolling. |
+| `src/client/ShopLayout.luau` | `StarterPlayer.StarterPlayerScripts.Client.ShopLayout` | Fixed offer, synergy, and action regions for shops without scrolling. |
+| `src/client/ChoiceLayout.luau` | `StarterPlayer.StarterPlayerScripts.Client.ChoiceLayout` | Two visible perk/event choices with bounded model, effect and button regions. |
 | `src/client/Feedback.luau` | `StarterPlayer.StarterPlayerScripts.Client.Feedback` | Score flights, trigger cues, counter display, and receipt-driven board animation. |
 | `src/client/SoundEffects.luau` | `StarterPlayer.StarterPlayerScripts.Client.SoundEffects` | Bounded sound pools, cue timing, preload, and mute control. |
 | `src/shared/ItemFeedback.luau` | `ReplicatedStorage.Shared.ItemFeedback` | Per-item/perk note motifs, timing, visual accents, and effect styles. |
@@ -65,6 +68,13 @@ share progress.
 The front camera follows the viewport layout; pointer movement changes aim only.
 Background clouds use opaque parts and sky bands meet without coplanar overlap.
 Aim guides do not cast shadows, keeping moving controls from changing the scenery.
+`BoardArt` constructs the decorative enclosure from 166 original native parts:
+rounded pearl layers, opaque water-depth bands, curved aqua channels, leaf accents,
+and a small monitor attached above the board's right corner. These parts are
+anchored, noncolliding, nonqueryable and shadowless; they never alter peg positions
+or simulated walls. The monitor supplies world-space screen corners, native status
+lights and progress segments. `Presentation` projects status text onto that screen
+and places Skip below it, with a larger legible panel at compact sizes.
 
 ## Equipment, purchases, and choices
 
@@ -72,7 +82,13 @@ Aim guides do not cast shadows, keeping moving controls from changing the scener
 families, and suggested synergy partners. Hybrid items specify ordered operation
 lists; `Run` executes the same pop, double, halve, score, and relay primitives used
 by simpler items. A single activation context preserves targets between stages.
-`effectLines` and `tradeoff` describe these steps for the inspection panel.
+`Catalog.detail(id, level)` derives ordered typed effect rows from those operation
+lists and supplies the trigger, kind, level, and suggested partner IDs. Level-1
+details include the upgraded amount; level-2 details show the current capped
+amount. `HoverInspector` renders the trigger in yellow, positive rows in green and
+negative rows in red. It presents the numerical actions without an additional
+paragraph interpreting the tradeoff. `Catalog.owns` checks the current inventory
+for each partner's OWNED/NEED label; the label is not an account unlock indicator.
 
 | Hybrid | Ordered effects and cost |
 | --- | --- |
@@ -101,6 +117,10 @@ refreshes these offers. `skipPerk` is valid only for an outstanding perk choice;
 it consumes that choice for five coins without granting a perk. Shop and perk
 interfaces display these server-owned rules rather than deriving separate prices
 or upgrade eligibility.
+Equipment offers display partner models in square tiles. Supplies can display
+relevant equipment partners too, with **On purchase** as their trigger and **Use**
+only on the purchase button. Partner ownership refreshes with authoritative
+snapshots after purchases, upgrades and sales.
 
 ## Feedback and settlement
 
@@ -135,24 +155,42 @@ summary instead of continuing. There is no ordinary result confirmation modal.
 `Presentation` exposes the board, counters, controls, and viewport anchors to
 `Feedback`; `ItemModels` supplies reusable native 3D visuals, `ItemMotion` animates
 their moving groups, and `UiTheme` supplies GUI styling. `ShopLayout` keeps four
-equipment cards and up to two Supplies in distinct groups, visible together with
-one fixed inspection panel for effect and synergy details. Selection, purchase
+equipment cards and up to two Supplies in distinct groups without a fixed bottom
+inspection panel. Reclaimed space enlarges the main models and labels. The rack
+grows during play and contracts for shops and choices; perk and event choices use
+the same white surfaces and larger text/model treatment. Selection, purchase
 eligibility, and held/sold state update existing cards instead of destroying their
-models. `InventorySelection` clears a selection after a swap request, holds further
+models. `HoverInspector` opens on pointer entry or UI focus, and pins open on touch;
+it closes when its anchor disappears or an explicit close action occurs.
+`InventorySelection` clears a selection after a swap request, holds further
 rack actions until acknowledgment or timeout, and rejects selection changes outside
 aim/shop phases. An owned-perk strip stays available between choices and highlights
 the perk identified by an activation event.
 
-Idle motion follows a bounded figure-eight path with gentle tilt. Activations
+Idle motion follows a bounded 4.2-second figure-eight path with gentle tilt. Activations
 freeze the current idle pose, apply the item's moving-group animation relative to
 that pose, then resume idle velocity smoothly after the last queued activation.
 The idle controller has no effect on run mechanics. Static/reduced-motion mounts
 disable idle movement while retaining activation feedback.
 
+Only perk models retain the generic white display circle; equipment, currency and
+Supply previews omit it. `ItemModels` can render an outlined preview using a black
+clone in a sibling ViewportFrame behind the colored model. A slightly narrower
+camera field of view expands that mask, and animation updates synchronize its
+poses and mesh sizes. This avoids separate lines between each model part, but is
+a projected silhouette approximation: border width varies with the shape and
+transparent geometry can soften it. It adds one geometry/render layer per outlined
+preview. Small synergy tiles opt out, and hidden/disposed previews hide or destroy
+their associated masks. No uploaded outline texture or post-processing asset is
+required.
+
 Score, coin, and restock arrivals pulse their counters. Launching spends a ball
 directly in the reserve display; only restored balls use reward flights. Perk
 highlights and counter pulses follow authoritative events and displayed arrivals,
 so they do not change balances or trigger timing.
+The score and restock panels retain their white base through count changes and
+scale pulses. Wallet, reserve and trigger panels can remain blue; numerical state
+does not recolor the white counter surfaces.
 
 `ItemFeedback` defines short distinct motifs and visual signatures by stable ID.
 `SoundEffects` schedules their notes through bounded voice and note pools, limits

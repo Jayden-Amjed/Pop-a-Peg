@@ -3,6 +3,21 @@
 Board, equipment, perk, consumable, and currency models are original native Roblox
 geometry generated from source. They require no private mesh, image, or texture IDs.
 
+`BoardArt` builds the pearl/aqua enclosure and attached status monitor from 166
+native parts. Rounded shell layers, water-depth bands, curved side channels, leaf
+accents and bubble glints are original geometry. The monitor's text is projected
+by the interface; its shell, indicator light and progress segments are physical
+parts. Decorative geometry does not participate in the simulated collisions.
+
+`ItemModels` removes the generic white display circle from equipment, currencies
+and Supplies while retaining it on perks. Primary previews can place a black
+geometry clone behind the colored model in a sibling ViewportFrame, producing a
+camera-relative silhouette without external textures. The layer follows idle and
+activation poses. It is an approximate outline rather than a per-pixel contour;
+width and transparency vary with the projected shape, and miniature synergy
+previews omit the extra layer. It adds rendered geometry and is cleaned up with
+the owning preview. The 4.2-second figure-eight cycle is defined in `ItemMotion`.
+
 The short feedback sounds use public Creator Store audio:
 
 | Asset | Creator | Use |
