@@ -166,14 +166,22 @@ Natural events advance each channel independently; a direct relay activation run
 both channels. Fixed operations retain their original one-time behavior.
 
 Each shop rolls four equipment offers. At round 11 and later it also rolls at most
-two immediate-use Supplies, independently of rack size. Before evolution offers
-take priority, a shop roll ensures an owned uncapped item is offered when possible,
-helping players build toward level 5. Eligible evolution offers refresh after shop
+two immediate-use Supplies, independently of rack size. On a full rack, openings
+and rerolls reserve positions 1–2 for owned uncapped items, preferring distinct IDs.
+One ID repeats only when its owned copies have two upgrade levels remaining in
+total. If fewer than two useful upgrades remain, only that many are reserved.
+Positions 3–4 keep ordinary random draws unless held or replaced by ready evolutions.
+An eligible held upgrade occupies position 1; other held offers move out of reserved
+positions without changing their price. A partial rack retains the previous
+single-upgrade opportunity before evolution offers are applied.
+Eligible evolution offers refresh after shop
 rolls, equipment/Supply purchases, moves and sales; an invalid recipe is removed.
-Held normal offers remain intact. If eligible recipes exceed the available cards,
+Held offers and guaranteed upgrade cards remain intact, including sold guaranteed
+cards: buying does not replenish the shop. If eligible recipes exceed the available cards,
 `cycleEvolution` scans cyclically through hidden choices for free, including when
 a held offer leaves fewer evolution slots. It never adds a fifth equipment card
-or displaces Supplies. Buying a slot never refreshes these offers.
+or displaces Supplies. Buying a slot or filling the final empty slot never rerolls
+the shop; the full-rack rule is evaluated on the next opening or reroll.
 `skipPerk` is valid only for an outstanding perk choice;
 it consumes that choice for five coins without granting a perk. Shop and perk
 interfaces display these server-owned rules rather than deriving separate prices
