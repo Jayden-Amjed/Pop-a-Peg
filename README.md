@@ -1,7 +1,7 @@
 # Pop a Peg
 
 A Roblox peg-bounce roguelike with a fixed front-view 3D board. Aim a ball through
-numbered pegs, exceed the round quota, grow the board, and build combinations of
+numbered pegs, meet the round quota, grow the board, and build combinations of
 run upgrades. Each player has an independent board and run.
 
 Sources build reproducibly through Rojo. Roblox Studio MCP supports inspection
@@ -60,9 +60,9 @@ output, runtime checks, and deliberate Studio-to-file return path.
 | Path | Responsibility |
 | --- | --- |
 | `src/server/` | Server-only scripts. |
-| `src/client/` | Per-player client scripts. |
-| `src/shared/` | Board, simulation, run rules, upgrade catalog, number formatting, and profile contract. |
-| `tests/` | Numerical, progression, input-validation, and profile invariants. |
+| `src/client/` | Local board, responsive interface, generated models, reward animation, and sound. |
+| `src/shared/` | Board, simulation, run rules, upgrade catalog, reward timeline, number formatting, and profile contract. |
+| `tests/` | Numerical, progression, input-validation, reward-sequencing, and profile invariants. |
 | `default.project.json` | Rojo service mapping and development lighting. |
 | `assets/` | Intentional source assets mapped to `ReplicatedStorage.Assets`. |
 | `scripts/` | Setup, checks, build, sync, and bounded export import. |
@@ -70,20 +70,42 @@ output, runtime checks, and deliberate Studio-to-file return path.
 | `tasks/` | Task specifications, detailed evidence, and latest handoffs. |
 
 [System overview](docs/SYSTEM_OVERVIEW.md) explains boundaries and asset ownership.
+[Asset sources](docs/ASSETS.md) records model provenance and public audio dependencies.
 [Workflow](docs/WORKFLOW.md) covers task → isolated checkout → sync/test → evidence
 → PR/merge → handoff. [AGENTS](AGENTS.md) is the short operating contract.
 
 ## Play loop
 
-Aim with the pointer and launch through the board. Every pop scores the peg's
-current value, then halves it; a one-point peg disappears. Clearing the whole
-board doubles the shot score. Every quota earned gives a restock and a coin.
-Restocks replenish empty slots and merge equal values for the next round.
+Start with five total balls; launching spends one. Every pop scores the peg's
+current value, then halves it. The ball passes through one-point pegs, removing
+them, and bounces off higher values. Clearing the board doubles the shot score.
+The timer shows elapsed shot time; there is no automatic shot timeout.
+
+Each full quota earns a restock. After the shot ends, each restock awards one
+coin and restores one ball, up to five. The board returns to its pre-shot values,
+then each restock fills empty slots with falling pegs and merges equal pairs.
+The reward sequence advances automatically into the next shot or upgrade choice;
+there is no result confirmation button. A failed shot resets the score and board
+for another attempt while balls remain.
 
 Between shots, use one jumble to change the layout. Shops offer items, duplicate
 upgrades, selling, reordering, and extra inventory slots. Perks and events add
-new ways to trigger combinations. Choose a faster simulation speed when desired.
+new ways to trigger combinations.
 Run upgrades reset after defeat; records and earned catalog unlocks remain.
+
+| Control | Action |
+| --- | --- |
+| Pointer or touch on the board | Aim while held; release to launch. |
+| Launch button / Space | Launch when aiming; end the shot during flight. |
+| Jumble button / Q | Rearrange the board once before each shot. |
+| End Shot button / E | Finish early without waiting for the ball to drain. |
+| 1×, 2×, 4× buttons | Change simulation speed. |
+| Skip during rewards | Finish the reward animation and advance with the same earned rewards. |
+| Sound toggle | Mute or unmute feedback sounds. |
+
+Shops and perk/event choices use their own buttons. Equipment, currencies, and
+rewards appear as source-generated 3D models, with score flights, layered quota
+feedback, refill/merge motion, and short audio cues.
 
 Studio uses **session records** so local testing does not touch live player data.
 Published sessions use a versioned DataStore for records/unlocks. The interface

@@ -3,7 +3,8 @@
 Each player has a server-owned run and a locally rendered 3D board. The client
 aims and requests actions; the server simulates every bounce, scores every pop,
 and chooses all upgrade offers. Native parts and GUI elements restore the complete
-presentation without external models, images, or avatar assets.
+visual presentation without external models, images, or avatar assets. Short
+sound cues use public Roblox audio IDs documented in [Asset sources](ASSETS.md).
 
 ## Mapping and trust
 
@@ -11,8 +12,13 @@ presentation without external models, images, or avatar assets.
 | --- | --- | --- |
 | `src/server/Main.server.luau` | `ServerScriptService.Server.Main` | `Script`; authoritative server work. |
 | `src/client/Main.client.luau` | `StarterPlayer.StarterPlayerScripts.Client.Main` | `LocalScript`; copied into each player's `PlayerScripts`. |
-| `src/shared/` | `ReplicatedStorage.Shared` | Modules for board rules, deterministic physics, progression, catalog, profiles, and number formatting. |
-| `src/client/Presentation.luau` | `StarterPlayer.StarterPlayerScripts.Client.Presentation` | Local camera, board, controls, counters, effects, and menus. |
+| `src/shared/` | `ReplicatedStorage.Shared` | Modules for board rules, deterministic physics, progression, catalog, profiles, number formatting, and reward timelines. |
+| `src/client/Presentation.luau` | `StarterPlayer.StarterPlayerScripts.Client.Presentation` | Local camera, board, responsive controls, counters, and menus. |
+| `src/client/UiTheme.luau` | `StarterPlayer.StarterPlayerScripts.Client.UiTheme` | Shared interface colors and native GUI constructors. |
+| `src/client/ItemModels.luau` | `StarterPlayer.StarterPlayerScripts.Client.ItemModels` | Original native equipment, perk, currency, and control models with viewport animation. |
+| `src/client/Feedback.luau` | `StarterPlayer.StarterPlayerScripts.Client.Feedback` | Score flights, trigger cues, counter display, and receipt-driven board animation. |
+| `src/client/SoundEffects.luau` | `StarterPlayer.StarterPlayerScripts.Client.SoundEffects` | Bounded sound pools, cue timing, preload, and mute control. |
+| `src/shared/RewardTimeline.luau` | `ReplicatedStorage.Shared.RewardTimeline` | Pure visual planning for restore, refill, merge, and batched reward steps. |
 | `src/server/ProfileStore.luau` | `ServerScriptService.Server.ProfileStore` | Versioned records/unlocks persistence. |
 | `assets/` | `ReplicatedStorage.Assets` | Folder of intentional source assets, initially empty. |
 | `default.project.json` | `Workspace` and service roots | Explicit scene properties and filesystem mapping. |
@@ -29,17 +35,58 @@ indices, balances, and aim values. The client never supplies score or inventory.
 `PegRemotes.State` sends snapshots only to the owning player. Shared modules are
 not shared mutable memory across client and server.
 
-## Run and persistence boundaries
+## Run rules
 
 `Board` owns the 21 values, quota calculation, single pop, refill, and disjoint
-merge rules. `Simulation` uses a fixed 1/120-second step with swept collisions.
-`Run` owns the phase machine, trigger queue, inventory, coins, retries, scheduled
+merge rules. `Simulation` uses a fixed 1/120-second step with swept collisions;
+value-1 pegs are pass-through, while higher values reflect the ball. The aim
+preview uses the same rule without mutating live values.
+`Run` owns the phase machine, trigger queue, inventory, coins, balls, scheduled
 shops/perks/events, and endless progression. Seeded RNG makes mechanics testable
 without Studio. A shot's active values are separate from the next-round baseline.
 
+There are five total balls, with one spent on launch. Each full score quota earns
+one restock; at shot end it awards a coin and restores one ball up to the five-ball
+cap. Zero balls after settlement ends the run. Each attempt starts with zero score
+and the baseline board. Successful settlement restores that baseline, fills empty
+slots, and merges disjoint equal pairs once per earned restock. A board clear
+doubles the score and ends the shot. Elapsed time is displayed without a normal
+timeout; manual End Shot does not activate drain-only equipment.
+
 The server advances each player's run independently. The presentation interpolates
-snapshots and draws effects; it cannot settle a shot. Model instances and camera
-state are local to each client, so boards do not collide or share progress.
+snapshots and draws effects; it cannot award rewards or change board rules. Model
+instances and camera state are local to each client, so boards do not collide or
+share progress.
+
+## Feedback and settlement
+
+Snapshots carry authoritative totals, a bounded recent event list, and a durable
+`settlementReceipt` after numerical settlement completes. Events identify score
+deltas and their peg/item source, goal crossings, triggers, coin changes, and ball
+changes. Counter totals reconcile feedback even if an older event leaves the
+history. Event and receipt IDs increase across restarts to prevent replay.
+
+The receipt records the spent shot board, restored baseline, refill/merge
+transitions, final board, and before/after reward balances. `Run` processes at most
+32 restocks per settlement slice and caps a shot at 10,000 restocks. Receipts keep
+every cycle through eight restocks; larger settlements retain the first three and
+last two, with cycle indices preserving the omitted count.
+
+`RewardTimeline` turns that receipt into a bounded visual sequence. `Feedback`
+waits for final score/restock flights, restores the board, animates falling refills
+and matching-pair merges, and delivers coin/ball cues. It then requests `continue`
+automatically from the server's `result` phase. The client keeps the final board
+visible through shops and choices until the next aim snapshot. Skip completes the
+presentation with the same authoritative rewards. Terminal results open the run
+summary instead of continuing. There is no ordinary result confirmation modal.
+
+`Presentation` exposes the board, counters, controls, and viewport anchors to
+`Feedback`; `ItemModels` supplies reusable native 3D visuals and `UiTheme` supplies
+GUI styling. `SoundEffects` limits concurrent voices and cue frequency, supports
+mute, and leaves gameplay functional if an audio asset cannot load. Asset IDs,
+creators, and restoration requirements live in [Asset sources](ASSETS.md).
+
+## Records across runs
 
 Only best score, best round, and a set of catalog unlocks cross the run boundary.
 `Profile` validates these fields and combines concurrent saves monotonically.
@@ -58,7 +105,7 @@ No external HTTP service or production credentials are required.
 | Models | An intentionally adopted `.rbxm` or `.rbxmx` in `assets/` may be authoritative, mapped beneath `ReplicatedStorage.Assets`. Record ownership and any additional placement mapping; do not keep a competing authoritative Studio copy. |
 | Terrain | Not represented by this starter's source. A later terrain task must choose a source place template or documented terrain export and prove restoration; a saved generated place alone is not source. |
 | Place templates | Intentional `.rbxl`/`.rbxlx` source templates may be versioned outside `build/` when needed. Define how code is injected and how a fresh clone restores them before adopting one. |
-| External asset IDs | Record IDs, purpose, ownership/access requirements, and restoration prerequisites with the adopting task. Source control cannot supply private asset access. None are required by the starter. |
+| External asset IDs | Public audio dependencies and provenance are recorded in [Asset sources](ASSETS.md). Source control cannot supply asset access; verify loading in the target experience. Visual models require no external IDs, and missing audio does not block play. |
 | Generated places / temporary exports | `build/` and `scratch/` are ignored. Regenerate builds; review exports before promoting intentional changes. |
 | Tools | `.tools/` is ignored; `scripts/setup.ps1` restores pinned binaries. |
 
