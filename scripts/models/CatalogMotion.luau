@@ -1,12 +1,12 @@
 -- Blender inspection adapter. Geometry remains in its centered authored pose;
 -- MotionPivot is centered too, while AuthoredPosition retains source coordinates.
 local ItemMotion = if script
-    then require(script.Parent.ItemMotion)
-    else require("../../src/client/ItemMotion")
+    then require(script.Parent.BlenderChoreography)
+    else require("./BlenderChoreography")
 local CatalogMotion = {}
 
 local function bounded(value, fallback, lower, upper)
-    if type(value) ~= "number" or value ~= value then
+    if type(value) ~= "number" or not (value >= -math.huge and value <= math.huge) then
         return fallback
     end
     return math.clamp(value, lower, upper)
@@ -46,6 +46,7 @@ function CatalogMotion.new(model, testTypes)
             relative = frame.Position - pivot,
             size = part.Size,
             color = part.Color,
+            material = part.Material,
             assembly = assembly,
             span = part:GetAttribute("CompressionSpan") or 0,
         })
@@ -80,6 +81,9 @@ function CatalogMotion.new(model, testTypes)
             if resting then
                 part.CFrame, part.Size, part.Color =
                     rootPose * record.frame, record.size, record.color
+                if not testTypes then
+                    part.Material = record.material
+                end
                 continue
             end
             local state = assembly.state
@@ -114,6 +118,13 @@ function CatalogMotion.new(model, testTypes)
             part.CFrame = bodyRoot * CF.new(frame.Position * body.scale) * (frame - frame.Position)
             part.Size = dimensions * body.scale
             part.Color = record.color:Lerp(Color.new(1, 1, 1), math.clamp(state.glow, 0, 0.22))
+            if not testTypes then
+                local lamp = state.lamp or 0
+                part.Material = if lamp > 0.05 then Enum.Material.Neon else record.material
+                if lamp > 0 then
+                    part.Color = record.color:Lerp(Color.new(1, 0.92, 0.52), lamp * 0.96)
+                end
+            end
         end
     end
     return controller

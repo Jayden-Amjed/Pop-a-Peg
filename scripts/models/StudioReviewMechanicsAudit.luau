@@ -53,10 +53,11 @@ return function()
         fail("context", "CatalogLibrary/CatalogAssets unavailable")
         return finish()
     end
-    local loaded, Models, Motion, Adapter = pcall(function()
+    local loaded, Models, Motion, Adapter, BlenderMotion = pcall(function()
         return require(library.ItemModels),
             require(library.ItemMotion),
-            require(library.CatalogMotion)
+            require(library.CatalogMotion),
+            require(library.BlenderChoreography)
     end)
     if not loaded then
         fail("modules", Models)
@@ -243,8 +244,15 @@ return function()
                         end
                         local t = step / 100
                         controller:apply(t, strength)
-                        local states =
-                            mechanismPose(base, Motion.bodySample(id, t, strength), restSize)
+                        local states = mechanismPose(
+                            base,
+                            (source == "native" and Motion or BlenderMotion).bodySample(
+                                id,
+                                t,
+                                strength
+                            ),
+                            restSize
+                        )
                         item.samples += 1
                         report.samples += 1
                         if id == "coin_press" then

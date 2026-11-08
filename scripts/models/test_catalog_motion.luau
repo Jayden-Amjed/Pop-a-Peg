@@ -1,7 +1,7 @@
 -- Run with the pinned Luau CLI. This exercises the real adapter with a small
 -- mathematical value-type double; it does not prove mesh/import/render quality.
 local Adapter = require("./CatalogMotion")
-local Motion = require("../../src/client/ItemMotion")
+local Motion = require("./BlenderChoreography")
 local V, CF, Color = {}, {}, {}
 local vectorMeta, frameMeta = {}, {}
 function V.new(x, y, z)
@@ -321,7 +321,11 @@ for id, profile in Motion.Profiles do
     end
     for _, endpoint in { 0, 1, 0 / 0 } do
         motion:apply(endpoint, 2, CF.new(2, 0, 0))
-        nearFrame(moving.CFrame, CF.new(2, 0, 0) * rest, "Rest pose did not restore")
+        nearFrame(
+            moving.CFrame,
+            CF.new(2, 0, 0) * rest,
+            "Rest pose did not restore: " .. id .. "/" .. tostring(endpoint)
+        )
         nearVector(moving.Size, originalSize, "Rest size did not restore")
         assert(moving.Color == originalColor, "Rest color did not restore")
     end
