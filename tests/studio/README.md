@@ -25,6 +25,8 @@ test player. Never install it in a shared or published experience.
 
 The test checks distinct station allocation, independent runs, in-flight return
 rejection, board/hub camera and character restoration, resume and departure.
+It also verifies each client sees its own cabinet beacon and exactly one enabled
+cabinet prompt, including after returning from a run.
 It is eight native Studio clients, not a measurement of eight physical devices or
 production network performance. `ArcadeSessions.spec.luau` additionally covers
 overflow rejection, freed-station reuse, record isolation and victory-to-Endless resume.

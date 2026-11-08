@@ -918,6 +918,15 @@ function Presentation:_layout()
         setRect(self.soundButton, 24, h - 79, 148, 48)
         setRect(self.help, boardRect.x - 40, h - 25, boardRect.w + 80, 20)
     end
+    -- Keep session navigation beside, rather than over, the rack instructions.
+    local navigationWidth = math.min(112, invWidth * 0.28)
+    self.sessionNavigation = {
+        x = self.swapHelp.Position.X.Offset + invWidth - navigationWidth,
+        y = self.swapHelp.Position.Y.Offset,
+        w = navigationWidth,
+        h = 20,
+    }
+    self.swapHelp.Size = UDim2.fromOffset(invWidth - navigationWidth - 8, 20)
     local columns = compact and 3 or 2
     local statW = (self.statsPanel.Size.X.Offset - 20) / columns
     local rowH = compact and 18 or 22
@@ -1214,9 +1223,13 @@ function Presentation:_renderControls()
         return
     end
     local phase = state.phase
+    local shortHint = self.swapHelp.Size.X.Offset < 360
     self.swapHelp.Text = (phase == "aim" or phase == "shop")
-            and "Click item: select / clear • Other slot: swap"
-        or "Your equipment works together automatically"
+            and (shortHint and "Select · Swap · Clear" or "Click item: select / clear • Other slot: swap")
+        or (
+            shortHint and "Items trigger automatically"
+            or "Your equipment works together automatically"
+        )
     self.soundButton.Text = (self.shortWide and "SFX " or "SOUND ")
         .. (self.muted and "OFF" or "ON")
     local playable = (phase == "aim" or phase == "flight") and not self.busy

@@ -82,12 +82,19 @@ fish tank, gardens, benches, collection gallery and records kiosk. Press **PLAY*
 or use your cabinet's prompt to start. The roster shows occupied stations and run
 progress. Collection cards show discovered evolutions and their modeled recipes;
 records show personal bests and completed level goals.
+Pearl paths and numbered cabinet signs lead around the lagoon. Your cabinet has
+a gold guide and outline; other cabinets do not offer an unusable Play prompt.
+Use **How to Play** for a short introduction. Opening a hub panel pauses walking
+controls, and closing it returns control without turning the camera.
 
 Use **ARCADE** between shots to return to the hub. **RESUME** restores the same
 build, coins and round, including a victory waiting for its Endless choice.
 Shots and settlement must finish before returning. A lost run starts fresh, while
 records and discoveries remain. A parked run is paused only for this server session;
 leaving the server retains records, not the unfinished run.
+A connection card covers initial loading, and Play/Arcade show request progress
+instead of accepting repeated transition clicks. The Arcade button respects the
+screen's safe inset.
 
 Start with five total balls; launching spends one. Every pop scores the peg's
 current value, then halves it. The ball passes through one-point pegs, removing

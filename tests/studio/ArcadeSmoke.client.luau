@@ -41,6 +41,31 @@ local function inspect()
         coins = state and state.coins,
     }
 end
+local function checkGuide()
+    local marker = p.PlayerGui:FindFirstChild("PopAPegStationGuide")
+    if not marker or not marker.Enabled or not marker.Adornee then
+        return false
+    end
+    local station = p:GetAttribute("PegStation")
+    assert(
+        marker.Adornee.Parent:GetAttribute("Station") == station,
+        "Beacon belongs to this player"
+    )
+    local total, enabled = 0, 0
+    for _, object in workspace.AquariumArcade:GetDescendants() do
+        if object:IsA("ProximityPrompt") and object.Name == "PlayArcade" then
+            total += 1
+            if object.Enabled then
+                enabled += 1
+                assert(
+                    object.Parent.Parent:GetAttribute("Station") == station,
+                    "Only own cabinet can prompt"
+                )
+            end
+        end
+    end
+    return total == 8 and enabled == 1
+end
 remote.OnClientEvent:Connect(function(command)
     local ok, result = xpcall(function()
         if command == "start" then
@@ -94,6 +119,7 @@ remote.OnClientEvent:Connect(function(command)
                 "hub restoration"
             )
             assert(#state.hub.players == 8, "all eight roster entries")
+            waitFor(checkGuide)
             return value
         elseif command == "resume" then
             actions.Action:FireServer("startRun")
@@ -118,6 +144,7 @@ local ok, result = xpcall(function()
             and p.PlayerGui:FindFirstChild("PopAPegHub")
     end, 45)
     task.wait(0.3)
+    waitFor(checkGuide)
     return inspect()
 end, debug.traceback)
 remote:FireServer("ready", { ok = ok, result = result })
