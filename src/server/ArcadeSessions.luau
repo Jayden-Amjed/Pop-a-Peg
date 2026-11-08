@@ -2,6 +2,9 @@
 local Shared = if script then game:GetService("ReplicatedStorage").Shared else nil
 local Run = if Shared then require(Shared.Run) else require("../shared/Run")
 local Profile = if Shared then require(Shared.Profile) else require("../shared/Profile")
+local Chests = if Shared
+    then require(Shared.ChestProgression)
+    else require("../shared/ChestProgression")
 
 local ArcadeSessions = { Capacity = 8 }
 ArcadeSessions.__index = ArcadeSessions
@@ -32,6 +35,9 @@ function ArcadeSessions:add(userId, name, profile)
         profile = Profile.clean(profile),
         run = nil,
         runId = 0,
+        playRemainder = 0,
+        progressionRequests = {},
+        progressionRequestOrder = {},
     }
     self.players[userId] = session
     self.stations[station] = userId
@@ -40,9 +46,20 @@ end
 
 function ArcadeSessions:capture(session)
     if session.run then
+        Chests.observe(session)
         session.profile = Profile.merge(session.profile, session.run:profile())
     end
     return Profile.clean(session.profile)
+end
+
+function ArcadeSessions:_newRun(session, seed)
+    self:capture(session)
+    session.run = Run.new(seed or 1, session.profile)
+    session.runId += 1
+    session.lastEvent = 0
+    session.rewardedMilestones = {}
+    session.rewardedEndless = 0
+    session.terminalRewarded = false
 end
 
 function ArcadeSessions:remove(userId)
@@ -64,15 +81,41 @@ function ArcadeSessions:action(userId, kind, payload, seed)
     if not session then
         return false, "Join the arcade first."
     end
+    payload = payload or {}
+    if kind == "openChest" or kind == "researchItem" then
+        if session.view ~= "hub" then
+            return false, "Open chests and research in the arcade."
+        end
+        if session.profileStatus == "unavailable" or session.profileStatus == "locked" then
+            return false, "Saving is unavailable. Your chests are safe; try again shortly."
+        end
+        if type(payload.requestId) ~= "string" or #payload.requestId > 96 then
+            return false, "Request a chest action again."
+        end
+        if session.progressionRequests[payload.requestId] then
+            return true
+        end
+        local accepted, message
+        if kind == "openChest" then
+            accepted, message = Chests.open(session.profile, payload.tier, payload.requestId, seed)
+        else
+            accepted, message = Chests.research(session.profile, payload.id, payload.requestId)
+        end
+        if accepted then
+            session.progressionRequests[payload.requestId] = true
+            table.insert(session.progressionRequestOrder, payload.requestId)
+            if #session.progressionRequestOrder > 128 then
+                session.progressionRequests[table.remove(session.progressionRequestOrder, 1)] = nil
+            end
+        end
+        return accepted, message
+    end
     if kind == "startRun" then
         if session.view ~= "hub" then
             return false, "Your run is already open."
         end
         if not self:canResume(session) then
-            self:capture(session)
-            session.run = Run.new(seed or 1, session.profile)
-            session.runId += 1
-            session.lastEvent = 0
+            self:_newRun(session, seed)
         end
         session.view = "run"
         return true
@@ -90,13 +133,40 @@ function ArcadeSessions:action(userId, kind, payload, seed)
     if session.view ~= "run" or not session.run then
         return false, "Start or resume your run first."
     end
-    return session.run:action(kind, payload)
+    self:capture(session)
+    if kind == "restart" then
+        if session.run.phase ~= "gameover" and session.run.phase ~= "victory" then
+            return false, "Restart is available after a run ends."
+        end
+        local speed = session.run.speed
+        self:_newRun(session, seed)
+        session.run.speed = speed
+        return true
+    end
+    local accepted, message = session.run:action(kind, payload)
+    self:capture(session)
+    return accepted, message
 end
 
-function ArcadeSessions:step(dt)
+function ArcadeSessions:step(dt, realSeconds)
     for _, session in self.players do
+        if not session.loading then
+            local seconds = realSeconds or dt
+            if
+                type(seconds) == "number"
+                and seconds == seconds
+                and seconds > 0
+                and seconds < math.huge
+            then
+                session.playRemainder += seconds
+                local whole = math.floor(session.playRemainder)
+                session.playRemainder -= whole
+                session.profile.playSeconds = math.min(1e12, session.profile.playSeconds + whole)
+            end
+        end
         if session.view == "run" and session.run then
             session.run:step(dt)
+            Chests.observe(session)
         end
     end
 end
@@ -132,6 +202,7 @@ function ArcadeSessions:snapshot(userId)
         local snapshot = session.run:snapshot()
         snapshot.sessionView = "run"
         snapshot.runId = session.runId
+        snapshot.chestsEarned = table.clone(session.profile.chests)
         return snapshot
     end
     return {
@@ -142,6 +213,7 @@ function ArcadeSessions:snapshot(userId)
             players = self:roster(),
             profile = self:capture(session),
             canResume = self:canResume(session),
+            chests = Chests.snapshot(session.profile),
         },
     }
 end
