@@ -1,7 +1,7 @@
 # RBX-027 — Blender detail, transient effects and varied sound
 
 - Owner: Codex coordinator; sole Studio operator
-- Status: READY FOR REVIEW
+- Status: MERGED
 - Reservation: https://github.com/Jayden-Amjed/Pop-a-Peg/issues/27
 - Starting main: 07be76a57335fa3aaa05009c91bd2e36ed05dd0e, accepted State Version13
 - Branch: task/RBX-027-blender-effects
@@ -60,7 +60,8 @@ Final delta fixes relay electricity previously occluded inside the opaque windin
 - All78 rendered activation poses reviewed in13contact sheets; named items and
   late chest openings additionally inspected. Static images are not video.
 - Existing avatar203785492 type warning remains; no new script errors.
-- Subjective listening approval not claimed. CI pending final published head.
+- Subjective listening approval not claimed. CI42535294924 passed at
+  28c5d200a25c1620150badb21ae35e74b576a6cb.
 
 ## Handoff
 
@@ -75,6 +76,7 @@ Final delta fixes relay electricity previously occluded inside the opaque windin
   SHA25612366dd766e60bc83fbd659ace0895d15367babfa48f53957072e3ecbc90f5de.
   Another Studio launch hit its instance-count warning; the final build was
   compared with the tested existing session instead.
-- Main:07be76a, accepted13; proposed14 not accepted. No concurrent main advance.
-- Blockers:none. Next action: final CI, authorized merge, bounded acceptance receipt.
-- Merge:NOT MERGED. Experience publication:NOT RUN.
+- Main:GitHub confirmed PR28 merged as b75e8a736b500fd41543d699e3b47987dd56042d.
+  Accepted State Version14 advanced once from13. No concurrent main advance.
+- Blockers:none. Next action: human gallery inspection and tagged per-item feedback.
+- Merge:MERGED at expected head28c5d200. Experience publication:NOT RUN.
