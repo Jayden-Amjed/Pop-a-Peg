@@ -58,6 +58,7 @@ function ArcadeSessions:_newRun(session, seed)
     session.rewardedMilestones = {}
     session.rewardedEndless = 0
     session.terminalRewarded = false
+    session.rewardedRestockReceipt = 0
 end
 
 function ArcadeSessions:remove(userId)
@@ -80,9 +81,9 @@ function ArcadeSessions:action(userId, kind, payload, seed)
         return false, "Join the arcade first."
     end
     payload = payload or {}
-    if kind == "openChest" or kind == "researchItem" then
+    if kind == "openChest" or kind == "researchItem" or kind == "buyChest" then
         if session.view ~= "hub" then
-            return false, "Open chests and research in the arcade."
+            return false, "Buy or open chests and research in the arcade."
         end
         if session.profileStatus == "unavailable" or session.profileStatus == "locked" then
             return false, "Saving is unavailable. Your chests are safe; try again shortly."
@@ -93,6 +94,8 @@ function ArcadeSessions:action(userId, kind, payload, seed)
         local accepted, message
         if kind == "openChest" then
             accepted, message = Chests.open(session.profile, payload.tier, payload.requestId, seed)
+        elseif kind == "buyChest" then
+            accepted, message = Chests.buy(session.profile, payload.tier, payload.requestId)
         else
             accepted, message = Chests.research(session.profile, payload.id, payload.requestId)
         end
@@ -191,6 +194,7 @@ function ArcadeSessions:snapshot(userId)
         snapshot.sessionView = "run"
         snapshot.runId = session.runId
         snapshot.chestsEarned = table.clone(session.profile.chests)
+        snapshot.restockCredits = session.profile.restockCredits
         return snapshot
     end
     local profile = self:capture(session)

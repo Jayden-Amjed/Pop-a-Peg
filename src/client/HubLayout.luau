@@ -52,6 +52,7 @@ function Layout.compute(width: number, height: number)
         controls = controls,
         hint = { x = 8, y = dockH - 22, w = dockW - 16, h = 18 },
         brand = { x = margin, y = 10, w = brandW, h = 62 },
+        wallet = { x = margin, y = 80, w = brandW, h = 54 },
         crew = { x = w - margin - crewW, y = 10, w = crewW, h = 62 },
         notice = {
             x = math.max(margin, (w - 600) / 2),

@@ -19,7 +19,7 @@ test player. Never install it in a shared or published experience.
    the exact source of [ArcadeSmoke.client.luau](ArcadeSmoke.client.luau).
 4. Disable `ServerScriptService.Server.Main` in **Edit**. The isolated server
    harness seeds eight distinct Studio session profiles (3–10 Meadow chests,
-   13–20 research, starter ownership), then enables Main at runtime. It asserts
+   13–20 research, 251–258 saved restocks, starter ownership), then enables Main at runtime. It asserts
    Studio mode and cannot contact production storage. Through the selected Edit
    DataModel, execute:
 
@@ -28,7 +28,7 @@ test player. Never install it in a shared or published experience.
    ```
 
 5. Inspect the returned report: `ok = true`, `maxPlayers = 8`, eight entries for
-   ready/chestA/chestB/replayA/wrongReplay/research/start/runChestReject/launch/hub/resume,
+   ready/chestA/chestB/replayA/wrongReplay/research/market/start/runChestReject/launch/hub/resume,
    saved-profile checks, seven idle entries, and a cleared departed station.
    The client readiness check waits for camera, GUI and character state rather
    than assuming a fixed startup duration.
@@ -37,6 +37,10 @@ test player. Never install it in a shared or published experience.
 
 The test checks distinct station allocation, independent runs, in-flight return
 rejection, board/hub camera and character restoration, resume and departure.
+The market stage buys one Uncommon chest per player, retries the same request,
+rejects unaffordable/rebound requests, and checks the saved wallet and visible
+hub counter. Run-view purchasing is rejected. Rejection notices are retained by
+sequence in the harness so ordinary snapshots cannot erase an acknowledgement.
 It also verifies each client sees its own cabinet beacon and exactly one enabled
 cabinet prompt, including after returning from a run.
 It is eight native Studio clients, not a measurement of eight physical devices or
@@ -98,6 +102,22 @@ lease takeover, release retries and failed-load protection. It does not contact
 or prove availability of Roblox's production DataStore service.
 
 ## Mobile and safe-area presentation
+
+`RestockPlay.client.luau` runs two ordinary native runs to defeat, using visible
+first-hit preview aiming and real shop purchases. It grants no currency or scores,
+tracks settled extras against the final hub wallet, and checks receipt size.
+Inspect `_G.RestockPlay` after asynchronous completion. Its optional 45-simulated-
+second End Shot action is reported separately from natural drains.
+
+`MarketFixture.server.luau` is a separate, explicitly granted 350-restock UI
+fixture. It requires unpublished Studio session storage and normal Main disabled
+in Edit. Use real hub controls to buy/open chests and compare wallet/receipt state;
+this fixture is transaction/UI evidence, never an earning-rate playtest. Remove
+the fixture and enable normal Main afterward.
+
+`AudioSmoke.client.luau` checks loaded/playing native light and bass voices,
+bounded overlap, mute and cleanup. It does not establish subjective listening
+quality or device speaker response.
 
 Exercise both portrait and short landscape viewports, including asymmetric notch
 and bottom insets. Inspect the hub dock, chest opening/reveal, workshop item detail,

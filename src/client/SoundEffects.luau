@@ -14,15 +14,15 @@ SoundEffects.Cues = {
     coin = { id = 127645268874265, volume = 0.3, pitch = 1.1, duration = 0.65, gap = 0.09 },
     purchase = { id = 127645268874265, volume = 0.38, pitch = 0.94, duration = 1.5, gap = 0.15 },
     goal = { id = 9119642864, volume = 0.22, pitch = 1.4, duration = 0.7, gap = 0.2 },
-    restock = { id = 9114210044, volume = 0.27, pitch = 1.15, duration = 0.36, gap = 0.12 },
-    merge = { id = 9114210044, volume = 0.2, pitch = 1.7, duration = 0.19, gap = 0.07 },
+    restock = { id = 9114210044, volume = 0.25, pitch = 0.78, duration = 0.40, gap = 0.12 },
+    merge = { id = 9114210044, volume = 0.18, pitch = 1.15, duration = 0.23, gap = 0.07 },
     trigger = { id = 9126132550, volume = 0.12, pitch = 1.2, duration = 0.16, gap = 0.075 },
     clear = { id = 9119642864, volume = 0.3, pitch = 0.95, duration = 1.5, gap = 0.6 },
 }
 
 SoundEffects.ToneAsset = 77129402344871
-SoundEffects.MaxToneVoices = 12
-SoundEffects.MaxPendingNotes = 32
+SoundEffects.MaxToneVoices = Signatures.AudioLimits.voices
+SoundEffects.MaxPendingNotes = Signatures.AudioLimits.pending
 
 function SoundEffects.new()
     local self = setmetatable({
@@ -107,25 +107,21 @@ function SoundEffects:clearItems()
 end
 
 function SoundEffects:playItem(id)
-    local profile = Signatures.Profiles[id]
-    if self.destroyed or self.muted or not profile then
+    if self.destroyed or self.muted or not Signatures.Profiles[id] then
         return false
     end
     local now = os.clock()
     if now - (self.itemLastPlayed[id] or -100) < 0.14 or self.toneTokens < 1 then
         return false
     end
-    if #self.pendingNotes + #profile.notes > SoundEffects.MaxPendingNotes then
+    local notes = Signatures.sound(id)
+    if #self.pendingNotes + #notes > SoundEffects.MaxPendingNotes then
         return false
     end
     self.itemLastPlayed[id] = now
     self.toneTokens -= 1
-    for index, note in ipairs(profile.notes) do
-        table.insert(self.pendingNotes, {
-            wait = profile.rhythm[index],
-            pitch = 2 ^ (note / 12),
-            duration = profile.duration,
-        })
+    for _, note in ipairs(notes) do
+        table.insert(self.pendingNotes, note)
     end
     return true
 end
@@ -135,6 +131,7 @@ function SoundEffects:_stepTones(dt)
         return
     end
     self.toneTokens = math.min(6, self.toneTokens + dt * 12)
+    local totalVolume = 0
     for _, voice in ipairs(self.toneVoices) do
         if voice.duration > 0 then
             voice.age += dt
@@ -144,9 +141,19 @@ function SoundEffects:_stepTones(dt)
                 voice.sound.Volume = 0
                 voice.duration = 0
             else
-                local attack = math.min(1, voice.age / 0.012)
-                voice.sound.Volume = 0.09 * attack * (1 - t) ^ 1.5
+                local gain, pitch = Signatures.soundSample(voice.note, voice.age)
+                voice.gain = gain
+                voice.sound.PlaybackSpeed = pitch
+                totalVolume += gain
             end
+        end
+    end
+    -- Reserve headroom even when many low oscillators briefly line up in phase.
+    -- This only scales item voices; coin/goal cues keep their separate mix space.
+    local mixGain = Signatures.mixGain(totalVolume)
+    for _, voice in ipairs(self.toneVoices) do
+        if voice.duration > 0 then
+            voice.sound.Volume = voice.gain * mixGain
         end
     end
     for index = #self.pendingNotes, 1, -1 do
@@ -166,6 +173,7 @@ function SoundEffects:_stepTones(dt)
             end
             if available and available.sound.IsLoaded and not self.muted then
                 available.age, available.duration = 0, note.duration
+                available.note = note
                 available.sound:Stop()
                 available.sound.TimePosition = 0.04
                 available.sound.PlaybackSpeed = note.pitch

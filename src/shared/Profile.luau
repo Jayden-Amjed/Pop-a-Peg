@@ -15,6 +15,7 @@ local fallbackStarters = {
 }
 local tiers = { "common", "uncommon", "rare", "legendary" }
 Profile.ReceiptLimit = 64
+Profile.RestockCreditLimit = 1e12
 
 local function record(value, limit)
     if type(value) ~= "number" or value ~= value or math.abs(value) == math.huge then
@@ -52,10 +53,15 @@ local function receipt(source)
     if not table.find(tiers, source.tier) then
         return nil
     end
-    if source.kind ~= nil and source.kind ~= "chest" and source.kind ~= "research" then
+    if
+        source.kind ~= nil
+        and source.kind ~= "chest"
+        and source.kind ~= "research"
+        and source.kind ~= "purchase"
+    then
         return nil
     end
-    local kind = source.kind == "research" and "research" or "chest"
+    local kind = source.kind or "chest"
     local itemId = if table.find(Catalog.ItemIds, source.itemId) then source.itemId else nil
     if kind == "research" and not itemId then
         return nil
@@ -66,6 +72,7 @@ local function receipt(source)
         tier = source.tier,
         itemId = itemId,
         research = math.floor(record(source.research, 100)),
+        restockCost = math.floor(record(source.restockCost, Profile.RestockCreditLimit)),
         allCollected = source.allCollected == true,
         kind = kind,
     }
@@ -144,6 +151,7 @@ function Profile.clean(raw)
         itemUnlocks = itemUnlocks,
         chests = chests,
         research = math.floor(record(raw.research, 100000)),
+        restockCredits = math.floor(record(raw.restockCredits, Profile.RestockCreditLimit)),
         chestSerial = serial,
         chestReceipts = receipts,
         lastOpened = if opened then table.clone(opened) else nil,

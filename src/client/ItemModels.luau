@@ -2337,101 +2337,10 @@ local aliases = {
 
 ItemModels.Ids = table.freeze(ids)
 
--- One extra render layer gives the whole model a camera-relative silhouette.
--- Keeping it behind the colored pass avoids drawing edges between model parts.
-local function silhouette(viewport, model, camera, options)
-    if options and options.outline == false then
-        return nil
-    end
-    local mask = Instance.new("ViewportFrame")
-    mask.Name = viewport.Name .. "Silhouette"
-    mask:SetAttribute("ItemSilhouette", true)
-    mask.BackgroundTransparency, mask.BorderSizePixel = 1, 0
-    mask.Active, mask.Selectable = false, false
-    mask.Ambient, mask.LightColor, mask.ImageColor3 = Color3.new(), Color3.new(), Color3.new()
-    local maskCamera = Instance.new("Camera")
-    maskCamera.Name = "SilhouetteCamera"
-    maskCamera.Parent = mask
-    mask.CurrentCamera = maskCamera
-    local geometry = Instance.new("Model")
-    geometry.Name = "SilhouetteGeometry"
-    geometry.Parent = mask
-    local links, connections = {}, {}
-    for _, original in model:GetDescendants() do
-        if original:IsA("BasePart") then
-            local copy = original:Clone()
-            local meshes = {}
-            local originalChildren = original:GetChildren()
-            for index, child in copy:GetChildren() do
-                if child:IsA("DataModelMesh") then
-                    table.insert(meshes, { original = originalChildren[index], copy = child })
-                else
-                    child:Destroy()
-                end
-            end
-            copy.Color = Color3.new()
-            copy.Material, copy.Reflectance = Enum.Material.SmoothPlastic, 0
-            copy.CastShadow = false
-            copy.Parent = geometry
-            table.insert(links, { original = original, copy = copy, meshes = meshes })
-        end
-    end
-    local function layout()
-        -- Roblox's minimum GUI ZIndex is one. Reserve that layer for the mask
-        -- when a caller mounts an otherwise-default ViewportFrame.
-        if viewport.ZIndex < 2 then
-            viewport.ZIndex = 2
-        end
-        mask.AnchorPoint, mask.Position, mask.Size =
-            viewport.AnchorPoint, viewport.Position, viewport.Size
-        mask.Rotation = viewport.Rotation
-        mask.ZIndex = viewport.ZIndex - 1
-        mask.Visible = viewport.Visible
-        mask.ImageTransparency = viewport.ImageTransparency
-        mask.Parent = viewport.Parent
-    end
-    for _, property in
-        {
-            "AnchorPoint",
-            "Position",
-            "Size",
-            "Rotation",
-            "ZIndex",
-            "Visible",
-            "ImageTransparency",
-            "Parent",
-        }
-    do
-        table.insert(connections, viewport:GetPropertyChangedSignal(property):Connect(layout))
-    end
-    layout()
-    local outline = { frame = mask }
-    function outline:fit()
-        local dimensions = viewport.AbsoluteSize
-        local shortest = math.max(1, math.min(dimensions.X, dimensions.Y))
-        local pixels = math.clamp(shortest * 0.024, 1.5, 4.5)
-        local expansion = 1 + pixels * 2 / shortest
-        maskCamera.CFrame = camera.CFrame
-        maskCamera.FieldOfView =
-            math.deg(2 * math.atan(math.tan(math.rad(camera.FieldOfView / 2)) / expansion))
-    end
-    function outline:sync()
-        for _, link in links do
-            link.copy.CFrame, link.copy.Size = link.original.CFrame, link.original.Size
-            link.copy.Transparency = link.original.Transparency
-            for _, mesh in link.meshes do
-                mesh.copy.Scale, mesh.copy.Offset = mesh.original.Scale, mesh.original.Offset
-            end
-        end
-    end
-    function outline:destroy()
-        for _, connection in connections do
-            connection:Disconnect()
-        end
-        mask:Destroy()
-    end
-    return outline
-end
+-- A preview owns one colored render pass. A magnified duplicate behind glass
+-- is not an outline: it shows shifted interior geometry through transparent parts.
+-- Keep one live handle per viewport so remounting cannot stack old models/cameras.
+local activeMounts = setmetatable({}, { __mode = "k" })
 
 function ItemModels.create(id, level)
     local canonical = aliases[id] or id
@@ -2448,64 +2357,9 @@ function ItemModels.create(id, level)
     model:SetAttribute("ItemLevel", itemLevel)
     model:SetAttribute("Category", categories[canonical])
     builder(model, itemLevel)
-    if itemLevel >= 2 and categories[canonical] == "equipment" then
-        local bounds, size = model:GetBoundingBox()
-        local bottom = bounds.Position.Y - size.Y / 2
-        for _, side in ipairs({ -1, 1 }) do
-            local x = bounds.Position.X + side * size.X * 0.31
-            block(
-                model,
-                P.gold,
-                0.17,
-                0.17,
-                math.max(size.Z * 0.83, 0.5),
-                x,
-                bottom + 0.12,
-                bounds.Position.Z
-            )
-            light(
-                sphere(
-                    model,
-                    P.cyan,
-                    0.16,
-                    0.16,
-                    0.12,
-                    x,
-                    bottom + 0.14,
-                    bounds.Position.Z + size.Z / 2 + 0.03
-                )
-            )
-        end
-    end
-    if itemLevel >= 3 and categories[canonical] == "equipment" then
-        local bounds, size = model:GetBoundingBox()
-        local y = bounds.Position.Y - size.Y * 0.4
-        local z = bounds.Position.Z + size.Z / 2 + 0.06
-        -- L3/L4/L5 add lit nodes without changing the device's silhouette.
-        for tier = 3, 5 do
-            local x = bounds.Position.X + (tier - 4) * math.min(0.25, size.X * 0.15)
-            local node = sphere(
-                model,
-                if tier <= itemLevel then P.gold else P.steel,
-                0.15,
-                0.15,
-                0.08,
-                x,
-                y,
-                z
-            )
-            node.Name = "Tier" .. tier
-            if tier <= itemLevel then
-                light(node)
-            end
-        end
-        if itemLevel == 5 then
-            for _, side in ipairs({ -1, 1 }) do
-                local x = bounds.Position.X + side * size.X * 0.4
-                block(model, P.gold, 0.055, size.Y * 0.15, 0.05, x, y + size.Y * 0.06, z)
-            end
-        end
-    end
+    -- Builders may author their own upgrade details. Do not place universal rails
+    -- or tier lights from bounding-box extents: irregular devices leave them floating.
+    -- The rack/shop level badge remains the consistent upgrade indicator.
     local bounds = model:GetBoundingBox()
     ItemMotion.tag(model, canonical)
     model:SetAttribute("ArtCenter", bounds.Position)
@@ -2518,6 +2372,10 @@ end
 function ItemModels.mount(viewport, id, level, options)
     assert(viewport:IsA("ViewportFrame"), "ItemModels.mount requires a ViewportFrame")
     local model = ItemModels.create(id, level)
+    local previous = activeMounts[viewport]
+    if previous then
+        previous:destroy()
+    end
     local container = Instance.new("Model")
     container.Name = "ItemDisplay"
     container.Parent = viewport
@@ -2541,7 +2399,6 @@ function ItemModels.mount(viewport, id, level, options)
         local base = drum(container, P.ceramic, floorRadius * 1.03, 0.035, 0, floorY - 0.036, 0)
         base.Name = "PerkPedestalBase"
     end
-    local outline = silhouette(viewport, model, camera, options)
     local motion = ItemMotion.new(model, canonical)
     local handle = { model = model }
     local animate = not options or (options.animate ~= false and options.reducedMotion ~= true)
@@ -2565,9 +2422,6 @@ function ItemModels.mount(viewport, id, level, options)
         local limitingFov = math.min(halfFov, math.atan(math.tan(halfFov) * aspect))
         local distance = radius * 1.28 / math.sin(limitingFov)
         camera.CFrame = CFrame.lookAt(V(0.72, 0.43, 1).Unit * distance, V(0, 0, 0))
-        if outline then
-            outline:fit()
-        end
     end
     local function hoverFrame(pose)
         local position = camera.CFrame.RightVector * pose.x * size.X
@@ -2610,9 +2464,6 @@ function ItemModels.mount(viewport, id, level, options)
                 queuedAmount, queuedParams = nil, nil
                 self:pulse(nextAmount, nextParams)
             end
-        end
-        if outline then
-            outline:sync()
         end
     end
     function handle:pulse(amount, params)
@@ -2670,8 +2521,8 @@ function ItemModels.mount(viewport, id, level, options)
         if destroyConnection then
             destroyConnection:Disconnect()
         end
-        if outline then
-            outline:destroy()
+        if activeMounts[viewport] == self then
+            activeMounts[viewport] = nil
         end
         if viewport.CurrentCamera == camera then
             viewport.CurrentCamera = nil
@@ -2686,9 +2537,7 @@ function ItemModels.mount(viewport, id, level, options)
         idleFrame = hoverFrame(ItemMotion.stepHover(hover, 0, false))
         model:PivotTo(idleFrame)
     end
-    if outline then
-        outline:sync()
-    end
+    activeMounts[viewport] = handle
     return handle
 end
 

@@ -44,14 +44,15 @@ noncolliding preview parts, bounded geometry, required moving groups and restora
 after activation; exact observed audit results are recorded with task evidence.
 
 `ItemModels` removes the generic white display circle from equipment, currencies
-and Supplies while retaining it on perks. Primary previews can place a black
-geometry clone behind the colored model in a sibling ViewportFrame, producing a
-camera-relative silhouette without external textures. The layer follows idle and
-activation poses. It is an approximate outline rather than a per-pixel contour;
-width and transparency vary with the projected shape, and miniature recipe
-previews omit the extra layer. It adds rendered geometry and is cleaned up with
-the owning preview. The colored foreground uses ZIndex 2 or higher, with its mask
-one layer behind. The 4.2-second figure-eight cycle is defined in `ItemMotion` and
+and Supplies while retaining it on perks. Previews now render a single model.
+The enlarged black clone layer was removed because it showed a displaced copy
+and dark interior shapes through glass. Generic bounds-derived upgrade rails,
+nodes and bars were removed because they floated around several device shapes.
+Authored builder details and UI level badges remain. Remounting disposes the
+previous owned model/camera; stale handles cannot clear the replacement camera.
+The [model guide](MODEL_STYLE_GUIDE.md) and [workflow](MODELING_WORKFLOW.md) define
+clean joins, readable silhouettes, motion clearance and future mesh pilots.
+The 4.2-second figure-eight cycle is defined in `ItemMotion` and
 is shared by equipment, perk-choice, event and hub previews. A trigger or chest
 opening pauses that idle pose, runs the appropriate activation and resumes idle
 motion; reduced-motion/static mounts can disable the idle cycle.
@@ -92,6 +93,25 @@ Store sine wave described by its creator
 as generated in Audacity. Its pitches follow semitone ratios; a short attack/decay
 envelope shapes each note. Twelve shared tone voices, 32 pending notes, and motif
 rate limits bound dense chains. No item needs an individual uploaded sound file.
+
+Item timbres now have three weights. Light glass/water items keep the bright
+register; rounded mechanisms move down five semitones; heavy mechanisms move down
+an octave and add a short falling sine impact. Burst Capsule, Wave Spring and Dew
+Cell are heavier original items. Tide Valve, Moss Capacitor, Nectar Pump, Lagoon
+Synth, Ozone Orb and Monsoon Loom add heavy discovery sounds; six mechanical
+evolutions carry that weight forward. Reef Chime, Goldfish, Bubble Wand and Spectrum
+Reef remain light. Every item retains its distinct pitch/rhythm motif.
+
+The bass impact drops to approximately 65–98 Hz in 55 ms and fades within
+180–280 ms. Smooth attack/release envelopes avoid abrupt amplitude edges. Bass
+uses the same C4 asset through native
+[Sound.PlaybackSpeed](https://create.roblox.com/docs/reference/engine/classes/Sound#PlaybackSpeed),
+so it adds no external asset dependency or DSP instance. All melody and bass
+notes share the existing 12-voice/32-note limits. Their summed volume is capped
+at 0.34 before the 0.7 feedback-group gain, reserving mix space for coins and goals.
+Restock and merge mechanical cues have lower pitches and slightly softer volume.
+These bounds and envelope/pitch behavior have automated coverage; actual asset
+loading, playback and subjective listening are separate Studio checks.
 
 Availability can change: recheck preloading and playback in the target experience
 before publishing. Studio loading does not establish publication or future access.

@@ -382,7 +382,7 @@ return function()
     end)
 
     test(function()
-        for _, count in ipairs({ 1, 3, 8, 9, 12 }) do
+        for _, count in ipairs({ 1, 3, 5, 6, 7, 8, 9, 12 }) do
             local run = Run.new(100 + count)
             run.round = 66
             run:_resetShot()
@@ -405,7 +405,7 @@ return function()
             equal(receipt.reservesAfter, 5)
             sameValues(receipt.shotValues, shot)
             sameValues(receipt.restoredValues, original)
-            equal(#receipt.cycles, if count <= 8 then count else 5)
+            equal(#receipt.cycles, math.min(count, 5))
             local replay = Board.copy(receipt.restoredValues)
             local previous = 0
             for _, cycle in ipairs(receipt.cycles) do

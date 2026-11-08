@@ -95,6 +95,7 @@ task.spawn(function()
                 version = 2,
                 chests = { common = index + 2 },
                 research = index + 12,
+                restockCredits = index + 250,
             })
             assert(#profile.itemUnlocks == 8, "Fixture begins with the real starter pool")
             local saved, mode = profileStore.save(player.UserId, profile)
@@ -102,6 +103,7 @@ task.spawn(function()
             fixtures[player.UserId] = { chests = index + 2, research = index + 12 }
             player:SetAttribute("ArcadeQAChests", index + 2)
             player:SetAttribute("ArcadeQAResearch", index + 12)
+            player:SetAttribute("ArcadeQARestocks", index + 250)
         end
         mainScript.Disabled = false
         complete("ready", 8)
@@ -120,6 +122,7 @@ task.spawn(function()
                 "replayA",
                 "wrongReplay",
                 "research",
+                "market",
                 "start",
                 "runChestReject",
                 "launch",
@@ -134,6 +137,20 @@ task.spawn(function()
                 report.persistedChecks[stage] = 8
             elseif stage == "research" then
                 verifyProgression(3, 11, "_R")
+                report.persistedChecks[stage] = 8
+            elseif stage == "market" then
+                for _, player in Players:GetPlayers() do
+                    local saved, mode = profileStore.load(player.UserId)
+                    assert(mode == "session", "Market fixtures stay in Studio memory")
+                    assert(
+                        saved.restockCredits == player:GetAttribute("ArcadeQARestocks") - 250,
+                        "Private wallet debit persisted once"
+                    )
+                    assert(
+                        saved.chests.uncommon == 1 and saved.chestSerial == 4,
+                        "One purchase survived retries and rejections"
+                    )
+                end
                 report.persistedChecks[stage] = 8
             end
         end

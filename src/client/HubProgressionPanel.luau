@@ -2,6 +2,7 @@
 local HttpService = game:GetService("HttpService")
 local Shared = game:GetService("ReplicatedStorage").Shared
 local Catalog = require(Shared.Catalog)
+local Format = require(Shared.Format)
 local Theme = require(script.Parent.UiTheme)
 local Layout = require(script.Parent.HubProgressionLayout)
 local C = Theme.colors
@@ -67,6 +68,14 @@ function Panel:footer(previous, nextText, summary)
     Theme.setEnabled(h.previous, true, C.muted)
     Theme.setEnabled(h.nextPage, true, C.muted)
     h.footer.Text = summary or ""
+    -- Reclaim the unused navigation side so long currency amounts remain legible
+    -- on a narrow phone instead of squeezing into the central pager slot.
+    local panel = h.geometry.panel
+    if not previous then
+        Theme.rect(h.footer, 16, panel.h - 59, panel.w - 126, 44)
+    elseif not nextText then
+        Theme.rect(h.footer, 106, panel.h - 59, panel.w - 122, 44)
+    end
 end
 
 function Panel:request(kind, payload, handle)
@@ -84,7 +93,15 @@ function Panel:request(kind, payload, handle)
     self.host.onAction(kind, payload)
     if self.actionButton then
         Theme.setEnabled(self.actionButton, false, C.mint)
-        self.actionButton.Text = kind == "openChest" and "OPENING…" or "UNLOCKING…"
+        if kind ~= "buyChest" then
+            self.actionButton.Text = kind == "openChest" and "OPENING…" or "UNLOCKING…"
+        end
+    end
+    if self.buyButton and self.buyButton.Parent then
+        Theme.setEnabled(self.buyButton, false, C.mint)
+        if kind == "buyChest" then
+            self.buyButton.Text = "BUYING…"
+        end
     end
 end
 
@@ -92,20 +109,21 @@ function Panel:renderChests()
     local h, data = self.host, self:data()
     h:_clearBody()
     self.leaderRows = nil
-    h.title.Text = "LAGOON CHEST PAVILION"
-    h.subtitle.Text = "Earn chests in runs · Open here · Expand your next shop pool"
+    local balance = data.restockCredits or 0
+    h.title.Text = "CHEST MARKET · " .. Format.integer(balance) .. " RESTOCKS"
+    h.subtitle.Text = "Extra restocks saved across runs · Choose your chest · Open when ready"
     local g = Layout.chest(h.geometry.body.w, h.geometry.body.h)
     for i, tier in tiers do
-        local count = 0
+        local cost = 0
         for _, entry in data.tiers or {} do
             if entry.id == tier then
-                count = entry.count
+                cost = entry.restockCost or 0
             end
         end
         local tab = button(
             h.body,
             "Tier_" .. tier,
-            names[tier] .. " · " .. count,
+            string.upper(tier) .. "\n" .. Format.integer(cost) .. " RS",
             g.tabs[i],
             colors[tier],
             function()
@@ -122,7 +140,8 @@ function Panel:renderChests()
             tierData = entry
         end
     end
-    tierData = tierData or { count = 0, remaining = 0, total = 0, researchValue = 0 }
+    tierData = tierData
+        or { count = 0, remaining = 0, total = 0, researchValue = 0, restockCost = 0 }
     local reveal = self.reveal
     local rewardId = reveal and reveal.itemId
     local modelId = rewardId or ("chest_" .. self.tier)
@@ -147,10 +166,9 @@ function Panel:renderChests()
                 .. tostring(tierData.researchValue)
                 .. " research for the workshop."
             )
-        if tierData.count == 0 then
-            detail = "Clear milestones or finish a run after clearing 3 rounds to earn chests."
-        end
-        actionText = tierData.count > 0 and "OPEN CHEST" or "EARN IN RUNS"
+        detail ..= " Extra restocks beyond the first each shot become saved currency. Milestones also award chests."
+        actionText = tierData.count > 0 and ("OPEN · " .. tierData.count .. " OWNED")
+            or "NO CHESTS OWNED"
     end
     label(h.body, "ChestName", heading, g.title, C.ink, 30).Font = Enum.Font.SourceSansBold
     local description = label(h.body, "ChestDetail", detail, g.detail, C.board, 21)
@@ -175,7 +193,29 @@ function Panel:renderChests()
         reveal ~= nil or (tierData.count > 0 and not self.pending),
         colors[self.tier]
     )
-    self:footer(nil, "WORKSHOP ›", tostring(data.research or 0) .. " RESEARCH")
+    local price = tierData.restockCost or 0
+    self.buyButton = button(
+        h.body,
+        "BuyChest",
+        "BUY · " .. Format.integer(price) .. " RESTOCKS",
+        g.buy,
+        C.mint,
+        function()
+            self:request("buyChest", { tier = self.tier }, handle)
+        end
+    )
+    self.buyButton.Visible = reveal == nil
+    Theme.setEnabled(
+        self.buyButton,
+        not self.pending and price > 0 and balance >= price and tierData.count < 10000,
+        C.mint
+    )
+    if reveal then
+        place(self.actionButton, { x = 0, y = g.action.y, w = h.geometry.body.w, h = g.action.h })
+    end
+    local summary = balance < price and (Format.integer(price - balance) .. " MORE RESTOCKS TO BUY")
+        or "BUY TO STORE · OPEN TO DISCOVER"
+    self:footer(nil, "WORKSHOP ›", summary)
 end
 
 function Panel:renderWorkshop()
@@ -434,7 +474,15 @@ function Panel:update(snapshot)
 end
 
 function Panel:step()
-    if self.pending and self.pendingResult and os.clock() - self.pending.since >= 1.6 then
+    if self.pending and self.pendingResult and self.pendingResult.kind == "purchase" then
+        local result = self.pendingResult
+        self.pending, self.pendingResult, self.reveal = nil, nil, nil
+        self.tier, self.mode = result.tier, "chests"
+        self.host:setNotice(names[result.tier] .. " CHEST STORED · Open it whenever you're ready")
+        if self.host.openPanel == "chests" then
+            self:render()
+        end
+    elseif self.pending and self.pendingResult and os.clock() - self.pending.since >= 1.6 then
         self.reveal, self.pendingResult, self.pending = self.pendingResult, nil, nil
         self.tier, self.mode = self.reveal.tier, "chests"
         if self.host.openPanel == "chests" then

@@ -37,10 +37,14 @@ return function()
             inside(tab, w, h)
             assert(tab.h >= 44, "tier touch target")
         end
-        for _, key in { "model", "title", "action" } do
+        for _, key in { "model", "title", "action", "buy" } do
             inside(chest[key], w, h)
         end
         assert(chest.action.h >= 44, "opening touch target")
+        assert(
+            chest.buy.h >= 44 and separate(chest.buy, chest.action),
+            "Purchase and opening stay separate"
+        )
         assert(separate(chest.title, chest.action), "chest title leaves action clear")
         assert(separate(chest.model, chest.title), "portrait model leaves heading clear")
         if chest.showDetail then

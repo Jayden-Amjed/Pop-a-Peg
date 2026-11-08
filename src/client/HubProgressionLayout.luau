@@ -9,7 +9,7 @@ function Layout.chest(w, h)
     for i = 1, 4 do
         tabs[i] = rect((i - 1) * ((w - 18) / 4 + gap), 0, (w - 18) / 4, 44)
     end
-    local top, contentH = 50, h - 50
+    local top, contentH = 50, h - 100
     local stacked = w < 480 and contentH >= 300
     local modelW = stacked and w or math.min(w * 0.42, contentH)
     local modelH = stacked and contentH * 0.48 or contentH
@@ -19,10 +19,11 @@ function Layout.chest(w, h)
     return {
         tabs = tabs,
         model = rect(0, top, modelW, modelH),
-        title = rect(x, y, textW, math.min(38, math.max(16, usable - 50))),
-        showDetail = usable >= 110,
-        detail = rect(x, y + math.min(42, usable * 0.25), textW, math.max(16, usable - 94)),
-        action = rect(x, top + contentH - 44, textW, 44),
+        title = rect(x, y, textW, math.min(38, math.max(12, usable))),
+        showDetail = usable >= 90,
+        detail = rect(x, y + 42, textW, math.max(16, usable - 42)),
+        buy = rect(0, h - 44, (w - 8) / 2, 44),
+        action = rect((w + 8) / 2, h - 44, (w - 8) / 2, 44),
     }
 end
 

@@ -38,10 +38,15 @@ return function()
         assert(body.x >= 0 and body.y >= 0 and body.x + body.w <= panel.w, "Gallery fits panel")
         assert(body.y + body.h <= panel.h - 44, "Gallery leaves footer clear")
         assert(layout.pageSize >= 2 and layout.pageSize <= 6, "Model budget stays bounded")
-        for _, name in { "brand", "crew", "dock", "notice" } do
+        for _, name in { "brand", "crew", "wallet", "dock", "notice" } do
             inside(layout[name], w, h, name)
         end
         assert(separate(layout.brand, layout.crew), "Header plates never overlap")
+        assert(
+            separate(layout.wallet, layout.brand) and separate(layout.wallet, layout.crew),
+            "Saved wallet leaves headers clear"
+        )
+        assert(separate(layout.wallet, layout.dock), "Saved wallet leaves hub actions clear")
         assert(separate(layout.notice, layout.dock), "Notices stay above actions")
         assert(
             separate(layout.brand, layout.dock) and separate(layout.crew, layout.dock),

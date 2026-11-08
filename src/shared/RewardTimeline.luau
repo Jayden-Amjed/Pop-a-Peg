@@ -21,7 +21,13 @@ function RewardTimeline.plan(receipt)
     })
     local previous = copy(receipt.restoredValues)
     local previousIndex = 0
-    for _, cycle in ipairs(receipt.cycles or {}) do
+    local cycles = receipt.cycles or {}
+    for position, cycle in ipairs(cycles) do
+        -- Also bound older/uncompressed receipts: show the first three and last two.
+        -- Gaps still credit every reward and advance to the recorded board state.
+        if #cycles > 5 and position > 3 and position <= #cycles - 2 then
+            continue
+        end
         local gap = cycle.index - previousIndex - 1
         if gap > 0 then
             add("batch", 0.5, {
