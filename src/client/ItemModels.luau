@@ -1624,10 +1624,15 @@ local function silhouette(viewport, model, camera, options)
         end
     end
     local function layout()
+        -- Roblox's minimum GUI ZIndex is one. Reserve that layer for the mask
+        -- when a caller mounts an otherwise-default ViewportFrame.
+        if viewport.ZIndex < 2 then
+            viewport.ZIndex = 2
+        end
         mask.AnchorPoint, mask.Position, mask.Size =
             viewport.AnchorPoint, viewport.Position, viewport.Size
         mask.Rotation = viewport.Rotation
-        mask.ZIndex = math.max(1, viewport.ZIndex - 1)
+        mask.ZIndex = viewport.ZIndex - 1
         mask.Visible = viewport.Visible
         mask.ImageTransparency = viewport.ImageTransparency
         mask.Parent = viewport.Parent
