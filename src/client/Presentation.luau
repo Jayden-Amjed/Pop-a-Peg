@@ -147,7 +147,8 @@ function Presentation:_buildBoard()
         "Sky",
         Vector3.new(420, 240, 1),
         Vector3.new(0, 40, -35),
-        Color3.fromRGB(92, 193, 241)
+        Color3.fromRGB(197, 244, 255):Lerp(Color3.fromRGB(66, 169, 229), 40 / 56),
+        Enum.Material.Neon
     )
     for index = 1, 40 do
         local y = -35 + index * 2
@@ -182,7 +183,7 @@ function Presentation:_buildBoard()
             self.model,
             "DistantHill",
             Vector3.new(62, 22, 6),
-            Vector3.new(side * 40, -4, -29),
+            Vector3.new(side * 40, -4, -31),
             Color3.fromRGB(112, 186, 70),
             nil,
             Enum.PartType.Ball
@@ -191,7 +192,7 @@ function Presentation:_buildBoard()
             self.model,
             "Meadow",
             Vector3.new(45, 16, 5),
-            Vector3.new(side * 47, -6, -25),
+            Vector3.new(side * 47, -6, -30),
             Color3.fromRGB(152, 206, 75),
             nil,
             Enum.PartType.Ball
@@ -486,6 +487,9 @@ function Presentation:_buildHud()
     )
     self.swapHelp.TextXAlignment = Enum.TextXAlignment.Center
     self.swapHelp.TextScaled = true
+    self.swapHelp.BackgroundColor3 = C.ink
+    self.swapHelp.BackgroundTransparency = 0.15
+    corner(self.swapHelp, 6)
     make("UITextSizeConstraint", { MinTextSize = 14, MaxTextSize = 18 }, self.swapHelp)
     self.itemSlots = {}
     for index = 1, 7 do
