@@ -29,7 +29,12 @@ try {
         @{ Path = 'ReplicatedStorage/Shared/Run'; Class = 'ModuleScript'; Source = 'src/shared/Run.luau' },
         @{ Path = 'ReplicatedStorage/Shared/Board'; Class = 'ModuleScript'; Source = 'src/shared/Board.luau' },
         @{ Path = 'ReplicatedStorage/Shared/Simulation'; Class = 'ModuleScript'; Source = 'src/shared/Simulation.luau' },
-        @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/Presentation'; Class = 'ModuleScript'; Source = 'src/client/Presentation.luau' }
+        @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/Presentation'; Class = 'ModuleScript'; Source = 'src/client/Presentation.luau' },
+        @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/Feedback'; Class = 'ModuleScript'; Source = 'src/client/Feedback.luau' },
+        @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/ItemModels'; Class = 'ModuleScript'; Source = 'src/client/ItemModels.luau' },
+        @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/UiTheme'; Class = 'ModuleScript'; Source = 'src/client/UiTheme.luau' },
+        @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/SoundEffects'; Class = 'ModuleScript'; Source = 'src/client/SoundEffects.luau' },
+        @{ Path = 'ReplicatedStorage/Shared/RewardTimeline'; Class = 'ModuleScript'; Source = 'src/shared/RewardTimeline.luau' }
     )
     foreach ($mapping in $mappings) {
         $node = $place.roblox
