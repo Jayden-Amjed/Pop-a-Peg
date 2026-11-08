@@ -30,6 +30,7 @@ function SoundEffects.new()
         lastPlayed = {},
         serial = 0,
         muted = false,
+        volume = 0.7,
         loaded = {},
         toneVoices = {},
         pendingNotes = {},
@@ -91,9 +92,30 @@ end
 
 function SoundEffects:setMuted(muted)
     self.muted = muted == true
-    self.group.Volume = if self.muted then 0 else 0.7
+    self.group.Volume = if self.muted then 0 else self.volume
     if self.muted then
-        self:clearItems()
+        self:stopAll()
+    end
+end
+
+function SoundEffects:setVolume(volume)
+    if type(volume) ~= "number" or volume ~= volume then
+        return
+    end
+    self.volume = math.clamp(volume, 0, 1)
+    self.group.Volume = if self.muted then 0 else self.volume
+end
+
+-- Review tools need to cancel sampled cues as well as scheduled item notes.
+-- Invalidate delayed stops so an old cue cannot stop a later reused voice.
+function SoundEffects:stopAll()
+    self:clearItems()
+    for _, pool in pairs(self.pools) do
+        for _, voice in ipairs(pool.voices) do
+            self.serial += 1
+            voice.serial = self.serial
+            voice.sound:Stop()
+        end
     end
 end
 
@@ -106,7 +128,7 @@ function SoundEffects:clearItems()
     end
 end
 
-function SoundEffects:playItem(id)
+function SoundEffects:playItem(id, gain)
     if self.destroyed or self.muted or not Signatures.Profiles[id] then
         return false
     end
@@ -121,6 +143,7 @@ function SoundEffects:playItem(id)
     self.itemLastPlayed[id] = now
     self.toneTokens -= 1
     for _, note in ipairs(notes) do
+        note.gain *= math.clamp(gain or 1, 0, 1)
         table.insert(self.pendingNotes, note)
     end
     return true
@@ -184,7 +207,7 @@ function SoundEffects:_stepTones(dt)
     end
 end
 
-function SoundEffects:play(name, pitch)
+function SoundEffects:play(name, pitch, gain)
     local cue = SoundEffects.Cues[name]
     if self.destroyed or self.muted or not cue then
         return
@@ -208,6 +231,7 @@ function SoundEffects:play(name, pitch)
     sound:Stop()
     sound.TimePosition = 0
     sound.PlaybackSpeed = cue.pitch * math.clamp(pitch or 1, 0.75, 1.4)
+    sound.Volume = cue.volume * math.clamp(gain or 1, 0, 1)
     sound:Play()
     task.delay(cue.duration, function()
         if not self.destroyed and voice.serial == serial then
