@@ -7,6 +7,7 @@ return function(first, last)
     gui:SetAttribute("Zoom", 1)
     gui:SetAttribute("CameraView", "Three-quarter")
     gui:SetAttribute("Strength", 2)
+    gui:SetAttribute("EffectsEnabled", true)
     for index = first, last do
         local id = catalog[index].id
         gui:SetAttribute("SelectedId", id)
@@ -35,8 +36,8 @@ return function(first, last)
             local camera = viewport.CurrentCamera
             local aspect = viewport.AbsoluteSize.X / viewport.AbsoluteSize.Y
             local tangent = math.tan(math.rad(camera.FieldOfView / 2))
-            for _, part in viewport[id]:GetDescendants() do
-                if not part:IsA("BasePart") then
+            for _, part in viewport:GetDescendants() do
+                if not part:IsA("BasePart") or part.Transparency >= 1 then
                     continue
                 end
                 for _, x in { -1, 1 } do

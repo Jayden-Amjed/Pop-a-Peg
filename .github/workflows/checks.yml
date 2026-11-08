@@ -28,3 +28,5 @@ jobs:
           python scripts/models/test_catalog_revisions.py
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           python scripts/models/test_hub_reveal.py --luau .tools/luau.exe
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python scripts/models/verify_native_reference.py

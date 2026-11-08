@@ -37,33 +37,33 @@
     "growth_ring": "art/catalog/uploaded/catalog-004.receipt.json",
     "horizon_observatory": "art/catalog/uploaded/catalog-004.receipt.json",
     "jumble": "art/catalog/uploaded/catalog-005.receipt.json",
-    "lagoon_synth": "art/catalog/uploaded/catalog-005.receipt.json",
-    "landing_fund": "art/catalog/uploaded/catalog-005.receipt.json",
+    "lagoon_synth": "art/catalog/revisions/RBX-027/catalog-partial-b352b758-001.receipt.json",
+    "landing_fund": "art/catalog/revisions/RBX-027/catalog-partial-b352b758-001.receipt.json",
     "last_word": "art/catalog/uploaded/catalog-005.receipt.json",
     "life": "art/catalog/uploaded/catalog-005.receipt.json",
-    "lily_pad": "art/catalog/uploaded/catalog-005.receipt.json",
+    "lily_pad": "art/catalog/revisions/RBX-027/catalog-partial-b352b758-001.receipt.json",
     "lock": "art/catalog/uploaded/catalog-005.receipt.json",
     "metronome": "art/catalog/uploaded/catalog-005.receipt.json",
     "milestone": "art/catalog/uploaded/catalog-006.receipt.json",
-    "mist_fan": "art/catalog/uploaded/catalog-006.receipt.json",
+    "mist_fan": "art/catalog/revisions/RBX-027/catalog-partial-b352b758-001.receipt.json",
     "monsoon_loom": "art/catalog/uploaded/catalog-006.receipt.json",
     "moss_capacitor": "art/catalog/uploaded/catalog-006.receipt.json",
     "nectar_pump": "art/catalog/uploaded/catalog-006.receipt.json",
     "ocean_orchestra": "art/catalog/uploaded/catalog-006.receipt.json",
-    "ozone_orb": "art/catalog/uploaded/catalog-006.receipt.json",
-    "pearl_diver": "art/catalog/uploaded/catalog-006.receipt.json",
+    "ozone_orb": "art/catalog/revisions/RBX-027/catalog-partial-b352b758-001.receipt.json",
+    "pearl_diver": "art/catalog/revisions/RBX-027/catalog-partial-b352b758-001.receipt.json",
     "pearl_turbine": "art/catalog/uploaded/catalog-007.receipt.json",
     "pulse_cell": "art/catalog/uploaded/catalog-007.receipt.json",
     "quota_bonus": "art/catalog/uploaded/catalog-007.receipt.json",
     "rain_catcher": "art/catalog/uploaded/catalog-007.receipt.json",
     "recovery": "art/catalog/uploaded/catalog-007.receipt.json",
-    "relay": "art/catalog/uploaded/catalog-007.receipt.json",
+    "relay": "art/catalog/revisions/RBX-027/catalog-partial-b352b758-001.receipt.json",
     "reserve_pack": "art/catalog/uploaded/catalog-007.receipt.json",
     "resonator": "art/catalog/uploaded/catalog-007.receipt.json",
     "restock": "art/catalog/uploaded/catalog-008.receipt.json",
     "ricochet": "art/catalog/uploaded/catalog-008.receipt.json",
     "score": "art/catalog/uploaded/catalog-008.receipt.json",
-    "soft_saw": "art/catalog/uploaded/catalog-008.receipt.json",
+    "soft_saw": "art/catalog/revisions/RBX-027/catalog-partial-b352b758-001.receipt.json",
     "solar_leaf": "art/catalog/uploaded/catalog-008.receipt.json",
     "solar_treasury": "art/catalog/uploaded/catalog-008.receipt.json",
     "spectrum_reef": "art/catalog/uploaded/catalog-008.receipt.json",
@@ -92,6 +92,54 @@
       "receipt": "art/catalog/uploaded/catalog-002.receipt.json",
       "source": "art/catalog/revisions/RBX-025/previous/coin_press/coin_press.blend",
       "manifest": "art/catalog/revisions/RBX-025/previous/coin_press/manifest.json"
+    },
+    {
+      "id": "lagoon_synth",
+      "receipt": "art/catalog/uploaded/catalog-005.receipt.json",
+      "source": "art/catalog/revisions/RBX-027/previous/lagoon_synth/lagoon_synth.blend",
+      "manifest": "art/catalog/revisions/RBX-027/previous/lagoon_synth/manifest.json"
+    },
+    {
+      "id": "landing_fund",
+      "receipt": "art/catalog/uploaded/catalog-005.receipt.json",
+      "source": "art/catalog/revisions/RBX-027/previous/landing_fund/landing_fund.blend",
+      "manifest": "art/catalog/revisions/RBX-027/previous/landing_fund/manifest.json"
+    },
+    {
+      "id": "lily_pad",
+      "receipt": "art/catalog/uploaded/catalog-005.receipt.json",
+      "source": "art/catalog/revisions/RBX-027/previous/lily_pad/lily_pad.blend",
+      "manifest": "art/catalog/revisions/RBX-027/previous/lily_pad/manifest.json"
+    },
+    {
+      "id": "mist_fan",
+      "receipt": "art/catalog/uploaded/catalog-006.receipt.json",
+      "source": "art/catalog/revisions/RBX-027/previous/mist_fan/mist_fan.blend",
+      "manifest": "art/catalog/revisions/RBX-027/previous/mist_fan/manifest.json"
+    },
+    {
+      "id": "ozone_orb",
+      "receipt": "art/catalog/uploaded/catalog-006.receipt.json",
+      "source": "art/catalog/revisions/RBX-027/previous/ozone_orb/ozone_orb.blend",
+      "manifest": "art/catalog/revisions/RBX-027/previous/ozone_orb/manifest.json"
+    },
+    {
+      "id": "pearl_diver",
+      "receipt": "art/catalog/uploaded/catalog-006.receipt.json",
+      "source": "art/catalog/revisions/RBX-027/previous/pearl_diver/pearl_diver.blend",
+      "manifest": "art/catalog/revisions/RBX-027/previous/pearl_diver/manifest.json"
+    },
+    {
+      "id": "relay",
+      "receipt": "art/catalog/uploaded/catalog-007.receipt.json",
+      "source": "art/catalog/revisions/RBX-027/previous/relay/relay.blend",
+      "manifest": "art/catalog/revisions/RBX-027/previous/relay/manifest.json"
+    },
+    {
+      "id": "soft_saw",
+      "receipt": "art/catalog/uploaded/catalog-008.receipt.json",
+      "source": "art/catalog/revisions/RBX-027/previous/soft_saw/soft_saw.blend",
+      "manifest": "art/catalog/revisions/RBX-027/previous/soft_saw/manifest.json"
     }
   ]
 }

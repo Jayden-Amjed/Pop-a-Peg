@@ -5,7 +5,7 @@
 - Reservation: https://github.com/Jayden-Amjed/Pop-a-Peg/issues/27
 - Starting main:07be76a57335fa3aaa05009c91bd2e36ed05dd0e, accepted State Version13
 - Branch:task/RBX-027-blender-effects
-- PR:opening draft
+- PR:https://github.com/Jayden-Amjed/Pop-a-Peg/pull/28
 - Reviewed:2026-11-08, America/Los_Angeles
 
 ## Objective and scope
@@ -36,16 +36,26 @@ user's current gallery content remain preserved.
 
 ## Checks
 
-Current source/remote reservations inspected. Implementation and new runtime
-checks NOT RUN. Accepted predecessor checks are historical evidence only.
+Local required check.ps1 passes: formatting, lint, 23 gameplay suites, 78 motion
+contracts, 12,792 effect samples, gallery audio lifecycle and 78 instrument phrases,
+three builds, 45 game source mappings and documentation checks. Revision validator
+passes 78 models / 477 MeshParts / 127664 triangles / 12 archived uploads; eight
+archive regression tests pass. Native hash guard and unchanged src/ proof pass.
+Studio normalization of asset107372484175276 succeeded for eight models; actual
+new animation/effect/audio runtime verification is pending.
 
 ## Handoff
 
 - Owner/next owner:Codex coordinator; root is sole Studio/import operator.
 - Checkout:C:/Users/Amjedd/Documents/ChatGPT/Pop a Peg/.worktrees/blender-effects.
-- Branch/PR:above; publish draft after reservation commit.
+- Branch/PR:published above.
 - Studio target:coordinatorQA9f7afcd3; current user gallery4a95dbcb preserved.
-- Sync:no live Rojo. New asset permission-host identity still to verify.
+- Sync:no live Rojo. Saved experiencef9c95fd9/place105048204331261 verified;
+  asset read/write scope probe200. Known approved export folder unchanged.
 - Main:07be76a, accepted13. Proposed14 not accepted.
-- Blockers:none observed. Next:integrate gallery-only layers and revised sources.
+- Blockers:none. Geometry, all78 effects and audio integrated. User reinforced that
+  the specific treatment style applies across all items. Eight-model revision
+  uploaded and normalized; original sources and receipts archived immutably.
+  Native source hash guard passes; src/ and default game mapping are unchanged.
+  Next:open the fresh built gallery and verify all78 effects/framing/audio in Studio.
 - Merge:NOT MERGED. Experience publication:NOT RUN.

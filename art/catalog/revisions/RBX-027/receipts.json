@@ -1,0 +1,27 @@
+[
+  {
+    "path": "operations/a1daa18e-9157-4506-8a3c-0c45f69ccfa4",
+    "operationId": "a1daa18e-9157-4506-8a3c-0c45f69ccfa4",
+    "done": true,
+    "response": {
+      "path": "assets/107372484175276",
+      "revisionId": "1",
+      "revisionCreateTime": "2026-11-08T23:07:03.848Z",
+      "assetId": "107372484175276",
+      "displayName": "Pop a Peg RBX-027 Blender review",
+      "description": "Eight original Blender item revisions with articulated mechanisms for the Pop a Peg model gallery.",
+      "assetType": "Model",
+      "creationContext": {
+        "creator": {
+          "userId": "583716264"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    },
+    "batchName": "catalog-partial-b352b758-001"
+  }
+]

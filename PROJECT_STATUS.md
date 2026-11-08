@@ -2,13 +2,14 @@
 
 State Version: 13 (accepted first model review/audio pass; predecessor accepted12).
 Reviewed: 2026-11-08, America/Los_Angeles
-Objective: Apply first model notes and preview every gallery item's sound.
+Objective: RBX-027 Blender-only model treatments, unique transient effects and more varied sound.
 
 Accepted source: 84d10556eff93c98f64250e94e36a26414dc6c17 (GitHub-confirmed PR26 merge).
-Completed task: [RBX-025](tasks/RBX-025-review-audio.md), Codex coordinator.
-Branch: task/RBX-025-review-audio; [PR26](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/26).
+Active task: [RBX-027](tasks/RBX-027-blender-effects.md), Codex coordinator.
+Branch: task/RBX-027-blender-effects; [PR28](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/28).
+Accepted predecessor task:RBX-025; current task NOT MERGED, proposed14 not accepted.
 Studio-tested source:56e68f849a58c9eb8513b23cd442dd8308c7627d.
-Merge: MERGED. State advanced once from accepted12 after confirmed merge/fetch.
+Merge: predecessor MERGED. Current Blender review in progress; native art is frozen.
 
 | Capability | Verified state |
 | --- | --- |
@@ -31,6 +32,6 @@ Checks: local project checks and revision/archive/hub tests pass. CI42529919325
 passed at2fc77bf63e2713a6bcb991cdfb7bcd1db8297343.
 Blockers: none. No new runtime errors; existing avatar asset203785492 warning.
 Published: one original model asset117621047528393; no game experience update.
-Next action: press Play in the new gallery, trigger models with sound, tag/copy
-feedback before ending the Play session.
+Next action: finish eight Blender source revisions and all78 gallery effects/audio,
+then import/test in coordinatorQA9f7afcd3. User gallery4a95dbcb preserved.
 Repository administration: main unprotected; temporary default remains starter.

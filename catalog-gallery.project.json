@@ -14,6 +14,13 @@
       "CatalogLibrary": {
         "$className": "Folder",
         "GalleryAudio": { "$path": "scripts/models/GalleryAudio.luau" },
+        "CatalogLabels": { "$path": "scripts/models/CatalogLabels.luau" },
+        "BlenderChoreography": { "$path": "scripts/models/BlenderChoreography.luau" },
+        "CatalogEffects": { "$path": "scripts/models/CatalogEffects.luau" },
+        "CatalogEffectProfiles": { "$path": "scripts/models/CatalogEffectProfiles.luau" },
+        "StudioEffectsAudit": { "$path": "scripts/models/StudioEffectsAudit.luau" },
+        "GallerySoundBank": { "$path": "scripts/models/GallerySoundBank.luau" },
+        "GallerySoundEngine": { "$path": "scripts/models/GallerySoundEngine.luau" },
         "StudioGalleryAudioAudit": { "$path": "scripts/models/StudioGalleryAudioAudit.luau" },
         "StudioReviewMechanicsAudit": { "$path": "scripts/models/StudioReviewMechanicsAudit.luau" },
         "GallerySoundTimeline": { "$path": "scripts/models/GallerySoundTimeline.luau" },

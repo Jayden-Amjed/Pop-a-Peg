@@ -5,6 +5,7 @@ return function(options)
     local library = game.ReplicatedStorage.CatalogLibrary
     local catalog = require(library.CatalogInfo)
     local Motion, Lighting = require(library.CatalogMotion), require(library.PreviewLighting)
+    local Effects, Labels = require(library.CatalogEffects), require(library.CatalogLabels)
     local playerGui = game.Players.LocalPlayer.PlayerGui
     local previous = playerGui:FindFirstChild("MotionVisualSheet")
     if previous then
@@ -29,7 +30,7 @@ return function(options)
     bg.Parent = gui
     label(
         bg,
-        "POP A PEG  /  EXPRESSIVE TRIGGER STUDY",
+        "POP A PEG  /  BLENDER EFFECT STUDY",
         UDim2.fromOffset(8, 3),
         UDim2.new(1, -16, 0, 27),
         23
@@ -67,21 +68,35 @@ return function(options)
         local model = game.ReplicatedStorage.CatalogAssets[entry.id]:Clone()
         model.Parent = viewport
         local controller = Motion.new(model)
+        local effects = Effects.new(model, entry.id)
         local low, high = Vector3.one * math.huge, -Vector3.one * math.huge
         for sample = 0, 40 do
             controller:apply(sample / 40, 1, CFrame.new())
+            effects:apply(sample / 40, 1, CFrame.new())
             local frame, size = model:GetBoundingBox()
             low, high = low:Min(frame.Position - size / 2), high:Max(frame.Position + size / 2)
+            local effectLow, effectHigh = effects:bounds()
+            if effectLow then
+                low, high = low:Min(effectLow), high:Max(effectHigh)
+            end
         end
         controller:apply(0, 1, CFrame.new())
+        effects:apply(0, 1, CFrame.new())
         local camera = Instance.new("Camera")
         camera.FieldOfView, camera.Parent, viewport.CurrentCamera = 30, viewport, camera
-        label(card, entry.name, UDim2.fromOffset(4, 0), UDim2.new(1, -8, 0, 28), 21)
+        label(
+            card,
+            Labels[entry.id] or entry.name,
+            UDim2.fromOffset(4, 0),
+            UDim2.new(1, -8, 0, 28),
+            21
+        )
         label(card, controller.profile, UDim2.new(0, 5, 1, -32), UDim2.new(1, -10, 0, 30), 14)
         table.insert(mounts, {
             view = viewport,
             model = model,
             motion = controller,
+            effects = effects,
             camera = camera,
             center = (low + high) / 2,
             radius = (high - low).Magnitude / 2,
@@ -107,6 +122,13 @@ return function(options)
                 then math.min((age % (mount.motion.duration + 0.4)) / mount.motion.duration, 1)
                 else gui:GetAttribute("Pose") or 0
             mount.motion:apply(t, 1, CFrame.new())
+            mount.effects:apply(t, 1, CFrame.new())
+        end
+    end)
+    gui.Destroying:Connect(function()
+        connection:Disconnect()
+        for _, mount in mounts do
+            mount.effects:destroy()
         end
     end)
     return {
