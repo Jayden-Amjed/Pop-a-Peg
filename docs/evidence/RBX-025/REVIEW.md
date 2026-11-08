@@ -34,6 +34,11 @@ one original model upload; no experience publication or player-data mutations.
 | [Audio1](studio-audio-1.json), [audio2](studio-audio-2.json), [audio3](studio-audio-3.json) | 78/78; loaded assets, IsPlaying, advancing playback time, positive gain and observed output loudness; cancellation/disposal pass |
 | [Real controls](studio-controls.json) | Trigger/pause/resume: one completed Meadow opening, one start, nine cues, no repeated attacks; pause stopped all voices |
 | Fresh file | 78 models/477 meshes, both revised IDs bound to117621047528393; Bubble Wand loaded and triggered its sound |
+| Slow-frame hub regression | Actual Panel source wrapped at service boundaries: received reward survives slow animation past9s, reveal completes once, hidden/disposed preview unblocks, timeout/retry and immediate purchase pass |
+
+Reproduce the hub check with `python scripts/models/test_hub_reveal.py --luau .tools/luau.exe`.
+It reads the actual module each run (no embedded production copy). Tested source
+SHA256:a862028bcbbf2eb561962104e0d8d8979a2a6a87b33c8ca44810418858d6aa7c.
 
 Visual inspection used actual Studio captures: [press rest](press-rest.jpg),
 [cap lifted](capsule-open.jpg), [Meadow reveal](meadow-open.jpg). These are static

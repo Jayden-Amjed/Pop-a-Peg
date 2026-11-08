@@ -38,6 +38,7 @@ and root starter checkout preserved. Reservation/remote branches inspected.
 PASS project formatting/lint,23 gameplay suites, catalog motion and gallery audio
 contracts, three builds and45 mappings. PASS archive identity for all78 active
 models and11 original/revision uploads; eight corruption regression tests.
+PASS actual-source hub reveal harness (slow frames, cleanup, timeout/retry).
 Studio at runtime SHA above:78 Blender+78 native motion,808 targetedmechanism
 poses/10806assertions,26model framing/16320corners,all78 real audio playback.
 Real GUI Trigger/Pause/Resume produced exactly nine Meadow cues in one cycle.
