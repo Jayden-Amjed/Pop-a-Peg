@@ -202,18 +202,44 @@ def _clockwork():
     return b.pack()
 
 
+def capsule_housing():
+    # An actual socket remains when the removable cap lifts, rather than the
+    # flat top of a solid cylinder. The lower floor keeps the shell watertight.
+    return lathe('CapsuleBody',(0,0,0),[(0,.455),(.57,.455),(.57,1.765),
+                 (.49,1.765),(.49,.55),(0,.55)],'teal')
+
+
+def capsule_cap():
+    # Rounded shell with thickness, open at its seated edge. Pin and gold seam
+    # share its pivot, so nothing hangs behind when the cap comes off.
+    outer=[(.57*math.cos(t),1.765+.385*math.sin(t)) for t in
+           [i*math.pi/16 for i in range(8)]]+[(0,2.15)]
+    inner=[(0,2.075)]+[(.495*math.cos(t),1.765+.31*math.sin(t)) for t in
+           [i*math.pi/16 for i in range(7,-1,-1)]]
+    return lathe('PearlNose',(0,0,0),outer+inner,'pearl','BurstCap')
+
+
+def press_crank():
+    b=Builder(); p=(0,0,2.55)
+    b.cylinder('CrankHub',p,.20,.13,'gold','Crank',p,vertices=20)
+    b.tube('CrankBar',[(-.59,0,2.55),(.59,0,2.55)],.065,'gold','Crank',p,sides=8)
+    for x in (-.59,.59):
+        b.sphere('CrankGrip',(x,0,2.55),(.13,.13,.13),'gold','Crank',p,segments=12,rings=6)
+    return b.pack()
+
+
 def _burst_capsule():
     b=Builder()
-    b.cylinder('CapsuleBody',(0,0,1.11),.57,1.31,'teal',vertices=24)
-    b.sphere('PearlNose',(0,0,1.78),(.57,.57,.37),'pearl',segments=16,rings=8)
+    cap_p=(0,0,1.765)
+    b.add(capsule_housing())
+    b.add(capsule_cap(),cap_p)
     b.cylinder('LowerSocket',(0,0,.43),.59,.25,'dark')
-    b.ring('GoldSeam',(0,0,1.48),.585,.045,'gold',axis='Z')
+    b.ring('GoldSeam',cap_p,.585,.045,'gold','BurstCap',cap_p,axis='Z')
     for sign in (-1,1):
         p=(sign*.58,0,.50)
         b.add(prism('DeployableFin',[(sign*.45,.72),(sign*.90,.18),(sign*.43,.18)],.18,'pearl','Fins'),p)
-    p=(0,0,2.18)
-    b.cylinder('PullPin',(0,0,2.07),.10,.24,'gold','Pin',p,vertices=12)
-    b.ring('PinRing',(0,0,2.29),.19,.045,'gold','Pin',p,n=20)
+    b.cylinder('PullPin',(0,0,2.07),.10,.24,'gold','BurstCap',cap_p,vertices=12)
+    b.ring('PinRing',(0,0,2.29),.19,.045,'gold','BurstCap',cap_p,n=20)
     b.box('StatusSlot',(0,-.568,1.05),(.20,.035,.42),'dark',bevel=.06)
     return b.pack()
 
@@ -434,15 +460,17 @@ def _coin_press():
     for x in (-.68,.68):
         b.box('PressPillar',(x,.20,1.22),(.22,.34,1.78),'pearl',bevel=.06)
     b.box('TopCrosshead',(0,.20,2.16),(1.63,.48,.28),'teal',bevel=.09)
+    b.cylinder('FixedCrankSpindle',(0,0,2.395),.10,.19,'dark')
     p=(0,0,1.50)
-    b.cylinder('PressRam',(0,0,1.61),.16,.95,'dark','PressScrew',p)
+    b.cylinder('PressRam',(0,0,1.8425),.16,1.415,'dark','PressScrew',p)
     for z in (1.32,1.51,1.70,1.89):
         b.ring('ScrewThread',(0,0,z),.19,.035,'gold','PressScrew',p,axis='Z',n=20,sides=5)
     b.cylinder('PressDie',(0,0,1.12),.35,.17,'dark','PressScrew',p)
     b.cylinder('Anvil',(0,0,.47),.39,.20,'teal')
-    coin_p=(.35,-.54,.75)
-    b.cylinder('MintedCoin',coin_p,.28,.11,'gold','MintCoin',coin_p,axis='Y',vertices=20)
-    b.cylinder('CoinFace',(.35,-.605,.75),.15,.025,'pearl','MintCoin',coin_p,axis='Y',vertices=16)
+    coin_p=(0,0,.57)
+    b.cylinder('MintedCoin',(0,0,.625),.28,.11,'gold','MintCoin',coin_p,vertices=20)
+    b.cylinder('CoinFace',(0,0,.6925),.15,.025,'pearl','MintCoin',coin_p,vertices=16)
+    b.objects.extend(press_crank())
     return b.pack()
 
 
