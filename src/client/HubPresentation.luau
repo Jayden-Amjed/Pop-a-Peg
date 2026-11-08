@@ -58,7 +58,10 @@ function Hub:_model(parent, id, area, discovered)
     }, parent)
     viewport:SetAttribute("NoOutline", true)
     setRect(viewport, area)
-    local handle = ItemModels.mount(viewport, id, Catalog.MaxLevel)
+    local handle = ItemModels.mount(viewport, id, Catalog.MaxLevel, {
+        outline = false,
+        reducedMotion = game:GetService("GuiService").ReducedMotionEnabled,
+    })
     if discovered == false then
         for _, part in handle.model:GetDescendants() do
             if part:IsA("BasePart") then
@@ -272,8 +275,13 @@ function Hub:_records()
         Theme.rect(target, w - 108, 0, 96, rowH)
     end
     self.previous.Visible, self.nextPage.Visible, self.back.Visible = false, false, false
-    self.footer.Text = self.snapshot.profileStatus == "saved" and "Records saved"
-        or "Records stay with your profile when saving is available"
+    self.footer.Text = self.snapshot.profileStatus == "session"
+            and "SESSION RECORDS · Studio preview"
+        or (
+            self.snapshot.profileStatus == "unavailable"
+                and "Saving unavailable · Session records only"
+            or "Records stay with your profile when saving is available"
+        )
 end
 
 function Hub:_roster()

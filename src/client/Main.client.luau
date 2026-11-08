@@ -22,6 +22,7 @@ end)
 local view, mode, snapshot
 local muted = false
 local completedReceipt
+local rememberedRunId
 local controls
 local function action(kind, payload)
     actionRemote:FireServer(kind, payload)
@@ -146,6 +147,13 @@ stateRemote.OnClientEvent:Connect(function(nextSnapshot)
     received = true
     lastSequence = nextSnapshot.sequence
     snapshot = nextSnapshot
+    if snapshot.sessionView ~= "hub" and snapshot.runId ~= rememberedRunId then
+        rememberedRunId = snapshot.runId
+        completedReceipt = nil
+        if mode == "run" then
+            view.feedback.completedReceipt = nil
+        end
+    end
     changeMode(snapshot.sessionView == "hub" and "hub" or "run")
     view:update(snapshot)
     if snapshot.notice and view.setNotice then
