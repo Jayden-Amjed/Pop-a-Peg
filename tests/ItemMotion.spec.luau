@@ -146,7 +146,48 @@ return function()
         end
     end
     assert(evolved == 13, "Expected thirteen distinct evolution motion profiles")
+    local unlockModels, chestModels, eventModels = 0, 0, 0
+    for id, profile in pairs(Motion.Profiles) do
+        if not profile.groups then
+            continue
+        end
+        if profile.chest then
+            chestModels += 1
+        elseif id:sub(1, 6) == "event_" then
+            eventModels += 1
+        else
+            unlockModels += 1
+        end
+        for _, group in profile.groups do
+            local moved = false
+            local neutralPose = Motion.sample(id, group, 0, 1, 0.5, 0.6, 0.4)
+            samePose(neutralPose, Motion.sample(id, group, 1, 1, 0.5, 0.6, 0.4), 0)
+            for index = 0, 100 do
+                local pose = Motion.sample(id, group, index / 100, 2, 0.5, 0.6, 0.4)
+                for key, value in pairs(pose) do
+                    assert(value == value and math.abs(value) < 50, "Unbounded new motion: " .. id)
+                    moved = moved or math.abs(value - neutralPose[key]) > 0.00001
+                end
+                assert(pose.scale >= 0.7 and pose.scale <= 1.4, "New model exceeded scale envelope")
+            end
+            assert(moved, "Named motion group has no animation: " .. id .. "/" .. group)
+            local endPose = Motion.sample(id, group, 0.999999, 1, 0.5, 0.6, 0.4)
+            for _, axis in { "rx", "ry", "rz" } do
+                assert(math.abs(math.sin(endPose[axis])) < 0.0001, "Motion snaps at rest: " .. id)
+            end
+        end
+        if profile.chest then
+            local opening = Motion.sample(id, "ChestLid", 0.45, 1, 0, 0, 0)
+            local holding = Motion.sample(id, "ChestLid", 0.6, 1, 0, 0, 0)
+            assert(opening.rx < -math.pi / 2, "Chest must visibly open past upright")
+            assert(opening.rx == holding.rx, "Chest must hold open for its reveal")
+        end
+    end
+    assert(
+        unlockModels == 18 and chestModels == 4 and eventModels == 4,
+        "New motion coverage incomplete"
+    )
     print(
-        "PASS item motion: figure eight, frozen activation, smooth handoff, static opt-out and thirteen bounded evolution profiles"
+        "PASS item motion: figure eight, frozen activation, smooth handoff, 13 evolutions, 18 unlock devices, 4 opening chests and 4 event emblems"
     )
 end

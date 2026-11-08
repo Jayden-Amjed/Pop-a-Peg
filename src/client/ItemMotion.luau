@@ -23,6 +23,120 @@ local profiles = {
     encore = { duration = 0.8, name = "horn-response" },
     goldfish = { duration = 1.05, name = "fish-swim" },
     fishbowl = { duration = 1.15, name = "bowl-ripple" },
+    rain_catcher = {
+        duration = 0.9,
+        name = "rain-collection",
+        groups = { "RainWater", "RainDrop" },
+    },
+    bubble_wand = {
+        duration = 1.05,
+        name = "wand-bubble-release",
+        groups = { "WandStem", "WandLoop", "WandBubble" },
+    },
+    lily_pad = {
+        duration = 0.95,
+        name = "lily-unfold",
+        groups = { "LilyPad", "LilyPetal", "LilyHeart", "LilyDew" },
+    },
+    solar_leaf = {
+        duration = 0.85,
+        name = "solar-leaf-harvest",
+        groups = { "SolarLeaf", "SolarCell", "SolarVein", "SolarSun" },
+    },
+    mist_fan = { duration = 0.75, name = "mist-vent", groups = { "MistRotor", "MistPuff" } },
+    coral_fork = {
+        duration = 0.68,
+        name = "coral-tine-ping",
+        groups = { "CoralTine", "CoralTip", "CoralCrown" },
+    },
+    tide_valve = {
+        duration = 0.85,
+        name = "tide-valve-turn",
+        groups = { "ValveWheel", "ValveFlow" },
+    },
+    dew_lantern = {
+        duration = 1.1,
+        name = "dew-lantern-shine",
+        groups = { "LanternDrop", "LanternMote" },
+    },
+    moss_capacitor = {
+        duration = 0.88,
+        name = "moss-capacitor-charge",
+        groups = { "MossCharge", "MossBridge" },
+    },
+    pearl_diver = {
+        duration = 0.95,
+        name = "diver-pearl-grab",
+        groups = { "DiverPearl", "DiverClaw" },
+    },
+    stream_wheel = {
+        duration = 1.08,
+        name = "stream-paddle-turn",
+        groups = { "StreamPaddle", "StreamSpoke" },
+    },
+    cloud_mirror = {
+        duration = 0.95,
+        name = "cloud-reflection",
+        groups = { "CloudFrame", "CloudGlass", "CloudGlint", "CloudRain" },
+    },
+    nectar_pump = {
+        duration = 0.78,
+        name = "nectar-pump-press",
+        groups = { "NectarLiquid", "PumpStem", "PumpHandle", "NectarDrop" },
+    },
+    lagoon_synth = { duration = 1.12, name = "lagoon-chord", groups = { "SynthKey", "SynthWave" } },
+    aurora_kite = {
+        duration = 1.16,
+        name = "aurora-kite-swoop",
+        groups = { "KiteSail", "KiteSpar", "KiteRibbon" },
+    },
+    biolume_jar = {
+        duration = 1.2,
+        name = "biolume-firefly-dance",
+        groups = { "LumeStem", "LumeCap", "LumeFirefly" },
+    },
+    ozone_orb = {
+        duration = 1.3,
+        name = "ozone-orb-ionize",
+        groups = { "OzoneShell", "OzoneCore", "OzoneOrbitA", "OzoneOrbitB", "OzoneSatellite" },
+    },
+    monsoon_loom = {
+        duration = 1.15,
+        name = "monsoon-weave",
+        groups = { "LoomThread", "LoomWeave", "LoomShuttle", "LoomRain" },
+    },
+    chest_common = {
+        duration = 1.4,
+        name = "meadow-coffer-open",
+        chest = 1,
+        groups = { "ChestLid", "ChestClasp", "ChestTreasure" },
+    },
+    chest_uncommon = {
+        duration = 1.55,
+        name = "tidal-coffer-open",
+        chest = 2,
+        groups = { "ChestLid", "ChestClasp", "ChestTreasure" },
+    },
+    chest_rare = {
+        duration = 1.7,
+        name = "aurora-vault-open",
+        chest = 3,
+        groups = { "ChestLid", "ChestClasp", "ChestTreasure" },
+    },
+    chest_legendary = {
+        duration = 1.85,
+        name = "celestial-reliquary-open",
+        chest = 4,
+        groups = { "ChestLid", "ChestClasp", "ChestTreasure", "ChestOrbit" },
+    },
+    event_growth = { duration = 0.95, name = "growth-emblem-sprout", groups = { "EventSprout" } },
+    event_repair = { duration = 0.75, name = "repair-emblem-pulse", groups = { "EventCross" } },
+    event_upgrade = { duration = 0.85, name = "upgrade-emblem-rise", groups = { "EventArrow" } },
+    event_overtime = {
+        duration = 1.1,
+        name = "overtime-sand-fall",
+        groups = { "EventSand", "EventStream" },
+    },
     first_spark = { duration = 0.55, name = "spark-jump" },
     tailwind = { duration = 0.85, name = "turbine-turn" },
     ricochet = { duration = 0.64, name = "rebound-route" },
@@ -258,7 +372,181 @@ function ItemMotion.sample(id, group, t, strength, x, y, z)
     local wobble = math.sin(t * math.pi * 6) * damp
     local turn = t * t * (3 - 2 * t) * math.pi * 2
     v.glow = envelope * 0.25 * a
-    if profiles[id] and profiles[id].evolved then
+    if profiles[id] and profiles[id].chest then
+        local tier = profiles[id].chest
+        if group == "ChestLid" then
+            -- Open, hold for the reward reveal, then close smoothly before idle resumes.
+            local open = if t < 0.28 then t / 0.28 elseif t <= 0.67 then 1 else (1 - t) / 0.33
+            open = open * open * (3 - 2 * open)
+            v.rx = -open * math.rad(105)
+            v.glow = envelope * 0.2
+        elseif group == "ChestTreasure" then
+            v.y = envelope * (0.48 + tier * 0.08)
+            v.scale = 1 + envelope * 0.35
+            v.glow = envelope * 0.85
+            v.ry = turn
+        elseif group == "ChestClasp" then
+            v.z = envelope * 0.16
+            v.y = wobble * 0.12
+        elseif group == "ChestOrbit" then
+            v.ry = turn
+            v.rx = envelope * 0.2
+        end
+    elseif id == "rain_catcher" then
+        if group == "RainDrop" then
+            v.y = -envelope * (0.42 + x * 0.12)
+            v.scale = 1 - envelope * 0.16
+        else
+            v.y = envelope * 0.16
+            v.scale = 1 + envelope * 0.12
+        end
+    elseif id == "bubble_wand" then
+        if group == "WandBubble" then
+            v.y, v.x = envelope * 0.42, envelope * 0.17
+            v.scale = 1 + envelope * 0.23
+        else
+            v.rz = -envelope * 0.24
+        end
+    elseif id == "lily_pad" then
+        if group == "LilyPetal" then
+            v.rx, v.rz = z * envelope * 0.65, -x * envelope * 0.65
+        elseif group == "LilyPad" then
+            v.y = wobble * 0.055
+        elseif group == "LilyDew" then
+            v.y = envelope * 0.24
+        else
+            v.scale = 1 + envelope * 0.2
+            v.glow = envelope * 0.65
+        end
+    elseif id == "solar_leaf" then
+        if group == "SolarSun" then
+            v.y = envelope * 0.16
+            v.glow = envelope * 0.9
+        else
+            v.rz = (x < 0 and 1 or -1) * envelope * 0.17
+            v.glow = envelope * (group == "SolarCell" and 0.55 or 0.16)
+        end
+    elseif id == "mist_fan" then
+        if group == "MistRotor" then
+            v.rz = -turn * 3
+        else
+            v.z = envelope * (0.3 + x * 0.18)
+            v.scale = 1 + envelope * 0.25
+        end
+    elseif id == "coral_fork" then
+        v.x = (x < 0 and -1 or 1) * math.sin(t * math.pi * 26) * damp * 0.075 * a
+        v.glow = envelope * (group == "CoralTip" and 0.7 or 0.2)
+    elseif id == "tide_valve" then
+        if group == "ValveWheel" then
+            v.ry = -turn
+        else
+            v.x = math.sin(t * math.pi * 2) * envelope * 0.22
+            v.scale = 1 + envelope * 0.15
+        end
+    elseif id == "dew_lantern" then
+        if group == "LanternMote" then
+            v.y = envelope * (0.3 + x * 0.3)
+            v.x = math.sin(t * math.pi * 4 + y) * envelope * 0.1
+        else
+            v.scale = 1 + envelope * 0.2
+        end
+        v.glow = envelope * 0.8
+    elseif id == "moss_capacitor" then
+        v.y = math.sin(t * math.pi * 3 - y * 3) * envelope * 0.045
+        v.scale = 1 + envelope * (group == "MossCharge" and 0.22 or 0.1)
+        v.glow = envelope * 0.6
+    elseif id == "pearl_diver" then
+        if group == "DiverClaw" then
+            v.rz = -x * envelope * 0.28
+        else
+            v.y = envelope * 0.28
+            v.z = envelope * 0.13
+            v.glow = envelope * 0.55
+        end
+    elseif id == "stream_wheel" then
+        v.rx = turn * 2
+    elseif id == "cloud_mirror" then
+        if group == "CloudRain" then
+            v.y = -envelope * 0.27
+        elseif group == "CloudGlint" then
+            v.x = envelope * 0.18
+            v.glow = envelope * 0.8
+        else
+            v.ry = wobble * 0.16
+            v.glow = envelope * 0.3
+        end
+    elseif id == "nectar_pump" then
+        if group == "NectarDrop" then
+            v.y = -envelope * 0.36
+        elseif group == "NectarLiquid" then
+            v.y = -envelope * 0.07
+        else
+            v.y = -math.abs(math.sin(t * math.pi * 2)) * damp * 0.31
+        end
+    elseif id == "lagoon_synth" then
+        if group == "SynthKey" then
+            v.y = -math.max(0, math.sin(t * math.pi * 8 + x * 4)) * envelope * 0.075
+        else
+            v.y = math.sin(t * math.pi * 5 + x * 3) * envelope * 0.11
+            v.scale = 1 + envelope * 0.18
+            v.glow = envelope * 0.7
+        end
+    elseif id == "aurora_kite" then
+        if group == "KiteRibbon" then
+            v.x = math.sin(t * math.pi * 6 + y * 3) * envelope * 0.17
+            v.rz = wobble * 0.16
+        else
+            v.rz = math.sin(t * math.pi * 2) * envelope * 0.19
+            v.y = envelope * 0.16
+        end
+    elseif id == "biolume_jar" then
+        if group == "LumeFirefly" then
+            v.x = math.sin(t * math.pi * 2 + x * 4) * envelope * 0.16
+            v.y = envelope * 0.18
+        elseif group == "LumeCap" then
+            v.scale = 1 + envelope * 0.19
+        else
+            v.rz = wobble * 0.08
+        end
+        v.glow = envelope * (group == "LumeStem" and 0.1 or 0.75)
+    elseif id == "ozone_orb" then
+        if group == "OzoneOrbitA" then
+            v.ry = turn * 2
+        elseif group == "OzoneOrbitB" then
+            v.rx = -turn
+        elseif group == "OzoneSatellite" then
+            v.rz = turn
+        else
+            v.scale = 1 + envelope * (group == "OzoneCore" and 0.3 or 0.08)
+            v.glow = envelope * 0.75
+        end
+    elseif id == "monsoon_loom" then
+        if group == "LoomShuttle" then
+            v.x = math.sin(t * math.pi * 4) * envelope * 0.5
+        elseif group == "LoomRain" then
+            v.y = -envelope * 0.35
+        elseif group == "LoomThread" then
+            v.z = math.sin(t * math.pi * 4 + x * 5) * envelope * 0.07
+        else
+            v.y = math.sin(t * math.pi * 4 - y * 4) * envelope * 0.08
+            v.glow = envelope * 0.5
+        end
+    elseif id == "event_growth" then
+        v.y = envelope * (0.14 + y * 0.07)
+        v.rz = -x * envelope * 0.25
+    elseif id == "event_repair" then
+        v.scale = 1 + math.sin(t * math.pi * 3) * envelope * 0.16
+        v.glow = envelope * 0.55
+    elseif id == "event_upgrade" then
+        v.y = math.max(0, math.sin(t * math.pi * 2 - x)) * envelope * 0.28
+    elseif id == "event_overtime" then
+        if group == "EventSand" then
+            v.y = -envelope * 0.17
+        else
+            v.scale = 1 + envelope * 0.25
+            v.glow = envelope * 0.4
+        end
+    elseif profiles[id] and profiles[id].evolved then
         local turns = profiles[id].turns
         if group == "EvolvedOrbit" or group == "EvolvedRotor" or group == "EvolvedGyro" then
             -- Finish on whole revolutions so returning to the rest pose never
