@@ -1129,6 +1129,7 @@ function Presentation:_updatePerks()
     for _, id in Catalog.PerkIds do
         local cell = self.perkCells[id]
         cell.button.Visible = counts[id] ~= nil
+        cell.viewport.Visible = counts[id] ~= nil
         if counts[id] then
             table.insert(order, id)
             cell.count.Text = "×" .. tostring(counts[id])
