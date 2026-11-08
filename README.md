@@ -131,7 +131,8 @@ transitions until the next launch or a manual **Next Round** click in the shop.
 Shops and perk/event choices use their own buttons. An owned-perk strip keeps
 chosen perks visible and highlights their activations. The rack expands during
 play and shrinks for shops and choices. White panel surfaces, larger choice models
-and text, and gold selection outlines carry through the interface.
+and text, and gold selection outlines carry through the interface. Both perk/event
+choices and their action buttons fit without scrolling, including short windows.
 Score and restock panels retain their white base as the counters update and bounce;
 blue wallet, ball and trigger panels remain part of the palette.
 

@@ -1,46 +1,40 @@
 # Current project state
 
-State Version: 2 (accepted gameplay state)
+State Version: 3 (presentation proposal over accepted Version 2)
 Reviewed: 2026-11-07, America/Los_Angeles
-Objective: Independent peg-bounce runs with clear rewards, varied hybrid builds, and an aquatic glass presentation.
+Objective: Readable modeled synergies and hover stats, consistent UI, and a sculpted aquatic board.
 
-Accepted source: `602e059c2c989c53fd71541a2388acdd21621127` (gameplay PR #4 merged into main).
-Implementation / Studio-tested source: `c1f524c321d7ebdeb8c6d9f9f2fbb2c21c264037`.
-Integration reconciles main at `644ba6327ce3a6dc84a2081883fa23e874e1a9be` without source changes.
-GitHub confirmed gameplay [PR #4](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/4)
-merged after the user-authorized playtest and passing final push/PR CI at
-`329a68f0a140101703814c05b21b03738cef16b7`. Starter PR #2 was accepted first.
+Accepted source: `60b579aa2fba2b2ca4d3bdf0e421f8db6ed51fa2` (main, previous verified game).
+Implementation: `de334ecdb6f393bb904a6de6698769b44fb0dacb`.
+Active task: [RBX-005](tasks/RBX-005-synergy-presentation.md), Codex coordinator.
+Branch: `task/RBX-005-synergy-presentation`; [PR #6](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/6).
 
 | Capability | Verified state |
 | --- | --- |
-| Board, quotas, restocks, run/shop/perk/event/reset rules | PASS standalone and Studio; 28 progression cases |
-| Hybrid effects and themed synergies | PASS ordered operations, costs, fish-pair scoring, bounded relay chains |
-| Full rack and capped upgrades | PASS actual L1 Seed Bank upgrade with seven occupied slots, 33 to 28 coins; L2 remains MAX LEVEL |
-| Grouped shop | PASS four equipment plus at most two Supplies, separate white enclosures, larger centered price/coin groups; 30 inspection cases across five sizes |
-| Stable shop selection | PASS actual clicks preserve all 12 preview/model instances, with zero model additions/removals |
-| Item/perk interaction | PASS stronger selection, separate perk inspection, all eight perks plus duplicate counts, short-desktop detail bounds |
-| Idle and activation motion | PASS 39 figure-eight models, paused activation and smooth resume; 78 static level variants return exactly to rest |
-| Counter feedback | PASS score/coins/restocks bounce and reset, guarded reward arrivals, perk cue, no reserve-to-ball launch flight |
-| Scenery stability | PASS all 24 clouds opaque/shadowless; 147 mouse-sweep frames with zero camera/cloud transform changes |
-| Repository checks | PASS eight suites, pinned format/lint, build, 15 exact mappings, documentation checks |
-| Production Studio play | PASS all 20 normal sources restored exactly; 134-second ordinary-action run, four shops, two perk choices, highest round 15, no project errors |
+| Core gameplay and economy | Unchanged; all 28 progression cases and other core contracts pass |
+| Structured inspection | All 33 entries have ordered typed effects, level-aware amounts and modeled partners |
+| Hover and ownership | Actual pointer hover opens without clicking; OWNED/NEED refreshes; upgrades and rerolls refresh stats |
+| Stable shop | Actual selection/purchase keeps all 30 previews; reroll preserves viewport objects and charges one coin |
+| Responsive UI | PASS 36 shop inspections, six rack/HUD layouts, 24 choice screens across six sizes |
+| Perk/event choices | Both choices and action buttons visible without scrolling, including short landscape |
+| Score/restock color | Exact same pearl-white RGB before and after rewards; bounce and quota fill retained |
+| Item rendering | 4.2-second idle loop; 39-model activation/resume checks pass; primary silhouette geometry/mesh/cleanup tests pass |
+| Board | 166 original native parts; attached monitor stage/progress/cleanup checks pass |
+| Local / Studio suites | Ten suites pass, including new inspection and choice-layout contracts |
+| Production play | All 23 normal sources restored exactly; 120-second ordinary-action playtest across three runs reached round 20 and five shops without project errors |
 
-Studio-tested source: `c1f524c321d7ebdeb8c6d9f9f2fbb2c21c264037`.
-Visual checks use controlled fixtures; production play was checked separately.
-Detailed evidence and limits: [RBX-003](tasks/RBX-003-peg-run-loop.md).
+Studio-tested source: `de334ecdb6f393bb904a6de6698769b44fb0dacb`.
+Detailed results, corrected fixtures, and limitations are in the active task.
 Published: NOT PUBLISHED; no production experience/place selected.
 
-Completed task: RBX-003, owner Codex gameplay coordinator, branch `task/RBX-003-peg-run-loop`.
-Current playable file: generated `build/peg-polished.rbxlx` in the game worktree.
-Studio: isolated `peg-aero-qa.rbxlx` stopped in Edit; all normal sources restored; Rojo disconnected.
-The user's separate existing place/play windows were not modified.
-Blockers / dependencies: none; starter PR #2 is accepted.
-Unrun: physical mobile/touch, two clients in one server, cloud persistence, live plugin sync, publication.
-Limits: other compact choice menus may scroll. Automated aiming is not human balance testing.
-The play driver counts attempted actions and restarts directly after gameover;
-terminal menu timing is covered by controlled feedback tests, not that driver.
-Human playtesting remains useful for balance, visual preference, and the sound mix.
-Observed limitation: unrelated Studio asset-type warning for 203785492; no project source reference.
-Next action: human playtest `build/peg-polished.rbxlx`; use a new reserved task for
-further design work or development-experience multiplayer/mobile/cloud-save checks.
-Repository administration: main remains unprotected; temporary default branch remains the starter branch.
+Playable output: generated `build/peg-synergy.rbxlx` in the gallery worktree.
+Studio target: isolated peg-aero-qa.rbxlx stopped in Edit with normal sources; Rojo disconnected.
+The user-owned peg-polished.rbxlx session and other places are untouched.
+Blockers: none; final CI and integration receipt pending.
+Unrun: physical touch/gamepad, two clients in one server, cloud persistence, live plugin sync, publication.
+Limits: result summaries may scroll on compact displays; tiny synergy previews omit
+the silhouette pass for clarity. Transparent glass outlines follow its transparency.
+MCP captures can omit peg BillboardGui text and a newly mounted viewport's first frame.
+Unrelated Studio asset-type warning for 203785492 remains; no project source reference.
+Next action: publish checked branch, verify CI and integrate the verified revision.
+Repository administration: main unprotected; temporary default remains starter branch.

@@ -21,6 +21,7 @@ sound cues use public Roblox audio IDs documented in [Asset sources](ASSETS.md).
 | `src/client/ItemMotion.luau` | `StarterPlayer.StarterPlayerScripts.Client.ItemMotion` | Per-model moving groups, activation samples, and paused/resumed figure-eight idle motion. |
 | `src/client/InventorySelection.luau` | `StarterPlayer.StarterPlayerScripts.Client.InventorySelection` | Pure select, deselect, swap-request, and invalid-phase rules. |
 | `src/client/ShopLayout.luau` | `StarterPlayer.StarterPlayerScripts.Client.ShopLayout` | Fixed offer, synergy, and action regions for shops without scrolling. |
+| `src/client/ChoiceLayout.luau` | `StarterPlayer.StarterPlayerScripts.Client.ChoiceLayout` | Two visible perk/event choices with bounded model, effect and button regions. |
 | `src/client/Feedback.luau` | `StarterPlayer.StarterPlayerScripts.Client.Feedback` | Score flights, trigger cues, counter display, and receipt-driven board animation. |
 | `src/client/SoundEffects.luau` | `StarterPlayer.StarterPlayerScripts.Client.SoundEffects` | Bounded sound pools, cue timing, preload, and mute control. |
 | `src/shared/ItemFeedback.luau` | `ReplicatedStorage.Shared.ItemFeedback` | Per-item/perk note motifs, timing, visual accents, and effect styles. |
