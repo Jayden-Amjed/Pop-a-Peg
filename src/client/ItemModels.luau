@@ -1300,8 +1300,9 @@ function ItemModels.mount(viewport, id, level, options)
     local canonical = aliases[id] or id
     local motion = ItemMotion.new(model, canonical)
     local handle = { model = model }
-    local animate = not options or options.animate ~= false
-    local elapsed, age, strength = 0, 0, 1
+    local animate = not options or (options.animate ~= false and options.reducedMotion ~= true)
+    local hover = ItemMotion.newHover(animate)
+    local age, strength = 0, 1
     local active, aimAngle, aimFrom, currentAim = false, 0, 0, 0
     local queuedAmount, queuedParams
     local destroyed = false
@@ -1320,6 +1321,12 @@ function ItemModels.mount(viewport, id, level, options)
         local distance = radius * 1.28 / math.sin(limitingFov)
         camera.CFrame = CFrame.lookAt(V(0.72, 0.43, 1).Unit * distance, V(0, 0, 0))
     end
+    local function hoverFrame(pose)
+        local position = camera.CFrame.RightVector * pose.x * size.X
+            + camera.CFrame.UpVector * pose.y * size.Y
+        return CFrame.new(position) * CFrame.Angles(pose.pitch, pose.yaw, pose.roll)
+    end
+    local idleFrame = CFrame.new()
     function handle:step(dt)
         if destroyed then
             return
@@ -1329,10 +1336,8 @@ function ItemModels.mount(viewport, id, level, options)
             return
         end
         local delta = if type(dt) == "number" and dt == dt then math.clamp(dt, 0, 0.1) else 0
-        elapsed += delta
-        local bob = if animate then math.sin(elapsed * 1.6) * size.Y * 0.014 else 0
-        local yaw = if animate then math.sin(elapsed * 0.65) * 0.12 else 0
-        local rootPose = CFrame.new(0, bob, 0) * CFrame.Angles(0, yaw, 0)
+        idleFrame = hoverFrame(ItemMotion.stepHover(hover, delta, active))
+        local rootPose = idleFrame
         local t = 1
         if active then
             age += delta
@@ -1343,7 +1348,9 @@ function ItemModels.mount(viewport, id, level, options)
                 currentAim = if t < 0.18
                     then aimFrom + (aimAngle - aimFrom) * aim
                     else aimAngle * aim
-                rootPose = rootPose * CFrame.fromAxisAngle(camera.CFrame.LookVector, currentAim)
+                rootPose = CFrame.new(idleFrame.Position)
+                    * CFrame.fromAxisAngle(camera.CFrame.LookVector, currentAim)
+                    * idleFrame.Rotation
             end
         end
         model:PivotTo(rootPose)
@@ -1393,7 +1400,10 @@ function ItemModels.mount(viewport, id, level, options)
                 angle = direction
             end
             if angle then
-                aimAngle = (angle + math.pi * 1.5) % (math.pi * 2) - math.pi
+                local up = idleFrame.UpVector
+                local baseAngle =
+                    math.atan2(-camera.CFrame.UpVector:Dot(up), camera.CFrame.RightVector:Dot(up))
+                aimAngle = (angle - baseAngle + math.pi) % (math.pi * 2) - math.pi
                 aimAngle = aimFrom + (aimAngle - aimFrom + math.pi) % (math.pi * 2) - math.pi
             end
             if type(params.effect) == "string" then
@@ -1412,6 +1422,10 @@ function ItemModels.mount(viewport, id, level, options)
         container:Destroy()
     end
     fit()
+    if animate then
+        idleFrame = hoverFrame(ItemMotion.stepHover(hover, 0, false))
+        model:PivotTo(idleFrame)
+    end
     return handle
 end
 

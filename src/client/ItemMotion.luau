@@ -43,6 +43,70 @@ local profiles = {
 }
 ItemMotion.Profiles = table.freeze(profiles)
 
+ItemMotion.Idle = table.freeze({
+    period = 8.4,
+    resumeDuration = 0.42,
+    lateral = 0.024,
+    vertical = 0.03,
+    pitch = math.rad(5),
+    yaw = math.rad(6),
+    roll = math.rad(2),
+})
+
+function ItemMotion.idleSample(phase)
+    local horizontal = -math.cos(phase * 2)
+    local vertical = math.cos(phase + math.pi / 4)
+    local idle = ItemMotion.Idle
+    return {
+        x = horizontal * idle.lateral,
+        y = vertical * idle.vertical,
+        pitch = -vertical * idle.pitch,
+        yaw = horizontal * idle.yaw,
+        roll = -horizontal * idle.roll,
+    }
+end
+
+function ItemMotion.newHover(enabled, phase)
+    local initial = if type(phase) == "number"
+            and phase == phase
+            and math.abs(phase) < math.huge
+        then phase
+        else 0
+    return {
+        enabled = enabled == true,
+        phase = initial % (math.pi * 2),
+        paused = false,
+        resume = 1,
+        handoffs = 0,
+    }
+end
+
+function ItemMotion.stepHover(state, dt, activating)
+    if not state.enabled then
+        return { x = 0, y = 0, pitch = 0, yaw = 0, roll = 0 }
+    end
+    if activating then
+        state.paused, state.resume = true, 0
+        return ItemMotion.idleSample(state.phase)
+    end
+    if state.paused then
+        -- Start from the exact frozen pose; ramp phase velocity on later frames.
+        state.paused = false
+        state.handoffs += 1
+        return ItemMotion.idleSample(state.phase)
+    end
+    local delta = if type(dt) == "number" and dt == dt then math.clamp(dt, 0, 0.1) else 0
+    local previous = state.resume
+    state.resume = math.min(1, previous + delta / ItemMotion.Idle.resumeDuration)
+    local function ease(value)
+        return value * value * (3 - 2 * value)
+    end
+    local rate = (ease(previous) + ease(state.resume)) / 2
+    state.phase = (state.phase + delta * rate * math.pi * 2 / ItemMotion.Idle.period)
+        % (math.pi * 2)
+    return ItemMotion.idleSample(state.phase)
+end
+
 local function classify(id, object)
     local p, s = object.Position, object.Size
     local x, y, z = p.X, p.Y, p.Z
