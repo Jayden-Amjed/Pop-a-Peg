@@ -12,8 +12,14 @@ for _, template in storage.BlenderPilots:GetChildren() do
     local count, triangles = 0, 0
     for _, part in model:GetChildren() do
         assert(part:IsA("MeshPart"), "Pilot must contain direct MeshParts")
-        assert(part.Anchored and not part.CanCollide and not part.CanTouch and not part.CanQuery)
-        assert(part.MeshId ~= "" and #part:GetAttribute("GeometrySHA256") == 64)
+        assert(
+            part.Anchored and not part.CanCollide and not part.CanTouch and not part.CanQuery,
+            "Unsafe preview collision flags"
+        )
+        assert(
+            part.MeshId ~= "" and #part:GetAttribute("GeometrySHA256") == 64,
+            "Missing mesh provenance"
+        )
         assert(part.CFrame.UpVector:Dot(Vector3.yAxis) > 0.9999, "Local mesh Y must remain upright")
         count += 1
         triangles += part:GetAttribute("TriangleCount")
@@ -50,18 +56,15 @@ for _, template in storage.BlenderPilots:GetChildren() do
         ItemMotion.stepHover(hover, 1 / 60, false)
     end
     assert(hover.phase ~= phase, "Idle did not resume")
-    table.insert(
-        results,
-        {
-            id = model.Name,
-            pieces = count,
-            triangles = triangles,
-            cycles = 12,
-            posesPerCycle = 8,
-            completeRestoration = true,
-            hoverHandoff = true,
-        }
-    )
+    table.insert(results, {
+        id = model.Name,
+        pieces = count,
+        triangles = triangles,
+        cycles = 12,
+        posesPerCycle = 8,
+        completeRestoration = true,
+        hoverHandoff = true,
+    })
     model:Destroy()
 end
 assert(#results == 3, "Missing pilot")
