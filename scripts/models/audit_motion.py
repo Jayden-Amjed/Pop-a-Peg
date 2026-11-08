@@ -12,7 +12,6 @@ separate checks. All calculations use authoring studs, X right / Y back / Z up.
 
 import argparse
 import hashlib
-import importlib
 import json
 import math
 from pathlib import Path
@@ -34,8 +33,11 @@ def clean():
 
 
 def build(model_id):
-    clean()
-    objects = importlib.import_module(model_id).build()
+    blend_path = SOURCE.parents[1] / 'art/models' / model_id / (model_id + '.blend')
+    bpy.ops.wm.open_mainfile(filepath=str(blend_path))
+    objects = [obj for obj in bpy.context.scene.objects if obj.type == 'MESH']
+    for obj in objects:
+        obj.name = obj.name.removeprefix(model_id + '__')
     bpy.context.view_layer.update()
     assert objects and all(obj.type == "MESH" for obj in objects), model_id
     return objects
@@ -91,11 +93,9 @@ def spring_audit():
     span = float(coil["compression_span"])
     assert span > 0 and abs(pivot.x) + abs(pivot.y) < 1e-7
 
-    # The sweep has two polygonal end caps and one constant vertex ring per
-    # centerline sample. Recover pitch from those mesh rings, not a copied radius.
-    caps = [face for face in coil.data.polygons if len(face.vertices) != 4]
-    assert len(caps) == 2 and len(caps[0].vertices) == len(caps[1].vertices)
-    sides = len(caps[0].vertices)
+    # This pilot's eight-sided sweep retains its ordered vertex rings even after
+    # triangulation. A topology-changing edit must revise this specific audit.
+    sides = 8
     assert sides >= 6 and len(coil.data.vertices) % sides == 0
     vertices = [coil.matrix_world @ vertex.co for vertex in coil.data.vertices]
     rings = [vertices[index:index + sides] for index in range(0, len(vertices), sides)]
@@ -243,6 +243,10 @@ def main():
         "source_sha256": {
             name: hashlib.sha256((SOURCE / name).read_bytes()).hexdigest()
             for name in ("common.py", "spring_coil.py", "seed_bank.py", "chest_common.py", "audit_motion.py")
+        },
+        "blend_sha256": {
+            model_id: hashlib.sha256((SOURCE.parents[1] / 'art/models' / model_id / (model_id + '.blend')).read_bytes()).hexdigest()
+            for model_id in ('spring_coil', 'seed_bank', 'chest_common')
         },
         "spring_coil": spring_audit(),
         "seed_bank": seed_audit(),

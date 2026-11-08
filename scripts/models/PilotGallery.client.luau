@@ -80,6 +80,7 @@ local thumbnails = make("Frame", gui, {
 })
 local handles = {}
 local loaded = {}
+local largePairs = {}
 local function preview(parent, model, id, isPilot, position, size, fitMargin)
     local viewport = make("ViewportFrame", parent, {
         BackgroundTransparency = 0,
@@ -158,7 +159,7 @@ for i, entry in catalog do
     make("UICorner", card, { CornerRadius = UDim.new(0, 18) })
     label(card, name, UDim2.fromScale(0.02, 0.02), UDim2.fromScale(0.96, 0.06), 23)
     label(card, detail, UDim2.fromScale(0.02, 0.09), UDim2.fromScale(0.96, 0.04), 13)
-    preview(
+    local pilotLarge = preview(
         card,
         source:Clone(),
         id,
@@ -167,13 +168,32 @@ for i, entry in catalog do
         UDim2.fromScale(1, 0.53),
         1.06
     )
-    label(
+    local nativeLarge = preview(
+        card,
+        ItemModels.create(id, 1),
+        id,
+        false,
+        UDim2.fromScale(0, 0.14),
+        UDim2.fromScale(1, 0.53),
+        1.06
+    )
+    nativeLarge.Visible = false
+    local modelLabel = label(
         card,
         "BLENDER PILOT  •  " .. entry[4] .. " MESH PIECES",
         UDim2.fromScale(0.02, 0.66),
         UDim2.fromScale(0.96, 0.04),
         13,
         colors.teal
+    )
+    table.insert(
+        largePairs,
+        {
+            pilot = pilotLarge,
+            native = nativeLarge,
+            label = modelLabel,
+            pilotText = modelLabel.Text,
+        }
     )
     make("Frame", card, {
         BackgroundColor3 = colors.aqua,
@@ -206,8 +226,8 @@ for i, entry in catalog do
     make("UICorner", smallCard, { CornerRadius = UDim.new(0, 18) })
     label(smallCard, name, UDim2.fromScale(0, 0.02), UDim2.fromScale(1, 0.08), 23)
     for index, pixels in { 48, 96, 192 } do
-        local horizontal = if index == 1 then 0.22 elseif index == 2 then 0.68 else 0.5
-        local vertical = if index == 3 then 174 else 65
+        local horizontal = if index == 3 then 0.65 else 0.18
+        local vertical = if index == 1 then 235 elseif index == 2 then 70 else 90
         local vp = preview(
             smallCard,
             source:Clone(),
@@ -231,35 +251,62 @@ local function button(text, x, action)
     local b = make("TextButton", gui, {
         Text = text,
         Font = Enum.Font.GothamBold,
-        TextSize = 16,
+        TextSize = 13,
         TextColor3 = colors.pearl,
         BackgroundColor3 = colors.teal,
         BorderSizePixel = 0,
         Position = UDim2.fromScale(x, 0.915),
-        Size = UDim2.fromScale(0.215, 0.055),
+        Size = UDim2.fromScale(0.176, 0.055),
     })
     make("UICorner", b, { CornerRadius = UDim.new(0, 12) })
     b.Activated:Connect(action)
 end
-button("ACTIVATE ALL", 0.04, function()
+button("ACTIVATE ALL", 0.03, function()
     gui:SetAttribute("Pose", -1)
     for _, h in handles do
         h.age = 0
     end
 end)
-button("REST POSE", 0.275, function()
+button("REST POSE", 0.222, function()
     gui:SetAttribute("Pose", 0)
 end)
-button("OPEN / TRIGGER POSE", 0.51, function()
+button("OPEN / TRIGGER", 0.414, function()
     gui:SetAttribute("Pose", 0.5)
 end)
-button("48 / 96 / 192 px", 0.745, function()
+button("48 / 96 / 192 px", 0.606, function()
     comparison.Visible = not comparison.Visible
     thumbnails.Visible = not comparison.Visible
 end)
-ContentProvider:PreloadAsync(loaded)
+button("BLENDER / NATIVE", 0.798, function()
+    comparison.Visible, thumbnails.Visible = true, false
+    for _, pair in largePairs do
+        pair.pilot.Visible = not pair.pilot.Visible
+        pair.native.Visible = not pair.pilot.Visible
+        pair.label.Text = if pair.pilot.Visible
+            then pair.pilotText
+            else "CURRENT NATIVE  •  SAME VIEWPORT / CAMERA"
+    end
+end)
+local failures = {}
+ContentProvider:PreloadAsync(loaded, function(assetId, status)
+    if status ~= Enum.AssetFetchStatus.Success then
+        table.insert(failures, tostring(assetId))
+    end
+end)
+if #failures > 0 then
+    gui:SetAttribute("LoadFailures", table.concat(failures, ", "))
+    label(
+        gui,
+        "MESH LOAD FAILED — check this account's asset access",
+        UDim2.fromScale(0.03, 0.12),
+        UDim2.fromScale(0.94, 0.04),
+        15,
+        Color3.fromRGB(170, 35, 35)
+    )
+    error("[RBX-019] Pilot asset load failed: " .. table.concat(failures, ", "))
+end
 gui:SetAttribute("Ready", true)
-print("[RBX-019] Gallery ready: 3 Blender pilots, 3 native comparisons, 9 size previews")
+print("[RBX-019] Gallery ready: 3 Blender pilots, equal-size native toggle, 9 size previews")
 local elapsed = 0
 RunService.RenderStepped:Connect(function(dt)
     elapsed += dt

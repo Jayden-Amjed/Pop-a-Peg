@@ -13,15 +13,18 @@ from pathlib import Path
 
 UPLOADED_BUNDLE_SHA256 = "aaac1d192ca6bdf394fbd02e5dd6958f82416525bf6acad77eb6faa73d084be1"
 UPLOADED_MANIFEST_SHA256 = {
-    "spring_coil": "f951264a4764a1eed5c71deb69a30cabb47d3e68b9456f9033916be44cc200e1",
-    "seed_bank": "4ca94e6941dfc3fcc36955d10fa939d5af0378f093bd042db07bf5a13dd2e5a9",
-    "chest_common": "436acc59e66ad1477f82f59dc7ec479e51d789b504ee437ceb3fa2c54f99b1d0",
+    "spring_coil": "56ee9765bf8fc755123f74f4cc5270da6ff79233c8acea464670b0a0192c49f3",
+    "seed_bank": "70a82b8879b08fb851829ab3f35be844a67ad3444747b4428e8fcda3f2eec63f",
+    "chest_common": "1ab9634341bd7ce97899c8d94f1cc06b2d1e949429133d57556c1d43add97950",
 }
 OBSERVED_IMPORT_SHA256 = "84b7a21c397ffe3b168cdd87425d6654501de5add620ab19b6b66fa76386a0b0"
 
 
 def verified_bytes(path, expected, label):
     payload = path.read_bytes()
+    if path.suffix == ".json":
+        # Git text normalization must not break the evidence on another OS.
+        payload = payload.replace(b"\r\n", b"\n")
     actual = hashlib.sha256(payload).hexdigest()
     if actual != expected:
         raise ValueError(

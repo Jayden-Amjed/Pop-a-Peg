@@ -6,6 +6,16 @@
   "moderation": "Approved",
   "raw_mesh_count": 26,
   "pilot_mesh_count": 25,
+  "upload_proof": {
+    "bundle_sha256": "aaac1d192ca6bdf394fbd02e5dd6958f82416525bf6acad77eb6faa73d084be1",
+    "manifest_sha256": {
+      "spring_coil": "56ee9765bf8fc755123f74f4cc5270da6ff79233c8acea464670b0a0192c49f3",
+      "seed_bank": "70a82b8879b08fb851829ab3f35be844a67ad3444747b4428e8fcda3f2eec63f",
+      "chest_common": "1ab9634341bd7ce97899c8d94f1cc06b2d1e949429133d57556c1d43add97950"
+    },
+    "observed_import_sha256": "84b7a21c397ffe3b168cdd87425d6654501de5add620ab19b6b66fa76386a0b0",
+    "scope": "Pins the recorded upload and observed IDs; does not download or rehash Roblox mesh bytes."
+  },
   "calibration_imported_studs": [
     0.28,
     0.28,

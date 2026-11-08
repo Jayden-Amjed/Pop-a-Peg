@@ -28,7 +28,8 @@ def normalized(objects, prefix):
         C.activate(obj)
         bpy.ops.object.transform_apply(location=False, rotation=True, scale=True)
         bpy.ops.object.origin_set(type='ORIGIN_GEOMETRY', center='BOUNDS')
-        obj.name = prefix + '__' + obj.name
+        if not obj.name.startswith(prefix + '__'):
+            obj.name = prefix + '__' + obj.name
         # Export deterministic triangles, retaining smooth normals from authoring.
         mod = obj.modifiers.new('Export triangulation', 'TRIANGULATE')
         C.apply_modifiers(obj)
@@ -146,28 +147,43 @@ def main():
     output.mkdir(parents=True, exist_ok=True)
     all_manifests = []
     for model_id in selected:
-        clean()
-        objects = importlib.import_module(model_id).build()
-        normalized(objects, model_id)
-        manifest = audit(objects, model_id)
         source = ROOT / 'art/models' / model_id
         source.mkdir(parents=True, exist_ok=True)
+        blend_path = source / (model_id + '.blend')
+        regenerate = '--regenerate' in args or not blend_path.exists()
+        if regenerate:
+            clean()
+            objects = importlib.import_module(model_id).build()
+        else:
+            # A normal build exports the editable source without saving changes.
+            bpy.ops.wm.open_mainfile(filepath=str(blend_path))
+            objects = [o for o in bpy.context.scene.objects if o.type == 'MESH']
+            assert all('motion_group' in o for o in objects), 'Each mesh needs a motion_group property'
+        normalized(objects, model_id)
+        manifest = audit(objects, model_id)
         bpy.context.scene['pilot_id'] = model_id
         bpy.context.scene.unit_settings.system = 'NONE'
-        bpy.ops.wm.save_as_mainfile(filepath=str(source / (model_id + '.blend')))
+        if regenerate:
+            bpy.ops.wm.save_as_mainfile(filepath=str(blend_path))
         export_glb(objects, output / (model_id + '.glb'))
-        manifest['blend_sha256'] = hashlib.sha256((source / (model_id + '.blend')).read_bytes()).hexdigest()
+        manifest['blend_sha256'] = hashlib.sha256(blend_path.read_bytes()).hexdigest()
         manifest['glb_sha256'] = hashlib.sha256((output / (model_id + '.glb')).read_bytes()).hexdigest()
-        (source / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf8')
+        (output / (model_id + '.manifest.json')).write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf8')
         all_manifests.append(manifest)
         print('AUDIT', model_id, manifest['triangles'], 'triangles;', manifest['pieces'], 'pieces', flush=True)
         if '--render' in args:
             render(objects, output / (model_id + '.png'))
     if len(selected) == 3:
-        clean()
+        # Appending from the currently open .blend is forbidden by Blender.
+        bpy.ops.wm.read_factory_settings(use_empty=True)
         bundle = []
         for i, model_id in enumerate(IDS):
-            objects = importlib.import_module(model_id).build()
+            blend_path = ROOT / 'art/models' / model_id / (model_id + '.blend')
+            with bpy.data.libraries.load(str(blend_path), link=False) as (available, loaded):
+                loaded.objects = available.objects
+            objects = [o for o in loaded.objects if o and o.type == 'MESH']
+            for obj in objects:
+                bpy.context.collection.objects.link(obj)
             normalized(objects, model_id)
             for obj in objects:
                 obj.location.x += (i - 1) * 4
