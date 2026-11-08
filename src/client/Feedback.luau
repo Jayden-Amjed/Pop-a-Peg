@@ -226,7 +226,7 @@ function Feedback:_signatureBurst(id, source, impact)
         local border
         if glyph then
             spark.BackgroundTransparency = 1
-            spark.Font = Theme.font
+            spark.Font = Theme.font or Enum.Font.SourceSansBold
             spark.Text = plan.shape == "note" and "♪" or "✦"
             spark.TextColor3 = accent
             spark.TextStrokeColor3 = INK
