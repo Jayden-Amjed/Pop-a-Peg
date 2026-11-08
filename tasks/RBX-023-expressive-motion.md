@@ -1,7 +1,7 @@
 # RBX-023 — Expressive individual trigger animations
 
 - Owner: Codex coordinator; sole Studio operator.
-- Status: STUDIO VERIFIED; PR checks/merge pending.
+- Status: MERGED; GitHub confirmed PR 24 at 4ca5462d75db2732757756d362c99498dcd06ea4.
 - Reservation: [23](https://github.com/Jayden-Amjed/Pop-a-Peg/issues/23)
 - Reviewed: 2026-11-08
 - Starting main: 83a1a611df86f2737179ab9ed54e7ac0f53b9f6b; accepted State Version 11.
@@ -37,7 +37,7 @@ Prism, instead of rewinding a partial turn.
 - [x] All-model Studio audits, representative live playback, full contact review.
 - [x] Normal-game hub entry and six shots, with two cleared rounds, observed.
 - [x] Animation/style/architecture/gallery guides, README and dashboard updated.
-- [ ] PR CI success and GitHub-confirmed merge.
+- [x] PR CI success and GitHub-confirmed merge.
 
 ## Ownership and reconciliation
 
@@ -48,8 +48,8 @@ Root integrated shared curves, body composition, native metadata, preview bounds
 and verification. Root bootstrap and existing catalog-lab checkouts were preserved.
 
 Fetched main before finalization:83a1a611df86f2737179ab9ed54e7ac0f53b9f6b,
-still accepted State Version 11. Proposed State Version 12 advances once upon
-acceptance. No competing open PR was found at reservation time.
+still accepted State Version 11. State Version 12 advanced once from accepted 11 upon
+confirmed acceptance. No competing open PR was found at reservation time.
 
 ## Checks actually run
 
@@ -74,7 +74,9 @@ Detailed [review and evidence](../docs/evidence/RBX-023/REVIEW.md).
 Animation guidance: [guide](../docs/ITEM_ANIMATION_GUIDE.md).
 Historical failures were resolved: lint warning, required task heading, old
 per-part-only test assumptions, native attachment/clearance issues, and a second
-formatter normalization. Current local checks pass. GitHub CI remains pending.
+formatter normalization. Current local checks pass. GitHub CI run 42525829533 passed at 9648181f7da15ada2551038f28745969188a5f6d.
+GitHub merge 4ca5462d75db2732757756d362c99498dcd06ea4 was confirmed and fetched.
+The bounded completion receipt changes only this task and PROJECT_STATUS.
 
 ## Handoff
 
@@ -97,5 +99,5 @@ recorded playback.
 Blockers: none. Limits: manual zoom can crop; not every intermediate pose has
 human intersection review; mobile inspector and other-account asset access remain
 unverified. Existing avatar asset 203785492 type warnings persist. No game experience
-update published and no assets uploaded. Next action:push evidence, wait for CI,
-confirm PR 24 merge, then record a bounded acceptance receipt.
+update published and no assets uploaded. Next action: open the new gallery, inspect the individual animations, and tag/copy
+feedback for the next model revision. No runtime or publishing work remains in this task.

@@ -1,15 +1,15 @@
 # Current project state
 
-State Version: 12 (proposed expressive animation pass; accepted predecessor 11)
+State Version: 12 (accepted expressive animation pass; predecessor accepted version 11)
 Reviewed: 2026-11-08, America/Los_Angeles
 Objective: Give every approved model a distinct, energetic activation with a smooth return to idle.
 
-Accepted source: 83a1a611df86f2737179ab9ed54e7ac0f53b9f6b (accepted predecessor; fetched during finalization).
-Active task: [RBX-023](tasks/RBX-023-expressive-motion.md), Codex coordinator.
+Accepted source: 4ca5462d75db2732757756d362c99498dcd06ea4 (PR 24 merge confirmed by GitHub).
+Completed task: [RBX-023](tasks/RBX-023-expressive-motion.md), Codex coordinator.
 Branch: task/RBX-023-expressive-motion; [PR 24](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/24).
 Studio-tested source: 1533ae542ed948396070f0186e819fb79599a8a4 (all motion/adapters);
 aeb64c252ef4e3d29a7cd9d63a1aee9e8ed78360 (final inspector label).
-Merge: PENDING. Proposed 12 is not accepted main until GitHub confirms integration.
+Merge: MERGED. Version advanced once from accepted 11; fetched main matches the confirmed merge.
 
 | Capability | Verified state |
 | --- | --- |
@@ -34,10 +34,11 @@ Playable output: build/peg-expressive-gallery.rbxlx in .worktrees/motion-life.
 SHA256: F489BD59BED335253B91B702904F4CEF8D6B8A86C2B422119E5B6BE6770175E5.
 
 Checks: formatting/lint,23 suites, adapter contracts, three builds,45 source mappings,
-documentation validation and archive hashes pass locally. PR CI pending.
+documentation validation and archive hashes pass locally. PR CI run 42525829533 passed
+at 9648181f7da15ada2551038f28745969188a5f6d.
 Blockers: none. Limits: high manual zoom can crop; complete artistic/intersection
 review at every intermediate pose, mobile inspector and other-account asset access
 remain unverified. Existing unrelated avatar asset 203785492 warning persists.
 Published: no game experience update or asset uploads in this task.
-Next action: publish review evidence, confirm CI and PR 24 merge, then inspect individual animations in the new gallery.
+Next action: open the new gallery in Studio, press Play and inspect individual animations; tag/copy concrete feedback before stopping.
 Repository administration: main unprotected; temporary default remains starter branch.
