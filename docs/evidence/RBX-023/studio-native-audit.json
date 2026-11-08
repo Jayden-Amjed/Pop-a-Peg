@@ -1,0 +1,2754 @@
+{
+  "source": "1533ae542ed948396070f0186e819fb79599a8a4",
+  "studio": "9f7afcd3-3f7d-45ea-8f2d-9769db7f8564",
+  "batches": [
+    {
+      "last": 26,
+      "checked": 26,
+      "passed": 26,
+      "requested": 26,
+      "failed": 0,
+      "ok": true,
+      "scope": "Real native motion, restoration, root covariance, reduced motion, Fixed bodies, preview queue continuity and actual camera frustum corners.",
+      "first": 1,
+      "strengths": {
+        "1": 1,
+        "2": 2
+      },
+      "unrun": [],
+      "items": {
+        "1": {
+          "failureCount": 0,
+          "index": 1,
+          "rootPartChecks": 612,
+          "reducedMaximumScale": 1.0399785560820123,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.5917673291820681,
+              "queuePlayed": true,
+              "cornerChecks": 50592,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.5917673291820681,
+              "queuePlayed": true,
+              "cornerChecks": 50592,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 15300,
+          "restPartChecks": 2040,
+          "parts": 102,
+          "ok": true,
+          "fixedPartChecks": 2484,
+          "id": "aurora_aquarium",
+          "queueChecks": 4,
+          "fixedParts": 18,
+          "cornerChecks": 101184,
+          "failures": [],
+          "duration": 1.6,
+          "reducedPartChecks": 2550
+        },
+        "2": {
+          "failureCount": 0,
+          "index": 2,
+          "rootPartChecks": 84,
+          "reducedMaximumScale": 1.0399785389215357,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.6201879703463773,
+              "queuePlayed": true,
+              "cornerChecks": 6944,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.6201879703463773,
+              "queuePlayed": true,
+              "cornerChecks": 6944,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 2100,
+          "restPartChecks": 280,
+          "parts": 14,
+          "ok": true,
+          "fixedPartChecks": 0,
+          "id": "aurora_kite",
+          "queueChecks": 4,
+          "fixedParts": 0,
+          "cornerChecks": 13888,
+          "failures": [],
+          "duration": 1.56,
+          "reducedPartChecks": 350
+        },
+        "3": {
+          "failureCount": 0,
+          "index": 3,
+          "rootPartChecks": 126,
+          "reducedMaximumScale": 1.0399785464738462,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.6298250154757958,
+              "queuePlayed": true,
+              "cornerChecks": 10416,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.6298250154757958,
+              "queuePlayed": true,
+              "cornerChecks": 10416,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 3150,
+          "restPartChecks": 420,
+          "parts": 21,
+          "ok": true,
+          "fixedPartChecks": 1242,
+          "id": "balance_scale",
+          "queueChecks": 4,
+          "fixedParts": 9,
+          "cornerChecks": 20832,
+          "failures": [],
+          "duration": 1.28,
+          "reducedPartChecks": 525
+        },
+        "4": {
+          "failureCount": 0,
+          "index": 4,
+          "rootPartChecks": 144,
+          "reducedMaximumScale": 1.0399785389215357,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.66675536618793,
+              "queuePlayed": true,
+              "cornerChecks": 11904,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.66675536618793,
+              "queuePlayed": true,
+              "cornerChecks": 11904,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 3600,
+          "restPartChecks": 480,
+          "parts": 24,
+          "ok": true,
+          "fixedPartChecks": 1518,
+          "id": "biolume_jar",
+          "queueChecks": 4,
+          "fixedParts": 11,
+          "cornerChecks": 23808,
+          "failures": [],
+          "duration": 1.36,
+          "reducedPartChecks": 600
+        },
+        "5": {
+          "failureCount": 0,
+          "index": 5,
+          "rootPartChecks": 264,
+          "reducedMaximumScale": 1.0399785394888945,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.5980163693536222,
+              "queuePlayed": true,
+              "cornerChecks": 21824,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.5980163693536222,
+              "queuePlayed": true,
+              "cornerChecks": 21824,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 6600,
+          "restPartChecks": 880,
+          "parts": 44,
+          "ok": true,
+          "fixedPartChecks": 1932,
+          "id": "bubble_reactor",
+          "queueChecks": 4,
+          "fixedParts": 14,
+          "cornerChecks": 43648,
+          "failures": [],
+          "duration": 1.32,
+          "reducedPartChecks": 1100
+        },
+        "6": {
+          "failureCount": 0,
+          "index": 6,
+          "rootPartChecks": 132,
+          "reducedMaximumScale": 1.039978536926204,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.6128565609868573,
+              "queuePlayed": true,
+              "cornerChecks": 10912,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.6128565609868573,
+              "queuePlayed": true,
+              "cornerChecks": 10912,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 3300,
+          "restPartChecks": 440,
+          "parts": 22,
+          "ok": true,
+          "fixedPartChecks": 414,
+          "id": "bubble_wand",
+          "queueChecks": 4,
+          "fixedParts": 3,
+          "cornerChecks": 21824,
+          "failures": [],
+          "duration": 1.46,
+          "reducedPartChecks": 550
+        },
+        "7": {
+          "failureCount": 0,
+          "index": 7,
+          "rootPartChecks": 168,
+          "reducedMaximumScale": 1.0399785380704976,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.7362351299663344,
+              "queuePlayed": true,
+              "cornerChecks": 13888,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.7362351299663344,
+              "queuePlayed": true,
+              "cornerChecks": 13888,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 4200,
+          "restPartChecks": 560,
+          "parts": 28,
+          "ok": true,
+          "fixedPartChecks": 1656,
+          "id": "burst_capsule",
+          "queueChecks": 4,
+          "fixedParts": 12,
+          "cornerChecks": 27776,
+          "failures": [],
+          "duration": 1.04,
+          "reducedPartChecks": 700
+        },
+        "8": {
+          "failureCount": 0,
+          "index": 8,
+          "rootPartChecks": 96,
+          "reducedMaximumScale": 1.0399785560820123,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.7178566822936588,
+              "queuePlayed": true,
+              "cornerChecks": 7936,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.7178566822936588,
+              "queuePlayed": true,
+              "cornerChecks": 7936,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 2400,
+          "restPartChecks": 320,
+          "parts": 16,
+          "ok": true,
+          "fixedPartChecks": 1104,
+          "id": "chest_common",
+          "queueChecks": 4,
+          "fixedParts": 8,
+          "cornerChecks": 15872,
+          "failures": [],
+          "duration": 1.55,
+          "reducedPartChecks": 400
+        },
+        "9": {
+          "failureCount": 0,
+          "index": 9,
+          "rootPartChecks": 252,
+          "reducedMaximumScale": 1.0399785560820123,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.5747861554662187,
+              "queuePlayed": true,
+              "cornerChecks": 20832,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.5747861554662187,
+              "queuePlayed": true,
+              "cornerChecks": 20832,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 6300,
+          "restPartChecks": 840,
+          "parts": 42,
+          "ok": true,
+          "fixedPartChecks": 1518,
+          "id": "chest_legendary",
+          "queueChecks": 4,
+          "fixedParts": 11,
+          "cornerChecks": 41664,
+          "failures": [],
+          "duration": 2,
+          "reducedPartChecks": 1050
+        },
+        "10": {
+          "failureCount": 0,
+          "index": 10,
+          "rootPartChecks": 96,
+          "reducedMaximumScale": 1.0399785560820123,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.5390958325955035,
+              "queuePlayed": true,
+              "cornerChecks": 7936,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.5390958325955035,
+              "queuePlayed": true,
+              "cornerChecks": 7936,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 2400,
+          "restPartChecks": 320,
+          "parts": 16,
+          "ok": true,
+          "fixedPartChecks": 1242,
+          "id": "chest_rare",
+          "queueChecks": 4,
+          "fixedParts": 9,
+          "cornerChecks": 15872,
+          "failures": [],
+          "duration": 1.84,
+          "reducedPartChecks": 400
+        },
+        "11": {
+          "failureCount": 0,
+          "index": 11,
+          "rootPartChecks": 108,
+          "reducedMaximumScale": 1.0399785362559182,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.6692631043038328,
+              "queuePlayed": true,
+              "cornerChecks": 8928,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.6692631043038328,
+              "queuePlayed": true,
+              "cornerChecks": 8928,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 2700,
+          "restPartChecks": 360,
+          "parts": 18,
+          "ok": true,
+          "fixedPartChecks": 1104,
+          "id": "chest_uncommon",
+          "queueChecks": 4,
+          "fixedParts": 8,
+          "cornerChecks": 17856,
+          "failures": [],
+          "duration": 1.7,
+          "reducedPartChecks": 450
+        },
+        "12": {
+          "failureCount": 0,
+          "index": 12,
+          "rootPartChecks": 390,
+          "reducedMaximumScale": 1.0399785389215357,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.562383393765826,
+              "queuePlayed": true,
+              "cornerChecks": 32240,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.562383393765826,
+              "queuePlayed": true,
+              "cornerChecks": 32240,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 9750,
+          "restPartChecks": 1300,
+          "parts": 65,
+          "ok": true,
+          "fixedPartChecks": 2898,
+          "id": "clockwork",
+          "queueChecks": 4,
+          "fixedParts": 21,
+          "cornerChecks": 64480,
+          "failures": [],
+          "duration": 1.38,
+          "reducedPartChecks": 1625
+        },
+        "13": {
+          "failureCount": 0,
+          "index": 13,
+          "rootPartChecks": 66,
+          "reducedMaximumScale": 1.0399785560820123,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.8070791824853091,
+              "queuePlayed": true,
+              "cornerChecks": 5456,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.8070791824853091,
+              "queuePlayed": true,
+              "cornerChecks": 5456,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 1650,
+          "restPartChecks": 220,
+          "parts": 11,
+          "ok": true,
+          "fixedPartChecks": 276,
+          "id": "cloud_mirror",
+          "queueChecks": 4,
+          "fixedParts": 2,
+          "cornerChecks": 10912,
+          "failures": [],
+          "duration": 1.34,
+          "reducedPartChecks": 275
+        },
+        "14": {
+          "failureCount": 0,
+          "index": 14,
+          "rootPartChecks": 108,
+          "reducedMaximumScale": 1.0399785560820123,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.6286095721005579,
+              "queuePlayed": true,
+              "cornerChecks": 8928,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.6286095721005579,
+              "queuePlayed": true,
+              "cornerChecks": 8928,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 2700,
+          "restPartChecks": 360,
+          "parts": 18,
+          "ok": true,
+          "fixedPartChecks": 0,
+          "id": "coin",
+          "queueChecks": 4,
+          "fixedParts": 0,
+          "cornerChecks": 17856,
+          "failures": [],
+          "duration": 1.1,
+          "reducedPartChecks": 450
+        },
+        "15": {
+          "failureCount": 0,
+          "index": 15,
+          "rootPartChecks": 288,
+          "reducedMaximumScale": 1.0399785560820123,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.7407435603157735,
+              "queuePlayed": true,
+              "cornerChecks": 23808,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.7407435603157735,
+              "queuePlayed": true,
+              "cornerChecks": 23808,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 7200,
+          "restPartChecks": 960,
+          "parts": 48,
+          "ok": true,
+          "fixedPartChecks": 1794,
+          "id": "coin_press",
+          "queueChecks": 4,
+          "fixedParts": 13,
+          "cornerChecks": 47616,
+          "failures": [],
+          "duration": 1.25,
+          "reducedPartChecks": 1200
+        },
+        "16": {
+          "failureCount": 0,
+          "index": 16,
+          "rootPartChecks": 132,
+          "reducedMaximumScale": 1.0399785380704976,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.6850757178924832,
+              "queuePlayed": true,
+              "cornerChecks": 10912,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.6850757178924832,
+              "queuePlayed": true,
+              "cornerChecks": 10912,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 3300,
+          "restPartChecks": 440,
+          "parts": 22,
+          "ok": true,
+          "fixedPartChecks": 2760,
+          "id": "compass",
+          "queueChecks": 4,
+          "fixedParts": 20,
+          "cornerChecks": 21824,
+          "failures": [],
+          "duration": 1.3,
+          "reducedPartChecks": 550
+        },
+        "17": {
+          "failureCount": 0,
+          "index": 17,
+          "rootPartChecks": 102,
+          "reducedMaximumScale": 1.0399785464738462,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.7346294322148657,
+              "queuePlayed": true,
+              "cornerChecks": 8432,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.7346294322148657,
+              "queuePlayed": true,
+              "cornerChecks": 8432,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 2550,
+          "restPartChecks": 340,
+          "parts": 17,
+          "ok": true,
+          "fixedPartChecks": 552,
+          "id": "coral_fork",
+          "queueChecks": 4,
+          "fixedParts": 4,
+          "cornerChecks": 16864,
+          "failures": [],
+          "duration": 0.98,
+          "reducedPartChecks": 425
+        },
+        "18": {
+          "failureCount": 0,
+          "index": 18,
+          "rootPartChecks": 606,
+          "reducedMaximumScale": 1.039978542310384,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.5904527155207328,
+              "queuePlayed": true,
+              "cornerChecks": 50096,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.5904527155207328,
+              "queuePlayed": true,
+              "cornerChecks": 50096,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 15150,
+          "restPartChecks": 2020,
+          "parts": 101,
+          "ok": true,
+          "fixedPartChecks": 1932,
+          "id": "current_nexus",
+          "queueChecks": 4,
+          "fixedParts": 14,
+          "cornerChecks": 100192,
+          "failures": [],
+          "duration": 1.24,
+          "reducedPartChecks": 2525
+        },
+        "19": {
+          "failureCount": 0,
+          "index": 19,
+          "rootPartChecks": 144,
+          "reducedMaximumScale": 1.0399785276107478,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.6752353429523845,
+              "queuePlayed": true,
+              "cornerChecks": 11904,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.6752353429523845,
+              "queuePlayed": true,
+              "cornerChecks": 11904,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 3600,
+          "restPartChecks": 480,
+          "parts": 24,
+          "ok": true,
+          "fixedPartChecks": 2760,
+          "id": "dew_lantern",
+          "queueChecks": 4,
+          "fixedParts": 20,
+          "cornerChecks": 23808,
+          "failures": [],
+          "duration": 1.4,
+          "reducedPartChecks": 600
+        },
+        "20": {
+          "failureCount": 0,
+          "index": 20,
+          "rootPartChecks": 180,
+          "reducedMaximumScale": 1.0399785509495785,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.5859009395572671,
+              "queuePlayed": true,
+              "cornerChecks": 14880,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.5859009395572671,
+              "queuePlayed": true,
+              "cornerChecks": 14880,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 4500,
+          "restPartChecks": 600,
+          "parts": 30,
+          "ok": true,
+          "fixedPartChecks": 966,
+          "id": "echo_plate",
+          "queueChecks": 4,
+          "fixedParts": 7,
+          "cornerChecks": 29760,
+          "failures": [],
+          "duration": 1.12,
+          "reducedPartChecks": 750
+        },
+        "21": {
+          "failureCount": 0,
+          "index": 21,
+          "rootPartChecks": 216,
+          "reducedMaximumScale": 1.0399785464738462,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.6041738694745465,
+              "queuePlayed": true,
+              "cornerChecks": 17856,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.6041738694745465,
+              "queuePlayed": true,
+              "cornerChecks": 17856,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 5400,
+          "restPartChecks": 720,
+          "parts": 36,
+          "ok": true,
+          "fixedPartChecks": 3312,
+          "id": "eden_greenhouse",
+          "queueChecks": 4,
+          "fixedParts": 24,
+          "cornerChecks": 35712,
+          "failures": [],
+          "duration": 1.52,
+          "reducedPartChecks": 900
+        },
+        "22": {
+          "failureCount": 0,
+          "index": 22,
+          "rootPartChecks": 198,
+          "reducedMaximumScale": 1.0399785544499063,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.5699147095501594,
+              "queuePlayed": true,
+              "cornerChecks": 16368,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.5811374028958214,
+              "queuePlayed": true,
+              "cornerChecks": 16368,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 4950,
+          "restPartChecks": 660,
+          "parts": 33,
+          "ok": true,
+          "fixedPartChecks": 3174,
+          "id": "encore",
+          "queueChecks": 4,
+          "fixedParts": 23,
+          "cornerChecks": 32736,
+          "failures": [],
+          "duration": 1.16,
+          "reducedPartChecks": 825
+        },
+        "23": {
+          "failureCount": 0,
+          "index": 23,
+          "rootPartChecks": 48,
+          "reducedMaximumScale": 1.0399785544499063,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.9001655593228253,
+              "queuePlayed": true,
+              "cornerChecks": 3968,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.9001655593228253,
+              "queuePlayed": true,
+              "cornerChecks": 3968,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 1200,
+          "restPartChecks": 160,
+          "parts": 8,
+          "ok": true,
+          "fixedPartChecks": 690,
+          "id": "event_growth",
+          "queueChecks": 4,
+          "fixedParts": 5,
+          "cornerChecks": 7936,
+          "failures": [],
+          "duration": 1.23,
+          "reducedPartChecks": 200
+        },
+        "24": {
+          "failureCount": 0,
+          "index": 24,
+          "rootPartChecks": 54,
+          "reducedMaximumScale": 1.0399785394888945,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.6490568081088256,
+              "queuePlayed": true,
+              "cornerChecks": 4464,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.6490568081088256,
+              "queuePlayed": true,
+              "cornerChecks": 4464,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 1350,
+          "restPartChecks": 180,
+          "parts": 9,
+          "ok": true,
+          "fixedPartChecks": 828,
+          "id": "event_overtime",
+          "queueChecks": 4,
+          "fixedParts": 6,
+          "cornerChecks": 8928,
+          "failures": [],
+          "duration": 1.4,
+          "reducedPartChecks": 225
+        },
+        "25": {
+          "failureCount": 0,
+          "index": 25,
+          "rootPartChecks": 48,
+          "reducedMaximumScale": 1.0399785389215357,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.6580251813776012,
+              "queuePlayed": true,
+              "cornerChecks": 3968,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.6580251813776012,
+              "queuePlayed": true,
+              "cornerChecks": 3968,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 1200,
+          "restPartChecks": 160,
+          "parts": 8,
+          "ok": true,
+          "fixedPartChecks": 828,
+          "id": "event_repair",
+          "queueChecks": 4,
+          "fixedParts": 6,
+          "cornerChecks": 7936,
+          "failures": [],
+          "duration": 1.03,
+          "reducedPartChecks": 200
+        },
+        "26": {
+          "failureCount": 0,
+          "index": 26,
+          "rootPartChecks": 54,
+          "reducedMaximumScale": 1.0399785374626134,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.7403625852982149,
+              "queuePlayed": true,
+              "cornerChecks": 4464,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.7403625852982149,
+              "queuePlayed": true,
+              "cornerChecks": 4464,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 1350,
+          "restPartChecks": 180,
+          "parts": 9,
+          "ok": true,
+          "fixedPartChecks": 0,
+          "id": "event_upgrade",
+          "queueChecks": 4,
+          "fixedParts": 0,
+          "cornerChecks": 8928,
+          "failures": [],
+          "duration": 1.17,
+          "reducedPartChecks": 225
+        }
+      },
+      "previewSizes": {
+        "1": {
+          "1": 160,
+          "2": 112
+        },
+        "2": {
+          "1": 300,
+          "2": 260
+        }
+      },
+      "cyclesPerStrength": 3,
+      "phaseSteps": 24,
+      "failures": [],
+      "schema": 1,
+      "elapsedSeconds": 3.2279157000011764
+    },
+    {
+      "last": 52,
+      "checked": 26,
+      "passed": 26,
+      "requested": 26,
+      "failed": 0,
+      "ok": true,
+      "scope": "Real native motion, restoration, root covariance, reduced motion, Fixed bodies, preview queue continuity and actual camera frustum corners.",
+      "first": 27,
+      "strengths": {
+        "1": 1,
+        "2": 2
+      },
+      "unrun": [],
+      "items": {
+        "1": {
+          "failureCount": 0,
+          "index": 27,
+          "rootPartChecks": 156,
+          "reducedMaximumScale": 1.039978538821959,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.6909631930163865,
+              "queuePlayed": true,
+              "cornerChecks": 13888,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.6909631930163865,
+              "queuePlayed": true,
+              "cornerChecks": 13888,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 3900,
+          "restPartChecks": 520,
+          "parts": 26,
+          "ok": true,
+          "fixedPartChecks": 3174,
+          "id": "first_spark",
+          "queueChecks": 4,
+          "fixedParts": 23,
+          "cornerChecks": 27776,
+          "failures": [],
+          "duration": 0.92,
+          "reducedPartChecks": 650
+        },
+        "2": {
+          "failureCount": 0,
+          "index": 28,
+          "rootPartChecks": 420,
+          "reducedMaximumScale": 1.0399785560820123,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.6833264356816172,
+              "queuePlayed": true,
+              "cornerChecks": 34720,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.6833264356816172,
+              "queuePlayed": true,
+              "cornerChecks": 34720,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 10500,
+          "restPartChecks": 1400,
+          "parts": 70,
+          "ok": true,
+          "fixedPartChecks": 4278,
+          "id": "fishbowl",
+          "queueChecks": 4,
+          "fixedParts": 31,
+          "cornerChecks": 69440,
+          "failures": [],
+          "duration": 1.22,
+          "reducedPartChecks": 1750
+        },
+        "3": {
+          "failureCount": 0,
+          "index": 29,
+          "rootPartChecks": 162,
+          "reducedMaximumScale": 1.0399785380704976,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.6131868097903337,
+              "queuePlayed": true,
+              "cornerChecks": 13392,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.6131868097903337,
+              "queuePlayed": true,
+              "cornerChecks": 13392,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 4050,
+          "restPartChecks": 540,
+          "parts": 27,
+          "ok": true,
+          "fixedPartChecks": 3450,
+          "id": "gain_dial",
+          "queueChecks": 4,
+          "fixedParts": 25,
+          "cornerChecks": 26784,
+          "failures": [],
+          "duration": 1.02,
+          "reducedPartChecks": 675
+        },
+        "4": {
+          "failureCount": 0,
+          "index": 30,
+          "rootPartChecks": 192,
+          "reducedMaximumScale": 1.0399785394888945,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.5354252625310322,
+              "queuePlayed": true,
+              "cornerChecks": 15872,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.5354252625310322,
+              "queuePlayed": true,
+              "cornerChecks": 15872,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 4800,
+          "restPartChecks": 640,
+          "parts": 32,
+          "ok": true,
+          "fixedPartChecks": 0,
+          "id": "goldfish",
+          "queueChecks": 4,
+          "fixedParts": 0,
+          "cornerChecks": 31744,
+          "failures": [],
+          "duration": 1.32,
+          "reducedPartChecks": 800
+        },
+        "5": {
+          "failureCount": 0,
+          "index": 31,
+          "rootPartChecks": 210,
+          "reducedMaximumScale": 1.039978546947266,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.6749919685805649,
+              "queuePlayed": true,
+              "cornerChecks": 17360,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.6749919685805649,
+              "queuePlayed": true,
+              "cornerChecks": 17360,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 5250,
+          "restPartChecks": 700,
+          "parts": 35,
+          "ok": true,
+          "fixedPartChecks": 1518,
+          "id": "growth_array",
+          "queueChecks": 4,
+          "fixedParts": 11,
+          "cornerChecks": 34720,
+          "failures": [],
+          "duration": 1.34,
+          "reducedPartChecks": 875
+        },
+        "6": {
+          "failureCount": 0,
+          "index": 32,
+          "rootPartChecks": 288,
+          "reducedMaximumScale": 1.0399785560820123,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.7575146648030375,
+              "queuePlayed": true,
+              "cornerChecks": 24800,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.7575146648030375,
+              "queuePlayed": true,
+              "cornerChecks": 24800,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 7200,
+          "restPartChecks": 960,
+          "parts": 48,
+          "ok": true,
+          "fixedPartChecks": 690,
+          "id": "growth_ring",
+          "queueChecks": 4,
+          "fixedParts": 5,
+          "cornerChecks": 49600,
+          "failures": [],
+          "duration": 1.28,
+          "reducedPartChecks": 1200
+        },
+        "7": {
+          "failureCount": 0,
+          "index": 33,
+          "rootPartChecks": 234,
+          "reducedMaximumScale": 1.0399785394888945,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.5293516343742934,
+              "queuePlayed": true,
+              "cornerChecks": 19344,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.5293516343742934,
+              "queuePlayed": true,
+              "cornerChecks": 19344,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 5850,
+          "restPartChecks": 780,
+          "parts": 39,
+          "ok": true,
+          "fixedPartChecks": 2208,
+          "id": "horizon_observatory",
+          "queueChecks": 4,
+          "fixedParts": 16,
+          "cornerChecks": 38688,
+          "failures": [],
+          "duration": 1.64,
+          "reducedPartChecks": 975
+        },
+        "8": {
+          "failureCount": 0,
+          "index": 34,
+          "rootPartChecks": 192,
+          "reducedMaximumScale": 1.039978522376167,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.574794544320932,
+              "queuePlayed": true,
+              "cornerChecks": 15872,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.574794544320932,
+              "queuePlayed": true,
+              "cornerChecks": 15872,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 4800,
+          "restPartChecks": 640,
+          "parts": 32,
+          "ok": true,
+          "fixedPartChecks": 0,
+          "id": "jumble",
+          "queueChecks": 4,
+          "fixedParts": 0,
+          "cornerChecks": 31744,
+          "failures": [],
+          "duration": 1.26,
+          "reducedPartChecks": 800
+        },
+        "9": {
+          "failureCount": 0,
+          "index": 35,
+          "rootPartChecks": 144,
+          "reducedMaximumScale": 1.0399785488604572,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.5804996328781735,
+              "queuePlayed": true,
+              "cornerChecks": 11904,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.5804996328781735,
+              "queuePlayed": true,
+              "cornerChecks": 11904,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 3600,
+          "restPartChecks": 480,
+          "parts": 24,
+          "ok": true,
+          "fixedPartChecks": 1104,
+          "id": "lagoon_synth",
+          "queueChecks": 4,
+          "fixedParts": 8,
+          "cornerChecks": 23808,
+          "failures": [],
+          "duration": 1.22,
+          "reducedPartChecks": 600
+        },
+        "10": {
+          "failureCount": 0,
+          "index": 36,
+          "rootPartChecks": 276,
+          "reducedMaximumScale": 1.0399785560820123,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.5897348661483364,
+              "queuePlayed": true,
+              "cornerChecks": 22816,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.5897348661483364,
+              "queuePlayed": true,
+              "cornerChecks": 22816,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 6900,
+          "restPartChecks": 920,
+          "parts": 46,
+          "ok": true,
+          "fixedPartChecks": 1242,
+          "id": "landing_fund",
+          "queueChecks": 4,
+          "fixedParts": 9,
+          "cornerChecks": 45632,
+          "failures": [],
+          "duration": 1.08,
+          "reducedPartChecks": 1150
+        },
+        "11": {
+          "failureCount": 0,
+          "index": 37,
+          "rootPartChecks": 132,
+          "reducedMaximumScale": 1.0399785125250782,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.6557702378613327,
+              "queuePlayed": true,
+              "cornerChecks": 11904,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.6557702378613327,
+              "queuePlayed": true,
+              "cornerChecks": 11904,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 3300,
+          "restPartChecks": 440,
+          "parts": 22,
+          "ok": true,
+          "fixedPartChecks": 2208,
+          "id": "last_word",
+          "queueChecks": 4,
+          "fixedParts": 16,
+          "cornerChecks": 23808,
+          "failures": [],
+          "duration": 1.13,
+          "reducedPartChecks": 550
+        },
+        "12": {
+          "failureCount": 0,
+          "index": 38,
+          "rootPartChecks": 222,
+          "reducedMaximumScale": 1.0399785380704976,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.6774461701991504,
+              "queuePlayed": true,
+              "cornerChecks": 18352,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.6774461701991504,
+              "queuePlayed": true,
+              "cornerChecks": 18352,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 5550,
+          "restPartChecks": 740,
+          "parts": 37,
+          "ok": true,
+          "fixedPartChecks": 0,
+          "id": "life",
+          "queueChecks": 4,
+          "fixedParts": 0,
+          "cornerChecks": 36704,
+          "failures": [],
+          "duration": 0.98,
+          "reducedPartChecks": 925
+        },
+        "13": {
+          "failureCount": 0,
+          "index": 39,
+          "rootPartChecks": 90,
+          "reducedMaximumScale": 1.0399785350926558,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.522806806712429,
+              "queuePlayed": true,
+              "cornerChecks": 7440,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.5354166158628718,
+              "queuePlayed": true,
+              "cornerChecks": 7440,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 2250,
+          "restPartChecks": 300,
+          "parts": 15,
+          "ok": true,
+          "fixedPartChecks": 828,
+          "id": "lily_pad",
+          "queueChecks": 4,
+          "fixedParts": 6,
+          "cornerChecks": 14880,
+          "failures": [],
+          "duration": 1.28,
+          "reducedPartChecks": 375
+        },
+        "14": {
+          "failureCount": 0,
+          "index": 40,
+          "rootPartChecks": 144,
+          "reducedMaximumScale": 1.0399785208648704,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.7462372502931678,
+              "queuePlayed": true,
+              "cornerChecks": 11904,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.7462372502931678,
+              "queuePlayed": true,
+              "cornerChecks": 11904,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 3600,
+          "restPartChecks": 480,
+          "parts": 24,
+          "ok": true,
+          "fixedPartChecks": 1656,
+          "id": "lock",
+          "queueChecks": 4,
+          "fixedParts": 12,
+          "cornerChecks": 23808,
+          "failures": [],
+          "duration": 1.16,
+          "reducedPartChecks": 600
+        },
+        "15": {
+          "failureCount": 0,
+          "index": 41,
+          "rootPartChecks": 150,
+          "reducedMaximumScale": 1.0399785389215357,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.609520160256466,
+              "queuePlayed": true,
+              "cornerChecks": 13392,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.609520160256466,
+              "queuePlayed": true,
+              "cornerChecks": 13392,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 3750,
+          "restPartChecks": 500,
+          "parts": 25,
+          "ok": true,
+          "fixedPartChecks": 2208,
+          "id": "metronome",
+          "queueChecks": 4,
+          "fixedParts": 16,
+          "cornerChecks": 26784,
+          "failures": [],
+          "duration": 1.3,
+          "reducedPartChecks": 625
+        },
+        "16": {
+          "failureCount": 0,
+          "index": 42,
+          "rootPartChecks": 132,
+          "reducedMaximumScale": 1.0399785287812544,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.8272272892357952,
+              "queuePlayed": true,
+              "cornerChecks": 11904,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.8272272892357952,
+              "queuePlayed": true,
+              "cornerChecks": 11904,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 3300,
+          "restPartChecks": 440,
+          "parts": 22,
+          "ok": true,
+          "fixedPartChecks": 690,
+          "id": "milestone",
+          "queueChecks": 4,
+          "fixedParts": 5,
+          "cornerChecks": 23808,
+          "failures": [],
+          "duration": 1.34,
+          "reducedPartChecks": 550
+        },
+        "17": {
+          "failureCount": 0,
+          "index": 43,
+          "rootPartChecks": 120,
+          "reducedMaximumScale": 1.0399785560820123,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.6467973135584305,
+              "queuePlayed": true,
+              "cornerChecks": 9920,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.6467973135584305,
+              "queuePlayed": true,
+              "cornerChecks": 9920,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 3000,
+          "restPartChecks": 400,
+          "parts": 20,
+          "ok": true,
+          "fixedPartChecks": 1794,
+          "id": "mist_fan",
+          "queueChecks": 4,
+          "fixedParts": 13,
+          "cornerChecks": 19840,
+          "failures": [],
+          "duration": 1.16,
+          "reducedPartChecks": 500
+        },
+        "18": {
+          "failureCount": 0,
+          "index": 44,
+          "rootPartChecks": 150,
+          "reducedMaximumScale": 1.0399785389215357,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.7336699712231991,
+              "queuePlayed": true,
+              "cornerChecks": 12400,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.7336699712231991,
+              "queuePlayed": true,
+              "cornerChecks": 12400,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 3750,
+          "restPartChecks": 500,
+          "parts": 25,
+          "ok": true,
+          "fixedPartChecks": 1380,
+          "id": "monsoon_loom",
+          "queueChecks": 4,
+          "fixedParts": 10,
+          "cornerChecks": 24800,
+          "failures": [],
+          "duration": 1.32,
+          "reducedPartChecks": 625
+        },
+        "19": {
+          "failureCount": 0,
+          "index": 45,
+          "rootPartChecks": 138,
+          "reducedMaximumScale": 1.0399785389215357,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.7325999541376398,
+              "queuePlayed": true,
+              "cornerChecks": 11408,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.7325999541376398,
+              "queuePlayed": true,
+              "cornerChecks": 11408,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 3450,
+          "restPartChecks": 460,
+          "parts": 23,
+          "ok": true,
+          "fixedPartChecks": 1932,
+          "id": "moss_capacitor",
+          "queueChecks": 4,
+          "fixedParts": 14,
+          "cornerChecks": 22816,
+          "failures": [],
+          "duration": 1.12,
+          "reducedPartChecks": 575
+        },
+        "20": {
+          "failureCount": 0,
+          "index": 46,
+          "rootPartChecks": 90,
+          "reducedMaximumScale": 1.0399785544499063,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.7073738046682345,
+              "queuePlayed": true,
+              "cornerChecks": 7440,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.7073738046682345,
+              "queuePlayed": true,
+              "cornerChecks": 7440,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 2250,
+          "restPartChecks": 300,
+          "parts": 15,
+          "ok": true,
+          "fixedPartChecks": 1518,
+          "id": "nectar_pump",
+          "queueChecks": 4,
+          "fixedParts": 11,
+          "cornerChecks": 14880,
+          "failures": [],
+          "duration": 1.08,
+          "reducedPartChecks": 375
+        },
+        "21": {
+          "failureCount": 0,
+          "index": 47,
+          "rootPartChecks": 234,
+          "reducedMaximumScale": 1.0399785560820123,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.6208699311629258,
+              "queuePlayed": true,
+              "cornerChecks": 19344,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.6208699311629258,
+              "queuePlayed": true,
+              "cornerChecks": 19344,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 5850,
+          "restPartChecks": 780,
+          "parts": 39,
+          "ok": true,
+          "fixedPartChecks": 2208,
+          "id": "ocean_orchestra",
+          "queueChecks": 4,
+          "fixedParts": 16,
+          "cornerChecks": 38688,
+          "failures": [],
+          "duration": 1.48,
+          "reducedPartChecks": 975
+        },
+        "22": {
+          "failureCount": 0,
+          "index": 48,
+          "rootPartChecks": 276,
+          "reducedMaximumScale": 1.0399785389215357,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.5339198534407533,
+              "queuePlayed": true,
+              "cornerChecks": 22816,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.5339198534407533,
+              "queuePlayed": true,
+              "cornerChecks": 22816,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 6900,
+          "restPartChecks": 920,
+          "parts": 46,
+          "ok": true,
+          "fixedPartChecks": 414,
+          "id": "ozone_orb",
+          "queueChecks": 4,
+          "fixedParts": 3,
+          "cornerChecks": 45632,
+          "failures": [],
+          "duration": 1.48,
+          "reducedPartChecks": 1150
+        },
+        "23": {
+          "failureCount": 0,
+          "index": 49,
+          "rootPartChecks": 168,
+          "reducedMaximumScale": 1.0399785380704976,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.6086773981926402,
+              "queuePlayed": true,
+              "cornerChecks": 13888,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.6086773981926402,
+              "queuePlayed": true,
+              "cornerChecks": 13888,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 4200,
+          "restPartChecks": 560,
+          "parts": 28,
+          "ok": true,
+          "fixedPartChecks": 3450,
+          "id": "pearl_diver",
+          "queueChecks": 4,
+          "fixedParts": 25,
+          "cornerChecks": 27776,
+          "failures": [],
+          "duration": 1.27,
+          "reducedPartChecks": 700
+        },
+        "24": {
+          "failureCount": 0,
+          "index": 50,
+          "rootPartChecks": 270,
+          "reducedMaximumScale": 1.039978543415826,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.5515125971889852,
+              "queuePlayed": true,
+              "cornerChecks": 22320,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.5515125971889852,
+              "queuePlayed": true,
+              "cornerChecks": 22320,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 6750,
+          "restPartChecks": 900,
+          "parts": 45,
+          "ok": true,
+          "fixedPartChecks": 1518,
+          "id": "pearl_turbine",
+          "queueChecks": 4,
+          "fixedParts": 11,
+          "cornerChecks": 44640,
+          "failures": [],
+          "duration": 1.42,
+          "reducedPartChecks": 1125
+        },
+        "25": {
+          "failureCount": 0,
+          "index": 51,
+          "rootPartChecks": 150,
+          "reducedMaximumScale": 1.0399785394888945,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.6958795735878207,
+              "queuePlayed": true,
+              "cornerChecks": 12400,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.6958795735878207,
+              "queuePlayed": true,
+              "cornerChecks": 12400,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 3750,
+          "restPartChecks": 500,
+          "parts": 25,
+          "ok": true,
+          "fixedPartChecks": 2760,
+          "id": "pulse_cell",
+          "queueChecks": 4,
+          "fixedParts": 20,
+          "cornerChecks": 24800,
+          "failures": [],
+          "duration": 1.08,
+          "reducedPartChecks": 625
+        },
+        "26": {
+          "failureCount": 0,
+          "index": 52,
+          "rootPartChecks": 144,
+          "reducedMaximumScale": 1.0399785389215357,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.6382140604521171,
+              "queuePlayed": true,
+              "cornerChecks": 11904,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.6382140604521171,
+              "queuePlayed": true,
+              "cornerChecks": 11904,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 3600,
+          "restPartChecks": 480,
+          "parts": 24,
+          "ok": true,
+          "fixedPartChecks": 1932,
+          "id": "quota_bonus",
+          "queueChecks": 4,
+          "fixedParts": 14,
+          "cornerChecks": 23808,
+          "failures": [],
+          "duration": 0.88,
+          "reducedPartChecks": 600
+        }
+      },
+      "previewSizes": {
+        "1": {
+          "1": 160,
+          "2": 112
+        },
+        "2": {
+          "1": 300,
+          "2": 260
+        }
+      },
+      "cyclesPerStrength": 3,
+      "phaseSteps": 24,
+      "failures": [],
+      "schema": 1,
+      "elapsedSeconds": 3.2169193000008818
+    },
+    {
+      "last": 78,
+      "checked": 26,
+      "passed": 26,
+      "requested": 26,
+      "failed": 0,
+      "ok": true,
+      "scope": "Real native motion, restoration, root covariance, reduced motion, Fixed bodies, preview queue continuity and actual camera frustum corners.",
+      "first": 53,
+      "strengths": {
+        "1": 1,
+        "2": 2
+      },
+      "unrun": [],
+      "items": {
+        "1": {
+          "failureCount": 0,
+          "index": 53,
+          "rootPartChecks": 114,
+          "reducedMaximumScale": 1.0399785560820123,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.7071602058720058,
+              "queuePlayed": true,
+              "cornerChecks": 9424,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.7071602058720058,
+              "queuePlayed": true,
+              "cornerChecks": 9424,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 2850,
+          "restPartChecks": 380,
+          "parts": 19,
+          "ok": true,
+          "fixedPartChecks": 2070,
+          "id": "rain_catcher",
+          "queueChecks": 4,
+          "fixedParts": 15,
+          "cornerChecks": 18848,
+          "failures": [],
+          "duration": 1.1,
+          "reducedPartChecks": 475
+        },
+        "2": {
+          "failureCount": 0,
+          "index": 54,
+          "rootPartChecks": 174,
+          "reducedMaximumScale": 1.0399785385432965,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.753735588313246,
+              "queuePlayed": true,
+              "cornerChecks": 15376,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.753735588313246,
+              "queuePlayed": true,
+              "cornerChecks": 15376,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 4350,
+          "restPartChecks": 580,
+          "parts": 29,
+          "ok": true,
+          "fixedPartChecks": 966,
+          "id": "recovery",
+          "queueChecks": 4,
+          "fixedParts": 7,
+          "cornerChecks": 30752,
+          "failures": [],
+          "duration": 1.24,
+          "reducedPartChecks": 725
+        },
+        "3": {
+          "failureCount": 0,
+          "index": 55,
+          "rootPartChecks": 162,
+          "reducedMaximumScale": 1.0399785544499063,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.6102719758341842,
+              "queuePlayed": true,
+              "cornerChecks": 13392,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.6102719758341842,
+              "queuePlayed": true,
+              "cornerChecks": 13392,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 4050,
+          "restPartChecks": 540,
+          "parts": 27,
+          "ok": true,
+          "fixedPartChecks": 1932,
+          "id": "relay",
+          "queueChecks": 4,
+          "fixedParts": 14,
+          "cornerChecks": 26784,
+          "failures": [],
+          "duration": 1.17,
+          "reducedPartChecks": 675
+        },
+        "4": {
+          "failureCount": 0,
+          "index": 56,
+          "rootPartChecks": 156,
+          "reducedMaximumScale": 1.0399785400903618,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.5842182227556392,
+              "queuePlayed": true,
+              "cornerChecks": 12896,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.5842182227556392,
+              "queuePlayed": true,
+              "cornerChecks": 12896,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 3900,
+          "restPartChecks": 520,
+          "parts": 26,
+          "ok": true,
+          "fixedPartChecks": 2346,
+          "id": "reserve_pack",
+          "queueChecks": 4,
+          "fixedParts": 17,
+          "cornerChecks": 25792,
+          "failures": [],
+          "duration": 1.13,
+          "reducedPartChecks": 650
+        },
+        "5": {
+          "failureCount": 0,
+          "index": 57,
+          "rootPartChecks": 108,
+          "reducedMaximumScale": 1.0399785287812544,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.7782230990687962,
+              "queuePlayed": true,
+              "cornerChecks": 8928,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.7782230990687962,
+              "queuePlayed": true,
+              "cornerChecks": 8928,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 2700,
+          "restPartChecks": 360,
+          "parts": 18,
+          "ok": true,
+          "fixedPartChecks": 1656,
+          "id": "resonator",
+          "queueChecks": 4,
+          "fixedParts": 12,
+          "cornerChecks": 17856,
+          "failures": [],
+          "duration": 0.94,
+          "reducedPartChecks": 450
+        },
+        "6": {
+          "failureCount": 0,
+          "index": 58,
+          "rootPartChecks": 216,
+          "reducedMaximumScale": 1.03997854085496,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.6563946856741469,
+              "queuePlayed": true,
+              "cornerChecks": 17856,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.6563946856741469,
+              "queuePlayed": true,
+              "cornerChecks": 17856,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 5400,
+          "restPartChecks": 720,
+          "parts": 36,
+          "ok": true,
+          "fixedPartChecks": 1380,
+          "id": "restock",
+          "queueChecks": 4,
+          "fixedParts": 10,
+          "cornerChecks": 35712,
+          "failures": [],
+          "duration": 1.08,
+          "reducedPartChecks": 900
+        },
+        "7": {
+          "failureCount": 0,
+          "index": 59,
+          "rootPartChecks": 156,
+          "reducedMaximumScale": 1.0399785401547834,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.8105346822365572,
+              "queuePlayed": true,
+              "cornerChecks": 13888,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.8105346822365572,
+              "queuePlayed": true,
+              "cornerChecks": 13888,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 3900,
+          "restPartChecks": 520,
+          "parts": 26,
+          "ok": true,
+          "fixedPartChecks": 3174,
+          "id": "ricochet",
+          "queueChecks": 4,
+          "fixedParts": 23,
+          "cornerChecks": 27776,
+          "failures": [],
+          "duration": 1.12,
+          "reducedPartChecks": 650
+        },
+        "8": {
+          "failureCount": 0,
+          "index": 60,
+          "rootPartChecks": 162,
+          "reducedMaximumScale": 1.0399785374626134,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.7599467931143251,
+              "queuePlayed": true,
+              "cornerChecks": 13392,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.7599467931143251,
+              "queuePlayed": true,
+              "cornerChecks": 13392,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 4050,
+          "restPartChecks": 540,
+          "parts": 27,
+          "ok": true,
+          "fixedPartChecks": 1518,
+          "id": "score",
+          "queueChecks": 4,
+          "fixedParts": 11,
+          "cornerChecks": 26784,
+          "failures": [],
+          "duration": 1.03,
+          "reducedPartChecks": 675
+        },
+        "9": {
+          "failureCount": 0,
+          "index": 61,
+          "rootPartChecks": 156,
+          "reducedMaximumScale": 1.0399785394888945,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.7345879220709298,
+              "queuePlayed": true,
+              "cornerChecks": 12896,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.7345879220709298,
+              "queuePlayed": true,
+              "cornerChecks": 12896,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 3900,
+          "restPartChecks": 520,
+          "parts": 26,
+          "ok": true,
+          "fixedPartChecks": 2208,
+          "id": "seed_bank",
+          "queueChecks": 4,
+          "fixedParts": 16,
+          "cornerChecks": 25792,
+          "failures": [],
+          "duration": 1.2,
+          "reducedPartChecks": 650
+        },
+        "10": {
+          "failureCount": 0,
+          "index": 62,
+          "rootPartChecks": 210,
+          "reducedMaximumScale": 1.0399785529723535,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.6210688767375924,
+              "queuePlayed": true,
+              "cornerChecks": 17360,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.6210688767375924,
+              "queuePlayed": true,
+              "cornerChecks": 17360,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 5250,
+          "restPartChecks": 700,
+          "parts": 35,
+          "ok": true,
+          "fixedPartChecks": 828,
+          "id": "soft_saw",
+          "queueChecks": 4,
+          "fixedParts": 6,
+          "cornerChecks": 34720,
+          "failures": [],
+          "duration": 1.23,
+          "reducedPartChecks": 875
+        },
+        "11": {
+          "failureCount": 0,
+          "index": 63,
+          "rootPartChecks": 90,
+          "reducedMaximumScale": 1.0399785292045798,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.7555177359887921,
+              "queuePlayed": true,
+              "cornerChecks": 7440,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.7555177359887921,
+              "queuePlayed": true,
+              "cornerChecks": 7440,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 2250,
+          "restPartChecks": 300,
+          "parts": 15,
+          "ok": true,
+          "fixedPartChecks": 276,
+          "id": "solar_leaf",
+          "queueChecks": 4,
+          "fixedParts": 2,
+          "cornerChecks": 14880,
+          "failures": [],
+          "duration": 1.24,
+          "reducedPartChecks": 375
+        },
+        "12": {
+          "failureCount": 0,
+          "index": 64,
+          "rootPartChecks": 480,
+          "reducedMaximumScale": 1.0399785560820123,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.6872357469718713,
+              "queuePlayed": true,
+              "cornerChecks": 39680,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.6872357469718713,
+              "queuePlayed": true,
+              "cornerChecks": 39680,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 12000,
+          "restPartChecks": 1600,
+          "parts": 80,
+          "ok": true,
+          "fixedPartChecks": 2346,
+          "id": "solar_treasury",
+          "queueChecks": 4,
+          "fixedParts": 17,
+          "cornerChecks": 79360,
+          "failures": [],
+          "duration": 1.46,
+          "reducedPartChecks": 2000
+        },
+        "13": {
+          "failureCount": 0,
+          "index": 65,
+          "rootPartChecks": 240,
+          "reducedMaximumScale": 1.0399785389215357,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.6122246970787085,
+              "queuePlayed": true,
+              "cornerChecks": 19840,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.6122246970787085,
+              "queuePlayed": true,
+              "cornerChecks": 19840,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 6000,
+          "restPartChecks": 800,
+          "parts": 40,
+          "ok": true,
+          "fixedPartChecks": 1518,
+          "id": "spectrum_reef",
+          "queueChecks": 4,
+          "fixedParts": 11,
+          "cornerChecks": 39680,
+          "failures": [],
+          "duration": 1.38,
+          "reducedPartChecks": 1000
+        },
+        "14": {
+          "failureCount": 0,
+          "index": 66,
+          "rootPartChecks": 132,
+          "reducedMaximumScale": 1.039978549464333,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.7769482327849858,
+              "queuePlayed": true,
+              "cornerChecks": 10912,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.7769482327849858,
+              "queuePlayed": true,
+              "cornerChecks": 10912,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 3300,
+          "restPartChecks": 440,
+          "parts": 22,
+          "ok": true,
+          "fixedPartChecks": 1380,
+          "id": "split_prism",
+          "queueChecks": 4,
+          "fixedParts": 10,
+          "cornerChecks": 21824,
+          "failures": [],
+          "duration": 1.14,
+          "reducedPartChecks": 550
+        },
+        "15": {
+          "failureCount": 0,
+          "index": 67,
+          "rootPartChecks": 258,
+          "reducedMaximumScale": 1.0399785297792652,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.7993626937896032,
+              "queuePlayed": true,
+              "cornerChecks": 21328,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.7993626937896032,
+              "queuePlayed": true,
+              "cornerChecks": 21328,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 6450,
+          "restPartChecks": 860,
+          "parts": 43,
+          "ok": true,
+          "fixedPartChecks": 138,
+          "id": "spring_coil",
+          "queueChecks": 4,
+          "fixedParts": 1,
+          "cornerChecks": 42656,
+          "failures": [],
+          "duration": 1.02,
+          "reducedPartChecks": 1075
+        },
+        "16": {
+          "failureCount": 0,
+          "index": 68,
+          "rootPartChecks": 210,
+          "reducedMaximumScale": 1.0399785560820123,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.6512359780970166,
+              "queuePlayed": true,
+              "cornerChecks": 17360,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.6512359780970166,
+              "queuePlayed": true,
+              "cornerChecks": 17360,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 5250,
+          "restPartChecks": 700,
+          "parts": 35,
+          "ok": true,
+          "fixedPartChecks": 3588,
+          "id": "storm_clock",
+          "queueChecks": 4,
+          "fixedParts": 26,
+          "cornerChecks": 34720,
+          "failures": [],
+          "duration": 1.44,
+          "reducedPartChecks": 875
+        },
+        "17": {
+          "failureCount": 0,
+          "index": 69,
+          "rootPartChecks": 168,
+          "reducedMaximumScale": 1.0399785380704976,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.5598133688696857,
+              "queuePlayed": true,
+              "cornerChecks": 13888,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.5598133688696857,
+              "queuePlayed": true,
+              "cornerChecks": 13888,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 4200,
+          "restPartChecks": 560,
+          "parts": 28,
+          "ok": true,
+          "fixedPartChecks": 552,
+          "id": "stream_wheel",
+          "queueChecks": 4,
+          "fixedParts": 4,
+          "cornerChecks": 27776,
+          "failures": [],
+          "duration": 1.38,
+          "reducedPartChecks": 700
+        },
+        "18": {
+          "failureCount": 0,
+          "index": 70,
+          "rootPartChecks": 330,
+          "reducedMaximumScale": 1.0399785457688402,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.5330995720910426,
+              "queuePlayed": true,
+              "cornerChecks": 27280,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.5330995720910426,
+              "queuePlayed": true,
+              "cornerChecks": 27280,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 8250,
+          "restPartChecks": 1100,
+          "parts": 55,
+          "ok": true,
+          "fixedPartChecks": 0,
+          "id": "sun_koi",
+          "queueChecks": 4,
+          "fixedParts": 0,
+          "cornerChecks": 54560,
+          "failures": [],
+          "duration": 1.62,
+          "reducedPartChecks": 1375
+        },
+        "19": {
+          "failureCount": 0,
+          "index": 71,
+          "rootPartChecks": 186,
+          "reducedMaximumScale": 1.0399785560820123,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.5462147444368913,
+              "queuePlayed": true,
+              "cornerChecks": 15376,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.5462147444368913,
+              "queuePlayed": true,
+              "cornerChecks": 15376,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 4650,
+          "restPartChecks": 620,
+          "parts": 31,
+          "ok": true,
+          "fixedPartChecks": 552,
+          "id": "survey_lens",
+          "queueChecks": 4,
+          "fixedParts": 4,
+          "cornerChecks": 30752,
+          "failures": [],
+          "duration": 1.2,
+          "reducedPartChecks": 775
+        },
+        "20": {
+          "failureCount": 0,
+          "index": 72,
+          "rootPartChecks": 204,
+          "reducedMaximumScale": 1.0399785454795165,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.7700249553832212,
+              "queuePlayed": true,
+              "cornerChecks": 17856,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.7700249553832212,
+              "queuePlayed": true,
+              "cornerChecks": 17856,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 5100,
+          "restPartChecks": 680,
+          "parts": 34,
+          "ok": true,
+          "fixedPartChecks": 690,
+          "id": "tailwind",
+          "queueChecks": 4,
+          "fixedParts": 5,
+          "cornerChecks": 35712,
+          "failures": [],
+          "duration": 1.18,
+          "reducedPartChecks": 850
+        },
+        "21": {
+          "failureCount": 0,
+          "index": 73,
+          "rootPartChecks": 144,
+          "reducedMaximumScale": 1.0399785560820123,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.4784075385450363,
+              "queuePlayed": true,
+              "cornerChecks": 11904,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.5515681953674498,
+              "queuePlayed": true,
+              "cornerChecks": 11904,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 3600,
+          "restPartChecks": 480,
+          "parts": 24,
+          "ok": true,
+          "fixedPartChecks": 2760,
+          "id": "tap_driver",
+          "queueChecks": 4,
+          "fixedParts": 20,
+          "cornerChecks": 23808,
+          "failures": [],
+          "duration": 0.84,
+          "reducedPartChecks": 600
+        },
+        "22": {
+          "failureCount": 0,
+          "index": 74,
+          "rootPartChecks": 858,
+          "reducedMaximumScale": 1.0399785389215357,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.6433023158214644,
+              "queuePlayed": true,
+              "cornerChecks": 70928,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.6433023158214644,
+              "queuePlayed": true,
+              "cornerChecks": 70928,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 21450,
+          "restPartChecks": 2860,
+          "parts": 143,
+          "ok": true,
+          "fixedPartChecks": 2622,
+          "id": "tidal_engine",
+          "queueChecks": 4,
+          "fixedParts": 19,
+          "cornerChecks": 141856,
+          "failures": [],
+          "duration": 1.4,
+          "reducedPartChecks": 3575
+        },
+        "23": {
+          "failureCount": 0,
+          "index": 75,
+          "rootPartChecks": 474,
+          "reducedMaximumScale": 1.0399785389215357,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.5803905574211066,
+              "queuePlayed": true,
+              "cornerChecks": 39184,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.5803905574211066,
+              "queuePlayed": true,
+              "cornerChecks": 39184,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 11850,
+          "restPartChecks": 1580,
+          "parts": 79,
+          "ok": true,
+          "fixedPartChecks": 2346,
+          "id": "tide_gyroscope",
+          "queueChecks": 4,
+          "fixedParts": 17,
+          "cornerChecks": 78368,
+          "failures": [],
+          "duration": 1.66,
+          "reducedPartChecks": 1975
+        },
+        "24": {
+          "failureCount": 0,
+          "index": 76,
+          "rootPartChecks": 144,
+          "reducedMaximumScale": 1.0399785504110801,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.5841504650849169,
+              "queuePlayed": true,
+              "cornerChecks": 11904,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.5841504650849169,
+              "queuePlayed": true,
+              "cornerChecks": 11904,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 3600,
+          "restPartChecks": 480,
+          "parts": 24,
+          "ok": true,
+          "fixedPartChecks": 690,
+          "id": "tide_valve",
+          "queueChecks": 4,
+          "fixedParts": 5,
+          "cornerChecks": 23808,
+          "failures": [],
+          "duration": 1.3,
+          "reducedPartChecks": 600
+        },
+        "25": {
+          "failureCount": 0,
+          "index": 77,
+          "rootPartChecks": 180,
+          "reducedMaximumScale": 1.0399785560820123,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.5698070734023554,
+              "queuePlayed": true,
+              "cornerChecks": 14880,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.5698070734023554,
+              "queuePlayed": true,
+              "cornerChecks": 14880,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 4500,
+          "restPartChecks": 600,
+          "parts": 30,
+          "ok": true,
+          "fixedPartChecks": 3450,
+          "id": "tuning_oil",
+          "queueChecks": 4,
+          "fixedParts": 25,
+          "cornerChecks": 29760,
+          "failures": [],
+          "duration": 1.32,
+          "reducedPartChecks": 750
+        },
+        "26": {
+          "failureCount": 0,
+          "index": 78,
+          "rootPartChecks": 168,
+          "reducedMaximumScale": 1.0399785394888945,
+          "previews": {
+            "1": {
+              "maximumFrustumRatio": 0.6366531647928898,
+              "queuePlayed": true,
+              "cornerChecks": 13888,
+              "height": 112,
+              "width": 160
+            },
+            "2": {
+              "maximumFrustumRatio": 0.6366531647928898,
+              "queuePlayed": true,
+              "cornerChecks": 13888,
+              "height": 260,
+              "width": 300
+            }
+          },
+          "finitePartChecks": 4200,
+          "restPartChecks": 560,
+          "parts": 28,
+          "ok": true,
+          "fixedPartChecks": 2484,
+          "id": "wall_meter",
+          "queueChecks": 4,
+          "fixedParts": 18,
+          "cornerChecks": 27776,
+          "failures": [],
+          "duration": 0.92,
+          "reducedPartChecks": 700
+        }
+      },
+      "previewSizes": {
+        "1": {
+          "1": 160,
+          "2": 112
+        },
+        "2": {
+          "1": 300,
+          "2": 260
+        }
+      },
+      "cyclesPerStrength": 3,
+      "phaseSteps": 24,
+      "failures": [],
+      "schema": 1,
+      "elapsedSeconds": 3.8109433999998146
+    }
+  ]
+}

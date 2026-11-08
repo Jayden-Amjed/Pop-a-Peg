@@ -1,0 +1,86 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "models": 78,
+  "mesh_parts": 477,
+  "triangles": 124332,
+  "owner_user_id": "583716264",
+  "uploads": {
+    "batches": 10,
+    "new_models": 75,
+    "new_mesh_parts": 452,
+    "new_mesh_ids": 452,
+    "shared_mesh_id_occurrences": 0
+  },
+  "geometry": {
+    "unique_piece_geometry_signatures": 463,
+    "repeated_piece_signature_groups": 12,
+    "repeated_piece_occurrences_beyond_first": 14,
+    "repeated_piece_members": [
+      [
+        "aurora_aquarium/aurora_aquarium__Reeds_green_07",
+        "aurora_aquarium/aurora_aquarium__Reeds_green_08"
+      ],
+      [
+        "chest_legendary/chest_legendary__Fixed_dark_02",
+        "chest_uncommon/chest_uncommon__Fixed_dark_02"
+      ],
+      [
+        "chest_legendary/chest_legendary__ChestClasp_gold_03",
+        "chest_rare/chest_rare__ChestClasp_gold_04"
+      ],
+      [
+        "current_nexus/current_nexus__EvolvedPiston_gold_04",
+        "current_nexus/current_nexus__EvolvedPiston_gold_05"
+      ],
+      [
+        "growth_ring/growth_ring__Fixed_pearl_04",
+        "milestone/milestone__Fixed_pearl_04"
+      ],
+      [
+        "jumble/jumble__ShufflePeg_blue_01",
+        "jumble/jumble__ShufflePeg_green_03"
+      ],
+      [
+        "lagoon_synth/lagoon_synth__SynthKey_pearl_04",
+        "lagoon_synth/lagoon_synth__SynthKey_pearl_06"
+      ],
+      [
+        "metronome/metronome__Fixed_dark_02",
+        "milestone/milestone__Fixed_dark_01",
+        "ricochet/ricochet__Fixed_dark_02"
+      ],
+      [
+        "ocean_orchestra/ocean_orchestra__EvolvedFork_pearl_09",
+        "ocean_orchestra/ocean_orchestra__EvolvedFork_pearl_10"
+      ],
+      [
+        "pulse_cell/pulse_cell__ChargeBar_green_03",
+        "pulse_cell/pulse_cell__ChargeBar_green_04",
+        "pulse_cell/pulse_cell__ChargeBar_teal_06"
+      ],
+      [
+        "resonator/resonator__LeftFork_pearl_04",
+        "resonator/resonator__RightFork_pearl_05"
+      ],
+      [
+        "resonator/resonator__LeftFork_teal_06",
+        "resonator/resonator__RightFork_teal_07"
+      ]
+    ],
+    "unique_whole_model_signatures": 78,
+    "repeated_whole_model_groups": [],
+    "scope": "Exact audited local geometry hashes plus centered placement; shared pieces are reported, not treated as copy artifacts."
+  },
+  "runtime": {
+    "path": "art/catalog/CatalogAssets.rbxm",
+    "sha256": "f56fdf27a0efa6b4bf13067b543ca3cb449b50ae39787811ad42f02420f28a7a",
+    "bytes": 627008,
+    "binding": "verified against C:\\Users\\Amjedd\\Documents\\ChatGPT\\Pop a Peg\\.worktrees\\motion-life\\art\\catalog\\runtime-artifacts.json"
+  },
+  "limits": [
+    "Archived upload evidence only; no current Roblox asset query or remote mesh-byte rehash.",
+    "Closed/finite topology records are verified against pinned source/export bytes; no Blender topology recomputation.",
+    "A runtime file hash alone does not prove its contained instances match the upload receipts."
+  ]
+}

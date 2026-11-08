@@ -1,0 +1,87 @@
+{
+  "source": "1533ae542ed948396070f0186e819fb79599a8a4",
+  "normalization": "CRLF to LF; UTF-8 DJB2 modulo2^32 plus byte length; verification only, not a cryptographic asset hash",
+  "disk": {
+    "motion.Nature": {
+      "bytes": 46532,
+      "hash": 441934889
+    },
+    "ItemChoreography": {
+      "bytes": 1428,
+      "hash": 2211261593
+    },
+    "motion.Curves": {
+      "bytes": 912,
+      "hash": 983285944
+    },
+    "ItemModels": {
+      "bytes": 89893,
+      "hash": 3234645945
+    },
+    "motion.Rewards": {
+      "bytes": 22214,
+      "hash": 382947349
+    },
+    "CatalogMotion": {
+      "bytes": 5597,
+      "hash": 983277026
+    },
+    "motion.Mechanical": {
+      "bytes": 25976,
+      "hash": 3454682221
+    },
+    "NativeAssemblies": {
+      "bytes": 6862,
+      "hash": 4111360887
+    },
+    "ItemMotion": {
+      "bytes": 37370,
+      "hash": 3700010699
+    }
+  },
+  "studio": {
+    "motion.Nature": {
+      "bytes": 46532,
+      "hash": 441934889
+    },
+    "CatalogMotion": {
+      "bytes": 5597,
+      "hash": 983277026
+    },
+    "NativeAssemblies": {
+      "bytes": 6862,
+      "hash": 4111360887
+    },
+    "motion.Rewards": {
+      "bytes": 22214,
+      "hash": 382947349
+    },
+    "motion.Curves": {
+      "bytes": 912,
+      "hash": 983285944
+    },
+    "ItemChoreography": {
+      "bytes": 1428,
+      "hash": 2211261593
+    },
+    "motion.Mechanical": {
+      "bytes": 25976,
+      "hash": 3454682221
+    },
+    "ItemMotion": {
+      "bytes": 37370,
+      "hash": 3700010699
+    },
+    "ItemModels": {
+      "bytes": 89893,
+      "hash": 3234645945
+    }
+  },
+  "matched": true,
+  "finalInspector": {
+    "profile": "3184 triangles  •  7 mesh pieces  •  wave-spring-launch",
+    "failures": "",
+    "source": "aeb64c252ef4e3d29a7cd9d63a1aee9e8ed78360",
+    "ready": true
+  }
+}

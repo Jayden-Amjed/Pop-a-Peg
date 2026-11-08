@@ -81,7 +81,9 @@ that belong to a device are fine.
 ## Motion and runtime contract
 
 Idle follows the shared bounded figure eight in `ItemMotion`; do not add a full
-spin or a second competing hover loop. Activation freezes that idle pose, performs
+idle spin or a second competing hover loop. Completed full turns are encouraged
+during activation where they suit the object. Follow the
+[individual activation direction](ITEM_ANIMATION_GUIDE.md). Activation freezes that idle pose, performs
 the item's action, returns every articulated part to rest and resumes smoothly.
 Check rest, quarter, half, three-quarter and end poses plus repeated activations.
 Coils compress along their axis; clock hands rotate about their hub; lids open

@@ -370,7 +370,7 @@ return function(options)
                             moved[part] = true
                             result.movedGroups[original.group] = true
                         end
-                        if t == 0 or t == 1 or original.group == "Fixed" then
+                        if t == 0 or t == 1 then
                             expect(
                                 sameFrame(relativeFrame, original.frame),
                                 "Rest/fixed transform drift"
@@ -405,8 +405,28 @@ return function(options)
                     and not issueSet["Rest/fixed color drift"]
                 local samples = {}
                 motion:apply(0.37, 2, CFrame.new())
-                for part in baseline do
+                local body = require(libraries.ItemMotion).bodySample(id, 0.37, 2)
+                local size = motion.restSize
+                local bodyFrame = CFrame.new(body.x * size.X, body.y * size.Y, body.z * size.Z)
+                    * CFrame.Angles(body.rx, body.ry, body.rz)
+                for part, original in baseline do
                     samples[part] = { part.CFrame, part.Size, part.Color }
+                    if original.group == "Fixed" then
+                        expect(
+                            sameFrame(
+                                part.CFrame,
+                                bodyFrame
+                                    * CFrame.new(original.frame.Position * body.scale)
+                                    * original.frame.Rotation
+                            ),
+                            "Fixed housing did not follow coherent body motion"
+                        )
+                        expect(
+                            (part.Size - original.size * body.scale).Magnitude < 0.00002,
+                            "Fixed housing did not scale with body"
+                        )
+                        expect(sameColor(part.Color, original.color), "Fixed housing color changed")
+                    end
                 end
                 motion:apply(0.37, 2, rootPose)
                 for part, original in samples do

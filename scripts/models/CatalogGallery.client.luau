@@ -422,7 +422,7 @@ local function changeSelection(id, preservePlayback)
             "%s triangles  •  %s mesh pieces  •  %s",
             tostring(source:GetAttribute("TriangleCount") or "?"),
             tostring(source:GetAttribute("PartCount") or #source:GetChildren()),
-            tostring(source:GetAttribute("MotionProfile") or "activation")
+            tostring(ItemMotion.Profiles[id].name)
         )
         gui:SetAttribute("LoadedCount", loadedCount)
         gui:SetAttribute("MountedModels", #mounts)
