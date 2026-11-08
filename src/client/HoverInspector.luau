@@ -8,15 +8,12 @@ local Inspector = {}
 Inspector.__index = Inspector
 
 function Inspector.new(host)
-    local self = setmetatable(
-        {
-            host = host,
-            effectLabels = {},
-            pairs = {},
-            resolvers = setmetatable({}, { __mode = "k" }),
-        },
-        Inspector
-    )
+    local self = setmetatable({
+        host = host,
+        effectLabels = {},
+        pairs = {},
+        resolvers = setmetatable({}, { __mode = "k" }),
+    }, Inspector)
     local panel = Theme.plate(host.root, "HoverStats", C.paper, 80)
     panel:SetAttribute("BlocksAim", true)
     panel.Visible = false
@@ -226,7 +223,16 @@ function Inspector:step()
         self:hide()
     end
     if self.panel.Visible then
-        if self.anchor and not self.anchor.Parent then
+        local visible = true
+        local parent = self.anchor
+        while parent and parent ~= self.host.root do
+            if parent:IsA("GuiObject") and not parent.Visible then
+                visible = false
+                break
+            end
+            parent = parent.Parent
+        end
+        if self.anchor and (not self.anchor.Parent or not visible) then
             self:hide()
         else
             self:_position()

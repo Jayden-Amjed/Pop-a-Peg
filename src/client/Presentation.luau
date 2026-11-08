@@ -1306,6 +1306,11 @@ function Presentation:_buildShop(state)
         trigger.TextXAlignment = Enum.TextXAlignment.Center
         trigger.Visible = triggerH > 0
         setRect(trigger, 5, modelH + nameH + 4, rect.w - 16, triggerH)
+        if short and bandH < 70 then
+            local side = math.max(20, math.min(36, bandH - 2))
+            setRect(model, 1, (bandH - side) / 2, side, side)
+            setRect(name, side + 5, 0, rect.w - side - 14, bandH)
+        end
         local synergy = frame(card, "Synergy", nil, 28)
         synergy.BackgroundTransparency = 1
         place(synergy, positions.synergy)
