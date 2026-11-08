@@ -1,7 +1,7 @@
 # RBX-015 — Hub progression, leaderboards and mobile polish
 
 - Owner: Codex coordinator; backend, content and model contributors in isolated worktrees.
-- Status: READY FOR REVIEW
+- Status: MERGED
 - Starting main: 9d516120dc4c925061c444f713fb3b40719e1688 (refetched unchanged)
 - Implementation: b8329c800762f3d238f5d535261ab09cbdb18312
 - Branch: task/RBX-015-hub-progression
@@ -23,7 +23,7 @@ motion; another polish pass with clean mobile UI.
 - [x] Native phone portrait/landscape shop, choices, hub and progression inspection.
 - [x] Local rules/persistence/layout checks, native ordinary gameplay and eight-client checks.
 - [x] Updated onboarding, overview, assets and Studio procedures.
-- [ ] Verified main integration and completion receipt.
+- [x] Verified main integration and completion receipt.
 
 No products, purchase prompts, paid chests or production publication. Robux means
 spending in this experience, not account-wide spending. No purchase processor exists;
@@ -129,6 +129,15 @@ verified visibility. Unrelated asset 203785492 warning remains. Presentation-onl
 fixture briefly had no State listener, causing a test-only queue warning; normal
 client was restored and multiplayer used the real listener.
 
+## Acceptance receipt
+
+PR CI 42505170201 passed at 6aaa98e8c5c82e52635042d93b315b790ddcb8a3.
+GitHub confirmed PR #16 merged at 2026-11-08T17:29:46Z with merge commit
+59117cdce8029ff8c7f5573e017ec13737445d4a. Fetched origin/main and fast-forwarded
+the integration checkout to that exact merge. This bounded documentation receipt
+records acceptance; State Version advances once from 7 to 8. Production remains
+NOT PUBLISHED and no monetization was added.
+
 ## Handoff
 
 - Owner: Codex coordinator.
@@ -136,8 +145,8 @@ client was restored and multiplayer used the real listener.
 - Studio: target above, Edit, both normal Main scripts enabled; no QA scripts; Rojo disconnected.
 - Build: build/peg-progression.rbxlx.
 - SHA256: B800D286088FA0F0AB70FD9EDD039D963A7702E5C139853FC6BA647D8F80E036.
-- Accepted State Version: 7. Proposed next material state: 8; fetched predecessor unchanged.
-- Blockers: none. Final PR CI and authorized main integration pending.
+- Accepted State Version: 8, from predecessor 7 through PR #16.
+- Blockers: none. PR CI and authorized main integration confirmed.
 - Published: NOT PUBLISHED.
-- Next action: push the implementation/evidence, pass CI, merge PR #16, record GitHub's
-  actual merge identity in one bounded completion receipt.
+- Next action: human playtest the generated build; verify production storage and configure
+  Max Players = 8 when a production target is selected.

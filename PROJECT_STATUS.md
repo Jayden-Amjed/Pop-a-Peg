@@ -1,14 +1,14 @@
 # Current project state
 
-State Version: 8 (proposal: earned hub progression and mobile polish)
+State Version: 8 (accepted earned hub progression and mobile polish)
 Reviewed: 2026-11-08, America/Los_Angeles
 Objective: Connect runs to tiered hub chests and equipment discoveries, add arcade rankings, and make phone play usable.
 
-Accepted source: 9d516120dc4c925061c444f713fb3b40719e1688, predecessor at State Version 7.
+Accepted source: 59117cdce8029ff8c7f5573e017ec13737445d4a (PR #16 merged into main).
 Implementation: b8329c800762f3d238f5d535261ab09cbdb18312.
-Active task: [RBX-015](tasks/RBX-015-hub-progression.md), Codex coordinator.
+Completed task: [RBX-015](tasks/RBX-015-hub-progression.md), Codex coordinator.
 Branch: task/RBX-015-hub-progression; [PR #16](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/16).
-Main: fetched again and unchanged; acceptance awaits PR CI and merge.
+Main: GitHub confirmed merge; fetched checkout matches. State advanced once from accepted version 7.
 
 | Capability | Verified state |
 | --- | --- |
@@ -31,7 +31,7 @@ scripts removed. Local PlaceId/GameId are 0.
 Playable output: build/peg-progression.rbxlx in the progression-hub worktree.
 Build SHA256: B800D286088FA0F0AB70FD9EDD039D963A7702E5C139853FC6BA647D8F80E036.
 
-Blockers: none. Final PR CI/merge pending.
+Blockers: none. PR CI 42505170201 passed at 6aaa98e8c5c82e52635042d93b315b790ddcb8a3.
 Unrun: physical touch/gamepad, production DataStore/OrderedDataStore, live plugin sync, publication.
 Limits: native emulator and eight Studio clients do not establish physical-device
 performance. New content still needs human long-run tuning. MCP captures sometimes
@@ -39,5 +39,5 @@ omit peg labels or model previews; native window captures verified them. Unrelat
 203785492 asset warning remains.
 Monetization: no products, prompts, paid chests or receipt processor; Robux board is honestly empty.
 Published: NOT PUBLISHED; no production experience/place selected.
-Next action: pass PR CI, merge the authorized task, record acceptance once, then human playtest the generated build.
+Next action: human playtest build/peg-progression.rbxlx; validate production storage and set Max Players = 8 when a publishing target is chosen.
 Repository administration: main unprotected; temporary default remains starter branch.
