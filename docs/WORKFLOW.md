@@ -132,8 +132,8 @@ syncback operation to resolve conflicts without inspection.
 
 Verify this sequence in the task: local script edit appears in Studio; exported
 module returns to the intended file; the branch transition below preserves work.
-During Play, expected Output is `[Pop a Peg] Independent run service ready` and
-`[Pop a Peg] Board controls ready`, with no game errors. Record actual output
+During Play, expected Output is `[Pop a Peg] Eight-player aquarium arcade ready` and
+`[Pop a Peg] Arcade and board controls ready`, with no game errors. Record actual output
 and its server/client context rather than merely copying this expectation.
 For multiplayer changes, run a local server with at least two clients and record
 server/client observations. Builds alone do not establish any of these checks.

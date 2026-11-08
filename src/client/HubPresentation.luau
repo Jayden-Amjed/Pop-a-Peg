@@ -9,6 +9,7 @@ local Format = require(Shared.Format)
 local Theme = require(script.Parent.UiTheme)
 local ItemModels = require(script.Parent.ItemModels)
 local Layout = require(script.Parent.HubLayout)
+local HubAmbience = require(script.Parent.HubAmbience)
 local C = Theme.colors
 local Hub = {}
 Hub.__index = Hub
@@ -440,7 +441,7 @@ function Hub.new(onAction)
         ResetOnSpawn = false,
         IgnoreGuiInset = false,
         DisplayOrder = 10,
-        ZIndexBehavior = Enum.ZIndexBehavior.Sibling,
+        ZIndexBehavior = Enum.ZIndexBehavior.Global,
     }, Players.LocalPlayer:WaitForChild("PlayerGui"))
     self.root = Theme.frame(self.gui, "Root", C.paper, 1)
     self.root.Size = UDim2.fromScale(1, 1)
@@ -585,6 +586,28 @@ function Hub:step(dt)
     if self.destroyed then
         return
     end
+    if Players.LocalPlayer:GetAttribute("ReducedMotionEnabled") ~= true then
+        if not self.ambience then
+            self.ambienceRetry = (self.ambienceRetry or 0) + dt
+            if self.ambienceRetry >= 0.5 then
+                self.ambienceRetry = 0
+                local world = workspace:FindFirstChild("AquariumArcade")
+                if world then
+                    local ambience = HubAmbience.new(world)
+                    if #ambience.groups == 10 then
+                        self.ambience = ambience
+                    else
+                        ambience:destroy()
+                    end
+                end
+            end
+        else
+            self.ambience:step(dt)
+        end
+    elseif self.ambience then
+        self.ambience:destroy()
+        self.ambience = nil
+    end
     if self.root.AbsoluteSize ~= self.size then
         self:_layout()
     end
@@ -608,6 +631,9 @@ function Hub:destroy()
         return
     end
     self.destroyed = true
+    if self.ambience then
+        self.ambience:destroy()
+    end
     for _, connection in self.connections do
         connection:Disconnect()
     end

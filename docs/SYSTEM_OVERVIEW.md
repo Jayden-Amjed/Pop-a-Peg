@@ -1,9 +1,11 @@
 # System overview
 
-Each player has a server-owned run and a locally rendered 3D board. The client
+An eight-player aquarium arcade connects each player's server-owned run to a
+locally rendered 3D board. The client
 aims and requests actions; the server simulates every bounce, scores every pop,
 and chooses all upgrade offers. Native parts and GUI elements restore the complete
-visual presentation without external models, images, or avatar assets. Short
+visual presentation without external models or images. Standard Roblox avatars
+walk through the shared hub. Short
 sound cues use public Roblox audio IDs documented in [Asset sources](ASSETS.md).
 
 ## Mapping and trust
@@ -11,8 +13,14 @@ sound cues use public Roblox audio IDs documented in [Asset sources](ASSETS.md).
 | Source | Studio destination | Instance type / responsibility |
 | --- | --- | --- |
 | `src/server/Main.server.luau` | `ServerScriptService.Server.Main` | `Script`; authoritative server work. |
+| `src/server/ArcadeSessions.luau` | `ServerScriptService.Server.ArcadeSessions` | Pure eight-station allocation, private runs, pause/resume, roster and record capture. |
+| `src/server/HubWorld.luau` | `ServerScriptService.Server.HubWorld` | Original walkable aquarium arcade, cabinets, prompts and occupancy screens. |
 | `src/client/Main.client.luau` | `StarterPlayer.StarterPlayerScripts.Client.Main` | `LocalScript`; copied into each player's `PlayerScripts`. |
+| `src/client/HubPresentation.luau` | `StarterPlayer.StarterPlayerScripts.Client.HubPresentation` | Hub navigation, collection, records, roster and preview cleanup. |
+| `src/client/HubLayout.luau` | `StarterPlayer.StarterPlayerScripts.Client.HubLayout` | Responsive hub panel and gallery geometry. |
+| `src/client/HubAmbience.luau` | `StarterPlayer.StarterPlayerScripts.Client.HubAmbience` | Local fish and bubble motion with rest-pose restoration. |
 | `src/shared/` | `ReplicatedStorage.Shared` | Modules for board rules, deterministic physics, progression, catalog, profiles, number formatting, and reward timelines. |
+| `src/shared/RestockCurve.luau` | `ReplicatedStorage.Shared.RestockCurve` | Shared successive restock costs, stage limits and meter progress. |
 | `src/shared/Stages.luau` | `ReplicatedStorage.Shared.Stages` | Pure consecutive level goals and successful-clear descriptors. |
 | `src/client/Presentation.luau` | `StarterPlayer.StarterPlayerScripts.Client.Presentation` | Local camera, board, responsive controls, counters, and menus. |
 | `src/client/BoardArt.luau` | `StarterPlayer.StarterPlayerScripts.Client.BoardArt` | Original pearl/aqua enclosure and attached settlement monitor, separate from collision rules. |
@@ -44,6 +52,36 @@ indices, balances, and aim values. The client never supplies score or inventory.
 `PegRemotes.State` sends snapshots only to the owning player. Shared modules are
 not shared mutable memory across client and server.
 
+## Arcade and player lifecycle
+
+`ArcadeSessions` reserves one of eight stations before profile/character loading
+yields. A join starts in the hub with no run. `startRun` creates a private `Run`,
+or resumes the same instance; `enterHub` captures records and pauses it. Flight
+and settlement cannot be parked. Victory remains resumable so Endless is available;
+a lost run starts fresh. `runId` changes only when the session replaces a Run.
+Departure frees the station and saves records, not the unfinished run. Roster
+snapshots expose station/name/mode/round/record, never another player's inventory.
+
+`Main.server` loads walking avatars, disables avatar-to-avatar collisions, anchors
+them at their assigned cabinets during runs, and restores movement on hub return.
+Character respawns and delayed loads reapply the current mode. Cabinet prompts
+validate ownership and distance. The Play button is also available from anywhere
+in the hub. Overflow joins are rejected; a published place should also configure
+Max Players = 8 through Creator Dashboard. That setting is not changed by source.
+
+`HubWorld` places 820 original parts around a separate world center at Z=1000,
+away from local board geometry. Eight cabinets surround a central aquarium, with
+seating, plants, gallery and record stations. `HubAmbience` moves 65 parts in ten
+fish/bubble groups on the client, only while the hub is mounted; reduced motion
+disables it, and destruction restores all poses and transparency.
+
+Client Main mounts either hub or board presentation, restores Custom/Humanoid
+camera and walking controls in the hub, and uses the fixed Scriptable camera during
+runs. Completed reward receipt identities survive hub visits to prevent replay;
+new run identities reset that cache. Collection models page through 13 evolutions,
+show their ingredients/effects and use persisted discovery IDs. Hub navigation and
+world kiosk prompts share the same collection/records panels. No payment flow exists.
+
 ## Run rules
 
 `Board` owns the 21 values, quota calculation, single pop, refill, and disjoint
@@ -54,8 +92,10 @@ preview uses the same rule without mutating live values.
 shops/perks/events, and endless progression. Seeded RNG makes mechanics testable
 without Studio. A shot's active values are separate from the next-round baseline.
 
-There are five total balls, with one spent on launch. Each full score quota earns
-one restock; at shot end it awards a coin and restores one ball up to the five-ball
+There are five total balls, with one spent on launch. `RestockCurve` awards the first
+restock at the round quota, then doubles each successive cost. Total thresholds
+are 1, 3, 7, 15 and so on times the quota. Stage caps are 6 restocks through round 15,
+8 through 40, 10 through 65, then 12. At shot end each awards a coin and restores one ball up to the five-ball
 cap. Zero balls after settlement ends the run. Each attempt starts with zero score
 and the baseline board. Successful settlement restores that baseline, fills empty
 slots, and merges disjoint equal pairs once per earned restock. A board clear
@@ -117,13 +157,22 @@ Goldfish doubles the lowest live peg every six pops; Fishbowl pops the highest p
 every three doubles. Their upgrades increase output. Fishbowl enters the catalog
 pool through the round-10 growth unlock. Other families connect doubles to Reef
 Chime, halves to Pearl Scale, and neighboring slots through Current Relay and Echo
-Shell. The queue processes up to 32 activations per slice. Direct relay chains
-carry a depth budget tied to the unlocked slot count; coalescing preserves distinct
-depths and evolved trigger channels. A shared limit of 4,096 item/perk activations
+Shell. The queue processes up to 32 activations per slice. Queued signals retain
+their causal ancestry: an item/perk cannot activate again through descendants of
+its own activation. Fresh physical hits start fresh chains. Evolved channels have
+separate identities, preserving combinations across their original triggers.
+Direct relay chains carry a depth budget tied to the unlocked slot count;
+coalescing preserves causal traces, depths and evolved trigger channels.
+A shared limit of 4,096 item/perk activations
 per shot also bounds branching cascades. Reaching it emits one `chainLimit` event
 (**OVERDRIVE COMPLETE**), discards pending activations and prevents further ones
 until the next shot. Ball physics and manual End Shot continue normally, and a
 drained ball can settle instead of waiting through millions of relay activations.
+
+Direct score bonuses use the current round quota per item level: Shore Meter 8%,
+Landing Shell 15%, Dew Cell 3%, and Quota Bonus 5%. Their descriptions derive from
+the same catalog operations. Quota Bonus cannot repeatedly trigger its own quota
+crossings; the shared curve also governs authoritative rewards and displayed meters.
 
 The client and server share `Catalog.purchaseState(inventory, slots, offer, coins)`.
 It returns the purchase action, eligibility, target slot/level, price, and rejection
@@ -195,9 +244,9 @@ as their trigger and **Use** only on the purchase button.
 
 ## Feedback and settlement
 
-`CounterProgress` bounds quota layers before indexing their colors. It uses a
-bounded score/quota ratio below the restock cap and shows a full meter at the cap,
-avoiding huge-number modulo errors. Boss quotas stay within the numerical score
+`CounterProgress` reads the same `RestockCurve` as the server, bounds palette
+indices, and shows the next restock cost, earned/maximum count and a full meter
+at the cap. It avoids huge-number modulo errors. Boss quotas stay within the numerical score
 ceiling, including fully grown boards.
 
 Snapshots carry authoritative totals, a bounded recent event list, and a durable
@@ -216,7 +265,7 @@ can also clear its display when the player clicks the shop's Next Round button.
 
 The receipt records the spent shot board, restored baseline, refill/merge
 transitions, final board, and before/after reward balances. `Run` processes at most
-32 restocks per settlement slice and caps a shot at 10,000 restocks. Receipts keep
+32 restocks per settlement slice, with a stage-dependent shot cap of 6–12. Receipts keep
 every cycle through eight restocks; larger settlements retain the first three and
 last two, with cycle indices preserving the omitted count.
 
@@ -288,6 +337,8 @@ item-audio work. Asset IDs, creators, and restoration requirements live in
 ## Records across runs
 
 Only best score, best round, and a set of catalog/level unlocks cross the run boundary.
+Evolving records the result's catalog ID as a discovery for the hub collection.
+Existing record data is retained; no currency or permanent scoring power is added.
 `Profile` validates these fields and combines concurrent saves monotonically.
 Coins, board values, items, perks, and scoring power are deliberately excluded.
 `ProfileStore` uses `PopAPeg_Records_v1` only in a published non-Studio session;
