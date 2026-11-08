@@ -37,6 +37,7 @@ try {
         @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/ItemMotion'; Class = 'ModuleScript'; Source = 'src/client/ItemMotion.luau' },
         @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/InventorySelection'; Class = 'ModuleScript'; Source = 'src/client/InventorySelection.luau' },
         @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/ShopLayout'; Class = 'ModuleScript'; Source = 'src/client/ShopLayout.luau' },
+        @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/ChoiceLayout'; Class = 'ModuleScript'; Source = 'src/client/ChoiceLayout.luau' },
         @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/UiTheme'; Class = 'ModuleScript'; Source = 'src/client/UiTheme.luau' },
         @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/SoundEffects'; Class = 'ModuleScript'; Source = 'src/client/SoundEffects.luau' },
         @{ Path = 'ReplicatedStorage/Shared/RewardTimeline'; Class = 'ModuleScript'; Source = 'src/shared/RewardTimeline.luau' },
