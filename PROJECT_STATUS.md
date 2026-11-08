@@ -1,41 +1,44 @@
 # Current project state
 
-State Version: 5 (accepted full-rack shop revision)
+State Version: 6 (proposed aquarium arcade and progression balance; accepted predecessor 5)
 Reviewed: 2026-11-08, America/Los_Angeles
-Objective: Guarantee two useful upgrades in full-rack shops while preserving holds, random offers and evolution access.
+Objective: Deliver a shared eight-player aquarium arcade with independent runs and prevent early runaway restock loops.
 
-Accepted source: a896e56a91041d6f8aaea9c7cefa19439a0897b5 (PR #10 merged into main).
-Implementation: a34b8e57c1a0648294de72d07a42496d37f75daa.
-Completed task: [RBX-009](tasks/RBX-009-full-rack-shop.md), Codex coordinator.
-Branch: task/RBX-009-full-rack-shop; [PR #10](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/10).
+Accepted source: ad313f065c14c23ba67b2223424a8670ce9d2dc0 (predecessor).
+Implementation: 131d04598e3162c747e7e3dc3a19fb34f0b05dc2.
+Active task: [RBX-011](tasks/RBX-011-arcade-balance.md), Codex coordinator.
+Branch: task/RBX-011-arcade-balance; [PR #12](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/12).
+Main: NOT MERGED for this task; predecessor remains accepted until GitHub confirms integration.
 
 | Capability | Verified state |
 | --- | --- |
-| Equipment upgrades | Levels 1–5, one level per purchase/Supply/event; full racks supported |
-| Evolutions | 13 distinct recipes covering all 22 base items; two L5 ingredients combine atomically for no additional coins |
-| Evolved abilities | Both original L5 trigger channels and ordered operations preserved in one slot |
-| Shop | Full racks reserve two useful upgrades on opening/reroll; remaining offers roll normally; held prices and evolution access preserved; four equipment + at most two Supplies |
-| UI | Modeled equations and readiness labels; evolved/perk/Supply cards omit recipes; six responsive layouts, stable preview objects |
-| Stages | Clear 15, 40, 65, 100, then every 50; bosses at campaign goals; success-only completion and full goal indicators |
-| Models and motion | 52 native models, 13 unique evolved devices, five tiers; 260 variants tested with exact rest restoration |
-| Board | 235 original native parts; decorated attached monitor, unchanged collision/projection anchors |
-| Feedback | 46 motifs; dense bursts/beams/ribbons; 184 decorative / 240 total FX cap; reward delivery preserved |
-| Extreme builds | 4,096 activations per shot; huge-score meter and boss quota bounds; stress run advanced 41→42 at 5.46e107 score |
-| Local / Studio checks | Fourteen suites pass locally and in Studio; 13 new shop contracts covering 800 seeded rolls; server-runtime shop suite also passes; 21 exact source mappings |
-| Shop UI verification | Two native clicks upgrade a full seven-slot rack, levels 4→5 and 1→2, coins 90→81; reroll, one-upgrade-left and all-capped cases pass |
-| Production play | Normal restored client launches a server-owned shot with 34 state snapshots and no project errors; longer evolution playtest remains recorded in RBX-007 |
+| Arcade | Walkable original 820-part aquarium hub, eight cabinets, seven fish, gallery, records kiosk, seating and gardens |
+| Ambient motion | Ten client-local fish/bubble groups, 65 moving parts; reduced motion and exact cleanup |
+| Multiplayer | Eight native Studio clients received unique stations, played independently, returned/resumed and survived another player's departure |
+| Run lifecycle | Hub-first join, private runs, safe pause/resume between shots, victory preserves Endless, lost runs reset power |
+| Hub UI | Play/Resume, collection with modeled evolution recipes, personal records and eight-player roster; six responsive layouts |
+| Balance | Causal ancestry blocks self-triggering loops; direct score items scale with quota; stage caps 6/8/10/12 and progressively doubled restock costs |
+| Existing equipment | Levels 1–5, 13 distinct evolutions; full racks guarantee two useful upgrades when possible; four equipment + at most two Supplies |
+| Stages / presentation | Clear 15/40/65/100 then every 50; 52 item models, 235-part board, 46 motifs, bounded dense FX and white counter surfaces retained |
+| Local checks | 17 suites, Selene clean, Rojo build, 27 exact source mappings and documentation checks |
+| Studio checks | Affected balance/session/layout/counter suites; six UI transitions; collection interactions; eight native clients |
+| Gameplay sample | 38 shots across three live runs in 120.3 seconds, reached round 15, max one restock; no game errors |
+| Campaign sample | 30 legal seeded simulations: 25 clear round 40; max early restocks 2, total 3, activations 79; optimistic aim search, not human difficulty |
 
-Studio-tested source: a34b8e57c1a0648294de72d07a42496d37f75daa.
+Studio-tested source: 131d04598e3162c747e7e3dc3a19fb34f0b05dc2.
 Published: NOT PUBLISHED; no production experience/place selected.
-Playable output: build/peg-full-rack.rbxlx in the full-rack worktree.
-Studio target: isolated peg-aero-qa.rbxlx stopped in Edit; all 26 normal sources
-restored exactly, Rojo disconnected. User-owned Studio windows are untouched.
+Playable output: build/peg-arcade.rbxlx in the arcade worktree.
+Studio target: isolated peg-aero-qa; root sole operator; Rojo disconnected.
+The saved eight-client harness also passed on the final implementation. Studio is
+stopped in Edit with 32 normal sources and both temporary QA scripts removed.
 
-Blockers: none. Push CI 42460978053 and PR CI 42460982630 passed at 78246be728692fd57fc2eb0a245a5a21b24d7487; GitHub returned the merge receipt above and fetched main confirms it.
-Unrun: physical touch/gamepad, two clients, cloud persistence, live plugin sync, publication.
-Limits: device-specific FX performance and long-run balance need human playtesting.
-MCP captures can omit peg numbers; the unrelated 203785492 asset-type warning remains.
-Detailed tests, corrected QA observations and resolved failures are in the task.
-Next action: human playtest build/peg-full-rack.rbxlx; choose a hub concept before reserving a hub implementation task.
-Hub and monetization: researched proposals only; neither a lobby nor payments are implemented.
+Blockers: none. Final branch push, CI and merge receipt pending.
+Unrun: physical touch/gamepad, cloud persistence, live plugin sync, production publication.
+Limits: eight Studio clients do not measure eight-device performance; human long-run
+difficulty still needs playtesting. MCP captures can omit peg numbers; unrelated
+203785492 asset warning remains. Detailed evidence and resolved failures are in the task.
+Monetization: none.
+Next action: merge the verified PR, then open
+build/peg-arcade.rbxlx for human playtesting. Configure production Max Players = 8
+when a production target is chosen.
 Repository administration: main unprotected; temporary default remains starter branch.

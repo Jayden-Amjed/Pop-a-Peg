@@ -4,14 +4,17 @@ local Progress = if script
 
 return function()
     local function check(score, quota, expectedCount, capped)
-        local result = Progress.compute(score, quota, 10000, 5)
+        local result = Progress.compute(score, quota, 12, 5)
         assert(
             result.completed == expectedCount,
             "Displayed quota count differs from bounded count"
         )
         assert(result.capped == capped, "Restock cap state is incorrect")
         assert(result.fraction >= 0 and result.fraction <= 1, "Progress fill escaped its bounds")
-        assert(result.remainder >= 0 and result.remainder <= quota, "Progress remainder is invalid")
+        assert(
+            result.remainder >= 0 and result.remainder <= result.nextQuota,
+            "Progress remainder is invalid"
+        )
         assert(
             result.nextLayer >= 1 and result.nextLayer <= 5 and result.nextLayer % 1 == 0,
             "Next palette index is not a valid integer"
@@ -27,26 +30,32 @@ return function()
     local empty = check(0, 100, 0, false)
     assert(empty.fraction == 0 and empty.remainder == 0, "Empty score must show empty progress")
     local half = check(150, 100, 1, false)
-    assert(half.fraction == 0.5 and half.remainder == 50, "Ordinary score progress changed")
-    local exact = check(200, 100, 2, false)
+    assert(
+        half.fraction == 0.25 and half.remainder == 50 and half.nextQuota == 200,
+        "Next restock cost must double"
+    )
+    local exact = check(300, 100, 2, false)
     assert(exact.fraction == 0 and exact.remainder == 0, "Exact quota must start a fresh layer")
-    local below = check(999999, 100, 9999, false)
-    assert(math.abs(below.fraction - 0.99) < 1e-8, "Progress immediately below cap is incorrect")
-    for _, score in { 1000000, 1e107, 1e300, math.huge } do
-        local full = check(score, 100, 10000, true)
+    local below = check(409499, 100, 11, false)
+    assert(
+        below.fraction > 0.99999 and below.fraction < 1,
+        "Progress immediately below cap is incorrect"
+    )
+    for _, score in { 409500, 1e107, 1e300, math.huge } do
+        local full = check(score, 100, 12, true)
         assert(full.fraction == 1 and full.remainder == 0, "Capped progress must stay full")
     end
     local hugeQuota = 2 ^ 900
-    local precise = check(hugeQuota * 7, hugeQuota, 7, false)
+    local precise = check(hugeQuota * 7, hugeQuota, 3, false)
     assert(precise.fraction == 0, "Large exact quotas must remain stable below cap")
-    local partial = check(hugeQuota * 7.5, hugeQuota, 7, false)
+    local partial = check(hugeQuota * 11, hugeQuota, 3, false)
     assert(
-        partial.fraction == 0.5 and partial.remainder == hugeQuota * 0.5,
+        partial.fraction == 0.5 and partial.remainder == hugeQuota * 4,
         "Large partial quota must remain stable below cap"
     )
-    local custom = Progress.compute(999999999, 1, 17, 3)
+    local custom = Progress.compute(999999999, 1, 8, 3)
     assert(
-        custom.completed == 17 and custom.capped and custom.nextLayer == 3,
+        custom.completed == 8 and custom.capped and custom.nextLayer == 3,
         "Server-provided cap and palette count must be respected"
     )
     print(

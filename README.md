@@ -2,7 +2,8 @@
 
 A Roblox peg-bounce roguelike with a fixed front-view 3D board. Aim a ball through
 numbered pegs, meet the round quota, grow the board, and build combinations of
-run upgrades. Each player has an independent board and run.
+run upgrades. Up to eight players meet in an aquarium arcade, with an independent
+board and run for each player.
 
 Sources build reproducibly through Rojo. Roblox Studio MCP supports inspection
 and playtests; Git records reviewed implementation and verification evidence.
@@ -13,7 +14,7 @@ and playtests; Git records reviewed implementation and verification evidence.
 | --- | --- |
 | Vision | Turn one carefully aimed shot into satisfying chains of rising numbers. |
 | Intended player experience | Read the board, choose an angle, watch the bounce, then shape the next run upgrade. |
-| Milestone | Complete the round, shop, perk, loss, restart, and endless loop in Roblox. |
+| Milestone | Walk the eight-player arcade, start or resume an independent run, and complete the shop, perk, loss, restart, and endless loop. |
 | Success criteria | Playable 3D board with meaningful upgrade combinations, readable counters, reliable collisions, and isolated player state. |
 | Non-goals | Monetization, cooperative boards, production publishing, and permanent power purchases. |
 
@@ -59,7 +60,7 @@ output, runtime checks, and deliberate Studio-to-file return path.
 
 | Path | Responsibility |
 | --- | --- |
-| `src/server/` | Server-only scripts. |
+| `src/server/` | Station ownership, hub world, player lifecycle, authoritative runs, and record storage. |
 | `src/client/` | Sculpted board and attached status screen, responsive interface and hover cards, generated models, reward animation, and sound. |
 | `src/shared/` | Board, simulation, run rules, stages, catalog and evolution rules, feedback signatures, reward timeline, number formatting, and profiles. |
 | `tests/` | Numerical, progression, purchase/evolution, stage, selection/layout, reward-sequencing, and profile contracts. |
@@ -76,12 +77,27 @@ output, runtime checks, and deliberate Studio-to-file return path.
 
 ## Play loop
 
+Enter the aquarium arcade first. Walk among eight personal cabinets, the animated
+fish tank, gardens, benches, collection gallery and records kiosk. Press **PLAY**
+or use your cabinet's prompt to start. The roster shows occupied stations and run
+progress. Collection cards show discovered evolutions and their modeled recipes;
+records show personal bests and completed level goals.
+
+Use **ARCADE** between shots to return to the hub. **RESUME** restores the same
+build, coins and round, including a victory waiting for its Endless choice.
+Shots and settlement must finish before returning. A lost run starts fresh, while
+records and discoveries remain. A parked run is paused only for this server session;
+leaving the server retains records, not the unfinished run.
+
 Start with five total balls; launching spends one. Every pop scores the peg's
 current value, then halves it. The ball passes through one-point pegs, removing
 them, and bounces off higher values. Clearing the board doubles the shot score.
 The timer shows elapsed shot time; there is no automatic shot timeout.
 
-Each full quota earns a restock. After the shot ends, each restock awards one
+Meeting the round quota earns the first restock. Each additional restock costs
+twice the previous one: total score thresholds are 1×, 3×, 7×, 15× the round quota,
+and so on. Shots can earn up to **6 / 8 / 10 / 12 restocks** across the four campaign
+levels; the meter shows the next cost and current cap. After the shot ends, each restock awards one
 coin and restores one ball, up to five. The board returns to its pre-shot values,
 then each restock fills empty slots with falling pegs and merges equal pairs.
 The reward sequence advances automatically into the next shot or upgrade choice;
@@ -135,8 +151,12 @@ the weakest peg; Fishbowl turns doubles into hits on the strongest peg. Gain Dia
 raises the score but halves the strongest peg, feeding Pearl Scale's halve trigger.
 Soft Current trims pegs before popping the weakest, while Burst Capsule doubles
 a center peg, pops its neighbors, then halves the center. Direct item-to-item relay
-chains have a depth limit. A shared limit of 4,096 item/perk activations per shot
-ends runaway cascades, allowing the shot to settle.
+chains have a depth limit. An activation cannot trigger itself again through its
+own descendants, including score-to-quota and pop/double feedback. Fresh ball hits
+can start new chains, and evolved trigger channels remain independent. A shared
+4,096-activation safety limit still bounds exceptional cascades. Shore Meter,
+Landing Shell, Dew Cell and Quota Bonus scale their direct points with the current
+round quota, so early flat bonuses cannot generate thousands of restocks.
 
 Shot statistics include pops, walls, doubles, halves, quotas, time, first hit,
 drain, clear, and item/perk activations. They remain visible after automatic round
@@ -180,6 +200,9 @@ sound remains optional.
 Studio uses **session records** so local testing does not touch live player data.
 Published sessions use a versioned DataStore for records/unlocks. The interface
 reports unavailable saving instead of claiming a cloud save succeeded.
+The server allocates eight stations and rejects overflow. When a production place
+is selected, set its **Max Players to 8** in Creator Dashboard before publishing;
+the local source does not change that account-level place setting.
 
 ## Reuse for another project
 

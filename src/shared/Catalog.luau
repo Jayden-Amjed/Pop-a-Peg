@@ -51,7 +51,7 @@ item(
     "wall",
     2,
     "wallScore",
-    "Score 45 points. Upgrade: 90 points.",
+    "Score 8% of the round quota per level.",
     "Every 2 wall hits"
 )
 item(
@@ -91,7 +91,7 @@ item(
     "drain",
     1,
     "drainScore",
-    "Score 150 points on natural drain. Upgrade: 300 points.",
+    "Score 15% of the round quota per level on natural drain.",
     "On ball drain"
 )
 item(
@@ -174,7 +174,7 @@ item(
     "goal",
     1,
     "goalScore",
-    "Score 40 points per quota crossed. Upgrade: 80 points.",
+    "Score 5% of the round quota per level on each restock earned.",
     "On each quota crossed"
 )
 item(
@@ -194,7 +194,7 @@ item(
     "time",
     1,
     "pulseScore",
-    "Score 25 points. Upgrade: 50 points.",
+    "Score 3% of the round quota per level.",
     "Every second alive"
 )
 item(
@@ -562,16 +562,16 @@ local detailEffects = {
         return "Gain " .. amount("15%", "30%", level) .. " score", "positive"
     end,
     wallScore = function(level)
-        return "Gain " .. amount(45, 90, level) .. " points", "positive"
+        return "Gain " .. amount("8%", "16%", level) .. " of round quota", "positive"
     end,
     drainScore = function(level)
-        return "Gain " .. amount(150, 300, level) .. " points", "positive"
+        return "Gain " .. amount("15%", "30%", level) .. " of round quota", "positive"
     end,
     pulseScore = function(level)
-        return "Gain " .. amount(25, 50, level) .. " points", "positive"
+        return "Gain " .. amount("3%", "6%", level) .. " of round quota", "positive"
     end,
     goalScore = function(level)
-        return "Gain " .. amount(40, 80, level) .. " points", "positive"
+        return "Gain " .. amount("5%", "10%", level) .. " of round quota", "positive"
     end,
     right = function(level)
         return "Activate the next occupied slot to the right " .. amount(1, 2, level) .. " times",

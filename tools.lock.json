@@ -3,24 +3,28 @@
   "tools": [
     {
       "name": "rojo",
+      "assetApiUrl": "https://api.github.com/repos/rojo-rbx/rojo/releases/assets/604959014",
       "version": "7.7.1",
       "url": "https://github.com/rojo-rbx/rojo/releases/download/v7.7.1/rojo-7.7.1-windows-x86_64.zip",
       "sha256": "d4dfa3493a1613a43fc87312d6dac660d7c8bf38e6a99aa5dcd0d26154ba0b82"
     },
     {
       "name": "stylua",
+      "assetApiUrl": "https://api.github.com/repos/JohnnyMorganz/StyLua/releases/assets/628186216",
       "version": "2.6.0",
       "url": "https://github.com/JohnnyMorganz/StyLua/releases/download/v2.6.0/stylua-windows-x86_64.zip",
       "sha256": "fd13b4014e3b779c244bbc03f2c282e357f15bc526de6a6fa5ecbc447538313c"
     },
     {
       "name": "selene",
+      "assetApiUrl": "https://api.github.com/repos/Kampfkarren/selene/releases/assets/604285158",
       "version": "0.32.0",
       "url": "https://github.com/Kampfkarren/selene/releases/download/0.32.0/selene-0.32.0-windows.zip",
       "sha256": "c8b693de81d0ddc11490d8e1170dd98d775c2b21431144bd8286f738ef416109"
     },
     {
       "name": "luau",
+      "assetApiUrl": "https://api.github.com/repos/luau-lang/luau/releases/assets/721353089",
       "version": "0.746",
       "url": "https://github.com/luau-lang/luau/releases/download/0.746/luau-windows.zip",
       "sha256": "e149fdb4fe78a52ce457fbd40741484eaab1dbf9907e7f878c6d8a9a3dac2ddd",

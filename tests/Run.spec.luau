@@ -28,7 +28,7 @@ end
 local function finishRound(run, multiples)
     expect(run:action("launch", { angle = 0 }))
     -- Inject a deterministic score to isolate progression from collision physics.
-    run:_addScore(run.quota * (multiples or 1))
+    run:_addScore(run.quota * (2 ^ (multiples or 1) - 1))
     expect(run:action("endShot"))
     finishSettlement(run)
     equal(run.phase, "result")
@@ -279,7 +279,7 @@ return function()
         run:_queue("item", 1)
         run:_processQueue()
         equal(#run.queue, 0, "A relay pair must finish its direct activation chain")
-        equal(run.itemTriggers, run.slots)
+        equal(run.itemTriggers, 2, "Each relay may participate once along a causal path")
         run:_signal("pop", 26)
         for _ = 1, 20 do
             run:_processQueue()
@@ -329,9 +329,9 @@ return function()
         expect(math.abs(run.elapsed - 4 / 60) < 1e-6)
         run:_addScore(1e99)
         expect(run:action("endShot"))
-        expect(run.settlement ~= nil, "large restock work must be spread over frames")
+        expect(run.settlement == nil, "Stage reward budget must settle within one bounded slice")
         finishSettlement(run)
-        equal(run.restocks, Run.Config.maxRestocks)
+        equal(run.restocks, run.restockLimit)
         expect(run.score < math.huge and run.quota < math.huge)
     end)
 
@@ -347,7 +347,7 @@ return function()
         run:_signal("drain")
         run:step(1 / 60)
         finishSettlement(run)
-        equal(run.score, 150)
+        equal(run.score, run.quota * 0.15)
         equal(run.lastResult.reason, "drain")
         expect(#run.events <= Run.Config.eventHistory)
     end)
@@ -382,13 +382,15 @@ return function()
     end)
 
     test(function()
-        for _, count in ipairs({ 1, 3, 8, 9, 10000 }) do
+        for _, count in ipairs({ 1, 3, 8, 9, 12 }) do
             local run = Run.new(100 + count)
+            run.round = 66
+            run:_resetShot()
             local original = Board.copy(run.baseline)
             expect(run:action("launch", { angle = 0 }))
             run:_pop(1)
             local shot = Board.copy(run.values)
-            run:_addScore(run.quota * count - run.score)
+            run:_addScore(run.quota * (2 ^ count - 1) - run.score)
             expect(run:action("endShot"))
             if count > Run.Config.restocksPerStep then
                 equal(run.settlementReceipt, nil, "Partial receipt must not be published")
@@ -396,7 +398,7 @@ return function()
             finishSettlement(run)
             local receipt = run:snapshot().settlementReceipt
             equal(receipt.earnedRestocks, count)
-            equal(receipt.round, 1)
+            equal(receipt.round, 66)
             equal(receipt.coinsBefore, 3)
             equal(receipt.coinsAfter, 3 + count)
             equal(receipt.reservesBefore, 4)
@@ -461,7 +463,7 @@ return function()
     test(function()
         local run = Run.new(82)
         expect(run:action("launch", { angle = 0 }))
-        run:_addScore(run.quota * 2, { slot = 2 })
+        run:_addScore(run.quota * 3, { slot = 2 })
         local scoreEvent, goalEvent, launchEvent
         for _, event in ipairs(run.events) do
             if event.kind == "score" then
@@ -474,7 +476,7 @@ return function()
         end
         equal(scoreEvent.slot, 2)
         equal(scoreEvent.fromScore, 0)
-        equal(scoreEvent.toScore, run.quota * 2)
+        equal(scoreEvent.toScore, run.quota * 3)
         equal(goalEvent.from, 0)
         equal(goalEvent.to, 2)
         equal(goalEvent.count, 2)
@@ -802,8 +804,8 @@ return function()
         end
         equal(
             run.itemTriggers,
-            3 * run.slots + 2,
-            "Queue coalescing renewed an exhausted relay depth"
+            3 * 2 + 2,
+            "A relay descendant reactivated an ancestor or coalescing renewed depth"
         )
         equal(#run.queue, 0)
         run.ball.active = false

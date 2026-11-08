@@ -3,6 +3,9 @@ local Rng = if script then require(script.Parent.Rng) else require("./Rng")
 local Simulation = if script then require(script.Parent.Simulation) else require("./Simulation")
 local Catalog = if script then require(script.Parent.Catalog) else require("./Catalog")
 local Stages = if script then require(script.Parent.Stages) else require("./Stages")
+local RestockCurve = if script
+    then require(script.Parent.RestockCurve)
+    else require("./RestockCurve")
 
 local Run = {}
 Run.__index = Run
@@ -13,7 +16,7 @@ Run.Config = {
     maxCoins = 999999,
     maxScore = 1e300,
     maxPeg = 2 ^ 996,
-    maxRestocks = 10000,
+    maxRestocks = RestockCurve.Max,
     effectsPerStep = 32,
     maxActivationsPerShot = 4096,
     restocksPerStep = 32,
@@ -180,7 +183,31 @@ function Run:_queue(kind, index, amount, relayDepth, channel)
     end
     local depth = relayDepth or 0
     -- Keep each direct relay depth separate so coalescing cannot renew its budget.
-    local key = kind .. ":" .. index .. ":" .. depth .. ":" .. (channel or 0)
+    local trace = self.activationTrace or ""
+    if kind == "perk" then
+        if string.find(trace, "|perk:" .. index .. "|", 1, true) then
+            return
+        end
+    else
+        local entry = self.inventory[index]
+        local definition = entry and Catalog.Items[entry.id]
+        if not definition then
+            return
+        end
+        local eligible = false
+        for channelIndex in ipairs(definition.channels or { definition }) do
+            if
+                (not channel or channel == channelIndex)
+                and not string.find(trace, "|item:" .. index .. ":" .. channelIndex .. "|", 1, true)
+            then
+                eligible = true
+            end
+        end
+        if not eligible then
+            return
+        end
+    end
+    local key = kind .. ":" .. index .. ":" .. depth .. ":" .. (channel or 0) .. trace
     local existing = self.pending[key]
     if existing then
         existing.count += amount or 1
@@ -192,6 +219,7 @@ function Run:_queue(kind, index, amount, relayDepth, channel)
             key = key,
             relayDepth = depth,
             channel = channel,
+            trace = trace,
         }
         self.pending[key] = entry
         table.insert(self.queue, entry)
@@ -210,7 +238,12 @@ function Run:_signal(event, amount)
         local definition = Catalog.Items[item.id]
         if definition then
             for channelIndex, channel in ipairs(definition.channels or { definition }) do
-                if channel.trigger and channel.trigger.event == event then
+                local token = "|item:" .. index .. ":" .. channelIndex .. "|"
+                if
+                    channel.trigger
+                    and channel.trigger.event == event
+                    and not string.find(self.activationTrace or "", token, 1, true)
+                then
                     local counter = if definition.channels
                         then index .. ":" .. channelIndex
                         else index
@@ -226,7 +259,10 @@ function Run:_signal(event, amount)
     end
     for index, id in ipairs(self.perks) do
         local definition = Catalog.Perks[id]
-        if definition.trigger.event == event then
+        if
+            definition.trigger.event == event
+            and not string.find(self.activationTrace or "", "|perk:" .. index .. "|", 1, true)
+        then
             local count = (self.perkCounts[index] or 0) + delta
             local times = math.floor((count + 1e-8) / definition.trigger.every)
             self.perkCounts[index] = count - times * definition.trigger.every
@@ -251,7 +287,7 @@ function Run:_addScore(amount, origin)
         event.action = "score"
         self:_event("score", event)
     end
-    local crossings = math.min(Run.Config.maxRestocks, math.floor(self.score / self.quota))
+    local crossings = RestockCurve.compute(self.score, self.quota, self.restockLimit).completed
     if crossings > self.goalCrossings then
         local delta = crossings - self.goalCrossings
         self:_event("goal", { count = delta, from = self.goalCrossings, to = crossings })
@@ -359,13 +395,34 @@ function Run:_activateItem(index, relayDepth, selectedChannel)
     then
         return
     end
-    if not self:_allowActivation() then
+    local previousTrace = self.activationTrace or ""
+    local channels = definition.channels or { definition }
+    local eligible = false
+    for channelIndex in ipairs(channels) do
+        if
+            (not selectedChannel or selectedChannel == channelIndex)
+            and not string.find(
+                previousTrace,
+                "|item:" .. index .. ":" .. channelIndex .. "|",
+                1,
+                true
+            )
+        then
+            eligible = true
+        end
+    end
+    if not eligible or not self:_allowActivation() then
         return
     end
     self.itemTriggers += 1
     self:_itemEvent(index, "activate", nil, { text = definition.name })
-    for channelIndex, channel in ipairs(definition.channels or { definition }) do
-        if not selectedChannel or selectedChannel == channelIndex then
+    for channelIndex, channel in ipairs(channels) do
+        local token = "|item:" .. index .. ":" .. channelIndex .. "|"
+        if
+            (not selectedChannel or selectedChannel == channelIndex)
+            and not string.find(previousTrace, token, 1, true)
+        then
+            self.activationTrace = previousTrace .. token
             local context = {}
             for _, operation in ipairs(channel.operations or { { effect = channel.effect } }) do
                 if self.ending then
@@ -384,6 +441,7 @@ function Run:_activateItem(index, relayDepth, selectedChannel)
             end
         end
     end
+    self.activationTrace = previousTrace
 end
 
 function Run:_applyEffect(effect, index, level, relayDepth, context)
@@ -459,13 +517,13 @@ function Run:_applyEffect(effect, index, level, relayDepth, context)
     elseif effect == "multiply" then
         self:_addScore(self.score * 0.15 * level, { slot = index })
     elseif effect == "wallScore" then
-        self:_addScore(45 * level, { slot = index })
+        self:_addScore(self.quota * 0.08 * level, { slot = index })
     elseif effect == "drainScore" then
-        self:_addScore(150 * level, { slot = index })
+        self:_addScore(self.quota * 0.15 * level, { slot = index })
     elseif effect == "pulseScore" then
-        self:_addScore(25 * level, { slot = index })
+        self:_addScore(self.quota * 0.03 * level, { slot = index })
     elseif effect == "goalScore" then
-        self:_addScore(40 * level, { slot = index })
+        self:_addScore(self.quota * 0.05 * level, { slot = index })
     elseif effect == "left" or effect == "right" then
         if (relayDepth or 0) >= self.slots - 1 then
             return
@@ -495,12 +553,15 @@ end
 
 function Run:_activatePerk(index)
     local definition = Catalog.Perks[self.perks[index]]
-    if not definition then
+    local previousTrace = self.activationTrace or ""
+    local token = "|perk:" .. index .. "|"
+    if not definition or string.find(previousTrace, token, 1, true) then
         return
     end
     if not self:_allowActivation() then
         return
     end
+    self.activationTrace = previousTrace .. token
     local occupied = self:_occupied()
     local target
     if definition.effect == "first" then
@@ -522,6 +583,7 @@ function Run:_activatePerk(index)
         )
         self:_queue("item", target, if definition.effect == "third" then 2 else 1)
     end
+    self.activationTrace = previousTrace
 end
 
 function Run:_processQueue()
@@ -541,11 +603,14 @@ function Run:_processQueue()
         else
             table.insert(self.queue, entry)
         end
+        local previousTrace = self.activationTrace
+        self.activationTrace = entry.trace or ""
         if entry.kind == "item" then
             self:_activateItem(entry.index, entry.relayDepth, entry.channel)
         else
             self:_activatePerk(entry.index)
         end
+        self.activationTrace = previousTrace
     end
 end
 
@@ -572,6 +637,8 @@ function Run:_resetShot()
     self.pending = {}
     self.itemCounts = {}
     self.activationCount, self.activationCapped = 0, false
+    self.activationTrace = ""
+    self.restockLimit = RestockCurve.limit(self.round)
     self.stageCleared = nil
     self.perkCounts = {}
     self.boss = if self.round <= Stages.CampaignEnd and Stages.completed(self.round) ~= nil
@@ -656,7 +723,7 @@ function Run:_endShot(reason)
     end
     self.queue = {}
     self.pending = {}
-    local restocks = math.min(Run.Config.maxRestocks, math.floor(self.score / self.quota))
+    local restocks = RestockCurve.compute(self.score, self.quota, self.restockLimit).completed
     self.restocks = restocks
     local coinsBefore, reservesBefore = self.coins, self.reserves
     self:_life(restocks, "restock")
@@ -1101,6 +1168,7 @@ function Run:_purchase(index)
     end
     self:_coins(-offer.price)
     if intent.action == "evolve" then
+        self.unlocks[offer.id] = true
         for _, slot in ipairs(intent.removeSlots) do
             self.inventory[slot] = emptySlot()
         end
@@ -1432,7 +1500,7 @@ function Run:snapshot()
         reserves = math.max(0, self.reserves),
         maxReserves = self.maxReserves,
         restocks = self.restocks,
-        maxRestocks = Run.Config.maxRestocks,
+        maxRestocks = self.restockLimit,
         elapsed = self.elapsed,
         values = self.values,
         ball = self.ball,

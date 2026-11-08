@@ -11,7 +11,18 @@ $lock = Get-Content (Join-Path $root 'tools.lock.json') -Raw | ConvertFrom-Json
 foreach ($tool in $lock.tools) {
     $archive = Join-Path $toolDir ($tool.name + '-' + $tool.version + '.zip')
     if (-not (Test-Path $archive) -or (Get-FileHash $archive -Algorithm SHA256).Hash -ne $tool.sha256) {
-        Invoke-WebRequest -UseBasicParsing -Uri $tool.url -OutFile $archive
+        for ($attempt = 1; $attempt -le 3; $attempt++) {
+            Write-Host "Downloading $($tool.name) $($tool.version) (attempt $attempt/3)"
+            try {
+                $downloadUrl = if ($attempt -gt 1 -and $tool.assetApiUrl) { $tool.assetApiUrl } else { $tool.url }
+                Invoke-WebRequest -UseBasicParsing -Uri $downloadUrl -Headers @{ Accept = 'application/octet-stream' } -OutFile $archive -TimeoutSec 60
+                break
+            } catch {
+                if ($attempt -eq 3) { throw }
+                Write-Warning "Tool download failed; retrying in $($attempt * 2) seconds."
+                Start-Sleep -Seconds ($attempt * 2)
+            }
+        }
     }
     if ((Get-FileHash $archive -Algorithm SHA256).Hash -ne $tool.sha256) {
         throw "Checksum mismatch: $($tool.name)"

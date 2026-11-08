@@ -55,6 +55,9 @@ Run from the task worktree:
 
 The tool pins are Rojo **7.7.1**, StyLua **2.6.0**, Selene **0.32.0**, and Luau **0.746**.
 Setup is local to the checkout. Checks use these same tools locally and in CI.
+Tool downloads retry at most three times. After an initial failure, setup uses
+the locked official GitHub release-asset API URL when available; the same SHA256
+check remains mandatory. Neither fallback nor retry changes a tool version.
 Record command, environment, source SHA, exit/result, and limitations in the task.
 Use `PASS`, `FAIL`, or `NOT RUN`; existing tests and prior logs are not new runs.
 CI verifies its actual checkout only and does not prove Studio behavior.
@@ -132,8 +135,8 @@ syncback operation to resolve conflicts without inspection.
 
 Verify this sequence in the task: local script edit appears in Studio; exported
 module returns to the intended file; the branch transition below preserves work.
-During Play, expected Output is `[Pop a Peg] Independent run service ready` and
-`[Pop a Peg] Board controls ready`, with no game errors. Record actual output
+During Play, expected Output is `[Pop a Peg] Eight-player aquarium arcade ready` and
+`[Pop a Peg] Arcade and board controls ready`, with no game errors. Record actual output
 and its server/client context rather than merely copying this expectation.
 For multiplayer changes, run a local server with at least two clients and record
 server/client observations. Builds alone do not establish any of these checks.
