@@ -16,8 +16,12 @@ sound cues use public Roblox audio IDs documented in [Asset sources](ASSETS.md).
 | `src/client/Presentation.luau` | `StarterPlayer.StarterPlayerScripts.Client.Presentation` | Local camera, board, responsive controls, counters, and menus. |
 | `src/client/UiTheme.luau` | `StarterPlayer.StarterPlayerScripts.Client.UiTheme` | Shared interface colors and native GUI constructors. |
 | `src/client/ItemModels.luau` | `StarterPlayer.StarterPlayerScripts.Client.ItemModels` | Original native equipment, perk, currency, and control models with viewport animation. |
+| `src/client/ItemMotion.luau` | `StarterPlayer.StarterPlayerScripts.Client.ItemMotion` | Per-model moving groups, activation samples, and restoration to resting transforms. |
+| `src/client/InventorySelection.luau` | `StarterPlayer.StarterPlayerScripts.Client.InventorySelection` | Pure select, deselect, swap-request, and invalid-phase rules. |
+| `src/client/ShopLayout.luau` | `StarterPlayer.StarterPlayerScripts.Client.ShopLayout` | Fixed offer, inspection, and action regions for shops without scrolling. |
 | `src/client/Feedback.luau` | `StarterPlayer.StarterPlayerScripts.Client.Feedback` | Score flights, trigger cues, counter display, and receipt-driven board animation. |
 | `src/client/SoundEffects.luau` | `StarterPlayer.StarterPlayerScripts.Client.SoundEffects` | Bounded sound pools, cue timing, preload, and mute control. |
+| `src/shared/ItemFeedback.luau` | `ReplicatedStorage.Shared.ItemFeedback` | Per-item/perk note motifs, timing, visual accents, and effect styles. |
 | `src/shared/RewardTimeline.luau` | `ReplicatedStorage.Shared.RewardTimeline` | Pure visual planning for restore, refill, merge, and batched reward steps. |
 | `src/server/ProfileStore.luau` | `ServerScriptService.Server.ProfileStore` | Versioned records/unlocks persistence. |
 | `assets/` | `ReplicatedStorage.Assets` | Folder of intentional source assets, initially empty. |
@@ -58,13 +62,57 @@ snapshots and draws effects; it cannot award rewards or change board rules. Mode
 instances and camera state are local to each client, so boards do not collide or
 share progress.
 
+## Equipment, purchases, and choices
+
+`Catalog` supplies stable item IDs, display names, trigger thresholds, prices,
+families, and suggested synergy partners. Hybrid items specify ordered operation
+lists; `Run` executes the same pop, double, halve, score, and relay primitives used
+by simpler items. A single activation context preserves targets between stages.
+`effectLines` and `tradeoff` describe these steps for the inspection panel.
+
+| Hybrid | Ordered effects and cost |
+| --- | --- |
+| Gain Dial | Increase score by 15% (30% upgraded), then halve the highest peg once. Immediate score costs future hit value and triggers halve synergies. |
+| Soft Current | Halve two pegs (four upgraded), then pop the lowest once. Trimming reduces future value while feeding halve and pop triggers. |
+| Burst Capsule | Double a random center, pop two nearest other pegs (four upgraded), then halve the center. The center scores nothing and retains no temporary growth. |
+
+Goldfish doubles the lowest live peg every six pops; Fishbowl pops the highest peg
+every three doubles. Their upgrades increase output. Fishbowl enters the catalog
+pool through the round-10 growth unlock. Other families connect doubles to Reef
+Chime, halves to Pearl Scale, and neighboring slots through Current Relay and Echo
+Shell. The queue processes a bounded number of activations per slice. Direct relay
+chains carry a depth budget tied to the unlocked slot count; queue coalescing keeps
+different depths separate. Fresh gameplay triggers start new chains.
+
+The client and server share `Catalog.purchaseState(inventory, slots, offer, coins)`.
+It returns the purchase action, eligibility, target slot/level, price, and rejection
+reason. `Catalog.MaxLevel` is 2. A matching level-1 copy upgrades in place even in a
+full rack; it takes precedence over any matching level-2 copy. If only capped copies
+exist, the offer is unavailable even with an empty slot. New items need capacity;
+Supplies do not. Rejected purchases neither spend coins nor consume offers.
+
+Each shop rolls four equipment offers. At round 11 and later it also rolls at most
+two immediate-use Supplies, independently of rack size. Buying a slot never
+refreshes these offers. `skipPerk` is valid only for an outstanding perk choice;
+it consumes that choice for five coins without granting a perk. Shop and perk
+interfaces display these server-owned rules rather than deriving separate prices
+or upgrade eligibility.
+
 ## Feedback and settlement
 
 Snapshots carry authoritative totals, a bounded recent event list, and a durable
 `settlementReceipt` after numerical settlement completes. Events identify score
 deltas and their peg/item source, goal crossings, triggers, coin changes, and ball
 changes. Counter totals reconcile feedback even if an older event leaves the
-history. Event and receipt IDs increase across restarts to prevent replay.
+history. Trigger events carry item identity, operation, source slot, and target peg
+or slot; purchases and perk choices have separate events. Event and receipt IDs
+increase across restarts to prevent replay.
+
+`shotStats` exposes the live trigger counters. `lastShotStats` and receipt `stats`
+preserve final pops, walls, doubles, halves, quotas, elapsed time, first hit, drain,
+clear, and item/perk activations with round and shot IDs. The last-shot record
+survives automatic aim and shop transitions until the next launch. The interface
+can also clear its display when the player clicks the shop's Next Round button.
 
 The receipt records the spent shot board, restored baseline, refill/merge
 transitions, final board, and before/after reward balances. `Run` processes at most
@@ -81,10 +129,19 @@ presentation with the same authoritative rewards. Terminal results open the run
 summary instead of continuing. There is no ordinary result confirmation modal.
 
 `Presentation` exposes the board, counters, controls, and viewport anchors to
-`Feedback`; `ItemModels` supplies reusable native 3D visuals and `UiTheme` supplies
-GUI styling. `SoundEffects` limits concurrent voices and cue frequency, supports
-mute, and leaves gameplay functional if an audio asset cannot load. Asset IDs,
-creators, and restoration requirements live in [Asset sources](ASSETS.md).
+`Feedback`; `ItemModels` supplies reusable native 3D visuals, `ItemMotion` animates
+their moving groups, and `UiTheme` supplies GUI styling. `ShopLayout` keeps four
+equipment cards and up to two Supplies visible together, with one fixed inspection
+panel for effect and synergy details. `InventorySelection` clears a selection
+after a swap request, holds further rack actions until acknowledgment or timeout,
+and rejects selection changes outside aim/shop phases.
+
+`ItemFeedback` defines short distinct motifs and visual signatures by stable ID.
+`SoundEffects` schedules their notes through bounded voice and note pools, limits
+cue frequency, supports mute, and leaves gameplay functional if audio cannot load.
+Targeted beams use explicit source/target IDs; restarts clear pending visual and
+item-audio work. Asset IDs, creators, and restoration requirements live in
+[Asset sources](ASSETS.md).
 
 ## Records across runs
 

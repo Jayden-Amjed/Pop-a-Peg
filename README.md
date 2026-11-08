@@ -61,8 +61,8 @@ output, runtime checks, and deliberate Studio-to-file return path.
 | --- | --- |
 | `src/server/` | Server-only scripts. |
 | `src/client/` | Local board, responsive interface, generated models, reward animation, and sound. |
-| `src/shared/` | Board, simulation, run rules, upgrade catalog, reward timeline, number formatting, and profile contract. |
-| `tests/` | Numerical, progression, input-validation, reward-sequencing, and profile invariants. |
+| `src/shared/` | Board, simulation, run rules, catalog and purchase rules, feedback signatures, reward timeline, number formatting, and profiles. |
+| `tests/` | Numerical, progression, purchase, synergy, selection/layout, reward-sequencing, and profile contracts. |
 | `default.project.json` | Rojo service mapping and development lighting. |
 | `assets/` | Intentional source assets mapped to `ReplicatedStorage.Assets`. |
 | `scripts/` | Setup, checks, build, sync, and bounded export import. |
@@ -88,10 +88,27 @@ The reward sequence advances automatically into the next shot or upgrade choice;
 there is no result confirmation button. A failed shot resets the score and board
 for another attempt while balls remain.
 
-Between shots, use one jumble to change the layout. Shops offer items, duplicate
-upgrades, selling, reordering, and extra inventory slots. Perks and events add
-new ways to trigger combinations.
-Run upgrades reset after defeat; records and earned catalog unlocks remain.
+Between shots, use one jumble to change the layout. Shops show four equipment
+offers and, from round 11, up to two Supplies that take effect immediately without
+using an inventory slot. All offers stay visible without scrolling; selecting an
+offer shows its trigger, effects, tradeoff, and synergy partners in one inspection
+area. Selling, reordering, rerolls, held offers, and extra slots shape the build.
+
+Buying a duplicate level-1 item upgrades it to level 2, including when the rack is
+full. Level 2 is the cap: an owned capped item cannot be bought again as another
+copy. Perk choices can instead be declined for five coins. Run upgrades reset after
+defeat; records and earned catalog unlocks remain.
+
+Items can help one trigger family while costing another resource. Goldfish grows
+the weakest peg; Fishbowl turns doubles into hits on the strongest peg. Gain Dial
+raises the score but halves the strongest peg, feeding Pearl Scale's halve trigger.
+Soft Current trims pegs before popping the weakest, while Burst Capsule doubles
+a center peg, pops its neighbors, then halves the center. Direct item-to-item relay
+chains have a depth limit so a circular arrangement can finish.
+
+Shot statistics include pops, walls, doubles, halves, quotas, time, first hit,
+drain, clear, and item/perk activations. They remain visible after automatic round
+transitions until the next launch or a manual **Next Round** click in the shop.
 
 | Control | Action |
 | --- | --- |
@@ -99,13 +116,15 @@ Run upgrades reset after defeat; records and earned catalog unlocks remain.
 | Launch button / Space | Launch when aiming; end the shot during flight. |
 | Jumble button / Q | Rearrange the board once before each shot. |
 | End Shot button / E | Finish early without waiting for the ball to drain. |
+| Inventory item | Select it; click again to clear, or another unlocked slot to swap and clear the selection. |
 | 1×, 2×, 4× buttons | Change simulation speed. |
 | Skip during rewards | Finish the reward animation and advance with the same earned rewards. |
 | Sound toggle | Mute or unmute feedback sounds. |
 
 Shops and perk/event choices use their own buttons. Equipment, currencies, and
-rewards appear as source-generated 3D models, with score flights, layered quota
-feedback, refill/merge motion, and short audio cues.
+rewards appear as source-generated 3D models, with individual activation motions,
+targeted effects, score flights, layered quota feedback, and refill/merge motion.
+Each catalog item and perk has a short musical signature; sound remains optional.
 
 Studio uses **session records** so local testing does not touch live player data.
 Published sessions use a versioned DataStore for records/unlocks. The interface
