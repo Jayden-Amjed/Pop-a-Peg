@@ -326,7 +326,7 @@ function HubWorld:_buildAtrium()
     self.spawn = make("SpawnLocation", {
         Name = "ArcadeArrival",
         Size = Vector3.new(10, 0.2, 7),
-        CFrame = CFrame.new(origin + Vector3.new(0, 0.12, 54)),
+        CFrame = CFrame.new(origin + Vector3.new(0, 0.12, 42)),
         Anchored = true,
         CanCollide = false,
         CanTouch = false,
@@ -679,7 +679,7 @@ function HubWorld:spawnCFrame(station)
         local position = (pod.basis * CFrame.new(0, 3.5, -10)).Position
         return CFrame.lookAt(position, pod.basis.Position + Vector3.new(0, 3.5, 0))
     end
-    local position = HubWorld.Origin + Vector3.new(0, 3.5, 53)
+    local position = HubWorld.Origin + Vector3.new(0, 3.5, 42)
     return CFrame.lookAt(position, HubWorld.Origin + Vector3.new(0, 3.5, 0))
 end
 
