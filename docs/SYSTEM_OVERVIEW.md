@@ -19,6 +19,7 @@ sound cues use public Roblox audio IDs documented in [Asset sources](ASSETS.md).
 | `src/client/HubPresentation.luau` | `StarterPlayer.StarterPlayerScripts.Client.HubPresentation` | Hub navigation, collection, records, roster and preview cleanup. |
 | `src/client/HubLayout.luau` | `StarterPlayer.StarterPlayerScripts.Client.HubLayout` | Responsive hub panel and gallery geometry. |
 | `src/client/HubAmbience.luau` | `StarterPlayer.StarterPlayerScripts.Client.HubAmbience` | Local fish and bubble motion with rest-pose restoration. |
+| `src/client/HubGuide.luau` | `StarterPlayer.StarterPlayerScripts.Client.HubGuide` | Local assigned-cabinet beacon, outline and prompt filtering, restored on disposal. |
 | `src/shared/` | `ReplicatedStorage.Shared` | Modules for board rules, deterministic physics, progression, catalog, profiles, number formatting, and reward timelines. |
 | `src/shared/RestockCurve.luau` | `ReplicatedStorage.Shared.RestockCurve` | Shared successive restock costs, stage limits and meter progress. |
 | `src/shared/Stages.luau` | `ReplicatedStorage.Shared.Stages` | Pure consecutive level goals and successful-clear descriptors. |
@@ -69,18 +70,32 @@ validate ownership and distance. The Play button is also available from anywhere
 in the hub. Overflow joins are rejected; a published place should also configure
 Max Players = 8 through Creator Dashboard. That setting is not changed by source.
 
-`HubWorld` places 820 original parts around a separate world center at Z=1000,
+`HubWorld` places 978 original parts around a separate world center at Z=1000,
 away from local board geometry. Eight cabinets surround a central aquarium, with
 seating, plants, gallery and record stations. `HubAmbience` moves 65 parts in ten
 fish/bubble groups on the client, only while the hub is mounted; reduced motion
 disables it, and destruction restores all poses and transparency.
+Seafoam fields and pearl paths add floor contrast; cabinet numbers, lagoon reef,
+canopy and layered bases add depth while preserving station coordinates and collision
+geometry. `HubGuide` enables only the assigned cabinet's Play prompt locally and
+adds a gold beacon/outline. It waits for late-replicated parts, hides while a modal
+is open and restores original prompt states when disposed. Server ownership and
+proximity checks remain authoritative.
 
 Client Main mounts either hub or board presentation, restores Custom/Humanoid
 camera and walking controls in the hub, and uses the fixed Scriptable camera during
 runs. Completed reward receipt identities survive hub visits to prevent replay;
-new run identities reset that cache. Collection models page through 13 evolutions,
+new run identities reset that cache. Walking/jump controls pause while a hub panel
+is open, then resume without resetting camera orientation. The initial connection
+card stays visible until a snapshot; start/return actions have pending feedback
+and an eight-second retry timeout. The Arcade button shares the hint strip without
+covering rack slots. Collection models page through 13 evolutions,
 show their ingredients/effects and use persisted discovery IDs. Hub navigation and
-world kiosk prompts share the same collection/records panels. No payment flow exists.
+world kiosk prompts share the same collection/records panels. A three-step How to
+Play panel introduces controls, upgrades and evolutions. Compact panels switch
+between models/stats or bests/levels so their contents remain available. Hub motion
+honors GuiService.ReducedMotionEnabled as well as the explicit player override.
+No payment flow exists.
 
 ## Run rules
 

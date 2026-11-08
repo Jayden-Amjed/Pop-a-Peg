@@ -3,13 +3,19 @@
 Board, equipment, perk, consumable, and currency models are original native Roblox
 geometry generated from source. They require no private mesh, image, or texture IDs.
 
-`HubWorld` builds an original 820-part aquarium arcade: eight detailed cabinets,
+`HubWorld` builds an original 978-part aquarium arcade: eight detailed cabinets,
 walkable pearl/aqua atrium, safety glazing, paths, plants, seating, arches, gallery,
 records kiosk and a central tank with seven modeled fish. `HubAmbience` animates
 10 fish/bubble groups (65 parts) locally while the hub is visible, restores their
 rest poses on exit, and respects reduced motion. No external hub model, texture,
 mesh, music or paid asset is required. Player avatars use Roblox's normal character
 loading rather than an imported character asset.
+Seafoam floor fields, pearl walking routes, dark teal borders and approach
+chevrons separate the arcade's areas. Large cabinet numbers, a reef arch, coral,
+pearls, a layered lagoon base and glass canopy add depth without changing station
+positions, collision geometry or the existing ambient animation groups.
+The local cabinet guide uses native BillboardGui and Highlight objects, not
+uploaded textures or a replicated effect.
 
 `BoardArt` builds the pearl/aqua enclosure and attached status monitor from 235
 native parts. Rounded shell layers, water-depth bands, curved side channels, leaf
