@@ -11,6 +11,9 @@ HubWorld.Capacity = 8
 local C = {
     pearl = Color3.fromRGB(246, 253, 255),
     ice = Color3.fromRGB(217, 245, 249),
+    floor = Color3.fromRGB(171, 211, 219),
+    mist = Color3.fromRGB(143, 199, 207),
+    stone = Color3.fromRGB(91, 151, 166),
     aqua = Color3.fromRGB(65, 206, 220),
     blue = Color3.fromRGB(32, 137, 181),
     deep = Color3.fromRGB(18, 68, 92),
@@ -216,12 +219,23 @@ function HubWorld:_buildAtrium()
         64,
         1.5,
         CFrame.new(origin + Vector3.new(0, -0.75, 0)),
-        C.pearl,
+        C.floor,
         true
     )
-    disc(shell, "AquaInlay", 54, 0.08, CFrame.new(origin + Vector3.new(0, 0.045, 0)), C.ice)
+    disc(shell, "AquaInlay", 54, 0.08, CFrame.new(origin + Vector3.new(0, 0.045, 0)), C.mist)
     disc(shell, "CentralPlaza", 24, 0.1, CFrame.new(origin + Vector3.new(0, 0.1, 0)), C.pearl)
-    ring(shell, "PlazaBorder", 24, 0.18, 0.12, C.aqua, 32)
+    ring(shell, "PlazaBorder", 24, 0.18, 0.18, C.blue, 32)
+    ring(shell, "OuterFloorInlay", 57.5, 0.12, 0.12, C.blue, 32)
+    -- Color fields frame each cabinet without adding steps or changing floor collisions.
+    for _, pod in PODS do
+        part(
+            shell,
+            "StationColorField",
+            Vector3.new(17, 0.06, 16),
+            CFrame.new(origin + Vector3.new(pod.x, 0.09, pod.z)),
+            pod.color:Lerp(C.ice, 0.55)
+        )
+    end
     for _, x in { -29, 29 } do
         part(
             shell,
@@ -230,13 +244,22 @@ function HubWorld:_buildAtrium()
             CFrame.new(origin + Vector3.new(x, 0.1, 0)),
             C.pearl
         )
+        for _, edge in { -1, 1 } do
+            part(
+                shell,
+                "GalleryPathBorder",
+                Vector3.new(0.18, 0.08, 91),
+                CFrame.new(origin + Vector3.new(x + edge * 6, 0.2, 0)),
+                C.blue
+            )
+        end
         for z = -38, 38, 19 do
             part(
                 shell,
                 "PathMarker",
                 Vector3.new(0.5, 0.16, 3),
                 CFrame.new(origin + Vector3.new(x, 0.2, z)),
-                C.aqua
+                C.blue
             )
         end
     end
@@ -247,6 +270,27 @@ function HubWorld:_buildAtrium()
         CFrame.new(origin + Vector3.new(0, 0.11, 43)),
         C.pearl
     )
+    for _, side in { -1, 1 } do
+        part(
+            shell,
+            "ArrivalPathBorder",
+            Vector3.new(0.22, 0.08, 34),
+            CFrame.new(origin + Vector3.new(side * 6.6, 0.23, 43)),
+            C.blue
+        )
+    end
+    for _, z in { 29, 34, 39 } do
+        for _, side in { -1, 1 } do
+            tube(
+                shell,
+                "ArrivalChevron",
+                origin + Vector3.new(side * 1.35, 0.27, z + 1.1),
+                origin + Vector3.new(0, 0.27, z),
+                0.12,
+                C.blue
+            )
+        end
+    end
     for index = 1, 32 do
         local angle = (index - 0.5) * math.pi / 16
         local cf = CFrame.new(origin + Vector3.new(math.sin(angle) * 62, 3.7, math.cos(angle) * 62))
@@ -281,6 +325,20 @@ function HubWorld:_buildAtrium()
                 CFrame.new(foot + Vector3.new(0, 24, 0)),
                 C.pearl
             )
+            part(
+                shell,
+                "PillarFoot",
+                Vector3.new(3.1, 0.7, 3.1),
+                CFrame.new(foot + Vector3.new(0, 0.4, 0)),
+                C.blue
+            )
+            part(
+                shell,
+                "PillarCollar",
+                Vector3.new(2.35, 0.4, 2.35),
+                CFrame.new(foot + Vector3.new(0, 21, 0)),
+                C.aqua
+            )
         end
     end
     -- Repeated arch ribs suggest a glazed conservatory without an opaque ceiling.
@@ -309,9 +367,9 @@ function HubWorld:_buildAtrium()
         "WelcomeMarquee",
         Vector3.new(31, 4.3, 1),
         CFrame.new(origin + Vector3.new(0, 15, 49)) * CFrame.Angles(0, math.pi, 0),
-        C.pearl
+        C.deep
     )
-    sign(banner, "POP A PEG\nAQUARIUM ARCADE", C.deep)
+    sign(banner, "POP A PEG\nAQUARIUM ARCADE", C.pearl)
     local back = part(
         shell,
         "WelcomeInside",
@@ -320,6 +378,15 @@ function HubWorld:_buildAtrium()
         C.pearl
     )
     sign(back, "YOUR NEXT GREAT RUN STARTS HERE", C.blue)
+    for _, y in { 12.5, 17.5 } do
+        part(
+            shell,
+            "WelcomePearlTrim",
+            Vector3.new(33.4, 0.45, 1.3),
+            CFrame.new(origin + Vector3.new(0, y, 49)),
+            C.pearl
+        )
+    end
     for _, side in { -1, 1 } do
         part(
             shell,
@@ -349,7 +416,7 @@ end
 function HubWorld:_buildAquarium()
     local tank = make("Model", { Name = "LivingLagoon" }, self.model)
     local origin = HubWorld.Origin
-    disc(tank, "TankPlinth", 13.4, 1, CFrame.new(origin + Vector3.new(0, 0.5, 0)), C.blue, true)
+    disc(tank, "TankPlinth", 13.4, 1, CFrame.new(origin + Vector3.new(0, 0.5, 0)), C.deep, true)
     disc(
         tank,
         "PearlFoundation",
@@ -359,6 +426,7 @@ function HubWorld:_buildAquarium()
         C.pearl,
         true
     )
+    disc(tank, "PlinthWaterline", 13.1, 0.14, CFrame.new(origin + Vector3.new(0, 1.06, 0)), C.aqua)
     disc(tank, "SandBed", 11.7, 0.5, CFrame.new(origin + Vector3.new(0, 2, 0)), C.sand)
     local water =
         disc(tank, "LagoonWater", 11.8, 10, CFrame.new(origin + Vector3.new(0, 7.2, 0)), C.water)
@@ -375,6 +443,61 @@ function HubWorld:_buildAquarium()
     ring(tank, "TankFootSeal", 12.2, 2.2, 0.2, C.aqua, 24)
     ring(tank, "TankCrown", 12.2, 12.6, 0.45, C.pearl, 24)
     ring(tank, "TankCrownInlay", 12.2, 13.2, 0.14, C.aqua, 24)
+    -- A low reef and swim-through arch ground the fish without changing their motion groups.
+    for index = 1, 4 do
+        oval(
+            tank,
+            "ReefFoundation",
+            Vector3.new(4.4, 1.1 + index % 2 * 0.5, 3.2),
+            CFrame.new(origin + Vector3.new((index - 2.5) * 2.5, 2.7, -3.4 + index % 2)),
+            if index % 2 == 0 then C.stone else C.blue
+        )
+    end
+    for step = 1, 7 do
+        local function point(t)
+            local angle = t * math.pi
+            return origin + Vector3.new(math.cos(angle) * 4.2, 3.05 + math.sin(angle) * 3.5, -3.4)
+        end
+        tube(tank, "ReefArch", point((step - 1) / 7), point(step / 7), 0.6, C.stone)
+    end
+    for _, side in { -1, 1 } do
+        local base = origin + Vector3.new(side * 6.4, 2.5, 2.3)
+        for branch = 1, 3 do
+            local tip = base + Vector3.new((branch - 2) * 0.7, 1.3 + branch % 2 * 0.8, 0)
+            tube(tank, "CoralBranch", base, tip, 0.16, C.coral)
+            oval(tank, "CoralTip", Vector3.one * 0.55, CFrame.new(tip), C.coral)
+        end
+        for pearl = 1, 3 do
+            oval(
+                tank,
+                "ReefPearl",
+                Vector3.one * (0.4 + pearl * 0.12),
+                CFrame.new(base + Vector3.new(side * pearl * 0.65, -0.02, 1.2)),
+                C.pearl
+            )
+        end
+    end
+    -- Four translucent leaf forms make the crown read as a conservatory canopy.
+    for index = 1, 4 do
+        local angle = index * math.pi / 2
+        local leaf = oval(
+            tank,
+            "CanopyPetal",
+            Vector3.new(9.3, 0.32, 3.8),
+            CFrame.new(origin + Vector3.new(math.cos(angle) * 5.4, 13.5, math.sin(angle) * 5.4))
+                * CFrame.Angles(0, -angle, 0),
+            C.ice
+        )
+        leaf.Material = Enum.Material.Glass
+        leaf.Transparency = 0.3
+    end
+    oval(
+        tank,
+        "CanopyPearl",
+        Vector3.new(2, 1.1, 2),
+        CFrame.new(origin + Vector3.new(0, 13.7, 0)),
+        C.aqua
+    )
     for index = 1, 7 do
         local angle = index * 2.4
         local radius = 4 + index % 3 * 2
@@ -431,11 +554,19 @@ function HubWorld:_buildAquarium()
     local plaque = part(
         tank,
         "LagoonPlaque",
-        Vector3.new(9, 2.1, 0.3),
-        CFrame.new(origin + Vector3.new(0, 3.3, 13.3)) * CFrame.Angles(0, math.pi, 0),
+        Vector3.new(11.6, 2.4, 0.3),
+        CFrame.new(origin + Vector3.new(0, 3.4, 13.3)) * CFrame.Angles(0, math.pi, 0),
         C.pearl
     )
-    sign(plaque, "THE LIVING LAGOON\n8 PLAYERS · ENDLESS POSSIBILITIES", C.deep)
+    sign(plaque, "THE LIVING LAGOON", C.deep)
+    local caption = part(
+        tank,
+        "LagoonCaption",
+        Vector3.new(11.3, 0.95, 0.22),
+        CFrame.new(origin + Vector3.new(0, 1.6, 13.55)) * CFrame.Angles(0, math.pi, 0),
+        C.deep
+    )
+    sign(caption, "8 PLAYERS · ENDLESS POSSIBILITIES", C.pearl)
     for _, x in { -18, 18 } do
         local cf = CFrame.new(origin + Vector3.new(x, 1.65, 0)) * CFrame.Angles(0, math.pi / 2, 0)
         part(tank, "LoungeSeat", Vector3.new(13, 0.7, 2.8), cf, C.pearl, nil, true)
@@ -467,7 +598,25 @@ function HubWorld:_buildPod(index, config)
     local function p(name, size, offset, color, shape, collide)
         return part(model, name, size, basis * CFrame.new(offset), color, shape, collide)
     end
-    disc(model, "StationIsland", 7, 0.35, CFrame.new(position + Vector3.new(0, 0.2, 0)), C.pearl)
+    disc(model, "StationIsland", 7, 0.35, CFrame.new(position + Vector3.new(0, 0.2, 0)), C.deep)
+    disc(
+        model,
+        "StationIslandInset",
+        6.65,
+        0.13,
+        CFrame.new(position + Vector3.new(0, 0.4, 0)),
+        C.ice
+    )
+    for _, side in { -1, 1 } do
+        tube(
+            model,
+            "StationApproachArrow",
+            (basis * CFrame.new(side * 0.8, 0.27, -9.1)).Position,
+            (basis * CFrame.new(0, 0.27, -8.25)).Position,
+            0.11,
+            config.color
+        )
+    end
     p("CabinetFoot", Vector3.new(10.2, 0.8, 6), Vector3.new(0, 0.8, 0), C.blue, nil, true)
     p("CabinetBody", Vector3.new(9.2, 6.1, 4.8), Vector3.new(0, 4.2, 0.5), C.pearl, nil, true)
     p("LowerAccent", Vector3.new(8.4, 2.7, 0.3), Vector3.new(0, 3.2, -2.1), config.color)
@@ -535,7 +684,13 @@ function HubWorld:_buildPod(index, config)
     end
     p("MarqueeFrame", Vector3.new(10, 2.6, 1.7), Vector3.new(0, 13.5, 0.3), config.color)
     local marquee = p("Marquee", Vector3.new(9.1, 1.8, 0.12), Vector3.new(0, 13.6, -0.65), C.pearl)
-    sign(marquee, string.format("%02d  /  %s", index, config.name), C.deep)
+    sign(marquee, config.name, C.deep)
+    p("StationNumberStem", Vector3.new(0.65, 1.6, 0.65), Vector3.new(0, 15.1, 0.3), C.deep)
+    p("StationNumberFrame", Vector3.new(3.8, 3.25, 0.6), Vector3.new(0, 17, 0.3), config.color)
+    local number =
+        p("StationNumber", Vector3.new(3.35, 2.8, 0.16), Vector3.new(0, 17, -0.1), C.deep)
+    sign(number, string.format("%02d", index), C.pearl)
+    p("DeckWaterline", Vector3.new(9.3, 0.18, 0.18), Vector3.new(0, 6.4, -4.2), config.color)
     local owner = p("OwnerScreen", Vector3.new(8.7, 1.7, 0.15), Vector3.new(0, 1.9, -2.3), C.ice)
     local ownerText = sign(owner, "OPEN", C.deep)
     local status =
@@ -607,7 +762,7 @@ function HubWorld:_buildGallery()
             C.pearl
         )
         if side < 0 then
-            sign(display, "EVOLUTION COLLECTION\nDiscover all 13 creations", C.deep)
+            sign(display, "COLLECTION\n13 EVOLUTIONS", C.deep)
             prompt(display, "CollectionPrompt", "Browse collection", "Evolution Gallery")
             local orb = oval(
                 gallery,
@@ -635,7 +790,7 @@ function HubWorld:_buildGallery()
             end
             fish(gallery, (basis * CFrame.new(0, 8, -0.3)).Position, 0.65, C.gold, math.pi)
         else
-            sign(display, "ARCADE RECORDS\nEvery great run leaves a mark", C.deep)
+            sign(display, "RECORDS\nYOUR PERSONAL BESTS", C.deep)
             prompt(display, "RecordsPrompt", "View records", "Record Pavilion")
             disc(gallery, "TrophyFoot", 1.8, 0.5, basis * CFrame.new(0, 6.8, 0), C.pearl)
             part(
