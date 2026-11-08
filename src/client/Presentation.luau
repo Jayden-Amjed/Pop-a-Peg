@@ -1130,18 +1130,24 @@ function Presentation:_renderCounters()
         .. "/"
         .. tostring(state.maxReserves or 5)
     self.restockCount.Text = "×"
-        .. (restocks >= 1000 and Format.number(restocks) or Format.integer(restocks))
+        .. Format.integer(restocks)
+        .. " / "
+        .. tostring(state.maxRestocks or 12)
     self.quota.Text = "TARGET " .. Format.number(quota)
     self.progressCaption.Text = progress.capped and "RESTOCK LIMIT" or "NEXT RESTOCK"
     self.fraction.Text = progress.capped and "FULL"
-        or (Format.number(math.floor(progress.remainder + 0.5)) .. " / " .. Format.number(quota))
+        or (
+            Format.number(math.floor(progress.remainder + 0.5))
+            .. " / "
+            .. Format.number(progress.nextQuota)
+        )
     self.progress.BackgroundColor3 = completed > 0 and layers[progress.previousLayer] or C.ink
     self.progressFill.BackgroundColor3 = layers[progress.nextLayer]
     self.progressFill.Size = UDim2.fromScale(progress.fraction, 1)
     self.scorePlate.BackgroundColor3 = C.paper
     self.restockPlate.BackgroundColor3 = C.paper
-    self.restockHint.Text = restocks > 0 and "Ready to refill + merge your board!"
-        or "Fill the meter to grow your board"
+    self.restockHint.Text = progress.capped and "All restocks earned this shot!"
+        or "Each next restock costs twice as much"
     for index, viewport in self.reserveIcons do
         viewport.ImageTransparency = index <= reserves and 0 or 0.78
     end
