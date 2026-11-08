@@ -2,41 +2,40 @@
 
 State Version: 2 (proposal dependent on starter version 1; neither accepted on main)
 Reviewed: 2026-11-07, America/Los_Angeles
-Objective: An independent peg-bounce run with clear automatic rewards, modeled upgrades, and a fixed 3D board.
+Objective: Independent peg-bounce runs with clear rewards, varied hybrid builds, and an aquatic glass presentation.
 
 Accepted source: `9349530edb7eaf536ceabfed5e922ae5b65499a6` (README-only main seed; fetched again).
 Dependency: starter [PR #2](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/2), unmerged,
 at `608c273d9f31022d2f161584c4c92188bb4405cd`. Main has no accepted status ledger.
-Implementation: `e4953887985930b08514ebcee2c0d392570a861e` in dependent
-[PR #4](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/4); new revision IN PROGRESS.
-The evidence below describes the previous build. A glass/aquatic theme, no-scroll
-shop, correct selection and capped-upgrade logic, richer item feedback, held trigger
-statistics, later Supplies, and perk cash-out are now being implemented.
+Implementation: `b1cf8886a2b5c7f79e3147984ff140cb55900fa1` in dependent
+[PR #4](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/4).
 
 | Capability | Verified state |
 | --- | --- |
-| Board, pass-through pegs, quotas, five-ball life accounting | PASS standalone and Studio contracts |
-| Run/shop/perk/event/boss/endless/reset rules | PASS 18 progression cases; revised heuristic balance samples recorded |
-| Flying score, repeating quota meter, automatic restoration/refill/merge/rewards | PASS Studio fixtures, including 3 and 10,000 restocks, skip, exact final balances, and counter races |
-| Original native models | PASS all 37 instantiated and visually reviewed; upgraded equipment and pulse reset checked |
-| Green interface and modeled choices | PASS 25 menu/layout/text cases across five sizes; purchase/upgrade click verified |
-| Sound effects | PASS five public assets loaded; ten cues played, produced nonzero signal, stopped, and muted |
-| Format/lint/tests/build/source mapping/docs | PASS pinned checks; all 16 Studio production sources restored exactly |
-| GitHub implementation CI | PASS push and PR checks at implementation SHA |
-| Published cloud saves, same-server multiplayer, physical touch | NOT RUN |
+| Board, quotas, restocks, run/shop/perk/event/reset rules | PASS standalone and Studio; 28 progression cases |
+| Hybrid effects and themed synergies | PASS ordered operations, costs, fish-pair scoring, bounded relay chains |
+| Full rack and capped upgrades | PASS L1 Seed Bank upgrades for 5 coins with 7 occupied slots; L2 displays MAX LEVEL |
+| Fixed shop and rack interactions | PASS 30 offer/text/bounds cases across five sizes; click/select/clear/swap, pending acknowledgments |
+| Shot history and perk cash-out | PASS counts held through shop until Next Round; decline pays exactly 5 coins |
+| Item geometry and animation | PASS 39 models at both levels; all 78 return to exact rest transforms after retriggers |
+| Item feedback | PASS target beams, separate growth/cost labels, score arrival/bounce, 33 bounded electronic motifs and mute |
+| Repository checks | PASS pinned format/lint/tests/build/source mapping/docs |
+| Production Studio sources | PASS all 20 restored exactly; ordinary server/client play and scoring checked |
+| GitHub CI | PASS push and PR checks at implementation SHA |
 
-Studio-tested source: `e4953887985930b08514ebcee2c0d392570a861e`.
-Visual tests include isolated fixtures; normal production startup and keyboard play
-were checked separately. See [RBX-003](tasks/RBX-003-peg-run-loop.md) for evidence and limits.
+Studio-tested source: `b1cf8886a2b5c7f79e3147984ff140cb55900fa1`.
+Visual tests include deterministic fixtures; ordinary production startup/play was
+checked separately. See [RBX-003](tasks/RBX-003-peg-run-loop.md) for evidence and limits.
 Published: NOT PUBLISHED; no production experience/place selected.
 
 Active task: RBX-003, owner Codex gameplay coordinator, branch `task/RBX-003-peg-run-loop`.
-Current playable file: generated `build/peg-feedback.rbxlx` in the game worktree.
-Studio: isolated QA target restored to production sources; Rojo disconnected.
+Current playable file: generated `build/peg-aero.rbxlx` in the game worktree.
+Studio: isolated `peg-aero-qa.rbxlx` stopped in Edit; production sources restored; Rojo disconnected.
 The user's separate existing place/play windows were not modified.
 Blockers / dependencies: no implementation blocker; PR #2 must precede PR #4 integration.
 Unrun: physical mobile/touch, two clients in one server, cloud persistence, live plugin sync, merge/publish.
-Limits: short landscape menus scroll; subjective audio balance still benefits from human listening.
+Limits: only the upgrade shop guarantees no scrolling; other compact choice menus may scroll.
+Human playtesting is still needed to judge balance, variety, visual preference, and the sound mix.
 Observed limitation: unrelated Studio asset-type warning for 203785492; no project source reference.
-Next action: integrate the new UI/model/rules worktrees and verify the revised interactions in an isolated Studio place.
+Next action: human playtest the generated place and review PR #4.
 Repository administration: main remains unprotected; default branch remains the starter branch.
