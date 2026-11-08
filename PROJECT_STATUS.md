@@ -1,14 +1,14 @@
 # Current project state
 
-State Version: 6 (proposed aquarium arcade and progression balance; accepted predecessor 5)
+State Version: 6 (accepted aquarium arcade and progression balance)
 Reviewed: 2026-11-08, America/Los_Angeles
 Objective: Deliver a shared eight-player aquarium arcade with independent runs and prevent early runaway restock loops.
 
-Accepted source: ad313f065c14c23ba67b2223424a8670ce9d2dc0 (predecessor).
+Accepted source: d9134d725edf3f3487d49400d22b3437313e84d6 (PR #12 merged into main).
 Implementation: 131d04598e3162c747e7e3dc3a19fb34f0b05dc2.
-Active task: [RBX-011](tasks/RBX-011-arcade-balance.md), Codex coordinator.
+Completed task: [RBX-011](tasks/RBX-011-arcade-balance.md), Codex coordinator.
 Branch: task/RBX-011-arcade-balance; [PR #12](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/12).
-Main: NOT MERGED for this task; predecessor remains accepted until GitHub confirms integration.
+Main: GitHub confirmed the merge; fetched main matches. State advanced once from accepted version 5.
 
 | Capability | Verified state |
 | --- | --- |
@@ -32,13 +32,13 @@ Studio target: isolated peg-aero-qa; root sole operator; Rojo disconnected.
 The saved eight-client harness also passed on the final implementation. Studio is
 stopped in Edit with 32 normal sources and both temporary QA scripts removed.
 
-Blockers: none. Final branch push, CI and merge receipt pending.
+Blockers: none. Push CI 42465792213 and PR CI 42465797077 passed at
+e77c4b64f96139163e3fdb709908b6857e760bef, including fresh tool installation.
 Unrun: physical touch/gamepad, cloud persistence, live plugin sync, production publication.
 Limits: eight Studio clients do not measure eight-device performance; human long-run
 difficulty still needs playtesting. MCP captures can omit peg numbers; unrelated
 203785492 asset warning remains. Detailed evidence and resolved failures are in the task.
 Monetization: none.
-Next action: merge the verified PR, then open
-build/peg-arcade.rbxlx for human playtesting. Configure production Max Players = 8
+Next action: open build/peg-arcade.rbxlx for human playtesting. Configure production Max Players = 8
 when a production target is chosen.
 Repository administration: main unprotected; temporary default remains starter branch.

@@ -1,14 +1,14 @@
 # RBX-011 — Aquarium arcade and progression balance
 
 - Owner: Codex coordinator; arcade_world, arcade_client and arcade_balance contributors.
-- Status: READY FOR REVIEW
+- Status: MERGED
 - Reviewed: 2026-11-08 (America/Los_Angeles)
 - Starting main: ad313f065c14c23ba67b2223424a8670ce9d2dc0
 - Branch: task/RBX-011-arcade-balance
 - Reservation: [#11](https://github.com/Jayden-Amjed/Pop-a-Peg/issues/11)
 - PR: [#12](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/12)
 - Implementation evidence SHA: 131d04598e3162c747e7e3dc3a19fb34f0b05dc2
-- Confirmed merge SHA: NOT MERGED
+- Confirmed merge SHA: d9134d725edf3f3487d49400d22b3437313e84d6
 
 ## Objective and scope
 
@@ -24,7 +24,7 @@ removing meaningful combinations. No monetization or production publication.
 - [x] Normal game controls and camera restored reliably through repeated transitions.
 - [x] Reproduced runaway builds corrected with regressions and balance simulations.
 - [x] Full checks and Studio gameplay pass; multiplayer observations recorded honestly.
-- [ ] Current docs, playable build and verified main delivery (final integration pending).
+- [x] Current docs, playable build and verified main delivery.
 
 ## Implementation
 
@@ -86,7 +86,7 @@ No contributor operated Studio.
 | Collection and visual inspection | PASS | Native collection/recipe clicks; white panels and modeled ingredient equation; 820 hub parts; arrival view moved inside boundary |
 | Ambient motion | PASS | 120 sampled steps move 65 parts in ten groups; destroy restores each CFrame/transparency |
 | Review | PASS | Read-only lifecycle review caught victory discard; fixed and regression passed; no additional findings |
-| Main / CI | PENDING | Final branch push and verified merge receipt remain |
+| Main / CI | PASS | Push 42465792213 and PR 42465797077 passed at e77c4b64f96139163e3fdb709908b6857e760bef; GitHub confirmed merge d9134d725edf3f3487d49400d22b3437313e84d6 and fetched main matches |
 | Fresh tool setup / fallback | PASS | All four pinned tools downloaded in a clean scratch install; a second install forced primary URL failures and verified all four official API fallbacks and checksums |
 
 Local evidence files in the original root scratch folder include
@@ -126,6 +126,7 @@ performance or real network conditions.
   failed before checks on HTTP 504 tool downloads. Setup now retries at most three
   times and uses locked official release-asset API URLs after failure. Fresh normal
   and forced-fallback installs pass; all tool versions and checksums are unchanged.
+  The replacement push/PR CI runs above both passed; the old failures remain historical.
 - Automatic review rejected opening QA through the unrelated user Studio window.
   No open-file action occurred; isolated MCP execution completed the work instead.
 - Physical touch/gamepad, cloud persistence and production publication: NOT RUN.
@@ -140,8 +141,10 @@ performance or real network conditions.
 
 - Owner: Codex coordinator.
 - Checkout: C:/Users/Amjedd/Documents/ChatGPT/Pop a Peg/.worktrees/arcade.
-- Accepted State Version: 5; proposed version: 6.
+- Accepted State Version: 6, advanced once from predecessor 5 through PR 12.
 - Studio target: isolated peg-aero-qa (e848e7a7-b569-4600-b4e6-14ec13ecbaac), root only.
 - Sync: Rojo disconnected; Edit mode, 32 normal sources, both temporary QA scripts removed.
 - Published: NOT PUBLISHED; no production experience selected.
-- Next action: push final evidence, confirm CI, merge PR 12 and record its actual receipt.
+- Playable build: build/peg-arcade.rbxlx; SHA256 6802a85afba9019094781a9d7c4fe2e0047e2b5547aba26a2affcedeea04931c.
+- Next action: human playtest the generated arcade build; tune difficulty from real
+  run feedback. Production selection/publishing remains a separate future action.
