@@ -15,6 +15,7 @@ local ItemModels = require(script.Parent.ItemModels)
 local Feedback = require(script.Parent.Feedback)
 local Selection = require(script.Parent.InventorySelection)
 local ShopLayout = require(script.Parent.ShopLayout)
+local ChoiceLayout = require(script.Parent.ChoiceLayout)
 local HoverInspector = require(script.Parent.HoverInspector)
 local BoardArt = require(script.Parent.BoardArt)
 
@@ -1594,8 +1595,14 @@ function Presentation:_updateModal()
     local subtitle = label(modal, "Subtitle", "", 21, C.board, 25)
     subtitle.TextWrapped = true
     setRect(subtitle, 16, self.shortWide and 44 or 55, width - 32, self.shortWide and 22 or 47)
-    local bodyTop = self.shortWide and 70 or 112
-    local footerY = height - (self.shortWide and 54 or 67)
+    local tinyChoice = (phase == "perk" or phase == "event") and height < 280
+    if tinyChoice then
+        title.TextSize = 24
+        setRect(title, 12, 2, width - 24, 30)
+        subtitle.Visible = false
+    end
+    local bodyTop = tinyChoice and 36 or (self.shortWide and 70 or 112)
+    local footerY = height - (tinyChoice and 44 or (self.shortWide and 54 or 67))
     local body = make("ScrollingFrame", {
         Name = "Content",
         BackgroundTransparency = 1,
@@ -1611,11 +1618,11 @@ function Presentation:_updateModal()
         14,
         bodyTop,
         width - 28,
-        math.max(50, footerY - bodyTop - (self.shortWide and 10 or 13))
+        math.max(50, footerY - bodyTop - (tinyChoice and 8 or (self.shortWide and 10 or 13)))
     )
     local function action(name, text, x, buttonWidth, color, callback)
         local result = button(modal, name, text, color, callback, 27)
-        setRect(result, x, footerY, buttonWidth, self.shortWide and 42 or 51)
+        setRect(result, x, footerY, buttonWidth, tinyChoice and 36 or (self.shortWide and 42 or 51))
         result.TextSize = width < 650 and 18 or 24
         result.TextWrapped = true
         return result
@@ -1625,11 +1632,10 @@ function Presentation:_updateModal()
             or (state.eventTitle or "CHOOSE YOUR REWARD")
         subtitle.Text = "Make your next combo even stronger. Pick one."
         local choices = phase == "perk" and state.perkOffers or state.eventChoices
-        local columns = width >= 650 and 2 or 1
-        local cw = (width - 42 - (columns - 1) * 16) / columns
-        local ch = math.max(340, math.min(500, body.Size.Y.Offset - 8))
+        body.ScrollingEnabled = false
+        body.ScrollBarThickness = 0
         if phase == "event" then
-            body.Size = UDim2.fromOffset(width - 28, height - bodyTop - 16)
+            body.Size = UDim2.fromOffset(width - 28, height - bodyTop - 8)
         else
             action(
                 "SkipPerk",
@@ -1642,6 +1648,7 @@ function Presentation:_updateModal()
                 end
             )
         end
+        local cards = ChoiceLayout.compute(body.Size.X.Offset, body.Size.Y.Offset, #(choices or {}))
         for index, choice in choices or {} do
             local id = type(choice) == "table" and choice.id or choice
             local data = phase == "perk" and Catalog.Perks[id] or choice
@@ -1651,53 +1658,66 @@ function Presentation:_updateModal()
                     return id, 1
                 end)
             end
-            setRect(
-                card,
-                ((index - 1) % columns) * (cw + 16) + 3,
-                math.floor((index - 1) / columns) * (ch + 16) + 4,
-                cw,
-                ch
-            )
+            local rect = cards[index]
+            setRect(card, rect.x, rect.y, rect.w, rect.h)
+            local positions = ChoiceLayout.card(rect.w, rect.h, phase == "perk")
+            local function place(object, area)
+                setRect(object, area.x, area.y, area.w, area.h)
+            end
             local model = self:_viewport(card, "Reward", id, 1, 27)
-            local modelH = math.clamp(ch - 224, 120, 240)
-            setRect(model, (cw - modelH) / 2, 4, modelH, modelH)
-            local name = label(card, "Name", data.name, 31, C.ink, 28)
+            place(model, positions.model)
+            local name = label(card, "Name", data.name, positions.nameFont, C.ink, 28)
             name.Font = Enum.Font.SourceSansBold
-            name.TextXAlignment = Enum.TextXAlignment.Center
+            name.TextXAlignment = positions.stacked and Enum.TextXAlignment.Center
+                or Enum.TextXAlignment.Left
             name.TextWrapped, name.TextScaled = true, true
-            make("UITextSizeConstraint", { MinTextSize = 23, MaxTextSize = 33 }, name)
-            setRect(name, 12, modelH + 8, cw - 24, 48)
+            make(
+                "UITextSizeConstraint",
+                { MinTextSize = positions.tight and 16 or 18, MaxTextSize = positions.nameFont },
+                name
+            )
+            place(name, positions.name)
             local detail = phase == "perk" and Catalog.detail(id, 1)
-            local effectY = modelH + 60
             if detail then
-                local trigger = label(card, "Trigger", detail.trigger, 23, C.trigger, 28)
+                local trigger =
+                    label(card, "Trigger", detail.trigger, positions.triggerFont, C.trigger, 28)
                 trigger.Font = Enum.Font.SourceSansBold
                 trigger.TextWrapped, trigger.TextScaled = true, true
-                make("UITextSizeConstraint", { MinTextSize = 18, MaxTextSize = 24 }, trigger)
-                trigger.TextXAlignment = Enum.TextXAlignment.Center
-                setRect(trigger, 15, effectY, cw - 30, 38)
-                effectY += 42
+                make(
+                    "UITextSizeConstraint",
+                    { MinTextSize = 14, MaxTextSize = positions.triggerFont },
+                    trigger
+                )
+                trigger.TextXAlignment = positions.stacked and Enum.TextXAlignment.Center
+                    or Enum.TextXAlignment.Left
+                place(trigger, positions.trigger)
             end
             local effect = detail and detail.effects[1]
             local description = label(
                 card,
                 "Effect",
                 effect and effect.text or data.description,
-                23,
+                positions.effectFont,
                 id == "overtime" and C.negative or C.positive,
                 28
             )
-            description.TextWrapped = true
-            description.TextXAlignment = Enum.TextXAlignment.Center
+            description.TextWrapped, description.TextScaled = true, true
+            make(
+                "UITextSizeConstraint",
+                { MinTextSize = positions.tight and 14 or 17, MaxTextSize = positions.effectFont },
+                description
+            )
+            description.TextXAlignment = positions.stacked and Enum.TextXAlignment.Center
+                or Enum.TextXAlignment.Left
             description.TextYAlignment = Enum.TextYAlignment.Center
-            setRect(description, 15, effectY, cw - 30, ch - 68 - effectY)
+            place(description, positions.effect)
             local choose = button(card, "Choose", "CHOOSE", C.mint, function()
                 self:_send(phase == "perk" and "choosePerk" or "chooseEvent", { index = index })
             end, 29)
-            setRect(choose, 14, ch - 58, cw - 28, 48)
-            choose.TextSize = 27
+            place(choose, positions.choose)
+            choose.TextSize = positions.tight and 20 or 27
         end
-        body.CanvasSize = UDim2.fromOffset(0, math.ceil(#(choices or {}) / columns) * (ch + 16) + 5)
+        body.CanvasSize = UDim2.fromOffset(0, body.Size.Y.Offset)
     else
         title.Text = phase == "victory" and "WHAT A RUN!" or "READY FOR ANOTHER RUN?"
         subtitle.Text = "Keep your records and unlocks. Build a new combo next time."
