@@ -237,6 +237,29 @@ remote.OnClientEvent:Connect(function(command)
                 itemId = opened.itemId,
                 serial = opened.serial,
             }
+        elseif command == "market" then
+            local original = p:GetAttribute("ArcadeQARestocks")
+            assert(state.hub.chests.restockCredits == original, "Initial private wallet")
+            local payload = { tier = "uncommon", requestId = requestId("_P") }
+            local receipt = progression("buyChest", payload, payload.requestId)
+            assert(
+                receipt.kind == "purchase" and receipt.restockCost == 250 and receipt.serial == 4,
+                "Chosen-tier purchase receipt"
+            )
+            progression("buyChest", payload, payload.requestId)
+            rejection("buyChest", { tier = "common", requestId = requestId("_POOR") })
+            rejection("buyChest", { tier = "legendary", requestId = payload.requestId })
+            assert(
+                state.hub.chests.restockCredits == original - 250,
+                "Retry and rejected actions never debit twice"
+            )
+            assert(
+                state.hub.profile.chests.uncommon == 1 and state.hub.profile.chestSerial == 4,
+                "One unopened chest stored"
+            )
+            local balance = p.PlayerGui.PopAPegHub.Root.RestockWallet.Balance
+            assert(balance.Text == tostring(original - 250), "Visible hub wallet matches server")
+            return { restocks = state.hub.chests.restockCredits, uncommon = 1, serial = 4 }
         elseif command == "start" then
             actions.Action:FireServer("startRun")
             waitFor(function()
@@ -267,6 +290,11 @@ remote.OnClientEvent:Connect(function(command)
             return value
         elseif command == "runChestReject" then
             rejection("openChest", { tier = "common", requestId = requestId("_RUN") })
+            rejection("buyChest", { tier = "common", requestId = requestId("_RUNBUY") })
+            assert(
+                state.restockCredits == p:GetAttribute("ArcadeQARestocks") - 250,
+                "Run cannot spend the saved wallet"
+            )
             assert(
                 state.sessionView == "run" and state.chestsEarned.common == expectedChests - 2,
                 "Run view cannot open or spend chests"

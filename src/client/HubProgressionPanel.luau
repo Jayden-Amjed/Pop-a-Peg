@@ -68,6 +68,14 @@ function Panel:footer(previous, nextText, summary)
     Theme.setEnabled(h.previous, true, C.muted)
     Theme.setEnabled(h.nextPage, true, C.muted)
     h.footer.Text = summary or ""
+    -- Reclaim the unused navigation side so long currency amounts remain legible
+    -- on a narrow phone instead of squeezing into the central pager slot.
+    local panel = h.geometry.panel
+    if not previous then
+        Theme.rect(h.footer, 16, panel.h - 59, panel.w - 126, 44)
+    elseif not nextText then
+        Theme.rect(h.footer, 106, panel.h - 59, panel.w - 122, 44)
+    end
 end
 
 function Panel:request(kind, payload, handle)
