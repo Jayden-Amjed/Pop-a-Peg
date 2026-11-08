@@ -8,7 +8,10 @@ Accepted source: `9349530edb7eaf536ceabfed5e922ae5b65499a6` (README-only main se
 Dependency: starter [PR #2](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/2), unmerged,
 at `608c273d9f31022d2f161584c4c92188bb4405cd`. Main has no accepted status ledger.
 Implementation: `c73e29012c40053bab943d03d5412ae05b89ad7a` in dependent
-[PR #4](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/4); complete and READY FOR REVIEW.
+[PR #4](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/4); revision IN PROGRESS.
+The evidence below describes the first implementation. Reward presentation,
+equipment models, UI, audio, and collision/reward timing are being revised;
+new acceptance checks remain pending.
 
 | Capability | Verified state |
 | --- | --- |
@@ -32,5 +35,5 @@ Studio: QA stopped, normal source restored, Rojo disconnected; user's separate p
 Blockers / dependencies: no implementation blocker; PR #2 must precede PR #4 integration.
 Unrun: two clients in one server, physical mobile/touch, cloud persistence, live plugin sync, merge/publish.
 Observed limitation: unrelated Studio asset-type warning for 203785492; no project source reference.
-Next action: human playtest and PR review; run multiplayer/mobile/cloud checks before a release.
+Next action: integrate the reward/presentation revision and verify it in a separate Studio target.
 Repository administration: main remains unprotected; default branch remains the starter branch.

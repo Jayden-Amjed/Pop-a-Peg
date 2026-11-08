@@ -1,7 +1,7 @@
 # RBX-003 — Peg-bounce roguelike run loop
 
 Owner: Codex gameplay coordinator; module contributors integrated.
-Status: READY FOR REVIEW
+Status: IN PROGRESS — reward feedback and presentation revision
 Objective: Build a complete aimed peg-bounce run with escalating score targets and synergistic upgrades.
 Starting main: `9349530edb7eaf536ceabfed5e922ae5b65499a6` (README seed; fetched again 2026-11-07).
 Dependency base: starter PR #2 at `608c273d9f31022d2f161584c4c92188bb4405cd`; unmerged.
@@ -12,6 +12,18 @@ Reservation: [issue #3](https://github.com/Jayden-Amjed/Pop-a-Peg/issues/3).
 Implementation evidence: `c73e29012c40053bab943d03d5412ae05b89ad7a`.
 
 ## Scope and ownership
+
+### Active revision
+
+The first implementation passed its recorded checks, but visual acceptance requires
+a clearer repeated quota meter, flying score/coin rewards, staged refill/merge
+choreography, detailed equipment models, a large green interface, and sound cues.
+Correct low-value peg collision and life/reward timing while preserving validated
+server authority and reset boundaries. New verification is pending.
+
+Ownership: coordinator integrates and owns Studio; isolated `feedback-ui`,
+`feedback-models`, and `feedback-rules` worktrees own presentation, item models,
+and shared run/simulation contracts respectively. Earlier checks below are historical.
 
 Fixed front-view 3D board; independent per-player runs; 21 numbered pegs, aimed
 bouncing, score-before-halving, board-clear bonus, quota/restock growth, currency,
