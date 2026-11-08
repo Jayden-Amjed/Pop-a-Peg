@@ -37,6 +37,8 @@ sound cues use public Roblox audio IDs documented in [Asset sources](ASSETS.md).
 | `src/client/UiTheme.luau` | `StarterPlayer.StarterPlayerScripts.Client.UiTheme` | Shared interface colors and native GUI constructors. |
 | `src/client/ItemModels.luau` | `StarterPlayer.StarterPlayerScripts.Client.ItemModels` | Original native equipment, perk, currency, and control models with viewport animation. |
 | `src/client/ItemMotion.luau` | `StarterPlayer.StarterPlayerScripts.Client.ItemMotion` | Per-model moving groups, activation samples, and paused/resumed figure-eight idle motion. |
+| `src/client/ItemChoreography.luau`, `src/client/motion/` | Client modules with matching names | 78 distinct body/mechanism performances and shared smooth timing curves. |
+| `src/client/NativeAssemblies.luau` | `StarterPlayer.StarterPlayerScripts.Client.NativeAssemblies` | Native attachment pivots and groups; no geometry changes. |
 | `src/client/InventorySelection.luau` | `StarterPlayer.StarterPlayerScripts.Client.InventorySelection` | Pure select, deselect, swap-request, and invalid-phase rules. |
 | `src/client/ShopLayout.luau` | `StarterPlayer.StarterPlayerScripts.Client.ShopLayout` | Fixed offer, evolution-equation, and action regions for shops without scrolling. |
 | `src/client/ChoiceLayout.luau` | `StarterPlayer.StarterPlayerScripts.Client.ChoiceLayout` | Two visible perk/event choices with bounded model, effect and button regions. |
@@ -392,9 +394,15 @@ retains authored upgrade details and UI level badges, while evolved models rende
 fixed maximum tier. Idle motion follows a bounded 4.2-second figure-eight path with gentle tilt. Activations
 freeze the current idle pose, apply the item's moving-group animation relative to
 that pose, then resume idle velocity smoothly after the last queued activation.
+The [individual choreography](ITEM_ANIMATION_GUIDE.md) adds whole-object anticipation,
+growth, recoil and appropriate completed turns. Articulation happens first; a
+coherent body transform scales both dimensions and offsets. Connected material
+pieces share group/pivot timing. Retriggers, including Prism aiming, queue rather
+than rewinding a partial spin. A cached full-motion envelope keeps cameras still.
 The same idle controller animates perk choices, event prompts and hub reward
 previews as well as equipment. It has no effect on run mechanics. Static/reduced-motion mounts
-disable idle movement while retaining activation feedback.
+disable idle movement. Reduced-motion activations use a uniform 4% pulse without
+mechanism movement or spins; their camera envelope is cached separately.
 
 Only perk models retain the generic white display circle; equipment, currency and
 Supply previews omit it. `ItemModels` renders one geometry pass; enlarged black
@@ -502,7 +510,8 @@ The [full catalog inspector](CATALOG_GALLERY.md) builds with
 `catalog-gallery.project.json`. `art/catalog/CatalogAssets.rbxm` restores 78 models
 with 477 MeshParts; 75 editable sources live under `art/catalog/` and the original
 three stay under `art/models/`. Ten recorded uploads cover the new meshes.
-`CatalogMotion` applies shared pivot transforms, and only the selected model plus
+`CatalogMotion` applies the same choreography through shared pivots and a coherent
+whole-object transform; the original pilot gallery uses this adapter too. Only the selected model plus
 an optional native comparison mounts in viewports. `PreviewLighting` is shared
 with normal item cards; `UiTheme` adds restrained contrast. Gameplay still uses
 native geometry. Source files, upload receipts, runtime copies, tests and publication

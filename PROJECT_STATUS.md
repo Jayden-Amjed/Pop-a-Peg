@@ -1,49 +1,43 @@
 # Current project state
 
-State Version: 11 (accepted catalog inspector; predecessor accepted version 10)
+State Version: 12 (proposed expressive animation pass; accepted predecessor11)
 Reviewed: 2026-11-08, America/Los_Angeles
-Objective: Review every item in an individual Blender animation inspector with clearer shading.
+Objective: Give every approved model a distinct, energetic activation with a smooth return to idle.
 
-Accepted source: ae61001077cb054c6717d53f3dceed463873f894 (PR22 merge confirmed by GitHub).
-Completed task: [RBX-021](tasks/RBX-021-catalog-lab.md), Codex coordinator.
-Branch: task/RBX-021-catalog-lab; [PR22](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/22).
-Studio-tested source: 23f4615c4231114af6cf72e271739a8858459e3c (final inspector);
-92c4578d72548a61e0bc810f22b105fb65d1e812 (complete mesh/motion audit).
-Merge: MERGED. Version advanced once from accepted 10; fetched main matches the merge.
+Accepted source: 83a1a611df86f2737179ab9ed54e7ac0f53b9f6b (accepted predecessor; fetched during finalization).
+Active task: [RBX-023](tasks/RBX-023-expressive-motion.md), Codex coordinator.
+Branch: task/RBX-023-expressive-motion; [PR24](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/24).
+Studio-tested source: 1533ae542ed948396070f0186e819fb79599a8a4 (all motion/adapters);
+aeb64c252ef4e3d29a7cd9d63a1aee9e8ed78360 (final inspector label).
+Merge: PENDING. Proposed12 is not accepted main until GitHub confirms integration.
 
 | Capability | Verified state |
 | --- | --- |
-| Blender catalog | 78 unique model signatures: 40 equipment, 13 evolutions, 8 perks, 3 Supplies, 14 utility/chest/event models |
-| Editable sources | 75 new compressed .blend files plus three preserved pilot sources; ordinary builds retain manual edits |
-| Runtime artifact | 477 MeshParts, 124332 triangles total; only selected model plus optional native comparison mounts |
-| Inspector | Search/filter, individual trigger, loop, 0.25/0.5/1/2x speed, pause/pose scrub, four camera views, 60–250% zoom/Fit |
-| Feedback | Per-item session notes, precise pose/view tags and a copyable export; copy before stopping Play |
-| Contrast | Shared Balanced/Original preview lighting, dark recesses and quieter pearl/aqua panel depth; no duplicate outline shells |
-| Import proof | Ten new owner-account uploads Approved; calibrated scale/orientation; exact source/export/raw/runtime hashes |
-| Studio | All 78 mesh loads and 24 activation cycles/model pass; all poses restore; 22896 camera-corner checks pass |
-| Production game | Native geometry remains active; shared lighting/UI contrast applied; hub entry and three completed shot rounds checked |
-| Existing gameplay | Eight-player arcade, chosen-tier chest market and saved extra-Restocks wallet retained; no balance or paid-product changes |
+| Individual motion |78 distinct whole-object/mechanism performances; heavy impacts, blooms, flings, suitable full turns and tiered chest reveals |
+| Return/retrigger |Exact rest restoration, frozen figure-eight phase, smooth resume and coalesced follow-up procs, including Prism |
+| Connected models |Shared native group/pivot timing, seated stems, coherent material pieces, spring axial motion and calibrated press travel |
+| Preview framing |Cached full-performance bounds; no camera chasing; separate reduced-motion4% pulse |
+| Blender catalog |78 approved models,477 MeshParts,124332 triangles; geometry/import IDs and archives unchanged |
+| Studio motion |All78 Blender and78 native models pass repeated runtime checks |
+| Camera checks |45792 gallery corners and2575232 native corners at two sizes pass |
+| Game smoke |Hub/run entry and6shots with two cleared rounds; no new runtime errors |
+| Existing game |Eight-player arcade, saved restock wallet/chest market, scoring and progression retained; no paid-product changes |
 
-Guide: [Catalog inspector](docs/CATALOG_GALLERY.md).
-[Actual Studio preview](docs/evidence/RBX-021/catalog-final-clock.jpg).
-Evidence: [runtime audit](docs/evidence/RBX-021/studio-catalog-audit.json),
-[camera checks](docs/evidence/RBX-021/studio-gallery-fit.json),
-[archive integrity](docs/evidence/RBX-021/catalog-integrity.json).
+Guides: [animation direction](docs/ITEM_ANIMATION_GUIDE.md),
+[catalog inspector](docs/CATALOG_GALLERY.md).
+[Animated pose study](docs/evidence/RBX-023/expressive-motion.gif).
+[Full review and evidence](docs/evidence/RBX-023/REVIEW.md).
 
-Studio: final gallery peg-catalog-gallery-final.rbxlx,
-9f7afcd3-3f7d-45ea-8f2d-9769db7f8564. Root sole operator; Rojo disconnected;
-Play stopped in Edit. User's saved experience and earlier places preserved.
-Playable output: build/peg-catalog-gallery-final.rbxlx in .worktrees/catalog-lab.
-SHA256: 0EB94AA776AEA48CB71C4138406367EF79C523191E8BE8D3F2312CF678548DF3.
+Studio: coordinator-owned gallery9f7afcd3 and game QA db4acb6d.
+Both in Edit; no live Rojo sync/server. User-open gallery and saved experience preserved.
+Playable output:build/peg-expressive-gallery.rbxlx in .worktrees/motion-life.
+SHA256:F489BD59BED335253B91B702904F4CEF8D6B8A86C2B422119E5B6BE6770175E5.
 
-Checks: formatting/lint, 23 existing suites, catalog motion contracts, main build,
-39 source mappings, both gallery builds and archive validator passed. PR CI
-42519553571 passed at 4ac5a7e77a6f2b8cd99a4452d6587785db7a64b7.
-Blockers: none. Limitations: rigid coil compression changes wire thickness;
-ViewportFrames shade directionally but do not cast shadows; high manual zoom can
-crop intentionally; notes last only this Play session. Other-account mesh access
-and narrow/mobile inspector layouts are unverified. Existing unrelated avatar
-asset203785492 warning persists; no catalog runtime errors.
-Published: ten model assets uploaded; no game experience update published.
-Next action: press Play in the catalog gallery, inspect individual models and copy feedback before stopping.
+Checks:formatting/lint,23 suites, adapter contracts, three builds,45 source mappings,
+documentation validation and archive hashes pass locally. PR CI pending.
+Blockers:none. Limits: high manual zoom can crop; complete artistic/intersection
+review at every intermediate pose, mobile inspector and other-account asset access
+remain unverified. Existing unrelated avatar203785492 warning persists.
+Published: no game experience update or asset uploads in this task.
+Next action: publish review evidence, confirm CI and PR24 merge, then inspect individual animations in the new gallery.
 Repository administration: main unprotected; temporary default remains starter branch.

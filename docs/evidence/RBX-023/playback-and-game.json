@@ -1,0 +1,50 @@
+{
+  "source": "1533ae542ed948396070f0186e819fb79599a8a4",
+  "studio": "9f7afcd3-3f7d-45ea-8f2d-9769db7f8564",
+  "gameStudio": "db4acb6d-7162-40f1-9d16-7a42008a07a1",
+  "playback": {
+    "seconds": 3,
+    "mode": "actual RenderStepped playback",
+    "samples": {
+      "1": 32.083846440538764,
+      "2": 27.981224469840527,
+      "3": 26.94161698035896,
+      "4": 26.1718113347888,
+      "5": 24.229223422706127,
+      "6": 25.594678677618504,
+      "7": 27.233765345066786,
+      "8": 29.502638891339302,
+      "9": 31.232111148536205,
+      "10": 34.617923587560654,
+      "11": 28.05351611226797,
+      "12": 25.92099252040498
+    }
+  },
+  "game": {
+    "shots": 6,
+    "successfulRoundClears": 2,
+    "final": {
+      "phase": "READY TO LAUNCH",
+      "round": "LV 1 • 3 / 15",
+      "counts": {
+        "clear": "Clear: 0",
+        "itemTriggers": "Items: 0",
+        "first": "First hit: 1",
+        "walls": "Walls: 0",
+        "drain": "Drain: 1",
+        "perkTriggers": "Perks: 0",
+        "Title": "LAST SHOT  •  ROUND 3",
+        "doubles": "Doubles: 0",
+        "pops": "Pops: 1",
+        "halves": "Halves: 0",
+        "time": "Time: 1.0s",
+        "quotas": "Quotas: 0"
+      },
+      "previewCount": 36
+    },
+    "console": [
+      "[Pop a Peg] Eight-player aquarium arcade ready\n[Pop a Peg] Arcade and board controls ready\nContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type\nContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type\nContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type"
+    ],
+    "note": "Fresh Studio fallback run; no inventory acquired before round-5 shop. Per-item activations/queue/framing exercised by all-78 native runtime audit. No gameplay/profile mutation."
+  }
+}

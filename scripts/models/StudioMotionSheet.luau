@@ -78,17 +78,14 @@ return function(options)
         camera.FieldOfView, camera.Parent, viewport.CurrentCamera = 30, viewport, camera
         label(card, entry.name, UDim2.fromOffset(4, 0), UDim2.new(1, -8, 0, 28), 21)
         label(card, controller.profile, UDim2.new(0, 5, 1, -32), UDim2.new(1, -10, 0, 30), 14)
-        table.insert(
-            mounts,
-            {
-                view = viewport,
-                model = model,
-                motion = controller,
-                camera = camera,
-                center = (low + high) / 2,
-                radius = (high - low).Magnitude / 2,
-            }
-        )
+        table.insert(mounts, {
+            view = viewport,
+            model = model,
+            motion = controller,
+            camera = camera,
+            center = (low + high) / 2,
+            radius = (high - low).Magnitude / 2,
+        })
     end
     gui.Parent = playerGui
     local age, connection = 0, nil
