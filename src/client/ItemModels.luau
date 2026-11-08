@@ -1049,6 +1049,8 @@ function ItemModels.create(id, level)
     assert(builder, "Unknown item model: " .. tostring(id))
     local itemLevel = if level == 2 then 2 else 1
     local model = Instance.new("Model")
+    -- The first primitive may be rotated; keep builder and bounds axes fixed.
+    model.WorldPivot = CFrame.new()
     model.Name = "Item_" .. id
     model:SetAttribute("ItemId", id)
     model:SetAttribute("ItemLevel", itemLevel)
@@ -1084,7 +1086,7 @@ function ItemModels.create(id, level)
         end
     end
     local bounds = model:GetBoundingBox()
-    model.WorldPivot = bounds
+    model.WorldPivot = CFrame.new(bounds.Position)
     model:PivotTo(CFrame.new())
     model:SetAttribute("PartCount", #model:GetChildren())
     return model
