@@ -169,12 +169,12 @@ def lily_pad():
 
 def solar_leaf():
     mounting_foot(.85,.74)
-    tube('SolarStalk',[(0,0,.2),(-.05,0,.8),(0,0,1.5)],.075,'pearl')
+    tube('SolarStalk',[(0,0,.2),(-.05,0,.8),(0,0,1.5)],.075,'dark')
     for side in (-1,1):
-        pivot=(0,0,1)
-        leaf('CollectorLeaf',(0,0,1),1.28,.62,'green','SolarLeaf',pivot,(0,side*.70,0))
-        leaf('PhotovoltaicInset',(side*.24,-.07,1.39),.68,.28,'blue','SolarCell',pivot,(0,side*.68,0))
-        tube('GoldVein',[(0,-.09,1.05),(side*.35,-.09,1.47),(side*.63,-.09,1.9)],.025,'gold','SolarVein',pivot)
+        pivot=(side*.035,0,1)
+        leaf('CollectorLeaf',pivot,1.28,.62,'green','SolarLeaf',pivot,(0,side*.70,0))
+        leaf('PhotovoltaicInset',(side*.275,-.07,1.39),.68,.28,'blue','SolarCell',pivot,(0,side*.68,0))
+        tube('GoldVein',[(side*.035,-.09,1.05),(side*.385,-.09,1.47),(side*.665,-.09,1.9)],.025,'gold','SolarVein',pivot)
     sphere('SolarBead',(0,0,2.5),(.18,)*3,'gold','SolarSun')
 
 def mist_fan():
