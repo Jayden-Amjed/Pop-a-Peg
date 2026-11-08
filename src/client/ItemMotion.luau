@@ -44,7 +44,7 @@ local profiles = {
 ItemMotion.Profiles = table.freeze(profiles)
 
 ItemMotion.Idle = table.freeze({
-    period = 8.4,
+    period = 4.2,
     resumeDuration = 0.42,
     lateral = 0.024,
     vertical = 0.03,

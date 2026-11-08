@@ -1225,6 +1225,86 @@ local aliases = {
 
 ItemModels.Ids = table.freeze(ids)
 
+-- One extra render layer gives the whole model a camera-relative silhouette.
+-- Keeping it behind the colored pass avoids drawing edges between model parts.
+local function silhouette(viewport, model, camera, options)
+    if options and options.outline == false then
+        return nil
+    end
+    local mask = Instance.new("ViewportFrame")
+    mask.Name = viewport.Name .. "Silhouette"
+    mask:SetAttribute("ItemSilhouette", true)
+    mask.BackgroundTransparency, mask.BorderSizePixel = 1, 0
+    mask.Active, mask.Selectable = false, false
+    mask.Ambient, mask.LightColor, mask.ImageColor3 = Color3.new(), Color3.new(), Color3.new()
+    local maskCamera = Instance.new("Camera")
+    maskCamera.Name = "SilhouetteCamera"
+    maskCamera.Parent = mask
+    mask.CurrentCamera = maskCamera
+    local geometry = Instance.new("Model")
+    geometry.Name = "SilhouetteGeometry"
+    geometry.Parent = mask
+    local links, connections = {}, {}
+    for _, original in model:GetDescendants() do
+        if original:IsA("BasePart") then
+            local copy = original:Clone()
+            copy:ClearAllChildren()
+            copy.Color = Color3.new()
+            copy.Material, copy.Reflectance = Enum.Material.SmoothPlastic, 0
+            copy.CastShadow = false
+            copy.Parent = geometry
+            table.insert(links, { original = original, copy = copy })
+        end
+    end
+    local function layout()
+        mask.AnchorPoint, mask.Position, mask.Size =
+            viewport.AnchorPoint, viewport.Position, viewport.Size
+        mask.Rotation = viewport.Rotation
+        mask.ZIndex = math.max(1, viewport.ZIndex - 1)
+        mask.Visible = viewport.Visible
+        mask.ImageTransparency = viewport.ImageTransparency
+        mask.Parent = viewport.Parent
+    end
+    for _, property in
+        {
+            "AnchorPoint",
+            "Position",
+            "Size",
+            "Rotation",
+            "ZIndex",
+            "Visible",
+            "ImageTransparency",
+            "Parent",
+        }
+    do
+        table.insert(connections, viewport:GetPropertyChangedSignal(property):Connect(layout))
+    end
+    layout()
+    local outline = { frame = mask }
+    function outline:fit()
+        local dimensions = viewport.AbsoluteSize
+        local shortest = math.max(1, math.min(dimensions.X, dimensions.Y))
+        local pixels = math.clamp(shortest * 0.024, 1.5, 4.5)
+        local expansion = 1 + pixels * 2 / shortest
+        maskCamera.CFrame = camera.CFrame
+        maskCamera.FieldOfView =
+            math.deg(2 * math.atan(math.tan(math.rad(camera.FieldOfView / 2)) / expansion))
+    end
+    function outline:sync()
+        for _, link in links do
+            link.copy.CFrame, link.copy.Size = link.original.CFrame, link.original.Size
+            link.copy.Transparency = link.original.Transparency
+        end
+    end
+    function outline:destroy()
+        for _, connection in connections do
+            connection:Disconnect()
+        end
+        mask:Destroy()
+    end
+    return outline
+end
+
 function ItemModels.create(id, level)
     local canonical = aliases[id] or id
     local builder = builders[canonical]
@@ -1293,11 +1373,16 @@ function ItemModels.mount(viewport, id, level, options)
     viewport.LightDirection = V(-0.7, -1, -0.6)
     local _, size = model:GetBoundingBox()
     local radius = size.Magnitude / 2
-    local floorY = -size.Y / 2 - 0.1
-    local floorRadius = math.max(size.X, size.Z) * 0.57
-    glass(drum(container, P.cyan, floorRadius, 0.055, 0, floorY, 0), 0.36)
-    drum(container, P.ceramic, floorRadius * 1.03, 0.035, 0, floorY - 0.036, 0)
     local canonical = aliases[id] or id
+    if categories[canonical] == "perk" then
+        local floorY = -size.Y / 2 - 0.1
+        local floorRadius = math.max(size.X, size.Z) * 0.57
+        local top = glass(drum(container, P.cyan, floorRadius, 0.055, 0, floorY, 0), 0.36)
+        top.Name = "PerkPedestalTop"
+        local base = drum(container, P.ceramic, floorRadius * 1.03, 0.035, 0, floorY - 0.036, 0)
+        base.Name = "PerkPedestalBase"
+    end
+    local outline = silhouette(viewport, model, camera, options)
     local motion = ItemMotion.new(model, canonical)
     local handle = { model = model }
     local animate = not options or (options.animate ~= false and options.reducedMotion ~= true)
@@ -1306,6 +1391,7 @@ function ItemModels.mount(viewport, id, level, options)
     local active, aimAngle, aimFrom, currentAim = false, 0, 0, 0
     local queuedAmount, queuedParams
     local destroyed = false
+    local destroyConnection
     local previousWidth, previousHeight = -1, -1
     local function fit()
         local dimensions = viewport.AbsoluteSize
@@ -1320,6 +1406,9 @@ function ItemModels.mount(viewport, id, level, options)
         local limitingFov = math.min(halfFov, math.atan(math.tan(halfFov) * aspect))
         local distance = radius * 1.28 / math.sin(limitingFov)
         camera.CFrame = CFrame.lookAt(V(0.72, 0.43, 1).Unit * distance, V(0, 0, 0))
+        if outline then
+            outline:fit()
+        end
     end
     local function hoverFrame(pose)
         local position = camera.CFrame.RightVector * pose.x * size.X
@@ -1362,6 +1451,9 @@ function ItemModels.mount(viewport, id, level, options)
                 queuedAmount, queuedParams = nil, nil
                 self:pulse(nextAmount, nextParams)
             end
+        end
+        if outline then
+            outline:sync()
         end
     end
     function handle:pulse(amount, params)
@@ -1416,15 +1508,27 @@ function ItemModels.mount(viewport, id, level, options)
             return
         end
         destroyed = true
+        if destroyConnection then
+            destroyConnection:Disconnect()
+        end
+        if outline then
+            outline:destroy()
+        end
         if viewport.CurrentCamera == camera then
             viewport.CurrentCamera = nil
         end
         container:Destroy()
     end
+    destroyConnection = viewport.Destroying:Connect(function()
+        handle:destroy()
+    end)
     fit()
     if animate then
         idleFrame = hoverFrame(ItemMotion.stepHover(hover, 0, false))
         model:PivotTo(idleFrame)
+    end
+    if outline then
+        outline:sync()
     end
     return handle
 end

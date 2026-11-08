@@ -38,7 +38,8 @@ return function()
     end
 
     local continuous = Motion.newHover(true)
-    for _ = 1, 84 do
+    assert(Motion.Idle.period == 4.2, "Idle loop must complete twice as fast as the original")
+    for _ = 1, 42 do
         Motion.stepHover(continuous, 0.1, false)
     end
     samePose(Motion.idleSample(continuous.phase), Motion.idleSample(0), 0.000000000001)
