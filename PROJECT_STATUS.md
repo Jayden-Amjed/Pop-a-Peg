@@ -4,7 +4,7 @@ State Version: 8 (proposal: earned hub progression and mobile polish)
 Reviewed: 2026-11-08, America/Los_Angeles
 Objective: Connect runs to tiered hub chests and equipment discoveries, add arcade rankings, and make phone play usable.
 
-Accepted predecessor: 9d516120dc4c925061c444f713fb3b40719e1688, State Version 7.
+Accepted source: 9d516120dc4c925061c444f713fb3b40719e1688, predecessor at State Version 7.
 Implementation: b8329c800762f3d238f5d535261ab09cbdb18312.
 Active task: [RBX-015](tasks/RBX-015-hub-progression.md), Codex coordinator.
 Branch: task/RBX-015-hub-progression; [PR #16](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/16).

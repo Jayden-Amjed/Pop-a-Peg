@@ -2,14 +2,14 @@
 
 - Owner: Codex coordinator; backend, content and model contributors in isolated worktrees.
 - Status: READY FOR REVIEW
-- Starting / refreshed main: 9d516120dc4c925061c444f713fb3b40719e1688
+- Starting main: 9d516120dc4c925061c444f713fb3b40719e1688 (refetched unchanged)
 - Implementation: b8329c800762f3d238f5d535261ab09cbdb18312
 - Branch: task/RBX-015-hub-progression
 - PR: [#16](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/16)
 - Reservation: [#15](https://github.com/Jayden-Amjed/Pop-a-Peg/issues/15)
 - Reviewed: 2026-11-08, America/Los_Angeles
 
-## Objective and acceptance
+## Objective and Acceptance
 
 Full goal: hub rankings for time played, highest Endless round and experience Robux
 spent; earned tiered run chests opened in the hub; tiered equipment unlocks that gate
@@ -62,7 +62,7 @@ Newest 64 request receipts persist operation/target/result; retries restore the
 original acknowledgment without another debit, including A/B/A replay and reload.
 Very old IDs outside this bounded history are not an indefinite deduplication promise.
 
-## Executed checks
+## Checks executed
 
 Windows PowerShell; pinned repository tools:
 - PASS scripts/check.ps1: 22 suites, StyLua, Selene 0 errors/warnings, Rojo build,
@@ -77,7 +77,8 @@ Windows PowerShell; pinned repository tools:
 
 Initial lint could not download Roblox metadata in the sandbox; network-enabled
 check rerun passed. One opt-in report-global lint warning was documented locally
-and resolved. Native test-command assertion mistakes referenced nonexistent helper
+and resolved. First final PR CI rejected a renamed required dashboard field;
+the exact Accepted source field was restored and checks rerun. Native test-command assertion mistakes referenced nonexistent helper
 fields; corrected assertions used actual GUI objects. These were test commands,
 not production exceptions.
 
