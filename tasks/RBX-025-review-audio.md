@@ -1,13 +1,15 @@
 # RBX-025 — Model review and gallery audio
 
 - Owner: Codex coordinator, sole Studio operator
-- Status: VERIFIED; final CI/acceptance pending
+- Status: MERGED; accepted State Version13
 - Reservation: https://github.com/Jayden-Amjed/Pop-a-Peg/issues/25
 - Branch: task/RBX-025-review-audio
 - Starting main: eafb1dae9a6da8c4caf22edc22cea3feeb7ba918
 - Reviewed: 2026-11-08, America/Los_Angeles
 - PR: https://github.com/Jayden-Amjed/Pop-a-Peg/pull/26
 - Runtime evidence:56e68f849a58c9eb8513b23cd442dd8308c7627d
+- Confirmed merge:84d10556eff93c98f64250e94e36a26414dc6c17
+- CI:42529919325 PASS at2fc77bf63e2713a6bcb991cdfb7bcd1db8297343
 
 ## Objective and scope
 
@@ -59,9 +61,9 @@ truncation discarded; bounded capture/hash verification succeeded.
 - Studio: fresh gallery4a95dbcb and QA9f7afcd3 in Edit; root sole operator. No Rojo sync.
 - Absolute checkout:C:/Users/Amjedd/Documents/ChatGPT/Pop a Peg/.worktrees/review-pass.
 - User review/saved experience content preserved; no feedback discarded.
-- Main fetched:eafb1dae9a6da8c4caf22edc22cea3feeb7ba918, accepted12; proposal13.
+- Main fetched:84d10556eff93c98f64250e94e36a26414dc6c17, accepted13 once from12.
 - Evidence: runtime56e68f8 plus linked bounded audits and archive hashes.
 - Blockers:none. Limits: subjective audio listening/phone/fullmultiplayer not retested;
   coin largely covered by die at full compression.
-- Next: final CI, GitHub-confirmed merge, bounded acceptance receipt.
-- Merge: NOT MERGED. Model asset117621047528393 uploaded; experience NOT PUBLISHED.
+- Next: user Play/Trigger review in peg-model-review.rbxlx; tag/copy new notes.
+- Merge: MERGED. Model asset117621047528393 uploaded; experience NOT PUBLISHED.
