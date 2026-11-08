@@ -17,6 +17,9 @@
         "Client": { "$path": "src/client" }
       }
     },
+    "StarterGui": {
+      "$properties": { "ScreenOrientation": "Sensor" }
+    },
     "Workspace": {
       "$properties": { "FilteringEnabled": true }
     },

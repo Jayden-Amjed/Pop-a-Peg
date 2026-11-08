@@ -24,6 +24,16 @@ try {
     & "$PSScriptRoot/build.ps1"
     [xml]$place = Get-Content build/dev.rbxlx -Raw
     $mappings = @(
+        @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/RunLayout'; Class = 'ModuleScript'; Source = 'src/client/RunLayout.luau' },
+        @{ Path = 'ServerScriptService/Server/ProfileRepository'; Class = 'ModuleScript'; Source = 'src/server/ProfileRepository.luau' },
+        @{ Path = 'ReplicatedStorage/Shared/ChestProgression'; Class = 'ModuleScript'; Source = 'src/shared/ChestProgression.luau' },
+        @{ Path = 'ReplicatedStorage/Shared/Profile'; Class = 'ModuleScript'; Source = 'src/shared/Profile.luau' },
+        @{ Path = 'ReplicatedStorage/Shared/ProfileLease'; Class = 'ModuleScript'; Source = 'src/shared/ProfileLease.luau' },
+        @{ Path = 'ReplicatedStorage/Shared/Leaderboards'; Class = 'ModuleScript'; Source = 'src/shared/Leaderboards.luau' },
+        @{ Path = 'ServerScriptService/Server/LeaderboardService'; Class = 'ModuleScript'; Source = 'src/server/LeaderboardService.luau' },
+        @{ Path = 'ServerScriptService/Server/ProfileStore'; Class = 'ModuleScript'; Source = 'src/server/ProfileStore.luau' },
+        @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/HubProgressionPanel'; Class = 'ModuleScript'; Source = 'src/client/HubProgressionPanel.luau' },
+        @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/HubProgressionLayout'; Class = 'ModuleScript'; Source = 'src/client/HubProgressionLayout.luau' },
         @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/HubGuide'; Class = 'ModuleScript'; Source = 'src/client/HubGuide.luau' },
         @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/HubAmbience'; Class = 'ModuleScript'; Source = 'src/client/HubAmbience.luau' },
         @{ Path = 'ServerScriptService/Server/ArcadeSessions'; Class = 'ModuleScript'; Source = 'src/server/ArcadeSessions.luau' },

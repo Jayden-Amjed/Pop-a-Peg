@@ -17,18 +17,23 @@ test player. Never install it in a shared or published experience.
    [ArcadeSmoke.server.luau](ArcadeSmoke.server.luau).
 3. Create `StarterPlayer.StarterPlayerScripts.ArcadeMultiQA` as a LocalScript with
    the exact source of [ArcadeSmoke.client.luau](ArcadeSmoke.client.luau).
-4. Through the selected Studio MCP Edit DataModel, execute:
+4. Disable `ServerScriptService.Server.Main` in **Edit**. The isolated server
+   harness seeds eight distinct Studio session profiles (3–10 Meadow chests,
+   13–20 research, starter ownership), then enables Main at runtime. It asserts
+   Studio mode and cannot contact production storage. Through the selected Edit
+   DataModel, execute:
 
    ```lua
    return game:GetService("StudioTestService"):ExecuteMultiplayerTestAsync(8, "ArcadeEightClients")
    ```
 
 5. Inspect the returned report: `ok = true`, `maxPlayers = 8`, eight entries for
-   ready/start/launch/hub/resume, seven idle entries, and a cleared departed station.
+   ready/chestA/chestB/replayA/wrongReplay/research/start/runChestReject/launch/hub/resume,
+   saved-profile checks, seven idle entries, and a cleared departed station.
    The client readiness check waits for camera, GUI and character state rather
    than assuming a fixed startup duration.
-6. Stop the test if needed. Remove only the two exact temporary scripts above.
-   Verify the normal source is intact and return the isolated place to Edit.
+6. Stop the test if needed. Restore Edit `Main.Disabled=false` and remove only the
+   two exact temporary scripts above. Verify normal source and return to Edit.
 
 The test checks distinct station allocation, independent runs, in-flight return
 rejection, board/hub camera and character restoration, resume and departure.
@@ -58,6 +63,13 @@ choices, event choices and chest openings natively: geometry assertions alone do
 not establish visible figure-eight motion or a readable presentation.
 
 ## Hub progression and persistence boundaries
+
+`ProgressionPlay.client.luau` is an opt-in ordinary-action smoke test. Execute it
+in a fresh isolated client and inspect `_G.ProgressionPlay` until `running=false`.
+It aims using the ordinary preview, clears three rounds, deliberately ends later
+shots to reach defeat, opens the earned chest, and asserts that a new run gains
+exactly that blueprint. It grants no state. Record its result separately from
+the seeded multiplayer fixture.
 
 In an isolated development session, verify the normal chest flow: successfully
 clear at least three rounds, finish a defeat, return to the hub, open the earned
