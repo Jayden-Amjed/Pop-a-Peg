@@ -806,7 +806,7 @@ function Presentation:_layout()
     self.best.Visible, self.profile.Visible = not compact and h >= 1040, not compact and h >= 1040
     self.stats.Visible, self.timer.Visible = false, false
     self.statsPanel.Visible = true
-    self.detailPopup = compact or h < 850
+    self.detailPopup = compact or self.lowDesktop
     self.inlineDetail = not self.detailPopup
     self.help.Visible = not compact
     self.soundButton.TextSize = compact and 15 or 18
@@ -1146,7 +1146,7 @@ function Presentation:_updatePerks()
     local ch = (h - headerH - 8 - (rows - 1) * 4) / rows
     setRect(self.perksTitle, 7, 1, w * 0.42, headerH)
     self.perksTitle.TextSize = h < 70 and 14 or 18
-    self.perksTitle.Text = self.compact and ("PERKS • " .. total) or ("OWNED PERKS • " .. total)
+    self.perksTitle.Text = "PERKS • " .. total
     setRect(self.perksStatus, w * 0.42, 1, w * 0.58 - 7, headerH)
     self.perksStatus.TextXAlignment = Enum.TextXAlignment.Right
     if os.clock() >= (self.perkUntil or 0) then
