@@ -16,6 +16,7 @@ local Feedback = require(script.Parent.Feedback)
 local Selection = require(script.Parent.InventorySelection)
 local ShopLayout = require(script.Parent.ShopLayout)
 local ChoiceLayout = require(script.Parent.ChoiceLayout)
+local CounterProgress = require(script.Parent.CounterProgress)
 local HoverInspector = require(script.Parent.HoverInspector)
 local EvolutionDisplay = require(script.Parent.EvolutionDisplay)
 local BoardArt = require(script.Parent.BoardArt)
@@ -1116,7 +1117,10 @@ function Presentation:_renderCounters()
     local overrides = self.counterOverrides
     local score = overrides.score or state.score or 0
     local quota = math.max(1, state.quota or 1)
-    local completed = math.floor(score / quota)
+    local layers =
+        { C.mint, C.gold, C.blue, Color3.fromRGB(215, 132, 255), Color3.fromRGB(255, 141, 65) }
+    local progress = CounterProgress.compute(score, quota, state.maxRestocks, #layers)
+    local completed = progress.completed
     local restocks = overrides.restocks or state.restocks or completed
     local coins = overrides.coins or state.coins or 0
     local reserves = overrides.reserves or state.reserves or 0
@@ -1128,14 +1132,12 @@ function Presentation:_renderCounters()
     self.restockCount.Text = "×"
         .. (restocks >= 1000 and Format.number(restocks) or Format.integer(restocks))
     self.quota.Text = "TARGET " .. Format.number(quota)
-    local remainder = score % quota
-    self.fraction.Text = Format.number(math.floor(remainder + 0.5)) .. " / " .. Format.number(quota)
-    local layers =
-        { C.mint, C.gold, C.blue, Color3.fromRGB(215, 132, 255), Color3.fromRGB(255, 141, 65) }
-    self.progress.BackgroundColor3 = completed > 0 and layers[((completed - 1) % #layers) + 1]
-        or C.ink
-    self.progressFill.BackgroundColor3 = layers[(completed % #layers) + 1]
-    self.progressFill.Size = UDim2.fromScale(math.clamp(remainder / quota, 0, 1), 1)
+    self.progressCaption.Text = progress.capped and "RESTOCK LIMIT" or "NEXT RESTOCK"
+    self.fraction.Text = progress.capped and "FULL"
+        or (Format.number(math.floor(progress.remainder + 0.5)) .. " / " .. Format.number(quota))
+    self.progress.BackgroundColor3 = completed > 0 and layers[progress.previousLayer] or C.ink
+    self.progressFill.BackgroundColor3 = layers[progress.nextLayer]
+    self.progressFill.Size = UDim2.fromScale(progress.fraction, 1)
     self.scorePlate.BackgroundColor3 = C.paper
     self.restockPlate.BackgroundColor3 = C.paper
     self.restockHint.Text = restocks > 0 and "Ready to refill + merge your board!"
