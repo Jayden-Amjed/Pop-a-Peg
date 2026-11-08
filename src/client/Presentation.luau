@@ -1439,6 +1439,14 @@ function Presentation:_offerLevel(offer)
     if intent.action == "maxLevel" then
         return Catalog.MaxLevel
     end
+    if intent.action == "sold" then
+        for slot = 1, state.slots do
+            local item = state.inventory[slot]
+            if item and item.id == offer.id then
+                return item.level
+            end
+        end
+    end
     return 1
 end
 
