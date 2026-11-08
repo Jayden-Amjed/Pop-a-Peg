@@ -153,8 +153,8 @@ function Feedback:_line(startPoint, endPoint, color)
     )
 end
 
-function Feedback:_beam(slot, pegId, color, style)
-    local key = tostring(slot) .. ":" .. tostring(pegId)
+function Feedback:_beam(slot, pegId, color, style, action)
+    local key = tostring(slot) .. ":" .. tostring(pegId) .. ":" .. tostring(action)
     if self.elapsed - (self.itemFxTimes[key] or -10) < 0.07 then
         return
     end
@@ -375,15 +375,18 @@ function Feedback:_event(event)
         local pegId = event.targetPegId or event.pegId
         if pegId then
             local point = self:_anchor("peg", pegId)
-            local color = profile and Color3.fromRGB(table.unpack(profile.color)) or GOLD
+            local color = if event.action == "halve"
+                then Color3.fromRGB(255, 165, 112)
+                elseif profile then Color3.fromRGB(table.unpack(profile.color))
+                else GOLD
             if slot then
-                self:_beam(slot, pegId, color, profile and profile.style or "tap")
+                self:_beam(slot, pegId, color, profile and profile.style or "tap", event.action)
             end
             self:_ring(point, color, 38)
             if event.action == "double" or event.action == "halve" then
                 self:_label(
                     event.action == "double" and "×2" or "÷2",
-                    point + Vector2.new(0, -15),
+                    point + Vector2.new(0, event.action == "double" and -24 or 15),
                     color,
                     24
                 )
