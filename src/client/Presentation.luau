@@ -9,22 +9,14 @@ local Board = require(Shared:WaitForChild("Board"))
 local Catalog = require(Shared:WaitForChild("Catalog"))
 local Format = require(Shared:WaitForChild("Format"))
 local Simulation = require(Shared:WaitForChild("Simulation"))
+local Theme = require(script.Parent.UiTheme)
+local ItemModels = require(script.Parent.ItemModels)
+local Feedback = require(script.Parent.Feedback)
 
 local Presentation = {}
 Presentation.__index = Presentation
 
-local C = {
-    ink = Color3.fromRGB(15, 24, 38),
-    board = Color3.fromRGB(24, 40, 57),
-    panel = Color3.fromRGB(29, 46, 63),
-    edge = Color3.fromRGB(65, 89, 106),
-    muted = Color3.fromRGB(151, 174, 186),
-    paper = Color3.fromRGB(247, 241, 222),
-    mint = Color3.fromRGB(121, 230, 187),
-    coral = Color3.fromRGB(255, 132, 105),
-    gold = Color3.fromRGB(255, 213, 113),
-    blue = Color3.fromRGB(129, 201, 242),
-}
+local C = Theme.colors
 
 local PEG_COLORS = {
     Color3.fromRGB(255, 143, 117),
@@ -38,79 +30,18 @@ local PEG_COLORS = {
     Color3.fromRGB(236, 161, 218),
 }
 
-local function make(className, properties, parent)
-    local instance = Instance.new(className)
-    for key, value in properties do
-        instance[key] = value
-    end
-    instance.Parent = parent
-    return instance
-end
-
-local function corner(parent, radius)
-    return make("UICorner", { CornerRadius = UDim.new(0, radius or 12) }, parent)
-end
-
-local function stroke(parent, color, thickness)
-    return make("UIStroke", {
-        Color = color or C.edge,
-        Thickness = thickness or 1,
-        Transparency = 0.15,
-        ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-    }, parent)
-end
-
-local function frame(parent, name, color, z)
-    local result = make("Frame", {
-        Name = name,
-        BackgroundColor3 = color or C.panel,
-        BorderSizePixel = 0,
-        ZIndex = z or 2,
-    }, parent)
-    return result
-end
-
-local function label(parent, name, value, size, color, z)
-    return make("TextLabel", {
-        Name = name,
-        BackgroundTransparency = 1,
-        BorderSizePixel = 0,
-        Font = Enum.Font.Gotham,
-        Text = value or "",
-        TextSize = size or 16,
-        TextColor3 = color or C.paper,
-        TextXAlignment = Enum.TextXAlignment.Left,
-        TextYAlignment = Enum.TextYAlignment.Center,
-        ZIndex = z or 3,
-    }, parent)
-end
-
-local function button(parent, name, value, color, callback, z)
-    local result = make("TextButton", {
-        Name = name,
-        BackgroundColor3 = color or C.mint,
-        BorderSizePixel = 0,
-        AutoButtonColor = true,
-        Font = Enum.Font.GothamBold,
-        Text = value,
-        TextColor3 = C.ink,
-        TextSize = 15,
-        ZIndex = z or 6,
-    }, parent)
-    corner(result, 9)
-    result.Activated:Connect(callback)
-    return result
-end
+local make = Theme.make
+local corner = Theme.corner
+local stroke = Theme.stroke
+local frame = Theme.frame
+local label = Theme.label
+local button = Theme.button
+local setRect = Theme.rect
+local plate = Theme.plate
 
 local function blockAim(gui)
     gui:SetAttribute("BlocksAim", true)
 end
-
-local function setRect(gui, x, y, width, height)
-    gui.Position = UDim2.fromOffset(x, y)
-    gui.Size = UDim2.fromOffset(width, height)
-end
-
 local function part(parent, name, size, position, color, material, shape)
     local result = make("Part", {
         Name = name,
@@ -167,17 +98,6 @@ local function itemColor(definition)
     return C.mint
 end
 
-local function initials(value)
-    local result = ""
-    for word in string.gmatch(value, "%S+") do
-        result ..= string.sub(word, 1, 1)
-        if #result >= 2 then
-            break
-        end
-    end
-    return string.upper(result)
-end
-
 local function formatTime(seconds)
     seconds = math.max(0, seconds or 0)
     return string.format("%02d:%05.2f", math.floor(seconds / 60), seconds % 60)
@@ -186,6 +106,9 @@ end
 function Presentation:_send(kind, payload)
     if self.destroyed then
         return
+    end
+    if self.feedback and self.feedback.playCue and kind ~= "continue" then
+        self.feedback:playCue("click")
     end
     self.onAction(kind, payload or {})
 end
@@ -198,7 +121,7 @@ function Presentation:_buildBoard()
         "CabinetShadow",
         Vector3.new(24.4, 32.4, 0.3),
         Vector3.new(0.45, 10.45, -3),
-        Color3.fromRGB(9, 17, 27)
+        Color3.fromRGB(7, 18, 10)
     )
     for _, side in { -1, 1 } do
         part(
@@ -206,7 +129,7 @@ function Presentation:_buildBoard()
             "StagePanel",
             Vector3.new(8, 39, 0.2),
             Vector3.new(side * 17.5, 11, -7.25),
-            Color3.fromRGB(18, 30, 44)
+            Color3.fromRGB(19, 40, 22)
         )
         part(
             self.model,
@@ -227,6 +150,50 @@ function Presentation:_buildBoard()
         end
     end
     part(self.model, "CabinetBack", Vector3.new(22, 30, 1.2), Vector3.new(0, 10.9, -1), C.ink)
+    for _, side in { -1, 1 } do
+        for _, y in { -3.5, 25.2 } do
+            part(
+                self.model,
+                "CornerHousing",
+                Vector3.new(1.45, 1.45, 1.9),
+                Vector3.new(side * 10.5, y, -0.05),
+                C.mint
+            )
+            disc(
+                self.model,
+                "CornerBolt",
+                0.23,
+                0.12,
+                Vector3.new(side * 10.5, y, 0.98),
+                C.paper,
+                Enum.Material.Metal
+            )
+        end
+        part(
+            self.model,
+            "FactoryBrace",
+            Vector3.new(0.7, 18, 0.8),
+            Vector3.new(side * 11.5, 8, -0.8),
+            C.panel
+        )
+        local housing = part(
+            self.model,
+            "RefillFeeder",
+            Vector3.new(1.8, 3.4, 1.5),
+            Vector3.new(side * 11.7, 19.8, -0.55),
+            C.mint
+        )
+        housing.Material = Enum.Material.SmoothPlastic
+        for index = 1, 3 do
+            part(
+                self.model,
+                "FeederVent",
+                Vector3.new(1.15, 0.12, 0.1),
+                Vector3.new(side * 11.7, 18.8 + index * 0.5, 0.24),
+                C.ink
+            )
+        end
+    end
     part(
         self.model,
         "Playfield",
@@ -361,7 +328,7 @@ function Presentation:_buildBoard()
         }, peg)
         local number = label(billboard, "Number", "1", 30, C.ink)
         number.Size = UDim2.fromScale(1, 1)
-        number.Font = Enum.Font.GothamBlack
+        number.Font = Enum.Font.FredokaOne
         number.TextScaled = true
         number.TextXAlignment = Enum.TextXAlignment.Center
         self.pegs[slot.id] =
@@ -417,39 +384,74 @@ function Presentation:_buildBoard()
     end
 end
 
+function Presentation:_viewport(parent, name, id, level, z)
+    local viewport = make("ViewportFrame", {
+        Name = name,
+        BackgroundTransparency = 1,
+        BorderSizePixel = 0,
+        ZIndex = z or 5,
+        Ambient = Color3.new(1, 1, 1),
+        LightColor = Color3.new(1, 1, 1),
+        LightDirection = Vector3.new(-1, -1, -1),
+    }, parent)
+    self:_mount(viewport, id, level)
+    return viewport
+end
+
+function Presentation:_mount(viewport, id, level)
+    local key = tostring(id) .. ":" .. tostring(level or 1)
+    local current = self.models[viewport]
+    if current and current.key == key then
+        return
+    end
+    if current then
+        current.handle:destroy()
+    end
+    self.models[viewport] =
+        { key = key, handle = ItemModels.mount(viewport, id, level or 1, { animate = false }) }
+end
+
+function Presentation:_dropModels(parent)
+    for viewport, mounted in self.models do
+        if viewport:IsDescendantOf(parent) then
+            mounted.handle:destroy()
+            self.models[viewport] = nil
+        end
+    end
+end
+
 function Presentation:_buildHud()
     self.gui = make("ScreenGui", {
         Name = "PopAPeg",
         IgnoreGuiInset = true,
         ResetOnSpawn = false,
+        ScreenInsets = Enum.ScreenInsets.None,
         ZIndexBehavior = Enum.ZIndexBehavior.Global,
         DisplayOrder = 20,
     }, Players.LocalPlayer:WaitForChild("PlayerGui"))
-    self.root = frame(self.gui, "Root")
+    self.root = frame(self.gui, "Root", nil, 1)
     self.root.Size = UDim2.fromScale(1, 1)
     self.root.BackgroundTransparency = 1
-    self.brand = label(self.root, "Brand", "POP A PEG", 26, C.paper)
-    self.brand.Font = Enum.Font.GothamBlack
-    self.tag = label(self.root, "Tag", "ONE SHOT. BIG POSSIBILITIES.", 10, C.mint)
-    self.phaseLabel = label(self.root, "Phase", "CONNECTING", 12, C.muted)
-    self.phaseLabel.TextXAlignment = Enum.TextXAlignment.Right
+    self.brand = label(self.root, "Brand", "POP A PEG", 37, C.paper, 5)
+    self.tag = label(self.root, "Tag", "BUILD A BIGGER BOUNCE!", 18, C.gold, 5)
+    self.roundPlate = plate(self.root, "RoundPlate", C.panel, 3)
+    self.roundLabel = label(self.roundPlate, "Round", "ROUND 1", 30, C.paper, 5)
+    self.phaseLabel = label(self.roundPlate, "Phase", "READY TO LAUNCH", 17, C.muted, 5)
 
-    self.inventory = frame(self.root, "Inventory", C.ink, 30)
-    corner(self.inventory, 13)
-    stroke(self.inventory)
+    self.inventory = plate(self.root, "EquipmentRack", C.panel, 30)
     blockAim(self.inventory)
     self.itemSlots = {}
     for index = 1, 7 do
         local cell = button(self.inventory, "Slot" .. index, "", C.panel, function()
             local state = self.snapshot
-            if not state then
+            if not state or self.busy then
                 return
             end
             if index > state.slots then
                 if state.phase == "shop" then
                     self:_send("buySlot")
                 else
-                    self:setNotice("Extra slots are available in the shop.")
+                    self:setNotice("Unlock another slot for 5 coins in the shop.")
                 end
             elseif self.selectedSlot and self.selectedSlot ~= index then
                 if state.phase == "aim" or state.phase == "shop" then
@@ -462,281 +464,902 @@ function Presentation:_buildHud()
             self.modalKey = nil
             self:_updateInventory()
             self:_updateModal()
-        end, 31)
-        local border = stroke(cell, C.edge, 1)
-        local n = label(cell, "Index", tostring(index), 10, C.muted, 32)
-        local icon = label(cell, "Icon", "+", 22, C.muted, 32)
-        icon.Font = Enum.Font.GothamBlack
-        icon.TextXAlignment = Enum.TextXAlignment.Center
-        local name = label(cell, "Name", "EMPTY", 10, C.muted, 32)
+        end, 32)
+        local border = cell:FindFirstChildWhichIsA("UIStroke")
+        local model = self:_viewport(cell, "Equipment", index <= 4 and "restock" or "lock", 1, 34)
+        local number = label(cell, "Position", tostring(index), 18, C.paper, 36)
+        local level = label(cell, "Level", "", 18, C.gold, 36)
+        level.TextXAlignment = Enum.TextXAlignment.Right
+        local name = label(cell, "Name", index <= 4 and "EMPTY" or "5 COINS", 18, C.paper, 36)
         name.TextXAlignment = Enum.TextXAlignment.Center
         name.TextTruncate = Enum.TextTruncate.AtEnd
-        self.itemSlots[index] =
-            { button = cell, border = border, index = n, icon = icon, name = name, flash = 0 }
+        self.itemSlots[index] = {
+            button = cell,
+            border = border,
+            viewport = model,
+            number = number,
+            level = level,
+            name = name,
+        }
     end
 
-    self.left = frame(self.root, "RunResources")
-    corner(self.left, 14)
-    stroke(self.left)
-    blockAim(self.left)
-    self.coinCaption = label(self.left, "CoinsCaption", "RUN COINS", 11, C.muted)
-    self.coins = label(self.left, "Coins", "0", 36, C.gold)
-    self.coins.Font = Enum.Font.GothamBold
-    self.reserveCaption = label(self.left, "ReservesCaption", "RESERVE BALLS", 11, C.muted)
-    self.reserves = label(self.left, "Reserves", "5 / 5", 22, C.paper)
-    self.reserveDots = {}
+    self.left = frame(self.root, "Resources", nil, 2)
+    self.left.BackgroundTransparency = 1
+    self.wallet = plate(self.left, "Wallet", C.panel, 3)
+    blockAim(self.wallet)
+    self.coinModel = self:_viewport(self.wallet, "Coin", "coin", 1, 5)
+    self.coinCaption = label(self.wallet, "Caption", "COINS", 22, C.gold, 5)
+    self.coins = label(self.wallet, "Amount", "0", 56, C.paper, 5)
+    self.reservePlate = plate(self.left, "ReserveRack", C.panel, 3)
+    blockAim(self.reservePlate)
+    self.reserveCaption = label(self.reservePlate, "Caption", "BALLS LEFT", 22, C.paper, 5)
+    self.reserves = label(self.reservePlate, "Count", "5 / 5", 28, C.paper, 5)
+    self.reserves.TextXAlignment = Enum.TextXAlignment.Right
+    self.reserveIcons = {}
     for index = 1, 5 do
-        local dot = frame(self.left, "Reserve" .. index, C.mint, 4)
-        corner(dot, 100)
-        self.reserveDots[index] = dot
+        self.reserveIcons[index] = self:_viewport(self.reservePlate, "Ball" .. index, "ball", 1, 5)
     end
-    self.counterCaption = label(self.left, "CounterCaption", "POPS   /   WALLS", 11, C.muted)
-    self.counters = label(self.left, "Counters", "0    /    0", 20, C.paper)
-    self.timer = label(self.left, "Timer", "00:00.00", 15, C.muted)
-    self.speed = button(self.root, "Speed", "1× SPEED", C.panel, function()
-        local state = self.snapshot
-        if state and (state.phase == "aim" or state.phase == "flight") then
-            local current = state.speed or 1
-            self:_send("speed", { value = current == 1 and 2 or (current == 2 and 4 or 1) })
-        end
-    end, 7)
-    self.speed.TextColor3 = C.mint
-    self.speed.TextSize = 11
-    stroke(self.speed)
-
-    self.right = frame(self.root, "ScorePanel")
-    corner(self.right, 14)
-    stroke(self.right)
-    blockAim(self.right)
-    self.roundLabel = label(self.right, "Round", "ROUND 01", 13, C.mint)
-    self.roundLabel.Font = Enum.Font.GothamBold
-    self.scoreCaption = label(self.right, "ScoreCaption", "SHOT SCORE", 11, C.muted)
-    self.score = label(self.right, "Score", "0", 40, C.paper)
-    self.score.Font = Enum.Font.GothamBlack
-    self.quota = label(self.right, "Quota", "TARGET 10", 16, C.paper)
-    self.progress = frame(self.right, "ProgressTrack", C.ink, 3)
-    corner(self.progress, 100)
-    self.progressFill = frame(self.progress, "Progress", C.mint, 4)
-    self.progressFill.Size = UDim2.fromScale(0, 1)
-    corner(self.progressFill, 100)
-    self.restock = label(self.right, "Restock", "Fill the target to restock", 12, C.muted)
-    self.restock.TextWrapped = true
-    self.best = label(self.right, "Best", "BEST ROUND 0", 12, C.muted)
-    self.perkSummary = label(self.right, "Perks", "No perks yet", 11, C.muted)
-    self.perkSummary.TextWrapped = true
-    self.profile = label(self.right, "Profile", "", 10, C.muted)
-    self.profile.TextWrapped = true
-
-    self.detail = frame(self.root, "ItemDetail")
-    corner(self.detail, 12)
-    stroke(self.detail)
+    self.detail = plate(self.left, "EquipmentDetail", C.panel, 3)
     blockAim(self.detail)
-    self.detailTitle = label(self.detail, "Title", "BUILD YOUR COMBO", 13, C.paper)
-    self.detailTitle.Font = Enum.Font.GothamBold
+    self.detailTitle = label(self.detail, "Name", "YOUR COMBO STARTS HERE", 23, C.paper, 5)
     self.detailTitle.TextWrapped = true
-    self.detailTrigger = label(self.detail, "Trigger", "Select an inventory item", 11, C.mint)
+    self.detailTrigger = label(self.detail, "Trigger", "TAP AN EQUIPMENT SLOT", 18, C.gold, 5)
     self.detailTrigger.TextWrapped = true
-    self.detailBody =
-        label(self.detail, "Body", "Combine upgrades. Let every bounce count.", 12, C.muted)
+    self.detailBody = label(
+        self.detail,
+        "Effect",
+        "Shop for gadgets. Match them to upgrade. Every bounce builds your run.",
+        18,
+        C.paper,
+        5
+    )
     self.detailBody.TextWrapped = true
     self.detailBody.TextYAlignment = Enum.TextYAlignment.Top
+    self.stats = label(self.left, "ShotStats", "0 POPS   0 WALLS", 19, C.paper, 5)
+    self.timer = label(self.left, "Time", "00:00.00", 18, C.muted, 5)
 
-    self.controls = frame(self.root, "Controls", C.ink, 6)
-    corner(self.controls, 13)
-    stroke(self.controls)
+    self.right = frame(self.root, "ScoreTower", nil, 2)
+    self.right.BackgroundTransparency = 1
+    self.scorePlate = plate(self.right, "Score", C.panel, 3)
+    blockAim(self.scorePlate)
+    self.scoreCaption = label(self.scorePlate, "Caption", "SHOT SCORE", 23, C.paper, 5)
+    self.score = label(self.scorePlate, "Total", "0", 60, C.paper, 5)
+    self.quota = label(self.scorePlate, "Quota", "TARGET 10", 23, C.paper, 5)
+    self.progressCaption = label(self.scorePlate, "Next", "NEXT RESTOCK", 18, C.muted, 5)
+    self.progress = frame(self.scorePlate, "RepeatMeter", C.ink, 4)
+    stroke(self.progress, C.ink, 4)
+    corner(self.progress, 3)
+    self.progressFill = frame(self.progress, "CurrentFill", C.mint, 5)
+    corner(self.progressFill, 2)
+    self.fraction = label(self.progress, "Fraction", "0 / 10", 29, C.paper, 7)
+    self.fraction.TextXAlignment = Enum.TextXAlignment.Center
+    self.fraction.Size = UDim2.fromScale(1, 1)
+    self.restockPlate = plate(self.right, "EarnedRestocks", C.panel, 3)
+    blockAim(self.restockPlate)
+    self.restockModel = self:_viewport(self.restockPlate, "Restock", "restock", 1, 5)
+    self.restockCaption = label(self.restockPlate, "Caption", "RESTOCKS EARNED", 20, C.gold, 5)
+    self.restockCount = label(self.restockPlate, "Count", "×0", 55, C.paper, 5)
+    self.restockHint =
+        label(self.restockPlate, "Hint", "Fill the meter to grow your board", 17, C.paper, 5)
+    self.restockHint.TextWrapped = true
+    self.stackIcons = {}
+    for index = 1, 8 do
+        self.stackIcons[index] =
+            self:_viewport(self.restockPlate, "Stack" .. index, "restock", 1, 5)
+        self.stackIcons[index].Visible = false
+    end
+    self.best = label(self.right, "Best", "BEST ROUND 0", 18, C.muted, 5)
+    self.profile = label(self.right, "Profile", "SESSION RECORDS", 14, C.muted, 5)
+
+    self.controls = frame(self.root, "Controls", nil, 10)
+    self.controls.BackgroundTransparency = 1
     blockAim(self.controls)
-    self.jumbleButton = button(self.controls, "Jumble", "JUMBLE  [Q]", C.panel, function()
+    self.jumbleButton = button(self.controls, "Jumble", "JUMBLE", C.blue, function()
         self:_send("jumble")
-    end, 7)
-    self.jumbleButton.TextColor3 = C.paper
-    self.primary = button(self.controls, "Primary", "LAUNCH  [SPACE]", C.mint, function()
+    end, 12)
+    self.primary = button(self.controls, "Launch", "LAUNCH!", C.mint, function()
         self:_primaryAction()
-    end, 7)
-    self.help = label(
-        self.root,
-        "Help",
-        "Aim with your pointer. Click or tap the board to launch.",
-        11,
-        C.muted,
-        7
-    )
+    end, 12)
+    self.speedButtons = {}
+    for index, speed in { 1, 2, 4 } do
+        self.speedButtons[index] = button(
+            self.root,
+            "Speed" .. speed,
+            speed .. "×",
+            C.panel,
+            function()
+                if not self.busy then
+                    self:_send("speed", { value = speed })
+                end
+            end,
+            12
+        )
+    end
+    self.soundButton = button(self.root, "Sound", "SOUND ON", C.panel, function()
+        self.muted = not self.muted
+        self.soundButton.Text = self.muted and "SOUND OFF" or "SOUND ON"
+        if self.feedback then
+            self.feedback:setMuted(self.muted)
+        end
+    end, 12)
+    self.soundButton.TextSize = 17
+    self.help = label(self.root, "Help", "AIM • CLICK THE BOARD OR PRESS SPACE", 18, C.paper, 12)
     self.help.TextXAlignment = Enum.TextXAlignment.Center
-    self.help.TextWrapped = true
-    self.notice = label(self.root, "Notice", "", 13, C.gold, 60)
+    self.notice = label(self.root, "Notice", "", 24, C.gold, 70)
     self.notice.TextXAlignment = Enum.TextXAlignment.Center
     self.notice.TextWrapped = true
-    self.overlay = frame(self.root, "Overlay", C.ink, 10)
+    self.settlement = plate(self.root, "Settlement", C.panel, 55)
+    self.settlement.Visible = false
+    blockAim(self.settlement)
+    self.settlementText = label(self.settlement, "Text", "", 26, C.paper, 57)
+    self.settlementText.TextXAlignment = Enum.TextXAlignment.Center
+    self.settlementProgress = frame(self.settlement, "Progress", C.mint, 57)
+    self.skipButton = button(self.settlement, "Skip", "SKIP", C.mint, function()
+        if self.feedback then
+            self.feedback:skip()
+        end
+    end, 58)
+    self.skipButton.TextSize = 19
+    self.overlay = frame(self.root, "Overlay", C.ink, 20)
     self.overlay.Size = UDim2.fromScale(1, 1)
-    self.overlay.BackgroundTransparency = 0.28
+    self.overlay.BackgroundTransparency = 0.18
     self.overlay.Visible = false
     blockAim(self.overlay)
-    self.fxLayer = frame(self.root, "Feedback", nil, 40)
+    self.fxLayer = frame(self.root, "Feedback", nil, 60)
     self.fxLayer.Size = UDim2.fromScale(1, 1)
     self.fxLayer.BackgroundTransparency = 1
-    self.loading = frame(self.root, "Connecting", C.ink, 80)
+    self.loading = frame(self.root, "Connecting", C.ink, 90)
     self.loading.Size = UDim2.fromScale(1, 1)
     blockAim(self.loading)
-    local connecting = label(self.loading, "Message", "Connecting…", 23, C.paper, 81)
+    local connecting = label(self.loading, "Text", "CONNECTING…", 32, C.paper, 91)
     connecting.Size = UDim2.fromScale(1, 1)
     connecting.TextXAlignment = Enum.TextXAlignment.Center
 end
 
 function Presentation:_layout()
     local camera = workspace.CurrentCamera
-    if not camera then
+    if not camera or camera.ViewportSize.X < 1 then
         return
     end
     local size = camera.ViewportSize
-    if size.X < 1 or size.Y < 1 then
-        return
-    end
     self.viewport = size
-    self.mobile = size.X < 850
     local w, h = size.X, size.Y
-    local scale = math.clamp(math.min(w / 1440, h / 900), 0.76, 1.15)
-    self.uiScale = scale
-    local s = scale
-    setRect(self.brand, 24 * s, 14 * s, 250 * s, 32 * s)
-    self.brand.TextSize = 26 * s
-    setRect(self.tag, 25 * s, 47 * s, 280 * s, 16 * s)
-    setRect(self.phaseLabel, w - 275 * s, 22 * s, 250 * s, 22 * s)
-    self.phaseLabel.TextSize = 12 * s
-    local inventoryWidth = math.min(770 * s, w - 32)
-    local inventoryHeight = self.mobile and 66 or 80 * s
-    local inventoryTop = self.mobile and 143 or 76 * s
-    setRect(self.inventory, (w - inventoryWidth) / 2, inventoryTop, inventoryWidth, inventoryHeight)
-    local cellWidth = (inventoryWidth - 16) / 7
-    for index, slot in self.itemSlots do
-        setRect(
-            slot.button,
-            8 + (index - 1) * cellWidth + 3,
-            6,
-            cellWidth - 6,
-            inventoryHeight - 12
-        )
-        setRect(slot.index, 6, 2, 12, 14)
-        setRect(slot.icon, 4, 10, cellWidth - 14, self.mobile and 23 or 31 * s)
-        setRect(slot.name, 4, inventoryHeight - 37, cellWidth - 14, 17)
-        slot.name.TextSize = self.mobile and 8 or 10 * s
-        slot.icon.TextSize = self.mobile and 17 or 23 * s
-    end
-    if self.mobile then
-        self.tag.Visible = false
-        self.phaseLabel.Visible = false
-        setRect(self.brand, 16, 12, w - 32, 32)
-        self.brand.TextSize = 25
-        setRect(self.speed, w - 104, 12, 88, 30)
-        local half = (w - 44) / 2
-        setRect(self.left, 16, 54, half, 80)
-        setRect(self.right, 28 + half, 54, half, 80)
-        setRect(self.coinCaption, 12, 6, half * 0.5, 15)
-        setRect(self.coins, 12, 25, half * 0.5, 29)
-        self.coins.TextSize = 27
-        setRect(self.reserveCaption, half * 0.51, 6, half * 0.49 - 8, 15)
-        self.reserveCaption.Text = "RESERVES"
-        self.reserveCaption.TextSize = 9
-        setRect(self.reserves, half * 0.51, 25, half * 0.49 - 8, 29)
-        self.reserves.TextSize = 20
-        for index, dot in self.reserveDots do
-            setRect(dot, half * 0.51 + (index - 1) * 11, 62, 6, 6)
+    local inset = game:GetService("GuiService"):GetGuiInset()
+    local top = math.max(12, inset.Y + 8)
+    self.mobile = w < 850 and h > w * 0.8
+    self.shortWide = (h < 620 or w < 1100) and not self.mobile
+    local compact = self.mobile or self.shortWide
+    self.compact = compact
+    local boardRect, invWidth, invHeight
+    self.brand.Visible = not compact
+    self.tag.Visible = not compact
+    self.roundPlate.Visible = not compact
+    self.detail.Visible = not compact
+    self.stats.Visible = not compact
+    self.timer.Visible = not compact
+    self.coinCaption.Visible = not compact
+    self.scoreCaption.Visible = true
+    self.progressCaption.Visible = not compact
+    self.restockCaption.Visible = not compact
+    self.restockHint.Visible = not compact
+    self.restockModel.Visible = not compact
+    self.best.Visible = not compact
+    self.profile.Visible = not compact
+    self.help.Visible = not compact
+    if compact then
+        local uiX = self.shortWide and math.floor(w * 0.43) or 12
+        local uiW = self.shortWide and w - uiX - 12 or w - 24
+        local resourceTop = self.shortWide and top + 72 or top
+        local scoreTop = resourceTop + 50
+        local invTop = self.shortWide and top or top + 148
+        invWidth, invHeight = uiW, 64
+        setRect(self.inventory, uiX, invTop, uiW, invHeight)
+        setRect(self.left, uiX, resourceTop, uiW, 42)
+        local half = (uiW - 10) / 2
+        setRect(self.wallet, 0, 0, half, 42)
+        setRect(self.coinModel, 0, -4, 48, 48)
+        setRect(self.coins, 47, 0, half - 53, 42)
+        self.coins.TextSize = 31
+        setRect(self.reservePlate, half + 10, 0, half, 42)
+        setRect(self.reserveCaption, 8, 0, 65, 42)
+        self.reserveCaption.Text = "BALLS"
+        self.reserveCaption.TextSize = 18
+        setRect(self.reserves, 71, 0, half - 79, 42)
+        self.reserves.TextSize = 25
+        setRect(self.right, uiX, scoreTop, uiW, 88)
+        setRect(self.scorePlate, 0, 0, uiW, 88)
+        setRect(self.scoreCaption, 10, 3, 58, 34)
+        self.scoreCaption.Text = "SCORE"
+        self.scoreCaption.TextSize = 18
+        setRect(self.score, 72, 1, uiW - 205, 37)
+        self.score.TextSize = 31
+        setRect(self.quota, uiW - 127, 3, 117, 34)
+        self.quota.TextSize = 19
+        self.quota.TextXAlignment = Enum.TextXAlignment.Right
+        setRect(self.progress, 10, 45, uiW - 98, 32)
+        self.fraction.TextSize = 25
+        setRect(self.restockPlate, uiW - 77, 44, 65, 33)
+        setRect(self.restockCount, 3, 0, 59, 33)
+        self.restockCount.TextSize = 27
+        self.restockCount.TextXAlignment = Enum.TextXAlignment.Center
+        for _, icon in self.reserveIcons do
+            icon.Visible = false
         end
-        setRect(self.roundLabel, 10, 6, half - 20, 17)
-        self.roundLabel.TextSize = 11
-        setRect(self.score, 10, 24, half - 20, 27)
-        self.score.TextSize = 24
-        setRect(self.quota, 10, 52, half - 20, 15)
-        self.quota.TextSize = 10
-        setRect(self.progress, 10, 71, half - 20, 4)
-        for _, gui in
-            {
-                self.counterCaption,
-                self.counters,
-                self.timer,
-                self.scoreCaption,
-                self.restock,
-                self.best,
-                self.perkSummary,
-                self.profile,
-                self.detail,
-            }
-        do
-            gui.Visible = false
+        for _, icon in self.stackIcons do
+            icon.Visible = false
         end
+        if self.shortWide then
+            boardRect = { x = 12, y = top + 3, w = uiX - 32, h = h - top - 19 }
+            setRect(self.controls, uiX, h - 70, math.max(235, uiW - 168), 54)
+            local cw = self.controls.Size.X.Offset
+            setRect(self.jumbleButton, 0, 0, cw * 0.40 - 5, 52)
+            setRect(self.primary, cw * 0.40 + 5, 0, cw * 0.60 - 5, 52)
+            for index, speedButton in self.speedButtons do
+                setRect(speedButton, w - 164 + (index - 1) * 52, h - 69, 46, 50)
+            end
+            setRect(self.soundButton, 14, h - 61, 65, 43)
+            self.soundButton.TextSize = 15
+        else
+            boardRect = { x = 14, y = top + 226, w = w - 28, h = h - top - 368 }
+            setRect(self.controls, 12, h - 126, uiW, 54)
+            setRect(self.jumbleButton, 0, 0, uiW * 0.36 - 5, 54)
+            setRect(self.primary, uiW * 0.36 + 5, 0, uiW * 0.64 - 5, 54)
+            local unit = (uiW - 24) / 4
+            for index, speedButton in self.speedButtons do
+                setRect(speedButton, 12 + (index - 1) * (unit + 8), h - 61, unit, 47)
+            end
+            setRect(self.soundButton, 12 + 3 * (unit + 8), h - 61, unit, 47)
+            self.soundButton.TextSize = 15
+        end
+        self.primary.TextSize = 25
+        self.jumbleButton.TextSize = 20
     else
-        self.tag.Visible = true
-        self.phaseLabel.Visible = true
-        local leftWidth, rightWidth = 214 * s, 232 * s
-        setRect(self.left, 24 * s, 184 * s, leftWidth, 276 * s)
-        setRect(self.coinCaption, 18 * s, 17 * s, leftWidth - 36 * s, 18 * s)
-        setRect(self.coins, 18 * s, 38 * s, leftWidth - 36 * s, 43 * s)
-        self.coins.TextSize = 36 * s
-        setRect(self.reserveCaption, 18 * s, 97 * s, leftWidth - 36 * s, 18 * s)
-        self.reserveCaption.Text = "RESERVE BALLS"
-        self.reserveCaption.TextSize = 11 * s
-        setRect(self.reserves, 18 * s, 119 * s, leftWidth - 36 * s, 28 * s)
-        self.reserves.TextSize = 23 * s
-        for index, dot in self.reserveDots do
-            setRect(dot, (18 + (index - 1) * 22) * s, 157 * s, 12 * s, 12 * s)
+        local leftW = math.clamp(w * 0.19, 225, 290)
+        local rightW = math.clamp(w * 0.215, 265, 330)
+        invWidth, invHeight = math.min(760, w - leftW - rightW - 44), 110
+        setRect(self.brand, 22, top + 12, leftW, 45)
+        self.brand.TextSize = w < 1200 and 30 or 37
+        setRect(self.tag, 24, top + 59, leftW, 26)
+        self.tag.TextSize = w < 1200 and 15 or 18
+        setRect(self.inventory, (w - invWidth) / 2, top, invWidth, invHeight)
+        setRect(self.roundPlate, w - rightW - 22, top + 7, rightW, 87)
+        setRect(self.roundLabel, 14, 7, rightW - 28, 40)
+        setRect(self.phaseLabel, 14, 49, rightW - 28, 27)
+        setRect(self.left, 22, top + 139, leftW, 570)
+        setRect(self.wallet, 0, 0, leftW, 114)
+        setRect(self.coinModel, 8, 24, 89, 78)
+        setRect(self.coinCaption, 102, 11, leftW - 110, 29)
+        setRect(self.coins, 102, 41, leftW - 110, 64)
+        self.coins.TextSize = 54
+        setRect(self.reservePlate, 0, 136, leftW, 114)
+        setRect(self.reserveCaption, 13, 10, leftW - 95, 31)
+        self.reserveCaption.Text = "BALLS LEFT"
+        self.reserveCaption.TextSize = 21
+        setRect(self.reserves, leftW - 82, 10, 69, 31)
+        self.reserves.TextSize = 25
+        for index, icon in self.reserveIcons do
+            icon.Visible = true
+            setRect(icon, 8 + (index - 1) * ((leftW - 16) / 5), 47, (leftW - 16) / 5, 56)
         end
-        setRect(self.counterCaption, 18 * s, 190 * s, leftWidth - 36 * s, 16 * s)
-        setRect(self.counters, 18 * s, 210 * s, leftWidth - 36 * s, 25 * s)
-        setRect(self.timer, 18 * s, 242 * s, 92 * s, 20 * s)
-        self.timer.TextSize = 12 * s
-        setRect(self.speed, 24 * s + leftWidth - 91 * s, 422 * s, 76 * s, 27 * s)
-        setRect(self.right, w - rightWidth - 24 * s, 184 * s, rightWidth, 315 * s)
-        setRect(self.roundLabel, 18 * s, 17 * s, rightWidth - 36 * s, 22 * s)
-        self.roundLabel.TextSize = 14 * s
-        setRect(self.scoreCaption, 18 * s, 58 * s, rightWidth - 36 * s, 16 * s)
-        setRect(self.score, 18 * s, 80 * s, rightWidth - 36 * s, 48 * s)
-        self.score.TextSize = 39 * s
-        setRect(self.quota, 18 * s, 134 * s, rightWidth - 36 * s, 24 * s)
-        self.quota.TextSize = 16 * s
-        setRect(self.progress, 18 * s, 172 * s, rightWidth - 36 * s, 9 * s)
-        setRect(self.restock, 18 * s, 189 * s, rightWidth - 36 * s, 36 * s)
-        setRect(self.best, 18 * s, 237 * s, rightWidth - 36 * s, 20 * s)
-        setRect(self.perkSummary, 18 * s, 263 * s, rightWidth - 36 * s, 23 * s)
-        setRect(self.profile, 18 * s, 288 * s, rightWidth - 36 * s, 18 * s)
-        setRect(self.detail, 24 * s, 478 * s, leftWidth, 155 * s)
-        setRect(self.detailTitle, 15 * s, 12 * s, leftWidth - 30 * s, 35 * s)
-        setRect(self.detailTrigger, 15 * s, 49 * s, leftWidth - 30 * s, 31 * s)
-        setRect(self.detailBody, 15 * s, 87 * s, leftWidth - 30 * s, 59 * s)
-        for _, gui in
-            {
-                self.counterCaption,
-                self.counters,
-                self.timer,
-                self.scoreCaption,
-                self.restock,
-                self.best,
-                self.perkSummary,
-                self.profile,
-                self.detail,
-            }
-        do
-            gui.Visible = true
+        setRect(self.detail, 0, 273, leftW, 220)
+        setRect(self.detailTitle, 14, 10, leftW - 28, 57)
+        setRect(self.detailTrigger, 14, 75, leftW - 28, 42)
+        setRect(self.detailBody, 14, 126, leftW - 28, 84)
+        setRect(self.stats, 4, 511, leftW - 8, 26)
+        setRect(self.timer, 4, 543, leftW - 8, 27)
+        setRect(self.right, w - rightW - 22, top + 139, rightW, 570)
+        setRect(self.scorePlate, 0, 0, rightW, 259)
+        setRect(self.scoreCaption, 16, 12, rightW - 32, 31)
+        self.scoreCaption.Text = "SHOT SCORE"
+        self.scoreCaption.TextSize = 23
+        setRect(self.score, 16, 46, rightW - 32, 70)
+        self.score.TextSize = 60
+        setRect(self.quota, 16, 120, rightW - 32, 32)
+        self.quota.TextSize = 25
+        self.quota.TextXAlignment = Enum.TextXAlignment.Left
+        setRect(self.progressCaption, 16, 161, rightW - 32, 26)
+        setRect(self.progress, 15, 194, rightW - 30, 48)
+        self.fraction.TextSize = 29
+        setRect(self.restockPlate, 0, 281, rightW, 218)
+        setRect(self.restockCaption, 14, 10, rightW - 28, 31)
+        setRect(self.restockModel, 4, 43, 106, 92)
+        setRect(self.restockCount, 114, 44, rightW - 125, 78)
+        self.restockCount.TextSize = 55
+        self.restockCount.TextXAlignment = Enum.TextXAlignment.Left
+        setRect(self.restockHint, 14, 169, rightW - 28, 38)
+        for index, icon in self.stackIcons do
+            setRect(icon, 12 + (index - 1) * ((rightW - 24) / 8), 130, (rightW - 24) / 8, 35)
         end
+        setRect(self.best, 4, 516, rightW - 8, 27)
+        setRect(self.profile, 4, 547, rightW - 8, 21)
+        if h < 860 then
+            setRect(self.wallet, 0, 0, leftW, 104)
+            setRect(self.reservePlate, 0, 124, leftW, 96)
+            for index, icon in self.reserveIcons do
+                setRect(icon, 8 + (index - 1) * ((leftW - 16) / 5), 43, (leftW - 16) / 5, 43)
+            end
+            setRect(self.detail, 0, 241, leftW, 177)
+            setRect(self.detailTitle, 14, 7, leftW - 28, 43)
+            setRect(self.detailTrigger, 14, 56, leftW - 28, 37)
+            setRect(self.detailBody, 14, 99, leftW - 28, 69)
+            self.stats.Visible = false
+            self.timer.Visible = false
+            setRect(self.restockPlate, 0, 281, rightW, 140)
+            setRect(self.restockModel, 4, 40, 95, 79)
+            setRect(self.restockCount, 108, 42, rightW - 119, 70)
+            for index, icon in self.stackIcons do
+                setRect(icon, 12 + (index - 1) * ((rightW - 24) / 8), 110, (rightW - 24) / 8, 26)
+            end
+            self.restockHint.Visible = false
+            self.best.Visible = false
+            self.profile.Visible = false
+        end
+        boardRect =
+            { x = leftW + 47, y = top + 127, w = w - leftW - rightW - 94, h = h - top - 232 }
+        local cw = math.min(440, boardRect.w)
+        setRect(self.controls, boardRect.x + (boardRect.w - cw) / 2, h - 91, cw, 60)
+        setRect(self.jumbleButton, 0, 0, 154, 58)
+        setRect(self.primary, 168, 0, cw - 168, 58)
+        self.primary.TextSize = 28
+        self.jumbleButton.TextSize = 24
+        for index, speedButton in self.speedButtons do
+            setRect(speedButton, w - rightW - 22 + (index - 1) * 66, h - 85, 58, 52)
+        end
+        setRect(self.soundButton, 24, h - 85, 148, 52)
+        self.soundButton.TextSize = 18
+        setRect(self.help, boardRect.x - 40, h - 26, boardRect.w + 80, 22)
     end
-    local controlsWidth = math.min(450 * s, w - 32)
-    setRect(self.controls, (w - controlsWidth) / 2, h - 83, controlsWidth, 51)
-    setRect(self.jumbleButton, 7, 7, controlsWidth * 0.41 - 11, 37)
-    setRect(self.primary, controlsWidth * 0.41 + 3, 7, controlsWidth * 0.59 - 10, 37)
-    self.jumbleButton.TextSize = self.mobile and 12 or 14
-    self.primary.TextSize = self.mobile and 12 or 14
-    setRect(self.help, math.max(8, (w - 700) / 2), h - 29, math.min(700, w - 16), 24)
-    setRect(self.notice, math.max(12, (w - 620) / 2), h - 120, math.min(620, w - 24), 30)
+    local cellW = (invWidth - 14) / 7
+    for index, slot in self.itemSlots do
+        setRect(slot.button, 7 + (index - 1) * cellW + 2, 6, cellW - 4, invHeight - 12)
+        setRect(slot.viewport, 3, compact and 5 or 10, cellW - 10, compact and 42 or 63)
+        setRect(slot.number, 4, 1, 18, 21)
+        slot.number.TextSize = compact and 14 or 18
+        setRect(slot.level, cellW - 36, 1, 26, 21)
+        slot.level.TextSize = compact and 14 or 18
+        setRect(slot.name, 3, invHeight - 41, cellW - 10, 24)
+        slot.name.Visible = not compact
+        slot.name.TextSize = 18
+    end
+    self.boardRect = boardRect
+    local noticeY = self.mobile and h - 177 or h - 139
+    setRect(self.notice, math.max(12, (w - 710) / 2), noticeY, math.min(710, w - 24), 42)
+    self.notice.TextSize = compact and 20 or 24
+    local settleW = math.min(compact and 460 or 600, w - 32)
+    setRect(
+        self.settlement,
+        boardRect.x + (boardRect.w - settleW) / 2,
+        math.min(h - 170, boardRect.y + boardRect.h * 0.68),
+        settleW,
+        83
+    )
+    setRect(self.settlementText, 10, 4, settleW - 110, 59)
+    self.settlementText.TextSize = compact and 21 or 26
+    setRect(self.skipButton, settleW - 93, 16, 79, 45)
+    self.settlementProgress.Position = UDim2.fromOffset(7, 72)
+    self.settlementProgress.Size =
+        UDim2.new(self.settlementFraction or 0, -14 * (self.settlementFraction or 0), 0, 5)
     self.modalKey = nil
-
-    local topSpace = self.mobile and 220 or 171 * s
-    local bottomSpace = 100
-    local availableHeight = math.max(150, h - topSpace - bottomSpace)
-    local availableWidth = self.mobile and (w - 24) or math.max(260, w - 540 * s)
-    local visibleHeight = math.max(31.5 * h / availableHeight, 24.5 * h / availableWidth)
-    local distance = visibleHeight / (2 * math.tan(math.rad(35 / 2)))
-    local targetY = 11 + ((topSpace - bottomSpace) / (2 * h)) * visibleHeight
-    self.cameraCFrame = CFrame.lookAt(Vector3.new(0, targetY, distance), Vector3.new(0, targetY, 0))
+    local vh =
+        math.max(31.5 * h / math.max(140, boardRect.h), 26.8 * h / math.max(170, boardRect.w))
+    local distance = vh / (2 * math.tan(math.rad(17.5)))
+    local cameraX = (w / 2 - boardRect.x - boardRect.w / 2) * vh / h
+    local cameraY = 11 + (boardRect.y + boardRect.h / 2 - h / 2) * vh / h
+    self.cameraCFrame =
+        CFrame.lookAt(Vector3.new(cameraX, cameraY, distance), Vector3.new(cameraX, cameraY, 0))
     camera.CameraType = Enum.CameraType.Scriptable
     camera.FieldOfView = 35
     camera.CFrame = self.cameraCFrame
+    self:_renderCounters()
+    self:_renderControls()
+end
+
+function Presentation:_updateInventory()
+    local state = self.snapshot
+    if not state then
+        return
+    end
+    for index, cell in self.itemSlots do
+        local item = state.inventory[index]
+        local definition = itemDefinition(item)
+        local locked = index > state.slots
+        cell.border.Color = self.selectedSlot == index and C.gold or C.ink
+        cell.border.Thickness = self.selectedSlot == index and 5 or 3
+        cell.button.BackgroundColor3 = definition and itemColor(definition):Lerp(C.panel, 0.42)
+            or C.panel
+        self:_mount(
+            cell.viewport,
+            locked and "lock" or (definition and item.id or "restock"),
+            definition and item.level or 1
+        )
+        cell.viewport.ImageTransparency = not definition and not locked and 0.65 or 0
+        cell.name.Text = locked and "5 COINS" or (definition and definition.name or "EMPTY")
+        cell.level.Text = definition and ("L" .. tostring(item.level or 1)) or ""
+    end
+    local item = self.selectedSlot and state.inventory[self.selectedSlot]
+    local definition = itemDefinition(item)
+    if definition then
+        self.detailTitle.Text = definition.name
+        self.detailTrigger.Text = definition.triggerText or "PASSIVE EFFECT"
+        self.detailBody.Text = definition.description
+    elseif state.boss then
+        self.detailTitle.Text = state.boss.name
+        self.detailTrigger.Text = "BOSS ROUND"
+        self.detailBody.Text = state.boss.description
+    else
+        self.detailTitle.Text = "YOUR COMBO STARTS HERE"
+        self.detailTrigger.Text = "SELECT TWO SLOTS TO REORDER"
+        self.detailBody.Text =
+            "Shop for gadgets. Buy a matching gadget to upgrade it. Let every bounce count!"
+    end
+    local detailKey = definition and (tostring(self.selectedSlot) .. ":" .. tostring(item.level))
+        or ""
+    if self.compact and definition and state.phase == "aim" and self.detailKey ~= detailKey then
+        self:setNotice(definition.name .. " • " .. definition.description)
+    end
+    self.detailKey = detailKey
+end
+
+function Presentation:_renderCounters()
+    local state = self.snapshot
+    if not state then
+        return
+    end
+    local overrides = self.counterOverrides
+    local score = overrides.score or state.score or 0
+    local quota = math.max(1, state.quota or 1)
+    local completed = math.floor(score / quota)
+    local restocks = overrides.restocks or state.restocks or completed
+    local coins = overrides.coins or state.coins or 0
+    local reserves = overrides.reserves or state.reserves or 0
+    self.score.Text = Format.number(math.floor(score + 0.5))
+    self.coins.Text = Format.integer(coins)
+    self.reserves.Text = tostring(math.floor(reserves + 0.5))
+        .. "/"
+        .. tostring(state.maxReserves or 5)
+    self.restockCount.Text = "×" .. Format.integer(restocks)
+    self.quota.Text = "TARGET " .. Format.number(quota)
+    local remainder = score % quota
+    self.fraction.Text = Format.number(math.floor(remainder + 0.5)) .. " / " .. Format.number(quota)
+    local layers =
+        { C.mint, C.gold, C.blue, Color3.fromRGB(215, 132, 255), Color3.fromRGB(255, 141, 65) }
+    self.progress.BackgroundColor3 = completed > 0 and layers[((completed - 1) % #layers) + 1]
+        or C.ink
+    self.progressFill.BackgroundColor3 = layers[(completed % #layers) + 1]
+    self.progressFill.Size = UDim2.fromScale(math.clamp(remainder / quota, 0, 1), 1)
+    self.scorePlate.BackgroundColor3 = completed > 0 and Color3.fromRGB(137, 120, 35) or C.panel
+    self.restockPlate.BackgroundColor3 = restocks > 0 and Color3.fromRGB(87, 133, 41) or C.panel
+    self.restockHint.Text = restocks > 0 and "Ready to refill + merge your board!"
+        or "Fill the meter to grow your board"
+    for index, viewport in self.reserveIcons do
+        viewport.ImageTransparency = index <= reserves and 0 or 0.78
+    end
+    for index, viewport in self.stackIcons do
+        viewport.Visible = not self.compact and index <= restocks
+    end
+    self.roundLabel.Text = "ROUND " .. tostring(state.round) .. "  •  Z" .. tostring(state.zone)
+    self.best.Text = "BEST ROUND " .. tostring(state.bestRound or 0)
+    self.profile.Text = ({
+        session = "RECORDS: STUDIO SESSION",
+        saved = "CLOUD RECORDS ENABLED",
+        unavailable = "SESSION RECORDS • CLOUD UNAVAILABLE",
+    })[state.profileStatus] or "SESSION RECORDS"
+    self.timer.Text = formatTime(state.elapsed)
+    self.stats.Text = Format.integer(state.pops or 0)
+        .. " POPS   "
+        .. Format.integer(state.wallHits or 0)
+        .. " WALLS"
+end
+
+function Presentation:_renderControls()
+    local state = self.snapshot
+    if not state then
+        return
+    end
+    local phase = state.phase
+    local playable = (phase == "aim" or phase == "flight") and not self.busy
+    self.controls.Visible = playable
+    self.jumbleButton.Visible = phase == "aim"
+    Theme.setEnabled(self.jumbleButton, state.canJumble == true and playable, C.blue)
+    self.primary.Text = phase == "flight" and "END SHOT" or "LAUNCH!"
+    Theme.setEnabled(self.primary, playable, phase == "flight" and C.gold or C.mint)
+    self.phaseLabel.Text = ({
+        aim = "READY TO LAUNCH",
+        flight = "KEEP THE COMBO GOING",
+        result = "GROWING YOUR BOARD",
+        shop = "UPGRADE YOUR COMBO",
+        perk = "CHOOSE A PERK",
+        event = "YOUR NEXT OPPORTUNITY",
+        gameover = "RUN COMPLETE",
+        victory = "VICTORY!",
+    })[phase] or ""
+    self.help.Text = phase == "flight" and "LET THE COMBO PLAY • [E] END SHOT"
+        or "AIM • CLICK THE BOARD OR PRESS SPACE"
+    self.help.Visible = not self.compact and playable
+    for index, speedButton in self.speedButtons do
+        local value = ({ 1, 2, 4 })[index]
+        speedButton.Visible = phase == "aim" or phase == "flight"
+        Theme.setEnabled(
+            speedButton,
+            not self.busy,
+            (state.speed or 1) == value and C.mint or C.panel
+        )
+    end
+end
+
+function Presentation:_updateModal()
+    local state = self.snapshot
+    if not state then
+        return
+    end
+    local phase = state.phase
+    local visible = ({ shop = true, perk = true, event = true, gameover = true, victory = true })[phase]
+        and not self.busy
+    self.overlay.Visible = visible == true
+    if not visible then
+        return
+    end
+    local parts = {
+        phase,
+        tostring(state.round),
+        tostring(state.coins),
+        tostring(state.slots),
+        tostring(state.rerollsLeft),
+        tostring(self.selectedSlot),
+        tostring(state.bestScore),
+    }
+    for _, offer in state.shopOffers or {} do
+        table.insert(parts, offer.id .. tostring(offer.sold) .. tostring(offer.frozen))
+    end
+    for _, item in state.inventory or {} do
+        table.insert(parts, item.id .. tostring(item.level))
+    end
+    local key = table.concat(parts, "/")
+    if key == self.modalKey then
+        return
+    end
+    self.modalKey = key
+    if self.modal then
+        self:_dropModels(self.modal)
+        self.modal:Destroy()
+    end
+    local size = self.viewport or Vector2.new(1440, 900)
+    local width = math.min(940, size.X - 28)
+    local top = self.inventory.AbsolutePosition.Y
+        + self.inventory.AbsoluteSize.Y
+        - self.overlay.AbsolutePosition.Y
+        + 14
+    local height = math.min(680, size.Y - top - 18)
+    local modal = plate(self.overlay, "Choices", C.panel, 22)
+    self.modal = modal
+    setRect(modal, (size.X - width) / 2, top, width, height)
+    local title = label(modal, "Title", "", width < 500 and 26 or 34, C.paper, 25)
+    setRect(title, 16, 9, width - 32, 43)
+    local subtitle = label(modal, "Subtitle", "", 18, C.paper, 25)
+    subtitle.TextWrapped = true
+    setRect(subtitle, 16, 55, width - 32, self.shortWide and 24 or 47)
+    local bodyTop = self.shortWide and 84 or 112
+    local footerY = height - 67
+    local body = make("ScrollingFrame", {
+        Name = "Content",
+        BackgroundTransparency = 1,
+        BorderSizePixel = 0,
+        ScrollBarThickness = 6,
+        ScrollBarImageColor3 = C.mint,
+        CanvasSize = UDim2.fromOffset(0, 0),
+        ScrollingDirection = Enum.ScrollingDirection.Y,
+        ZIndex = 24,
+    }, modal)
+    setRect(body, 14, bodyTop, width - 28, math.max(50, footerY - bodyTop - 13))
+    local function action(name, text, x, buttonWidth, color, callback)
+        local result = button(modal, name, text, color, callback, 27)
+        setRect(result, x, footerY, buttonWidth, 51)
+        result.TextSize = width < 500 and 18 or 24
+        result.TextWrapped = true
+        return result
+    end
+    if phase == "shop" then
+        title.Text = "UPGRADE SHOP"
+        local selected = self.selectedSlot and state.inventory[self.selectedSlot]
+        local definition = itemDefinition(selected)
+        subtitle.Text = definition
+                and (Format.integer(state.coins) .. " COINS • " .. definition.name .. ": " .. definition.description)
+            or (
+                Format.integer(state.coins)
+                .. " COINS • Matching equipment upgrades it. Select two slots to reorder."
+            )
+        local columns = width >= 650 and 2 or 1
+        local cw = (width - 42 - (columns - 1) * 16) / columns
+        local cardHeight = self.shortWide and 216 or 248
+        for index, offer in state.shopOffers or {} do
+            local data = Catalog.Items[offer.id]
+            if data then
+                local consumable = data.consumable == true
+                local card = plate(body, "Offer" .. index, C.board, 25)
+                setRect(
+                    card,
+                    ((index - 1) % columns) * (cw + 16) + 3,
+                    math.floor((index - 1) / columns) * (cardHeight + 16) + 4,
+                    cw,
+                    cardHeight
+                )
+                local model = self:_viewport(card, "Item", offer.id, 1, 27)
+                setRect(model, 6, 8, 98, 96)
+                local name = label(card, "Name", data.name, 24, C.paper, 28)
+                name.TextWrapped = true
+                setRect(name, 110, 10, cw - 122, 54)
+                local trigger = label(
+                    card,
+                    "Trigger",
+                    consumable and "USE IMMEDIATELY" or data.triggerText,
+                    18,
+                    C.gold,
+                    28
+                )
+                trigger.TextWrapped = true
+                setRect(trigger, 110, 67, cw - 122, 43)
+                local description = label(card, "Effect", data.description, 18, C.paper, 28)
+                description.TextWrapped = true
+                description.TextYAlignment = Enum.TextYAlignment.Top
+                setRect(description, 13, 113, cw - 26, cardHeight - 178)
+                local matching
+                for _, owned in state.inventory do
+                    if owned.id == offer.id then
+                        matching = owned
+                        break
+                    end
+                end
+                local verb = consumable and "USE" or (matching and "UPGRADE" or "BUY")
+                local buy = button(
+                    card,
+                    "Buy",
+                    offer.sold and "SOLD" or (verb .. "  " .. offer.price),
+                    C.mint,
+                    function()
+                        self:_send("buy", { offer = index })
+                    end,
+                    29
+                )
+                setRect(buy, 12, cardHeight - 57, cw - (consumable and 24 or 91), 44)
+                buy.TextSize = 23
+                Theme.setEnabled(buy, not offer.sold and state.coins >= offer.price, C.mint)
+                if not consumable then
+                    local hold = button(
+                        card,
+                        "Hold",
+                        offer.frozen and "HELD" or "HOLD",
+                        offer.frozen and C.blue or C.panel,
+                        function()
+                            self:_send("freeze", { offer = index })
+                        end,
+                        29
+                    )
+                    setRect(hold, cw - 69, cardHeight - 57, 57, 44)
+                    hold.TextSize = 17
+                    Theme.setEnabled(hold, not offer.sold, offer.frozen and C.blue or C.panel)
+                end
+            end
+        end
+        body.CanvasSize = UDim2.fromOffset(
+            0,
+            math.ceil(#(state.shopOffers or {}) / columns) * (cardHeight + 16) + 5
+        )
+        local fw = (width - 60) / 3
+        local reroll = action("Reroll", "REROLL 1 COIN", 14, fw, C.gold, function()
+            self:_send("reroll")
+        end)
+        Theme.setEnabled(reroll, (state.rerollsLeft or 0) > 0 and state.coins >= 1, C.gold)
+        local occupied = selected and selected.id ~= ""
+        local sell = action(
+            "Sell",
+            occupied and "SELL ITEM" or (state.slots < 7 and "+ SLOT 5" or "SELECT TO SELL"),
+            30 + fw,
+            fw,
+            C.coral,
+            function()
+                if occupied then
+                    self:_send("sell", { slot = self.selectedSlot })
+                    self.selectedSlot = nil
+                elseif state.slots < 7 then
+                    self:_send("buySlot")
+                end
+            end
+        )
+        Theme.setEnabled(sell, occupied or state.slots < 7, C.coral)
+        action("Continue", "NEXT ROUND", 46 + fw * 2, fw, C.mint, function()
+            self:_send("continue")
+        end)
+    elseif phase == "perk" or phase == "event" then
+        title.Text = phase == "perk" and "CHOOSE YOUR PERK"
+            or (state.eventTitle or "CHOOSE YOUR REWARD")
+        subtitle.Text = "Make your next combo even stronger. Pick one."
+        local choices = phase == "perk" and state.perkOffers or state.eventChoices
+        local columns = width >= 650 and 2 or 1
+        local cw = (width - 42 - (columns - 1) * 16) / columns
+        local ch = 320
+        body.Size = UDim2.fromOffset(width - 28, height - bodyTop - 16)
+        for index, choice in choices or {} do
+            local id = type(choice) == "table" and choice.id or choice
+            local data = phase == "perk" and Catalog.Perks[id] or choice
+            local card = plate(body, "Choice" .. index, C.board, 25)
+            setRect(
+                card,
+                ((index - 1) % columns) * (cw + 16) + 3,
+                math.floor((index - 1) / columns) * (ch + 16) + 4,
+                cw,
+                ch
+            )
+            local model = self:_viewport(card, "Reward", id, 1, 27)
+            setRect(model, (cw - 130) / 2, 4, 130, 115)
+            local name = label(card, "Name", data.name, 27, C.paper, 28)
+            name.TextXAlignment = Enum.TextXAlignment.Center
+            name.TextWrapped = true
+            setRect(name, 12, 123, cw - 24, 48)
+            local description = label(card, "Effect", data.description, 19, C.paper, 28)
+            description.TextWrapped = true
+            description.TextYAlignment = Enum.TextYAlignment.Top
+            setRect(description, 15, 181, cw - 30, 71)
+            local choose = button(card, "Choose", "CHOOSE", C.mint, function()
+                self:_send(phase == "perk" and "choosePerk" or "chooseEvent", { index = index })
+            end, 29)
+            setRect(choose, 14, ch - 58, cw - 28, 44)
+        end
+        body.CanvasSize = UDim2.fromOffset(0, math.ceil(#(choices or {}) / columns) * (ch + 16) + 5)
+    else
+        title.Text = phase == "victory" and "WHAT A RUN!" or "READY FOR ANOTHER RUN?"
+        subtitle.Text = "Keep your records and unlocks. Build a new combo next time."
+        local model = self:_viewport(body, "RunReward", "restock", 2, 26)
+        setRect(model, (width - 160) / 2, 0, 130, 115)
+        local result = label(body, "Result", "ROUND " .. state.round, 38, C.gold, 27)
+        result.TextXAlignment = Enum.TextXAlignment.Center
+        setRect(result, 0, 122, width - 42, 55)
+        local records = label(
+            body,
+            "Records",
+            "BEST SCORE "
+                .. Format.number(state.bestScore or 0)
+                .. "\nBEST ROUND "
+                .. tostring(state.bestRound or 0),
+            24,
+            C.paper,
+            27
+        )
+        records.TextXAlignment = Enum.TextXAlignment.Center
+        records.TextWrapped = true
+        setRect(records, 8, 185, width - 58, 78)
+        local names = {}
+        for _, id in state.unlocks or {} do
+            local definition = Catalog.Unlocks and Catalog.Unlocks[id]
+            table.insert(names, definition and definition.name or id)
+        end
+        local unlocks = label(
+            body,
+            "Unlocks",
+            #names > 0 and ("UNLOCKED: " .. table.concat(names, " • "))
+                or "Reach deeper rounds to unlock new equipment.",
+            18,
+            C.paper,
+            27
+        )
+        unlocks.TextWrapped = true
+        unlocks.TextXAlignment = Enum.TextXAlignment.Center
+        setRect(unlocks, 12, 274, width - 66, 86)
+        body.CanvasSize = UDim2.fromOffset(0, 370)
+        if phase == "victory" then
+            action("Restart", "NEW RUN", 14, (width - 44) / 2, C.gold, function()
+                self:_send("restart")
+            end)
+            action(
+                "Endless",
+                "GO ENDLESS!",
+                30 + (width - 44) / 2,
+                (width - 44) / 2,
+                C.mint,
+                function()
+                    self:_send("endless")
+                end
+            )
+        else
+            action("Restart", "START A NEW RUN", 14, width - 28, C.mint, function()
+                self:_send("restart")
+            end)
+        end
+    end
+end
+
+function Presentation:setBoardOverride(active)
+    self.boardOverride = active == true
+end
+
+function Presentation:setPeg(id, value, position, scale)
+    local peg, slot = self.pegs[id], Board.Slots[id]
+    if not peg or not slot then
+        return
+    end
+    peg.value = value
+    peg.part.Transparency = value > 0 and 0 or 1
+    peg.billboard.Enabled = value > 0
+    peg.number.Text = Format.number(value)
+    if value > 0 then
+        local exponent = math.max(0, math.floor(math.log(value) / math.log(2) + 0.001))
+        peg.part.Color = PEG_COLORS[(exponent % #PEG_COLORS) + 1]
+    end
+    peg.part.Position =
+        Vector3.new(position and position.x or slot.x, position and position.y or slot.y, 0.62)
+    peg.part.Size = Vector3.one * Board.Geometry.pegRadius * 2 * (scale or 1)
+    self.previewDirty = true
+end
+
+function Presentation:finishBoardOverride(snapshot)
+    self.boardOverride = false
+    local state = snapshot or self.snapshot
+    if state then
+        for id, value in state.values or {} do
+            self:setPeg(id, value)
+        end
+    end
+end
+
+function Presentation:getAnchor(kind, index)
+    local layerOrigin = self.fxLayer.AbsolutePosition
+    if kind == "peg" or kind == "ball" then
+        local object = kind == "ball" and self.ball or (self.pegs[index] and self.pegs[index].part)
+        local camera = workspace.CurrentCamera
+        if object and camera then
+            local point = camera:WorldToViewportPoint(object.Position)
+            return Vector2.new(point.X, point.Y) - layerOrigin
+        end
+    end
+    local object = ({
+        score = self.score,
+        meter = self.progress,
+        restocks = self.restockModel.Visible and self.restockModel or self.restockPlate,
+        coins = self.coinModel,
+        reserve = self.reserveIcons[index or 1],
+        inventory = self.itemSlots[index or 1] and self.itemSlots[index or 1].viewport,
+    })[kind]
+    if kind == "reserve" and (not object or not object.Visible) then
+        object = self.reserves
+    end
+    if object then
+        return object.AbsolutePosition + object.AbsoluteSize / 2 - layerOrigin
+    end
+    return (self.viewport or Vector2.new(1440, 900)) / 2
+end
+
+function Presentation:setCounterDisplay(kind, value)
+    self.counterOverrides[kind] = value
+    self:_renderCounters()
+end
+
+function Presentation:setSettlement(text, progress, canSkip)
+    self.settlement.Visible = type(text) == "string" and text ~= ""
+    self.settlementText.Text = text or ""
+    self.settlementFraction = math.clamp(progress or 0, 0, 1)
+    self.settlementProgress.Size =
+        UDim2.new(self.settlementFraction, -14 * self.settlementFraction, 0, 5)
+    self.skipButton.Visible = canSkip == true
+end
+
+function Presentation:pulseItem(slot, strength)
+    local cell = self.itemSlots[slot]
+    if cell then
+        local mounted = self.models[cell.viewport]
+        if mounted then
+            mounted.handle:pulse(strength or 1)
+        end
+        cell.flash = 0.3
+    end
+end
+
+function Presentation:setBusy(active)
+    local changed = self.busy ~= (active == true)
+    self.busy = active == true
+    if changed then
+        self:_renderControls()
+        self.modalKey = nil
+        self:_updateModal()
+    end
 end
 
 function Presentation:_overInterface(point)
@@ -754,7 +1377,7 @@ end
 
 function Presentation:_aimAt(point)
     local camera = workspace.CurrentCamera
-    if not camera or not self.snapshot or self.snapshot.phase ~= "aim" then
+    if self.busy or not camera or not self.snapshot or self.snapshot.phase ~= "aim" then
         return
     end
     local ray = camera:ViewportPointToRay(point.X, point.Y)
@@ -772,18 +1395,13 @@ function Presentation:_aimAt(point)
 end
 
 function Presentation:_primaryAction()
-    if not self.snapshot then
+    if not self.snapshot or self.busy then
         return
     end
-    local phase = self.snapshot.phase
-    if phase == "aim" then
+    if self.snapshot.phase == "aim" then
         self:_send("launch", { angle = self.aim })
-    elseif phase == "flight" then
+    elseif self.snapshot.phase == "flight" then
         self:_send("endShot")
-    elseif phase == "gameover" then
-        self:_send("restart")
-    elseif phase == "result" or phase == "shop" then
-        self:_send("continue")
     end
 end
 
@@ -791,7 +1409,7 @@ function Presentation:_bindInput()
     table.insert(
         self.connections,
         UserInputService.InputBegan:Connect(function(input, processed)
-            if processed then
+            if processed or self.busy then
                 return
             end
             if
@@ -821,12 +1439,6 @@ function Presentation:_bindInput()
                 and self.snapshot.phase == "flight"
             then
                 self:_send("endShot")
-            elseif
-                input.KeyCode == Enum.KeyCode.R
-                and self.snapshot
-                and self.snapshot.phase == "gameover"
-            then
-                self:_send("restart")
             end
         end)
     )
@@ -851,7 +1463,8 @@ function Presentation:_bindInput()
                 self.aimHeld = nil
                 local point = Vector2.new(input.Position.X, input.Position.Y)
                 if
-                    self.snapshot
+                    not self.busy
+                    and self.snapshot
                     and self.snapshot.phase == "aim"
                     and not self:_overInterface(point)
                 then
@@ -863,626 +1476,35 @@ function Presentation:_bindInput()
     )
 end
 
-function Presentation:_updateInventory()
-    local state = self.snapshot
-    if not state then
-        return
-    end
-    for index, cell in self.itemSlots do
-        local item = state.inventory[index]
-        local definition = itemDefinition(item)
-        local locked = index > state.slots
-        cell.button.BackgroundColor3 = definition and itemColor(definition):Lerp(C.ink, 0.75)
-            or C.panel
-        cell.border.Color = self.selectedSlot == index and C.paper or C.edge
-        cell.border.Thickness = self.selectedSlot == index and 2 or 1
-        cell.icon.Text = locked and "+" or (definition and initials(definition.name) or "—")
-        cell.icon.TextColor3 = definition and itemColor(definition) or C.muted
-        cell.name.Text = locked and "5 COINS"
-            or (
-                definition
-                    and (definition.name .. ((item.level or 1) > 1 and ("  ↑" .. item.level) or ""))
-                or "EMPTY"
-            )
-        cell.name.TextColor3 = definition and C.paper or C.muted
-    end
-    local item = self.selectedSlot and state.inventory[self.selectedSlot]
-    local definition = itemDefinition(item)
-    if definition then
-        self.detailTitle.Text = definition.name .. "  •  LV " .. tostring(item.level or 1)
-        self.detailTrigger.Text = definition.triggerText or "Passive effect"
-        self.detailBody.Text = definition.description or ""
-    else
-        self.detailTitle.Text = "BUILD YOUR COMBO"
-        self.detailTrigger.Text = "Select an item to inspect it"
-        self.detailBody.Text =
-            "Select two slots to reorder. Buy matching items to upgrade their effects."
-        if state.boss then
-            self.detailTitle.Text = state.boss.name
-            self.detailTrigger.Text = "BOSS ROUND"
-            self.detailBody.Text = state.boss.description
-        end
-    end
-    if self.mobile and self.selectedSlot and definition and state.phase == "aim" then
-        self.help.Text = definition.name .. ": " .. (definition.triggerText or "")
-    end
-end
-
-function Presentation:_modalButton(parent, name, value, x, y, width, color, callback)
-    local result = button(parent, name, value, color, callback, 14)
-    setRect(result, x, y, width, 38)
-    result.TextSize = width < 125 and 11 or 14
-    return result
-end
-
-function Presentation:_updateModal()
-    local state = self.snapshot
-    if not state then
-        return
-    end
-    local phase = state.phase
-    local visible = phase ~= "aim" and phase ~= "flight"
-    self.overlay.Visible = visible
-    if not visible then
-        return
-    end
-    local parts = {
-        phase,
-        tostring(state.round),
-        tostring(state.coins),
-        tostring(state.slots),
-        tostring(state.rerollsLeft),
-        tostring(self.selectedSlot),
-        tostring(state.score),
-    }
-    for _, offer in state.shopOffers or {} do
-        table.insert(parts, offer.id .. tostring(offer.frozen) .. tostring(offer.sold))
-    end
-    for _, item in state.inventory or {} do
-        table.insert(parts, item.id .. tostring(item.level))
-    end
-    local key = table.concat(parts, "/")
-    if self.modalKey == key then
-        return
-    end
-    self.modalKey = key
-    if self.modal then
-        self.modal:Destroy()
-    end
-    local viewport = self.viewport or Vector2.new(1280, 720)
-    local w = math.min(760, viewport.X - 32)
-    local top = self.inventory.AbsolutePosition.Y
-        + self.inventory.AbsoluteSize.Y
-        - self.overlay.AbsolutePosition.Y
-        + 12
-    local h = math.min(570, math.max(240, viewport.Y - top - 18))
-    local modal = frame(self.overlay, "ChoicePanel", C.panel, 11)
-    self.modal = modal
-    modal.AnchorPoint = Vector2.new(0.5, 0)
-    modal.Position = UDim2.fromOffset(viewport.X / 2, top)
-    modal.Size = UDim2.fromOffset(w, h)
-    corner(modal, 17)
-    stroke(modal, C.edge, 2)
-    local title = label(modal, "Title", "", 25, C.paper, 12)
-    title.Font = Enum.Font.GothamBlack
-    title.TextSize = w < 500 and 19 or 25
-    title.TextTruncate = Enum.TextTruncate.AtEnd
-    setRect(title, 22, 17, w - 44, 34)
-    local subtitle = label(modal, "Subtitle", "", 12, C.muted, 12)
-    subtitle.TextWrapped = true
-    setRect(subtitle, 22, 52, w - 44, 30)
-    local footerY = h - 53
-    local function scrollBody(height)
-        local body = make("ScrollingFrame", {
-            Name = "Choices",
-            BackgroundTransparency = 1,
-            BorderSizePixel = 0,
-            ScrollBarThickness = 4,
-            ScrollBarImageColor3 = C.edge,
-            ScrollingDirection = Enum.ScrollingDirection.Y,
-            CanvasSize = UDim2.fromOffset(0, height),
-            ZIndex = 12,
-        }, modal)
-        setRect(body, 22, 90, w - 44, math.max(70, h - 156))
-        return body
-    end
-    if phase == "shop" then
-        title.Text = "THE UPGRADE COUNTER"
-        subtitle.Text = "Coins "
-            .. Format.integer(state.coins)
-            .. "  •  Matching purchases upgrade your items. Select two slots above to reorder."
-        local selectedDefinition = self.selectedSlot
-            and itemDefinition(state.inventory[self.selectedSlot])
-        if selectedDefinition then
-            subtitle.Text = selectedDefinition.name .. "  •  " .. selectedDefinition.description
-        end
-        local gap = 10
-        local cardWidth = (w - 52 - gap) / 2
-        local cardHeight = w < 500 and 156 or 130
-        local offers = state.shopOffers or {}
-        local hasConsumables = #offers > 4
-        local compact = w < 500
-        local body =
-            scrollBody(cardHeight * 2 + gap + (hasConsumables and (compact and 346 or 152) or 0))
-        for index, offer in state.shopOffers or {} do
-            local definition = Catalog.Items[offer.id]
-            local consumable = offer.consumable or (definition and definition.consumable)
-            local width = consumable and (compact and w - 52 or (w - 72) / 3) or cardWidth
-            local height = consumable and (compact and 96 or 116) or cardHeight
-            local x = consumable and (compact and 0 or (index - 5) * (width + 10))
-                or ((index - 1) % 2) * (cardWidth + gap)
-            local y = consumable
-                    and cardHeight * 2 + gap + 28 + (compact and (index - 5) * 106 or 0)
-                or math.floor((index - 1) / 2) * (cardHeight + gap)
-            local card = frame(body, "Offer" .. index, C.ink, 12)
-            setRect(card, x, y, width, height)
-            corner(card, 10)
-            local name =
-                label(card, "Name", definition and definition.name or offer.id, 14, C.paper, 13)
-            name.Font = Enum.Font.GothamBold
-            name.TextWrapped = true
-            name.TextSize = consumable and 11 or 14
-            setRect(name, 11, 6, width - 22, consumable and 30 or 23)
-            local description =
-                label(card, "Effect", definition and definition.description or "", 10, C.muted, 13)
-            description.TextWrapped = true
-            description.TextYAlignment = Enum.TextYAlignment.Top
-            setRect(description, 11, consumable and 37 or 31, width - 22, height - 73)
-            local buy = button(
-                card,
-                "Buy",
-                offer.sold and "SOLD" or ((consumable and "USE " or "BUY  ") .. offer.price),
-                C.mint,
-                function()
-                    self:_send("buy", { offer = index })
-                end,
-                14
-            )
-            setRect(buy, 10, height - 40, consumable and width - 20 or width * 0.62 - 13, 32)
-            buy.TextSize = 11
-            buy.Active = not offer.sold and state.coins >= offer.price
-            buy.AutoButtonColor = buy.Active
-            if not buy.Active then
-                buy.BackgroundColor3 = C.edge
-            end
-            if not consumable then
-                local freeze = button(
-                    card,
-                    "Freeze",
-                    offer.frozen and "HELD" or "HOLD",
-                    offer.frozen and C.blue or C.panel,
-                    function()
-                        self:_send("freeze", { offer = index })
-                    end,
-                    14
-                )
-                setRect(freeze, width * 0.62 + 2, height - 40, width * 0.38 - 12, 32)
-                freeze.TextSize = 10
-                freeze.TextColor3 = offer.frozen and C.ink or C.paper
-                freeze.Active = not offer.sold
-            end
-        end
-        if hasConsumables then
-            local caption =
-                label(body, "Consumables", "USE NOW  •  ONE-SHOT BOOSTS", 10, C.mint, 13)
-            setRect(caption, 0, cardHeight * 2 + gap + 6, w - 52, 18)
-        end
-        local footerWidth = (w - 64) / 3
-        local reroll = self:_modalButton(
-            modal,
-            "Reroll",
-            "REROLL 1  •  " .. tostring(state.rerollsLeft or 0),
-            22,
-            footerY,
-            footerWidth,
-            C.gold,
-            function()
-                self:_send("reroll")
-            end
-        )
-        reroll.Active = (state.rerollsLeft or 0) > 0 and state.coins >= 1
-        reroll.AutoButtonColor = reroll.Active
-        if not reroll.Active then
-            reroll.BackgroundColor3 = C.edge
-        end
-        local selected = self.selectedSlot and state.inventory[self.selectedSlot]
-        local hasSelected = selected and selected.id ~= ""
-        local sell = self:_modalButton(
-            modal,
-            "Sell",
-            hasSelected and ("SELL SLOT " .. self.selectedSlot)
-                or (state.slots < 7 and "+ SLOT  5" or "SELECT TO SELL"),
-            32 + footerWidth,
-            footerY,
-            footerWidth,
-            C.coral,
-            function()
-                if hasSelected then
-                    self:_send("sell", { slot = self.selectedSlot })
-                    self.selectedSlot = nil
-                elseif state.slots < 7 then
-                    self:_send("buySlot")
-                end
-            end
-        )
-        sell.Active = hasSelected or state.slots < 7
-        sell.AutoButtonColor = sell.Active
-        if not sell.Active then
-            sell.BackgroundColor3 = C.edge
-        end
-        self:_modalButton(
-            modal,
-            "Continue",
-            "CONTINUE",
-            42 + footerWidth * 2,
-            footerY,
-            footerWidth,
-            C.mint,
-            function()
-                self:_send("continue")
-            end
-        )
-    elseif phase == "perk" or phase == "event" then
-        title.Text = phase == "perk" and "CHOOSE YOUR EDGE"
-            or (state.eventTitle or "A NEW OPPORTUNITY")
-        subtitle.Text = phase == "perk"
-                and "One permanent advantage for this run. Make it work with your items."
-            or "Your choice changes this run."
-        local choices = state.perkOffers or {}
-        if phase == "event" then
-            choices = state.eventChoices or {}
-        end
-        local count = math.max(1, #choices)
-        local stacked = w < 500
-        local cardWidth = stacked and w - 52 or (w - 52 - (count - 1) * 12) / count
-        local cardHeight = stacked and 218 or 302
-        local body = scrollBody(stacked and count * (cardHeight + 12) or cardHeight)
-        body.Size = UDim2.fromOffset(w - 44, h - 112)
-        for index, choice in choices do
-            local definition = phase == "perk"
-                    and Catalog.Perks[type(choice) == "table" and choice.id or choice]
-                or choice
-            definition = definition or { name = tostring(choice), description = "" }
-            local card = frame(body, "Choice" .. index, C.ink, 12)
-            setRect(
-                card,
-                stacked and 0 or (index - 1) * (cardWidth + 12),
-                stacked and (index - 1) * (cardHeight + 12) or 0,
-                cardWidth,
-                cardHeight
-            )
-            corner(card, 12)
-            local number = label(
-                card,
-                "Number",
-                string.format("0%d", index),
-                34,
-                index == 1 and C.mint or C.gold,
-                13
-            )
-            number.Font = Enum.Font.GothamBlack
-            setRect(number, 17, 12, cardWidth - 34, 38)
-            local name = label(card, "Name", definition.name, 17, C.paper, 13)
-            name.Font = Enum.Font.GothamBold
-            name.TextWrapped = true
-            setRect(name, 17, stacked and 52 or 68, cardWidth - 34, stacked and 38 or 50)
-            local description =
-                label(card, "Description", definition.description or "", 12, C.muted, 13)
-            description.TextWrapped = true
-            description.TextYAlignment = Enum.TextYAlignment.Top
-            setRect(description, 17, stacked and 94 or 126, cardWidth - 34, stacked and 64 or 98)
-            self:_modalButton(
-                card,
-                "Choose",
-                "CHOOSE",
-                14,
-                cardHeight - 52,
-                cardWidth - 28,
-                index == 1 and C.mint or C.gold,
-                function()
-                    self:_send(phase == "perk" and "choosePerk" or "chooseEvent", { index = index })
-                end
-            )
-        end
-    else
-        local result = state.lastResult or {}
-        local terminal = phase == "gameover" or phase == "victory"
-        title.Text = phase == "victory" and "THE RUN IS YOURS"
-            or (
-                phase == "gameover" and "EVERY RUN TEACHES YOU"
-                or (result.success and "TARGET CLEARED" or "TAKE ANOTHER SHOT")
-            )
-        subtitle.Text = phase == "victory"
-                and "Eighty rounds complete. Keep building in endless, or start fresh."
-            or (
-                phase == "gameover"
-                    and "Your records and unlocks remain. Your next combo starts from a clean slate."
-                or (
-                    result.reason == "clear" and "Board clear! Your shot score was doubled."
-                    or "Your shot is settled. Here is what you earned."
-                )
-            )
-        local resultBody = scrollBody(terminal and 258 or 203)
-        local total = label(
-            resultBody,
-            "FinalScore",
-            Format.number(result.score or state.score or 0),
-            54,
-            C.paper,
-            12
-        )
-        total.Font = Enum.Font.GothamBlack
-        total.TextXAlignment = Enum.TextXAlignment.Center
-        total.TextSize = w < 500 and 40 or 54
-        setRect(total, 0, 10, w - 52, 68)
-        local target = label(
-            resultBody,
-            "Target",
-            "TARGET  " .. Format.number(result.quota or state.quota or 0),
-            16,
-            C.muted,
-            12
-        )
-        target.TextXAlignment = Enum.TextXAlignment.Center
-        setRect(target, 0, 81, w - 52, 26)
-        local earned = label(
-            resultBody,
-            "Earned",
-            terminal
-                    and ("BEST ROUND " .. tostring(state.bestRound or state.round) .. "    •    BEST SCORE " .. Format.number(
-                        state.bestScore or 0
-                    ))
-                or (
-                    tostring(result.restocks or 0)
-                    .. " RESTOCKS    •    "
-                    .. tostring(result.restocks or 0)
-                    .. " COINS EARNED"
-                ),
-            15,
-            C.mint,
-            12
-        )
-        earned.TextXAlignment = Enum.TextXAlignment.Center
-        earned.TextWrapped = true
-        setRect(earned, 0, 123, w - 52, 65)
-        if terminal then
-            local names = {}
-            for _, id in state.unlocks or {} do
-                local definition = Catalog.Unlocks and Catalog.Unlocks[id]
-                table.insert(names, definition and definition.name or id)
-            end
-            local unlocks = label(
-                resultBody,
-                "Unlocks",
-                #names > 0 and ("UNLOCKS  •  " .. table.concat(names, " / "))
-                    or "Unlock new items by reaching deeper rounds.",
-                12,
-                C.gold,
-                13
-            )
-            unlocks.TextWrapped = true
-            unlocks.TextXAlignment = Enum.TextXAlignment.Center
-            setRect(unlocks, 0, 191, w - 52, 60)
-        end
-        if phase == "victory" then
-            self:_modalButton(
-                modal,
-                "Restart",
-                "NEW RUN",
-                22,
-                footerY,
-                (w - 56) / 2,
-                C.paper,
-                function()
-                    self:_send("restart")
-                end
-            )
-            self:_modalButton(
-                modal,
-                "Endless",
-                "GO ENDLESS",
-                34 + (w - 56) / 2,
-                footerY,
-                (w - 56) / 2,
-                C.mint,
-                function()
-                    self:_send("endless")
-                end
-            )
-        else
-            self:_modalButton(
-                modal,
-                "Continue",
-                phase == "gameover" and "START A NEW RUN"
-                    or (result.success and "CONTINUE" or "TRY AGAIN"),
-                22,
-                footerY,
-                w - 44,
-                C.mint,
-                function()
-                    self:_send(phase == "gameover" and "restart" or "continue")
-                end
-            )
-        end
-    end
-end
-
-function Presentation:_feedback(event)
-    if event.kind == "trigger" and event.slot and self.itemSlots[event.slot] then
-        self.itemSlots[event.slot].flash = 0.45
-    end
-    if event.kind == "pop" and event.pegId then
-        local peg = self.pegs[event.pegId]
-        if peg then
-            peg.pulse = 0.18
-        end
-        local slot = Board.Slots[event.pegId]
-        if slot and event.value then
-            local text =
-                label(self.fxLayer, "PopValue", "+" .. Format.number(event.value), 22, C.paper, 41)
-            text.Font = Enum.Font.GothamBold
-            text.TextStrokeColor3 = C.ink
-            text.TextStrokeTransparency = 0.35
-            text.TextXAlignment = Enum.TextXAlignment.Center
-            text.AnchorPoint = Vector2.new(0.5, 0.5)
-            text.Size = UDim2.fromOffset(150, 35)
-            table.insert(self.effects, {
-                gui = text,
-                position = Vector3.new(slot.x, slot.y + 0.5, 1.2),
-                age = 0,
-                duration = 0.85,
-            })
-            local ring = frame(self.fxLayer, "PopRing", nil, 40)
-            ring.BackgroundTransparency = 1
-            ring.AnchorPoint = Vector2.new(0.5, 0.5)
-            corner(ring, 100)
-            local border = stroke(ring, peg and peg.part.Color or C.mint, 2)
-            table.insert(self.effects, {
-                gui = ring,
-                ring = border,
-                position = Vector3.new(slot.x, slot.y, 1.2),
-                age = 0,
-                duration = 0.4,
-            })
-        end
-    elseif event.kind == "clear" or event.kind == "restock" then
-        self:setNotice(
-            event.text
-                or (event.kind == "clear" and "BOARD CLEAR  •  DOUBLE SCORE" or "RESTOCK EARNED")
-        )
-    end
-end
-
 function Presentation:update(snapshot)
     if self.destroyed then
         return
     end
-    if
-        self.snapshot
-        and snapshot.phase == "aim"
-        and (
-            self.snapshot.phase == "gameover"
-            or self.snapshot.phase == "victory"
-            or snapshot.round < self.snapshot.round
-        )
-    then
-        self.lastEvent = 0
+    local previous = self.snapshot
+    if previous and (snapshot.round < previous.round or snapshot.seed ~= previous.seed) then
         self.selectedSlot = nil
+        self.counterOverrides = {}
     end
-    if
-        self.snapshot
-        and (snapshot.round < self.snapshot.round or snapshot.score < self.snapshot.score)
-    then
-        self.displayScore = snapshot.score
-    end
-    local newBoss = snapshot.boss and (not self.snapshot or self.snapshot.round ~= snapshot.round)
     self.snapshot = snapshot
-    self.loading.Visible = false
     self.receivedAt = os.clock()
-    self.coins.Text = Format.integer(snapshot.coins or 0)
-    self.reserves.Text = tostring(snapshot.reserves or 0)
-        .. " / "
-        .. tostring(snapshot.maxReserves or 5)
-    for index, dot in self.reserveDots do
-        dot.BackgroundColor3 = index <= (snapshot.reserves or 0) and C.mint or C.edge
-    end
-    self.roundLabel.Text =
-        string.format("ROUND %02d  /  ZONE %d", snapshot.round or 1, snapshot.zone or 1)
-    self.quota.Text = "TARGET  " .. Format.number(snapshot.quota or 0)
-    self.counters.Text = tostring(snapshot.pops or 0)
-        .. "    /    "
-        .. tostring(snapshot.wallHits or 0)
-    self.timer.Text = formatTime(snapshot.elapsed)
-    self.best.Text = "BEST ROUND " .. tostring(snapshot.bestRound or 0)
-    self.perkSummary.Text = tostring(#(snapshot.perks or {}))
-        .. " PERKS  •  "
-        .. tostring(snapshot.doubles or 0)
-        .. " DOUBLES"
-    self.profile.Text = ({
-        session = "Records: this Studio session",
-        saved = "Cloud records enabled",
-        unavailable = "Cloud save unavailable • session records",
-    })[snapshot.profileStatus] or "Records: current session"
-    self.speed.Text = tostring(snapshot.speed or 1) .. "× SPEED"
-    self.speed.Visible = snapshot.phase == "aim" or snapshot.phase == "flight"
-    local ratio = (snapshot.score or 0) / math.max(1, snapshot.quota or 1)
-    self.progressFill.Size = UDim2.fromScale(math.clamp(ratio < 1 and ratio or ratio % 1, 0, 1), 1)
-    self.progressFill.BackgroundColor3 = ratio >= 1 and C.gold or C.mint
-    local restocks = snapshot.restocks or math.floor(ratio)
-    self.restock.Text = ratio >= 1
-            and (Format.integer(restocks) .. " RESTOCKS EARNED\nNext at " .. Format.number(
-                (restocks + 1) * snapshot.quota
-            ))
-        or "Fill the target to earn a restock"
-    if restocks >= (snapshot.maxRestocks or 10000) then
-        self.restock.Text = "MAX RESTOCKS EARNED"
-        self.progressFill.Size = UDim2.fromScale(1, 1)
-    end
-    if snapshot.settling then
-        self.restock.Text = "SETTLING RESTOCKS…"
-    end
-    if snapshot.boss then
-        self.perkSummary.Text = "BOSS  •  " .. snapshot.boss.name
-        if newBoss then
-            self:setNotice(snapshot.boss.name .. " • " .. snapshot.boss.description)
-        end
-    end
-    local phaseNames = {
-        aim = "READY TO LAUNCH",
-        flight = "SHOT IN PLAY",
-        result = "SHOT COMPLETE",
-        shop = "UPGRADE COUNTER",
-        perk = "CHOOSE A PERK",
-        event = "MAKE YOUR CHOICE",
-        gameover = "RUN COMPLETE",
-        victory = "VICTORY",
-    }
-    self.phaseLabel.Text = phaseNames[snapshot.phase] or string.upper(snapshot.phase)
-    self.jumbleButton.Visible = snapshot.phase == "aim"
-    self.jumbleButton.BackgroundColor3 = snapshot.canJumble and C.panel or C.ink
-    self.jumbleButton.TextColor3 = snapshot.canJumble and C.paper or C.muted
-    self.jumbleButton.Active = snapshot.canJumble == true
-    self.jumbleButton.AutoButtonColor = self.jumbleButton.Active
-    self.primary.Text = snapshot.phase == "flight" and "END SHOT  [E]" or "LAUNCH  [SPACE]"
-    if self.mobile then
-        self.primary.Text = snapshot.phase == "flight" and "END SHOT" or "LAUNCH"
-        self.jumbleButton.Text = "JUMBLE"
-    end
-    self.controls.Visible = snapshot.phase == "aim" or snapshot.phase == "flight"
-    self.help.Text = snapshot.phase == "flight"
-            and "Let the combo play out. End Shot settles the current score."
-        or (
-            self.mobile and "Drag to aim, release to launch. Tap a slot to inspect."
-            or "Aim with your pointer. Click the board or press Space to launch."
-        )
-    for id, value in snapshot.values or {} do
-        local peg = self.pegs[id]
-        if peg and peg.value ~= value then
-            self.previewDirty = true
-            peg.value = value
-            peg.part.Transparency = value > 0 and 0 or 1
-            peg.billboard.Enabled = value > 0
-            peg.number.Text = Format.number(value)
-            if value > 0 then
-                local exponent = math.max(0, math.floor(math.log(value) / math.log(2) + 0.001))
-                peg.part.Color = PEG_COLORS[(exponent % #PEG_COLORS) + 1]
+    self.loading.Visible = false
+    self.feedback:update(snapshot)
+    if not self.boardOverride then
+        for id, value in snapshot.values or {} do
+            if self.pegs[id] and self.pegs[id].value ~= value then
+                self:setPeg(id, value)
             end
-            peg.pulse = 0.18
         end
     end
+    self:_renderCounters()
+    self:_renderControls()
     self:_updateInventory()
-    for _, event in snapshot.events or {} do
-        if event.id > self.lastEvent then
-            self.lastEvent = event.id
-            self:_feedback(event)
-        end
-    end
     self:_updateModal()
 end
 
 function Presentation:setNotice(message)
     self.notice.Text = message or ""
-    self.noticeUntil = os.clock() + 3
+    self.noticeUntil = os.clock() + 3.5
 end
 
 function Presentation:step(dt)
@@ -1499,17 +1521,28 @@ function Presentation:step(dt)
     end
     camera.CameraType = Enum.CameraType.Scriptable
     camera.CFrame = self.cameraCFrame or camera.CFrame
+    self.feedback:step(dt)
+    for viewport, mounted in self.models do
+        if viewport.Visible then
+            mounted.handle:step(dt)
+        end
+    end
+    for index, cell in self.itemSlots do
+        cell.flash = math.max(0, (cell.flash or 0) - dt)
+        if cell.flash > 0 then
+            cell.border.Color = C.gold
+            cell.border.Thickness = 5
+        else
+            cell.border.Color = self.selectedSlot == index and C.gold or C.ink
+            cell.border.Thickness = self.selectedSlot == index and 5 or 3
+        end
+    end
+    if os.clock() > self.noticeUntil then
+        self.notice.Text = ""
+    end
     local state = self.snapshot
     if not state then
         return
-    end
-    self.displayScore += ((state.score or 0) - self.displayScore) * math.min(1, dt * 15)
-    if math.abs(self.displayScore - (state.score or 0)) < 0.5 then
-        self.displayScore = state.score or 0
-    end
-    self.score.Text = Format.number(math.floor(self.displayScore + 0.5))
-    if os.clock() > self.noticeUntil then
-        self.notice.Text = ""
     end
     local ball = state.ball
     local flying = state.phase == "flight" and ball and ball.active
@@ -1529,11 +1562,10 @@ function Presentation:step(dt)
         self.ball.Position = Vector3.new(Board.Geometry.launchX, Board.Geometry.launchY, 1.15)
     end
     self.wasFlying = flying
-    local guideVisible = state.phase == "aim"
+    local guideVisible = state.phase == "aim" and not self.busy
     if guideVisible and (self.previewDirty or self.previewAim ~= self.aim) then
         self.preview = Simulation.preview(self.aim, state.values)
-        self.previewAim = self.aim
-        self.previewDirty = false
+        self.previewAim, self.previewDirty = self.aim, false
     end
     for index, arrow in self.aimArrow do
         local side = index == 1 and -1 or 1
@@ -1553,43 +1585,6 @@ function Presentation:step(dt)
             dot.Position = Vector3.new(point.x, point.y, 1.1)
         end
     end
-    for _, peg in self.pegs do
-        peg.pulse = math.max(0, peg.pulse - dt)
-        local scale = 1 + math.sin((peg.pulse / 0.18) * math.pi) * 0.14
-        peg.part.Size = Vector3.one * Board.Geometry.pegRadius * 2 * scale
-    end
-    for index, cell in self.itemSlots do
-        if cell.flash > 0 then
-            cell.flash = math.max(0, cell.flash - dt)
-            cell.border.Color = C.gold
-            cell.border.Thickness = 1 + cell.flash * 5
-        else
-            cell.border.Color = self.selectedSlot == index and C.paper or C.edge
-            cell.border.Thickness = self.selectedSlot == index and 2 or 1
-        end
-    end
-    for index = #self.effects, 1, -1 do
-        local effect = self.effects[index]
-        effect.age += dt
-        if effect.age >= effect.duration then
-            effect.gui:Destroy()
-            table.remove(self.effects, index)
-        else
-            local position, visible = camera:WorldToViewportPoint(
-                effect.position + Vector3.new(0, effect.ring and 0 or effect.age * 2.2, 0)
-            )
-            effect.gui.Visible = visible
-            effect.gui.Position = UDim2.fromOffset(position.X, position.Y)
-            if effect.ring then
-                local size = 12 + effect.age * 75
-                effect.gui.Size = UDim2.fromOffset(size, size)
-                effect.ring.Transparency = effect.age / effect.duration
-            else
-                effect.gui.TextTransparency =
-                    math.clamp((effect.age / effect.duration - 0.45) / 0.55, 0, 1)
-            end
-        end
-    end
 end
 
 function Presentation.new(onAction)
@@ -1597,12 +1592,13 @@ function Presentation.new(onAction)
     local self = setmetatable({
         onAction = onAction,
         connections = {},
-        effects = {},
+        models = {},
+        counterOverrides = {},
         aim = 0.15,
-        lastEvent = 0,
-        displayScore = 0,
         noticeUntil = 0,
         receivedAt = os.clock(),
+        busy = false,
+        boardOverride = false,
         oldCamera = camera and {
             camera = camera,
             cframe = camera.CFrame,
@@ -1613,6 +1609,9 @@ function Presentation.new(onAction)
     self:_buildBoard()
     self:_buildHud()
     self:_layout()
+    self.feedback = Feedback.new(self, function()
+        self:_send("continue")
+    end)
     self:_bindInput()
     return self
 end
@@ -1624,6 +1623,10 @@ function Presentation:destroy()
     self.destroyed = true
     for _, connection in self.connections do
         connection:Disconnect()
+    end
+    self.feedback:destroy()
+    for _, mounted in self.models do
+        mounted.handle:destroy()
     end
     self.gui:Destroy()
     self.model:Destroy()
