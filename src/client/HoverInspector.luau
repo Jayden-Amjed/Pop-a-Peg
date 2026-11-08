@@ -70,6 +70,7 @@ end
 function Inspector:hide()
     self.panel.Visible = false
     self.anchor, self.id, self.pinned, self.hideAt = nil, nil, false, nil
+    self.overPanel = false
     for _, pair in self.pairs do
         pair.viewport.Visible = false
     end
