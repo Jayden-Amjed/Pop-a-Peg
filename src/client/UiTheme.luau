@@ -2,16 +2,16 @@
 
 local Theme = {}
 Theme.colors = {
-    ink = Color3.fromRGB(15, 57, 87),
-    board = Color3.fromRGB(25, 117, 164),
-    panel = Color3.fromRGB(41, 147, 201),
-    edge = Color3.fromRGB(169, 235, 251),
-    muted = Color3.fromRGB(218, 245, 253),
-    paper = Color3.fromRGB(250, 254, 255),
+    ink = Color3.fromRGB(18, 49, 71),
+    board = Color3.fromRGB(24, 105, 147),
+    panel = Color3.fromRGB(34, 125, 172),
+    edge = Color3.fromRGB(145, 207, 225),
+    muted = Color3.fromRGB(201, 229, 239),
+    paper = Color3.fromRGB(244, 250, 253),
     mint = Color3.fromRGB(141, 203, 55),
     coral = Color3.fromRGB(238, 136, 68),
     gold = Color3.fromRGB(255, 210, 93),
-    blue = Color3.fromRGB(62, 184, 224),
+    blue = Color3.fromRGB(48, 160, 200),
     positive = Color3.fromRGB(38, 135, 63),
     negative = Color3.fromRGB(192, 54, 66),
     trigger = Color3.fromRGB(242, 183, 33),
@@ -71,20 +71,19 @@ function Theme.decorate(object, color, z)
     Theme.corner(object, 10)
     Theme.stroke(object, Theme.colors.edge, 2)
     local shadow = Theme.frame(object, "Depth", Theme.colors.ink, math.max(1, z - 1))
-    shadow.Position = UDim2.fromOffset(0, 4)
-    shadow.BackgroundTransparency = 0.6
+    shadow.Position = UDim2.fromOffset(0, 5)
+    shadow.BackgroundTransparency = 0.48
     shadow.Size = UDim2.fromScale(1, 1)
     Theme.corner(shadow, 10)
     local shine = Theme.frame(object, "Bevel", Color3.new(1, 1, 1), z + 1)
-    shine.BackgroundTransparency = 0.35
+    shine.BackgroundTransparency = 0.58
     shine.Position = UDim2.fromOffset(3, 3)
     shine.Size = UDim2.new(1, -6, 0, 2)
     Theme.make("UIGradient", {
         Color = ColorSequence.new({
             ColorSequenceKeypoint.new(0, Color3.new(1, 1, 1)),
-            ColorSequenceKeypoint.new(0.48, Color3.fromRGB(224, 245, 255)),
-            ColorSequenceKeypoint.new(0.5, Color3.fromRGB(187, 222, 239)),
-            ColorSequenceKeypoint.new(1, Color3.fromRGB(229, 247, 255)),
+            ColorSequenceKeypoint.new(0.45, Color3.fromRGB(234, 245, 250)),
+            ColorSequenceKeypoint.new(1, Color3.fromRGB(185, 215, 229)),
         }),
         Rotation = 90,
     }, object)
