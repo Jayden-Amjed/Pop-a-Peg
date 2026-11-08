@@ -182,12 +182,10 @@ local function feet(m, width, y, depth)
 end
 
 local function plinth(m, width, y, depth, color)
-    local base = drum(m, P.ceramic, width / 2, 0.2, 0, y - 0.06, 0)
-    base.Size = V(0.2, width + 0.18, depth + 0.18)
-    local rim = drum(m, P.silver, width / 2, 0.055, 0, y - 0.19, 0)
-    rim.Size = V(0.055, width + 0.1, depth + 0.1)
-    local glaze = glass(drum(m, color or P.cyan, width / 2, 0.045, 0, y + 0.065, 0), 0.3)
-    glaze.Size = V(0.045, width * 0.89, depth * 0.89)
+    -- Structural feet belong to the device; broad circular display pads do not.
+    block(m, P.steel, width * 0.86, 0.18, depth * 0.86, 0, y - 0.06, 0)
+    block(m, P.dark, width * 0.79, 0.055, depth * 0.78, 0, y - 0.17, 0)
+    glass(block(m, color or P.cyan, width * 0.8, 0.045, depth * 0.8, 0, y + 0.055, 0), 0.3)
     for _, x in ipairs({ -width * 0.32, width * 0.32 }) do
         sphere(m, P.silver, 0.18, 0.08, 0.16, x, y - 0.22, 0)
     end
@@ -812,8 +810,6 @@ local function fish(m, center, scale)
 end
 
 register("goldfish", "equipment", function(m, level)
-    plinth(m, 2.4, -0.91, 1.25)
-    glass(sphere(m, P.cyan, 2.07, 0.2, 0.94, 0, -0.66, 0), 0.32)
     fish(m, V(0, 0.12, 0), 1)
     for index = 0, 2 do
         named(
@@ -839,7 +835,6 @@ register("goldfish", "equipment", function(m, level)
 end)
 
 register("fishbowl", "equipment", function(m, level)
-    plinth(m, 2.5, -1.1, 2.05)
     glass(named(sphere(m, P.cyan, 2.08, 1.64, 2.08, 0, -0.15, 0), "Water"), 0.69)
     named(glass(drum(m, P.blue, 0.94, 0.035, 0, 0.5, 0), 0.4), "Waterline")
     fish(m, V(0.06, -0.08, 0.22), if level == 2 then 0.6 else 0.52)
@@ -1248,12 +1243,20 @@ local function silhouette(viewport, model, camera, options)
     for _, original in model:GetDescendants() do
         if original:IsA("BasePart") then
             local copy = original:Clone()
-            copy:ClearAllChildren()
+            local meshes = {}
+            local originalChildren = original:GetChildren()
+            for index, child in copy:GetChildren() do
+                if child:IsA("DataModelMesh") then
+                    table.insert(meshes, { original = originalChildren[index], copy = child })
+                else
+                    child:Destroy()
+                end
+            end
             copy.Color = Color3.new()
             copy.Material, copy.Reflectance = Enum.Material.SmoothPlastic, 0
             copy.CastShadow = false
             copy.Parent = geometry
-            table.insert(links, { original = original, copy = copy })
+            table.insert(links, { original = original, copy = copy, meshes = meshes })
         end
     end
     local function layout()
@@ -1294,6 +1297,9 @@ local function silhouette(viewport, model, camera, options)
         for _, link in links do
             link.copy.CFrame, link.copy.Size = link.original.CFrame, link.original.Size
             link.copy.Transparency = link.original.Transparency
+            for _, mesh in link.meshes do
+                mesh.copy.Scale, mesh.copy.Offset = mesh.original.Scale, mesh.original.Offset
+            end
         end
     end
     function outline:destroy()
