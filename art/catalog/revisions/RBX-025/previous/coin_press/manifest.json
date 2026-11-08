@@ -1,0 +1,384 @@
+{
+  "schema": 2,
+  "id": "coin_press",
+  "display_name": "Coin Press",
+  "category": "consumable",
+  "generator": "scripts/models/catalog_mechanical.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 2580,
+  "pieces": 7,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    -0.00125,
+    1.1500001
+  ],
+  "bounds_min": [
+    -0.875,
+    -0.6175,
+    0.0
+  ],
+  "bounds_max": [
+    0.875,
+    0.615,
+    2.3000002
+  ],
+  "size_blender_studs": [
+    1.75,
+    1.2325001,
+    2.3000002
+  ],
+  "objects": [
+    {
+      "name": "coin_press__Fixed_dark_01",
+      "mesh_data_name": "coin_press__Fixed_dark_01",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 216,
+      "vertices": 112,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.045
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.045
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.045
+      ],
+      "size_blender_studs": [
+        1.3200001,
+        0.9225,
+        0.09
+      ],
+      "bounds_min": [
+        -0.66,
+        -0.46125,
+        0.0
+      ],
+      "bounds_max": [
+        0.66,
+        0.46125,
+        0.09
+      ],
+      "geometry_sha256": "bf5de2eaf92ce4ff0ec1c65776dc81586e592dfa1d7bbff4111b67e6bbe3a94b",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "coin_press__PressScrew_dark_02",
+      "mesh_data_name": "coin_press__PressScrew_dark_02",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 472,
+      "vertices": 240,
+      "motion_group": "PressScrew",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.5
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.5600001
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.5600001
+      ],
+      "size_blender_studs": [
+        0.7,
+        0.7,
+        1.05
+      ],
+      "bounds_min": [
+        -0.35,
+        -0.35,
+        1.0350001
+      ],
+      "bounds_max": [
+        0.35,
+        0.35,
+        2.085
+      ],
+      "geometry_sha256": "1219d225b63aef16d983c9ded0f3b594d04e4161f9c216648a2acc168cf1da67",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "coin_press__MintCoin_gold_03",
+      "mesh_data_name": "coin_press__MintCoin_gold_03",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 236,
+      "vertices": 120,
+      "motion_group": "MintCoin",
+      "motion_pivot": [
+        0.35,
+        -0.54,
+        0.75
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.35,
+        -0.54,
+        0.75
+      ],
+      "center_blender_studs": [
+        0.35,
+        -0.54,
+        0.75
+      ],
+      "size_blender_studs": [
+        0.56,
+        0.11,
+        0.5599999
+      ],
+      "bounds_min": [
+        0.07,
+        -0.595,
+        0.47
+      ],
+      "bounds_max": [
+        0.63,
+        -0.485,
+        1.03
+      ],
+      "geometry_sha256": "2dc6bc6f48959af610667ea04b733b1bc59f207b5087f8a63dc5fdfbe0758017",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "coin_press__PressScrew_gold_04",
+      "mesh_data_name": "coin_press__PressScrew_gold_04",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 800,
+      "vertices": 400,
+      "motion_group": "PressScrew",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.5
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.605
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.605
+      ],
+      "size_blender_studs": [
+        0.45,
+        0.45,
+        0.636574
+      ],
+      "bounds_min": [
+        -0.225,
+        -0.225,
+        1.286713
+      ],
+      "bounds_max": [
+        0.225,
+        0.225,
+        1.923287
+      ],
+      "geometry_sha256": "6928cc5fb3d6addfd2421c2400d75927a398d5fc18db524b4f310032fa1bc50f",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "coin_press__Fixed_pearl_05",
+      "mesh_data_name": "coin_press__Fixed_pearl_05",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 324,
+      "vertices": 168,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.0550001
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.0550001
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.0550001
+      ],
+      "size_blender_studs": [
+        1.75,
+        1.23,
+        2.1100001
+      ],
+      "bounds_min": [
+        -0.875,
+        -0.615,
+        0.0
+      ],
+      "bounds_max": [
+        0.875,
+        0.615,
+        2.1100001
+      ],
+      "geometry_sha256": "804ecffc4218d76230ae276323db4b950821fe258240140cb589b869ae493d3c",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "coin_press__MintCoin_pearl_06",
+      "mesh_data_name": "coin_press__MintCoin_pearl_06",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 188,
+      "vertices": 96,
+      "motion_group": "MintCoin",
+      "motion_pivot": [
+        0.35,
+        -0.54,
+        0.75
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.35,
+        -0.605,
+        0.75
+      ],
+      "center_blender_studs": [
+        0.35,
+        -0.605,
+        0.75
+      ],
+      "size_blender_studs": [
+        0.3,
+        0.025,
+        0.3
+      ],
+      "bounds_min": [
+        0.2,
+        -0.6175,
+        0.6
+      ],
+      "bounds_max": [
+        0.5,
+        -0.5925,
+        0.9
+      ],
+      "geometry_sha256": "b7cc1d665d85c3cef1ed5ded80302e2f122f887a1d9e7554f6e03b8aa965c221",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "coin_press__Fixed_teal_07",
+      "mesh_data_name": "coin_press__Fixed_teal_07",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 344,
+      "vertices": 176,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.025,
+        1.335
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.025,
+        1.335
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.025,
+        1.335
+      ],
+      "size_blender_studs": [
+        1.63,
+        0.83,
+        1.9300002
+      ],
+      "bounds_min": [
+        -0.815,
+        -0.39,
+        0.37
+      ],
+      "bounds_max": [
+        0.815,
+        0.44,
+        2.3000002
+      ],
+      "geometry_sha256": "552906d0a037ae4337effcba80a2d2a24077b5354cfcb7b401c8b60dd2356f2d",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/coin_press/coin_press.blend",
+  "source_preserved": false,
+  "blend_sha256": "c6da331ea10428a5016470550cedd9d1dd8b946168291a0dafd238288f1d351f"
+}

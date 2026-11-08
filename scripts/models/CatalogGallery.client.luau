@@ -10,6 +10,8 @@ local ItemModels = require(libraries.ItemModels)
 local ItemMotion = require(libraries.ItemMotion)
 local CatalogMotion = require(libraries.CatalogMotion)
 local PreviewLighting = require(libraries.PreviewLighting)
+local GalleryAudio = require(libraries.GalleryAudio)
+local audio = GalleryAudio.new()
 local catalog = {}
 for index, metadata in require(libraries.CatalogInfo) do
     local entry = table.clone(metadata)
@@ -51,6 +53,10 @@ gui:SetAttribute("NativeComparison", false)
 gui:SetAttribute("TotalCount", #catalog)
 gui:SetAttribute("CompletedCycles", 0)
 gui:SetAttribute("MountedModels", 0)
+gui:SetAttribute("SoundEnabled", true)
+gui:SetAttribute("Volume", 0.5)
+gui:SetAttribute("AudioStarts", 0)
+gui:SetAttribute("AudioEvents", 0)
 gui.Parent = Players.LocalPlayer:WaitForChild("PlayerGui")
 
 local function make(className, parent, properties)
@@ -269,6 +275,10 @@ local playing, elapsed, cooldown = false, 0, 0
 local hover = ItemMotion.newHover(true)
 local hoverPose = ItemMotion.idleSample(0)
 local currentPose = 0
+local inputConnections = {}
+local function listen(signal, callback)
+    table.insert(inputConnections, signal:Connect(callback))
+end
 local function numberAttribute(name, default, minimum, maximum)
     local value = gui:GetAttribute(name)
     if type(value) ~= "number" or value ~= value then
@@ -277,6 +287,7 @@ local function numberAttribute(name, default, minimum, maximum)
     return math.clamp(value, minimum, maximum)
 end
 local function clearMounts()
+    audio:stop()
     for _, mount in mounts do
         mount.model:Destroy()
         mount.camera:Destroy()
@@ -321,10 +332,15 @@ local function makeMount(view, model, id, isBlender)
     return mount
 end
 local function startAt(pose)
+    if not selected or not gui:GetAttribute("Ready") then
+        return
+    end
     gui:SetAttribute("Pose", -1)
     gui:SetAttribute("Paused", false)
     elapsed = (mounts[1] and mounts[1].motion.duration or 1) * (pose or 0)
     playing, cooldown = true, 0
+    audio:start(selected.id, pose or 0)
+    audio:step(pose or 0)
 end
 local function changeSelection(id, preservePlayback)
     local entry = byId[id]
@@ -430,6 +446,13 @@ local function changeSelection(id, preservePlayback)
         loadStatus.Visible = false
         if not preservePlayback and gui:GetAttribute("Loop") then
             startAt(0)
+        elseif
+            preservePlayback
+            and playing
+            and not gui:GetAttribute("Paused")
+            and numberAttribute("Pose", -1, -1, 1) < 0
+        then
+            audio:resume(currentPose)
         end
     end)
 end
@@ -489,6 +512,14 @@ local previous = button(root, "Previous", "‹ PREV", function()
 end)
 local nextButton = button(root, "Next", "NEXT ›", function()
     advance(1)
+end)
+
+local soundButton = button(root, "Sound", "SOUND ON", function()
+    gui:SetAttribute("SoundEnabled", not gui:GetAttribute("SoundEnabled"))
+end)
+local volumeButton = button(root, "Volume", "VOLUME 50%", function()
+    local volume = numberAttribute("Volume", 0.5, 0, 1)
+    gui:SetAttribute("Volume", (math.floor(volume * 4 + 0.001) % 4 + 1) / 4)
 end)
 
 local animationTitle = text(controlsPanel, "AnimationTitle", "ANIMATION", 14)
@@ -582,14 +613,14 @@ track.InputBegan:Connect(function(input)
         scrub(input.Position)
     end
 end)
-UserInputService.InputChanged:Connect(function(input)
+listen(UserInputService.InputChanged, function(input)
     if
         dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input == dragInput)
     then
         scrub(input.Position)
     end
 end)
-UserInputService.InputEnded:Connect(function(input)
+listen(UserInputService.InputEnded, function(input)
     if input.UserInputType == Enum.UserInputType.MouseButton1 or input == dragInput then
         dragging, dragInput = false, nil
     end
@@ -715,10 +746,15 @@ local function layout()
     local middle = width - left - right - gap * 2 - pad * 2
     local top, contentHeight = 70, math.max(390, height - 82)
     rect(header, 16, 10, width - 320, 28)
-    rect(subtitle, 16, 40, width - 32, 19)
-    rect(previous, width - 284, 15, 82, 29)
-    rect(navigation, width - 195, 15, 90, 29)
-    rect(nextButton, width - 100, 15, 84, 29)
+    rect(subtitle, 16, 40, width - right - 44, 19)
+    subtitle.TextTruncate = Enum.TextTruncate.AtEnd
+    local audioHalf = (right - 6) / 2
+    rect(soundButton, width - pad - right, 39, audioHalf, 25)
+    rect(volumeButton, width - pad - audioHalf, 39, audioHalf, 25)
+    soundButton.TextSize, volumeButton.TextSize = 11, 11
+    rect(previous, width - 284, 10, 82, 25)
+    rect(navigation, width - 195, 10, 90, 25)
+    rect(nextButton, width - 100, 10, 84, 25)
     rect(libraryPanel, pad, top, left, contentHeight)
     rect(viewerPanel, pad + left + gap, top, middle, contentHeight)
     rect(controlsPanel, width - pad - right, top, right, contentHeight)
@@ -784,6 +820,9 @@ local function layout()
     rect(sessionHint, 12, contentHeight - 21, right - 24, 16)
 end
 local function appearance()
+    soundButton.Text = if gui:GetAttribute("SoundEnabled") then "SOUND ON" else "SOUND OFF"
+    soundButton.BackgroundColor3 = if gui:GetAttribute("SoundEnabled") then C.teal else C.navy
+    volumeButton.Text = string.format("VOLUME %.0f%%", numberAttribute("Volume", 0.5, 0, 1) * 100)
     local presetName = gui:GetAttribute("LightingPreset")
     for _, view in { blenderView, nativeView } do
         local preset = PreviewLighting.apply(view, presetName)
@@ -836,8 +875,29 @@ gui:GetAttributeChangedSignal("Loop"):Connect(function()
         startAt(0)
     end
 end)
+gui:GetAttributeChangedSignal("SoundEnabled"):Connect(function()
+    audio:setMuted(not gui:GetAttribute("SoundEnabled"))
+    appearance()
+end)
+gui:GetAttributeChangedSignal("Volume"):Connect(function()
+    audio:setVolume(numberAttribute("Volume", 0.5, 0, 1))
+    appearance()
+end)
+gui:GetAttributeChangedSignal("Pose"):Connect(function()
+    if numberAttribute("Pose", -1, -1, 1) >= 0 then
+        audio:stop()
+    end
+end)
+gui:GetAttributeChangedSignal("Paused"):Connect(function()
+    if gui:GetAttribute("Paused") then
+        audio:suspend()
+    elseif playing and numberAttribute("Pose", -1, -1, 1) < 0 then
+        audio:resume(currentPose)
+    end
+end)
+audio:setVolume(numberAttribute("Volume", 0.5, 0, 1))
 root:GetPropertyChangedSignal("AbsoluteSize"):Connect(layout)
-UserInputService.InputChanged:Connect(function(input)
+listen(UserInputService.InputChanged, function(input)
     if input.UserInputType ~= Enum.UserInputType.MouseWheel or exportModal.Visible then
         return
     end
@@ -855,7 +915,7 @@ UserInputService.InputChanged:Connect(function(input)
         )
     end
 end)
-UserInputService.InputBegan:Connect(function(input, processed)
+listen(UserInputService.InputBegan, function(input, processed)
     if processed or UserInputService:GetFocusedTextBox() or exportModal.Visible then
         return
     end
@@ -872,7 +932,7 @@ appearance()
 filterList()
 gui:SetAttribute("SelectedId", catalog[1] and catalog[1].id or "")
 local labelClock = 0
-RunService.RenderStepped:Connect(function(dt)
+local renderConnection = RunService.RenderStepped:Connect(function(dt)
     if not gui:GetAttribute("Ready") or #mounts == 0 then
         return
     end
@@ -885,6 +945,7 @@ RunService.RenderStepped:Connect(function(dt)
     elseif not paused then
         if playing then
             elapsed += delta
+            audio:step(math.min(1, elapsed / mounts[1].motion.duration))
             if elapsed >= mounts[1].motion.duration then
                 playing, cooldown = false, 0
                 gui:SetAttribute("CompletedCycles", (gui:GetAttribute("CompletedCycles") or 0) + 1)
@@ -893,6 +954,8 @@ RunService.RenderStepped:Connect(function(dt)
             cooldown += delta
             if cooldown >= 0.6 then
                 playing, elapsed, cooldown = true, 0, 0
+                audio:start(selected.id, 0)
+                audio:step(0)
             end
         end
         currentPose = if playing then math.clamp(elapsed / mounts[1].motion.duration, 0, 1) else 0
@@ -923,6 +986,9 @@ RunService.RenderStepped:Connect(function(dt)
     end
     fill.Size, knob.Position = UDim2.fromScale(currentPose, 1), UDim2.fromScale(currentPose, 0.5)
     gui:SetAttribute("CurrentPose", currentPose)
+    gui:SetAttribute("AudioStarts", audio.starts)
+    gui:SetAttribute("AudioEvents", audio.fired)
+    gui:SetAttribute("LastAudioEvent", audio.lastEvent)
     pauseButton.Text = if paused or explicit >= 0 then "RESUME" else "PAUSE"
     labelClock += dt
     if labelClock >= 0.05 then
@@ -935,6 +1001,16 @@ RunService.RenderStepped:Connect(function(dt)
             tostring(gui:GetAttribute("Speed"))
         )
     end
+end)
+gui.Destroying:Connect(function()
+    epoch += 1
+    renderConnection:Disconnect()
+    for _, connection in inputConnections do
+        connection:Disconnect()
+    end
+    table.clear(inputConnections)
+    audio:destroy()
+    clearMounts()
 end)
 print(
     string.format(

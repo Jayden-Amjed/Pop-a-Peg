@@ -5,6 +5,7 @@ local Catalog = require(Shared.Catalog)
 local Format = require(Shared.Format)
 local Theme = require(script.Parent.UiTheme)
 local Layout = require(script.Parent.HubProgressionLayout)
+local ItemMotion = require(script.Parent.ItemMotion)
 local C = Theme.colors
 local Panel = {}
 Panel.__index = Panel
@@ -85,7 +86,15 @@ function Panel:request(kind, payload, handle)
     local target = payload.tier or payload.id
     local retry = self.retry and self.retry.kind == kind and self.retry.target == target
     payload.requestId = retry and self.retry.id or HttpService:GenerateGUID(false)
-    self.pending = { id = payload.requestId, since = os.clock(), kind = kind, target = target }
+    local profile = kind == "openChest" and ItemMotion.Profiles["chest_" .. tostring(payload.tier)]
+    self.pending = {
+        id = payload.requestId,
+        since = os.clock(),
+        kind = kind,
+        target = target,
+        revealAfter = profile and profile.duration or 1.6,
+        preview = kind == "openChest" and handle or nil,
+    }
     self.retry = self.pending
     if handle then
         handle:pulse(1.5)
@@ -474,6 +483,15 @@ function Panel:update(snapshot)
 end
 
 function Panel:step()
+    -- The model clock caps large frame deltas. A wall-clock delay alone can
+    -- replace a chest before its lid opens on a slow or briefly stalled client.
+    -- Closing/rebuilding the panel disposes its handle, so a hidden preview must
+    -- not hold an already received reward hostage.
+    local preview = self.pending and self.pending.preview
+    local previewFinished = not preview
+        or self.host.openPanel ~= "chests"
+        or (self.host.gui and not self.host.gui.Enabled)
+        or not preview:isAnimating()
     if self.pending and self.pendingResult and self.pendingResult.kind == "purchase" then
         local result = self.pendingResult
         self.pending, self.pendingResult, self.reveal = nil, nil, nil
@@ -482,13 +500,18 @@ function Panel:step()
         if self.host.openPanel == "chests" then
             self:render()
         end
-    elseif self.pending and self.pendingResult and os.clock() - self.pending.since >= 1.6 then
+    elseif
+        self.pending
+        and self.pendingResult
+        and os.clock() - self.pending.since >= self.pending.revealAfter
+        and previewFinished
+    then
         self.reveal, self.pendingResult, self.pending = self.pendingResult, nil, nil
         self.tier, self.mode = self.reveal.tier, "chests"
         if self.host.openPanel == "chests" then
             self:render()
         end
-    elseif self.pending and os.clock() - self.pending.since > 8 then
+    elseif self.pending and not self.pendingResult and os.clock() - self.pending.since > 8 then
         self.pending = nil
         self.host:setNotice(
             "Still waiting for the reward response. Check your chest balance before retrying."

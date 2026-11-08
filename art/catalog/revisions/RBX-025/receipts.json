@@ -1,0 +1,27 @@
+[
+  {
+    "path": "operations/a082d5ba-3a75-4d22-a0e0-5c86a6cd054a",
+    "operationId": "a082d5ba-3a75-4d22-a0e0-5c86a6cd054a",
+    "done": true,
+    "response": {
+      "path": "assets/117621047528393",
+      "revisionId": "1",
+      "revisionCreateTime": "2026-11-08T22:00:02.664Z",
+      "assetId": "117621047528393",
+      "displayName": "Pop a Peg RBX-025 Capsule and Coin Press",
+      "description": "Original revised Burst Capsule and Coin Press meshes, with articulation groups and calibration markers. RBX-025 model review.",
+      "assetType": "Model",
+      "creationContext": {
+        "creator": {
+          "userId": "583716264"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    },
+    "batchName": "catalog-partial-d9da0032-001"
+  }
+]
