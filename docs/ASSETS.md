@@ -93,5 +93,24 @@ as generated in Audacity. Its pitches follow semitone ratios; a short attack/dec
 envelope shapes each note. Twelve shared tone voices, 32 pending notes, and motif
 rate limits bound dense chains. No item needs an individual uploaded sound file.
 
+Item timbres now have three weights. Light glass/water items keep the bright
+register; rounded mechanisms move down five semitones; heavy mechanisms move down
+an octave and add a short falling sine impact. Burst Capsule, Wave Spring and Dew
+Cell are heavier original items. Tide Valve, Moss Capacitor, Nectar Pump, Lagoon
+Synth, Ozone Orb and Monsoon Loom add heavy discovery sounds; six mechanical
+evolutions carry that weight forward. Reef Chime, Goldfish, Bubble Wand and Spectrum
+Reef remain light. Every item retains its distinct pitch/rhythm motif.
+
+The bass impact drops to approximately 65–98 Hz in 55 ms and fades within
+180–280 ms. Smooth attack/release envelopes avoid abrupt amplitude edges. Bass
+uses the same C4 asset through native
+[Sound.PlaybackSpeed](https://create.roblox.com/docs/reference/engine/classes/Sound#PlaybackSpeed),
+so it adds no external asset dependency or DSP instance. All melody and bass
+notes share the existing 12-voice/32-note limits. Their summed volume is capped
+at 0.34 before the 0.7 feedback-group gain, reserving mix space for coins and goals.
+Restock and merge mechanical cues have lower pitches and slightly softer volume.
+These bounds and envelope/pitch behavior have automated coverage; actual asset
+loading, playback and subjective listening are separate Studio checks.
+
 Availability can change: recheck preloading and playback in the target experience
 before publishing. Studio loading does not establish publication or future access.

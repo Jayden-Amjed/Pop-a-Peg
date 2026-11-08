@@ -3,6 +3,7 @@
 local Feedback = {
     Profiles = {},
     Limits = table.freeze({ total = 240, decoration = 184, burst = 18, reducedBurst = 3 }),
+    AudioLimits = table.freeze({ voices = 12, pending = 32, mixVolume = 0.34 }),
 }
 
 local function add(id, notes, rhythm, color, style)
@@ -155,6 +156,113 @@ for _, profile in pairs(Feedback.Profiles) do
     if look then
         profile.shape, profile.spin = look[1], look[2]
     end
+end
+
+-- The melody remains recognizable; weight changes its register, envelope and
+-- low-frequency impact. Mechanical items have mass, while glass/water stays light.
+local weights = {
+    light = { transpose = 0, gain = 0.075, attack = 0.01, decay = 1.8, duration = 0.15 },
+    rounded = { transpose = -5, gain = 0.07, attack = 0.008, decay = 1.8, duration = 0.18 },
+    heavy = { transpose = -12, gain = 0.065, attack = 0.006, decay = 2, duration = 0.20 },
+}
+for _, profile in pairs(Feedback.Profiles) do
+    profile.weight = "light"
+end
+for _, id in
+    {
+        "wall_meter",
+        "clockwork",
+        "relay",
+        "landing_fund",
+        "gain_dial",
+        "balance_scale",
+        "seed_bank",
+        "fishbowl",
+        "lily_pad",
+        "pearl_diver",
+        "stream_wheel",
+        "biolume_jar",
+        "reserve_pack",
+        "recovery",
+        "aurora_aquarium",
+        "eden_greenhouse",
+        "solar_treasury",
+    }
+do
+    Feedback.Profiles[id].weight = "rounded"
+end
+
+-- Each impact uses a different fundamental/length. The short pitch drop supplies
+-- a kick-like attack without adding a sampled explosion to every activation.
+local impacts = {
+    burst_capsule = { -24, -8, 0.22, 0.13 },
+    spring_coil = { -19, -5, 0.19, 0.12 },
+    pulse_cell = { -22, -10, 0.23, 0.12 },
+    tide_valve = { -20, -7, 0.21, 0.12 },
+    moss_capacitor = { -24, -12, 0.26, 0.13 },
+    nectar_pump = { -19, -7, 0.18, 0.11 },
+    lagoon_synth = { -22, -10, 0.25, 0.12 },
+    ozone_orb = { -17, -5, 0.20, 0.11 },
+    monsoon_loom = { -24, -9, 0.28, 0.13 },
+    tidal_engine = { -24, -7, 0.26, 0.13 },
+    storm_clock = { -19, -3, 0.23, 0.12 },
+    pearl_turbine = { -21, -9, 0.24, 0.12 },
+    current_nexus = { -22, -6, 0.25, 0.12 },
+    bubble_reactor = { -24, -4, 0.28, 0.13 },
+    tide_gyroscope = { -19, -5, 0.24, 0.12 },
+}
+for id, impact in pairs(impacts) do
+    local profile = Feedback.Profiles[id]
+    profile.weight, profile.impact = "heavy", impact
+end
+
+function Feedback.sound(id)
+    local profile = Feedback.Profiles[id]
+    if not profile then
+        return nil
+    end
+    local weight = weights[profile.weight]
+    local notes = {}
+    for index, note in ipairs(profile.notes) do
+        table.insert(notes, {
+            wait = profile.rhythm[index],
+            pitch = 2 ^ ((note + weight.transpose) / 12),
+            duration = weight.duration,
+            gain = weight.gain,
+            attack = weight.attack,
+            decay = weight.decay,
+        })
+    end
+    if profile.impact then
+        local impact = profile.impact
+        table.insert(notes, {
+            wait = 0,
+            pitch = 2 ^ (impact[2] / 12),
+            endPitch = 2 ^ (impact[1] / 12),
+            slide = 0.055,
+            duration = impact[3],
+            gain = impact[4],
+            attack = 0.006,
+            decay = 2.4,
+        })
+    end
+    return notes
+end
+
+function Feedback.soundSample(note, age)
+    local t = math.clamp(age / note.duration, 0, 1)
+    local gain = note.gain * math.clamp(age / note.attack, 0, 1) * (1 - t) ^ note.decay
+    local pitch = note.pitch
+    if note.endPitch then
+        local slide = math.clamp(age / note.slide, 0, 1)
+        -- Logarithmic pitch travel keeps the sine impact smooth across octaves.
+        pitch *= (note.endPitch / note.pitch) ^ (1 - (1 - slide) ^ 3)
+    end
+    return gain, pitch
+end
+
+function Feedback.mixGain(totalVolume)
+    return math.min(1, Feedback.AudioLimits.mixVolume / math.max(0.0001, totalVolume))
 end
 
 function Feedback.burst(id, reducedMotion, impact)
