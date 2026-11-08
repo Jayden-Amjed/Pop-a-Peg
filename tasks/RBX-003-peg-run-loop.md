@@ -1,13 +1,13 @@
 # RBX-003 — Peg-bounce roguelike run loop
 
 Owner: Codex gameplay coordinator; module contributors integrated.
-Status: VERIFIED — authorized main integration pending final CI
+Status: MERGED — PR #4 accepted at 602e059c2c989c53fd71541a2388acdd21621127
 Objective: Build a complete aimed peg-bounce run with escalating score targets and synergistic upgrades.
 Starting main: `9349530edb7eaf536ceabfed5e922ae5b65499a6` (README seed; fetched again 2026-11-07).
 Dependency base: starter PR #2 merged at `18f2b17c2e3daf00ee2edd30f7b0db4d5b88e17c`.
 Branch: `task/RBX-003-peg-run-loop`
 Worktree: `C:\Users\Amjedd\Documents\ChatGPT\Pop a Peg\.worktrees\game`
-PR: [#4](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/4), targets main.
+PR: [#4](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/4), MERGED into main.
 Reservation: [issue #3](https://github.com/Jayden-Amjed/Pop-a-Peg/issues/3).
 Implementation evidence: `c1f524c321d7ebdeb8c6d9f9f2fbb2c21c264037`.
 
@@ -107,6 +107,12 @@ Main reconciliation: `644ba6327ce3a6dc84a2081883fa23e874e1a9be`; no source diffe
   bypasses the terminal UI gate, so it is not terminal-menu timing evidence.
 - PASS independent source review: shop caching/current callbacks, perk ordering,
   pulse guards, idle/activation handoff, and compact HUD capture; no material finding.
+- PASS final [push CI](https://github.com/Jayden-Amjed/Pop-a-Peg/actions/runs/42445007436)
+  and [PR CI](https://github.com/Jayden-Amjed/Pop-a-Peg/actions/runs/42445011935)
+  at 329a68f0a140101703814c05b21b03738cef16b7.
+- MERGED: GitHub returned merged=true and receipt
+  602e059c2c989c53fd71541a2388acdd21621127 for PR #4 after PR #2 integration.
+  Fetched origin/main confirms that receipt; source remains identical to Studio-tested c1f524c.
 
 QA target: isolated peg-aero-qa.rbxlx, stopped with normal sources; Rojo disconnected.
 Generated playable: build/peg-polished.rbxlx. User-owned play windows were untouched.
@@ -269,9 +275,9 @@ Publishing: NOT PUBLISHED; no production target selected.
 
 Owner: coordinator; final polish implemented and verified.
 Source: c1f524c321d7ebdeb8c6d9f9f2fbb2c21c264037; later commits reconcile main/docs only.
-Status: version 2 proposal over accepted starter version 1. Main at 18f2b17c2e3daf00ee2edd30f7b0db4d5b88e17c
-was fetched and merged cleanly into the gameplay branch. PR #4 targets main.
-Blockers: none. The user authorized merge after this playtest.
-Next action: verify final CI, merge PR #4, record observed receipt, and close reservation #3.
+Status: State Version 2 accepted by PR #4 at 602e059c2c989c53fd71541a2388acdd21621127,
+following accepted starter Version 1. Main was fetched and source equality rechecked.
+Blockers: none. The user-authorized integration is complete.
+Next action: human playtest build/peg-polished.rbxlx; reserve a new task for further changes.
 Before publication, select a development experience for multi-client/mobile/cloud-save
 verification. Publication is a separate task.

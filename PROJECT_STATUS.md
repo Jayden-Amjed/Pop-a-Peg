@@ -1,14 +1,15 @@
 # Current project state
 
-State Version: 2 (gameplay proposal over accepted starter version 1)
+State Version: 2 (accepted gameplay state)
 Reviewed: 2026-11-07, America/Los_Angeles
 Objective: Independent peg-bounce runs with clear rewards, varied hybrid builds, and an aquatic glass presentation.
 
-Accepted source: `18f2b17c2e3daf00ee2edd30f7b0db4d5b88e17c` (starter PR #2 merged).
+Accepted source: `602e059c2c989c53fd71541a2388acdd21621127` (gameplay PR #4 merged into main).
 Implementation / Studio-tested source: `c1f524c321d7ebdeb8c6d9f9f2fbb2c21c264037`.
 Integration reconciles main at `644ba6327ce3a6dc84a2081883fa23e874e1a9be` without source changes.
-Gameplay [PR #4](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/4) now targets main.
-The user authorized this integration after playtesting; final CI and merge are pending.
+GitHub confirmed gameplay [PR #4](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/4)
+merged after the user-authorized playtest and passing final push/PR CI at
+`329a68f0a140101703814c05b21b03738cef16b7`. Starter PR #2 was accepted first.
 
 | Capability | Verified state |
 | --- | --- |
@@ -29,7 +30,7 @@ Visual checks use controlled fixtures; production play was checked separately.
 Detailed evidence and limits: [RBX-003](tasks/RBX-003-peg-run-loop.md).
 Published: NOT PUBLISHED; no production experience/place selected.
 
-Active task: RBX-003, owner Codex gameplay coordinator, branch `task/RBX-003-peg-run-loop`.
+Completed task: RBX-003, owner Codex gameplay coordinator, branch `task/RBX-003-peg-run-loop`.
 Current playable file: generated `build/peg-polished.rbxlx` in the game worktree.
 Studio: isolated `peg-aero-qa.rbxlx` stopped in Edit; all normal sources restored; Rojo disconnected.
 The user's separate existing place/play windows were not modified.
@@ -40,5 +41,6 @@ The play driver counts attempted actions and restarts directly after gameover;
 terminal menu timing is covered by controlled feedback tests, not that driver.
 Human playtesting remains useful for balance, visual preference, and the sound mix.
 Observed limitation: unrelated Studio asset-type warning for 203785492; no project source reference.
-Next action: verify final GitHub CI, merge PR #4, and record the observed merge receipt.
+Next action: human playtest `build/peg-polished.rbxlx`; use a new reserved task for
+further design work or development-experience multiplayer/mobile/cloud-save checks.
 Repository administration: main remains unprotected; temporary default branch remains the starter branch.
