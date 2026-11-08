@@ -1593,7 +1593,7 @@ function Presentation:_updateModal()
     setRect(title, 16, self.shortWide and 8 or 9, width - 32, self.shortWide and 32 or 43)
     local subtitle = label(modal, "Subtitle", "", 21, C.board, 25)
     subtitle.TextWrapped = true
-    setRect(subtitle, 16, self.shortWide and 44 or 55, width - 32, self.shortWide and 20 or 47)
+    setRect(subtitle, 16, self.shortWide and 44 or 55, width - 32, self.shortWide and 22 or 47)
     local bodyTop = self.shortWide and 70 or 112
     local footerY = height - (self.shortWide and 54 or 67)
     local body = make("ScrollingFrame", {
