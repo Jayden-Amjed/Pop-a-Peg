@@ -84,6 +84,13 @@ return function()
                             assert(not overlap(item, parts[b]), "Offer controls overlap")
                         end
                     end
+                    if controls.compactRecipes then
+                        assert(
+                            controls.evolutions.h >= 24,
+                            "Compact evolution inspection hint is unreadable"
+                        )
+                        continue
+                    end
                     local equations =
                         Layout.equations(controls.evolutions.w, controls.evolutions.h, recipeCount)
                     assert(#equations.rows == recipeCount, "Every recipe needs a complete equation")

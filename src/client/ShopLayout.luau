@@ -8,13 +8,15 @@ end
 function Layout.compute(width, height, supplies)
     supplies = math.clamp(supplies, 0, 2)
     local portrait, short = width < 650, height < 300
-    local gap, margin = short and 6 or 8, short and 8 or 10
-    local footerH, titleH = short and 36 or 52, short and 0 or 40
+    local condensed = short or (portrait and height < 620)
+    local gap, margin = condensed and 6 or 8, condensed and 8 or 10
+    local footerH, titleH = condensed and 44 or 52, condensed and 0 or 40
     local footerY = height - margin - footerH
-    local bodyTop = short and 0 or titleH + gap
+    local bodyTop = condensed and 0 or titleH + gap
     local bodyBottom = footerY - gap
     local bodyH, innerW = bodyBottom - bodyTop, width - margin * 2
-    local headerH, pad, groupGap = short and 20 or 24, short and 4 or 6, short and 10 or 12
+    local headerH, pad, groupGap =
+        condensed and 20 or 24, condensed and 4 or 6, condensed and 8 or 12
     local result = {
         title = rect(margin, 0, innerW, titleH),
         footer = rect(margin, footerY, innerW, footerH),
@@ -39,8 +41,8 @@ function Layout.compute(width, height, supplies)
     end
     if portrait then
         if supplies > 0 then
-            local ch = (bodyH - 2 * (headerH + pad * 2) - gap - groupGap) / 3
-            local itemH = headerH + pad * 2 + ch * 2 + gap
+            local supplyH = condensed and 120 or math.min(156, bodyH * 0.25)
+            local itemH = bodyH - supplyH - groupGap
             group("items", margin, bodyTop, innerW, itemH, 1, 4, 2)
             group(
                 "supplies",
@@ -78,16 +80,18 @@ end
 
 function Layout.card(width, height, consumable, evolutionCount)
     local short = height < 210
-    local purchaseH = short and 36 or (height < 200 and 44 or 56)
-    local holdH = short and 18 or 25
+    local purchaseH = short and 44 or 56
+    local holdH = short and 22 or 28
     local footH = consumable and 0 or holdH
     local purchaseY = height - purchaseH - footH - (short and 6 or 12)
     local count = math.clamp(evolutionCount or 0, 0, 2)
+    local compactRecipes = count > 0 and height < 245
     -- Short cards use two small horizontal equations; taller cards can show
     -- larger boxes without shrinking the primary model or purchase control.
     local titleH = short and 13 or 20
     local preferredH = titleH + count * (short and 35 or 81)
-    local recipeH = count > 0 and math.min(preferredH, math.max(0, purchaseY - 37)) or 0
+    local recipeH = compactRecipes and 24
+        or (count > 0 and math.min(preferredH, math.max(0, purchaseY - 49)) or 0)
     local recipeY = purchaseY - recipeH - (count > 0 and 5 or 0)
     return {
         inspect = rect(3, 2, width - 6, recipeY - 5),
@@ -95,6 +99,7 @@ function Layout.card(width, height, consumable, evolutionCount)
         purchase = rect(5, purchaseY, width - 10, purchaseH),
         hold = rect(5, height - footH - 2, width - 10, footH),
         short = short,
+        compactRecipes = compactRecipes,
     }
 end
 

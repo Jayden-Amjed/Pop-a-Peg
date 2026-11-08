@@ -152,16 +152,17 @@ function Inspector:refresh()
     self.title.Text = data.name
     self.kind.Text = data.kind == "evolved" and "EVOLVED • MAX POWER"
         or (
-            data.kind == "item" and ("ITEM • LEVEL " .. tostring(data.level) .. "/5")
+            data.kind == "item"
+                and (string.upper(data.tier or "common") .. " • LEVEL " .. tostring(data.level) .. "/5")
             or string.upper(data.kind)
         )
     self.title.TextSize = small and 23 or 28
     self.titleScale.MaxTextSize = small and 23 or 28
     self.trigger.Text, self.trigger.TextSize = data.trigger, font
     local y = 23 + titleH
-    Theme.rect(self.kind, 14, 5, width - 68, 18)
-    Theme.rect(self.title, 14, 21, width - 65, titleH)
-    Theme.rect(self.close, width - 44, 10, 32, 30)
+    Theme.rect(self.kind, 14, 5, width - 80, 18)
+    Theme.rect(self.title, 14, 21, width - 80, titleH)
+    Theme.rect(self.close, width - 54, 7, 44, 44)
     local triggerH = measured(data.trigger, font)
     Theme.rect(self.trigger, 14, y, width - 28, triggerH)
     y += triggerH + 3
