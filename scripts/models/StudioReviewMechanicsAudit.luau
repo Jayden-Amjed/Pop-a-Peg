@@ -275,7 +275,8 @@ return function()
                             )
                             check(
                                 math.abs((high.X - low.X) - (coinHigh.X - coinLow.X)) < 0.0001
-                                    and math.abs((high.Z - low.Z) - (coinHigh.Z - coinLow.Z)) < 0.0001,
+                                    and math.abs((high.Z - low.Z) - (coinHigh.Z - coinLow.Z))
+                                        < 0.0001,
                                 source .. "/coin-diameter",
                                 t
                             )
