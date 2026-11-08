@@ -1,46 +1,44 @@
 # Current project state
 
-State Version: 9 (accepted restock market, sound and model cleanup)
+State Version: 10 (proposed Blender pilot workflow; predecessor accepted version 9)
 Reviewed: 2026-11-08, America/Los_Angeles
-Objective: Save extra restocks for hub chest purchases, bound reward playback, improve item sound and remove model artifacts.
+Objective: Evaluate three original Blender models in a separate Studio gallery.
 
-Accepted source: fa7f6e36662dad86f145ec8133390c1a3c2987d5 (PR 18 merged into main).
-Implementation: 21ac14748710be87635fb7e0d40ec9f65d6bc683.
-Completed task: [RBX-017](tasks/RBX-017-restock-market.md), Codex coordinator.
-Branch: task/RBX-017-restock-market; [PR18](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/18).
-Main: GitHub confirmed merge; fetched checkout matches. State advanced once from accepted version 8.
+Accepted source: 098b7b6fa24e423703db6e9ceb68eb020010d3aa (main inspected).
+Production gameplay implementation remains 21ac14748710be87635fb7e0d40ec9f65d6bc683.
+Active task: [RBX-019](tasks/RBX-019-blender-pilots.md), Codex coordinator.
+Branch: task/RBX-019-blender-pilots; [PR20](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/20).
+Studio-tested source: 0a0e40c9861b10ef35ee07226f8e2abe453f0e93 (pilot implementation).
+Merge: NOT MERGED. Main still represents accepted version 9.
 
 | Capability | Verified state |
 | --- | --- |
-| Hub | Eight-player aquarium arcade, visible saved Restocks wallet, market and separate Buy/Open controls |
-| Chest market | Common 100 / Uncommon 250 / Rare 500 / Legendary 1,000; hub-only, server priced, retry-safe |
-| Progression | Each settled shot banks all restocks beyond the first; original board rewards and milestone/defeat chests retained |
-| Reward presentation | At most five full refill/merge cycles; gaps retain every reward and final board |
-| Sound | 64 unique motifs across 32 light / 17 rounded / 15 heavy profiles; short bass impacts; bounded voices/mix |
-| Models | 78 unique single-pass models; generic floating upgrade trim removed; safe remount cleanup |
-| Art workflow | [Style guide](docs/MODEL_STYLE_GUIDE.md) and [Blender pilots](docs/MODELING_WORKFLOW.md); no mesh conversion performed |
-| Content/persistence | 40 base items, 13 evolutions, 8 perks; leased profiles and newest 64 purchase/open/research receipts |
-| Checks | 23 local suites, clean formatting/lint, build, 38 mappings and docs |
-| Native evidence | Two natural runs, two earned-chest loops, eight-client market/isolation, real market buttons, phone layout, audio and 78-model audit |
+| Blender | Portable 4.5.9 LTS installed with official SHA256 verification; repeatable setup/export |
+| Pilot models | Wave Spring 3184 tris/7 meshes; Seed Bank 2040/8; Meadow Chest 3168/10 |
+| Editable source | Three .blend files; normal exports preserve edits; explicit -Regenerate uses Python recipes |
+| Studio gallery | Separate local place, equal-size native toggle, activation controls, 48/96/192-pixel previews |
+| Import / access | Model112890615474684, owner583716264, Approved; 25 meshes restored and loaded under owner account |
+| Native verification | 12 activation cycles per model, full transforms restored; 10800 framing-corner checks; actual GUI and images |
+| Art workflow | [Pilot guide](docs/BLENDER_PILOTS.md), [style guide](docs/MODEL_STYLE_GUIDE.md), [provenance](docs/ASSETS.md) |
+| Production models | All 78 native models remain the default; no catalog replacement in this pilot |
+| Existing game | Eight-player arcade, saved extra-Restocks wallet, hub chest market, bounded five-cycle restocks and 64 sound motifs retained |
+| Chest prices | Common100 / Uncommon250 / Rare500 / Legendary1000; server-authoritative and retry-safe |
+| Checks | Pilot lint/export/audits passed; 23 repository suites, build, 38 mappings and docs passed before final docs update |
 
-Studio-tested source: 21ac14748710be87635fb7e0d40ec9f65d6bc683 (final model revision; unchanged market/audio modules checked at their recorded earlier SHAs).
-Studio 0.746.0.7461269; isolated peg-restock-qa.rbxlx; fcaa7ed5-f945-4708-abd8-d081f39a8ee2.
-Root sole operator; Rojo disconnected; Play stopped in Edit. All 41 normal sources
-match repository checksums; both Main scripts enabled; temporary fixtures removed.
-User's peg-progression.rbxlx was preserved.
-Playable output: build/peg-restock-market.rbxlx in the restock-market worktree.
-Build SHA256: E4611D91B7F2D0682EFA1D6C64E9CC109E826CC9977940FD4366238E80E32FF7.
+Studio: 0.746.0.7461269; peg-blender-pilots.rbxlx;
+466c063b-5d2e-4435-8c22-ad2394ef1d77. Root sole operator; Rojo disconnected;
+Play stopped in Edit. Normalized models restored from engine-serialized .rbxm.
+Other Studio sessions and the user's saved permission-host experience were preserved.
 
-Balance: 24 simulated runs and two natural native runs measured. Beginner bots
-earned 0 extras; future-best-shot upper-bound runs earned 0–540. The wallet is optional
-long-term targeting alongside free early chests; human earning pace needs tuning.
-Yellow monitor border: resolved by closing our capture runtime; user confirmed.
-Blockers: none. PR CI 42510936404 passed at 1bc9eca322290c5b82af1890d86260414b8f0864.
-Unrun: physical touch/gamepad, production storage/rankings, live plugin sync, publication.
-Limits: native/simulated tests do not prove human pacing or physical-device performance;
-native audio checks do not establish subjective listening quality. Existing unrelated
-203785492 asset warning remains. Detailed evidence and resolved test failure are in the task.
-Monetization: no paid products/prompts/receipt processing.
-Published: NOT PUBLISHED; no production target selected.
-Next action: human playtest build/peg-restock-market.rbxlx for savings pace; use the documented three-pilot workflow for the next modeling pass.
+Playable output: build/peg-blender-pilots.rbxlx in .worktrees/blender-pilots.
+SHA256: 3394E5363B89CB0F4BD36565CC420E32BCA3618DDA0D93DC7D760E7D9C7B628E.
+[Actual Studio preview](docs/evidence/RBX-019/studio-rest.jpg).
+
+Blockers: none. Final docs checks/CI and merge are pending.
+Limitations: rigid coil compression changes wire thickness; another account's mesh
+access, production adoption and physical-device performance are unverified.
+Existing unrelated avatar asset203785492 warning persists. No pilot runtime errors.
+Yellow monitor border remains resolved; this task used Studio capture only.
+Published: model asset uploaded; no experience update published by this task.
+Next action: complete checks/merge, then evaluate the gallery before adopting pilots.
 Repository administration: main unprotected; temporary default remains starter branch.

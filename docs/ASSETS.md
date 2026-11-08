@@ -1,7 +1,37 @@
 # Model and sound sources
 
-Board, equipment, perk, consumable, and currency models are original native Roblox
-geometry generated from source. They require no private mesh, image, or texture IDs.
+Production board, equipment, perk, consumable, and currency models are original
+native Roblox geometry generated from source. They require no private visual asset
+IDs. The isolated Blender pilot gallery has the separate dependencies below.
+
+## Blender pilot assets (RBX-019)
+
+Wave Spring, Seed Bank and Meadow Chest are original meshes authored for this
+repository with Blender 4.5.9 LTS and the project style guide. No downloaded model,
+texture or generated raster was used. Editable `.blend` sources, Python generators,
+the exact uploaded GLB and import evidence are retained under `art/models/`.
+
+Model asset **112890615474684**, revision 1, is owned by user **583716264**;
+Roblox returned Approved on 2026-11-08. Its 26 meshes are 25 pilot render pieces
+plus a calibration cube. [studio-import.json](../art/models/studio-import.json)
+records every observed MeshId, geometry signature, source mapping and upload proof.
+The engine-serialized [BlenderPilots.rbxm](../art/models/BlenderPilots.rbxm)
+contains normalized local copies of the 25 pilot pieces. It preserves those MeshIds
+and is mapped only by `blender-pilots.project.json`; production defaults stay native.
+
+Import correction was observed, not assumed: the 1-stud cube arrived at 0.28 studs,
+all materials were gray, and front-facing geometry was reversed. The local copies
+restore source dimensions (scale 1/0.28), yaw 180 degrees, sRGB colors, glass and
+motion metadata. The raw uploaded package is not changed by those local repairs.
+No textures were uploaded. Mesh loading was verified under the owner's account;
+another account/experience must verify asset access before adoption. A failed mesh
+preload marks the gallery unavailable instead of reporting Ready.
+
+See [Blender pilot workflow](BLENDER_PILOTS.md) for restoration and revision steps.
+Asset upload is separate from publishing an experience; no experience update was
+published by this task.
+
+## Native production assets
 
 `HubWorld` builds an original aquarium arcade: eight detailed cabinets,
 walkable pearl/aqua atrium, safety glazing, paths, plants, seating, arches, gallery,

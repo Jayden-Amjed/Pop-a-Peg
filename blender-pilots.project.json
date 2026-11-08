@@ -1,0 +1,23 @@
+{
+  "name": "PopAPegBlenderPilots",
+  "emitLegacyScripts": true,
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "PilotLibraries": {
+        "$className": "Folder",
+        "ItemModels": { "$path": "src/client/ItemModels.luau" },
+        "ItemMotion": { "$path": "src/client/ItemMotion.luau" },
+        "PilotMotion": { "$path": "scripts/models/PilotMotion.luau" }
+      },
+      "BlenderPilots": { "$path": "art/models/BlenderPilots.rbxm" }
+    },
+    "StarterPlayer": {
+      "StarterPlayerScripts": {
+        "PilotGallery": { "$path": "scripts/models/PilotGallery.client.luau" }
+      }
+    },
+    "Workspace": { "$properties": { "FilteringEnabled": true, "Gravity": 0 } },
+    "Lighting": { "$properties": { "Brightness": 2, "ClockTime": 13 } }
+  }
+}

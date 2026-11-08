@@ -8,12 +8,12 @@ and [Studio workflow](WORKFLOW.md#agent-workflow-through-mcp).
 
 ## Tool availability and scope
 
-On 2026-11-08, a read-only check found no `blender` command on PATH and no standard
-`C:\Program Files\Blender Foundation` folder. No Blender MCP tool was advertised.
-A portable installation elsewhere is unknown. No Blender installation, mesh
-conversion, import, upload or publication was performed by this documentation task.
-Record the actual Blender/exporter version before a pilot; do not describe the
-proposed scripts below as existing tools.
+RBX-019 installed checksum-verified portable Blender **4.5.9 LTS** in the task's
+ignored `.tools` directory and implemented the three pilots below. It uses the
+Blender CLI/Python API and Roblox Studio MCP; no Blender MCP is required.
+Follow the executable [pilot guide](BLENDER_PILOTS.md) for setup and build commands.
+The normal game still uses native builders; the separate gallery uses the imported
+meshes and has actual Studio evidence. Model upload did not publish an experience.
 
 ## Three pilots before a catalog conversion
 
@@ -84,36 +84,38 @@ and [performance guidance](https://create.roblox.com/docs/performance-optimizati
 
 ## Repeatable source and delivery
 
-Proposed layout for the first pilot:
+Implemented layout for the first pilots:
 
 | Path | Authority / purpose |
 | --- | --- |
 | `art/models/<id>/<id>.blend` | Editable authoring source; one approved version |
 | `art/models/<id>/manifest.json` | Source revision, dimensions, group/pivot mapping, export preset, asset IDs, ownership and license |
-| `scripts/models/` | Future deterministic build/export/audit scripts with a pinned Blender version |
+| `scripts/models/` | Deterministic generators, non-destructive export, motion audits and Studio pilot adapter |
 | `build/model-exports/` | Regenerable GLB/FBX files and inspection images |
-| `assets/models/<id>.rbxmx` | Reviewed Studio runtime export referencing approved mesh/texture assets |
+| `art/models/BlenderPilots.rbxm` | Engine-serialized runtime export mapped only into the isolated pilot gallery |
+| `art/models/uploaded/` | Exact uploaded GLB and observed import snapshot, pinned for identity replay |
 
-These are planned paths, not an implemented loader. Keep `.blend` authoring files
-outside the Rojo-mapped `assets` subtree. The `.rbxmx` is the runtime import result,
-not a competing editable geometry source. Introduce a narrow catalog-ID adapter
-for adopted pilots, retain the native fallback during evaluation and document
-restoration in `ASSETS.md`. A local GLB is not automatically a deployable Roblox
+Keep `.blend` authoring files outside the Rojo-mapped `assets` subtree. The `.rbxm`
+is the runtime import result, not a competing editable geometry source. The pilot
+adapter uses stable catalog IDs and the production fallback remains native.
+Restoration is documented in `ASSETS.md`. A local GLB is not automatically a deployable Roblox
 mesh: asset ownership, access, moderation and observed IDs must be recorded after
 the actual import. A fresh clone must be able to identify every dependency.
 
-A future batch script should load the approved blend, export only its named
-collection, validate counts/normals/group names, emit the manifest and generate
-fixed-camera contact sheets. Use Blender background execution and an explicit
+The batch script loads the editable blend without overwriting it, exports its
+tagged meshes, validates geometry/group names, emits candidate manifests and can
+render fixed-camera previews. `-Regenerate` explicitly recreates the blends from
+their Python recipes. Use Blender background execution and an explicit
 Python error exit code so a failed export fails the job. The official
 [command-line reference](https://docs.blender.org/manual/en/4.2/advanced/command_line/arguments.html)
 documents those controls; match flags to the pinned installed version. Keep
 machine-generated candidates separate from accepted sources, and inspect the
 Studio result before replacing a native model.
 
-Pilot evidence must include source/export versions, hashes, actual triangle and
+Pilot evidence includes source/export versions, hashes, actual triangle and
 render-piece counts, the imported hierarchy, motion checks and the style-guide
 checklist. Run the repository checks and extend the native model audit to cover
 MeshPart identity/metadata; its current primitive geometry signature does not
 compare imported mesh topology. Record visual QA independently from scripts,
-Git integration and Roblox publication.
+Git integration and Roblox publication. See [RBX-019](../tasks/RBX-019-blender-pilots.md)
+and its linked Studio images/audit for the first executed pass.

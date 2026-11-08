@@ -1,0 +1,440 @@
+{
+  "schema": 1,
+  "id": "chest_common",
+  "display_name": "Meadow Chest",
+  "generator": "scripts/models/chest_common.py",
+  "blender": "4.5.9 LTS",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "triangles": 3168,
+  "pieces": 10,
+  "bounds_min": [
+    -1.3,
+    -1.0664237,
+    0.0
+  ],
+  "bounds_max": [
+    1.3,
+    1.01,
+    2.145
+  ],
+  "size_blender_studs": [
+    2.5999999,
+    2.0764236,
+    2.145
+  ],
+  "objects": [
+    {
+      "name": "chest_common__MeadowBody",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "triangles": 388,
+      "vertices": 196,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.74
+      ],
+      "compression_span": null,
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.74
+      ],
+      "size_blender_studs": [
+        2.5,
+        1.7,
+        1.1199999
+      ],
+      "bounds_min": [
+        -1.25,
+        -0.85,
+        0.18
+      ],
+      "bounds_max": [
+        1.25,
+        0.85,
+        1.3
+      ],
+      "geometry_sha256": "8c1a8db443b1b9a3b5077e700ba4fcbe14d4d4643dede3aae218270547e8e2f5",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "chest_common__PearlOpeningRim",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "triangles": 280,
+      "vertices": 140,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.3150001
+      ],
+      "compression_span": null,
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.3150001
+      ],
+      "size_blender_studs": [
+        2.5599999,
+        1.76,
+        0.0700001
+      ],
+      "bounds_min": [
+        -1.28,
+        -0.88,
+        1.28
+      ],
+      "bounds_max": [
+        1.28,
+        0.88,
+        1.35
+      ],
+      "geometry_sha256": "97829fbdf31f3e5284527ebe884a4482f774ffb7ec570da0fd6eebbdbe244ec0",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "chest_common__DarkRunners",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "triangles": 216,
+      "vertices": 112,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        -0.0,
+        0.0,
+        0.1
+      ],
+      "compression_span": null,
+      "center_blender_studs": [
+        -0.0,
+        0.0,
+        0.1
+      ],
+      "size_blender_studs": [
+        1.99,
+        1.34,
+        0.2
+      ],
+      "bounds_min": [
+        -0.995,
+        -0.67,
+        0.0
+      ],
+      "bounds_max": [
+        0.9949999,
+        0.67,
+        0.2
+      ],
+      "geometry_sha256": "4e5e413ff54801a1f270af76f73e39f69ab08b3641b9e340b1b0ac256a88ff82",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "chest_common__PearlLid",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "triangles": 596,
+      "vertices": 304,
+      "motion_group": "ChestLid",
+      "motion_pivot": [
+        0.0,
+        0.91,
+        1.41
+      ],
+      "compression_span": null,
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.5625
+      ],
+      "size_blender_studs": [
+        2.5999999,
+        1.8,
+        0.385
+      ],
+      "bounds_min": [
+        -1.3,
+        -0.9,
+        1.37
+      ],
+      "bounds_max": [
+        1.3,
+        0.9,
+        1.755
+      ],
+      "geometry_sha256": "14fb838488cfe79d01d315a54486051a1846338398bbfa17200b2320087fb14a",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "chest_common__MeadowLidInset",
+      "material": "green",
+      "color_srgb": [
+        142,
+        220,
+        103
+      ],
+      "triangles": 220,
+      "vertices": 112,
+      "motion_group": "ChestLid",
+      "motion_pivot": [
+        0.0,
+        0.91,
+        1.41
+      ],
+      "compression_span": null,
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.6700001
+      ],
+      "size_blender_studs": [
+        2.0799999,
+        1.24,
+        0.0700001
+      ],
+      "bounds_min": [
+        -1.04,
+        -0.62,
+        1.635
+      ],
+      "bounds_max": [
+        1.04,
+        0.62,
+        1.705
+      ],
+      "geometry_sha256": "bbe17b71911eae5bfeb66ad150a2d3b8850b9b2b3129c8f3691b45a9d3551e77",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "chest_common__GoldCarryHandle",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "triangles": 376,
+      "vertices": 190,
+      "motion_group": "ChestLid",
+      "motion_pivot": [
+        0.0,
+        0.91,
+        1.41
+      ],
+      "compression_span": null,
+      "center_blender_studs": [
+        0.0,
+        0.08,
+        1.9124999
+      ],
+      "size_blender_studs": [
+        1.21,
+        0.1236373,
+        0.465
+      ],
+      "bounds_min": [
+        -0.605,
+        0.0181813,
+        1.6799999
+      ],
+      "bounds_max": [
+        0.605,
+        0.1418187,
+        2.145
+      ],
+      "geometry_sha256": "22cda2995c8bede2ed6e823919fb48ff664c3e7b7e3aab9f1cdbe617dc5f4c24",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "chest_common__GoldRearHinges",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "triangles": 472,
+      "vertices": 240,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        -0.0,
+        0.91,
+        1.41
+      ],
+      "compression_span": null,
+      "center_blender_studs": [
+        -0.0,
+        0.91,
+        1.41
+      ],
+      "size_blender_studs": [
+        1.9400001,
+        0.2,
+        0.2
+      ],
+      "bounds_min": [
+        -0.97,
+        0.81,
+        1.3099999
+      ],
+      "bounds_max": [
+        0.97,
+        1.01,
+        1.51
+      ],
+      "geometry_sha256": "4d94c7acad3d94104d88462150c6c4be57723e6a0de097caa4a2aa001273e339",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "chest_common__GoldClasp",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "ChestClasp",
+      "motion_pivot": [
+        0.0,
+        -0.924,
+        1.1
+      ],
+      "compression_span": null,
+      "center_blender_studs": [
+        0.0,
+        -0.924,
+        1.1
+      ],
+      "size_blender_studs": [
+        0.32,
+        0.14,
+        0.4300001
+      ],
+      "bounds_min": [
+        -0.16,
+        -0.994,
+        0.885
+      ],
+      "bounds_max": [
+        0.16,
+        -0.854,
+        1.3150001
+      ],
+      "geometry_sha256": "8a058026c537cc9c57b0c3294ea1a83c6bc12076735100b639b9ce80c9333b83",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "chest_common__MeadowLeafClasp",
+      "material": "green",
+      "color_srgb": [
+        142,
+        220,
+        103
+      ],
+      "triangles": 8,
+      "vertices": 6,
+      "motion_group": "ChestClasp",
+      "motion_pivot": [
+        0.0,
+        -1.0227134,
+        1.14
+      ],
+      "compression_span": null,
+      "center_blender_studs": [
+        0.0,
+        -1.0227134,
+        1.14
+      ],
+      "size_blender_studs": [
+        0.2428345,
+        0.0874205,
+        0.4
+      ],
+      "bounds_min": [
+        -0.1214172,
+        -1.0664237,
+        0.94
+      ],
+      "bounds_max": [
+        0.1214172,
+        -0.9790032,
+        1.34
+      ],
+      "geometry_sha256": "6dd6a11e85876a8ca2defe29d5ecca1a32baa20e9f0839f5f694ce6d15cfd6d3",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "chest_common__GoldSeedTreasure",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "triangles": 504,
+      "vertices": 258,
+      "motion_group": "ChestTreasure",
+      "motion_pivot": [
+        -0.015,
+        -0.045,
+        0.7460098
+      ],
+      "compression_span": null,
+      "center_blender_studs": [
+        -0.015,
+        -0.045,
+        0.7460098
+      ],
+      "size_blender_studs": [
+        0.7933646,
+        0.39,
+        0.6079805
+      ],
+      "bounds_min": [
+        -0.4116823,
+        -0.24,
+        0.4420196
+      ],
+      "bounds_max": [
+        0.3816823,
+        0.15,
+        1.0500001
+      ],
+      "geometry_sha256": "05f174a09699f1241227da3bc2995bf1b5a3fd122265dfecebfdc114bf2d22a5",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "blend_sha256": "fcb0a001d1649230bac7c09c9a17d985050915e10570af513ddad13cef2ecc8b",
+  "glb_sha256": "3f8d58efcdb946ac827e770dec916d03e791666ae424a4da3ae636549f429f6c"
+}

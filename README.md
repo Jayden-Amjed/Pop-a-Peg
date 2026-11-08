@@ -288,6 +288,21 @@ The server allocates eight stations and rejects overflow. When a production plac
 is selected, set its **Max Players to 8** in Creator Dashboard before publishing;
 the local source does not change that account-level place setting.
 
+## Blender model pilots
+
+Wave Spring, Seed Bank and Meadow Chest have an isolated, playable comparison
+gallery. Production models remain native while the pilots are evaluated.
+See [setup, editable sources and Studio testing](docs/BLENDER_PILOTS.md).
+
+```powershell
+.\scripts\setup-blender.ps1
+.\scripts\build-models.ps1 -Render
+.\.tools\rojo.exe build blender-pilots.project.json -o build/peg-blender-pilots.rbxlx
+```
+
+Open that place in Studio and press Play. Normal Blender exports preserve manual
+edits in the `.blend` files; `-Regenerate` explicitly replaces them from Python.
+
 ## Reuse for another project
 
 - Create a new repository from these starter files and set its own `origin`.

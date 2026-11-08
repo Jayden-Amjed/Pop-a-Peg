@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "blender": "4.5.9 LTS",
+  "source_sha256": {
+    "common.py": "ba70083e643febab9b1f4d8ea99cec1cb61e3f4d9eca5e4c785fec07f9d42afa",
+    "spring_coil.py": "265739e2e6e8956a975b4afe00a6bb08db5bf441e89418866acf60bf61d76cd5",
+    "seed_bank.py": "dc81b54239316bde1464f73241589d0d7058541c42986795e352405f7e640555",
+    "chest_common.py": "932b5a7ce06779ec3335e8256a107ba4ca95c052a27c6b844923306cb60c8f02",
+    "audit_motion.py": "99d2173a35c4d22b318d370712df6a9e50912c3cbb4c5f31c0eca1c773283214"
+  },
+  "blend_sha256": {
+    "spring_coil": "88f0642f46775aee80c24ade281cf7612dc4f216a03e64d1a06aa9dc27901933",
+    "seed_bank": "241f3fb445f12c4bcc765340eb9ec5d482d97d6e26d8677eb748a9607b2ea29a",
+    "chest_common": "fcb0a001d1649230bac7c09c9a17d985050915e10570af513ddad13cef2ecc8b"
+  },
+  "spring_coil": {
+    "status": "PASS",
+    "helix_rings": 137,
+    "turns": 3.4999999998699773,
+    "pitch_studs": 0.5028572768345556,
+    "wire_diameter_studs": 0.19000039230124646,
+    "minimum_axial": 0.5093921636879191,
+    "minimum_at_t": 0.0773,
+    "maximum_axial": 1.329488217235006,
+    "maximum_at_t": 0.2426,
+    "conservative_turn_gap_studs": 0.06615116397172274,
+    "scope": "Continuous regular helix pitch and shared guide/cap span; intentional socket contacts excluded"
+  },
+  "seed_bank": {
+    "status": "PASS",
+    "poses": 5,
+    "interface_checks": 40,
+    "max_growth": 1.24,
+    "max_seed_rise_studs": 0.4,
+    "max_lid_lift_studs": 0.44,
+    "minimum_vertical_roof_gap_studs": 0.32946014404296875,
+    "shared_pivot": [
+      0.0,
+      0.0,
+      0.5600000023841858
+    ],
+    "scope": "Pods/stems versus frame/window/lid, plus persistent pod/stem contact; reservoir seating excluded"
+  },
+  "chest_common": {
+    "status": "PASS",
+    "poses": 22,
+    "degrees": [
+      0,
+      105
+    ],
+    "step_degrees": 5,
+    "interface_checks": 132,
+    "hinge_blender_studs": [
+      0.0,
+      0.9100000262260437,
+      1.409999966621399
+    ],
+    "front_edge_rise_studs": 1.7986785173416138,
+    "scope": "All three lid pieces against actual hollow body and opening rim; hinge/socket attachment overlaps excluded"
+  },
+  "limitations": [
+    "Offline authored-mesh checks do not establish Studio import fidelity or rendered appearance.",
+    "BVH checks sample stated poses and detect surface intersections; they are not an exhaustive solid-volume or swept-volume proof.",
+    "Rigid MeshPart axial scaling changes coil wire cross-section; a skinned constant-thickness spring is a separate future path."
+  ]
+}

@@ -3,7 +3,12 @@
 Use this guide for every new or revised item, Supply, perk, chest and board prop.
 It defines the intended art quality; passing a geometry script alone does not
 establish that a model looks good. See [modeling workflow](MODELING_WORKFLOW.md)
-for the proposed Blender pipeline and [asset provenance](ASSETS.md) for sources.
+for the Blender pipeline and [asset provenance](ASSETS.md) for sources.
+
+The first implemented examples are the three [RBX-019 Blender pilots](BLENDER_PILOTS.md).
+Their editable sources and Studio images illustrate the palette, continuous coil,
+clear seed display and hollow hinged chest. They are evaluation assets; adopting
+them into the production catalog is a separate integration decision.
 
 ## Visual direction
 

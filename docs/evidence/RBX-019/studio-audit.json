@@ -1,0 +1,42 @@
+{
+  "source_sha": "0a0e40c9861b10ef35ee07226f8e2abe453f0e93",
+  "studio_id": "466c063b-5d2e-4435-8c22-ad2394ef1d77",
+  "model_import_asset": "112890615474684",
+  "motion": {
+    "1": {
+      "posesPerCycle": 8,
+      "completeRestoration": true,
+      "cycles": 12,
+      "id": "seed_bank",
+      "pieces": 8,
+      "hoverHandoff": true,
+      "triangles": 2040
+    },
+    "2": {
+      "posesPerCycle": 8,
+      "completeRestoration": true,
+      "cycles": 12,
+      "id": "spring_coil",
+      "pieces": 7,
+      "hoverHandoff": true,
+      "triangles": 3184
+    },
+    "3": {
+      "posesPerCycle": 8,
+      "completeRestoration": true,
+      "cycles": 12,
+      "id": "chest_common",
+      "pieces": 10,
+      "hoverHandoff": true,
+      "triangles": 3168
+    }
+  },
+  "framing": {
+    "cornersChecked": 10800,
+    "source": "0a0e40c9861b10ef35ee07226f8e2abe453f0e93",
+    "maxFrameFraction": 0.9322778986793145,
+    "framingPoses": 5,
+    "ready": true
+  },
+  "controls": "MCP mouse clicked Activate All, Rest, Open, size checks, and equal-size native toggle. Gallery Ready true; no failed preload callback."
+}
