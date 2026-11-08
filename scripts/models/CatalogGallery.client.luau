@@ -45,6 +45,7 @@ gui:SetAttribute("Ready", false)
 gui:SetAttribute("LoadedCount", 0)
 gui:SetAttribute("Failures", "")
 gui:SetAttribute("CameraView", "Three-quarter")
+gui:SetAttribute("Zoom", 1)
 gui:SetAttribute("LightingPreset", "Balanced")
 gui:SetAttribute("NativeComparison", false)
 gui:SetAttribute("TotalCount", #catalog)
@@ -224,6 +225,16 @@ local loadStatus = text(previewArea, "LoadStatus", "Loading…", 16, C.red)
 loadStatus.TextXAlignment = Enum.TextXAlignment.Center
 loadStatus.TextWrapped, loadStatus.ZIndex = true, 7
 loadStatus.Size = UDim2.fromScale(1, 1)
+local zoomButton = button(previewArea, "ZoomFit", "ZOOM 100% · FIT", function()
+    gui:SetAttribute("Zoom", 1)
+end)
+zoomButton.AnchorPoint = Vector2.new(1, 0)
+zoomButton.Position, zoomButton.Size = UDim2.new(1, -8, 0, 5), UDim2.fromOffset(128, 26)
+zoomButton.TextSize, zoomButton.ZIndex = 11, 8
+local zoomHint =
+    text(previewArea, "ZoomHint", "Mouse wheel to zoom · Click zoom to fit", 11, C.navy)
+zoomHint.Position, zoomHint.Size = UDim2.new(0, 8, 1, -22), UDim2.new(1, -16, 0, 18)
+zoomHint.TextXAlignment, zoomHint.ZIndex = Enum.TextXAlignment.Center, 8
 local cameraButtons = {}
 local cameraNames = { "Front", "Three-quarter", "Side", "Rear" }
 local directions = {
@@ -615,12 +626,13 @@ noteBox:GetPropertyChangedSignal("Text"):Connect(function()
 end)
 local function contextTag()
     return string.format(
-        "%s | pose %.3f | %s× | strength %s | %s | %s",
+        "%s | pose %.3f | %s× | strength %s | %s | zoom %.4f× | %s",
         selected and selected.id or "none",
         currentPose,
         tostring(gui:GetAttribute("Speed")),
         tostring(gui:GetAttribute("Strength")),
         tostring(gui:GetAttribute("CameraView")),
+        numberAttribute("Zoom", 1, 0.6, 2.5),
         tostring(gui:GetAttribute("LightingPreset"))
     )
 end
@@ -681,15 +693,12 @@ end)
 closeExport.ZIndex, closeExport.Position, closeExport.Size =
     52, UDim2.new(1, -100, 1, -44), UDim2.fromOffset(82, 30)
 local exportButton = button(controlsPanel, "ExportNotes", "COPY NOTES", function()
-    local lines = { "Pop a Peg model review", "" }
+    local lines = { "Pop a Peg model review", "Viewer at export: [" .. contextTag() .. "]", "" }
     for _, entry in catalog do
         local note = notes[entry.id]
         if note and note:match("%S") then
             table.insert(lines, entry.name .. " (" .. entry.id .. ")\n" .. note .. "\n")
         end
-    end
-    if #lines == 2 then
-        table.insert(lines, "[" .. contextTag() .. "]\n")
     end
     exportText.Text, exportModal.Visible = table.concat(lines, "\n"), true
     exportText:CaptureFocus()
@@ -787,6 +796,8 @@ local function appearance()
         else "COMPARE NATIVE"
     strengthButton.Text = "STRENGTH " .. tostring(gui:GetAttribute("Strength")) .. "×"
     lightButton.Text = "LIGHT: " .. string.upper(tostring(presetName))
+    zoomButton.Text =
+        string.format("ZOOM %.0f%% · FIT", numberAttribute("Zoom", 1, 0.6, 2.5) * 100)
     for speed, b in speedButtons do
         local active = speed == gui:GetAttribute("Speed")
         b.BackgroundColor3, b.TextColor3 =
@@ -811,6 +822,14 @@ end)
 for _, name in { "LightingPreset", "CameraView", "Speed", "Strength" } do
     gui:GetAttributeChangedSignal(name):Connect(appearance)
 end
+gui:GetAttributeChangedSignal("Zoom"):Connect(function()
+    local normalized = numberAttribute("Zoom", 1, 0.6, 2.5)
+    if gui:GetAttribute("Zoom") ~= normalized then
+        gui:SetAttribute("Zoom", normalized)
+    else
+        appearance()
+    end
+end)
 gui:GetAttributeChangedSignal("Loop"):Connect(function()
     appearance()
     if gui:GetAttribute("Loop") and not playing and numberAttribute("Pose", -1, -1, 1) < 0 then
@@ -818,6 +837,24 @@ gui:GetAttributeChangedSignal("Loop"):Connect(function()
     end
 end)
 root:GetPropertyChangedSignal("AbsoluteSize"):Connect(layout)
+UserInputService.InputChanged:Connect(function(input)
+    if input.UserInputType ~= Enum.UserInputType.MouseWheel or exportModal.Visible then
+        return
+    end
+    local mouse = UserInputService:GetMouseLocation()
+    local origin, size = previewArea.AbsolutePosition, previewArea.AbsoluteSize
+    if
+        mouse.X >= origin.X
+        and mouse.X <= origin.X + size.X
+        and mouse.Y >= origin.Y
+        and mouse.Y <= origin.Y + size.Y
+    then
+        gui:SetAttribute(
+            "Zoom",
+            math.clamp(numberAttribute("Zoom", 1, 0.6, 2.5) * 1.16 ^ input.Position.Z, 0.6, 2.5)
+        )
+    end
+end)
 UserInputService.InputBegan:Connect(function(input, processed)
     if processed or UserInputService:GetFocusedTextBox() or exportModal.Visible then
         return
@@ -873,8 +910,8 @@ RunService.RenderStepped:Connect(function(dt)
         local halfFov = math.rad(15)
         local limiting = math.min(halfFov, math.atan(math.tan(halfFov) * aspect))
         local direction = directions[gui:GetAttribute("CameraView")] or directions["Three-quarter"]
-        mount.camera.CFrame =
-            CFrame.lookAt(target + direction.Unit * radius * 1.13 / math.sin(limiting), target)
+        local distance = radius * 1.13 / math.sin(limiting) / numberAttribute("Zoom", 1, 0.6, 2.5)
+        mount.camera.CFrame = CFrame.lookAt(target + direction.Unit * distance, target)
         local rootPose = CFrame.new()
         if explicit < 0 then
             rootPose = CFrame.new(
