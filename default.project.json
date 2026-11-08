@@ -1,0 +1,32 @@
+{
+  "name": "RobloxStarter",
+  "emitLegacyScripts": true,
+  "serveAddress": "127.0.0.1",
+  "servePort": 34872,
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "Shared": { "$path": "src/shared" },
+      "Assets": { "$path": "assets" }
+    },
+    "ServerScriptService": {
+      "Server": { "$path": "src/server" }
+    },
+    "StarterPlayer": {
+      "StarterPlayerScripts": {
+        "Client": { "$path": "src/client" }
+      }
+    },
+    "Workspace": {
+      "$properties": { "FilteringEnabled": true },
+      "Baseplate": {
+        "$className": "Part",
+        "$properties": { "Anchored": true, "Size": [128, 1, 128], "Position": [0, -1, 0] }
+      },
+      "SpawnLocation": {
+        "$className": "SpawnLocation",
+        "$properties": { "Anchored": true, "Size": [6, 1, 6], "Position": [0, 0, 0], "Neutral": true }
+      }
+    }
+  }
+}
