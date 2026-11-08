@@ -507,6 +507,176 @@ Catalog.Bosses = {
     { name = "Final Audit", description = "The quota is 40% higher.", multiplier = 1.4 },
 }
 
+-- Inspection rows follow the same ordered effect IDs used by Run. These are
+-- presentation values, not a second execution path or extra gameplay effects.
+local function amount(base, upgraded, level)
+    if level >= Catalog.MaxLevel then
+        return tostring(upgraded)
+    end
+    return tostring(base) .. " (↑ " .. tostring(upgraded) .. ")"
+end
+
+local detailEffects = {
+    pop = function(level)
+        return "Pop " .. amount(1, 2, level) .. " random pegs", "positive"
+    end,
+    double = function(level)
+        return "Double " .. amount(1, 2, level) .. " random pegs", "positive"
+    end,
+    doubleMany = function(level)
+        return "Double " .. amount(4, 8, level) .. " random pegs", "positive"
+    end,
+    lowestDouble = function(level)
+        return "Double the lowest peg " .. amount(1, 2, level) .. " times", "positive"
+    end,
+    halve = function(level)
+        return "Halve " .. amount(2, 4, level) .. " random pegs without scoring", "negative"
+    end,
+    halveHighest = function()
+        return "Halve the highest peg once", "negative"
+    end,
+    lowestPop = function()
+        return "Pop the lowest peg once", "positive"
+    end,
+    primeBurst = function()
+        return "Double a random center peg", "positive"
+    end,
+    popNeighbors = function(level)
+        return "Pop " .. amount(2, 4, level) .. " nearest other pegs", "positive"
+    end,
+    halveCenter = function()
+        return "Halve the center peg", "negative"
+    end,
+    highestPop = function(level)
+        return "Pop the highest peg " .. amount(1, 2, level) .. " times", "positive"
+    end,
+    firstScore = function(level)
+        return "Score " .. amount(2, 4, level) .. " × the highest peg value", "positive"
+    end,
+    halfScore = function(level)
+        return "Score " .. amount(4, 8, level) .. " × the lowest peg value", "positive"
+    end,
+    multiply = function(level)
+        return "Gain " .. amount("15%", "30%", level) .. " score", "positive"
+    end,
+    wallScore = function(level)
+        return "Gain " .. amount(45, 90, level) .. " points", "positive"
+    end,
+    drainScore = function(level)
+        return "Gain " .. amount(150, 300, level) .. " points", "positive"
+    end,
+    pulseScore = function(level)
+        return "Gain " .. amount(25, 50, level) .. " points", "positive"
+    end,
+    goalScore = function(level)
+        return "Gain " .. amount(40, 80, level) .. " points", "positive"
+    end,
+    right = function(level)
+        return "Activate the next occupied slot to the right " .. amount(1, 2, level) .. " times",
+            "positive"
+    end,
+    left = function(level)
+        return "Activate the previous occupied slot " .. amount(1, 2, level) .. " times", "positive"
+    end,
+    all = function(level)
+        return "Activate every other item " .. amount(1, 2, level) .. " times", "positive"
+    end,
+    repair = function()
+        return "Recover 2 balls, up to 5", "positive"
+    end,
+    reserveCoins = function()
+        return "Gain 1 coin per ball remaining", "positive"
+    end,
+    upgrade = function()
+        return "Upgrade one random level-1 item", "positive"
+    end,
+    first = function()
+        return "Activate slot 1", "positive"
+    end,
+    third = function()
+        return "Activate slot 3 twice", "positive"
+    end,
+    last = function()
+        return "Activate the rightmost occupied slot", "positive"
+    end,
+    random = function()
+        return "Activate a random occupied slot", "positive"
+    end,
+}
+
+local suggestedPairs = {
+    tap_driver = { "split_prism", "relay", "gain_dial" },
+    split_prism = { "resonator", "fishbowl", "tap_driver" },
+    wall_meter = { "quota_bonus", "gain_dial", "spring_coil" },
+    clockwork = { "tap_driver", "relay", "gain_dial" },
+    relay = { "encore", "burst_capsule", "gain_dial" },
+    landing_fund = { "quota_bonus", "gain_dial", "seed_bank" },
+    survey_lens = { "goldfish", "growth_array", "quota_bonus" },
+    balance_scale = { "soft_saw", "gain_dial", "burst_capsule" },
+    resonator = { "split_prism", "spring_coil", "goldfish" },
+    echo_plate = { "relay", "encore", "burst_capsule" },
+    growth_array = { "resonator", "fishbowl", "goldfish" },
+    quota_bonus = { "gain_dial", "pulse_cell", "wall_meter" },
+    spring_coil = { "resonator", "fishbowl", "wall_meter" },
+    pulse_cell = { "gain_dial", "quota_bonus", "relay" },
+    compass = { "goldfish", "growth_array", "tap_driver" },
+    seed_bank = { "resonator", "fishbowl", "landing_fund" },
+    encore = { "relay", "echo_plate", "burst_capsule" },
+    goldfish = { "fishbowl", "resonator", "survey_lens" },
+    fishbowl = { "goldfish", "split_prism", "growth_array" },
+    reserve_pack = { "seed_bank", "landing_fund", "clockwork" },
+    coin_press = { "quota_bonus", "gain_dial", "landing_fund" },
+    tuning_oil = { "growth_array", "gain_dial", "encore" },
+}
+for id, partners in pairs(suggestedPairs) do
+    Catalog.Items[id].synergyPartners = partners
+end
+for _, definition in pairs(Catalog.Perks) do
+    definition.synergyPartners = { "burst_capsule", "growth_array", "gain_dial" }
+end
+for _, id in ipairs(Catalog.ConsumableIds) do
+    Catalog.Items[id].triggerText = "On purchase"
+end
+
+function Catalog.owns(inventory, id)
+    for _, entry in pairs(inventory or {}) do
+        if type(entry) == "table" and entry.id == id then
+            return true
+        end
+    end
+    return false
+end
+
+function Catalog.detail(id, level)
+    local definition = Catalog.Items[id] or Catalog.Perks[id]
+    if not definition then
+        return nil
+    end
+    level = level == Catalog.MaxLevel and Catalog.MaxLevel or 1
+    local effects, partners = {}, {}
+    for _, operation in ipairs(definition.operations or { { effect = definition.effect } }) do
+        local render = detailEffects[operation.effect]
+        assert(render, "Missing inspection effect: " .. operation.effect)
+        local text, tone = render(operation.fixed and 1 or level)
+        table.insert(effects, { text = text, tone = tone })
+    end
+    if definition.effect == "upgrade" then
+        table.insert(effects, { text = "If none qualify: gain 4 coins", tone = "positive" })
+    end
+    for _, partner in ipairs(definition.synergyPartners or {}) do
+        table.insert(partners, partner)
+    end
+    return {
+        id = id,
+        name = definition.name,
+        trigger = definition.triggerText,
+        kind = Catalog.Perks[id] and "perk" or (definition.consumable and "supply" or "item"),
+        level = level,
+        effects = effects,
+        partners = partners,
+    }
+end
+
 function Catalog.purchaseState(inventory, slots, offer, coins)
     local function blocked(action, message)
         return { action = action, allowed = false, reason = action, price = 0, message = message }
