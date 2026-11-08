@@ -99,6 +99,16 @@ local function preview(parent, model, id, isPilot, position, size, fitMargin)
     viewport.CurrentCamera = camera
     local _, bounds = model:GetBoundingBox()
     local controller = if isPilot then PilotMotion.new(model) else ItemMotion.new(model, id)
+    -- Fit the full activation envelope once so an open lid never leaves its card.
+    local lower, upper = -bounds / 2, bounds / 2
+    for _, t in { 0, 0.0773, 0.2426, 0.28, 0.5, 0.67, 0.9, 1 } do
+        controller:apply(t, 2, CFrame.new())
+        local frame, poseSize = model:GetBoundingBox()
+        lower = lower:Min(frame.Position - poseSize / 2)
+        upper = upper:Max(frame.Position + poseSize / 2)
+    end
+    controller:apply(0, 1, CFrame.new())
+    local fitTarget, fitRadius = (lower + upper) / 2, (upper - lower).Magnitude / 2
     local handle =
         { age = nil, controller = controller, hover = ItemMotion.newHover(true), model = model }
     local trigger = make(
@@ -115,8 +125,8 @@ local function preview(parent, model, id, isPilot, position, size, fitMargin)
         local aspect = dimensions.X / math.max(1, dimensions.Y)
         local fov = math.min(math.rad(15), math.atan(math.tan(math.rad(15)) * aspect))
         camera.CFrame = CFrame.lookAt(
-            Vector3.new(0.72, 0.43, 1).Unit * bounds.Magnitude / 2 * fitMargin / math.sin(fov),
-            Vector3.zero
+            fitTarget + Vector3.new(0.72, 0.43, 1).Unit * fitRadius * fitMargin / math.sin(fov),
+            fitTarget
         )
         local explicit = gui:GetAttribute("Pose")
         if explicit >= 0 then
@@ -158,7 +168,8 @@ for i, entry in catalog do
     })
     make("UICorner", card, { CornerRadius = UDim.new(0, 18) })
     label(card, name, UDim2.fromScale(0.02, 0.02), UDim2.fromScale(0.96, 0.06), 23)
-    label(card, detail, UDim2.fromScale(0.02, 0.09), UDim2.fromScale(0.96, 0.04), 13)
+    local detailLabel =
+        label(card, detail, UDim2.fromScale(0.02, 0.09), UDim2.fromScale(0.96, 0.04), 13)
     local pilotLarge = preview(
         card,
         source:Clone(),
@@ -186,15 +197,14 @@ for i, entry in catalog do
         13,
         colors.teal
     )
-    table.insert(
-        largePairs,
-        {
-            pilot = pilotLarge,
-            native = nativeLarge,
-            label = modelLabel,
-            pilotText = modelLabel.Text,
-        }
-    )
+    table.insert(largePairs, {
+        pilot = pilotLarge,
+        native = nativeLarge,
+        label = modelLabel,
+        pilotText = modelLabel.Text,
+        detail = detailLabel,
+        pilotDetail = detail,
+    })
     make("Frame", card, {
         BackgroundColor3 = colors.aqua,
         BorderSizePixel = 0,
@@ -285,6 +295,9 @@ button("BLENDER / NATIVE", 0.798, function()
         pair.label.Text = if pair.pilot.Visible
             then pair.pilotText
             else "CURRENT NATIVE  •  SAME VIEWPORT / CAMERA"
+        pair.detail.Text = if pair.pilot.Visible
+            then pair.pilotDetail
+            else "Current model built from Roblox parts"
     end
 end)
 local failures = {}
