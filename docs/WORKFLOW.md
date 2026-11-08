@@ -64,6 +64,15 @@ CI verifies its actual checkout only and does not prove Studio behavior.
 
 ## Studio sync and explicit return
 
+For Blender pilots, use the separate [model workflow](BLENDER_PILOTS.md).
+`setup-blender.ps1` installs a checksum-pinned portable Blender; `build-models.ps1`
+exports existing `.blend` files and audits them. `-Regenerate` explicitly replaces
+editable sources from Python. Candidate exports do not change uploaded assets.
+The pilot gallery builds from `blender-pilots.project.json`; normal game builds
+retain native models. Capture only the reviewed pilot folder with Studio's
+SerializationService and record asset identity/provenance before promoting its
+`.rbxm`. This bounded model handoff is separate from shared-script syncback.
+
 Use the Rojo **7.7.1** Studio plugin with the pinned CLI. Install with
 `& .\.tools\rojo.exe plugin install`, restart Studio, and verify the plugin version.
 Open `build/dev.rbxlx`, emitted by `build.ps1`. Start

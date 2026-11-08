@@ -477,7 +477,7 @@ No purchase receipt handler is enabled in this task.
 | Models | An intentionally adopted `.rbxm` or `.rbxmx` in `assets/` may be authoritative, mapped beneath `ReplicatedStorage.Assets`. Record ownership and any additional placement mapping; do not keep a competing authoritative Studio copy. |
 | Terrain | Not represented by this starter's source. A later terrain task must choose a source place template or documented terrain export and prove restoration; a saved generated place alone is not source. |
 | Place templates | Intentional `.rbxl`/`.rbxlx` source templates may be versioned outside `build/` when needed. Define how code is injected and how a fresh clone restores them before adopting one. |
-| External asset IDs | Public audio dependencies and provenance are recorded in [Asset sources](ASSETS.md). Source control cannot supply asset access; verify loading in the target experience. Visual models require no external IDs, and missing audio does not block play. |
+| External asset IDs | Public audio dependencies and provenance are recorded in [Asset sources](ASSETS.md). Source control cannot supply asset access; verify loading in the target experience. Production visual models require no external IDs. The separate Blender pilot gallery uses recorded owner-account MeshIds; missing audio does not block normal play. |
 | Generated places / temporary exports | `build/` and `scratch/` are ignored. Regenerate builds; review exports before promoting intentional changes. |
 | Tools | `.tools/` is ignored; `scripts/setup.ps1` restores pinned binaries. |
 
@@ -489,6 +489,14 @@ A fresh checkout restores the game using Git, PowerShell, internet access for
 the pinned tools, and `setup.ps1` → `check.ps1` → `build.ps1`. Studio and a Roblox
 account are prerequisites for runtime/sync checks. New private assets, terrain,
 or templates must add their own explicit restoration steps.
+
+The [Blender pilot gallery](BLENDER_PILOTS.md) uses `blender-pilots.project.json`,
+an engine-exported model under `art/models/`, and isolated code under
+`scripts/models/`. It does not load the game server, profiles, hub or production UI.
+Editable `.blend` sources are authoritative for the next mesh revision; normal
+exports preserve them. The Python builders are explicit regeneration recipes.
+Committed manifests and uploaded artifacts identify the tested import revision;
+candidate exports stay in ignored `build/model-exports/` until reviewed/imported.
 
 ## Development and publication
 
