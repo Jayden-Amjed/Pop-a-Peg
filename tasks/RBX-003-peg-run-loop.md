@@ -1,7 +1,7 @@
 # RBX-003 — Peg-bounce roguelike run loop
 
 Owner: Codex gameplay coordinator; module contributors integrated.
-Status: IN PROGRESS — reward feedback and presentation revision
+Status: READY FOR REVIEW — reward feedback and presentation revision verified
 Objective: Build a complete aimed peg-bounce run with escalating score targets and synergistic upgrades.
 Starting main: `9349530edb7eaf536ceabfed5e922ae5b65499a6` (README seed; fetched again 2026-11-07).
 Dependency base: starter PR #2 at `608c273d9f31022d2f161584c4c92188bb4405cd`; unmerged.
@@ -9,21 +9,21 @@ Branch: `task/RBX-003-peg-run-loop`
 Worktree: `C:\Users\Amjedd\Documents\ChatGPT\Pop a Peg\.worktrees\game`
 PR: [#4](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/4), targets the starter branch until PR #2 is integrated.
 Reservation: [issue #3](https://github.com/Jayden-Amjed/Pop-a-Peg/issues/3).
-Implementation evidence: `c73e29012c40053bab943d03d5412ae05b89ad7a`.
+Implementation evidence: `e4953887985930b08514ebcee2c0d392570a861e`.
 
 ## Scope and ownership
 
-### Active revision
+### Reward and presentation revision
 
-The first implementation passed its recorded checks, but visual acceptance requires
-a clearer repeated quota meter, flying score/coin rewards, staged refill/merge
-choreography, detailed equipment models, a large green interface, and sound cues.
-Correct low-value peg collision and life/reward timing while preserving validated
-server authority and reset boundaries. New verification is pending.
+The revision adds a repeating layered quota meter, flying score/coin/ball rewards,
+automatic restoration/refill/merge choreography, 37 original models, a large green
+interface, and ten sound cues. Value-1 pegs pass through; five total balls are spent
+on launch and restored at settlement. Ordinary result dialogs are removed.
+The server remains authoritative; presentation consumes bounded settlement receipts.
 
 Ownership: coordinator integrates and owns Studio; isolated `feedback-ui`,
 `feedback-models`, and `feedback-rules` worktrees own presentation, item models,
-and shared run/simulation contracts respectively. Earlier checks below are historical.
+and shared run/simulation contracts respectively. Contributors are integrated.
 
 Fixed front-view 3D board; independent per-player runs; 21 numbered pegs, aimed
 bouncing, score-before-halving, board-clear bonus, quota/restock growth, currency,
@@ -35,7 +35,8 @@ No production publication, monetization, or cooperative board is included.
 
 Coordinator owns integration, documentation, verification, and Studio. Contributors
 used separate worktrees for simulation, progression, and presentation. All source
-is restored from Git and pinned tools; generated native parts/UI need no external assets.
+is restored from Git and pinned tools; native parts/UI need no external geometry or
+images. Public Roblox audio IDs and access requirements are in [ASSETS](../docs/ASSETS.md).
 
 ## Acceptance
 
@@ -50,6 +51,58 @@ is restored from Git and pinned tools; generated native parts/UI need no externa
 - [x] Review scope, evidence, and next task remain discoverable.
 
 ## Checks
+
+### Current revision
+
+Source: `e4953887985930b08514ebcee2c0d392570a861e`.
+
+- PASS `scripts/check.ps1`: pinned tools, StyLua, Selene (0 errors/warnings), Board,
+  18 Run cases, Profile, RewardTimeline, Rojo build, 11 explicit mapped source checks,
+  documentation links, and essential status/task fields.
+- PASS Board, Run (18), Profile, and RewardTimeline contracts inside the Studio server.
+- PASS real server/client shot transitions: a failed shot returns to aiming without
+  a dialog; a successful shot restores one ball, pays one coin, and advances round.
+  Final restored-source startup and Q/Space keyboard play checked separately.
+- PASS controlled client feedback: score arrivals precede counting; three restocks
+  move wallet 25 to 28 and reserves 1 to 4, then open the shop once. Refilled pegs
+  fall, disjoint matches travel/merge, and the final board stays through choices.
+  Exact 10,000-restock batching completes with bounded effects; skip finishes with
+  authoritative balances. Score labels from one simultaneous origin coalesce.
+- PASS client state regression harness: no early settlement coins, stale wallet
+  callbacks cannot undo purchases, rewards arrive before continuation at 4x,
+  zero-life terminal flow, repeated receipts, and restart receipt IDs.
+- PASS all 37 native models instantiated and visually reviewed in Studio; all 31
+  catalog IDs covered, upgraded equipment faces visible, pulse returns exactly to
+  scale 1. Static previews avoid idle geometry writes. All geometry is original.
+- PASS five public audio assets loaded. Each of ten cues starts, has nonzero measured
+  playback signal, stops after its bounded duration, and obeys mute. This is runtime
+  signal verification, not a claim of a human-approved sound mix.
+- PASS 25 menu bounds/text-fit cases: shop, perk, event, gameover, victory at
+  390x844, 844x390, 1046x524, 1280x720, 1920x1080. Perk triggers are explicit;
+  a 1e30 target fits the compact HUD. These are layout fixtures, not physical devices.
+- PASS modeled shop upgrade clicked through MCP: wallet 25 to 21, matching equipment
+  L1 to L2, offer SOLD, and model refreshed. Short landscape choices remain scrollable.
+- PASS temporary fixtures removed; all 16 production scripts/modules compared
+  exactly with files. Current generated deliverable: `build/peg-feedback.rbxlx`.
+- PASS revised heuristic balance smoke: largest visible first-contact aiming reached
+  the first shop in 47/50 runs and cleared the first boss in 25/50. Random aiming
+  reached the first shop in 17/50. No forced shot endings. These samples supersede
+  earlier physics balance figures and do not predict human win rates.
+- PASS GitHub [push check](https://github.com/Jayden-Amjed/Pop-a-Peg/actions/runs/42432165237)
+  and [PR check](https://github.com/Jayden-Amjed/Pop-a-Peg/actions/runs/42432168013)
+  at the implementation SHA above.
+
+Studio target: isolated `peg-feedback.rbxlx`; normal sources restored; Rojo disconnected.
+No unrelated place or existing user play window was edited. Native fixture captures
+omit BillboardGui text; the user previously confirmed peg numbers in actual Studio.
+No project runtime errors; unrelated 203785492 asset-type warnings persist.
+NOT RUN: physical touch, two clients in one server, published persistence, live Rojo
+plugin propagation, merge, or publication. Human visual/audio review remains useful.
+
+### Earlier implementation (historical)
+
+The following evidence applies to `c73e29012c40053bab943d03d5412ae05b89ad7a`,
+before the revised collisions, life timing, and presentation above.
 
 - PASS `scripts/check.ps1` on Windows / PowerShell: pinned tool verification,
   StyLua, Selene (0 errors/warnings), Board contracts, 14 Run cases, Profile
@@ -96,12 +149,12 @@ Publishing: NOT PUBLISHED; no production target selected.
 
 ## Handoff
 
-Owner: coordinator; implementation complete and ready for review.
+Owner: coordinator; revised implementation complete and ready for review.
 Source: exact implementation SHA above; subsequent evidence-only commits may follow.
 Status: version 2 proposal depends on the starter's unaccepted version 1. Main remains
 README-only with no accepted ledger. Main's content and SHA were reconciled before push.
 Blockers: no implementation blocker; PR #2 must be accepted before this dependent
 PR can target accepted main. Neither PR is merged.
-Next action: human playtest the generated place and review PR #4. Before a release,
+Next action: human playtest `build/peg-feedback.rbxlx` and review PR #4. Before a release,
 select a development experience for multi-client/mobile/cloud-save verification;
 record production targeting and publication as a separate authorized task.
