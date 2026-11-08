@@ -160,7 +160,10 @@ local function plant(parent, position, scale, color)
     end
 end
 
-local function fish(parent, position, scale, color, yaw)
+local function fish(parent, position, scale, color, yaw, motionIndex)
+    parent = make("Model", {
+        Name = if motionIndex then "LagoonFish" .. motionIndex else "GalleryFish",
+    }, parent)
     local cf = CFrame.new(position) * CFrame.Angles(0, yaw, math.rad(-8))
     oval(parent, "FishBody", Vector3.new(2.7, 1.45, 0.85) * scale, cf, color)
     for _, direction in { -1, 1 } do
@@ -195,6 +198,12 @@ local function fish(parent, position, scale, color, yaw)
         cf * CFrame.new(0, 0.85 * scale, 0),
         color
     )
+    parent.WorldPivot = cf
+    if motionIndex then
+        parent:SetAttribute("HubMotion", "fish")
+        parent:SetAttribute("MotionPhase", motionIndex * 1.9)
+        parent:SetAttribute("MotionScale", scale)
+    end
 end
 
 function HubWorld:_buildAtrium()
@@ -376,7 +385,8 @@ function HubWorld:_buildAquarium()
             position,
             0.8 + index % 3 * 0.18,
             if index % 2 == 0 then C.gold else C.coral,
-            angle + math.pi / 2
+            angle + math.pi / 2,
+            index
         )
     end
     for index = 1, 5 do
@@ -394,13 +404,25 @@ function HubWorld:_buildAquarium()
             )
         end
     end
+    local streams = {}
+    for stream = 1, 3 do
+        local model = make("Model", { Name = "BubbleStream" .. stream }, tank)
+        model:SetAttribute("HubMotion", "bubbles")
+        model:SetAttribute("MotionPhase", stream * 2.1)
+        streams[stream] = model
+    end
     for index = 1, 9 do
         local bubble = oval(
-            tank,
+            streams[(index - 1) % 3 + 1],
             "AirPearl",
             Vector3.one * (0.25 + index % 3 * 0.14),
             CFrame.new(
-                origin + Vector3.new(math.sin(index * 2) * 8, 3 + index, math.cos(index * 2) * 8)
+                origin
+                    + Vector3.new(
+                        math.sin(index * 2) * 8,
+                        3 + index * 0.88,
+                        math.cos(index * 2) * 8
+                    )
             ),
             C.pearl
         )
