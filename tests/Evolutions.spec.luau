@@ -660,6 +660,24 @@ return function()
         )
     end)
 
+    test("boss quotas stay reachable at the numerical score ceiling", function()
+        for _, round in ipairs({ 15, 40, 65, 100 }) do
+            local run = Run.new(1711)
+            run.round, run.shopsVisited = round, 30
+            for id = 1, #run.baseline do
+                run.baseline[id] = Run.Config.maxPeg
+            end
+            run:_resetShot()
+            assert(
+                run.quota <= Run.Config.maxScore and run.quota > 0,
+                "Boss quota exceeds available score range"
+            )
+            assert(run:action("launch", { angle = 0 }), "Could not launch saturated fixture")
+            run:_addScore(Run.Config.maxScore)
+            assert(run.restocks >= 1, "Maximum permitted score cannot clear saturated boss")
+        end
+    end)
+
     print(
         "PASS evolutions: "
             .. cases

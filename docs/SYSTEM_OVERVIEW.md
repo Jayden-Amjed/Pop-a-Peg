@@ -187,6 +187,11 @@ as their trigger and **Use** only on the purchase button.
 
 ## Feedback and settlement
 
+`CounterProgress` bounds quota layers before indexing their colors. It uses a
+bounded score/quota ratio below the restock cap and shows a full meter at the cap,
+avoiding huge-number modulo errors. Boss quotas stay within the numerical score
+ceiling, including fully grown boards.
+
 Snapshots carry authoritative totals, a bounded recent event list, and a durable
 `settlementReceipt` after numerical settlement completes. Events identify score
 deltas and their peg/item source, goal crossings, triggers, coin changes, and ball

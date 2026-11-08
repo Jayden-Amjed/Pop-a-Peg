@@ -572,7 +572,6 @@ function Run:_resetShot()
     self.pending = {}
     self.itemCounts = {}
     self.activationCount, self.activationCapped = 0, false
-    self.evolutionCounts = {}
     self.stageCleared = nil
     self.perkCounts = {}
     self.boss = if self.round <= Stages.CampaignEnd and Stages.completed(self.round) ~= nil
@@ -580,7 +579,7 @@ function Run:_resetShot()
         else nil
     self.quota = math.max(1, Board.quota(self.baseline, self.shopsVisited))
     if self.boss and self.boss.multiplier then
-        self.quota = math.ceil(self.quota * self.boss.multiplier)
+        self.quota = math.min(Run.Config.maxScore, math.ceil(self.quota * self.boss.multiplier))
     end
     if self.round > Stages.CampaignEnd then
         self.quota = math.min(

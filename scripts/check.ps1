@@ -24,6 +24,7 @@ try {
     & "$PSScriptRoot/build.ps1"
     [xml]$place = Get-Content build/dev.rbxlx -Raw
     $mappings = @(
+        @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/CounterProgress'; Class = 'ModuleScript'; Source = 'src/client/CounterProgress.luau' },
         @{ Path = 'ReplicatedStorage/Shared/Stages'; Class = 'ModuleScript'; Source = 'src/shared/Stages.luau' },
         @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/EvolutionDisplay'; Class = 'ModuleScript'; Source = 'src/client/EvolutionDisplay.luau' },
         @{ Path = 'ServerScriptService/Server/Main'; Class = 'Script'; Source = 'src/server/Main.server.luau' },
