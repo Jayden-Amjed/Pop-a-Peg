@@ -288,15 +288,27 @@ function Feedback:_flight(kind, value, startPoint, target, targetIndex, onArriva
     return effect
 end
 
+function Feedback:_pulseCounter(kind, strength)
+    if self.host.pulseCounter then
+        self.host:pulseCounter(kind, strength or 0.55)
+    elseif kind == "score" and self.host.pulseScore then
+        self.host:pulseScore(strength or 0.55)
+    end
+end
+
+function Feedback:_pulsePerk(id)
+    if self.host.pulsePerk and id then
+        self.host:pulsePerk(id)
+    end
+end
+
 function Feedback:_arriveScore(value)
     if not self.snapshot or self.busy and self.timeline then
         return
     end
     self.displayScore = math.max(self.displayScore, math.min(value, self.snapshot.score))
     self.host:setCounterDisplay("score", self.displayScore)
-    if self.host.pulseScore then
-        self.host:pulseScore(0.55)
-    end
+    self:_pulseCounter("score")
     local earned = math.min(
         self.snapshot.maxRestocks or 10000,
         math.floor(self.displayScore / math.max(1, self.snapshot.quota))
@@ -306,6 +318,7 @@ function Feedback:_arriveScore(value)
         self.earned = earned
         self.host:setCounterDisplay("restocks", earned)
         self:_flight("restock", count, self:_anchor("meter"), "restocks", nil, function()
+            self:_pulseCounter("restocks")
             self:_ring(self:_anchor("restocks"), GOLD, 52)
         end)
         self:_label(
@@ -370,6 +383,7 @@ function Feedback:_event(event)
         if event.action == "activate" or not event.action and slot then
             self:_activateVisual(id, slot)
         elseif event.action == "perk" then
+            self:_pulsePerk(event.perkId)
             self:_activateVisual(event.perkId, event.targetSlot or slot)
         end
         local pegId = event.targetPegId or event.pegId
@@ -393,11 +407,13 @@ function Feedback:_event(event)
             end
         end
     elseif event.kind == "perkTrigger" then
+        self:_pulsePerk(event.perkId)
         self:_activateVisual(event.perkId, event.targetSlot)
     elseif event.kind == "purchase" then
         self:_activateVisual(event.itemId, event.slot)
     elseif event.kind == "perkChoice" then
         if event.perkId then
+            self:_pulsePerk(event.perkId)
             self:_activateVisual(event.perkId)
         end
     elseif event.kind == "clear" then
@@ -452,7 +468,6 @@ function Feedback:update(snapshot)
     end
     if previous and previous.phase == "aim" and snapshot.phase == "flight" then
         self.host:setCounterDisplay("reserves", snapshot.reserves)
-        self:_flight("life", 1, self:_anchor("reserve"), "ball", nil, nil)
         self.sounds:play("launch")
     end
     for _, event in ipairs(snapshot.events or {}) do
@@ -502,12 +517,14 @@ function Feedback:update(snapshot)
                     end
                     self.displayCoins = balance
                     self.host:setCounterDisplay("coins", balance)
+                    self:_pulseCounter("coins")
                     self.sounds:play("coin")
                 end
             )
         else
             self.displayCoins = snapshot.coins
             self.host:setCounterDisplay("coins", snapshot.coins)
+            self:_pulseCounter("coins", 0.4)
             self:_ring(self:_anchor("coins"), GOLD, 52)
             self.sounds:play("purchase")
         end
@@ -530,12 +547,14 @@ function Feedback:_reward(count)
     local expectedCoins = math.min(receipt.coinsAfter, receipt.coinsBefore + self.credited)
     local expectedReserves = math.min(receipt.reservesAfter, receipt.reservesBefore + self.credited)
     self.host:setCounterDisplay("restocks", math.max(0, receipt.earnedRestocks - self.credited))
+    self:_pulseCounter("restocks", 0.4)
     self:_flight("coin", count, self:_anchor("restocks"), "coins", nil, function()
         if not self.receipt or self.receipt.id ~= receiptId then
             return
         end
         self.displayCoins = math.max(self.displayCoins, expectedCoins)
         self.host:setCounterDisplay("coins", self.displayCoins)
+        self:_pulseCounter("coins")
         self:_ring(self:_anchor("coins"), GOLD, 54)
         self.sounds:play("coin")
     end)

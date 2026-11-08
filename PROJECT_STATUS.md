@@ -7,8 +7,13 @@ Objective: Independent peg-bounce runs with clear rewards, varied hybrid builds,
 Accepted source: `9349530edb7eaf536ceabfed5e922ae5b65499a6` (README-only main seed; fetched again).
 Dependency: starter [PR #2](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/2), unmerged,
 at `608c273d9f31022d2f161584c4c92188bb4405cd`. Main has no accepted status ledger.
-Implementation: `b1cf8886a2b5c7f79e3147984ff140cb55900fa1` in dependent
+Previous implementation: `b1cf8886a2b5c7f79e3147984ff140cb55900fa1` in dependent
 [PR #4](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/4).
+
+New polish revision: IN PROGRESS. Larger grouped shop/rack controls, stable model
+selection, white accents, perk tracking, figure-eight idle motion, counter pulses,
+and scenery stability are being implemented. Evidence below is the previous build.
+The user authorized main integration after the new version is playtested.
 
 | Capability | Verified state |
 | --- | --- |
@@ -37,5 +42,5 @@ Unrun: physical mobile/touch, two clients in one server, cloud persistence, live
 Limits: only the upgrade shop guarantees no scrolling; other compact choice menus may scroll.
 Human playtesting is still needed to judge balance, variety, visual preference, and the sound mix.
 Observed limitation: unrelated Studio asset-type warning for 203785492; no project source reference.
-Next action: human playtest the generated place and review PR #4.
+Next action: complete polish, verify in Studio, then merge starter PR #2 and gameplay PR #4 into main.
 Repository administration: main remains unprotected; default branch remains the starter branch.

@@ -1,7 +1,7 @@
 # RBX-003 — Peg-bounce roguelike run loop
 
 Owner: Codex gameplay coordinator; module contributors integrated.
-Status: READY FOR REVIEW — repository, Studio and implementation CI checks passed
+Status: IN PROGRESS — UI/motion polish and authorized main integration
 Objective: Build a complete aimed peg-bounce run with escalating score targets and synergistic upgrades.
 Starting main: `9349530edb7eaf536ceabfed5e922ae5b65499a6` (README seed; fetched again 2026-11-07).
 Dependency base: starter PR #2 at `608c273d9f31022d2f161584c4c92188bb4405cd`; unmerged.
@@ -13,7 +13,18 @@ Implementation evidence: `b1cf8886a2b5c7f79e3147984ff140cb55900fa1`.
 
 ## Scope and ownership
 
-### Current interaction/theme revision
+### Current polish revision
+
+Fix mouse-related scenery jitter and shop selection rebuilds; enlarge rack and purchase
+controls; encapsulate four equipment and at most two Supplies; strengthen selection
+contrast and white accents; show owned/active perks; add bounded figure-eight idle
+motion with activation handoff; bounce coins/restocks and remove the launch reserve-icon
+flight. Coordinator owns Feedback, integration, Studio, documentation and merge.
+Isolated polish-ui and polish-motion contributors own UI/scene and item motion.
+The user explicitly authorized main integration after this revision is playtested.
+Earlier verification below remains historical.
+
+### Previous interaction/theme revision
 
 Implemented a blue/cyan glass and pearl interface, white peg numerals, a matching
 board/background, a no-scroll shop with later-run Supplies, coin-icon prices,
