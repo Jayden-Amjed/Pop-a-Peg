@@ -34,8 +34,13 @@ return function()
                 end
                 if definition.evolved or definition.consumable or Catalog.Perks[id] then
                     assert(#detail.evolutions == 0, "Non-base item must not expose recipes")
-                else
+                elseif not table.find(Catalog.NewItemIds, id) then
                     assert(#detail.evolutions >= 1, "Base equipment has no evolution: " .. id)
+                else
+                    assert(
+                        #detail.evolutions == 0,
+                        "Discovery equipment has no recipe in this release"
+                    )
                 end
             end
             count += 1

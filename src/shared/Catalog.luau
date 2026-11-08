@@ -7,6 +7,23 @@ local Catalog = {
     MaxLevel = 5,
     Evolutions = {},
     EvolvedIds = {},
+    StarterIds = {
+        "tap_driver",
+        "split_prism",
+        "wall_meter",
+        "landing_fund",
+        "survey_lens",
+        "resonator",
+        "compass",
+        "seed_bank",
+    },
+    TierOrder = { "common", "uncommon", "rare", "legendary" },
+    Tiers = {
+        common = { name = "Common", rank = 1, weight = 60, color = { 147, 221, 190 } },
+        uncommon = { name = "Uncommon", rank = 2, weight = 28, color = { 89, 205, 244 } },
+        rare = { name = "Rare", rank = 3, weight = 10, color = { 111, 147, 255 } },
+        legendary = { name = "Legendary", rank = 4, weight = 2, color = { 255, 201, 95 } },
+    },
 }
 
 local function item(id, name, price, event, every, effect, description, triggerText, rarity)
@@ -322,6 +339,324 @@ end
 for _, id in ipairs(Catalog.ItemIds) do
     local definition = Catalog.Items[id]
     definition.effectLines = definition.effectLines or { definition.description }
+end
+
+-- Chest discoveries add new build directions, not permanent stat boosts.
+-- Ordered effects share Run's normal causal chain and level scaling.
+local additions = {
+    {
+        "rain_catcher",
+        "Rain Catcher",
+        "common",
+        5,
+        "drain",
+        1,
+        "On ball drain",
+        "Morning Dew",
+        {
+            { effect = "lowestDouble" },
+            { effect = "pulseScore" },
+            { effect = "halveHighest", fixed = true },
+        },
+    },
+    {
+        "bubble_wand",
+        "Bubble Wand",
+        "common",
+        5,
+        "pop",
+        8,
+        "Every 8 pops",
+        "Bubble Chain",
+        { { effect = "double" }, { effect = "lowestPop", fixed = true } },
+    },
+    {
+        "lily_pad",
+        "Lily Pad",
+        "common",
+        4,
+        "wall",
+        3,
+        "Every 3 wall hits",
+        "Living Water",
+        { { effect = "lowestDouble" }, { effect = "halveHighest", fixed = true } },
+    },
+    {
+        "solar_leaf",
+        "Solar Leaf",
+        "uncommon",
+        6,
+        "first",
+        1,
+        "On first peg hit",
+        "First Light",
+        { { effect = "pulseScore" }, { effect = "double" } },
+    },
+    {
+        "mist_fan",
+        "Mist Fan",
+        "uncommon",
+        7,
+        "time",
+        3,
+        "Every 3 seconds alive",
+        "Morning Dew",
+        { { effect = "halve" }, { effect = "pop" } },
+    },
+    {
+        "coral_fork",
+        "Coral Fork",
+        "uncommon",
+        7,
+        "double",
+        4,
+        "Every 4 doubles",
+        "Sunlit Reef",
+        { { effect = "highestPop" }, { effect = "halveHighest", fixed = true } },
+    },
+    {
+        "tide_valve",
+        "Tide Valve",
+        "uncommon",
+        7,
+        "halve",
+        4,
+        "Every 4 unscored halves",
+        "Ocean Currents",
+        { { effect = "right", fixed = true }, { effect = "lowestDouble" } },
+    },
+    {
+        "dew_lantern",
+        "Dew Lantern",
+        "uncommon",
+        7,
+        "time",
+        4,
+        "Every 4 seconds alive",
+        "Morning Dew",
+        {
+            { effect = "pulseScore" },
+            { effect = "lowestDouble" },
+            { effect = "halveHighest", fixed = true },
+        },
+    },
+    {
+        "moss_capacitor",
+        "Moss Capacitor",
+        "uncommon",
+        8,
+        "pop",
+        12,
+        "Every 12 pops",
+        "Living Water",
+        {
+            { effect = "double" },
+            { effect = "goalScore" },
+            { effect = "halveHighest", fixed = true },
+        },
+    },
+    {
+        "pearl_diver",
+        "Pearl Diver",
+        "rare",
+        9,
+        "drain",
+        1,
+        "On ball drain",
+        "Homecoming",
+        {
+            { effect = "highestPop" },
+            { effect = "firstScore" },
+            { effect = "halveHighest", fixed = true },
+        },
+    },
+    {
+        "stream_wheel",
+        "Stream Wheel",
+        "rare",
+        8,
+        "wall",
+        5,
+        "Every 5 wall hits",
+        "Ocean Currents",
+        { { effect = "left", fixed = true }, { effect = "wallScore" } },
+    },
+    {
+        "cloud_mirror",
+        "Cloud Mirror",
+        "rare",
+        9,
+        "first",
+        1,
+        "On first peg hit",
+        "First Light",
+        {
+            { effect = "firstScore" },
+            { effect = "halveHighest", fixed = true },
+            { effect = "lowestDouble" },
+        },
+    },
+    {
+        "nectar_pump",
+        "Nectar Pump",
+        "rare",
+        9,
+        "double",
+        6,
+        "Every 6 doubles",
+        "Living Water",
+        {
+            { effect = "lowestDouble" },
+            { effect = "halfScore" },
+            { effect = "halveHighest", fixed = true },
+        },
+    },
+    {
+        "lagoon_synth",
+        "Lagoon Synth",
+        "rare",
+        10,
+        "goal",
+        1,
+        "On each quota crossed",
+        "Ocean Currents",
+        {
+            { effect = "right", fixed = true },
+            { effect = "pulseScore" },
+            { effect = "halveHighest", fixed = true },
+        },
+    },
+    {
+        "aurora_kite",
+        "Aurora Kite",
+        "legendary",
+        11,
+        "wall",
+        8,
+        "Every 8 wall hits",
+        "First Light",
+        {
+            { effect = "multiply" },
+            { effect = "double" },
+            { effect = "halveHighest", fixed = true },
+        },
+    },
+    {
+        "biolume_jar",
+        "Biolume Jar",
+        "legendary",
+        12,
+        "time",
+        5,
+        "Every 5 seconds alive",
+        "Sunlit Reef",
+        {
+            { effect = "lowestDouble" },
+            { effect = "left", fixed = true },
+            { effect = "halveHighest", fixed = true },
+        },
+    },
+    {
+        "ozone_orb",
+        "Ozone Orb",
+        "legendary",
+        12,
+        "pop",
+        20,
+        "Every 20 pops",
+        "Bubble Chain",
+        {
+            { effect = "highestPop" },
+            { effect = "goalScore" },
+            { effect = "halveHighest", fixed = true },
+        },
+    },
+    {
+        "monsoon_loom",
+        "Monsoon Loom",
+        "legendary",
+        12,
+        "drain",
+        1,
+        "On ball drain",
+        "Homecoming",
+        {
+            { effect = "doubleMany" },
+            { effect = "right", fixed = true },
+            { effect = "halveHighest", fixed = true },
+        },
+    },
+}
+Catalog.NewItemIds = {}
+for _, entry in ipairs(additions) do
+    local id, name, tier, price, event, every, triggerText, family, operations = table.unpack(entry)
+    item(id, name, price, event, every, operations[1].effect, "", triggerText, tier)
+    local definition = Catalog.Items[id]
+    definition.operations, definition.family = operations, family
+    table.insert(Catalog.NewItemIds, id)
+end
+
+local tiers = {
+    common = {
+        "tap_driver",
+        "split_prism",
+        "wall_meter",
+        "landing_fund",
+        "survey_lens",
+        "resonator",
+        "compass",
+        "seed_bank",
+        "soft_saw",
+        "spring_coil",
+        "goldfish",
+    },
+    uncommon = {
+        "clockwork",
+        "gain_dial",
+        "balance_scale",
+        "growth_array",
+        "quota_bonus",
+        "pulse_cell",
+    },
+    rare = { "burst_capsule", "relay", "fishbowl" },
+    legendary = { "echo_plate", "encore" },
+}
+for tier, ids in pairs(tiers) do
+    for _, id in ipairs(ids) do
+        Catalog.Items[id].rarity = tier
+    end
+end
+for _, id in ipairs(Catalog.ItemIds) do
+    local definition = Catalog.Items[id]
+    definition.tier = definition.rarity
+    definition.color = Catalog.Tiers[definition.tier].color
+end
+
+-- Only base equipment can enter the persistent item-unlock pool. Starter items
+-- are always available; old discoveries are migrated by Profile, not shop rolls.
+function Catalog.isBaseItem(id)
+    local definition = Catalog.Items[id]
+    return definition ~= nil and not definition.evolved and not definition.consumable
+end
+
+function Catalog.itemUnlockSet(ids)
+    local unlocked = {}
+    for _, id in ipairs(Catalog.StarterIds) do
+        unlocked[id] = true
+    end
+    if type(ids) == "table" then
+        for key, value in pairs(ids) do
+            local id = if type(key) == "number" then value else key
+            if
+                type(id) == "string"
+                and (type(key) == "number" or value == true)
+                and Catalog.isBaseItem(id)
+            then
+                unlocked[id] = true
+            end
+        end
+    end
+    return unlocked
 end
 
 Catalog.Items.gain_dial.unlock = "workshop_access"
@@ -718,6 +1053,9 @@ function Catalog.detail(id, level)
             local render = detailEffects[operation.effect]
             assert(render, "Missing inspection effect: " .. operation.effect)
             local text, tone = render(operation.fixed and 1 or power)
+            if operation.fixed then
+                text = string.gsub(text, " %(↑ [^)]+%)", "")
+            end
             table.insert(effects, { text = text, tone = tone })
         end
     end
@@ -742,6 +1080,7 @@ function Catalog.detail(id, level)
             elseif definition.consumable then "supply"
             else "item",
         level = level,
+        tier = definition.tier,
         effects = effects,
         evolutions = Catalog.evolutionsFor(id),
     }

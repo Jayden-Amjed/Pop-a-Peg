@@ -49,6 +49,36 @@ add("encore", { 0, 4, 7, 16 }, { 0, 0.035, 0.07, 0.14 }, violet, "chorus")
 add("goldfish", { 4, 11, 16 }, { 0, 0.09, 0.15 }, coral, "fish")
 add("fishbowl", { -7, 5, 12 }, { 0, 0.07, 0.19 }, aqua, "bubbles")
 
+-- Discovery equipment gets its own note motif and visual movement signature.
+local discoveries = {
+    { "rain_catcher", { 2, 7, 11 }, aqua, "rain", "streak", -0.6 },
+    { "bubble_wand", { 5, 12, 17 }, blue, "wand", "bubble", 1.4 },
+    { "lily_pad", { -3, 4, 9 }, lime, "lily", "leaf", 0.8 },
+    { "solar_leaf", { 7, 12, 16 }, gold, "solar", "leaf", -1.4 },
+    { "mist_fan", { -2, 5, 10 }, aqua, "mist", "streak", 2.5 },
+    { "coral_fork", { 3, 10, 15 }, coral, "fork", "note", -2.2 },
+    { "tide_valve", { -9, 3, 10 }, blue, "valve", "orb", 1.6 },
+    { "dew_lantern", { 2, 6, 14 }, lime, "lantern", "spark", -0.9 },
+    { "moss_capacitor", { -4, 8, 15 }, lime, "moss", "leaf", 1.9 },
+    { "pearl_diver", { -8, 4, 11 }, gold, "diver", "bubble", -1.7 },
+    { "stream_wheel", { 5, 9, 17 }, aqua, "wheel", "streak", 2.7 },
+    { "cloud_mirror", { 11, 6, 18 }, blue, "mirror", "diamond", -2.4 },
+    { "nectar_pump", { 3, 7, 15 }, coral, "nectar", "orb", 1.2 },
+    { "lagoon_synth", { -2, 10, 17 }, aqua, "synth", "note", 2.3 },
+    { "aurora_kite", { 1, 8, 13, 20 }, violet, "kite", "diamond", -3.0 },
+    { "biolume_jar", { -4, 3, 11, 18 }, lime, "biolume", "spark", 2.9 },
+    { "ozone_orb", { 6, 13, 18, 22 }, blue, "ozone", "orb", -2.8 },
+    { "monsoon_loom", { -9, 0, 8, 15 }, aqua, "monsoon", "streak", 3.1 },
+}
+for _, entry in ipairs(discoveries) do
+    local rhythm = if #entry[2] == 4 then { 0, 0.04, 0.095, 0.17 } else { 0, 0.06, 0.145 }
+    add(entry[1], entry[2], rhythm, entry[3], entry[4])
+    local profile = Feedback.Profiles[entry[1]]
+    profile.shape, profile.spin = entry[5], entry[6]
+    profile.particles = if #entry[2] == 4 then 16 else 12
+    profile.reach = if #entry[2] == 4 then 96 else 78
+end
+
 add("reserve_pack", { -5, 4, 12 }, { 0, 0.08, 0.16 }, blue, "reserve")
 add("coin_press", { 7, 14, 19 }, { 0, 0.05, 0.10 }, gold, "coins")
 add("tuning_oil", { 2, 7, 16 }, { 0, 0.07, 0.14 }, aqua, "polish")

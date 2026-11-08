@@ -191,7 +191,9 @@ return function()
             assert(not state.ready and not state.owned[2], "Missing ingredient cannot qualify")
         end
         for _, id in ipairs(Catalog.ItemIds) do
-            assert(covered[id], "Base equipment has no evolution path: " .. id)
+            if not table.find(Catalog.NewItemIds, id) then
+                assert(covered[id], "Original equipment lost its evolution path: " .. id)
+            end
         end
         assert(not Catalog.evolutionState({}, 0, "unknown").ready, "Unknown recipe cannot qualify")
     end)
