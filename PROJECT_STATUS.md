@@ -1,43 +1,43 @@
 # Current project state
 
-State Version: 7 (accepted arcade polish)
+State Version: 8 (proposal: earned hub progression and mobile polish)
 Reviewed: 2026-11-08, America/Los_Angeles
-Objective: Polish the aquarium arcade's world, guidance and transitions while preserving independent runs and progression balance.
+Objective: Connect runs to tiered hub chests and equipment discoveries, add arcade rankings, and make phone play usable.
 
-Accepted source: 61109c58bd9aff2e4abdf2f021999cd5a0e71cc9 (PR #14 merged into main).
-Implementation: 2d4f8fb4eab23dc8b1f62f31ea886d10cadb6fe5.
-Completed task: [RBX-013](tasks/RBX-013-arcade-polish.md), Codex coordinator.
-Branch: task/RBX-013-arcade-polish; [PR #14](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/14).
-Main: GitHub confirmed the merge; fetched main matches. State advanced once from accepted version 6.
+Accepted predecessor: 9d516120dc4c925061c444f713fb3b40719e1688, State Version 7.
+Implementation: b8329c800762f3d238f5d535261ab09cbdb18312.
+Active task: [RBX-015](tasks/RBX-015-hub-progression.md), Codex coordinator.
+Branch: task/RBX-015-hub-progression; [PR #16](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/16).
+Main: fetched again and unchanged; acceptance awaits PR CI and merge.
 
 | Capability | Verified state |
 | --- | --- |
-| Arcade | Original 978-part aquarium hub, pearl paths, seafoam sectors, large cabinet numbers, layered reef and canopy |
-| Wayfinding | Gold owned-cabinet beacon/outline; only assigned cabinet Play prompt enabled locally |
-| Multiplayer | Eight native clients verified distinct stations, independent runs, return/resume, guide ownership and departure |
-| Hub UI | Four-action dock, three-step help, discovery progress, larger recipe/record views; nine viewport/safe-area cases |
-| Accessibility / input | Roblox reduced-motion preference honored; compact stats/model views; panels block movement after respawn |
-| Transitions | Loading card, pending/retry feedback, duplicate guards, Arcade navigation separated from rack hint |
-| Ambient motion | Ten client-local groups, 65 moving parts; reduced motion and exact cleanup |
-| Run lifecycle | Hub-first join, private runs, pause/resume between shots, victory preserves Endless, lost runs reset power |
-| Balance retained | Causal ancestry prevents loops; quota-scaled bonuses, stage caps 6/8/10/12, successive double costs |
-| Equipment retained | Levels 1–5, 13 evolutions; full racks guarantee two useful upgrades when possible; four equipment + at most two Supplies |
-| Local checks | 17 suites, clean Selene/StyLua, Rojo build, 28 exact source mappings and documentation validation |
-| Studio checks | Hub/help/collection/records/run navigation, modal input/respawn, compact stats, motion override, eight-client harness |
+| Hub | 1,038-part aquarium arcade, modeled four-tier chest pavilion, three physical ranking screens and six-action dock |
+| Rankings | Time played, highest Endless round, and experience Robux spent; global/session/offline and stale-data labels |
+| Earned progression | Qualifying defeats and milestones award tiered chests; hub opening grants an unowned blueprint; exhausted tiers grant research |
+| Ownership | Eight starter items; only owned equipment can roll; new runs freeze their pool; legacy discoveries migrate |
+| Content | 40 base equipment including 18 new multi-effect items, four tiers, 13 existing evolutions, eight perks |
+| Persistence | Versioned profiles, renewable exclusive leases, serialized spending, newest 64 persisted retry receipts; failure/retry adapter tests |
+| Models and motion | 78 distinct geometry signatures; dedicated chest/event/perk models; chest opening and choice figure-eight motion |
+| Phone UI | Portrait/landscape support, notch-aware camera/input/FX, visible 4+2 shop, compact recipe inspector, Stats/Perks/Rack panels |
+| Local checks | 22 suites, clean StyLua/Selene, Rojo build, 38 exact mappings, documentation checks |
+| Native checks | Ordinary earned-chest-to-new-run loop, phone controls/layouts, 78-model audit, eight-player progression/isolation harness |
 
-Studio-tested source: 2d4f8fb4eab23dc8b1f62f31ea886d10cadb6fe5.
+Studio-tested source: b8329c800762f3d238f5d535261ab09cbdb18312.
+Studio 0.746.0.7461269, isolated peg-mobile-qa.rbxlx, target 0f901236-a3db-4178-890f-d0cb4929d1e1.
+Root sole operator; Rojo disconnected. Stopped in Edit. All 41 normal sources
+match repository checksums, both Main scripts enabled, and both temporary multiplayer
+scripts removed. Local PlaceId/GameId are 0.
+Playable output: build/peg-progression.rbxlx in the progression-hub worktree.
+Build SHA256: B800D286088FA0F0AB70FD9EDD039D963A7702E5C139853FC6BA647D8F80E036.
+
+Blockers: none. Final PR CI/merge pending.
+Unrun: physical touch/gamepad, production DataStore/OrderedDataStore, live plugin sync, publication.
+Limits: native emulator and eight Studio clients do not establish physical-device
+performance. New content still needs human long-run tuning. MCP captures sometimes
+omit peg labels or model previews; native window captures verified them. Unrelated
+203785492 asset warning remains.
+Monetization: no products, prompts, paid chests or receipt processor; Robux board is honestly empty.
 Published: NOT PUBLISHED; no production experience/place selected.
-Playable output: build/peg-polished.rbxlx in the arcade-polish worktree.
-Studio target: isolated peg-polish-qa.rbxlx, 47b8ff46-9f49-43de-9f9e-8fb2198ecb09.
-Root sole operator; Rojo disconnected. Studio stopped in Edit with 33 normal
-sources and both temporary multiplayer QA scripts removed.
-
-Blockers: none. PR CI 42499950047 passed at 14c4ab4d639606320e5f945b071e462e5b4457a3.
-Unrun: physical touch/gamepad, cloud persistence, live plugin sync, production publication.
-Limits: eight Studio clients do not measure eight-device performance; human long-run
-difficulty still needs playtesting. Earlier balance samples are in
-[RBX-011](tasks/RBX-011-arcade-balance.md), not rerun this pass. MCP captures can omit
-peg numbers; unrelated 203785492 asset warning remains.
-Monetization: none.
-Next action: open build/peg-polished.rbxlx for human playtesting. Configure production Max Players = 8 when a target is chosen.
+Next action: pass PR CI, merge the authorized task, record acceptance once, then human playtest the generated build.
 Repository administration: main unprotected; temporary default remains starter branch.
