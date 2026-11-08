@@ -8,7 +8,10 @@ Accepted source: `9349530edb7eaf536ceabfed5e922ae5b65499a6` (README-only main se
 Dependency: starter [PR #2](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/2), unmerged,
 at `608c273d9f31022d2f161584c4c92188bb4405cd`. Main has no accepted status ledger.
 Implementation: `e4953887985930b08514ebcee2c0d392570a861e` in dependent
-[PR #4](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/4); READY FOR REVIEW.
+[PR #4](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/4); new revision IN PROGRESS.
+The evidence below describes the previous build. A glass/aquatic theme, no-scroll
+shop, correct selection and capped-upgrade logic, richer item feedback, held trigger
+statistics, later Supplies, and perk cash-out are now being implemented.
 
 | Capability | Verified state |
 | --- | --- |
@@ -35,5 +38,5 @@ Blockers / dependencies: no implementation blocker; PR #2 must precede PR #4 int
 Unrun: physical mobile/touch, two clients in one server, cloud persistence, live plugin sync, merge/publish.
 Limits: short landscape menus scroll; subjective audio balance still benefits from human listening.
 Observed limitation: unrelated Studio asset-type warning for 203785492; no project source reference.
-Next action: playtest the revised build and review PR #4; select a separate development experience before release checks.
+Next action: integrate the new UI/model/rules worktrees and verify the revised interactions in an isolated Studio place.
 Repository administration: main remains unprotected; default branch remains the starter branch.

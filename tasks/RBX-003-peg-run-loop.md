@@ -1,7 +1,7 @@
 # RBX-003 — Peg-bounce roguelike run loop
 
 Owner: Codex gameplay coordinator; module contributors integrated.
-Status: READY FOR REVIEW — reward feedback and presentation revision verified
+Status: IN PROGRESS — aquatic glass theme and interaction revision
 Objective: Build a complete aimed peg-bounce run with escalating score targets and synergistic upgrades.
 Starting main: `9349530edb7eaf536ceabfed5e922ae5b65499a6` (README seed; fetched again 2026-11-07).
 Dependency base: starter PR #2 at `608c273d9f31022d2f161584c4c92188bb4405cd`; unmerged.
@@ -12,6 +12,17 @@ Reservation: [issue #3](https://github.com/Jayden-Amjed/Pop-a-Peg/issues/3).
 Implementation evidence: `e4953887985930b08514ebcee2c0d392570a861e`.
 
 ## Scope and ownership
+
+### Current interaction/theme revision
+
+Implement a blue/cyan glass and pearl interface, white peg numerals, a matching
+board/background, a no-scroll shop with later-run Supplies, coin-icon prices,
+explicit capped upgrades, tested select/deselect/swap behavior, persistent shot
+trigger statistics, perk cash-out, distinct item motion/audio, and themed synergies.
+Coordinator owns integration, feedback/audio, documentation, and Studio. Isolated
+`aero-ui`, `aero-models`, and `aero-rules` worktrees own UI/scene, model motions,
+and catalog/run contracts. Earlier check results below remain historical until
+the new implementation is verified.
 
 ### Reward and presentation revision
 
