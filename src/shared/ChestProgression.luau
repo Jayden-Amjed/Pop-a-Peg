@@ -92,13 +92,40 @@ local function requestValid(requestId)
     return type(requestId) == "string" and #requestId >= 1 and #requestId <= 96
 end
 
+local function replay(profile, requestId, kind, target)
+    for _, previous in profile.chestReceipts or {} do
+        if previous.requestId == requestId then
+            local previousTarget = if previous.kind == "research"
+                then previous.itemId
+                else previous.tier
+            if previous.kind ~= kind or previousTarget ~= target then
+                return false, "This request already belongs to a different action."
+            end
+            -- Re-acknowledge the original result; do not generate a new serial.
+            profile.lastOpened = table.clone(previous)
+            return true
+        end
+    end
+    return nil
+end
+
+local function remember(profile, result)
+    profile.chestReceipts = profile.chestReceipts or {}
+    table.insert(profile.chestReceipts, table.clone(result))
+    while #profile.chestReceipts > Profile.ReceiptLimit do
+        table.remove(profile.chestReceipts, 1)
+    end
+    profile.lastOpened = result
+end
+
 function Chests.open(profile, tier, requestId, seed)
     local info = tierInfo(tier)
     if not info or not requestValid(requestId) then
         return false, "Choose a chest to open."
     end
-    if profile.lastOpened and profile.lastOpened.requestId == requestId then
-        return true
+    local acknowledged, message = replay(profile, requestId, "chest", tier)
+    if acknowledged ~= nil then
+        return acknowledged, message
     end
     if (profile.chests[tier] or 0) < 1 then
         return false, "Earn this chest by completing runs."
@@ -119,7 +146,7 @@ function Chests.open(profile, tier, requestId, seed)
     profile.chests[tier] -= 1
     profile.chestSerial += 1
     result.serial = profile.chestSerial
-    profile.lastOpened = result
+    remember(profile, result)
     return true
 end
 
@@ -127,8 +154,9 @@ function Chests.research(profile, id, requestId)
     if not requestValid(requestId) or not table.find(Catalog.ItemIds, id) then
         return false, "Choose an equipment blueprint."
     end
-    if profile.lastOpened and profile.lastOpened.requestId == requestId then
-        return true
+    local acknowledged, message = replay(profile, requestId, "research", id)
+    if acknowledged ~= nil then
+        return acknowledged, message
     end
     if table.find(profile.itemUnlocks, id) then
         return false, "You already own that blueprint."
@@ -142,14 +170,14 @@ function Chests.research(profile, id, requestId)
     table.insert(profile.itemUnlocks, id)
     table.sort(profile.itemUnlocks)
     profile.chestSerial += 1
-    profile.lastOpened = {
+    remember(profile, {
         serial = profile.chestSerial,
         requestId = requestId,
         tier = tier,
         itemId = id,
         kind = "research",
         research = 0,
-    }
+    })
     return true
 end
 

@@ -14,6 +14,7 @@ local fallbackStarters = {
     "seed_bank",
 }
 local tiers = { "common", "uncommon", "rare", "legendary" }
+Profile.ReceiptLimit = 64
 
 local function record(value, limit)
     if type(value) ~= "number" or value ~= value or math.abs(value) == math.huge then
@@ -37,6 +38,37 @@ local function identifiers(raw)
     end
     table.sort(result)
     return result
+end
+
+local function receipt(source)
+    if
+        type(source) ~= "table"
+        or type(source.requestId) ~= "string"
+        or #source.requestId < 1
+        or #source.requestId > 96
+    then
+        return nil
+    end
+    if not table.find(tiers, source.tier) then
+        return nil
+    end
+    if source.kind ~= nil and source.kind ~= "chest" and source.kind ~= "research" then
+        return nil
+    end
+    local kind = source.kind == "research" and "research" or "chest"
+    local itemId = if table.find(Catalog.ItemIds, source.itemId) then source.itemId else nil
+    if kind == "research" and not itemId then
+        return nil
+    end
+    return {
+        serial = math.floor(record(source.serial, 1e12)),
+        requestId = source.requestId,
+        tier = source.tier,
+        itemId = itemId,
+        research = math.floor(record(source.research, 100)),
+        allCollected = source.allCollected == true,
+        kind = kind,
+    }
 end
 
 function Profile.clean(raw)
@@ -77,18 +109,29 @@ function Profile.clean(raw)
     for _, tier in tiers do
         chests[tier] = math.floor(record(type(raw.chests) == "table" and raw.chests[tier], 10000))
     end
-    local opened
-    if type(raw.lastOpened) == "table" and type(raw.lastOpened.requestId) == "string" then
-        local source = raw.lastOpened
-        opened = {
-            serial = math.floor(record(source.serial, 1e12)),
-            requestId = source.requestId:sub(1, 96),
-            tier = if table.find(tiers, source.tier) then source.tier else "common",
-            itemId = if table.find(Catalog.ItemIds, source.itemId) then source.itemId else nil,
-            research = math.floor(record(source.research, 100)),
-            allCollected = source.allCollected == true,
-            kind = source.kind == "research" and "research" or "chest",
-        }
+    local opened = receipt(raw.lastOpened)
+    local receipts, seen = {}, {}
+    if type(raw.chestReceipts) == "table" then
+        -- Prefer the newest stored occurrence, then restore oldest-to-newest order.
+        for index = #raw.chestReceipts, 1, -1 do
+            local entry = receipt(raw.chestReceipts[index])
+            if entry and not seen[entry.requestId] then
+                seen[entry.requestId] = entry
+                table.insert(receipts, 1, entry)
+                if #receipts == Profile.ReceiptLimit then
+                    break
+                end
+            end
+        end
+    elseif opened then
+        -- Migrate the previous v2 single-receipt format without losing retry safety.
+        table.insert(receipts, opened)
+        seen[opened.requestId] = opened
+    end
+    opened = if opened then seen[opened.requestId] else nil
+    local serial = math.floor(record(raw.chestSerial, 1e12))
+    for _, entry in receipts do
+        serial = math.max(serial, entry.serial)
     end
     return {
         version = 2,
@@ -101,8 +144,9 @@ function Profile.clean(raw)
         itemUnlocks = itemUnlocks,
         chests = chests,
         research = math.floor(record(raw.research, 100000)),
-        chestSerial = math.floor(record(raw.chestSerial, 1e12)),
-        lastOpened = opened,
+        chestSerial = serial,
+        chestReceipts = receipts,
+        lastOpened = if opened then table.clone(opened) else nil,
     }
 end
 

@@ -21,13 +21,28 @@ function Lease.acquire(previous, token, now)
     return result
 end
 
-function Lease.write(previous, profile, token, now, release)
+function Lease.write(previous, profile, token, now, release, writeId)
     local lock = type(previous) == "table" and previous._session
+    local receipt = type(previous) == "table" and previous._lastWrite
+    if
+        writeId
+        and type(receipt) == "table"
+        and receipt.token == token
+        and receipt.id == writeId
+        and (lock == nil or (type(lock) == "table" and lock.token == token))
+    then
+        -- The prior attempt committed but its response was lost. This also works
+        -- for release, whose successful first attempt removed the lease.
+        return previous
+    end
     if type(lock) ~= "table" or lock.token ~= token then
         return nil
     end
     local result = Profile.clean(profile)
     result._revision = math.max(0, math.floor(tonumber(previous._revision) or 0)) + 1
+    if writeId then
+        result._lastWrite = { token = token, id = writeId }
+    end
     if not release then
         result._session = { token = token, expiresAt = now + Lease.Lifetime }
     end

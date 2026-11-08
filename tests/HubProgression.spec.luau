@@ -88,6 +88,60 @@ return function()
         stored.chests.legendary == 1 and stored.lastOpened.requestId == "complete",
         "Cleaning preserves consumption receipt"
     )
+    assert(Chests.open(stored, "legendary", "later", 3))
+    local serialAfterB, researchAfterB = stored.chestSerial, stored.research
+    stored = Profile.clean(stored) -- Reconnect after request B.
+    assert(Chests.open(stored, "legendary", "complete", 4))
+    assert(
+        stored.chests.legendary == 0
+            and stored.chestSerial == serialAfterB
+            and stored.research == researchAfterB,
+        "A/B/reconnect/replayA cannot consume another chest"
+    )
+    assert(
+        stored.lastOpened.requestId == "complete" and stored.lastOpened.serial == 1,
+        "Replay acknowledges the original result without increasing serial"
+    )
+    assert(
+        not Chests.open(stored, "common", "complete", 5),
+        "Request ID cannot be rebound to another chest tier"
+    )
+    assert(
+        not Chests.research(stored, Catalog.ItemIds[1], "complete"),
+        "Request ID cannot be rebound to another operation"
+    )
+    stored = Profile.clean(stored)
+    assert(
+        #stored.chestReceipts == 2 and stored.chestSerial == serialAfterB,
+        "Receipt ledger survives sanitization and older acknowledgement"
+    )
+    local many = {}
+    for index = 1, 70 do
+        table.insert(many, {
+            serial = index,
+            requestId = "id" .. index,
+            tier = "common",
+            kind = "chest",
+            research = 1,
+        })
+    end
+    local bounded = Profile.clean({ version = 2, chestReceipts = many })
+    assert(
+        #bounded.chestReceipts == 64 and bounded.chestReceipts[1].requestId == "id7",
+        "Persistent retry history is bounded to newest64"
+    )
+    local invalidReceipts = Profile.clean({
+        chestReceipts = {
+            { requestId = string.rep("x", 97), tier = "common" },
+            { requestId = "a", tier = "fake" },
+            { requestId = "b", tier = "common", kind = "research", itemId = "fake" },
+        },
+    })
+    assert(
+        #invalidReceipts.chestReceipts == 0,
+        "Invalid receipts are rejected instead of truncating IDs"
+    )
+    stored.chests.legendary = 1
     assert(
         Chests.open(stored, "legendary", "complete", 2) and stored.chests.legendary == 1,
         "Reconnect retry cannot consume again"

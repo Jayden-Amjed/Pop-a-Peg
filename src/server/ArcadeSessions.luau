@@ -36,8 +36,6 @@ function ArcadeSessions:add(userId, name, profile)
         run = nil,
         runId = 0,
         playRemainder = 0,
-        progressionRequests = {},
-        progressionRequestOrder = {},
     }
     self.players[userId] = session
     self.stations[station] = userId
@@ -92,21 +90,11 @@ function ArcadeSessions:action(userId, kind, payload, seed)
         if type(payload.requestId) ~= "string" or #payload.requestId > 96 then
             return false, "Request a chest action again."
         end
-        if session.progressionRequests[payload.requestId] then
-            return true
-        end
         local accepted, message
         if kind == "openChest" then
             accepted, message = Chests.open(session.profile, payload.tier, payload.requestId, seed)
         else
             accepted, message = Chests.research(session.profile, payload.id, payload.requestId)
-        end
-        if accepted then
-            session.progressionRequests[payload.requestId] = true
-            table.insert(session.progressionRequestOrder, payload.requestId)
-            if #session.progressionRequestOrder > 128 then
-                session.progressionRequests[table.remove(session.progressionRequestOrder, 1)] = nil
-            end
         end
         return accepted, message
     end
@@ -205,13 +193,15 @@ function ArcadeSessions:snapshot(userId)
         snapshot.chestsEarned = table.clone(session.profile.chests)
         return snapshot
     end
+    local profile = self:capture(session)
+    profile.chestReceipts = nil -- The private retry ledger is not needed by the UI.
     return {
         sessionView = "hub",
         hub = {
             capacity = ArcadeSessions.Capacity,
             station = session.station,
             players = self:roster(),
-            profile = self:capture(session),
+            profile = profile,
             canResume = self:canResume(session),
             chests = Chests.snapshot(session.profile),
         },
