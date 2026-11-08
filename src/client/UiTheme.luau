@@ -95,6 +95,16 @@ function Theme.plate(parent, name, color, z)
     return Theme.decorate(Theme.frame(parent, name, color, z), color, z)
 end
 
+function Theme.tile(parent, name, color, z)
+    local object = Theme.plate(parent, name, color, z)
+    for _, child in object:GetDescendants() do
+        if child:IsA("UICorner") then
+            child.CornerRadius = UDim.new(0, 4)
+        end
+    end
+    return object
+end
+
 function Theme.button(parent, name, text, color, callback, z)
     z = z or 6
     local object = Theme.make("TextButton", {

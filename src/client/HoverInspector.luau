@@ -38,7 +38,7 @@ function Inspector.new(host)
     self.pairsTitle = Theme.label(panel, "Pairs", "PAIRS", 16, C.ink, 82)
     self.pairsTitle.Font = Enum.Font.SourceSansBold
     for index = 1, 3 do
-        local box = Theme.plate(panel, "Pair" .. index, C.muted, 82)
+        local box = Theme.tile(panel, "Pair" .. index, C.muted, 82)
         local status = Theme.label(box, "Ownership", "", 13, C.ink, 84)
         status.Font = Enum.Font.SourceSansBold
         status.TextXAlignment = Enum.TextXAlignment.Center

@@ -1319,7 +1319,7 @@ function Presentation:_buildShop(state)
         setRect(synergyTitle, 0, 0, positions.synergy.w, short and 14 or 20)
         local partners = {}
         for partnerIndex = 1, 3 do
-            local tile = plate(synergy, "Pair" .. partnerIndex, C.paper, 29)
+            local tile = Theme.tile(synergy, "Pair" .. partnerIndex, C.paper, 29)
             local status =
                 label(synergy, "Owned" .. partnerIndex, "", short and 10 or 13, C.paper, 31)
             status.Font = Enum.Font.SourceSansBold
