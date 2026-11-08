@@ -24,6 +24,7 @@ try {
     & "$PSScriptRoot/build.ps1"
     [xml]$place = Get-Content build/dev.rbxlx -Raw
     $mappings = @(
+        @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/HubGuide'; Class = 'ModuleScript'; Source = 'src/client/HubGuide.luau' },
         @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/HubAmbience'; Class = 'ModuleScript'; Source = 'src/client/HubAmbience.luau' },
         @{ Path = 'ServerScriptService/Server/ArcadeSessions'; Class = 'ModuleScript'; Source = 'src/server/ArcadeSessions.luau' },
         @{ Path = 'ServerScriptService/Server/HubWorld'; Class = 'ModuleScript'; Source = 'src/server/HubWorld.luau' },
