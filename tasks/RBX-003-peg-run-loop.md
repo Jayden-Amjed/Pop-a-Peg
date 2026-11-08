@@ -1,15 +1,15 @@
 # RBX-003 — Peg-bounce roguelike run loop
 
 Owner: Codex gameplay coordinator; module contributors integrated.
-Status: IN PROGRESS — UI/motion polish and authorized main integration
+Status: VERIFIED — authorized main integration pending final CI
 Objective: Build a complete aimed peg-bounce run with escalating score targets and synergistic upgrades.
 Starting main: `9349530edb7eaf536ceabfed5e922ae5b65499a6` (README seed; fetched again 2026-11-07).
-Dependency base: starter PR #2 at `608c273d9f31022d2f161584c4c92188bb4405cd`; unmerged.
+Dependency base: starter PR #2 merged at `18f2b17c2e3daf00ee2edd30f7b0db4d5b88e17c`.
 Branch: `task/RBX-003-peg-run-loop`
 Worktree: `C:\Users\Amjedd\Documents\ChatGPT\Pop a Peg\.worktrees\game`
-PR: [#4](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/4), targets the starter branch until PR #2 is integrated.
+PR: [#4](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/4), targets main.
 Reservation: [issue #3](https://github.com/Jayden-Amjed/Pop-a-Peg/issues/3).
-Implementation evidence: `b1cf8886a2b5c7f79e3147984ff140cb55900fa1`.
+Implementation evidence: `c1f524c321d7ebdeb8c6d9f9f2fbb2c21c264037`.
 
 ## Scope and ownership
 
@@ -72,6 +72,48 @@ images. Public Roblox audio IDs and access requirements are in [ASSETS](../docs/
 - [x] Review scope, evidence, and next task remain discoverable.
 
 ## Checks
+
+### Shop, motion, and feedback polish
+
+Source: `c1f524c321d7ebdeb8c6d9f9f2fbb2c21c264037`.
+Main reconciliation: `644ba6327ce3a6dc84a2081883fa23e874e1a9be`; no source differences.
+
+- PASS pinned check.ps1: formatting, Selene 0 errors/warnings, eight contract suites,
+  28 progression cases, build, 15 exact source mappings, documentation links/fields.
+- PASS all eight suites inside Studio with production modules; feedback regression
+  covers guarded wallet/receipt arrivals, score/coin/restock pulses, perk cues, and
+  removal of the reserve-to-ball launch flight.
+- PASS all six shop inspections at 390x844, 844x390, 1046x524, 1280x720,
+  1920x1080: text fits, buttons stay inside, no scrolling, centered number then coin.
+  Five HUD layouts and additional 1280x850/900 detail cases pass with all eight perks.
+- PASS actual shop/rack selection clicks retain the same 12 model previews with
+  zero additions/removals. Actual seven-slot Seed Bank L1 purchase charges five
+  coins (33 to 28), upgrades to L2, and shows the capped state afterward.
+- PASS all eight owned perks plus duplicate First Spark display; actual perk click
+  opens separate PERK details without moving/selecting equipment. Activation changes
+  the status to ACTIVE. Score/coin/restock scale pulses rise and return exactly to 1.
+- PASS 39 model IDs follow bounded figure-eight poses, stop ambient movement for
+  triggers, and resume after retriggers; Reduced Motion/static opt-out checked.
+  All 78 level variants retain exact static rest transforms after activation.
+- PASS cloud/camera probe through mouse sweeps: 24 opaque, shadowless clouds;
+  zero transform changes across 147 rendered frames. Nonoverlapping sky strips and
+  shadowless aim markers remove the observed render-instability sources.
+- PASS all 20 production sources restored exactly; normal server/client startup.
+  An ordinary-action driver ran 134 seconds over two runs, observed four shops,
+  two perk choices and highest round 15, with no action rejection or project error.
+  It attempted 44 launches, seven new purchases and one upgrade; these driver counters
+  are attempted actions, not separate per-action acknowledgment assertions.
+  It never forced shot endings or edited authoritative state. Its immediate restart
+  bypasses the terminal UI gate, so it is not terminal-menu timing evidence.
+- PASS independent source review: shop caching/current callbacks, perk ordering,
+  pulse guards, idle/activation handoff, and compact HUD capture; no material finding.
+
+QA target: isolated peg-aero-qa.rbxlx, stopped with normal sources; Rojo disconnected.
+Generated playable: build/peg-polished.rbxlx. User-owned play windows were untouched.
+MCP captures omit BillboardGui text; the user previously confirmed actual peg numerals.
+Unrelated 203785492 asset-type warning remains. Physical touch, two clients in one
+server, published persistence, live plugin propagation, and publication remain NOT RUN.
+This is bounded functional/play smoke coverage, not a human balance or sound-mix verdict.
 
 ### Aquatic presentation and hybrid-build revision
 
@@ -225,12 +267,11 @@ Publishing: NOT PUBLISHED; no production target selected.
 
 ## Handoff
 
-Owner: coordinator; revised implementation complete and ready for review.
-Source: exact implementation SHA above; subsequent evidence-only commits may follow.
-Status: version 2 proposal depends on the starter's unaccepted version 1. Main remains
-README-only with no accepted ledger. Main's content and SHA were reconciled before push.
-Blockers: no implementation blocker; PR #2 must be accepted before this dependent
-PR can target accepted main. Neither PR is merged.
-Next action: human playtest `build/peg-aero.rbxlx` and review PR #4. Before a release,
-select a development experience for multi-client/mobile/cloud-save verification;
-record production targeting and publication as a separate authorized task.
+Owner: coordinator; final polish implemented and verified.
+Source: c1f524c321d7ebdeb8c6d9f9f2fbb2c21c264037; later commits reconcile main/docs only.
+Status: version 2 proposal over accepted starter version 1. Main at 18f2b17c2e3daf00ee2edd30f7b0db4d5b88e17c
+was fetched and merged cleanly into the gameplay branch. PR #4 targets main.
+Blockers: none. The user authorized merge after this playtest.
+Next action: verify final CI, merge PR #4, record observed receipt, and close reservation #3.
+Before publication, select a development experience for multi-client/mobile/cloud-save
+verification. Publication is a separate task.

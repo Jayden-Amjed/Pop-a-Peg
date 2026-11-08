@@ -1,46 +1,44 @@
 # Current project state
 
-State Version: 2 (proposal dependent on starter version 1; neither accepted on main)
+State Version: 2 (gameplay proposal over accepted starter version 1)
 Reviewed: 2026-11-07, America/Los_Angeles
 Objective: Independent peg-bounce runs with clear rewards, varied hybrid builds, and an aquatic glass presentation.
 
-Accepted source: `9349530edb7eaf536ceabfed5e922ae5b65499a6` (README-only main seed; fetched again).
-Dependency: starter [PR #2](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/2), unmerged,
-at `608c273d9f31022d2f161584c4c92188bb4405cd`. Main has no accepted status ledger.
-Previous implementation: `b1cf8886a2b5c7f79e3147984ff140cb55900fa1` in dependent
-[PR #4](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/4).
-
-New polish revision: IN PROGRESS. Larger grouped shop/rack controls, stable model
-selection, white accents, perk tracking, figure-eight idle motion, counter pulses,
-and scenery stability are being implemented. Evidence below is the previous build.
-The user authorized main integration after the new version is playtested.
+Accepted source: `18f2b17c2e3daf00ee2edd30f7b0db4d5b88e17c` (starter PR #2 merged).
+Implementation / Studio-tested source: `c1f524c321d7ebdeb8c6d9f9f2fbb2c21c264037`.
+Integration reconciles main at `644ba6327ce3a6dc84a2081883fa23e874e1a9be` without source changes.
+Gameplay [PR #4](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/4) now targets main.
+The user authorized this integration after playtesting; final CI and merge are pending.
 
 | Capability | Verified state |
 | --- | --- |
 | Board, quotas, restocks, run/shop/perk/event/reset rules | PASS standalone and Studio; 28 progression cases |
 | Hybrid effects and themed synergies | PASS ordered operations, costs, fish-pair scoring, bounded relay chains |
-| Full rack and capped upgrades | PASS L1 Seed Bank upgrades for 5 coins with 7 occupied slots; L2 displays MAX LEVEL |
-| Fixed shop and rack interactions | PASS 30 offer/text/bounds cases across five sizes; click/select/clear/swap, pending acknowledgments |
-| Shot history and perk cash-out | PASS counts held through shop until Next Round; decline pays exactly 5 coins |
-| Item geometry and animation | PASS 39 models at both levels; all 78 return to exact rest transforms after retriggers |
-| Item feedback | PASS target beams, separate growth/cost labels, score arrival/bounce, 33 bounded electronic motifs and mute |
-| Repository checks | PASS pinned format/lint/tests/build/source mapping/docs |
-| Production Studio sources | PASS all 20 restored exactly; ordinary server/client play and scoring checked |
-| GitHub CI | PASS push and PR checks at implementation SHA |
+| Full rack and capped upgrades | PASS actual L1 Seed Bank upgrade with seven occupied slots, 33 to 28 coins; L2 remains MAX LEVEL |
+| Grouped shop | PASS four equipment plus at most two Supplies, separate white enclosures, larger centered price/coin groups; 30 inspection cases across five sizes |
+| Stable shop selection | PASS actual clicks preserve all 12 preview/model instances, with zero model additions/removals |
+| Item/perk interaction | PASS stronger selection, separate perk inspection, all eight perks plus duplicate counts, short-desktop detail bounds |
+| Idle and activation motion | PASS 39 figure-eight models, paused activation and smooth resume; 78 static level variants return exactly to rest |
+| Counter feedback | PASS score/coins/restocks bounce and reset, guarded reward arrivals, perk cue, no reserve-to-ball launch flight |
+| Scenery stability | PASS all 24 clouds opaque/shadowless; 147 mouse-sweep frames with zero camera/cloud transform changes |
+| Repository checks | PASS eight suites, pinned format/lint, build, 15 exact mappings, documentation checks |
+| Production Studio play | PASS all 20 normal sources restored exactly; 134-second ordinary-action run, four shops, two perk choices, highest round 15, no project errors |
 
-Studio-tested source: `b1cf8886a2b5c7f79e3147984ff140cb55900fa1`.
-Visual tests include deterministic fixtures; ordinary production startup/play was
-checked separately. See [RBX-003](tasks/RBX-003-peg-run-loop.md) for evidence and limits.
+Studio-tested source: `c1f524c321d7ebdeb8c6d9f9f2fbb2c21c264037`.
+Visual checks use controlled fixtures; production play was checked separately.
+Detailed evidence and limits: [RBX-003](tasks/RBX-003-peg-run-loop.md).
 Published: NOT PUBLISHED; no production experience/place selected.
 
 Active task: RBX-003, owner Codex gameplay coordinator, branch `task/RBX-003-peg-run-loop`.
-Current playable file: generated `build/peg-aero.rbxlx` in the game worktree.
-Studio: isolated `peg-aero-qa.rbxlx` stopped in Edit; production sources restored; Rojo disconnected.
+Current playable file: generated `build/peg-polished.rbxlx` in the game worktree.
+Studio: isolated `peg-aero-qa.rbxlx` stopped in Edit; all normal sources restored; Rojo disconnected.
 The user's separate existing place/play windows were not modified.
-Blockers / dependencies: no implementation blocker; PR #2 must precede PR #4 integration.
-Unrun: physical mobile/touch, two clients in one server, cloud persistence, live plugin sync, merge/publish.
-Limits: only the upgrade shop guarantees no scrolling; other compact choice menus may scroll.
-Human playtesting is still needed to judge balance, variety, visual preference, and the sound mix.
+Blockers / dependencies: none; starter PR #2 is accepted.
+Unrun: physical mobile/touch, two clients in one server, cloud persistence, live plugin sync, publication.
+Limits: other compact choice menus may scroll. Automated aiming is not human balance testing.
+The play driver counts attempted actions and restarts directly after gameover;
+terminal menu timing is covered by controlled feedback tests, not that driver.
+Human playtesting remains useful for balance, visual preference, and the sound mix.
 Observed limitation: unrelated Studio asset-type warning for 203785492; no project source reference.
-Next action: complete polish, verify in Studio, then merge starter PR #2 and gameplay PR #4 into main.
-Repository administration: main remains unprotected; default branch remains the starter branch.
+Next action: verify final GitHub CI, merge PR #4, and record the observed merge receipt.
+Repository administration: main remains unprotected; temporary default branch remains the starter branch.

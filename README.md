@@ -27,7 +27,7 @@ account is needed for Studio; no experience ID is needed for a local development
 place. In PowerShell, from a fresh clone of this repository:
 
 ```powershell
-git clone https://github.com/Jayden-Amjed/Pop-a-Peg.git
+git clone --branch main https://github.com/Jayden-Amjed/Pop-a-Peg.git
 Set-Location .\Pop-a-Peg
 .\scripts\setup.ps1
 .\scripts\check.ps1
