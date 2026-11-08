@@ -9,17 +9,14 @@ function Layout.compute(width, height, supplies)
     supplies = math.clamp(supplies, 0, 2)
     local portrait, short = width < 650, height < 300
     local gap, margin = short and 6 or 8, short and 8 or 10
-    local footerH, titleH = short and 32 or 44, short and 0 or 34
-    local detailH = short and 54 or (portrait and 152 or 88)
+    local footerH, titleH = short and 36 or 52, short and 0 or 40
     local footerY = height - margin - footerH
-    local detailY = footerY - gap - detailH
     local bodyTop = short and 0 or titleH + gap
-    local bodyBottom = detailY - gap
+    local bodyBottom = footerY - gap
     local bodyH, innerW = bodyBottom - bodyTop, width - margin * 2
     local headerH, pad, groupGap = short and 20 or 24, short and 4 or 6, short and 10 or 12
     local result = {
         title = rect(margin, 0, innerW, titleH),
-        detail = rect(margin, detailY, innerW, detailH),
         footer = rect(margin, footerY, innerW, footerH),
         cards = {},
         sections = {},
@@ -80,13 +77,16 @@ function Layout.compute(width, height, supplies)
 end
 
 function Layout.card(width, height, consumable)
-    local short = height < 120
+    local short = height < 210
     local purchaseH = short and 36 or (height < 200 and 44 or 56)
     local holdH = short and 18 or 25
-    local footH = consumable and (short and 16 or 22) or holdH
+    local footH = consumable and 0 or holdH
     local purchaseY = height - purchaseH - footH - (short and 6 or 12)
+    local synergyH = short and 52 or 104
+    local synergyY = purchaseY - synergyH - 5
     return {
-        inspect = rect(3, 2, width - 6, purchaseY - 5),
+        inspect = rect(3, 2, width - 6, synergyY - 5),
+        synergy = rect(5, synergyY, width - 10, synergyH),
         purchase = rect(5, purchaseY, width - 10, purchaseH),
         hold = rect(5, height - footH - 2, width - 10, footH),
         short = short,

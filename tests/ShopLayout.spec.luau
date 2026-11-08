@@ -35,7 +35,8 @@ return function()
                 (layout.groups.supplies ~= nil) == (supplies > 0),
                 "Supply enclosure must match actual offers"
             )
-            local regions = { layout.title, layout.detail, layout.footer }
+            assert(layout.detail == nil, "Hover stats must not reserve a bottom detail bar")
+            local regions = { layout.title, layout.footer }
             for _, group in layout.groups do
                 table.insert(regions, group)
             end
@@ -48,10 +49,7 @@ return function()
                     "Shop region escaped modal bounds"
                 )
                 for j = i + 1, #regions do
-                    assert(
-                        not overlap(region, regions[j]),
-                        "Shop groups, detail, or controls overlap"
-                    )
+                    assert(not overlap(region, regions[j]), "Shop groups or controls overlap")
                 end
             end
             for index, card in layout.cards do
@@ -70,7 +68,8 @@ return function()
                     controls.purchase.h >= 36 and controls.inspect.h >= 27,
                     "Purchase or model inspection area became too small"
                 )
-                local parts = { controls.inspect, controls.purchase, controls.hold }
+                local parts =
+                    { controls.inspect, controls.synergy, controls.purchase, controls.hold }
                 for a, item in parts do
                     assert(
                         inside(item, { x = 0, y = 0, w = card.w, h = card.h }),
@@ -84,6 +83,6 @@ return function()
         end
     end
     print(
-        "PASS shop layout: separate enclosures, 4+2 visible offers, larger purchase controls and no overlap across five sizes"
+        "PASS shop layout: 4+2 offers, modeled synergy rows, no detail bar, controls within separate enclosures"
     )
 end
