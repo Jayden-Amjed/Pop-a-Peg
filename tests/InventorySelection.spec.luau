@@ -31,6 +31,50 @@ return function()
         Selection.reconcile(3, items, 4, "aim", false) == nil,
         "Empty selected slot survived reconciliation"
     )
+    local before = {
+        phase = "shop",
+        sequence = 8,
+        inventory = { { id = "a", level = 1 }, { id = "b", level = 2 } },
+    }
+    local pending = Selection.beginMove({ from = 1, to = 2 }, before, 10)
+    assert(
+        Selection.reconcileMove(pending, before, 10.1) == pending,
+        "Old snapshot prematurely acknowledged a swap"
+    )
+    before.notice = "Earlier unrelated rejection"
+    assert(
+        Selection.reconcileMove(pending, before, 10.1) == pending,
+        "Stale notice cleared a newer pending swap"
+    )
+    before.notice = nil
+    local heartbeat = { phase = "shop", sequence = 9, inventory = before.inventory }
+    assert(
+        Selection.reconcileMove(pending, heartbeat, 10.2) == pending,
+        "Heartbeat without moved items prematurely acknowledged a swap"
+    )
+    local moved = {
+        phase = "shop",
+        sequence = 10,
+        inventory = { { id = "b", level = 2 }, { id = "a", level = 1 } },
+    }
+    assert(
+        Selection.reconcileMove(pending, moved, 10.3) == nil,
+        "Matching authoritative swap did not unlock the rack"
+    )
+    assert(
+        Selection.reconcileMove(pending, heartbeat, 13) == nil,
+        "Dropped action left rack locked indefinitely"
+    )
+    heartbeat.notice = "Move rejected"
+    assert(
+        Selection.reconcileMove(pending, heartbeat, 10.4) == nil,
+        "Rejected move left rack locked"
+    )
+    heartbeat.notice, heartbeat.phase = nil, "aim"
+    assert(
+        Selection.reconcileMove(pending, heartbeat, 10.4) == nil,
+        "Phase transition left rack locked"
+    )
     print(
         "PASS inventory selection: select, deselect, cleared swap, empty target, invalid phase and busy guards"
     )

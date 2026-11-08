@@ -60,7 +60,12 @@ local function part(parent, name, size, position, color, material, shape)
         BottomSurface = Enum.SurfaceType.Smooth,
     }, parent)
     if shape then
-        result.Shape = shape
+        if shape == Enum.PartType.Ball and (size.X ~= size.Y or size.Y ~= size.Z) then
+            result.Size = Vector3.one
+            make("SpecialMesh", { MeshType = Enum.MeshType.Sphere, Scale = size }, result)
+        else
+            result.Shape = shape
+        end
     end
     return result
 end
@@ -144,14 +149,15 @@ function Presentation:_buildBoard()
         Vector3.new(0, 40, -35),
         Color3.fromRGB(92, 193, 241)
     )
-    for index = 1, 10 do
-        local y = -35 + index * 8
+    for index = 1, 40 do
+        local y = -35 + index * 2
         part(
             self.model,
             "Atmosphere",
-            Vector3.new(420, 8.2, 0.2),
+            Vector3.new(420, 2.05, 0.2),
             Vector3.new(0, y, -34),
-            Color3.fromRGB(197, 244, 255):Lerp(Color3.fromRGB(66, 169, 229), index / 14)
+            Color3.fromRGB(197, 244, 255):Lerp(Color3.fromRGB(66, 169, 229), index / 56),
+            Enum.Material.Neon
         )
     end
     part(
@@ -228,18 +234,24 @@ function Presentation:_buildBoard()
             )
         end
     end
+    for _, scenery in self.model:GetDescendants() do
+        if scenery:IsA("BasePart") then
+            scenery.CastShadow = false
+        end
+    end
     part(self.model, "PearlShell", Vector3.new(21.5, 29, 1.3), Vector3.new(0, 10.9, -1), C.paper)
     part(self.model, "Playfield", Vector3.new(20.1, 28.8, 0.5), Vector3.new(0, 10.9, -0.2), C.board)
     for _, side in { -1, 1 } do
         local rail = part(
             self.model,
             "GlassRail",
-            Vector3.new(0.9, 29, 0.9),
+            Vector3.new(29, 0.9, 0.9),
             Vector3.new(side * 10.45, 10.9, 0.2),
             C.edge,
             Enum.Material.Glass,
             Enum.PartType.Cylinder
         )
+        rail.CFrame = CFrame.new(side * 10.45, 10.9, 0.2) * CFrame.Angles(0, 0, math.pi / 2)
         rail.Transparency = 0.12
         rail.Reflectance = 0.12
         for _, y in { -3.55, 25.35 } do
@@ -469,7 +481,7 @@ function Presentation:_buildHud()
         "RackInstructions",
         "Click item: select / clear • Other slot: swap",
         18,
-        C.ink,
+        C.paper,
         31
     )
     self.swapHelp.TextXAlignment = Enum.TextXAlignment.Center
@@ -480,6 +492,10 @@ function Presentation:_buildHud()
         local cell = button(self.inventory, "Slot" .. index, "", C.panel, function()
             local state = self.snapshot
             if not state or self.busy then
+                return
+            end
+            self.pendingMove = Selection.reconcileMove(self.pendingMove, state, os.clock())
+            if self.pendingMove then
                 return
             end
             if index > state.slots then
@@ -500,6 +516,7 @@ function Presentation:_buildHud()
                 self.selectedSlot = selected
                 self.selectedOffer = nil
                 if move then
+                    self.pendingMove = Selection.beginMove(move, state, os.clock())
                     self:_send("move", move)
                 end
             end
@@ -1205,7 +1222,7 @@ function Presentation:_buildShop(state)
             }, card)
             setRect(inspect, 3, 1, rect.w - 6, bandH)
             inspect.Activated:Connect(function()
-                self.selectedOffer = self.selectedOffer == index and nil or index
+                self.selectedOffer = if self.selectedOffer == index then nil else index
                 self.selectedSlot = nil
                 self.modalKey = nil
                 self:_updateInventory()
@@ -1233,7 +1250,7 @@ function Presentation:_buildShop(state)
                 setRect(trigger, 8, modelH + 51, rect.w - 22, bandH - modelH - 55)
             end
             local intent = Catalog.purchaseState(state.inventory, state.slots, offer, state.coins)
-            local verbs = { purchase = "Purchase", upgrade = "Upgrade", use = "Use" }
+            local verbs = { purchase = "", upgrade = "Upgrade ", use = "Use " }
             local verb = verbs[intent.action]
             local status = ({
                 maxLevel = "MAX LEVEL",
@@ -1251,7 +1268,7 @@ function Presentation:_buildShop(state)
                 local price = label(
                     buy,
                     "ActionPrice",
-                    verb .. " " .. tostring(intent.price),
+                    verb .. tostring(intent.price),
                     short and 17 or 21,
                     C.paper,
                     31
@@ -1780,11 +1797,13 @@ function Presentation:update(snapshot)
         return
     end
     local previous = self.snapshot
+    self.pendingMove = Selection.reconcileMove(self.pendingMove, snapshot, os.clock())
     if previous and (snapshot.round < previous.round or snapshot.seed ~= previous.seed) then
         self.selectedSlot = nil
         self.counterOverrides = {}
         self.statsCleared = false
         self.selectedOffer = nil
+        self.pendingMove = nil
     end
     self.snapshot = snapshot
     if snapshot.phase == "flight" then

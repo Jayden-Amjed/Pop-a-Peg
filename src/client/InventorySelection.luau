@@ -34,4 +34,42 @@ function Selection.click(selected, index, inventory, slots, phase, busy)
     return occupied(inventory, index) and index or nil, nil
 end
 
+local function itemKey(item)
+    return (item and item.id or "") .. ":" .. tostring(item and item.level or 0)
+end
+
+function Selection.beginMove(move, snapshot, now)
+    return {
+        from = move.from,
+        to = move.to,
+        expectedFrom = itemKey(snapshot.inventory[move.to]),
+        expectedTo = itemKey(snapshot.inventory[move.from]),
+        phase = snapshot.phase,
+        sequence = snapshot.sequence,
+        expiresAt = now + 3,
+    }
+end
+
+function Selection.reconcileMove(pending, snapshot, now)
+    if not pending then
+        return nil
+    end
+    if now >= pending.expiresAt or snapshot.phase ~= pending.phase then
+        return nil
+    end
+    if pending.sequence and snapshot.sequence and snapshot.sequence <= pending.sequence then
+        return pending
+    end
+    if snapshot.notice then
+        return nil
+    end
+    if
+        itemKey(snapshot.inventory[pending.from]) == pending.expectedFrom
+        and itemKey(snapshot.inventory[pending.to]) == pending.expectedTo
+    then
+        return nil
+    end
+    return pending
+end
+
 return Selection
