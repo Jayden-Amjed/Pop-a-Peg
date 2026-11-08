@@ -1830,14 +1830,25 @@ function Presentation:_layoutSettlement()
     if not camera or not self.boardArt then
         return
     end
+    local size = self.viewport or camera.ViewportSize
+    if size.X < 32 or size.Y < 48 then
+        return
+    end
+    if self.cameraCFrame then
+        camera.CameraType = Enum.CameraType.Scriptable
+        camera.FieldOfView = 35
+        camera.CFrame = self.cameraCFrame
+    end
     local first = camera:WorldToViewportPoint(self.boardArt.screenCorners.topLeft)
     local last = camera:WorldToViewportPoint(self.boardArt.screenCorners.bottomRight)
     local width, height = math.abs(last.X - first.X), math.abs(last.Y - first.Y)
     local compact = width < 118
-    local w, h = math.max(compact and 138 or 0, width), math.max(compact and 42 or 0, height)
-    local size = self.viewport or camera.ViewportSize
+    local safeTop = math.clamp(self.safeTop or 8, 8, math.max(8, size.Y - 40))
+    local w = math.clamp(math.max(compact and 138 or 0, width), 16, math.max(16, size.X - 16))
+    local h =
+        math.clamp(math.max(compact and 42 or 0, height), 20, math.max(20, size.Y - safeTop - 8))
     local x = math.clamp(last.X - w, 8, math.max(8, size.X - w - 8))
-    local y = math.clamp(first.Y, self.safeTop or 8, math.max(8, size.Y - h - 8))
+    local y = math.clamp(first.Y, safeTop, math.max(safeTop, size.Y - h - 8))
     setRect(self.settlement, x, y, w, h)
     self.settlement.BackgroundTransparency = compact and 0 or 1
     self.settlementOutline.Transparency = compact and 0 or 1
