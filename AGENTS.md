@@ -4,6 +4,10 @@ Read in order: **this file → [README / purpose](README.md) →
 [system overview](docs/SYSTEM_OVERVIEW.md) → [current status](PROJECT_STATUS.md) →
 assigned task**. Then read only relevant code and supporting material.
 
+For model or art work, follow [MODEL_STYLE_GUIDE](docs/MODEL_STYLE_GUIDE.md) and
+the relevant [modeling workflow](docs/MODELING_WORKFLOW.md). Verify actual rendered
+geometry and motion; generated output or a successful audit alone is not visual acceptance.
+
 Human instructions determine authorization and scope. Resolve disagreements by
 preferring actual implementation and reproducible behavior, then executed checks,
 current status, task evidence, overview, other documentation, and chat/memory.

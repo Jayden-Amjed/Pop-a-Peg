@@ -111,7 +111,7 @@ workshop and paged leaderboards. `OpenChests` and `OpenLeaderboards` world promp
 open the same views as their navigation controls. Layout regions come from
 `HubProgressionLayout`; model previews use the common animation/cleanup handles.
 The client sends a stable UUID for each request and reuses it for a retry. The
-server owns the chest count, result, research balance and receipt serial; animations
+server owns the chest count, result, restock wallet, research balance and receipt serial; animations
 cannot grant an item. `lastOpened.requestId` acknowledges the matching request.
 
 ## Hub rewards and ranking data
@@ -132,7 +132,17 @@ one additional chest: Common below 15, Uncommon at 15–39, Rare at 40–99, Leg
 at 100 or more. Per-run markers prevent repeat capture, hub visits or resumes from
 duplicating rewards. New runs reset those markers and receive a new run identity.
 
-`openChest` and `researchItem` are hub-only authoritative actions. A chest chooses
+`buyChest`, `openChest` and `researchItem` are hub-only authoritative actions.
+Extra restocks beyond the first per settled shot credit a persistent wallet;
+purchase buys one unopened chest of the chosen tier. The hub shows the wallet,
+all tier prices and separate Buy/Open buttons. Normal board rewards remain intact.
+`Profile.restockCredits` defaults to zero for older profiles and is bounded at
+1e12. `rewardedRestockReceipt` is a per-run settlement watermark; capture runs
+before resetting it on a new run. Snapshots/animations cannot award credits.
+Chest prices are 100/250/500/1000 from Common to Legendary and remain server-owned.
+The chest cap is checked before charging. Purchase receipts join the existing
+persisted 64-request ledger; retrying a purchased-and-opened chest cannot refill it.
+A chest chooses
 an unowned base item of its exact tier. Exhausted tiers instead give research
 1/3/6/10; targeted unlocks cost 6/12/24/40 from Common to Legendary. The profile's
 newest 64 receipts bind each request ID to its operation and tier/item. A retry
@@ -338,8 +348,10 @@ can also clear its display when the player clicks the shop's Next Round button.
 The receipt records the spent shot board, restored baseline, refill/merge
 transitions, final board, and before/after reward balances. `Run` processes at most
 32 restocks per settlement slice, with a stage-dependent shot cap of 6–12. Receipts keep
-every cycle through eight restocks; larger settlements retain the first three and
-last two, with cycle indices preserving the omitted count.
+every cycle through five restocks; larger settlements retain the first three and
+last two, with cycle indices preserving the omitted count. The client planner also
+bounds older/uncompressed receipts to five complete cycles, credits gaps exactly
+once and uses recorded before/final board values for batch transitions.
 
 `RewardTimeline` turns that receipt into a bounded visual sequence. `Feedback`
 waits for final score/restock flights, restores the board, animates falling refills
@@ -376,7 +388,7 @@ alone establishes physical touch-device behavior.
 eight perk, three Supply and 14 utility/reward designs. Perks do not reuse equipment
 geometry. Four chest builders have tier-specific bodies, lids and hinge activation
 profiles; four dedicated event emblems replace equipment aliases. Equipment
-gains visible level accents across five tiers, while evolved models render at their
+retains authored upgrade details and UI level badges, while evolved models render at their
 fixed maximum tier. Idle motion follows a bounded 4.2-second figure-eight path with gentle tilt. Activations
 freeze the current idle pose, apply the item's moving-group animation relative to
 that pose, then resume idle velocity smoothly after the last queued activation.
@@ -385,16 +397,14 @@ previews as well as equipment. It has no effect on run mechanics. Static/reduced
 disable idle movement while retaining activation feedback.
 
 Only perk models retain the generic white display circle; equipment, currency and
-Supply previews omit it. `ItemModels` can render an outlined preview using a black
-clone in a sibling ViewportFrame behind the colored model. A slightly narrower
-camera field of view expands that mask, and animation updates synchronize its
-poses and mesh sizes. This avoids separate lines between each model part, but is
-a projected silhouette approximation: border width varies with the shape and
-transparent geometry can soften it. It adds one geometry/render layer per outlined
-preview. The foreground viewport stays at ZIndex 2 or higher and its mask stays one
-layer below, preserving the colored model at low GUI layers. Small recipe tiles opt
-out, and hidden/disposed previews hide or destroy their associated masks. No uploaded
-outline texture or post-processing asset is required.
+Supply previews omit it. `ItemModels` renders one geometry pass; enlarged black
+clone masks and generic bounding-box upgrade rails/nodes were removed after native
+comparisons reproduced ghost edges and floating trim. The legacy outline option
+is harmlessly ignored. A weak ownership table retires an existing viewport handle
+before replacement, and stale disposal cannot clear a newer camera. Preserve
+authored moving groups and model identity when applying the
+[model style guide](MODEL_STYLE_GUIDE.md). The [Blender workflow](MODELING_WORKFLOW.md)
+is a proposed pilot path, not an implemented mesh loader or completed conversion.
 
 Score, coin, and restock arrivals pulse their counters. Launching spends a ball
 directly in the reserve display; only restored balls use reward flights. Perk

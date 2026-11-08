@@ -107,7 +107,26 @@ run began; opening a chest while a run is paused expands the pool for the next
 new run, without changing the parked run's offers. Old equipment discoveries and
 earned workshop/growth/relay access migrate into ownership.
 
-Earned chests open at the hub pavilion or through **CHESTS**. Each opening unlocks
+Extra restocks beyond the first earned by each completed shot are saved as a
+separate **Restocks** currency. The hub wallet shows the balance and opens the
+chest market. Choose a tier, buy a chest to store it, then open it when ready.
+This currency carries across runs; spending it does not remove board refills,
+coins, or restored balls. The market is available only in the hub.
+
+| Chest tier | Saved restocks |
+| --- | ---: |
+| Common | 100 |
+| Uncommon | 250 |
+| Rare | 500 |
+| Legendary | 1,000 |
+
+These are optional longer-term savings targets. First-hit aiming bots earned no
+extras in 12 sampled runs; a future-best-shot upper-bound cohort earned 0–540 in
+12 runs. Those simulations do not establish human earning pace. The free chest
+rewards below remain the early discovery path; see the reproducible balance
+evidence in [RBX-017](tasks/RBX-017-restock-market.md).
+
+Earned and purchased chests open at the hub pavilion or through **CHESTS**. Each opening unlocks
 an unowned item of the chest's exact tier while any remain. The reward schedule is:
 
 | Earned condition | Chest |
@@ -143,6 +162,9 @@ and so on. Shots can earn up to **6 / 8 / 10 / 12 restocks** across the four cam
 levels; the meter shows the next cost and current cap. After the shot ends, each restock awards one
 coin and restores one ball, up to five. The board returns to its pre-shot values,
 then each restock fills empty slots with falling pegs and merges equal pairs.
+Playback shows at most five full refill/merge sequences. For larger rewards,
+the first three and final two play, with a short batch transition between them;
+every earned restock still applies to the board and rewards.
 The reward sequence advances automatically into the next shot or upgrade choice;
 there is no result confirmation button. A failed shot resets the score and board
 for another attempt while balls remain.
@@ -237,9 +259,13 @@ Equipment, perks, currencies and rewards appear as **78 distinct source-generate
 3D models**: 40 base equipment, 13 evolutions, eight perks, three Supplies and 14
 utility/reward models. Perks have their own geometry; chest tiers have distinct
 hinged lids and opening motions, and event prompts use dedicated emblems instead
-of borrowed equipment. Equipment gains visible accents through five levels. Perks
+of borrowed equipment. Authored upgrade details and UI level badges identify levels. Perks
 keep their white display circles; equipment, coins and Supplies stand without
-those circles. Primary previews use a black silhouette layer. Idle models cycle
+those circles. Previews render each model once; enlarged black clone layers and
+bounds-based floating upgrade rails/nodes were removed. Remounting a preview
+disposes its previous model and camera. Follow the [model style guide](docs/MODEL_STYLE_GUIDE.md)
+and [Blender pilot workflow](docs/MODELING_WORKFLOW.md) for future modeling.
+Idle models cycle
 through a gentle figure eight every 4.2 seconds across shops, perk choices and hub
 previews, pause for their activation, then
 smoothly resume after the last queued activation. Dense item bursts, swirling particles,

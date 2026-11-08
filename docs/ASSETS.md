@@ -44,14 +44,15 @@ noncolliding preview parts, bounded geometry, required moving groups and restora
 after activation; exact observed audit results are recorded with task evidence.
 
 `ItemModels` removes the generic white display circle from equipment, currencies
-and Supplies while retaining it on perks. Primary previews can place a black
-geometry clone behind the colored model in a sibling ViewportFrame, producing a
-camera-relative silhouette without external textures. The layer follows idle and
-activation poses. It is an approximate outline rather than a per-pixel contour;
-width and transparency vary with the projected shape, and miniature recipe
-previews omit the extra layer. It adds rendered geometry and is cleaned up with
-the owning preview. The colored foreground uses ZIndex 2 or higher, with its mask
-one layer behind. The 4.2-second figure-eight cycle is defined in `ItemMotion` and
+and Supplies while retaining it on perks. Previews now render a single model.
+The enlarged black clone layer was removed because it showed a displaced copy
+and dark interior shapes through glass. Generic bounds-derived upgrade rails,
+nodes and bars were removed because they floated around several device shapes.
+Authored builder details and UI level badges remain. Remounting disposes the
+previous owned model/camera; stale handles cannot clear the replacement camera.
+The [model guide](MODEL_STYLE_GUIDE.md) and [workflow](MODELING_WORKFLOW.md) define
+clean joins, readable silhouettes, motion clearance and future mesh pilots.
+The 4.2-second figure-eight cycle is defined in `ItemMotion` and
 is shared by equipment, perk-choice, event and hub previews. A trigger or chest
 opening pauses that idle pose, runs the appropriate activation and resumes idle
 motion; reduced-motion/static mounts can disable the idle cycle.
