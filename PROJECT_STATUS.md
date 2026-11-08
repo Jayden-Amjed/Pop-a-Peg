@@ -1,12 +1,12 @@
 # Current project state
 
-State Version: 3 (presentation proposal over accepted Version 2)
+State Version: 3 (accepted presentation revision)
 Reviewed: 2026-11-07, America/Los_Angeles
 Objective: Readable modeled synergies and hover stats, consistent UI, and a sculpted aquatic board.
 
-Accepted source: `60b579aa2fba2b2ca4d3bdf0e421f8db6ed51fa2` (main, previous verified game).
+Accepted source: `8da614aac58de218ff1d403ad17f5a8364e24d7b` (PR #6 merged into main).
 Implementation: `de334ecdb6f393bb904a6de6698769b44fb0dacb`.
-Active task: [RBX-005](tasks/RBX-005-synergy-presentation.md), Codex coordinator.
+Completed task: [RBX-005](tasks/RBX-005-synergy-presentation.md), Codex coordinator.
 Branch: `task/RBX-005-synergy-presentation`; [PR #6](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/6).
 
 | Capability | Verified state |
@@ -30,11 +30,13 @@ Published: NOT PUBLISHED; no production experience/place selected.
 Playable output: generated `build/peg-synergy.rbxlx` in the gallery worktree.
 Studio target: isolated peg-aero-qa.rbxlx stopped in Edit with normal sources; Rojo disconnected.
 The user-owned peg-polished.rbxlx session and other places are untouched.
-Blockers: none; final CI and integration receipt pending.
+Blockers: none. Push and PR CI passed at 8d9d7738a3ae21841a6ed739065572e0c87d5433;
+GitHub returned the merge receipt above and fetched main confirms it.
 Unrun: physical touch/gamepad, two clients in one server, cloud persistence, live plugin sync, publication.
 Limits: result summaries may scroll on compact displays; tiny synergy previews omit
 the silhouette pass for clarity. Transparent glass outlines follow its transparency.
 MCP captures can omit peg BillboardGui text and a newly mounted viewport's first frame.
 Unrelated Studio asset-type warning for 203785492 remains; no project source reference.
-Next action: publish checked branch, verify CI and integrate the verified revision.
+Next action: human playtest build/peg-synergy.rbxlx; reserve a new task for further
+design changes or development-experience multiplayer/mobile/cloud-save verification.
 Repository administration: main unprotected; temporary default remains starter branch.

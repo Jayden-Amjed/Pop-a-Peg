@@ -1,11 +1,11 @@
 # RBX-005 — Modeled synergies and board presentation
 
 Owner: Codex coordinator; isolated UI, model and board contributors.
-Status: VERIFIED — final CI and integration pending
+Status: MERGED — PR #6 accepted at 8da614aac58de218ff1d403ad17f5a8364e24d7b
 Objective: Make upgrades readable at a glance, show modeled synergy ownership, and give the board a cohesive aquatic presentation.
 Starting main: `60b579aa2fba2b2ca4d3bdf0e421f8db6ed51fa2`.
 Branch: `task/RBX-005-synergy-presentation`
-PR: [#6](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/6), draft against main.
+PR: [#6](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/6), MERGED into main.
 Reservation: [issue #5](https://github.com/Jayden-Amjed/Pop-a-Peg/issues/5).
 
 ## Scope and ownership
@@ -26,7 +26,7 @@ All use the accepted main above. No gameplay/economy changes or production publi
 - [x] Connected board monitor presents settlement stages without covering the board.
 - [x] Non-perk display circles are removed; outer silhouette rendering is tested in Studio.
 - [x] Score/restock panels stay pearl white after earning rewards; bounce and layered meter remain.
-- [ ] Final ordinary play, CI and main integration receipt recorded.
+- [x] Final ordinary play, CI and main integration receipt recorded.
 
 ## Checks
 
@@ -63,6 +63,12 @@ Implementation: de334ecdb6f393bb904a6de6698769b44fb0dacb. Prior evidence remains
   42 launches; it did not mutate run state or force shot endings. Restarts waited
   for the visible terminal menu and completed settlement. This is functional
   smoke coverage, not a human win-rate or balance claim.
+- PASS final [push CI](https://github.com/Jayden-Amjed/Pop-a-Peg/actions/runs/42449365850)
+  and [PR CI](https://github.com/Jayden-Amjed/Pop-a-Peg/actions/runs/42449371106)
+  at 8d9d7738a3ae21841a6ed739065572e0c87d5433.
+- MERGED: GitHub returned merged=true with receipt
+  8da614aac58de218ff1d403ad17f5a8364e24d7b. Fetched origin/main confirms it;
+  implementation source remains identical to Studio-tested de334ec.
 
 Resolved during QA: initial tiny camera viewport caused a monitor clamp error;
 layout now waits for a usable viewport and bounds projection. Short choice subtitles
@@ -78,9 +84,9 @@ Roblox publication. UI/code review does not establish human balance or audio app
 
 Owner: coordinator.
 Checkout: `C:\Users\Amjedd\Documents\ChatGPT\Pop a Peg\.worktrees\gallery`.
-Main/status: accepted State Version 2 at starting main; proposed revision uses Version 3.
+Main/status: State Version 3 accepted by the merge receipt above, following Version 2.
 Source: de334ecdb6f393bb904a6de6698769b44fb0dacb; later evidence commits do not change gameplay source.
 Studio target: isolated peg-aero-qa.rbxlx stopped in Edit with all normal sources;
 Rojo disconnected; existing user-owned peg-polished.rbxlx untouched.
 Published: NOT PUBLISHED.
-Next action: verify final CI and integrate; record observed merge receipt.
+Next action: human playtest build/peg-synergy.rbxlx; use a new reserved task for further changes.
