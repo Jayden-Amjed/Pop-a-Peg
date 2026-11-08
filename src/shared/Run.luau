@@ -804,7 +804,7 @@ function Run:_settle()
     end
     for _ = 1, math.min(Run.Config.restocksPerStep, settlement.remaining) do
         local index = settlement.completed + 1
-        local capture = self.restocks <= 8 or index <= 3 or index > self.restocks - 2
+        local capture = self.restocks <= 5 or index <= 3 or index > self.restocks - 2
         local _, cycle = Board.restock(self.baseline, self.round, self.rng, capture)
         if cycle then
             cycle.index = index

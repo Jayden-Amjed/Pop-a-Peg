@@ -350,7 +350,7 @@ function Hub:_help()
             model = "restock",
             lines = {
                 "Reach the shot target to clear the round and earn a restock.",
-                "Extra restocks cost more. Watch the next-restock meter.",
+                "Extra restocks beyond the first each shot also become saved hub currency.",
                 "After the shot, restocks refill and merge pegs, add coins and restore balls.",
             },
         },
@@ -360,7 +360,7 @@ function Hub:_help()
             lines = {
                 "Use coins in the shop. Read each item's trigger and effects.",
                 "Raise two recipe ingredients to level 5, then evolve them in a shop.",
-                "Finish runs or clear milestones for chests. Open them in the hub to unlock new items.",
+                "Spend saved restocks on chests in the hub. Milestones award bonus chests too.",
             },
         },
     }
@@ -549,6 +549,9 @@ function Hub:_layout()
     setRect(self.play, geometry.controls.play)
     setRect(self.hint, geometry.hint)
     setRect(self.brand, geometry.brand)
+    setRect(self.wallet, geometry.wallet)
+    Theme.rect(self.walletLabel, 12, 4, geometry.wallet.w - 24, 17)
+    Theme.rect(self.walletValue, 12, 21, geometry.wallet.w - 24, 29)
     Theme.rect(self.brandTitle, 12, 5, geometry.brand.w - 24, 28)
     Theme.rect(self.brandSubtitle, 12, 34, geometry.brand.w - 24, 20)
     setRect(self.crewPlate, geometry.crew)
@@ -585,6 +588,15 @@ function Hub.new(onAction)
     self.brandSubtitle =
         text(self.brand, "Subtitle", "POP A PEG · BUILD A BIGGER BOUNCE", 13, C.board)
     fitText(self.brandSubtitle, 13, 9)
+    self.wallet = button(self.root, "RestockWallet", "", C.paper, function()
+        self.progression.mode = "chests"
+        self:open("chests")
+    end, 4)
+    self.walletLabel = text(self.wallet, "Label", "RESTOCKS · CHEST MARKET", 14, C.board)
+    fitText(self.walletLabel, 14, 9)
+    self.walletValue = text(self.wallet, "Balance", "0", 30, C.ink)
+    self.walletValue.Font = Enum.Font.SourceSansBold
+    fitText(self.walletValue, 30, 15)
     self.crewPlate = Theme.plate(self.root, "CrewPlate", C.paper, 3)
     self.crew = button(self.crewPlate, "Crew", "PLAYERS · 0 / 8", C.muted, function()
         self:open("crew")
@@ -766,6 +778,7 @@ function Hub:update(snapshot)
         chestCount += tier.count
     end
     self.chestsButton.Text = chestCount > 0 and ("CHESTS · " .. chestCount) or "CHESTS"
+    self.walletValue.Text = Format.integer(hub.chests and hub.chests.restockCredits or 0)
     self.progression:update(snapshot)
     if snapshot.notice then
         self:setNotice(snapshot.notice)
