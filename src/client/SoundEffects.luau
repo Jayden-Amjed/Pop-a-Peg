@@ -1,14 +1,16 @@
 -- Public Roblox / licensed Creator Store audio. Provenance is in docs/ASSETS.md.
 local SoundService = game:GetService("SoundService")
 local ContentProvider = game:GetService("ContentProvider")
+local RunService = game:GetService("RunService")
+local Signatures = require(game:GetService("ReplicatedStorage").Shared.ItemFeedback)
 
 local SoundEffects = {}
 SoundEffects.__index = SoundEffects
 
 SoundEffects.Cues = {
-    pop = { id = 9119669074, volume = 0.24, pitch = 1.5, duration = 0.2, gap = 0.055 },
+    pop = { id = 9119319842, volume = 0.3, pitch = 1.45, duration = 0.24, gap = 0.045 },
     click = { id = 9119669074, volume = 0.16, pitch = 1.9, duration = 0.1, gap = 0.08 },
-    launch = { id = 9119669074, volume = 0.25, pitch = 0.8, duration = 0.32, gap = 0.15 },
+    launch = { id = 9119319842, volume = 0.23, pitch = 0.9, duration = 0.3, gap = 0.15 },
     coin = { id = 127645268874265, volume = 0.3, pitch = 1.1, duration = 0.65, gap = 0.09 },
     purchase = { id = 127645268874265, volume = 0.38, pitch = 0.94, duration = 1.5, gap = 0.15 },
     goal = { id = 9119642864, volume = 0.22, pitch = 1.4, duration = 0.7, gap = 0.2 },
@@ -18,11 +20,22 @@ SoundEffects.Cues = {
     clear = { id = 9119642864, volume = 0.3, pitch = 0.95, duration = 1.5, gap = 0.6 },
 }
 
+SoundEffects.ToneAsset = 77129402344871
+SoundEffects.MaxToneVoices = 12
+SoundEffects.MaxPendingNotes = 32
+
 function SoundEffects.new()
-    local self = setmetatable(
-        { pools = {}, lastPlayed = {}, serial = 0, muted = false, loaded = {} },
-        SoundEffects
-    )
+    local self = setmetatable({
+        pools = {},
+        lastPlayed = {},
+        serial = 0,
+        muted = false,
+        loaded = {},
+        toneVoices = {},
+        pendingNotes = {},
+        itemLastPlayed = {},
+        toneTokens = 6,
+    }, SoundEffects)
     self.folder = Instance.new("Folder")
     self.folder.Name = "PegSoundEffects"
     self.folder.Parent = SoundService
@@ -49,6 +62,21 @@ function SoundEffects.new()
         end
         self.pools[name] = { voices = pool, nextVoice = 1 }
     end
+    for index = 1, SoundEffects.MaxToneVoices do
+        local sound = Instance.new("Sound")
+        sound.Name = "SineVoice" .. index
+        sound.SoundId = "rbxassetid://" .. SoundEffects.ToneAsset
+        sound.SoundGroup = self.group
+        sound.Volume = 0
+        sound.Parent = self.folder
+        table.insert(self.toneVoices, { sound = sound, age = 0, duration = 0 })
+        if index == 1 then
+            table.insert(preload, sound)
+        end
+    end
+    self.toneConnection = RunService.Heartbeat:Connect(function(dt)
+        self:_stepTones(math.min(dt, 0.1))
+    end)
     task.spawn(function()
         pcall(function()
             ContentProvider:PreloadAsync(preload, function(id, status)
@@ -64,6 +92,88 @@ end
 function SoundEffects:setMuted(muted)
     self.muted = muted == true
     self.group.Volume = if self.muted then 0 else 0.7
+    if self.muted then
+        self:clearItems()
+    end
+end
+
+function SoundEffects:clearItems()
+    table.clear(self.pendingNotes)
+    for _, voice in ipairs(self.toneVoices) do
+        voice.sound:Stop()
+        voice.sound.Volume = 0
+        voice.duration = 0
+    end
+end
+
+function SoundEffects:playItem(id)
+    local profile = Signatures.Profiles[id]
+    if self.destroyed or self.muted or not profile then
+        return false
+    end
+    local now = os.clock()
+    if now - (self.itemLastPlayed[id] or -100) < 0.14 or self.toneTokens < 1 then
+        return false
+    end
+    if #self.pendingNotes + #profile.notes > SoundEffects.MaxPendingNotes then
+        return false
+    end
+    self.itemLastPlayed[id] = now
+    self.toneTokens -= 1
+    for index, note in ipairs(profile.notes) do
+        table.insert(self.pendingNotes, {
+            wait = profile.rhythm[index],
+            pitch = 2 ^ (note / 12),
+            duration = profile.duration,
+        })
+    end
+    return true
+end
+
+function SoundEffects:_stepTones(dt)
+    if self.destroyed then
+        return
+    end
+    self.toneTokens = math.min(6, self.toneTokens + dt * 12)
+    for _, voice in ipairs(self.toneVoices) do
+        if voice.duration > 0 then
+            voice.age += dt
+            local t = voice.age / voice.duration
+            if t >= 1 then
+                voice.sound:Stop()
+                voice.sound.Volume = 0
+                voice.duration = 0
+            else
+                local attack = math.min(1, voice.age / 0.012)
+                voice.sound.Volume = 0.09 * attack * (1 - t) ^ 1.5
+            end
+        end
+    end
+    for index = #self.pendingNotes, 1, -1 do
+        local note = self.pendingNotes[index]
+        note.wait -= dt
+        if note.wait <= 0 then
+            table.remove(self.pendingNotes, index)
+            local available
+            for _, voice in ipairs(self.toneVoices) do
+                if voice.duration == 0 then
+                    available = voice
+                    break
+                end
+                if not available or voice.age > available.age then
+                    available = voice
+                end
+            end
+            if available and available.sound.IsLoaded and not self.muted then
+                available.age, available.duration = 0, note.duration
+                available.sound:Stop()
+                available.sound.TimePosition = 0.04
+                available.sound.PlaybackSpeed = note.pitch
+                available.sound.Volume = 0
+                available.sound:Play()
+            end
+        end
+    end
 end
 
 function SoundEffects:play(name, pitch)
@@ -103,6 +213,7 @@ function SoundEffects:destroy()
         return
     end
     self.destroyed = true
+    self.toneConnection:Disconnect()
     self.folder:Destroy()
     self.group:Destroy()
 end

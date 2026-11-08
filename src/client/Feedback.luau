@@ -3,15 +3,17 @@ local Shared = game:GetService("ReplicatedStorage"):WaitForChild("Shared")
 local Board = require(Shared.Board)
 local Format = require(Shared.Format)
 local Timeline = require(Shared.RewardTimeline)
+local Signatures = require(Shared.ItemFeedback)
 local ItemModels = require(script.Parent.ItemModels)
 local SoundEffects = require(script.Parent.SoundEffects)
+local Theme = require(script.Parent.UiTheme)
 
 local Feedback = {}
 Feedback.__index = Feedback
-local GREEN = Color3.fromRGB(133, 255, 84)
-local GOLD = Color3.fromRGB(255, 213, 65)
-local WHITE = Color3.fromRGB(255, 255, 240)
-local INK = Color3.fromRGB(14, 31, 25)
+local GREEN = Color3.fromRGB(155, 225, 96)
+local GOLD = Color3.fromRGB(255, 205, 92)
+local WHITE = Color3.fromRGB(249, 254, 255)
+local INK = Color3.fromRGB(24, 72, 106)
 local MAX_FX = 100
 
 local function smooth(t)
@@ -21,7 +23,7 @@ end
 local function text(parent, value, color, size)
     local label = Instance.new("TextLabel")
     label.BackgroundTransparency = 1
-    label.Font = Enum.Font.FredokaOne
+    label.Font = Theme.font or Enum.Font.GothamBold
     label.Text = value
     label.TextColor3 = color or WHITE
     label.TextStrokeColor3 = INK
@@ -50,6 +52,7 @@ function Feedback.new(host, onAdvance)
         elapsed = 0,
         busy = false,
         walletRevision = 0,
+        itemFxTimes = {},
     }, Feedback)
 end
 
@@ -150,6 +153,96 @@ function Feedback:_line(startPoint, endPoint, color)
     )
 end
 
+function Feedback:_beam(slot, pegId, color, style)
+    local key = tostring(slot) .. ":" .. tostring(pegId)
+    if self.elapsed - (self.itemFxTimes[key] or -10) < 0.07 then
+        return
+    end
+    self.itemFxTimes[key] = self.elapsed
+    local startPoint = self:_anchor("inventory", slot)
+    local target = self:_anchor("peg", pegId)
+    self.host:pulseItem(slot, 0.7, { effect = style, direction = target - startPoint })
+    local rays = style == "prism" and 3 or 1
+    for ray = 1, rays do
+        if #self.fx >= MAX_FX then
+            break
+        end
+        local beam = Instance.new("Frame")
+        beam.Name = "ItemBeam"
+        beam.AnchorPoint = Vector2.new(0.5, 0.5)
+        beam.BorderSizePixel = 0
+        beam.BackgroundColor3 = if rays == 3
+            then ({ Color3.fromRGB(113, 229, 255), WHITE, Color3.fromRGB(205, 177, 255) })[ray]
+            else color
+        beam.ZIndex = 203
+        local rounding = Instance.new("UICorner")
+        rounding.CornerRadius = UDim.new(1, 0)
+        rounding.Parent = beam
+        beam.Parent = self.host.fxLayer
+        table.insert(self.fx, {
+            kind = "beam",
+            gui = beam,
+            age = 0,
+            duration = 0.32,
+            slot = slot,
+            pegId = pegId,
+            offset = (ray - (rays + 1) / 2) * 4,
+            width = if style == "trim" then 3 else 5,
+            generation = self.generation,
+        })
+    end
+end
+
+function Feedback:_itemSpark(slot, profile)
+    local source = self:_anchor("inventory", slot)
+    local color = Color3.fromRGB(table.unpack(profile.color))
+    local style = profile.style
+    local count = if style == "burst" or style == "chorus" then 7 else 4
+    for index = 1, count do
+        if #self.fx >= MAX_FX then
+            break
+        end
+        local spark = Instance.new("Frame")
+        spark.Name = "ItemSpark"
+        spark.AnchorPoint = Vector2.new(0.5, 0.5)
+        spark.BorderSizePixel = 0
+        spark.BackgroundColor3 = color
+        spark.ZIndex = 208
+        local round = Instance.new("UICorner")
+        round.CornerRadius = UDim.new(style == "clock" and 0 or 1, 0)
+        round.Parent = spark
+        spark.Parent = self.host.fxLayer
+        local angle = index * math.pi * 2 / count
+        local distance = style == "bubbles" and 37 or 23
+        table.insert(self.fx, {
+            kind = "spark",
+            gui = spark,
+            age = 0,
+            duration = 0.34,
+            start = source,
+            delta = Vector2.new(math.cos(angle), math.sin(angle)) * distance,
+            size = style == "seed" and 9 or 6,
+            generation = self.generation,
+        })
+    end
+end
+
+function Feedback:_activateVisual(id, slot)
+    local profile = Signatures.Profiles[id]
+    if not profile then
+        return
+    end
+    self.sounds:playItem(id)
+    if slot then
+        self.host:pulseItem(slot, 1, { effect = profile.style })
+        local key = "slot:" .. slot
+        if self.elapsed - (self.itemFxTimes[key] or -10) >= 0.12 then
+            self.itemFxTimes[key] = self.elapsed
+            self:_itemSpark(slot, profile)
+        end
+    end
+end
+
 function Feedback:_flight(kind, value, startPoint, target, targetIndex, onArrival)
     if #self.fx >= MAX_FX then
         if onArrival then
@@ -201,6 +294,9 @@ function Feedback:_arriveScore(value)
     end
     self.displayScore = math.max(self.displayScore, math.min(value, self.snapshot.score))
     self.host:setCounterDisplay("score", self.displayScore)
+    if self.host.pulseScore then
+        self.host:pulseScore(0.55)
+    end
     local earned = math.min(
         self.snapshot.maxRestocks or 10000,
         math.floor(self.displayScore / math.max(1, self.snapshot.quota))
@@ -266,21 +362,40 @@ function Feedback:_event(event)
         local source = self:_anchor("peg", event.pegId)
         self:_ring(source, if (event.oldValue or 1) <= 1 then WHITE else GREEN, 28)
         self.sounds:play("pop", 0.92 + ((event.pegId or 0) % 7) * 0.045)
-        if self.lastTriggerSlot and self.elapsed - (self.lastTriggerTime or -10) < 0.2 then
-            self:_line(self:_anchor("inventory", self.lastTriggerSlot), source, GOLD)
-        end
     elseif event.kind == "trigger" then
-        if event.slot then
-            self.lastTriggerSlot = event.slot
-            self.lastTriggerTime = self.elapsed
-            self.host:pulseItem(event.slot, 1)
-            self:_ring(self:_anchor("inventory", event.slot), GOLD, 55)
-            self.sounds:play("trigger", 0.85 + event.slot * 0.06)
+        local slot = event.sourceSlot or event.slot
+        local id = event.itemId
+            or (slot and self.snapshot.inventory[slot] and self.snapshot.inventory[slot].id)
+        local profile = id and Signatures.Profiles[id]
+        if event.action == "activate" or not event.action and slot then
+            self:_activateVisual(id, slot)
+        elseif event.action == "perk" then
+            self:_activateVisual(event.perkId, event.targetSlot or slot)
         end
-        if event.pegId then
-            local point = self:_anchor("peg", event.pegId)
-            self:_ring(point, GOLD, 38)
-            self:_label(event.text or "BOOST", point + Vector2.new(0, -15), GOLD, 24)
+        local pegId = event.targetPegId or event.pegId
+        if pegId then
+            local point = self:_anchor("peg", pegId)
+            local color = profile and Color3.fromRGB(table.unpack(profile.color)) or GOLD
+            if slot then
+                self:_beam(slot, pegId, color, profile and profile.style or "tap")
+            end
+            self:_ring(point, color, 38)
+            if event.action == "double" or event.action == "halve" then
+                self:_label(
+                    event.action == "double" and "×2" or "÷2",
+                    point + Vector2.new(0, -15),
+                    color,
+                    24
+                )
+            end
+        end
+    elseif event.kind == "perkTrigger" then
+        self:_activateVisual(event.perkId, event.targetSlot)
+    elseif event.kind == "purchase" then
+        self:_activateVisual(event.itemId, event.slot)
+    elseif event.kind == "perkChoice" then
+        if event.perkId then
+            self:_activateVisual(event.perkId)
         end
     elseif event.kind == "clear" then
         self:_label("BOARD CLEAR!  ×2", self:_anchor("meter") + Vector2.new(0, -70), GOLD, 36)
@@ -291,6 +406,8 @@ end
 function Feedback:_reset(snapshot)
     self.generation += 1
     self:_clearFx()
+    self.sounds:clearItems()
+    table.clear(self.itemFxTimes)
     self.timeline = nil
     self.pendingReceipt = nil
     self.awaitingFinish = false
@@ -620,6 +737,25 @@ function Feedback:step(dt)
             effect.gui.TextTransparency = math.max(0, (t - 0.55) / 0.45)
             effect.gui.TextStrokeTransparency = effect.gui.TextTransparency
         elseif effect.kind == "line" then
+            effect.gui.BackgroundTransparency = t
+        elseif effect.kind == "beam" then
+            local from = self:_anchor("inventory", effect.slot)
+            local to = self:_anchor("peg", effect.pegId)
+            local delta = to - from
+            local direction = delta.Magnitude > 0 and delta.Unit or Vector2.new(0, 1)
+            local normal = Vector2.new(-direction.Y, direction.X) * effect.offset
+            local reach = smooth(math.min(1, t / 0.38))
+            local center = from:Lerp(to, reach / 2) + normal
+            effect.gui.Position = UDim2.fromOffset(center.X, center.Y)
+            effect.gui.Size =
+                UDim2.fromOffset(math.max(1, delta.Magnitude * reach), effect.width * (1 - t * 0.7))
+            effect.gui.Rotation = math.deg(math.atan2(delta.Y, delta.X))
+            effect.gui.BackgroundTransparency = 0.05 + math.max(0, (t - 0.5) * 1.9)
+        elseif effect.kind == "spark" then
+            local point = effect.start + effect.delta * smooth(t)
+            effect.gui.Position = UDim2.fromOffset(point.X, point.Y)
+            effect.gui.Size =
+                UDim2.fromOffset(effect.size * (1 - t * 0.8), effect.size * (1 - t * 0.8))
             effect.gui.BackgroundTransparency = t
         end
         if t >= 1 then
