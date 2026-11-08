@@ -88,11 +88,13 @@ The reward sequence advances automatically into the next shot or upgrade choice;
 there is no result confirmation button. A failed shot resets the score and board
 for another attempt while balls remain.
 
-Between shots, use one jumble to change the layout. Shops show four equipment
-offers and, from round 11, up to two Supplies that take effect immediately without
-using an inventory slot. All offers stay visible without scrolling; selecting an
-offer shows its trigger, effects, tradeoff, and synergy partners in one inspection
-area. Selling, reordering, rerolls, held offers, and extra slots shape the build.
+Between shots, use one jumble to change the layout. Shops group four equipment
+offers separately from up to two Supplies, available from round 11, that take
+effect immediately without using an inventory slot. All offers stay visible
+without scrolling; selecting an offer updates one inspection area with its trigger,
+effects, tradeoff, and synergy partners. Cards and models stay mounted while
+selection and purchase state change. Selling, reordering, rerolls, held offers,
+and extra slots shape the build.
 
 Buying a duplicate level-1 item upgrades it to level 2, including when the rack is
 full. Level 2 is the cap: an owned capped item cannot be bought again as another
@@ -121,10 +123,14 @@ transitions until the next launch or a manual **Next Round** click in the shop.
 | Skip during rewards | Finish the reward animation and advance with the same earned rewards. |
 | Sound toggle | Mute or unmute feedback sounds. |
 
-Shops and perk/event choices use their own buttons. Equipment, currencies, and
-rewards appear as source-generated 3D models, with individual activation motions,
-targeted effects, score flights, layered quota feedback, and refill/merge motion.
-Each catalog item and perk has a short musical signature; sound remains optional.
+Shops and perk/event choices use their own buttons. An owned-perk strip keeps
+chosen perks visible and highlights their activations. Equipment, currencies, and
+rewards appear as source-generated 3D models. Idle models drift through a gentle
+figure eight, pause in place for their activation, then smoothly resume after the
+last queued activation. Targeted effects, score flights, counter pulses, and
+refill/merge motion show the reward sequence. Launching updates the remaining
+balls directly; replenished balls fly to their counter during rewards. Each
+catalog item and perk has a short musical signature; sound remains optional.
 
 Studio uses **session records** so local testing does not touch live player data.
 Published sessions use a versioned DataStore for records/unlocks. The interface

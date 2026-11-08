@@ -16,7 +16,7 @@ sound cues use public Roblox audio IDs documented in [Asset sources](ASSETS.md).
 | `src/client/Presentation.luau` | `StarterPlayer.StarterPlayerScripts.Client.Presentation` | Local camera, board, responsive controls, counters, and menus. |
 | `src/client/UiTheme.luau` | `StarterPlayer.StarterPlayerScripts.Client.UiTheme` | Shared interface colors and native GUI constructors. |
 | `src/client/ItemModels.luau` | `StarterPlayer.StarterPlayerScripts.Client.ItemModels` | Original native equipment, perk, currency, and control models with viewport animation. |
-| `src/client/ItemMotion.luau` | `StarterPlayer.StarterPlayerScripts.Client.ItemMotion` | Per-model moving groups, activation samples, and restoration to resting transforms. |
+| `src/client/ItemMotion.luau` | `StarterPlayer.StarterPlayerScripts.Client.ItemMotion` | Per-model moving groups, activation samples, and paused/resumed figure-eight idle motion. |
 | `src/client/InventorySelection.luau` | `StarterPlayer.StarterPlayerScripts.Client.InventorySelection` | Pure select, deselect, swap-request, and invalid-phase rules. |
 | `src/client/ShopLayout.luau` | `StarterPlayer.StarterPlayerScripts.Client.ShopLayout` | Fixed offer, inspection, and action regions for shops without scrolling. |
 | `src/client/Feedback.luau` | `StarterPlayer.StarterPlayerScripts.Client.Feedback` | Score flights, trigger cues, counter display, and receipt-driven board animation. |
@@ -61,6 +61,10 @@ The server advances each player's run independently. The presentation interpolat
 snapshots and draws effects; it cannot award rewards or change board rules. Model
 instances and camera state are local to each client, so boards do not collide or
 share progress.
+
+The front camera follows the viewport layout; pointer movement changes aim only.
+Background clouds use opaque parts and sky bands meet without coplanar overlap.
+Aim guides do not cast shadows, keeping moving controls from changing the scenery.
 
 ## Equipment, purchases, and choices
 
@@ -131,10 +135,24 @@ summary instead of continuing. There is no ordinary result confirmation modal.
 `Presentation` exposes the board, counters, controls, and viewport anchors to
 `Feedback`; `ItemModels` supplies reusable native 3D visuals, `ItemMotion` animates
 their moving groups, and `UiTheme` supplies GUI styling. `ShopLayout` keeps four
-equipment cards and up to two Supplies visible together, with one fixed inspection
-panel for effect and synergy details. `InventorySelection` clears a selection
-after a swap request, holds further rack actions until acknowledgment or timeout,
-and rejects selection changes outside aim/shop phases.
+equipment cards and up to two Supplies in distinct groups, visible together with
+one fixed inspection panel for effect and synergy details. Selection, purchase
+eligibility, and held/sold state update existing cards instead of destroying their
+models. `InventorySelection` clears a selection after a swap request, holds further
+rack actions until acknowledgment or timeout, and rejects selection changes outside
+aim/shop phases. An owned-perk strip stays available between choices and highlights
+the perk identified by an activation event.
+
+Idle motion follows a bounded figure-eight path with gentle tilt. Activations
+freeze the current idle pose, apply the item's moving-group animation relative to
+that pose, then resume idle velocity smoothly after the last queued activation.
+The idle controller has no effect on run mechanics. Static/reduced-motion mounts
+disable idle movement while retaining activation feedback.
+
+Score, coin, and restock arrivals pulse their counters. Launching spends a ball
+directly in the reserve display; only restored balls use reward flights. Perk
+highlights and counter pulses follow authoritative events and displayed arrivals,
+so they do not change balances or trigger timing.
 
 `ItemFeedback` defines short distinct motifs and visual signatures by stable ID.
 `SoundEffects` schedules their notes through bounded voice and note pools, limits
