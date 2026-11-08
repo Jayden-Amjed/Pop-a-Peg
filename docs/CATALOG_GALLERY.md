@@ -10,12 +10,14 @@ are mounted in the preview.
 The normal game retains its native geometry. The gallery evaluates the Blender
 catalog; it does not adopt that geometry into gameplay or publish an experience.
 The shared [animation direction](ITEM_ANIMATION_GUIDE.md) gives all 78 models
-individual whole-object reactions and articulated performances. Geometry remains
-unchanged; native gameplay and the Blender inspector share the motion definitions.
+individual whole-object reactions and articulated performances. Native gameplay
+and the Blender inspector share motion definitions. The first review pass updates
+the capsule cap and press geometry as well as their motion.
 Use [PROJECT_STATUS](../PROJECT_STATUS.md) for current accepted state and
 [RBX-021](../tasks/RBX-021-catalog-lab.md) for exact checks, source SHAs, Studio
 evidence. See [RBX-023](../tasks/RBX-023-expressive-motion.md) for the expressive
-animation pass and its current checks. A registered entry is not proof that its remote
+animation pass, and [RBX-025](../tasks/RBX-025-review-audio.md) for the subsequent
+review notes and sound pass. A registered entry is not proof that its remote
 meshes loaded successfully.
 
 ## Open the inspector
@@ -45,6 +47,8 @@ does not grant another account permission to the remote meshes.
 | Search / category button | Filters names and IDs; cycles equipment, evolutions, perks, Supplies and utilities/chests. |
 | PREV / NEXT | Moves through the filtered list. |
 | TRIGGER | Restarts the selected activation from its beginning. |
+| SOUND ON / OFF | Enables the selected model's sound; switching off clears live and scheduled voices. |
+| VOLUME | Cycles 25%, 50%, 75%, 100%; starts at 50%. |
 | PAUSE / RESUME | Holds playback, resumes it, or resumes from a scrubbed pose. |
 | LOOP | Repeats the activation with a short idle interval. |
 | 0.25x / 0.5x / 1x / 2x | Changes playback speed without changing the animation's normalized pose. |
@@ -56,6 +60,21 @@ does not grant another account permission to the remote meshes.
 | LIGHT: BALANCED / ORIGINAL | Compares the shared deeper lighting rig with the previous brighter rig. |
 | TAG POSE | Appends the selected ID, pose, speed, strength, camera and lighting to that item's notes. |
 | COPY NOTES | Opens selectable text containing all nonempty notes from this Play session. |
+
+All 78 entries have a sound timeline. Equipment/perks/Supplies reuse their game
+motifs; utility models reuse their corresponding game cues. Chests rattle before
+the low opening impact and reward chime. Cue attacks follow animation pose when
+speed changes; pitch remains stable. Comparison plays one soundtrack. Scrubbing
+is silent; pausing, changing model or restarting clears previous voices. Resume
+does not replay skipped cues. This is a preview of existing assets, with no new
+audio upload. The game still triggers its item motifs through its own feedback
+system; gallery timing does not change scoring or trigger rules.
+
+RBX-025 gives Bubble Wand a vertical-axis twirl and coordinated pop, opens and
+reseats the capsule cap, and adds a crank plus seated squashable coin to the
+Blender press. Chest performances now last 3.4/3.6/3.9/4.2 seconds by tier, with
+closed anticipation through pose .52, fast opening, held reveal and recovery.
+The hub waits for actual model playback completion before replacing the chest.
 
 Start with **REST** and inspect all four camera views for silhouette, seams,
 unintended intersections and floating connections. Play **TRIGGER** at normal
@@ -187,6 +206,13 @@ Do not point an old upload receipt at changed geometry. These tools associate
 observed MeshIds with source/export bytes; they do not independently download and
 rehash Roblox's remote mesh bytes. Follow [MODELING_WORKFLOW](MODELING_WORKFLOW.md)
 for the surrounding source, import and review process.
+
+Revisions use `art/catalog/revisions/index.json`: all 78 IDs explicitly select an
+active receipt, and every superseded receipt/model pair retains the previous
+source and manifest under `historical_sources`. Both old and new uploads remain
+hash-checked; active geometry counts exclude superseded pieces. New partial
+batches use exact `batchName` values in upload operation/receipt records.
+`test_catalog_revisions.py` checks corruption and invalid selection failures.
 
 ## Lighting, motion and validation limits
 

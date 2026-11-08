@@ -22,8 +22,9 @@ See [PROJECT_STATUS](PROJECT_STATUS.md) for the **only current dashboard**, incl
 what has actually passed, active ownership, and the next task.
 
 To review the Blender replacements, open the [78-model animation inspector](docs/CATALOG_GALLERY.md).
-It includes search, camera views, slow motion, pose scrubbing, detail zoom and
-copyable feedback. The normal game keeps its native geometry during this review.
+It includes search, camera views, slow motion, silent pose scrubbing, detail zoom,
+per-item sound with mute/volume controls, and copyable feedback. The normal game
+keeps its native geometry during this review.
 The [animation guide](docs/ITEM_ANIMATION_GUIDE.md) defines each model's expressive
 trigger performance and the shared native/Blender motion contract.
 

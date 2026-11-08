@@ -1,0 +1,2893 @@
+{
+  "checked": 78,
+  "phases": {
+    "1": 0,
+    "2": 0.0773,
+    "3": 0.2426,
+    "4": 0.28,
+    "5": 0.5,
+    "6": 0.67,
+    "7": 0.75,
+    "8": 1
+  },
+  "passed": 78,
+  "requested": 78,
+  "expected": 78,
+  "failed": 0,
+  "ok": true,
+  "scope": "Client asset loading, bounded motion, root transform, restoration and real geometry movement; visual quality and camera fit are separate checks.",
+  "strengths": {
+    "1": 1,
+    "2": 2
+  },
+  "unrun": [],
+  "items": {
+    "1": {
+      "movedGroups": {
+        "FishBody": true,
+        "EvolvedOrbit": true,
+        "Reeds": true,
+        "Bubbles": true,
+        "FishFin": true,
+        "FishTail": true
+      },
+      "duration": 1.6,
+      "maxPartDimension": 3.0012457370758057,
+      "preload": {
+        "ok": true,
+        "successful": 10,
+        "timedOut": false,
+        "callbacks": 10,
+        "failures": [],
+        "checkedMeshAssets": 10,
+        "failureCount": 0
+      },
+      "groups": {
+        "FishBody": 2,
+        "EvolvedOrbit": 1,
+        "Reeds": 2,
+        "Bubbles": 1,
+        "Fixed": 2,
+        "FishFin": 1,
+        "FishTail": 1
+      },
+      "parts": 10,
+      "ok": true,
+      "deterministic": true,
+      "id": "aurora_aquarium",
+      "profile": "aurora-aquarium-tidal-halo-parade",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 4.514472961425781,
+      "maxPositionMagnitude": 7.194951057434082,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 8,
+      "triangles": 2100
+    },
+    "2": {
+      "movedGroups": {
+        "KiteSpar": true,
+        "KiteSail": true,
+        "KiteRibbon": true
+      },
+      "duration": 1.56,
+      "maxPartDimension": 2.837336540222168,
+      "preload": {
+        "ok": true,
+        "successful": 4,
+        "timedOut": false,
+        "callbacks": 4,
+        "failures": [],
+        "checkedMeshAssets": 4,
+        "failureCount": 0
+      },
+      "groups": {
+        "KiteSpar": 1,
+        "KiteSail": 2,
+        "KiteRibbon": 1
+      },
+      "parts": 4,
+      "ok": true,
+      "deterministic": true,
+      "id": "aurora_kite",
+      "profile": "aurora-kite-looping-gust",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.5467188358306885,
+      "maxPositionMagnitude": 6.5411601066589355,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 4,
+      "triangles": 100
+    },
+    "3": {
+      "movedGroups": {
+        "Pan": true,
+        "BalanceBeam": true
+      },
+      "duration": 1.28,
+      "maxPartDimension": 2.651278495788574,
+      "preload": {
+        "ok": true,
+        "successful": 8,
+        "timedOut": false,
+        "callbacks": 8,
+        "failures": [],
+        "checkedMeshAssets": 8,
+        "failureCount": 0
+      },
+      "groups": {
+        "Fixed": 3,
+        "Pan": 4,
+        "BalanceBeam": 1
+      },
+      "parts": 8,
+      "ok": true,
+      "deterministic": true,
+      "id": "balance_scale",
+      "profile": "pearl-tipping-point",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.553982973098755,
+      "maxPositionMagnitude": 6.428811550140381,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 5,
+      "triangles": 1352
+    },
+    "4": {
+      "movedGroups": {
+        "LumeStem": true,
+        "LumeCap": true,
+        "LumeFirefly": true
+      },
+      "duration": 1.36,
+      "maxPartDimension": 2.3116488456726074,
+      "preload": {
+        "ok": true,
+        "successful": 6,
+        "timedOut": false,
+        "callbacks": 6,
+        "failures": [],
+        "checkedMeshAssets": 6,
+        "failureCount": 0
+      },
+      "groups": {
+        "Fixed": 3,
+        "LumeStem": 1,
+        "LumeCap": 1,
+        "LumeFirefly": 1
+      },
+      "parts": 6,
+      "ok": true,
+      "deterministic": true,
+      "id": "biolume_jar",
+      "profile": "biolume-jar-firefly-awakening",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 2.8223023414611816,
+      "maxPositionMagnitude": 6.174822807312012,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 3,
+      "triangles": 1868
+    },
+    "5": {
+      "movedGroups": {
+        "EvolvedPiston": true,
+        "EvolvedCore": true,
+        "Bubbles": true
+      },
+      "duration": 1.32,
+      "maxPartDimension": 2.580864667892456,
+      "preload": {
+        "ok": true,
+        "successful": 7,
+        "timedOut": false,
+        "callbacks": 7,
+        "failures": [],
+        "checkedMeshAssets": 7,
+        "failureCount": 0
+      },
+      "groups": {
+        "EvolvedPiston": 2,
+        "Fixed": 3,
+        "EvolvedCore": 1,
+        "Bubbles": 1
+      },
+      "parts": 7,
+      "ok": true,
+      "deterministic": true,
+      "id": "bubble_reactor",
+      "profile": "bubble-reactor-pressure-cork-pop",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 2.9940361976623535,
+      "maxPositionMagnitude": 6.356897830963135,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 4,
+      "triangles": 2140
+    },
+    "6": {
+      "movedGroups": {
+        "WandBubble": true,
+        "WandLoop": true,
+        "WandStem": true
+      },
+      "duration": 1.46,
+      "maxPartDimension": 2.1151626110076904,
+      "preload": {
+        "ok": true,
+        "successful": 4,
+        "timedOut": false,
+        "callbacks": 4,
+        "failures": [],
+        "checkedMeshAssets": 4,
+        "failureCount": 0
+      },
+      "groups": {
+        "WandBubble": 1,
+        "WandLoop": 1,
+        "WandStem": 2
+      },
+      "parts": 4,
+      "ok": true,
+      "deterministic": true,
+      "id": "bubble_wand",
+      "profile": "bubble-wand-twirl-together-pop",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 4.1252617835998535,
+      "maxPositionMagnitude": 6.858344078063965,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 4,
+      "triangles": 976
+    },
+    "7": {
+      "movedGroups": {
+        "BurstCap": true,
+        "Fins": true
+      },
+      "duration": 1.5,
+      "maxPartDimension": 1.8254027366638184,
+      "preload": {
+        "ok": true,
+        "successful": 6,
+        "timedOut": false,
+        "callbacks": 6,
+        "failures": [],
+        "checkedMeshAssets": 6,
+        "failureCount": 0
+      },
+      "groups": {
+        "Fixed": 2,
+        "BurstCap": 2,
+        "Fins": 2
+      },
+      "parts": 6,
+      "ok": true,
+      "deterministic": true,
+      "id": "burst_capsule",
+      "profile": "capsule-lift-off-reseal",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 4.901468276977539,
+      "maxPositionMagnitude": 7.374601364135742,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 4,
+      "triangles": 2100
+    },
+    "8": {
+      "movedGroups": {
+        "ChestTreasure": true,
+        "ChestClasp": true,
+        "ChestLid": true
+      },
+      "duration": 3.4,
+      "maxPartDimension": 3.271608591079712,
+      "preload": {
+        "ok": true,
+        "successful": 10,
+        "timedOut": false,
+        "callbacks": 10,
+        "failures": [],
+        "checkedMeshAssets": 10,
+        "failureCount": 0
+      },
+      "groups": {
+        "ChestLid": 3,
+        "Fixed": 4,
+        "ChestClasp": 2,
+        "ChestTreasure": 1
+      },
+      "parts": 10,
+      "ok": true,
+      "deterministic": true,
+      "id": "chest_common",
+      "profile": "meadow-rattle-bouquet-boom",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 4.262783050537109,
+      "maxPositionMagnitude": 7.745507717132568,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 6,
+      "triangles": 3168
+    },
+    "9": {
+      "movedGroups": {
+        "ChestClasp": true,
+        "ChestOrbit": true,
+        "ChestLid": true,
+        "ChestTreasure": true
+      },
+      "duration": 4.2,
+      "maxPartDimension": 4.119190216064453,
+      "preload": {
+        "ok": true,
+        "successful": 11,
+        "timedOut": false,
+        "callbacks": 11,
+        "failures": [],
+        "checkedMeshAssets": 11,
+        "failureCount": 0
+      },
+      "groups": {
+        "ChestOrbit": 1,
+        "ChestClasp": 1,
+        "Fixed": 4,
+        "ChestLid": 2,
+        "ChestTreasure": 3
+      },
+      "parts": 11,
+      "ok": true,
+      "deterministic": true,
+      "id": "chest_legendary",
+      "profile": "celestial-supernova-coronation",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 5.611452102661133,
+      "maxPositionMagnitude": 8.059271812438965,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 7,
+      "triangles": 3468
+    },
+    "10": {
+      "movedGroups": {
+        "ChestTreasure": true,
+        "ChestClasp": true,
+        "ChestLid": true
+      },
+      "duration": 3.9,
+      "maxPartDimension": 3.241335153579712,
+      "preload": {
+        "ok": true,
+        "successful": 11,
+        "timedOut": false,
+        "callbacks": 11,
+        "failures": [],
+        "checkedMeshAssets": 11,
+        "failureCount": 0
+      },
+      "groups": {
+        "ChestLid": 3,
+        "Fixed": 4,
+        "ChestClasp": 1,
+        "ChestTreasure": 3
+      },
+      "parts": 11,
+      "ok": true,
+      "deterministic": true,
+      "id": "chest_rare",
+      "profile": "aurora-lockdown-eruption",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 4.466316223144531,
+      "maxPositionMagnitude": 7.995177745819092,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 7,
+      "triangles": 2592
+    },
+    "11": {
+      "movedGroups": {
+        "ChestTreasure": true,
+        "ChestClasp": true,
+        "ChestLid": true
+      },
+      "duration": 3.6,
+      "maxPartDimension": 2.9547066688537598,
+      "preload": {
+        "ok": true,
+        "successful": 11,
+        "timedOut": false,
+        "callbacks": 11,
+        "failures": [],
+        "checkedMeshAssets": 11,
+        "failureCount": 0
+      },
+      "groups": {
+        "ChestClasp": 1,
+        "Fixed": 5,
+        "ChestLid": 2,
+        "ChestTreasure": 3
+      },
+      "parts": 11,
+      "ok": true,
+      "deterministic": true,
+      "id": "chest_uncommon",
+      "profile": "lagoon-pressure-wave-burst",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 4.462892532348633,
+      "maxPositionMagnitude": 7.750072956085205,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 6,
+      "triangles": 2984
+    },
+    "12": {
+      "movedGroups": {
+        "MinuteHand": true,
+        "LeftGear": true,
+        "HourHand": true,
+        "RightGear": true
+      },
+      "duration": 1.38,
+      "maxPartDimension": 3.0053815841674805,
+      "preload": {
+        "ok": true,
+        "successful": 7,
+        "timedOut": false,
+        "callbacks": 7,
+        "failures": [],
+        "checkedMeshAssets": 7,
+        "failureCount": 0
+      },
+      "groups": {
+        "Fixed": 3,
+        "MinuteHand": 1,
+        "RightGear": 1,
+        "HourHand": 1,
+        "LeftGear": 1
+      },
+      "parts": 7,
+      "ok": true,
+      "deterministic": true,
+      "id": "clockwork",
+      "profile": "tide-clock-overdrive",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.804427146911621,
+      "maxPositionMagnitude": 5.9834208488464355,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 4,
+      "triangles": 3100
+    },
+    "13": {
+      "movedGroups": {
+        "CloudGlass": true,
+        "CloudGlint": true,
+        "CloudFrame": true,
+        "CloudRain": true
+      },
+      "duration": 1.34,
+      "maxPartDimension": 2.39876651763916,
+      "preload": {
+        "ok": true,
+        "successful": 5,
+        "timedOut": false,
+        "callbacks": 5,
+        "failures": [],
+        "checkedMeshAssets": 5,
+        "failureCount": 0
+      },
+      "groups": {
+        "CloudGlass": 1,
+        "CloudGlint": 1,
+        "Fixed": 1,
+        "CloudFrame": 1,
+        "CloudRain": 1
+      },
+      "parts": 5,
+      "ok": true,
+      "deterministic": true,
+      "id": "cloud_mirror",
+      "profile": "cloud-mirror-reflection-reveal",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.1781840324401855,
+      "maxPositionMagnitude": 6.631948947906494,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 4,
+      "triangles": 1568
+    },
+    "14": {
+      "movedGroups": {
+        "Coin": true
+      },
+      "duration": 1.1,
+      "maxPartDimension": 2.1440258026123047,
+      "preload": {
+        "ok": true,
+        "successful": 3,
+        "timedOut": false,
+        "callbacks": 3,
+        "failures": [],
+        "checkedMeshAssets": 3,
+        "failureCount": 0
+      },
+      "groups": {
+        "Coin": 3
+      },
+      "parts": 3,
+      "ok": true,
+      "deterministic": true,
+      "id": "coin",
+      "profile": "coin-double-flip-catch",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 2.3781094551086426,
+      "maxPositionMagnitude": 5.722751140594482,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 3,
+      "triangles": 1296
+    },
+    "15": {
+      "movedGroups": {
+        "Crank": true,
+        "MintCoin": true,
+        "PressScrew": true
+      },
+      "duration": 1.65,
+      "maxPartDimension": 3.4296066761016846,
+      "preload": {
+        "ok": true,
+        "successful": 8,
+        "timedOut": false,
+        "callbacks": 8,
+        "failures": [],
+        "checkedMeshAssets": 8,
+        "failureCount": 0
+      },
+      "groups": {
+        "Crank": 1,
+        "PressScrew": 2,
+        "MintCoin": 2,
+        "Fixed": 3
+      },
+      "parts": 8,
+      "ok": true,
+      "deterministic": true,
+      "id": "coin_press",
+      "profile": "mint-crank-contact-squash",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.8609509468078613,
+      "maxPositionMagnitude": 6.642593860626221,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 5,
+      "triangles": 3368
+    },
+    "16": {
+      "movedGroups": {
+        "Needle": true
+      },
+      "duration": 1.3,
+      "maxPartDimension": 2.646986722946167,
+      "preload": {
+        "ok": true,
+        "successful": 5,
+        "timedOut": false,
+        "callbacks": 5,
+        "failures": [],
+        "checkedMeshAssets": 5,
+        "failureCount": 0
+      },
+      "groups": {
+        "Fixed": 3,
+        "Needle": 2
+      },
+      "parts": 5,
+      "ok": true,
+      "deterministic": true,
+      "id": "compass",
+      "profile": "compass-north-flourish",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 2.8379411697387695,
+      "maxPositionMagnitude": 5.8576579093933105,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 2,
+      "triangles": 2308
+    },
+    "17": {
+      "movedGroups": {
+        "CoralCrown": true,
+        "CoralTine": true,
+        "CoralTip": true
+      },
+      "duration": 0.98,
+      "maxPartDimension": 2.315239429473877,
+      "preload": {
+        "ok": true,
+        "successful": 7,
+        "timedOut": false,
+        "callbacks": 7,
+        "failures": [],
+        "checkedMeshAssets": 7,
+        "failureCount": 0
+      },
+      "groups": {
+        "CoralCrown": 1,
+        "CoralTine": 2,
+        "CoralTip": 2,
+        "Fixed": 2
+      },
+      "parts": 7,
+      "ok": true,
+      "deterministic": true,
+      "id": "coral_fork",
+      "profile": "coral-fork-struck-chord",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.027266263961792,
+      "maxPositionMagnitude": 6.960104942321777,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 5,
+      "triangles": 844
+    },
+    "18": {
+      "movedGroups": {
+        "EvolvedPiston": true,
+        "EvolvedOrbit": true,
+        "EvolvedCore": true
+      },
+      "duration": 1.24,
+      "maxPartDimension": 2.7727339267730713,
+      "preload": {
+        "ok": true,
+        "successful": 7,
+        "timedOut": false,
+        "callbacks": 7,
+        "failures": [],
+        "checkedMeshAssets": 7,
+        "failureCount": 0
+      },
+      "groups": {
+        "EvolvedPiston": 2,
+        "Fixed": 2,
+        "EvolvedCore": 2,
+        "EvolvedOrbit": 1
+      },
+      "parts": 7,
+      "ok": true,
+      "deterministic": true,
+      "id": "current_nexus",
+      "profile": "current-nexus-contact-snap-broadcast",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.1515798568725586,
+      "maxPositionMagnitude": 5.730586528778076,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 5,
+      "triangles": 2100
+    },
+    "19": {
+      "movedGroups": {
+        "LanternMote": true,
+        "LanternDrop": true
+      },
+      "duration": 1.4,
+      "maxPartDimension": 2.2326176166534424,
+      "preload": {
+        "ok": true,
+        "successful": 5,
+        "timedOut": false,
+        "callbacks": 5,
+        "failures": [],
+        "checkedMeshAssets": 5,
+        "failureCount": 0
+      },
+      "groups": {
+        "LanternMote": 1,
+        "Fixed": 3,
+        "LanternDrop": 1
+      },
+      "parts": 5,
+      "ok": true,
+      "deterministic": true,
+      "id": "dew_lantern",
+      "profile": "dew-lantern-wish-swing",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.6848440170288086,
+      "maxPositionMagnitude": 6.518693447113037,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 2,
+      "triangles": 1580
+    },
+    "20": {
+      "movedGroups": {
+        "Pearl": true,
+        "ShellRibs": true
+      },
+      "duration": 1.12,
+      "maxPartDimension": 2.855937957763672,
+      "preload": {
+        "ok": true,
+        "successful": 4,
+        "timedOut": false,
+        "callbacks": 4,
+        "failures": [],
+        "checkedMeshAssets": 4,
+        "failureCount": 0
+      },
+      "groups": {
+        "Fixed": 1,
+        "ShellRibs": 2,
+        "Pearl": 1
+      },
+      "parts": 4,
+      "ok": true,
+      "deterministic": true,
+      "id": "echo_plate",
+      "profile": "echo-shell-sonic-bloom",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.073711633682251,
+      "maxPositionMagnitude": 5.990215301513672,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 3,
+      "triangles": 728
+    },
+    "21": {
+      "movedGroups": {
+        "EvolvedCore": true,
+        "EvolvedSprout": true
+      },
+      "duration": 1.52,
+      "maxPartDimension": 3.365410566329956,
+      "preload": {
+        "ok": true,
+        "successful": 6,
+        "timedOut": false,
+        "callbacks": 6,
+        "failures": [],
+        "checkedMeshAssets": 6,
+        "failureCount": 0
+      },
+      "groups": {
+        "Fixed": 4,
+        "EvolvedCore": 1,
+        "EvolvedSprout": 1
+      },
+      "parts": 6,
+      "ok": true,
+      "deterministic": true,
+      "id": "eden_greenhouse",
+      "profile": "eden-greenhouse-three-stage-sprouting",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.7394511699676514,
+      "maxPositionMagnitude": 6.072973251342773,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 2,
+      "triangles": 1084
+    },
+    "22": {
+      "movedGroups": {
+        "Horn": true
+      },
+      "duration": 1.16,
+      "maxPartDimension": 2.6977779865264893,
+      "preload": {
+        "ok": true,
+        "successful": 8,
+        "timedOut": false,
+        "callbacks": 8,
+        "failures": [],
+        "checkedMeshAssets": 8,
+        "failureCount": 0
+      },
+      "groups": {
+        "Horn": 6,
+        "Fixed": 2
+      },
+      "parts": 8,
+      "ok": true,
+      "deterministic": true,
+      "id": "encore",
+      "profile": "ocean-chorus-call-response",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.3112683296203613,
+      "maxPositionMagnitude": 6.261529445648193,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 6,
+      "triangles": 2692
+    },
+    "23": {
+      "movedGroups": {
+        "EventSprout": true
+      },
+      "duration": 1.23,
+      "maxPartDimension": 1.649837851524353,
+      "preload": {
+        "ok": true,
+        "successful": 4,
+        "timedOut": false,
+        "callbacks": 4,
+        "failures": [],
+        "checkedMeshAssets": 4,
+        "failureCount": 0
+      },
+      "groups": {
+        "Fixed": 2,
+        "EventSprout": 2
+      },
+      "parts": 4,
+      "ok": true,
+      "deterministic": true,
+      "id": "event_growth",
+      "profile": "sprout-jack-in-the-pot",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 2.3508148193359375,
+      "maxPositionMagnitude": 5.78500509262085,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 2,
+      "triangles": 748
+    },
+    "24": {
+      "movedGroups": {
+        "EventStream": true,
+        "EventSand": true
+      },
+      "duration": 1.4,
+      "maxPartDimension": 2.2898430824279785,
+      "preload": {
+        "ok": true,
+        "successful": 6,
+        "timedOut": false,
+        "callbacks": 6,
+        "failures": [],
+        "checkedMeshAssets": 6,
+        "failureCount": 0
+      },
+      "groups": {
+        "EventStream": 1,
+        "Fixed": 4,
+        "EventSand": 1
+      },
+      "parts": 6,
+      "ok": true,
+      "deterministic": true,
+      "id": "event_overtime",
+      "profile": "hourglass-somersault-reset",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 2.9403958320617676,
+      "maxPositionMagnitude": 5.841214179992676,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 2,
+      "triangles": 1036
+    },
+    "25": {
+      "movedGroups": {
+        "EventCross": true
+      },
+      "duration": 1.03,
+      "maxPartDimension": 1.8996188640594482,
+      "preload": {
+        "ok": true,
+        "successful": 3,
+        "timedOut": false,
+        "callbacks": 3,
+        "failures": [],
+        "checkedMeshAssets": 3,
+        "failureCount": 0
+      },
+      "groups": {
+        "Fixed": 2,
+        "EventCross": 1
+      },
+      "parts": 3,
+      "ok": true,
+      "deterministic": true,
+      "id": "event_repair",
+      "profile": "repair-heartbeat-defibrillation",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 2.2586021423339844,
+      "maxPositionMagnitude": 5.438017845153809,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 1,
+      "triangles": 608
+    },
+    "26": {
+      "movedGroups": {
+        "EventArrow": true
+      },
+      "duration": 1.17,
+      "maxPartDimension": 2.2944445610046387,
+      "preload": {
+        "ok": true,
+        "successful": 4,
+        "timedOut": false,
+        "callbacks": 4,
+        "failures": [],
+        "checkedMeshAssets": 4,
+        "failureCount": 0
+      },
+      "groups": {
+        "EventArrow": 3,
+        "Fixed": 1
+      },
+      "parts": 4,
+      "ok": true,
+      "deterministic": true,
+      "id": "event_upgrade",
+      "profile": "upgrade-chevron-launch",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.0582761764526367,
+      "maxPositionMagnitude": 6.141286849975586,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 3,
+      "triangles": 684
+    },
+    "27": {
+      "movedGroups": {
+        "Spark": true
+      },
+      "duration": 0.92,
+      "maxPartDimension": 1.9544178247451782,
+      "preload": {
+        "ok": true,
+        "successful": 4,
+        "timedOut": false,
+        "callbacks": 4,
+        "failures": [],
+        "checkedMeshAssets": 4,
+        "failureCount": 0
+      },
+      "groups": {
+        "Spark": 1,
+        "Fixed": 3
+      },
+      "parts": 4,
+      "ok": true,
+      "deterministic": true,
+      "id": "first_spark",
+      "profile": "battery-crackle-kick",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 2.6519064903259277,
+      "maxPositionMagnitude": 5.424715518951416,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 1,
+      "triangles": 1200
+    },
+    "28": {
+      "movedGroups": {
+        "FishBody": true,
+        "Waterline": true,
+        "Reeds": true,
+        "FishTail": true,
+        "FishFin": true,
+        "Water": true
+      },
+      "duration": 1.22,
+      "maxPartDimension": 2.473778486251831,
+      "preload": {
+        "ok": true,
+        "successful": 8,
+        "timedOut": false,
+        "callbacks": 8,
+        "failures": [],
+        "checkedMeshAssets": 8,
+        "failureCount": 0
+      },
+      "groups": {
+        "FishBody": 2,
+        "Waterline": 1,
+        "Reeds": 1,
+        "FishTail": 1,
+        "Fixed": 1,
+        "FishFin": 1,
+        "Water": 1
+      },
+      "parts": 8,
+      "ok": true,
+      "deterministic": true,
+      "id": "fishbowl",
+      "profile": "fishbowl-slush-and-hop",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.5116488933563232,
+      "maxPositionMagnitude": 6.118011951446533,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 7,
+      "triangles": 1916
+    },
+    "29": {
+      "movedGroups": {
+        "Knob": true
+      },
+      "duration": 1.02,
+      "maxPartDimension": 3.046067714691162,
+      "preload": {
+        "ok": true,
+        "successful": 5,
+        "timedOut": false,
+        "callbacks": 5,
+        "failures": [],
+        "checkedMeshAssets": 5,
+        "failureCount": 0
+      },
+      "groups": {
+        "Knob": 2,
+        "Fixed": 3
+      },
+      "parts": 5,
+      "ok": true,
+      "deterministic": true,
+      "id": "gain_dial",
+      "profile": "gain-crank-kick",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.320335865020752,
+      "maxPositionMagnitude": 5.664656639099121,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 2,
+      "triangles": 2208
+    },
+    "30": {
+      "movedGroups": {
+        "FishBody": true,
+        "Bubbles": true,
+        "FishFin": true,
+        "FishTail": true
+      },
+      "duration": 1.32,
+      "maxPartDimension": 1.8116633892059326,
+      "preload": {
+        "ok": true,
+        "successful": 5,
+        "timedOut": false,
+        "callbacks": 5,
+        "failures": [],
+        "checkedMeshAssets": 5,
+        "failureCount": 0
+      },
+      "groups": {
+        "FishTail": 1,
+        "Bubbles": 1,
+        "FishFin": 1,
+        "FishBody": 2
+      },
+      "parts": 5,
+      "ok": true,
+      "deterministic": true,
+      "id": "goldfish",
+      "profile": "goldfish-breach-and-barrel-roll",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 4.273561477661133,
+      "maxPositionMagnitude": 6.696835994720459,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 5,
+      "triangles": 1208
+    },
+    "31": {
+      "movedGroups": {
+        "Coral": true
+      },
+      "duration": 1.34,
+      "maxPartDimension": 3.140110492706299,
+      "preload": {
+        "ok": true,
+        "successful": 7,
+        "timedOut": false,
+        "callbacks": 7,
+        "failures": [],
+        "checkedMeshAssets": 7,
+        "failureCount": 0
+      },
+      "groups": {
+        "Coral": 4,
+        "Fixed": 3
+      },
+      "parts": 7,
+      "ok": true,
+      "deterministic": true,
+      "id": "growth_array",
+      "profile": "coral-wave-bloom",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.803929328918457,
+      "maxPositionMagnitude": 6.395683288574219,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 4,
+      "triangles": 1680
+    },
+    "32": {
+      "movedGroups": {
+        "Orbit": true
+      },
+      "duration": 1.28,
+      "maxPartDimension": 2.434603452682495,
+      "preload": {
+        "ok": true,
+        "successful": 5,
+        "timedOut": false,
+        "callbacks": 5,
+        "failures": [],
+        "checkedMeshAssets": 5,
+        "failureCount": 0
+      },
+      "groups": {
+        "Orbit": 2,
+        "Fixed": 3
+      },
+      "parts": 5,
+      "ok": true,
+      "deterministic": true,
+      "id": "growth_ring",
+      "profile": "seed-orbit-bloom",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.2769298553466797,
+      "maxPositionMagnitude": 5.706046104431152,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 2,
+      "triangles": 1884
+    },
+    "33": {
+      "movedGroups": {
+        "EvolvedNeedle": true,
+        "EvolvedOrbit": true,
+        "EvolvedLens": true
+      },
+      "duration": 1.64,
+      "maxPartDimension": 2.231142282485962,
+      "preload": {
+        "ok": true,
+        "successful": 7,
+        "timedOut": false,
+        "callbacks": 7,
+        "failures": [],
+        "checkedMeshAssets": 7,
+        "failureCount": 0
+      },
+      "groups": {
+        "EvolvedNeedle": 1,
+        "Fixed": 2,
+        "EvolvedOrbit": 1,
+        "EvolvedLens": 3
+      },
+      "parts": 7,
+      "ok": true,
+      "deterministic": true,
+      "id": "horizon_observatory",
+      "profile": "horizon-observatory-orbital-survey",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.3913352489471436,
+      "maxPositionMagnitude": 7.0587849617004395,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 5,
+      "triangles": 1580
+    },
+    "34": {
+      "movedGroups": {
+        "ShufflePeg": true
+      },
+      "duration": 1.26,
+      "maxPartDimension": 2.3470098972320557,
+      "preload": {
+        "ok": true,
+        "successful": 4,
+        "timedOut": false,
+        "callbacks": 4,
+        "failures": [],
+        "checkedMeshAssets": 4,
+        "failureCount": 0
+      },
+      "groups": {
+        "ShufflePeg": 3,
+        "Fixed": 1
+      },
+      "parts": 4,
+      "ok": true,
+      "deterministic": true,
+      "id": "jumble",
+      "profile": "shuffle-orbital-mix",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 2.9251763820648193,
+      "maxPositionMagnitude": 6.709696292877197,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 3,
+      "triangles": 696
+    },
+    "35": {
+      "movedGroups": {
+        "SynthKey": true,
+        "SynthWave": true
+      },
+      "duration": 1.22,
+      "maxPartDimension": 2.6535134315490723,
+      "preload": {
+        "ok": true,
+        "successful": 7,
+        "timedOut": false,
+        "callbacks": 7,
+        "failures": [],
+        "checkedMeshAssets": 7,
+        "failureCount": 0
+      },
+      "groups": {
+        "SynthWave": 1,
+        "Fixed": 3,
+        "SynthKey": 3
+      },
+      "parts": 7,
+      "ok": true,
+      "deterministic": true,
+      "id": "lagoon_synth",
+      "profile": "lagoon-synth-three-note-riff",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.062986373901367,
+      "maxPositionMagnitude": 5.934730052947998,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 4,
+      "triangles": 1224
+    },
+    "36": {
+      "movedGroups": {
+        "CatchCoin": true,
+        "ShellLid": true
+      },
+      "duration": 1.08,
+      "maxPartDimension": 2.798002004623413,
+      "preload": {
+        "ok": true,
+        "successful": 5,
+        "timedOut": false,
+        "callbacks": 5,
+        "failures": [],
+        "checkedMeshAssets": 5,
+        "failureCount": 0
+      },
+      "groups": {
+        "Fixed": 1,
+        "CatchCoin": 2,
+        "ShellLid": 2
+      },
+      "parts": 5,
+      "ok": true,
+      "deterministic": true,
+      "id": "landing_fund",
+      "profile": "shell-catch-and-toss",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.4551572799682617,
+      "maxPositionMagnitude": 5.8979573249816895,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 4,
+      "triangles": 792
+    },
+    "37": {
+      "movedGroups": {
+        "Quote": true
+      },
+      "duration": 1.13,
+      "maxPartDimension": 2.0562503337860107,
+      "preload": {
+        "ok": true,
+        "successful": 5,
+        "timedOut": false,
+        "callbacks": 5,
+        "failures": [],
+        "checkedMeshAssets": 5,
+        "failureCount": 0
+      },
+      "groups": {
+        "Quote": 2,
+        "Fixed": 3
+      },
+      "parts": 5,
+      "ok": true,
+      "deterministic": true,
+      "id": "last_word",
+      "profile": "quotation-double-stamp",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 2.805360794067383,
+      "maxPositionMagnitude": 5.8178019523620605,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 2,
+      "triangles": 1420
+    },
+    "38": {
+      "movedGroups": {
+        "Ball": true
+      },
+      "duration": 0.98,
+      "maxPartDimension": 1.963395357131958,
+      "preload": {
+        "ok": true,
+        "successful": 1,
+        "timedOut": false,
+        "callbacks": 1,
+        "failures": [],
+        "checkedMeshAssets": 1,
+        "failureCount": 0
+      },
+      "groups": {
+        "Ball": 1
+      },
+      "parts": 1,
+      "ok": true,
+      "deterministic": true,
+      "id": "life",
+      "profile": "ball-superbounce",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 2.6586151123046875,
+      "maxPositionMagnitude": 5.598404884338379,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 1,
+      "triangles": 960
+    },
+    "39": {
+      "movedGroups": {
+        "LilyDew": true,
+        "LilyHeart": true,
+        "LilyPad": true,
+        "LilyPetal": true
+      },
+      "duration": 1.28,
+      "maxPartDimension": 2.4161102771759033,
+      "preload": {
+        "ok": true,
+        "successful": 6,
+        "timedOut": false,
+        "callbacks": 6,
+        "failures": [],
+        "checkedMeshAssets": 6,
+        "failureCount": 0
+      },
+      "groups": {
+        "LilyPad": 1,
+        "LilyHeart": 1,
+        "LilyDew": 1,
+        "LilyPetal": 3
+      },
+      "parts": 6,
+      "ok": true,
+      "deterministic": true,
+      "id": "lily_pad",
+      "profile": "lily-pad-flower-pop",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.0842995643615723,
+      "maxPositionMagnitude": 6.332941055297852,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 6,
+      "triangles": 364
+    },
+    "40": {
+      "movedGroups": {
+        "Shackle": true
+      },
+      "duration": 1.16,
+      "maxPartDimension": 1.760484218597412,
+      "preload": {
+        "ok": true,
+        "successful": 4,
+        "timedOut": false,
+        "callbacks": 4,
+        "failures": [],
+        "checkedMeshAssets": 4,
+        "failureCount": 0
+      },
+      "groups": {
+        "Shackle": 1,
+        "Fixed": 3
+      },
+      "parts": 4,
+      "ok": true,
+      "deterministic": true,
+      "id": "lock",
+      "profile": "lock-click-flourish",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.354973793029785,
+      "maxPositionMagnitude": 6.360891342163086,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 1,
+      "triangles": 812
+    },
+    "41": {
+      "movedGroups": {
+        "Pendulum": true
+      },
+      "duration": 1.3,
+      "maxPartDimension": 2.457376718521118,
+      "preload": {
+        "ok": true,
+        "successful": 6,
+        "timedOut": false,
+        "callbacks": 6,
+        "failures": [],
+        "checkedMeshAssets": 6,
+        "failureCount": 0
+      },
+      "groups": {
+        "Pendulum": 2,
+        "Fixed": 4
+      },
+      "parts": 6,
+      "ok": true,
+      "deterministic": true,
+      "id": "metronome",
+      "profile": "pendulum-whip-cadence",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 2.6888341903686523,
+      "maxPositionMagnitude": 5.911299705505371,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 2,
+      "triangles": 1224
+    },
+    "42": {
+      "movedGroups": {
+        "Flag": true,
+        "Step": true
+      },
+      "duration": 1.34,
+      "maxPartDimension": 1.9149096012115479,
+      "preload": {
+        "ok": true,
+        "successful": 7,
+        "timedOut": false,
+        "callbacks": 7,
+        "failures": [],
+        "checkedMeshAssets": 7,
+        "failureCount": 0
+      },
+      "groups": {
+        "Flag": 2,
+        "Fixed": 2,
+        "Step": 3
+      },
+      "parts": 7,
+      "ok": true,
+      "deterministic": true,
+      "id": "milestone",
+      "profile": "three-step-flag-fanfare",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 2.7968008518218994,
+      "maxPositionMagnitude": 6.5134782791137695,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 5,
+      "triangles": 1172
+    },
+    "43": {
+      "movedGroups": {
+        "MistRotor": true,
+        "MistPuff": true
+      },
+      "duration": 1.16,
+      "maxPartDimension": 2.988896369934082,
+      "preload": {
+        "ok": true,
+        "successful": 6,
+        "timedOut": false,
+        "callbacks": 6,
+        "failures": [],
+        "checkedMeshAssets": 6,
+        "failureCount": 0
+      },
+      "groups": {
+        "Fixed": 3,
+        "MistRotor": 2,
+        "MistPuff": 1
+      },
+      "parts": 6,
+      "ok": true,
+      "deterministic": true,
+      "id": "mist_fan",
+      "profile": "mist-fan-turbo-kick",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.8647561073303223,
+      "maxPositionMagnitude": 5.8701491355896,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 3,
+      "triangles": 1280
+    },
+    "44": {
+      "movedGroups": {
+        "LoomThread": true,
+        "LoomRain": true,
+        "LoomWeave": true,
+        "LoomShuttle": true
+      },
+      "duration": 1.32,
+      "maxPartDimension": 2.862807035446167,
+      "preload": {
+        "ok": true,
+        "successful": 6,
+        "timedOut": false,
+        "callbacks": 6,
+        "failures": [],
+        "checkedMeshAssets": 6,
+        "failureCount": 0
+      },
+      "groups": {
+        "LoomThread": 1,
+        "LoomShuttle": 1,
+        "Fixed": 2,
+        "LoomWeave": 1,
+        "LoomRain": 1
+      },
+      "parts": 6,
+      "ok": true,
+      "deterministic": true,
+      "id": "monsoon_loom",
+      "profile": "monsoon-loom-shuttle-storm",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.061814069747925,
+      "maxPositionMagnitude": 5.986278533935547,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 4,
+      "triangles": 1416
+    },
+    "45": {
+      "movedGroups": {
+        "MossBridge": true,
+        "MossCharge": true
+      },
+      "duration": 1.12,
+      "maxPartDimension": 2.3065402507781982,
+      "preload": {
+        "ok": true,
+        "successful": 5,
+        "timedOut": false,
+        "callbacks": 5,
+        "failures": [],
+        "checkedMeshAssets": 5,
+        "failureCount": 0
+      },
+      "groups": {
+        "Fixed": 3,
+        "MossBridge": 1,
+        "MossCharge": 1
+      },
+      "parts": 5,
+      "ok": true,
+      "deterministic": true,
+      "id": "moss_capacitor",
+      "profile": "moss-capacitor-charge-discharge",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.039658546447754,
+      "maxPositionMagnitude": 6.325877666473389,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 2,
+      "triangles": 1088
+    },
+    "46": {
+      "movedGroups": {
+        "PumpHandle": true,
+        "PumpStem": true,
+        "NectarLiquid": true,
+        "NectarDrop": true
+      },
+      "duration": 1.08,
+      "maxPartDimension": 1.885353446006775,
+      "preload": {
+        "ok": true,
+        "successful": 6,
+        "timedOut": false,
+        "callbacks": 6,
+        "failures": [],
+        "checkedMeshAssets": 6,
+        "failureCount": 0
+      },
+      "groups": {
+        "PumpHandle": 1,
+        "NectarDrop": 1,
+        "PumpStem": 1,
+        "Fixed": 2,
+        "NectarLiquid": 1
+      },
+      "parts": 6,
+      "ok": true,
+      "deterministic": true,
+      "id": "nectar_pump",
+      "profile": "nectar-pump-double-squirt",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 2.366760492324829,
+      "maxPositionMagnitude": 6.068950653076172,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 4,
+      "triangles": 968
+    },
+    "47": {
+      "movedGroups": {
+        "EvolvedFork": true,
+        "EvolvedShell": true,
+        "EvolvedHorn": true
+      },
+      "duration": 1.48,
+      "maxPartDimension": 2.5300230979919434,
+      "preload": {
+        "ok": true,
+        "successful": 12,
+        "timedOut": false,
+        "callbacks": 12,
+        "failures": [],
+        "checkedMeshAssets": 12,
+        "failureCount": 0
+      },
+      "groups": {
+        "EvolvedFork": 2,
+        "Fixed": 2,
+        "EvolvedHorn": 6,
+        "EvolvedShell": 2
+      },
+      "parts": 12,
+      "ok": true,
+      "deterministic": true,
+      "id": "ocean_orchestra",
+      "profile": "ocean-orchestra-brass-and-shell-fanfare",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 2.975792646408081,
+      "maxPositionMagnitude": 6.385092735290527,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 10,
+      "triangles": 2400
+    },
+    "48": {
+      "movedGroups": {
+        "OzoneCore": true,
+        "OzoneShell": true,
+        "OzoneSatellite": true,
+        "OzoneOrbitB": true,
+        "OzoneOrbitA": true
+      },
+      "duration": 1.48,
+      "maxPartDimension": 2.7033069133758545,
+      "preload": {
+        "ok": true,
+        "successful": 6,
+        "timedOut": false,
+        "callbacks": 6,
+        "failures": [],
+        "checkedMeshAssets": 6,
+        "failureCount": 0
+      },
+      "groups": {
+        "OzoneCore": 1,
+        "OzoneShell": 1,
+        "OzoneSatellite": 1,
+        "Fixed": 1,
+        "OzoneOrbitB": 1,
+        "OzoneOrbitA": 1
+      },
+      "parts": 6,
+      "ok": true,
+      "deterministic": true,
+      "id": "ozone_orb",
+      "profile": "ozone-orb-atomic-sling",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.3811841011047363,
+      "maxPositionMagnitude": 5.8765459060668945,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 5,
+      "triangles": 1648
+    },
+    "49": {
+      "movedGroups": {
+        "DiverPearl": true,
+        "DiverClaw": true
+      },
+      "duration": 1.27,
+      "maxPartDimension": 1.8783299922943115,
+      "preload": {
+        "ok": true,
+        "successful": 6,
+        "timedOut": false,
+        "callbacks": 6,
+        "failures": [],
+        "checkedMeshAssets": 6,
+        "failureCount": 0
+      },
+      "groups": {
+        "Fixed": 3,
+        "DiverClaw": 2,
+        "DiverPearl": 1
+      },
+      "parts": 6,
+      "ok": true,
+      "deterministic": true,
+      "id": "pearl_diver",
+      "profile": "pearl-diver-prize-catch",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 2.5792319774627686,
+      "maxPositionMagnitude": 6.152350425720215,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 3,
+      "triangles": 588
+    },
+    "50": {
+      "movedGroups": {
+        "EvolvedBalance": true,
+        "EvolvedRotor": true
+      },
+      "duration": 1.42,
+      "maxPartDimension": 3.100991725921631,
+      "preload": {
+        "ok": true,
+        "successful": 6,
+        "timedOut": false,
+        "callbacks": 6,
+        "failures": [],
+        "checkedMeshAssets": 6,
+        "failureCount": 0
+      },
+      "groups": {
+        "Fixed": 2,
+        "EvolvedBalance": 2,
+        "EvolvedRotor": 2
+      },
+      "parts": 6,
+      "ok": true,
+      "deterministic": true,
+      "id": "pearl_turbine",
+      "profile": "pearl-turbine-balance-powered-surge",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.3440256118774414,
+      "maxPositionMagnitude": 6.482851505279541,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 4,
+      "triangles": 1008
+    },
+    "51": {
+      "movedGroups": {
+        "ChargeBar": true
+      },
+      "duration": 1.08,
+      "maxPartDimension": 2.834440231323242,
+      "preload": {
+        "ok": true,
+        "successful": 7,
+        "timedOut": false,
+        "callbacks": 7,
+        "failures": [],
+        "checkedMeshAssets": 7,
+        "failureCount": 0
+      },
+      "groups": {
+        "ChargeBar": 4,
+        "Fixed": 3
+      },
+      "parts": 7,
+      "ok": true,
+      "deterministic": true,
+      "id": "pulse_cell",
+      "profile": "dew-charge-release",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.4271178245544434,
+      "maxPositionMagnitude": 6.491296768188477,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 4,
+      "triangles": 1132
+    },
+    "52": {
+      "movedGroups": {
+        "Stamp": true
+      },
+      "duration": 0.88,
+      "maxPartDimension": 3.268036127090454,
+      "preload": {
+        "ok": true,
+        "successful": 6,
+        "timedOut": false,
+        "callbacks": 6,
+        "failures": [],
+        "checkedMeshAssets": 6,
+        "failureCount": 0
+      },
+      "groups": {
+        "Stamp": 2,
+        "Fixed": 4
+      },
+      "parts": 6,
+      "ok": true,
+      "deterministic": true,
+      "id": "quota_bonus",
+      "profile": "quota-heavy-stamp",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.539964437484741,
+      "maxPositionMagnitude": 7.408503532409668,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 2,
+      "triangles": 1156
+    },
+    "53": {
+      "movedGroups": {
+        "RainDrop": true,
+        "RainWater": true
+      },
+      "duration": 1.1,
+      "maxPartDimension": 2.1996166706085205,
+      "preload": {
+        "ok": true,
+        "successful": 6,
+        "timedOut": false,
+        "callbacks": 6,
+        "failures": [],
+        "checkedMeshAssets": 6,
+        "failureCount": 0
+      },
+      "groups": {
+        "Fixed": 4,
+        "RainDrop": 1,
+        "RainWater": 1
+      },
+      "parts": 6,
+      "ok": true,
+      "deterministic": true,
+      "id": "rain_catcher",
+      "profile": "rain-catcher-heavy-drop-catch",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.4024100303649902,
+      "maxPositionMagnitude": 6.603050708770752,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 2,
+      "triangles": 1400
+    },
+    "54": {
+      "movedGroups": {
+        "RecoveryArrows": true
+      },
+      "duration": 1.24,
+      "maxPartDimension": 2.1012754440307617,
+      "preload": {
+        "ok": true,
+        "successful": 4,
+        "timedOut": false,
+        "callbacks": 4,
+        "failures": [],
+        "checkedMeshAssets": 4,
+        "failureCount": 0
+      },
+      "groups": {
+        "RecoveryArrows": 1,
+        "Fixed": 3
+      },
+      "parts": 4,
+      "ok": true,
+      "deterministic": true,
+      "id": "recovery",
+      "profile": "renewal-corkscrew-return",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 2.8466134071350098,
+      "maxPositionMagnitude": 5.603959560394287,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 1,
+      "triangles": 2460
+    },
+    "55": {
+      "movedGroups": {
+        "Contact": true,
+        "Winding": true
+      },
+      "duration": 1.17,
+      "maxPartDimension": 2.7541403770446777,
+      "preload": {
+        "ok": true,
+        "successful": 6,
+        "timedOut": false,
+        "callbacks": 6,
+        "failures": [],
+        "checkedMeshAssets": 6,
+        "failureCount": 0
+      },
+      "groups": {
+        "Contact": 2,
+        "Winding": 1,
+        "Fixed": 3
+      },
+      "parts": 6,
+      "ok": true,
+      "deterministic": true,
+      "id": "relay",
+      "profile": "relay-barrel-charge",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.209432601928711,
+      "maxPositionMagnitude": 6.4432573318481445,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 3,
+      "triangles": 2792
+    },
+    "56": {
+      "movedGroups": {
+        "ReserveBall": true
+      },
+      "duration": 1.13,
+      "maxPartDimension": 2.4006431102752686,
+      "preload": {
+        "ok": true,
+        "successful": 7,
+        "timedOut": false,
+        "callbacks": 7,
+        "failures": [],
+        "checkedMeshAssets": 7,
+        "failureCount": 0
+      },
+      "groups": {
+        "ReserveBall": 3,
+        "Fixed": 4
+      },
+      "parts": 7,
+      "ok": true,
+      "deterministic": true,
+      "id": "reserve_pack",
+      "profile": "reserve-jackpot-juggle",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.1233346462249756,
+      "maxPositionMagnitude": 6.915680408477783,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 3,
+      "triangles": 1380
+    },
+    "57": {
+      "movedGroups": {
+        "Chime": true,
+        "RightFork": true,
+        "LeftFork": true
+      },
+      "duration": 0.94,
+      "maxPartDimension": 3.0956003665924072,
+      "preload": {
+        "ok": true,
+        "successful": 7,
+        "timedOut": false,
+        "callbacks": 7,
+        "failures": [],
+        "checkedMeshAssets": 7,
+        "failureCount": 0
+      },
+      "groups": {
+        "RightFork": 2,
+        "Fixed": 2,
+        "Chime": 1,
+        "LeftFork": 2
+      },
+      "parts": 7,
+      "ok": true,
+      "deterministic": true,
+      "id": "resonator",
+      "profile": "reef-ringing-recoil",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.544746160507202,
+      "maxPositionMagnitude": 6.941222190856934,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 5,
+      "triangles": 1240
+    },
+    "58": {
+      "movedGroups": {
+        "RefillArrows": true
+      },
+      "duration": 1.08,
+      "maxPartDimension": 2.472270965576172,
+      "preload": {
+        "ok": true,
+        "successful": 3,
+        "timedOut": false,
+        "callbacks": 3,
+        "failures": [],
+        "checkedMeshAssets": 3,
+        "failureCount": 0
+      },
+      "groups": {
+        "RefillArrows": 1,
+        "Fixed": 2
+      },
+      "parts": 3,
+      "ok": true,
+      "deterministic": true,
+      "id": "restock",
+      "profile": "restock-turbine-spool",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 2.7970051765441895,
+      "maxPositionMagnitude": 5.759428977966309,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 1,
+      "triangles": 1196
+    },
+    "59": {
+      "movedGroups": {
+        "ReboundBall": true
+      },
+      "duration": 1.12,
+      "maxPartDimension": 2.0960817337036133,
+      "preload": {
+        "ok": true,
+        "successful": 5,
+        "timedOut": false,
+        "callbacks": 5,
+        "failures": [],
+        "checkedMeshAssets": 5,
+        "failureCount": 0
+      },
+      "groups": {
+        "ReboundBall": 1,
+        "Fixed": 4
+      },
+      "parts": 5,
+      "ok": true,
+      "deterministic": true,
+      "id": "ricochet",
+      "profile": "pearl-three-cushion-rally",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 2.6124966144561768,
+      "maxPositionMagnitude": 5.642792224884033,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 1,
+      "triangles": 1820
+    },
+    "60": {
+      "movedGroups": {
+        "ScoreBar": true
+      },
+      "duration": 1.03,
+      "maxPartDimension": 2.815594434738159,
+      "preload": {
+        "ok": true,
+        "successful": 4,
+        "timedOut": false,
+        "callbacks": 4,
+        "failures": [],
+        "checkedMeshAssets": 4,
+        "failureCount": 0
+      },
+      "groups": {
+        "ScoreBar": 3,
+        "Fixed": 1
+      },
+      "parts": 4,
+      "ok": true,
+      "deterministic": true,
+      "id": "score",
+      "profile": "score-staircase-surge",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 4.12226676940918,
+      "maxPositionMagnitude": 6.565593242645264,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 3,
+      "triangles": 432
+    },
+    "61": {
+      "movedGroups": {
+        "Lid": true,
+        "Seed": true
+      },
+      "duration": 1.2,
+      "maxPartDimension": 3.0140438079833984,
+      "preload": {
+        "ok": true,
+        "successful": 8,
+        "timedOut": false,
+        "callbacks": 8,
+        "failures": [],
+        "checkedMeshAssets": 8,
+        "failureCount": 0
+      },
+      "groups": {
+        "Fixed": 4,
+        "Lid": 2,
+        "Seed": 2
+      },
+      "parts": 8,
+      "ok": true,
+      "deterministic": true,
+      "id": "seed_bank",
+      "profile": "seedbank-greenhouse-pop",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 4.317599296569824,
+      "maxPositionMagnitude": 7.3244147300720215,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 4,
+      "triangles": 2040
+    },
+    "62": {
+      "movedGroups": {
+        "Foam": true,
+        "Current": true
+      },
+      "duration": 1.23,
+      "maxPartDimension": 2.2302865982055664,
+      "preload": {
+        "ok": true,
+        "successful": 6,
+        "timedOut": false,
+        "callbacks": 6,
+        "failures": [],
+        "checkedMeshAssets": 6,
+        "failureCount": 0
+      },
+      "groups": {
+        "Current": 2,
+        "Foam": 3,
+        "Fixed": 1
+      },
+      "parts": 6,
+      "ok": true,
+      "deterministic": true,
+      "id": "soft_saw",
+      "profile": "current-cartwheel",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.2632875442504883,
+      "maxPositionMagnitude": 6.475315093994141,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 5,
+      "triangles": 1980
+    },
+    "63": {
+      "movedGroups": {
+        "SolarLeaf": true,
+        "SolarSun": true,
+        "SolarVein": true,
+        "SolarCell": true
+      },
+      "duration": 1.24,
+      "maxPartDimension": 2.0059680938720703,
+      "preload": {
+        "ok": true,
+        "successful": 8,
+        "timedOut": false,
+        "callbacks": 8,
+        "failures": [],
+        "checkedMeshAssets": 8,
+        "failureCount": 0
+      },
+      "groups": {
+        "SolarSun": 1,
+        "SolarLeaf": 2,
+        "Fixed": 1,
+        "SolarCell": 2,
+        "SolarVein": 2
+      },
+      "parts": 8,
+      "ok": true,
+      "deterministic": true,
+      "id": "solar_leaf",
+      "profile": "solar-leaf-sun-salute",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 4.455327987670898,
+      "maxPositionMagnitude": 7.3671345710754395,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 7,
+      "triangles": 356
+    },
+    "64": {
+      "movedGroups": {
+        "EvolvedNeedle": true,
+        "EvolvedCoin": true,
+        "EvolvedCore": true,
+        "EvolvedWeight": true
+      },
+      "duration": 1.46,
+      "maxPartDimension": 2.4025020599365234,
+      "preload": {
+        "ok": true,
+        "successful": 7,
+        "timedOut": false,
+        "callbacks": 7,
+        "failures": [],
+        "checkedMeshAssets": 7,
+        "failureCount": 0
+      },
+      "groups": {
+        "EvolvedNeedle": 1,
+        "EvolvedCore": 1,
+        "EvolvedWeight": 1,
+        "Fixed": 3,
+        "EvolvedCoin": 1
+      },
+      "parts": 7,
+      "ok": true,
+      "deterministic": true,
+      "id": "solar_treasury",
+      "profile": "solar-treasury-mint-and-coin-salute",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.8978092670440674,
+      "maxPositionMagnitude": 6.837049961090088,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 4,
+      "triangles": 1552
+    },
+    "65": {
+      "movedGroups": {
+        "EvolvedFork": true,
+        "EvolvedCrystal": true,
+        "EvolvedOrbit": true
+      },
+      "duration": 1.38,
+      "maxPartDimension": 3.067704439163208,
+      "preload": {
+        "ok": true,
+        "successful": 6,
+        "timedOut": false,
+        "callbacks": 6,
+        "failures": [],
+        "checkedMeshAssets": 6,
+        "failureCount": 0
+      },
+      "groups": {
+        "EvolvedFork": 2,
+        "Fixed": 2,
+        "EvolvedOrbit": 1,
+        "EvolvedCrystal": 1
+      },
+      "parts": 6,
+      "ok": true,
+      "deterministic": true,
+      "id": "spectrum_reef",
+      "profile": "spectrum-reef-prismatic-chord-bloom",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.8659236431121826,
+      "maxPositionMagnitude": 6.4530439376831055,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 4,
+      "triangles": 796
+    },
+    "66": {
+      "movedGroups": {
+        "Prism": true
+      },
+      "duration": 1.14,
+      "maxPartDimension": 3.285921096801758,
+      "preload": {
+        "ok": true,
+        "successful": 6,
+        "timedOut": false,
+        "callbacks": 6,
+        "failures": [],
+        "checkedMeshAssets": 6,
+        "failureCount": 0
+      },
+      "groups": {
+        "Fixed": 2,
+        "Prism": 4
+      },
+      "parts": 6,
+      "ok": true,
+      "deterministic": true,
+      "id": "split_prism",
+      "profile": "prism-refract-fan",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.5475785732269287,
+      "maxPositionMagnitude": 6.366483688354492,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 4,
+      "triangles": 952
+    },
+    "67": {
+      "movedGroups": {
+        "SpringGuide": true,
+        "SpringMesh": true,
+        "Weight": true
+      },
+      "duration": 1.02,
+      "maxPartDimension": 3.3652470111846924,
+      "preload": {
+        "ok": true,
+        "successful": 7,
+        "timedOut": false,
+        "callbacks": 7,
+        "failures": [],
+        "checkedMeshAssets": 7,
+        "failureCount": 0
+      },
+      "groups": {
+        "SpringGuide": 1,
+        "Fixed": 2,
+        "SpringMesh": 1,
+        "Weight": 3
+      },
+      "parts": 7,
+      "ok": true,
+      "deterministic": true,
+      "id": "spring_coil",
+      "profile": "wave-spring-launch",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 4.3042988777160645,
+      "maxPositionMagnitude": 7.150775909423828,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 5,
+      "triangles": 3184
+    },
+    "68": {
+      "movedGroups": {
+        "EvolvedFastHand": true,
+        "EvolvedCrystal": true,
+        "EvolvedCore": true,
+        "EvolvedRotor": true,
+        "EvolvedSlowHand": true
+      },
+      "duration": 1.44,
+      "maxPartDimension": 2.7803101539611816,
+      "preload": {
+        "ok": true,
+        "successful": 8,
+        "timedOut": false,
+        "callbacks": 8,
+        "failures": [],
+        "checkedMeshAssets": 8,
+        "failureCount": 0
+      },
+      "groups": {
+        "EvolvedFastHand": 1,
+        "EvolvedCrystal": 1,
+        "EvolvedCore": 1,
+        "EvolvedSlowHand": 1,
+        "Fixed": 3,
+        "EvolvedRotor": 1
+      },
+      "parts": 8,
+      "ok": true,
+      "deterministic": true,
+      "id": "storm_clock",
+      "profile": "storm-clock-lightning-overdrive",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 4.239934921264648,
+      "maxPositionMagnitude": 6.862274646759033,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 5,
+      "triangles": 3448
+    },
+    "69": {
+      "movedGroups": {
+        "StreamPaddle": true,
+        "StreamSpoke": true
+      },
+      "duration": 1.38,
+      "maxPartDimension": 2.1127686500549316,
+      "preload": {
+        "ok": true,
+        "successful": 4,
+        "timedOut": false,
+        "callbacks": 4,
+        "failures": [],
+        "checkedMeshAssets": 4,
+        "failureCount": 0
+      },
+      "groups": {
+        "StreamPaddle": 1,
+        "Fixed": 1,
+        "StreamSpoke": 2
+      },
+      "parts": 4,
+      "ok": true,
+      "deterministic": true,
+      "id": "stream_wheel",
+      "profile": "stream-wheel-water-hammer",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.263885021209717,
+      "maxPositionMagnitude": 5.871330738067627,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 3,
+      "triangles": 2112
+    },
+    "70": {
+      "movedGroups": {
+        "FishBody": true,
+        "EvolvedCrystal": true,
+        "FishTail": true,
+        "FishFin": true,
+        "EvolvedOrbit": true
+      },
+      "duration": 1.62,
+      "maxPartDimension": 2.843818187713623,
+      "preload": {
+        "ok": true,
+        "successful": 7,
+        "timedOut": false,
+        "callbacks": 7,
+        "failures": [],
+        "checkedMeshAssets": 7,
+        "failureCount": 0
+      },
+      "groups": {
+        "FishBody": 3,
+        "EvolvedOrbit": 1,
+        "FishTail": 1,
+        "FishFin": 1,
+        "EvolvedCrystal": 1
+      },
+      "parts": 7,
+      "ok": true,
+      "deterministic": true,
+      "id": "sun_koi",
+      "profile": "sun-koi-crowned-solar-somersault",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.7399117946624756,
+      "maxPositionMagnitude": 6.675574779510498,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 7,
+      "triangles": 1516
+    },
+    "71": {
+      "movedGroups": {
+        "Lens": true
+      },
+      "duration": 1.2,
+      "maxPartDimension": 2.318911552429199,
+      "preload": {
+        "ok": true,
+        "successful": 7,
+        "timedOut": false,
+        "callbacks": 7,
+        "failures": [],
+        "checkedMeshAssets": 7,
+        "failureCount": 0
+      },
+      "groups": {
+        "Lens": 4,
+        "Fixed": 3
+      },
+      "parts": 7,
+      "ok": true,
+      "deterministic": true,
+      "id": "survey_lens",
+      "profile": "lens-flip-focus",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.81723690032959,
+      "maxPositionMagnitude": 5.921878337860107,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 4,
+      "triangles": 1656
+    },
+    "72": {
+      "movedGroups": {
+        "Turbine": true
+      },
+      "duration": 1.18,
+      "maxPartDimension": 2.3870303630828857,
+      "preload": {
+        "ok": true,
+        "successful": 4,
+        "timedOut": false,
+        "callbacks": 4,
+        "failures": [],
+        "checkedMeshAssets": 4,
+        "failureCount": 0
+      },
+      "groups": {
+        "Turbine": 2,
+        "Fixed": 2
+      },
+      "parts": 4,
+      "ok": true,
+      "deterministic": true,
+      "id": "tailwind",
+      "profile": "fan-jet-launch",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 2.7913296222686768,
+      "maxPositionMagnitude": 5.767947673797607,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 2,
+      "triangles": 2268
+    },
+    "73": {
+      "movedGroups": {
+        "Piston": true
+      },
+      "duration": 0.84,
+      "maxPartDimension": 2.7909295558929443,
+      "preload": {
+        "ok": true,
+        "successful": 5,
+        "timedOut": false,
+        "callbacks": 5,
+        "failures": [],
+        "checkedMeshAssets": 5,
+        "failureCount": 0
+      },
+      "groups": {
+        "Piston": 2,
+        "Fixed": 3
+      },
+      "parts": 5,
+      "ok": true,
+      "deterministic": true,
+      "id": "tap_driver",
+      "profile": "cock-punch-double-tap",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.8251805305480957,
+      "maxPositionMagnitude": 7.134544372558594,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 2,
+      "triangles": 1584
+    },
+    "74": {
+      "movedGroups": {
+        "EvolvedSpring": true,
+        "EvolvedNeedle": true,
+        "EvolvedWeight": true
+      },
+      "duration": 1.4,
+      "maxPartDimension": 2.7132785320281982,
+      "preload": {
+        "ok": true,
+        "successful": 5,
+        "timedOut": false,
+        "callbacks": 5,
+        "failures": [],
+        "checkedMeshAssets": 5,
+        "failureCount": 0
+      },
+      "groups": {
+        "EvolvedSpring": 1,
+        "Fixed": 2,
+        "EvolvedNeedle": 1,
+        "EvolvedWeight": 1
+      },
+      "parts": 5,
+      "ok": true,
+      "deterministic": true,
+      "id": "tidal_engine",
+      "profile": "tidal-engine-hydraulic-launch",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.2390360832214355,
+      "maxPositionMagnitude": 6.640251159667969,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 3,
+      "triangles": 2100
+    },
+    "75": {
+      "movedGroups": {
+        "EvolvedFastHand": true,
+        "EvolvedOrbit": true,
+        "EvolvedSlowHand": true,
+        "EvolvedGyro": true,
+        "EvolvedSpring": true
+      },
+      "duration": 1.66,
+      "maxPartDimension": 2.545715570449829,
+      "preload": {
+        "ok": true,
+        "successful": 8,
+        "timedOut": false,
+        "callbacks": 8,
+        "failures": [],
+        "checkedMeshAssets": 8,
+        "failureCount": 0
+      },
+      "groups": {
+        "EvolvedSpring": 1,
+        "EvolvedOrbit": 1,
+        "EvolvedSlowHand": 1,
+        "Fixed": 3,
+        "EvolvedFastHand": 1,
+        "EvolvedGyro": 1
+      },
+      "parts": 8,
+      "ok": true,
+      "deterministic": true,
+      "id": "tide_gyroscope",
+      "profile": "tide-gyroscope-gimbal-cascade",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.4617795944213867,
+      "maxPositionMagnitude": 5.939915180206299,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 5,
+      "triangles": 3836
+    },
+    "76": {
+      "movedGroups": {
+        "ValveWheel": true,
+        "ValveFlow": true
+      },
+      "duration": 1.3,
+      "maxPartDimension": 2.3309710025787354,
+      "preload": {
+        "ok": true,
+        "successful": 5,
+        "timedOut": false,
+        "callbacks": 5,
+        "failures": [],
+        "checkedMeshAssets": 5,
+        "failureCount": 0
+      },
+      "groups": {
+        "ValveFlow": 1,
+        "Fixed": 3,
+        "ValveWheel": 1
+      },
+      "parts": 5,
+      "ok": true,
+      "deterministic": true,
+      "id": "tide_valve",
+      "profile": "tide-valve-pressure-release",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 2.6234264373779297,
+      "maxPositionMagnitude": 6.043635845184326,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 2,
+      "triangles": 1164
+    },
+    "77": {
+      "movedGroups": {
+        "Spout": true,
+        "Drop": true
+      },
+      "duration": 1.32,
+      "maxPartDimension": 2.2188565731048584,
+      "preload": {
+        "ok": true,
+        "successful": 5,
+        "timedOut": false,
+        "callbacks": 5,
+        "failures": [],
+        "checkedMeshAssets": 5,
+        "failureCount": 0
+      },
+      "groups": {
+        "Spout": 1,
+        "Fixed": 3,
+        "Drop": 1
+      },
+      "parts": 5,
+      "ok": true,
+      "deterministic": true,
+      "id": "tuning_oil",
+      "profile": "oil-flair-pour",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 3.4588146209716797,
+      "maxPositionMagnitude": 6.926471710205078,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 2,
+      "triangles": 1376
+    },
+    "78": {
+      "movedGroups": {
+        "Bumper": true,
+        "Gauge": true
+      },
+      "duration": 0.92,
+      "maxPartDimension": 2.9829769134521484,
+      "preload": {
+        "ok": true,
+        "successful": 7,
+        "timedOut": false,
+        "callbacks": 7,
+        "failures": [],
+        "checkedMeshAssets": 7,
+        "failureCount": 0
+      },
+      "groups": {
+        "Bumper": 1,
+        "Fixed": 3,
+        "Gauge": 3
+      },
+      "parts": 7,
+      "ok": true,
+      "deterministic": true,
+      "id": "wall_meter",
+      "profile": "shore-sidekick-surge",
+      "rootTransform": true,
+      "restored": true,
+      "failures": [],
+      "maxModelDimension": 4.350987911224365,
+      "maxPositionMagnitude": 5.72166633605957,
+      "completedCycles": 24,
+      "posesChecked": 192,
+      "movedParts": 4,
+      "triangles": 1316
+    }
+  },
+  "limits": {
+    "partDimension": 20,
+    "positionMagnitude": 100,
+    "modelDimension": 32
+  },
+  "cyclesPerStrength": 12,
+  "elapsedSeconds": 24.23400910000055,
+  "failures": [],
+  "schema": 1,
+  "templates": 78
+}

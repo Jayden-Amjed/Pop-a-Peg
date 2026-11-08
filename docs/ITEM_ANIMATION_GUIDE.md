@@ -51,6 +51,15 @@ spin. The inspector's explicit TRIGGER remains a deliberate playback restart.
 Reduced-motion native previews use a small uniform 4% pulse without spins or
 articulation; the model still returns to its original pose.
 
+The first concrete review pass (RBX-025) uses a shared whole-wand pop instead of
+ejecting its bubble, a rigid removable capsule cap, and an independently cranked
+press that flattens its seated coin to 26% thickness. The die and coin remain in
+contact during compression. Chests keep their lids shut until pose .52, open
+quickly by .60, hold through .88 and return to rest; tier durations are 3.4–4.2s.
+Their gallery audio uses accelerating rattles, an impact at .56 and reveal at .64.
+Hub reward replacement waits on `handle:isAnimating()` so slow frames cannot
+skip the opening. See [RBX-025 review](evidence/RBX-025/REVIEW.md).
+
 Automated checks cover all IDs, distinct sampled trajectories, finite transforms,
 completed turns, attachments, repeated restoration and actual camera projection.
 They do not replace visual review of shape, rhythm or intended intersections.

@@ -1,0 +1,81 @@
+{
+  "source": "56e68f849a58c9eb8513b23cd442dd8308c7627d",
+  "scope": "Edit source after same playtest; normalized UTF8 byte counts and DJB2 equality to checkout",
+  "verified": [
+    {
+      "path": "src/client/ItemModels.luau",
+      "bytes": 91084,
+      "hash": 3280591556
+    },
+    {
+      "path": "src/client/ItemMotion.luau",
+      "bytes": 38644,
+      "hash": 3904855870
+    },
+    {
+      "path": "src/client/NativeAssemblies.luau",
+      "bytes": 5920,
+      "hash": 1585437367
+    },
+    {
+      "path": "src/client/ItemChoreography.luau",
+      "bytes": 1428,
+      "hash": 2211261593
+    },
+    {
+      "path": "src/client/motion/Curves.luau",
+      "bytes": 912,
+      "hash": 983285944
+    },
+    {
+      "path": "src/client/motion/Mechanical.luau",
+      "bytes": 26494,
+      "hash": 710179124
+    },
+    {
+      "path": "src/client/motion/Nature.luau",
+      "bytes": 46529,
+      "hash": 2050957084
+    },
+    {
+      "path": "src/client/motion/Rewards.luau",
+      "bytes": 23168,
+      "hash": 2986850918
+    },
+    {
+      "path": "src/client/SoundEffects.luau",
+      "bytes": 8708,
+      "hash": 3392681209
+    },
+    {
+      "path": "src/shared/ItemFeedback.luau",
+      "bytes": 11634,
+      "hash": 956377503
+    },
+    {
+      "path": "scripts/models/CatalogMotion.luau",
+      "bytes": 6016,
+      "hash": 3311443053
+    },
+    {
+      "path": "scripts/models/CatalogInfo.luau",
+      "bytes": 42065,
+      "hash": 1734325739
+    },
+    {
+      "path": "scripts/models/GalleryAudio.luau",
+      "bytes": 3367,
+      "hash": 1108675096
+    },
+    {
+      "path": "scripts/models/GallerySoundTimeline.luau",
+      "bytes": 2892,
+      "hash": 3762428850
+    },
+    {
+      "path": "scripts/models/CatalogGallery.client.luau",
+      "bytes": 37771,
+      "hash": 1180227512
+    }
+  ]
+}
