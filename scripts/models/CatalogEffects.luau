@@ -116,7 +116,11 @@ function CatalogEffects.new(model, id)
         if id == "coral_fork" then
             context.left, context.right = groupPoint("CoralTip", -1), groupPoint("CoralTip", 1)
         elseif id == "relay" then
-            context.left, context.right = source(-0.68, 1.04, 0), source(0.68, 1.04, 0)
+            -- The winding reaches +0.427 studs toward the camera. Put the
+            -- discharge just in front of it, not inside the opaque core.
+            context.left, context.right = source(-0.56, 1.04, 0.51), source(0.56, 1.04, 0.51)
+            context.terminalLeft, context.terminalRight =
+                source(-0.74, 0.55, 0.10), source(0.74, 0.55, 0.10)
         elseif id == "dew_lantern" then
             context.origin = groupPoint("LanternDrop")
         elseif id == "lagoon_synth" then

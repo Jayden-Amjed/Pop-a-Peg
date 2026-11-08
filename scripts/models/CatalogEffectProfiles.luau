@@ -712,7 +712,7 @@ function Effects.sample(id, t, strength, context)
             )
         end
     end
-    local function bolt(first, last, offset, color, segments)
+    local function bolt(first, last, offset, color, segments, width)
         local previous = first
         for n = 1, segments do
             local u = n / segments
@@ -721,7 +721,7 @@ function Effects.sample(id, t, strength, context)
                 * math.sin(n * 2.13 + math.floor(t * 36) * 1.7 + offset)
             q[2] += jag * 0.055 * a
             q[3] += math.sin(n * 1.9 + offset) * math.sin(u * math.pi) * 0.025
-            line(previous, q, 0.011, color, 0.95)
+            line(previous, q, width or 0.011, color, 0.95)
             previous = q
         end
     end
@@ -870,20 +870,23 @@ function Effects.sample(id, t, strength, context)
         end
     elseif p.kind == "relay" then
         local left, right =
-            context.left or point(-0.36, 0.04, 0), context.right or point(0.36, 0.04, 0)
-        local last
-        for n = 0, 20 do
-            local u = n / 20
-            local q = mix(left, right, u)
-            local angle = u * TAU * 2.5 - t * TAU * 5
-            q[2] += math.cos(angle) * 0.14
-            q[3] += math.sin(angle) * 0.14
-            if last then
-                line(last, q, 0.011, n % 3 == 0 and p.accent or p.color, 0.92)
-            end
-            last = q
+            context.left or point(-0.29, 0.01, 0.44), context.right or point(0.29, 0.01, 0.44)
+        local terminalLeft, terminalRight =
+            context.terminalLeft or point(-0.38, -0.23, 0.09),
+            context.terminalRight or point(0.38, -0.23, 0.09)
+        -- Bright exposed zigzags bridge the grounded gold insets and the coil.
+        -- Their front-plane placement keeps the electrical action readable even
+        -- when the winding is spinning through the same silhouette.
+        bolt(terminalLeft, left, 2, "gold", 7, 0.014)
+        bolt(left, right, 1, "ice", 12, 0.017)
+        bolt(right, terminalRight, 4, "gold", 7, 0.014)
+        local branchA, branchB = mix(left, right, 0.22), mix(left, right, 0.78)
+        branchA[2] += 0.085
+        branchB[2] += 0.085
+        bolt(branchA, branchB, 3, "aqua", 7, 0.012)
+        for _, q in { left, right, mix(left, right, 0.5) } do
+            ball(q, 0.024, "pearl", 0.95)
         end
-        bolt(left, right, 1, "ice", 9)
     elseif p.kind == "lantern" then
         local origin = context.origin or point(0, 0, 0)
         ball(origin, 0.11 * (1 + 0.12 * math.sin(t * TAU * 2)), "gold", 0.20)
