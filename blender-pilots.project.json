@@ -8,6 +8,7 @@
         "$className": "Folder",
         "ItemModels": { "$path": "src/client/ItemModels.luau" },
         "ItemMotion": { "$path": "src/client/ItemMotion.luau" },
+        "PreviewLighting": { "$path": "src/client/PreviewLighting.luau" },
         "PilotMotion": { "$path": "scripts/models/PilotMotion.luau" }
       },
       "BlenderPilots": { "$path": "art/models/BlenderPilots.rbxm" }

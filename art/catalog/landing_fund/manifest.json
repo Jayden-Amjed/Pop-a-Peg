@@ -1,0 +1,286 @@
+{
+  "schema": 2,
+  "id": "landing_fund",
+  "display_name": "Landing Shell",
+  "category": "equipment",
+  "generator": "scripts/models/catalog_mechanical.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 792,
+  "pieces": 5,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    0.0,
+    1.0749999
+  ],
+  "bounds_min": [
+    -1.02,
+    -0.714,
+    0.08
+  ],
+  "bounds_max": [
+    1.02,
+    0.714,
+    2.0699999
+  ],
+  "size_blender_studs": [
+    2.04,
+    1.428,
+    1.9899999
+  ],
+  "objects": [
+    {
+      "name": "landing_fund__CatchCoin_gold_01",
+      "mesh_data_name": "landing_fund__CatchCoin_gold_01",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 236,
+      "vertices": 120,
+      "motion_group": "CatchCoin",
+      "motion_pivot": [
+        0.0,
+        -0.17,
+        0.82
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.17,
+        0.82
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.17,
+        0.82
+      ],
+      "size_blender_studs": [
+        0.62,
+        0.11,
+        0.62
+      ],
+      "bounds_min": [
+        -0.31,
+        -0.225,
+        0.51
+      ],
+      "bounds_max": [
+        0.31,
+        -0.115,
+        1.13
+      ],
+      "geometry_sha256": "eca86cdcbcae074393992542bbb90cbc82f42d2dcc5f5f8d61a27bc9f38e83aa",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "landing_fund__CatchCoin_pearl_02",
+      "mesh_data_name": "landing_fund__CatchCoin_pearl_02",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 188,
+      "vertices": 96,
+      "motion_group": "CatchCoin",
+      "motion_pivot": [
+        0.0,
+        -0.17,
+        0.82
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.235,
+        0.82
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.235,
+        0.82
+      ],
+      "size_blender_studs": [
+        0.38,
+        0.024,
+        0.38
+      ],
+      "bounds_min": [
+        -0.19,
+        -0.247,
+        0.63
+      ],
+      "bounds_max": [
+        0.19,
+        -0.223,
+        1.01
+      ],
+      "geometry_sha256": "f61ddf751ec4e84d9a65c990f4c0470955ae73e7ab29368a65d13b0234d0088c",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "landing_fund__Fixed_pearl_03",
+      "mesh_data_name": "landing_fund__Fixed_pearl_03",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 240,
+      "vertices": 122,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.255
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.255
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.255
+      ],
+      "size_blender_studs": [
+        2.04,
+        1.428,
+        0.35
+      ],
+      "bounds_min": [
+        -1.02,
+        -0.714,
+        0.08
+      ],
+      "bounds_max": [
+        1.02,
+        0.714,
+        0.43
+      ],
+      "geometry_sha256": "3c8716562b6db4a22907556899728ac6311911b96397a9ebe70a5eb750d67b09",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "landing_fund__ShellLid_pearl_04",
+      "mesh_data_name": "landing_fund__ShellLid_pearl_04",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 32,
+      "vertices": 18,
+      "motion_group": "ShellLid",
+      "motion_pivot": [
+        0.0,
+        0.48,
+        0.4
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.5,
+        1.25
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.5,
+        1.25
+      ],
+      "size_blender_studs": [
+        1.92,
+        0.16,
+        1.6399999
+      ],
+      "bounds_min": [
+        -0.96,
+        0.42,
+        0.43
+      ],
+      "bounds_max": [
+        0.96,
+        0.58,
+        2.0699999
+      ],
+      "geometry_sha256": "1acb0ac8f6d7c1e2457112fb4b003e85a73cbba981b3dcfef0d45c72ea136dd5",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "landing_fund__ShellLid_teal_05",
+      "mesh_data_name": "landing_fund__ShellLid_teal_05",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 96,
+      "vertices": 54,
+      "motion_group": "ShellLid",
+      "motion_pivot": [
+        0.0,
+        0.48,
+        0.4
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.3949961,
+        1.1333551
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.3949961,
+        1.1333551
+      ],
+      "size_blender_studs": [
+        1.1623772,
+        0.0706238,
+        1.3332897
+      ],
+      "bounds_min": [
+        -0.5811886,
+        0.3596842,
+        0.4667102
+      ],
+      "bounds_max": [
+        0.5811886,
+        0.430308,
+        1.8
+      ],
+      "geometry_sha256": "9b7b062cb465bdfcfdc584a8ed4ffe67a9aa31e0370317324bb1ee3a78b1ce67",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/landing_fund/landing_fund.blend",
+  "source_preserved": false,
+  "blend_sha256": "d27a3f305916c662a7148f2425806d041aaa4962ad15d7339b2a52d74db33f34"
+}

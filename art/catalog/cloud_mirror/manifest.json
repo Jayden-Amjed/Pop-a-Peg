@@ -1,0 +1,286 @@
+{
+  "schema": 2,
+  "id": "cloud_mirror",
+  "display_name": "Cloud Mirror",
+  "category": "equipment",
+  "generator": "scripts/models/catalog_nature.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 1568,
+  "pieces": 5,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    0.0,
+    1.13775
+  ],
+  "bounds_min": [
+    -0.88,
+    -0.325,
+    0.0
+  ],
+  "bounds_max": [
+    0.88,
+    0.325,
+    2.2755001
+  ],
+  "size_blender_studs": [
+    1.76,
+    0.65,
+    2.2755001
+  ],
+  "objects": [
+    {
+      "name": "cloud_mirror__CloudGlass_blue_01",
+      "mesh_data_name": "cloud_mirror__CloudGlass_blue_01",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 480,
+      "vertices": 248,
+      "motion_group": "CloudGlass",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.65
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0022,
+        -0.13,
+        1.7874999
+      ],
+      "center_blender_studs": [
+        0.0022,
+        -0.13,
+        1.7874999
+      ],
+      "size_blender_studs": [
+        1.6192,
+        0.09,
+        0.8039998
+      ],
+      "bounds_min": [
+        -0.8074,
+        -0.175,
+        1.3855001
+      ],
+      "bounds_max": [
+        0.8118,
+        -0.085,
+        2.1894999
+      ],
+      "geometry_sha256": "9767044e564802deec4cd89338e4b1eab9937312d28596edab4d3a1d446e2fff",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "cloud_mirror__Fixed_dark_02",
+      "mesh_data_name": "cloud_mirror__Fixed_dark_02",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 216,
+      "vertices": 112,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.6625
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.6625
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.6625
+      ],
+      "size_blender_studs": [
+        0.9,
+        0.65,
+        1.325
+      ],
+      "bounds_min": [
+        -0.45,
+        -0.325,
+        0.0
+      ],
+      "bounds_max": [
+        0.45,
+        0.325,
+        1.325
+      ],
+      "geometry_sha256": "00762edbe20efe8d40ba2e16a8a35b7d87614db76f7ac8a9ce46b0a3aa11b68c",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "cloud_mirror__CloudFrame_pearl_03",
+      "mesh_data_name": "cloud_mirror__CloudFrame_pearl_03",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 480,
+      "vertices": 248,
+      "motion_group": "CloudFrame",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.65
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.7975
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.7975
+      ],
+      "size_blender_studs": [
+        1.76,
+        0.26,
+        0.9560001
+      ],
+      "bounds_min": [
+        -0.88,
+        -0.13,
+        1.3195
+      ],
+      "bounds_max": [
+        0.88,
+        0.13,
+        2.2755001
+      ],
+      "geometry_sha256": "50e843ea7e7fe607e639d895ac1c0e012e8bcb6ab0d5132940f22c4237f5c558",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "cloud_mirror__CloudGlint_pearl_04",
+      "mesh_data_name": "cloud_mirror__CloudGlint_pearl_04",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 32,
+      "vertices": 18,
+      "motion_group": "CloudGlint",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.65
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.197574,
+        -0.19,
+        1.9626567
+      ],
+      "center_blender_studs": [
+        -0.197574,
+        -0.19,
+        1.9626567
+      ],
+      "size_blender_studs": [
+        0.2951481,
+        0.056,
+        0.1631837
+      ],
+      "bounds_min": [
+        -0.3451481,
+        -0.218,
+        1.8810649
+      ],
+      "bounds_max": [
+        -0.05,
+        -0.162,
+        2.0442486
+      ],
+      "geometry_sha256": "5fa2a6f390293e0451d516a94527283fa4ec88ec4b46c0b3d1eec1f6d21d8f79",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "cloud_mirror__CloudRain_teal_05",
+      "mesh_data_name": "cloud_mirror__CloudRain_teal_05",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 360,
+      "vertices": 186,
+      "motion_group": "CloudRain",
+      "motion_pivot": [
+        0.035,
+        0.0,
+        1.1799999
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.035,
+        0.0,
+        1.1799999
+      ],
+      "center_blender_studs": [
+        0.035,
+        0.0,
+        1.1799999
+      ],
+      "size_blender_studs": [
+        0.89,
+        0.12,
+        0.26
+      ],
+      "bounds_min": [
+        -0.41,
+        -0.06,
+        1.05
+      ],
+      "bounds_max": [
+        0.48,
+        0.06,
+        1.3099999
+      ],
+      "geometry_sha256": "7c8931d8db74c431ee970841c5a1951cc62bca5b7e5a1dc9aa2106163f6e19e0",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/cloud_mirror/cloud_mirror.blend",
+  "source_preserved": false,
+  "blend_sha256": "943b2e11831c916c1bf86d4ad7365d6be049f2c3cc78113c9e537ecba1ec4309"
+}

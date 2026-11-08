@@ -1,0 +1,433 @@
+{
+  "schema": 2,
+  "id": "storm_clock",
+  "display_name": "Storm Clock",
+  "category": "evolved",
+  "generator": "scripts/models/catalog_nature.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 3448,
+  "pieces": 8,
+  "budget": {
+    "triangles": 6000,
+    "pieces": 12
+  },
+  "center_blender_studs": [
+    0.0,
+    0.0,
+    1.395
+  ],
+  "bounds_min": [
+    -0.97,
+    -0.425,
+    0.0
+  ],
+  "bounds_max": [
+    0.97,
+    0.425,
+    2.79
+  ],
+  "size_blender_studs": [
+    1.9400001,
+    0.85,
+    2.79
+  ],
+  "objects": [
+    {
+      "name": "storm_clock__EvolvedCore_blue_01",
+      "mesh_data_name": "storm_clock__EvolvedCore_blue_01",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 216,
+      "vertices": 112,
+      "motion_group": "EvolvedCore",
+      "motion_pivot": [
+        0.0,
+        -0.1,
+        0.75
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.1,
+        0.75
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.1,
+        0.75
+      ],
+      "size_blender_studs": [
+        1.74,
+        0.065,
+        0.72
+      ],
+      "bounds_min": [
+        -0.87,
+        -0.1325,
+        0.39
+      ],
+      "bounds_max": [
+        0.87,
+        -0.0675,
+        1.11
+      ],
+      "geometry_sha256": "4ec043e29da54114db37e173b627e8f32892083c2ddee2f703950c1f381a7093",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "storm_clock__Fixed_dark_02",
+      "mesh_data_name": "storm_clock__Fixed_dark_02",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 768,
+      "vertices": 392,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.0079
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.0079
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.0079
+      ],
+      "size_blender_studs": [
+        1.9400001,
+        0.85,
+        2.0158
+      ],
+      "bounds_min": [
+        -0.97,
+        -0.425,
+        0.0
+      ],
+      "bounds_max": [
+        0.97,
+        0.425,
+        2.0158
+      ],
+      "geometry_sha256": "b81ef5d3cc432de3b2ea038f0a68d37eaadb3f4688ae85252ed8cb3c49a2850a",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "storm_clock__EvolvedCrystal_gold_03",
+      "mesh_data_name": "storm_clock__EvolvedCrystal_gold_03",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 20,
+      "vertices": 12,
+      "motion_group": "EvolvedCrystal",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        2.05
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.015,
+        0.05,
+        2.4200001
+      ],
+      "center_blender_studs": [
+        -0.015,
+        0.05,
+        2.4200001
+      ],
+      "size_blender_studs": [
+        0.43,
+        0.1,
+        0.74
+      ],
+      "bounds_min": [
+        -0.23,
+        0.0,
+        2.05
+      ],
+      "bounds_max": [
+        0.2,
+        0.1,
+        2.79
+      ],
+      "geometry_sha256": "0d4fbe76974b2f222cc17c6c4c709cbf20bb240ad8115601327b4a03275e499e",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "storm_clock__EvolvedFastHand_gold_04",
+      "mesh_data_name": "storm_clock__EvolvedFastHand_gold_04",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "EvolvedFastHand",
+      "motion_pivot": [
+        0.0,
+        -0.31,
+        1.45
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.31,
+        1.6432
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.31,
+        1.6432
+      ],
+      "size_blender_studs": [
+        0.055,
+        0.045,
+        0.4277999
+      ],
+      "bounds_min": [
+        -0.0275,
+        -0.3325,
+        1.4293001
+      ],
+      "bounds_max": [
+        0.0275,
+        -0.2875,
+        1.8571
+      ],
+      "geometry_sha256": "aaaa77a732874095fe5ac3407c0d8a93e082b5376365c54b6a3d1d3d979a4a5e",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "storm_clock__Fixed_gold_05",
+      "mesh_data_name": "storm_clock__Fixed_gold_05",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 120,
+      "vertices": 62,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.37,
+        1.45
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.37,
+        1.45
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.37,
+        1.45
+      ],
+      "size_blender_studs": [
+        0.17,
+        0.07,
+        0.1700001
+      ],
+      "bounds_min": [
+        -0.085,
+        -0.405,
+        1.365
+      ],
+      "bounds_max": [
+        0.085,
+        -0.335,
+        1.5350001
+      ],
+      "geometry_sha256": "fa4fb94e864ddfd27046c32a17bbe94b0bc4fedd935b844fc610433cc9115e19",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "storm_clock__Fixed_pearl_06",
+      "mesh_data_name": "storm_clock__Fixed_pearl_06",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 1724,
+      "vertices": 888,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.162,
+        1.45
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.162,
+        1.45
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.162,
+        1.45
+      ],
+      "size_blender_studs": [
+        1.38,
+        0.284,
+        1.3800001
+      ],
+      "bounds_min": [
+        -0.69,
+        -0.304,
+        0.7600001
+      ],
+      "bounds_max": [
+        0.69,
+        -0.02,
+        2.1400001
+      ],
+      "geometry_sha256": "71ffc3d71d4e269c96f204eebe6a5d74bb7c77cc10cacf85a6395524d79ab824",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "storm_clock__EvolvedRotor_teal_07",
+      "mesh_data_name": "storm_clock__EvolvedRotor_teal_07",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 384,
+      "vertices": 192,
+      "motion_group": "EvolvedRotor",
+      "motion_pivot": [
+        0.0,
+        0.13,
+        1.44
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.13,
+        1.4400001
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.13,
+        1.4400001
+      ],
+      "size_blender_studs": [
+        1.75,
+        0.0779423,
+        1.75
+      ],
+      "bounds_min": [
+        -0.875,
+        0.0910289,
+        0.565
+      ],
+      "bounds_max": [
+        0.875,
+        0.1689711,
+        2.3150001
+      ],
+      "geometry_sha256": "a5b4b746a3365f4dd88edb08928ae285a9f3233a72da787cfb37bb2dad629313",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "storm_clock__EvolvedSlowHand_teal_08",
+      "mesh_data_name": "storm_clock__EvolvedSlowHand_teal_08",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "EvolvedSlowHand",
+      "motion_pivot": [
+        0.0,
+        -0.31,
+        1.45
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.1173,
+        -0.345,
+        1.45
+      ],
+      "center_blender_studs": [
+        0.1173,
+        -0.345,
+        1.45
+      ],
+      "size_blender_studs": [
+        0.2898,
+        0.035,
+        0.075
+      ],
+      "bounds_min": [
+        -0.0276,
+        -0.3625,
+        1.4125
+      ],
+      "bounds_max": [
+        0.2622,
+        -0.3275,
+        1.4875001
+      ],
+      "geometry_sha256": "dbb0240cbaa75e0b6b11f9398e6a019c32f850e8669d88dba368af07aa56d17c",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/storm_clock/storm_clock.blend",
+  "source_preserved": false,
+  "blend_sha256": "0ad807c28d1a7ccfa44e812503cf94aff721db87b45eca08bd7d96d357a7a3f1"
+}

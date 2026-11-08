@@ -1,0 +1,384 @@
+{
+  "schema": 2,
+  "id": "burst_capsule",
+  "display_name": "Burst Capsule",
+  "category": "equipment",
+  "generator": "scripts/models/catalog_mechanical.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 1648,
+  "pieces": 7,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    0.0,
+    1.3525001
+  ],
+  "bounds_min": [
+    -0.9,
+    -0.63,
+    0.18
+  ],
+  "bounds_max": [
+    0.9,
+    0.63,
+    2.5250001
+  ],
+  "size_blender_studs": [
+    1.8,
+    1.26,
+    2.345
+  ],
+  "objects": [
+    {
+      "name": "burst_capsule__Fixed_dark_01",
+      "mesh_data_name": "burst_capsule__Fixed_dark_01",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 344,
+      "vertices": 176,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.7825
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.7825
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.7825
+      ],
+      "size_blender_studs": [
+        1.1799999,
+        1.1799999,
+        0.955
+      ],
+      "bounds_min": [
+        -0.59,
+        -0.59,
+        0.305
+      ],
+      "bounds_max": [
+        0.59,
+        0.59,
+        1.26
+      ],
+      "geometry_sha256": "008c3e97f46235505333981c6b8bf54861e2c402377505cd6df8f909a6f0c6e2",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "burst_capsule__Fixed_gold_02",
+      "mesh_data_name": "burst_capsule__Fixed_gold_02",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 336,
+      "vertices": 168,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.48
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.48
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.48
+      ],
+      "size_blender_studs": [
+        1.26,
+        1.26,
+        0.0779423
+      ],
+      "bounds_min": [
+        -0.63,
+        -0.63,
+        1.4410288
+      ],
+      "bounds_max": [
+        0.63,
+        0.63,
+        1.5189711
+      ],
+      "geometry_sha256": "af90988d1d302f3ea5cfc55352e438391b4af78bc0f0697626d7a43a77b4f2a5",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "burst_capsule__Pin_gold_03",
+      "mesh_data_name": "burst_capsule__Pin_gold_03",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 444,
+      "vertices": 224,
+      "motion_group": "Pin",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        2.18
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        2.2375
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        2.2375
+      ],
+      "size_blender_studs": [
+        0.47,
+        0.1963613,
+        0.5750002
+      ],
+      "bounds_min": [
+        -0.235,
+        -0.0981807,
+        1.9499999
+      ],
+      "bounds_max": [
+        0.235,
+        0.0981807,
+        2.5250001
+      ],
+      "geometry_sha256": "d79fa7449fbcfa004cbb3147645e9fe696aae5877c4bda8415568b591422760c",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "burst_capsule__Fins_pearl_04",
+      "mesh_data_name": "burst_capsule__Fins_pearl_04",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 8,
+      "vertices": 6,
+      "motion_group": "Fins",
+      "motion_pivot": [
+        -0.58,
+        0.0,
+        0.5
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.665,
+        0.0,
+        0.45
+      ],
+      "center_blender_studs": [
+        -0.665,
+        0.0,
+        0.45
+      ],
+      "size_blender_studs": [
+        0.47,
+        0.18,
+        0.54
+      ],
+      "bounds_min": [
+        -0.9,
+        -0.09,
+        0.18
+      ],
+      "bounds_max": [
+        -0.43,
+        0.09,
+        0.72
+      ],
+      "geometry_sha256": "969ecf010f1541c086402aed6bbcb38e3ae24cdea7480255cb84a401ba19f04d",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "burst_capsule__Fins_pearl_05",
+      "mesh_data_name": "burst_capsule__Fins_pearl_05",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 8,
+      "vertices": 6,
+      "motion_group": "Fins",
+      "motion_pivot": [
+        0.58,
+        0.0,
+        0.5
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.665,
+        0.0,
+        0.45
+      ],
+      "center_blender_studs": [
+        0.665,
+        0.0,
+        0.45
+      ],
+      "size_blender_studs": [
+        0.47,
+        0.18,
+        0.54
+      ],
+      "bounds_min": [
+        0.43,
+        -0.09,
+        0.18
+      ],
+      "bounds_max": [
+        0.9,
+        0.09,
+        0.72
+      ],
+      "geometry_sha256": "88d25d21797f35ecd4bcc0a429fd7ecbefc01bce92c13db4d5d82480a270d966",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "burst_capsule__Fixed_pearl_06",
+      "mesh_data_name": "burst_capsule__Fixed_pearl_06",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 224,
+      "vertices": 114,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.78
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.78
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.78
+      ],
+      "size_blender_studs": [
+        1.1399999,
+        1.14,
+        0.7400001
+      ],
+      "bounds_min": [
+        -0.5699999,
+        -0.57,
+        1.41
+      ],
+      "bounds_max": [
+        0.5699999,
+        0.57,
+        2.1500001
+      ],
+      "geometry_sha256": "af29e5d6f93285a4d3960be040650e87c2d9ab6e489c816a55f00c6c178b2159",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "burst_capsule__Fixed_teal_07",
+      "mesh_data_name": "burst_capsule__Fixed_teal_07",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 284,
+      "vertices": 144,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.11
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.11
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.11
+      ],
+      "size_blender_studs": [
+        1.14,
+        1.14,
+        1.3099999
+      ],
+      "bounds_min": [
+        -0.57,
+        -0.57,
+        0.455
+      ],
+      "bounds_max": [
+        0.57,
+        0.57,
+        1.765
+      ],
+      "geometry_sha256": "c7ee41bf2764ab0fe229c7dfbae02ee653f50694400c510b96d953b31da1e411",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/burst_capsule/burst_capsule.blend",
+  "source_preserved": false,
+  "blend_sha256": "2d77757c04a7bf6ed49f0878056e422dd4693fb58915cdd62d646e672f235e60"
+}

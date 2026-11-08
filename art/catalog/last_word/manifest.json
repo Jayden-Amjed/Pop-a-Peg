@@ -1,0 +1,286 @@
+{
+  "schema": 2,
+  "id": "last_word",
+  "display_name": "Last Word",
+  "category": "perk",
+  "generator": "scripts/models/catalog_rewards.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 1420,
+  "pieces": 5,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    0.0,
+    0.8225001
+  ],
+  "bounds_min": [
+    -0.79,
+    -0.79,
+    0.0
+  ],
+  "bounds_max": [
+    0.79,
+    0.79,
+    1.6450001
+  ],
+  "size_blender_studs": [
+    1.58,
+    1.58,
+    1.6450001
+  ],
+  "objects": [
+    {
+      "name": "last_word__Fixed_dark_01",
+      "mesh_data_name": "last_word__Fixed_dark_01",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 440,
+      "vertices": 224,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.40375
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.40375
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.40375
+      ],
+      "size_blender_studs": [
+        1.3200001,
+        1.3200001,
+        0.5125
+      ],
+      "bounds_min": [
+        -0.66,
+        -0.66,
+        0.1475
+      ],
+      "bounds_max": [
+        0.66,
+        0.66,
+        0.66
+      ],
+      "geometry_sha256": "3d05adf6ec947e3447f850234c97f73819a5a450115f8df7bda1b16692013d59",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "last_word__Quote_gold_02",
+      "mesh_data_name": "last_word__Quote_gold_02",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 192,
+      "vertices": 98,
+      "motion_group": "Quote",
+      "motion_pivot": [
+        -0.3,
+        -0.21,
+        1.1
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.3,
+        -0.21,
+        1.08
+      ],
+      "center_blender_studs": [
+        -0.3,
+        -0.21,
+        1.08
+      ],
+      "size_blender_studs": [
+        0.3,
+        0.18,
+        0.48
+      ],
+      "bounds_min": [
+        -0.45,
+        -0.3,
+        0.84
+      ],
+      "bounds_max": [
+        -0.15,
+        -0.12,
+        1.3200001
+      ],
+      "geometry_sha256": "2af3af9dba8b253efcf93836c015e6d34a3c55f609a9e57d8e0675991ebaf1d2",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "last_word__Quote_gold_03",
+      "mesh_data_name": "last_word__Quote_gold_03",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 192,
+      "vertices": 98,
+      "motion_group": "Quote",
+      "motion_pivot": [
+        0.3,
+        -0.21,
+        1.1
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.3,
+        -0.21,
+        1.08
+      ],
+      "center_blender_studs": [
+        0.3,
+        -0.21,
+        1.08
+      ],
+      "size_blender_studs": [
+        0.3,
+        0.18,
+        0.48
+      ],
+      "bounds_min": [
+        0.15,
+        -0.3,
+        0.84
+      ],
+      "bounds_max": [
+        0.45,
+        -0.12,
+        1.3200001
+      ],
+      "geometry_sha256": "c12287529690a005174e9d54efb1d3e71a613bcadb682b01790fee8b071d23d1",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "last_word__Fixed_pearl_04",
+      "mesh_data_name": "last_word__Fixed_pearl_04",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 488,
+      "vertices": 248,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.8225001
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.8225001
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.8225001
+      ],
+      "size_blender_studs": [
+        1.58,
+        1.58,
+        1.6450001
+      ],
+      "bounds_min": [
+        -0.79,
+        -0.79,
+        0.0
+      ],
+      "bounds_max": [
+        0.79,
+        0.79,
+        1.6450001
+      ],
+      "geometry_sha256": "e73042b71f7f0f24b83ba75d04db4447cd7e37605df7f99cfda8b3dff974b82c",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "last_word__Fixed_teal_05",
+      "mesh_data_name": "last_word__Fixed_teal_05",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.085,
+        1.05
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.085,
+        1.05
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.085,
+        1.05
+      ],
+      "size_blender_studs": [
+        1.28,
+        0.08,
+        0.98
+      ],
+      "bounds_min": [
+        -0.64,
+        -0.125,
+        0.5599999
+      ],
+      "bounds_max": [
+        0.64,
+        -0.045,
+        1.54
+      ],
+      "geometry_sha256": "0ef82102586901f179dfa6408068ff41181a36f870e23ebdbfb3812a62ce889e",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/last_word/last_word.blend",
+  "source_preserved": false,
+  "blend_sha256": "0e3edf8de452f7f88468667e031a00e8e91cb9904bba133bcf878f70d872364f"
+}

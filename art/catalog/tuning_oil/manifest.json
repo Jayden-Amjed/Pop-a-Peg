@@ -1,0 +1,286 @@
+{
+  "schema": 2,
+  "id": "tuning_oil",
+  "display_name": "Tuning Oil",
+  "category": "consumable",
+  "generator": "scripts/models/catalog_mechanical.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 1376,
+  "pieces": 5,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.2087614,
+    0.0,
+    0.755
+  ],
+  "bounds_min": [
+    -1.0574772,
+    -0.4836,
+    0.1
+  ],
+  "bounds_max": [
+    1.475,
+    0.4836,
+    1.41
+  ],
+  "size_blender_studs": [
+    2.5324774,
+    0.9672,
+    1.3099999
+  ],
+  "objects": [
+    {
+      "name": "tuning_oil__Drop_gold_01",
+      "mesh_data_name": "tuning_oil__Drop_gold_01",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 120,
+      "vertices": 62,
+      "motion_group": "Drop",
+      "motion_pivot": [
+        1.38,
+        0.0,
+        1.05
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        1.38,
+        0.0,
+        1.05
+      ],
+      "center_blender_studs": [
+        1.38,
+        0.0,
+        1.05
+      ],
+      "size_blender_studs": [
+        0.1900001,
+        0.19,
+        0.3199999
+      ],
+      "bounds_min": [
+        1.285,
+        -0.095,
+        0.89
+      ],
+      "bounds_max": [
+        1.475,
+        0.095,
+        1.2099999
+      ],
+      "geometry_sha256": "f19ff216110491514ed8d63780a577d2ce72d26466bf025566be264a3c6f9c4e",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "tuning_oil__Fixed_gold_02",
+      "mesh_data_name": "tuning_oil__Fixed_gold_02",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 236,
+      "vertices": 120,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.35
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.35
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.35
+      ],
+      "size_blender_studs": [
+        0.54,
+        0.54,
+        0.1199999
+      ],
+      "bounds_min": [
+        -0.27,
+        -0.27,
+        1.2900001
+      ],
+      "bounds_max": [
+        0.27,
+        0.27,
+        1.41
+      ],
+      "geometry_sha256": "42e78093c551f8ab4b909e34bb5f90d4d4e82d8243b0cb3d06f72c9f9f677085",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "tuning_oil__Fixed_pearl_03",
+      "mesh_data_name": "tuning_oil__Fixed_pearl_03",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 192,
+      "vertices": 98,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.62
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.62
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.62
+      ],
+      "size_blender_studs": [
+        1.1799999,
+        0.9204,
+        1.04
+      ],
+      "bounds_min": [
+        -0.59,
+        -0.4602,
+        0.1
+      ],
+      "bounds_max": [
+        0.59,
+        0.4602,
+        1.14
+      ],
+      "geometry_sha256": "d989003e6bc84273382b2691e1ba07c971c3b4715ec1d2cec3cf40c69e9e5ad7",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "tuning_oil__Fixed_teal_04",
+      "mesh_data_name": "tuning_oil__Fixed_teal_04",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 628,
+      "vertices": 318,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        -0.2187386,
+        0.0,
+        0.7948446
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.2187386,
+        0.0,
+        0.7948446
+      ],
+      "center_blender_studs": [
+        -0.2187386,
+        0.0,
+        0.7948446
+      ],
+      "size_blender_studs": [
+        1.6774772,
+        0.9672,
+        1.0503109
+      ],
+      "bounds_min": [
+        -1.0574772,
+        -0.4836,
+        0.2696891
+      ],
+      "bounds_max": [
+        0.62,
+        0.4836,
+        1.3200001
+      ],
+      "geometry_sha256": "017f96c509ed343b6d8c3f6c50aea51f795e2d6398c68c1ace5d707ba83a2132",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "tuning_oil__Spout_teal_05",
+      "mesh_data_name": "tuning_oil__Spout_teal_05",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 200,
+      "vertices": 102,
+      "motion_group": "Spout",
+      "motion_pivot": [
+        0.42,
+        0.0,
+        0.78
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.8224396,
+        0.0,
+        1.0102588
+      ],
+      "center_blender_studs": [
+        0.8224396,
+        0.0,
+        1.0102588
+      ],
+      "size_blender_studs": [
+        0.9413114,
+        0.13,
+        0.5718953
+      ],
+      "bounds_min": [
+        0.3517839,
+        -0.065,
+        0.7243112
+      ],
+      "bounds_max": [
+        1.2930952,
+        0.065,
+        1.2962065
+      ],
+      "geometry_sha256": "822c46e95ae19e496525fcc369c54db66b73113ac44b96c408e519b2c10b9f87",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/tuning_oil/tuning_oil.blend",
+  "source_preserved": false,
+  "blend_sha256": "2ef87d4aa31bbe4d034e3efef66a98034afcda43ca1f74ab3ebd9753eadde093"
+}

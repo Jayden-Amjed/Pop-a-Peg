@@ -1,0 +1,188 @@
+{
+  "schema": 2,
+  "id": "coin",
+  "display_name": "Coin",
+  "category": "utility",
+  "generator": "scripts/models/catalog_mechanical.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 1296,
+  "pieces": 3,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    -0.03375,
+    0.8399999
+  ],
+  "bounds_min": [
+    -0.76,
+    -0.1575,
+    0.08
+  ],
+  "bounds_max": [
+    0.76,
+    0.09,
+    1.5999999
+  ],
+  "size_blender_studs": [
+    1.52,
+    0.2475,
+    1.52
+  ],
+  "objects": [
+    {
+      "name": "coin__Coin_dark_01",
+      "mesh_data_name": "coin__Coin_dark_01",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 284,
+      "vertices": 144,
+      "motion_group": "Coin",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.84
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.102,
+        0.84
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.102,
+        0.84
+      ],
+      "size_blender_studs": [
+        1.2,
+        0.0250001,
+        1.2
+      ],
+      "bounds_min": [
+        -0.6,
+        -0.1145,
+        0.2399999
+      ],
+      "bounds_max": [
+        0.6,
+        -0.0895,
+        1.4400001
+      ],
+      "geometry_sha256": "1367a493ab46ca363e16565b1b59f091ecd2bd2b56135119d0f2c6a65dd2ea9e",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "coin__Coin_gold_02",
+      "mesh_data_name": "coin__Coin_gold_02",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 716,
+      "vertices": 360,
+      "motion_group": "Coin",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.84
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.0301554,
+        0.8399999
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.0301554,
+        0.8399999
+      ],
+      "size_blender_studs": [
+        1.52,
+        0.2403109,
+        1.52
+      ],
+      "bounds_min": [
+        -0.76,
+        -0.1503109,
+        0.08
+      ],
+      "bounds_max": [
+        0.76,
+        0.09,
+        1.5999999
+      ],
+      "geometry_sha256": "9030948f30790c49adf96d669660c24e03551f016a18b2d9ea6db21515cdf6ec",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "coin__Coin_pearl_03",
+      "mesh_data_name": "coin__Coin_pearl_03",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 296,
+      "vertices": 152,
+      "motion_group": "Coin",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.84
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.135,
+        0.7875
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.135,
+        0.7875
+      ],
+      "size_blender_studs": [
+        0.26,
+        0.045,
+        0.6049999
+      ],
+      "bounds_min": [
+        -0.13,
+        -0.1575,
+        0.485
+      ],
+      "bounds_max": [
+        0.13,
+        -0.1125,
+        1.0899999
+      ],
+      "geometry_sha256": "8d1f36bbcb495afae39d181f0c79523a5da1766f415b2beebc57d3fb2982aaa1",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/coin/coin.blend",
+  "source_preserved": false,
+  "blend_sha256": "9a579c0d9c8a98aacc46ec9ab963c3d7f792c8c79b81f4b1ad12177c4ccfb05a"
+}

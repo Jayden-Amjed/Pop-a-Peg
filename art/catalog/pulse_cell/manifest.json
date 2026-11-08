@@ -1,0 +1,384 @@
+{
+  "schema": 2,
+  "id": "pulse_cell",
+  "display_name": "Dew Cell",
+  "category": "equipment",
+  "generator": "scripts/models/catalog_mechanical.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 1132,
+  "pieces": 7,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    -0.02125,
+    1.135
+  ],
+  "bounds_min": [
+    -0.785,
+    -0.5524999,
+    0.0
+  ],
+  "bounds_max": [
+    0.785,
+    0.51,
+    2.27
+  ],
+  "size_blender_studs": [
+    1.5700001,
+    1.0625,
+    2.27
+  ],
+  "objects": [
+    {
+      "name": "pulse_cell__Fixed_dark_01",
+      "mesh_data_name": "pulse_cell__Fixed_dark_01",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 216,
+      "vertices": 112,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.9175
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.9175
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.9175
+      ],
+      "size_blender_studs": [
+        1.5700001,
+        1.02,
+        1.835
+      ],
+      "bounds_min": [
+        -0.785,
+        -0.51,
+        0.0
+      ],
+      "bounds_max": [
+        0.785,
+        0.51,
+        1.835
+      ],
+      "geometry_sha256": "9e93442228f1538ff337c92ee7fe96a5177ac49304afb40b68da5dfba721b510",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "pulse_cell__Fixed_gold_02",
+      "mesh_data_name": "pulse_cell__Fixed_gold_02",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 376,
+      "vertices": 192,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        2.1700001
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        2.1700001
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        2.1700001
+      ],
+      "size_blender_studs": [
+        1.1400001,
+        0.34,
+        0.1999998
+      ],
+      "bounds_min": [
+        -0.5700001,
+        -0.17,
+        2.0700002
+      ],
+      "bounds_max": [
+        0.5700001,
+        0.17,
+        2.27
+      ],
+      "geometry_sha256": "b5df89cc129dceae5c25b124d9e7cd729f3201c85379ddb64ac08a714c5e88c3",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "pulse_cell__ChargeBar_green_03",
+      "mesh_data_name": "pulse_cell__ChargeBar_green_03",
+      "material": "green",
+      "color_srgb": [
+        142,
+        220,
+        103
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "ChargeBar",
+      "motion_pivot": [
+        0.0,
+        -0.53,
+        1.25
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.53,
+        1.25
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.53,
+        1.25
+      ],
+      "size_blender_studs": [
+        0.78,
+        0.045,
+        0.1800001
+      ],
+      "bounds_min": [
+        -0.39,
+        -0.5524999,
+        1.16
+      ],
+      "bounds_max": [
+        0.39,
+        -0.5075,
+        1.34
+      ],
+      "geometry_sha256": "994826fd02e87d766f1cd19d8d93171b019dc6ad6d4d4a323d7a4efa20970f05",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "pulse_cell__ChargeBar_green_04",
+      "mesh_data_name": "pulse_cell__ChargeBar_green_04",
+      "material": "green",
+      "color_srgb": [
+        142,
+        220,
+        103
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "ChargeBar",
+      "motion_pivot": [
+        0.0,
+        -0.53,
+        1.55
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.53,
+        1.55
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.53,
+        1.55
+      ],
+      "size_blender_studs": [
+        0.78,
+        0.045,
+        0.1800001
+      ],
+      "bounds_min": [
+        -0.39,
+        -0.5524999,
+        1.4599999
+      ],
+      "bounds_max": [
+        0.39,
+        -0.5075,
+        1.64
+      ],
+      "geometry_sha256": "994826fd02e87d766f1cd19d8d93171b019dc6ad6d4d4a323d7a4efa20970f05",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "pulse_cell__Fixed_pearl_05",
+      "mesh_data_name": "pulse_cell__Fixed_pearl_05",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.11
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.11
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.11
+      ],
+      "size_blender_studs": [
+        1.45,
+        0.9,
+        1.95
+      ],
+      "bounds_min": [
+        -0.725,
+        -0.45,
+        0.135
+      ],
+      "bounds_max": [
+        0.725,
+        0.45,
+        2.085
+      ],
+      "geometry_sha256": "bf89ab0ddc80cedc38832daa1a9443de74e79494fdb81c3db30a3540782d6806",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "pulse_cell__ChargeBar_teal_06",
+      "mesh_data_name": "pulse_cell__ChargeBar_teal_06",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "ChargeBar",
+      "motion_pivot": [
+        0.0,
+        -0.53,
+        0.65
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.53,
+        0.65
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.53,
+        0.65
+      ],
+      "size_blender_studs": [
+        0.78,
+        0.045,
+        0.1800001
+      ],
+      "bounds_min": [
+        -0.39,
+        -0.5524999,
+        0.5599999
+      ],
+      "bounds_max": [
+        0.39,
+        -0.5075,
+        0.74
+      ],
+      "geometry_sha256": "994826fd02e87d766f1cd19d8d93171b019dc6ad6d4d4a323d7a4efa20970f05",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "pulse_cell__ChargeBar_teal_07",
+      "mesh_data_name": "pulse_cell__ChargeBar_teal_07",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "ChargeBar",
+      "motion_pivot": [
+        0.0,
+        -0.53,
+        0.95
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.53,
+        0.95
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.53,
+        0.95
+      ],
+      "size_blender_studs": [
+        0.78,
+        0.045,
+        0.1799999
+      ],
+      "bounds_min": [
+        -0.39,
+        -0.5524999,
+        0.86
+      ],
+      "bounds_max": [
+        0.39,
+        -0.5075,
+        1.04
+      ],
+      "geometry_sha256": "77e07d5c9cbcf11fab01d32a234656dbf571d50bb3f43c24dbe10250b4891e10",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/pulse_cell/pulse_cell.blend",
+  "source_preserved": false,
+  "blend_sha256": "39ebf30cb5fa967df4649f69413e153fafb6b1e50342e7fe39f9bae938ddea29"
+}

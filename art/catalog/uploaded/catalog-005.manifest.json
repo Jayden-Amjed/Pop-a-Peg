@@ -1,0 +1,1490 @@
+{
+  "schema": 1,
+  "name": "catalog-005",
+  "file": "catalog-005.glb",
+  "glb_sha256": "fbd707c571b45aa670061b013a7e5c2181149cdae6c9e5fb43bbdcc34dc312a2",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "models": [
+    {
+      "id": "jumble",
+      "blend_sha256": "fdcf38056580f9949bad2eeb90cf3dc8b64d497c69943f9db871ee1f5950b103",
+      "source_center_blender_studs": [
+        0.0,
+        0.0,
+        0.98
+      ],
+      "layout_center_blender_studs": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "export_translation_blender_studs": [
+        0.0,
+        0.0,
+        -0.98
+      ],
+      "objects": [
+        "jumble__ShufflePeg_blue_01",
+        "jumble__ShufflePeg_gold_02",
+        "jumble__ShufflePeg_green_03",
+        "jumble__Fixed_pearl_04"
+      ]
+    },
+    {
+      "id": "lagoon_synth",
+      "blend_sha256": "91248d39e4a57b095c49f0e291541a032fc05de991cf732d7d7a1b41adec0f1e",
+      "source_center_blender_studs": [
+        0.0,
+        -0.0225,
+        0.5749999
+      ],
+      "layout_center_blender_studs": [
+        5.0,
+        0.0,
+        0.0
+      ],
+      "export_translation_blender_studs": [
+        5.0,
+        0.0225,
+        -0.5749999
+      ],
+      "objects": [
+        "lagoon_synth__Fixed_blue_01",
+        "lagoon_synth__Fixed_dark_02",
+        "lagoon_synth__SynthWave_gold_03",
+        "lagoon_synth__SynthKey_pearl_04",
+        "lagoon_synth__SynthKey_pearl_05",
+        "lagoon_synth__SynthKey_pearl_06",
+        "lagoon_synth__Fixed_teal_07"
+      ]
+    },
+    {
+      "id": "landing_fund",
+      "blend_sha256": "d27a3f305916c662a7148f2425806d041aaa4962ad15d7339b2a52d74db33f34",
+      "source_center_blender_studs": [
+        0.0,
+        0.0,
+        1.0749999
+      ],
+      "layout_center_blender_studs": [
+        10.0,
+        0.0,
+        0.0
+      ],
+      "export_translation_blender_studs": [
+        10.0,
+        0.0,
+        -1.0749999
+      ],
+      "objects": [
+        "landing_fund__CatchCoin_gold_01",
+        "landing_fund__CatchCoin_pearl_02",
+        "landing_fund__Fixed_pearl_03",
+        "landing_fund__ShellLid_pearl_04",
+        "landing_fund__ShellLid_teal_05"
+      ]
+    },
+    {
+      "id": "last_word",
+      "blend_sha256": "0e3edf8de452f7f88468667e031a00e8e91cb9904bba133bcf878f70d872364f",
+      "source_center_blender_studs": [
+        0.0,
+        0.0,
+        0.8225001
+      ],
+      "layout_center_blender_studs": [
+        15.0,
+        0.0,
+        0.0
+      ],
+      "export_translation_blender_studs": [
+        15.0,
+        0.0,
+        -0.8225001
+      ],
+      "objects": [
+        "last_word__Fixed_dark_01",
+        "last_word__Quote_gold_02",
+        "last_word__Quote_gold_03",
+        "last_word__Fixed_pearl_04",
+        "last_word__Fixed_teal_05"
+      ]
+    },
+    {
+      "id": "life",
+      "blend_sha256": "cfe779569acdc000e1b60897b31ed2eab6d58fbf870a2d055e1031f7f660a0a4",
+      "source_center_blender_studs": [
+        2e-07,
+        2e-07,
+        0.73
+      ],
+      "layout_center_blender_studs": [
+        0.0,
+        5.0,
+        0.0
+      ],
+      "export_translation_blender_studs": [
+        -2e-07,
+        5.0,
+        -0.73
+      ],
+      "objects": [
+        "life__Ball_blue_01"
+      ]
+    },
+    {
+      "id": "lily_pad",
+      "blend_sha256": "838368e8bb879e191c738f8a69f5e54bbbe0b0431f52ab2d22c1143cc8bc9154",
+      "source_center_blender_studs": [
+        -0.0421615,
+        0.0,
+        0.5606177
+      ],
+      "layout_center_blender_studs": [
+        5.0,
+        5.0,
+        0.0
+      ],
+      "export_translation_blender_studs": [
+        5.0421615,
+        5.0,
+        -0.5606177
+      ],
+      "objects": [
+        "lily_pad__LilyDew_glass_01",
+        "lily_pad__LilyHeart_gold_02",
+        "lily_pad__LilyPad_green_03",
+        "lily_pad__LilyPetal_pearl_04",
+        "lily_pad__LilyPetal_pearl_05",
+        "lily_pad__LilyPetal_pearl_06"
+      ]
+    },
+    {
+      "id": "lock",
+      "blend_sha256": "fbf42e8293c8f23338febfd198f186d3c056f38787e7854deef1e7aba2d93390",
+      "source_center_blender_studs": [
+        0.0,
+        -0.03825,
+        1.1199999
+      ],
+      "layout_center_blender_studs": [
+        10.0,
+        5.0,
+        0.0
+      ],
+      "export_translation_blender_studs": [
+        10.0,
+        5.03825,
+        -1.1199999
+      ],
+      "objects": [
+        "lock__Fixed_dark_01",
+        "lock__Shackle_gold_02",
+        "lock__Fixed_pearl_03",
+        "lock__Fixed_teal_04"
+      ]
+    },
+    {
+      "id": "metronome",
+      "blend_sha256": "e1bf260259f955efcb4486b1eb822d5f509feb28e599401e93b4d7d90e87302c",
+      "source_center_blender_studs": [
+        0.0,
+        0.0,
+        1.03
+      ],
+      "layout_center_blender_studs": [
+        15.0,
+        5.0,
+        0.0
+      ],
+      "export_translation_blender_studs": [
+        15.0,
+        5.0,
+        -1.03
+      ],
+      "objects": [
+        "metronome__Fixed_blue_01",
+        "metronome__Fixed_dark_02",
+        "metronome__Pendulum_dark_03",
+        "metronome__Pendulum_gold_04",
+        "metronome__Fixed_pearl_05",
+        "metronome__Fixed_teal_06"
+      ]
+    }
+  ],
+  "objects": [
+    {
+      "name": "jumble__ShufflePeg_blue_01",
+      "mesh_data_name": "jumble__ShufflePeg_blue_01",
+      "id": "jumble",
+      "center_blender_studs": [
+        -0.36,
+        0.0,
+        0.75
+      ],
+      "batch_center_blender_studs": [
+        -0.36,
+        0.0,
+        -0.23
+      ],
+      "motion_group": "ShufflePeg",
+      "motion_pivot": [
+        -0.36,
+        0.0,
+        0.75
+      ],
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.46,
+        0.4,
+        0.46
+      ]
+    },
+    {
+      "name": "jumble__ShufflePeg_gold_02",
+      "mesh_data_name": "jumble__ShufflePeg_gold_02",
+      "id": "jumble",
+      "center_blender_studs": [
+        0.36,
+        0.0,
+        0.75
+      ],
+      "batch_center_blender_studs": [
+        0.36,
+        0.0,
+        -0.23
+      ],
+      "motion_group": "ShufflePeg",
+      "motion_pivot": [
+        0.36,
+        0.0,
+        0.75
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.46,
+        0.4,
+        0.46
+      ]
+    },
+    {
+      "name": "jumble__ShufflePeg_green_03",
+      "mesh_data_name": "jumble__ShufflePeg_green_03",
+      "id": "jumble",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.35
+      ],
+      "batch_center_blender_studs": [
+        0.0,
+        0.0,
+        0.37
+      ],
+      "motion_group": "ShufflePeg",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.35
+      ],
+      "color_srgb": [
+        142,
+        220,
+        103
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.46,
+        0.4,
+        0.46
+      ]
+    },
+    {
+      "name": "jumble__Fixed_pearl_04",
+      "mesh_data_name": "jumble__Fixed_pearl_04",
+      "id": "jumble",
+      "center_blender_studs": [
+        0.0,
+        0.13,
+        0.98
+      ],
+      "batch_center_blender_studs": [
+        0.0,
+        0.13,
+        0.0
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.13,
+        0.98
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.73,
+        0.0952628,
+        1.73
+      ]
+    },
+    {
+      "name": "lagoon_synth__Fixed_blue_01",
+      "mesh_data_name": "lagoon_synth__Fixed_blue_01",
+      "id": "lagoon_synth",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.35
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        0.0225,
+        -0.2249999
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.35
+      ],
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.92,
+        1.1,
+        0.58
+      ]
+    },
+    {
+      "name": "lagoon_synth__Fixed_dark_02",
+      "mesh_data_name": "lagoon_synth__Fixed_dark_02",
+      "id": "lagoon_synth",
+      "center_blender_studs": [
+        0.0,
+        -0.085,
+        0.855
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        -0.0625,
+        0.2800001
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.085,
+        0.855
+      ],
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.7199999,
+        0.89,
+        0.4699999
+      ]
+    },
+    {
+      "name": "lagoon_synth__SynthWave_gold_03",
+      "mesh_data_name": "lagoon_synth__SynthWave_gold_03",
+      "id": "lagoon_synth",
+      "center_blender_studs": [
+        0.0,
+        0.12,
+        0.96
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        0.1425,
+        0.3850001
+      ],
+      "motion_group": "SynthWave",
+      "motion_pivot": [
+        0.0,
+        0.12,
+        0.95
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.3245299,
+        0.07,
+        0.2265182
+      ]
+    },
+    {
+      "name": "lagoon_synth__SynthKey_pearl_04",
+      "mesh_data_name": "lagoon_synth__SynthKey_pearl_04",
+      "id": "lagoon_synth",
+      "center_blender_studs": [
+        -0.52,
+        -0.32,
+        0.77
+      ],
+      "batch_center_blender_studs": [
+        4.48,
+        -0.2975,
+        0.1950001
+      ],
+      "motion_group": "SynthKey",
+      "motion_pivot": [
+        -0.52,
+        -0.1,
+        0.75
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.43,
+        0.5500001,
+        0.1
+      ]
+    },
+    {
+      "name": "lagoon_synth__SynthKey_pearl_05",
+      "mesh_data_name": "lagoon_synth__SynthKey_pearl_05",
+      "id": "lagoon_synth",
+      "center_blender_studs": [
+        0.0,
+        -0.32,
+        0.77
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        -0.2975,
+        0.1950001
+      ],
+      "motion_group": "SynthKey",
+      "motion_pivot": [
+        0.0,
+        -0.1,
+        0.75
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.43,
+        0.5500001,
+        0.1
+      ]
+    },
+    {
+      "name": "lagoon_synth__SynthKey_pearl_06",
+      "mesh_data_name": "lagoon_synth__SynthKey_pearl_06",
+      "id": "lagoon_synth",
+      "center_blender_studs": [
+        0.52,
+        -0.32,
+        0.77
+      ],
+      "batch_center_blender_studs": [
+        5.52,
+        -0.2975,
+        0.1950001
+      ],
+      "motion_group": "SynthKey",
+      "motion_pivot": [
+        0.52,
+        -0.1,
+        0.75
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.43,
+        0.5500001,
+        0.1
+      ]
+    },
+    {
+      "name": "lagoon_synth__Fixed_teal_07",
+      "mesh_data_name": "lagoon_synth__Fixed_teal_07",
+      "id": "lagoon_synth",
+      "center_blender_studs": [
+        0.0,
+        0.24,
+        0.78
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        0.2625,
+        0.205
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.24,
+        0.78
+      ],
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.48,
+        0.2,
+        0.4
+      ]
+    },
+    {
+      "name": "landing_fund__CatchCoin_gold_01",
+      "mesh_data_name": "landing_fund__CatchCoin_gold_01",
+      "id": "landing_fund",
+      "center_blender_studs": [
+        0.0,
+        -0.17,
+        0.82
+      ],
+      "batch_center_blender_studs": [
+        10.0,
+        -0.17,
+        -0.2549999
+      ],
+      "motion_group": "CatchCoin",
+      "motion_pivot": [
+        0.0,
+        -0.17,
+        0.82
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.62,
+        0.11,
+        0.62
+      ]
+    },
+    {
+      "name": "landing_fund__CatchCoin_pearl_02",
+      "mesh_data_name": "landing_fund__CatchCoin_pearl_02",
+      "id": "landing_fund",
+      "center_blender_studs": [
+        0.0,
+        -0.235,
+        0.82
+      ],
+      "batch_center_blender_studs": [
+        10.0,
+        -0.235,
+        -0.2549999
+      ],
+      "motion_group": "CatchCoin",
+      "motion_pivot": [
+        0.0,
+        -0.17,
+        0.82
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.38,
+        0.024,
+        0.38
+      ]
+    },
+    {
+      "name": "landing_fund__Fixed_pearl_03",
+      "mesh_data_name": "landing_fund__Fixed_pearl_03",
+      "id": "landing_fund",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.255
+      ],
+      "batch_center_blender_studs": [
+        10.0,
+        0.0,
+        -0.8199999
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.255
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        2.04,
+        1.428,
+        0.35
+      ]
+    },
+    {
+      "name": "landing_fund__ShellLid_pearl_04",
+      "mesh_data_name": "landing_fund__ShellLid_pearl_04",
+      "id": "landing_fund",
+      "center_blender_studs": [
+        0.0,
+        0.5,
+        1.25
+      ],
+      "batch_center_blender_studs": [
+        10.0,
+        0.5,
+        0.1750001
+      ],
+      "motion_group": "ShellLid",
+      "motion_pivot": [
+        0.0,
+        0.48,
+        0.4
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.92,
+        0.16,
+        1.6399999
+      ]
+    },
+    {
+      "name": "landing_fund__ShellLid_teal_05",
+      "mesh_data_name": "landing_fund__ShellLid_teal_05",
+      "id": "landing_fund",
+      "center_blender_studs": [
+        0.0,
+        0.3949961,
+        1.1333551
+      ],
+      "batch_center_blender_studs": [
+        10.0,
+        0.3949961,
+        0.0583552
+      ],
+      "motion_group": "ShellLid",
+      "motion_pivot": [
+        0.0,
+        0.48,
+        0.4
+      ],
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.1623772,
+        0.0706238,
+        1.3332897
+      ]
+    },
+    {
+      "name": "last_word__Fixed_dark_01",
+      "mesh_data_name": "last_word__Fixed_dark_01",
+      "id": "last_word",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.40375
+      ],
+      "batch_center_blender_studs": [
+        15.0,
+        0.0,
+        -0.4187501
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.40375
+      ],
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.3200001,
+        1.3200001,
+        0.5125
+      ]
+    },
+    {
+      "name": "last_word__Quote_gold_02",
+      "mesh_data_name": "last_word__Quote_gold_02",
+      "id": "last_word",
+      "center_blender_studs": [
+        -0.3,
+        -0.21,
+        1.08
+      ],
+      "batch_center_blender_studs": [
+        14.6999998,
+        -0.21,
+        0.2574999
+      ],
+      "motion_group": "Quote",
+      "motion_pivot": [
+        -0.3,
+        -0.21,
+        1.1
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.3,
+        0.18,
+        0.48
+      ]
+    },
+    {
+      "name": "last_word__Quote_gold_03",
+      "mesh_data_name": "last_word__Quote_gold_03",
+      "id": "last_word",
+      "center_blender_studs": [
+        0.3,
+        -0.21,
+        1.08
+      ],
+      "batch_center_blender_studs": [
+        15.3000002,
+        -0.21,
+        0.2574999
+      ],
+      "motion_group": "Quote",
+      "motion_pivot": [
+        0.3,
+        -0.21,
+        1.1
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.3,
+        0.18,
+        0.48
+      ]
+    },
+    {
+      "name": "last_word__Fixed_pearl_04",
+      "mesh_data_name": "last_word__Fixed_pearl_04",
+      "id": "last_word",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.8225001
+      ],
+      "batch_center_blender_studs": [
+        15.0,
+        0.0,
+        0.0
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.8225001
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.58,
+        1.58,
+        1.6450001
+      ]
+    },
+    {
+      "name": "last_word__Fixed_teal_05",
+      "mesh_data_name": "last_word__Fixed_teal_05",
+      "id": "last_word",
+      "center_blender_studs": [
+        0.0,
+        -0.085,
+        1.05
+      ],
+      "batch_center_blender_studs": [
+        15.0,
+        -0.085,
+        0.2274998
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.085,
+        1.05
+      ],
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.28,
+        0.08,
+        0.98
+      ]
+    },
+    {
+      "name": "life__Ball_blue_01",
+      "mesh_data_name": "life__Ball_blue_01",
+      "id": "life",
+      "center_blender_studs": [
+        2e-07,
+        2e-07,
+        0.73
+      ],
+      "batch_center_blender_studs": [
+        0.0,
+        5.0,
+        0.0
+      ],
+      "motion_group": "Ball",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.73
+      ],
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.3599992,
+        1.3599997,
+        1.3600001
+      ]
+    },
+    {
+      "name": "lily_pad__LilyDew_glass_01",
+      "mesh_data_name": "lily_pad__LilyDew_glass_01",
+      "id": "lily_pad",
+      "center_blender_studs": [
+        0.53,
+        -0.35,
+        0.31
+      ],
+      "batch_center_blender_studs": [
+        5.5721617,
+        4.6500001,
+        -0.2506177
+      ],
+      "motion_group": "LilyDew",
+      "motion_pivot": [
+        0.53,
+        -0.35,
+        0.31
+      ],
+      "color_srgb": [
+        145,
+        244,
+        255
+      ],
+      "alpha": 0.25,
+      "size_blender_studs": [
+        0.22,
+        0.22,
+        0.26
+      ]
+    },
+    {
+      "name": "lily_pad__LilyHeart_gold_02",
+      "mesh_data_name": "lily_pad__LilyHeart_gold_02",
+      "id": "lily_pad",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.45
+      ],
+      "batch_center_blender_studs": [
+        5.0421615,
+        5.0,
+        -0.1106177
+      ],
+      "motion_group": "LilyHeart",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.45
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.48,
+        0.48,
+        0.36
+      ]
+    },
+    {
+      "name": "lily_pad__LilyPad_green_03",
+      "mesh_data_name": "lily_pad__LilyPad_green_03",
+      "id": "lily_pad",
+      "center_blender_studs": [
+        -0.0421615,
+        0.0,
+        0.17
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        5.0,
+        -0.3906177
+      ],
+      "motion_group": "LilyPad",
+      "motion_pivot": [
+        -0.0421615,
+        0.0,
+        0.17
+      ],
+      "color_srgb": [
+        142,
+        220,
+        103
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.715677,
+        1.399963,
+        0.1
+      ]
+    },
+    {
+      "name": "lily_pad__LilyPetal_pearl_04",
+      "mesh_data_name": "lily_pad__LilyPetal_pearl_04",
+      "id": "lily_pad",
+      "center_blender_studs": [
+        0.0772043,
+        -0.1507422,
+        0.6356177
+      ],
+      "batch_center_blender_studs": [
+        5.1193657,
+        4.8492579,
+        0.075
+      ],
+      "motion_group": "LilyPetal",
+      "motion_pivot": [
+        -0.085,
+        -0.1472243,
+        0.27
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.3244087,
+        0.4065599,
+        0.7312355
+      ]
+    },
+    {
+      "name": "lily_pad__LilyPetal_pearl_05",
+      "mesh_data_name": "lily_pad__LilyPetal_pearl_05",
+      "id": "lily_pad",
+      "center_blender_studs": [
+        0.0772043,
+        0.1507422,
+        0.6356177
+      ],
+      "batch_center_blender_studs": [
+        5.1193657,
+        5.1507421,
+        0.075
+      ],
+      "motion_group": "LilyPetal",
+      "motion_pivot": [
+        -0.085,
+        0.1472243,
+        0.27
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.3244087,
+        0.4065598,
+        0.7312355
+      ]
+    },
+    {
+      "name": "lily_pad__LilyPetal_pearl_06",
+      "mesh_data_name": "lily_pad__LilyPetal_pearl_06",
+      "id": "lily_pad",
+      "center_blender_studs": [
+        0.32658,
+        -0.01,
+        0.6352355
+      ],
+      "batch_center_blender_studs": [
+        5.3687415,
+        4.9899998,
+        0.0746178
+      ],
+      "motion_group": "LilyPetal",
+      "motion_pivot": [
+        0.17,
+        0.0,
+        0.27
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.4382827,
+        0.09,
+        0.7304711
+      ]
+    },
+    {
+      "name": "lock__Fixed_dark_01",
+      "mesh_data_name": "lock__Fixed_dark_01",
+      "id": "lock",
+      "center_blender_studs": [
+        0.0,
+        -0.414,
+        0.6525
+      ],
+      "batch_center_blender_studs": [
+        10.0,
+        4.6242499,
+        -0.4674999
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.414,
+        0.6525
+      ],
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.26,
+        0.025,
+        0.5149999
+      ]
+    },
+    {
+      "name": "lock__Shackle_gold_02",
+      "mesh_data_name": "lock__Shackle_gold_02",
+      "id": "lock",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.635
+      ],
+      "batch_center_blender_studs": [
+        10.0,
+        5.03825,
+        0.5150001
+      ],
+      "motion_group": "Shackle",
+      "motion_pivot": [
+        -0.43,
+        0.0,
+        1.13
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.0600001,
+        0.2,
+        1.0099999
+      ]
+    },
+    {
+      "name": "lock__Fixed_pearl_03",
+      "mesh_data_name": "lock__Fixed_pearl_03",
+      "id": "lock",
+      "center_blender_studs": [
+        0.0,
+        -0.37,
+        0.67
+      ],
+      "batch_center_blender_studs": [
+        10.0,
+        4.6682501,
+        -0.4499999
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.37,
+        0.67
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.95,
+        0.06,
+        0.8000001
+      ]
+    },
+    {
+      "name": "lock__Fixed_teal_04",
+      "mesh_data_name": "lock__Fixed_teal_04",
+      "id": "lock",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.67
+      ],
+      "batch_center_blender_studs": [
+        10.0,
+        5.03825,
+        -0.4499999
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.67
+      ],
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.35,
+        0.7,
+        1.14
+      ]
+    },
+    {
+      "name": "metronome__Fixed_blue_01",
+      "mesh_data_name": "metronome__Fixed_blue_01",
+      "id": "metronome",
+      "center_blender_studs": [
+        0.0,
+        -0.1,
+        1.72
+      ],
+      "batch_center_blender_studs": [
+        15.0,
+        4.9000001,
+        0.6900001
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.1,
+        1.72
+      ],
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.26,
+        0.24,
+        0.26
+      ]
+    },
+    {
+      "name": "metronome__Fixed_dark_02",
+      "mesh_data_name": "metronome__Fixed_dark_02",
+      "id": "metronome",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.175
+      ],
+      "batch_center_blender_studs": [
+        15.0,
+        5.0,
+        -0.855
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.175
+      ],
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.3200001,
+        1.3200001,
+        0.055
+      ]
+    },
+    {
+      "name": "metronome__Pendulum_dark_03",
+      "mesh_data_name": "metronome__Pendulum_dark_03",
+      "id": "metronome",
+      "center_blender_studs": [
+        0.0,
+        -0.1,
+        1.165
+      ],
+      "batch_center_blender_studs": [
+        15.0,
+        4.9000001,
+        0.135
+      ],
+      "motion_group": "Pendulum",
+      "motion_pivot": [
+        0.0,
+        -0.1,
+        1.72
+      ],
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.11,
+        0.11,
+        1.11
+      ]
+    },
+    {
+      "name": "metronome__Pendulum_gold_04",
+      "mesh_data_name": "metronome__Pendulum_gold_04",
+      "id": "metronome",
+      "center_blender_studs": [
+        0.0,
+        -0.1,
+        0.78
+      ],
+      "batch_center_blender_studs": [
+        15.0,
+        4.9000001,
+        -0.25
+      ],
+      "motion_group": "Pendulum",
+      "motion_pivot": [
+        0.0,
+        -0.1,
+        1.72
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.31,
+        0.21,
+        0.3199999
+      ]
+    },
+    {
+      "name": "metronome__Fixed_pearl_05",
+      "mesh_data_name": "metronome__Fixed_pearl_05",
+      "id": "metronome",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.03
+      ],
+      "batch_center_blender_studs": [
+        15.0,
+        5.0,
+        0.0
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.03
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.58,
+        1.58,
+        2.0599999
+      ]
+    },
+    {
+      "name": "metronome__Fixed_teal_06",
+      "mesh_data_name": "metronome__Fixed_teal_06",
+      "id": "metronome",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.34
+      ],
+      "batch_center_blender_studs": [
+        15.0,
+        5.0,
+        -0.6899999
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.34
+      ],
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.22,
+        0.54,
+        0.22
+      ]
+    }
+  ],
+  "calibration": [
+    {
+      "name": "catalog_005__calibration_origin",
+      "center_blender_studs": [
+        -4,
+        -4,
+        0
+      ],
+      "size_blender_studs": [
+        1,
+        1,
+        1
+      ],
+      "size_meters": [
+        0.28,
+        0.28,
+        0.28
+      ]
+    },
+    {
+      "name": "catalog_005__calibration_right",
+      "center_blender_studs": [
+        -1,
+        -4,
+        0
+      ],
+      "size_blender_studs": [
+        1,
+        1,
+        1
+      ],
+      "size_meters": [
+        0.28,
+        0.28,
+        0.28
+      ]
+    },
+    {
+      "name": "catalog_005__calibration_front",
+      "center_blender_studs": [
+        -4,
+        -7,
+        0
+      ],
+      "size_blender_studs": [
+        1,
+        1,
+        1
+      ],
+      "size_meters": [
+        0.28,
+        0.28,
+        0.28
+      ]
+    }
+  ]
+}

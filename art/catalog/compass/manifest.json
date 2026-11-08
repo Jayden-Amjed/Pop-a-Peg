@@ -1,0 +1,286 @@
+{
+  "schema": 2,
+  "id": "compass",
+  "display_name": "Compass",
+  "category": "equipment",
+  "generator": "scripts/models/catalog_mechanical.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 2308,
+  "pieces": 5,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    -0.095,
+    1.2275
+  ],
+  "bounds_min": [
+    -0.86,
+    -0.34,
+    0.21
+  ],
+  "bounds_max": [
+    0.86,
+    0.15,
+    2.2449999
+  ],
+  "size_blender_studs": [
+    1.72,
+    0.49,
+    2.0349998
+  ],
+  "objects": [
+    {
+      "name": "compass__Fixed_dark_01",
+      "mesh_data_name": "compass__Fixed_dark_01",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 332,
+      "vertices": 168,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.17,
+        1.0700001
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.17,
+        1.0700001
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.17,
+        1.0700001
+      ],
+      "size_blender_studs": [
+        1.4,
+        0.0400001,
+        1.3999999
+      ],
+      "bounds_min": [
+        -0.7,
+        -0.19,
+        0.3700001
+      ],
+      "bounds_max": [
+        0.7,
+        -0.15,
+        1.77
+      ],
+      "geometry_sha256": "daaf667e62befd4043e45b698f6d77a48ec264d92106e61cafbe733855bae0e4",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "compass__Needle_gold_02",
+      "mesh_data_name": "compass__Needle_gold_02",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 8,
+      "vertices": 6,
+      "motion_group": "Needle",
+      "motion_pivot": [
+        0.0,
+        -0.27,
+        1.07
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.27,
+        1.345
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.27,
+        1.345
+      ],
+      "size_blender_studs": [
+        0.26,
+        0.045,
+        0.61
+      ],
+      "bounds_min": [
+        -0.13,
+        -0.2925,
+        1.04
+      ],
+      "bounds_max": [
+        0.13,
+        -0.2475,
+        1.65
+      ],
+      "geometry_sha256": "84595b561c3a381e332d4723b86a7df903f7463668773e2bff658131cabf3586",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "compass__Fixed_pearl_03",
+      "mesh_data_name": "compass__Fixed_pearl_03",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 1384,
+      "vertices": 712,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.095,
+        1.0700001
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.095,
+        1.0700001
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.095,
+        1.0700001
+      ],
+      "size_blender_studs": [
+        1.72,
+        0.49,
+        1.72
+      ],
+      "bounds_min": [
+        -0.86,
+        -0.34,
+        0.21
+      ],
+      "bounds_max": [
+        0.86,
+        0.15,
+        1.9300001
+      ],
+      "geometry_sha256": "b490986b42963a201ce9135ed7a5e8dbfc09ef990b7a6f302549650e7a526263",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "compass__Fixed_teal_04",
+      "mesh_data_name": "compass__Fixed_teal_04",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 576,
+      "vertices": 288,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.08,
+        1.2549999
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.08,
+        1.2549999
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.08,
+        1.2549999
+      ],
+      "size_blender_studs": [
+        1.61,
+        0.2779423,
+        1.9799999
+      ],
+      "bounds_min": [
+        -0.805,
+        -0.2189711,
+        0.265
+      ],
+      "bounds_max": [
+        0.805,
+        0.0589712,
+        2.2449999
+      ],
+      "geometry_sha256": "dd6aad840e09149966be751bba98c29ad511536c043e1e8b700067891ae1d1a5",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "compass__Needle_teal_05",
+      "mesh_data_name": "compass__Needle_teal_05",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 8,
+      "vertices": 6,
+      "motion_group": "Needle",
+      "motion_pivot": [
+        0.0,
+        -0.27,
+        1.07
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.27,
+        0.795
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.27,
+        0.795
+      ],
+      "size_blender_studs": [
+        0.26,
+        0.045,
+        0.61
+      ],
+      "bounds_min": [
+        -0.13,
+        -0.2925,
+        0.49
+      ],
+      "bounds_max": [
+        0.13,
+        -0.2475,
+        1.1
+      ],
+      "geometry_sha256": "2e8fa0c8c9691428cc689bd09c2f2f396d002f7f0d9513070b0e5a12a1d67dd4",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/compass/compass.blend",
+  "source_preserved": false,
+  "blend_sha256": "b79d84ece7573a64087bd9da4d93afd7b2afef70eff8bb0c92b248b8c17d352d"
+}

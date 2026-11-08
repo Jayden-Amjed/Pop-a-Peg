@@ -1,0 +1,335 @@
+{
+  "schema": 2,
+  "id": "nectar_pump",
+  "display_name": "Nectar Pump",
+  "category": "equipment",
+  "generator": "scripts/models/catalog_nature.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 968,
+  "pieces": 6,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    -0.03,
+    1.0323641
+  ],
+  "bounds_min": [
+    -0.6615835,
+    -0.68,
+    0.06
+  ],
+  "bounds_max": [
+    0.6615835,
+    0.62,
+    2.0047283
+  ],
+  "size_blender_studs": [
+    1.323167,
+    1.3,
+    1.9447284
+  ],
+  "objects": [
+    {
+      "name": "nectar_pump__PumpStem_dark_01",
+      "mesh_data_name": "nectar_pump__PumpStem_dark_01",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 188,
+      "vertices": 96,
+      "motion_group": "PumpStem",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.65
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.65
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.65
+      ],
+      "size_blender_studs": [
+        0.18,
+        0.18,
+        0.51
+      ],
+      "bounds_min": [
+        -0.09,
+        -0.09,
+        1.395
+      ],
+      "bounds_max": [
+        0.09,
+        0.09,
+        1.905
+      ],
+      "geometry_sha256": "3bd61f33ffbc57b34a7b8b6c296d266f94ccb888d8692554489bb079cfe35b75",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "nectar_pump__NectarDrop_gold_02",
+      "mesh_data_name": "nectar_pump__NectarDrop_gold_02",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 120,
+      "vertices": 62,
+      "motion_group": "NectarDrop",
+      "motion_pivot": [
+        0.52,
+        -0.2,
+        1.53
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.52,
+        -0.2,
+        1.53
+      ],
+      "center_blender_studs": [
+        0.52,
+        -0.2,
+        1.53
+      ],
+      "size_blender_studs": [
+        0.14,
+        0.14,
+        0.26
+      ],
+      "bounds_min": [
+        0.45,
+        -0.27,
+        1.4
+      ],
+      "bounds_max": [
+        0.59,
+        -0.13,
+        1.66
+      ],
+      "geometry_sha256": "b571c024a10cdcb8c95204345451af7027835b541c695c969d3e85fd5c6295bd",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "nectar_pump__NectarLiquid_gold_03",
+      "mesh_data_name": "nectar_pump__NectarLiquid_gold_03",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 120,
+      "vertices": 62,
+      "motion_group": "NectarLiquid",
+      "motion_pivot": [
+        0.0,
+        -0.605,
+        0.75
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.605,
+        0.75
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.605,
+        0.75
+      ],
+      "size_blender_studs": [
+        0.6,
+        0.15,
+        0.78
+      ],
+      "bounds_min": [
+        -0.3,
+        -0.68,
+        0.36
+      ],
+      "bounds_max": [
+        0.3,
+        -0.53,
+        1.14
+      ],
+      "geometry_sha256": "4feb38b25a4dc9d51ab79832d8dc243f85f4b23981a51c2374cfb67c6fc8457d",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "nectar_pump__Fixed_green_04",
+      "mesh_data_name": "nectar_pump__Fixed_green_04",
+      "material": "green",
+      "color_srgb": [
+        142,
+        220,
+        103
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 16,
+      "vertices": 12,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.1091799,
+        0.3940056
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.1091799,
+        0.3940056
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.1091799,
+        0.3940056
+      ],
+      "size_blender_studs": [
+        1.323167,
+        0.2216402,
+        0.5480112
+      ],
+      "bounds_min": [
+        -0.6615835,
+        -0.0016402,
+        0.12
+      ],
+      "bounds_max": [
+        0.6615835,
+        0.22,
+        0.6680112
+      ],
+      "geometry_sha256": "0949396cff3e7f09b25fb7585cbb4a19d571ede48a9c9c72b6d11de3ed684432",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "nectar_pump__Fixed_pearl_05",
+      "mesh_data_name": "nectar_pump__Fixed_pearl_05",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 480,
+      "vertices": 240,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.765
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.765
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.765
+      ],
+      "size_blender_studs": [
+        1.24,
+        1.24,
+        1.4100001
+      ],
+      "bounds_min": [
+        -0.62,
+        -0.62,
+        0.06
+      ],
+      "bounds_max": [
+        0.62,
+        0.62,
+        1.47
+      ],
+      "geometry_sha256": "5d25edb16361a207ee7fb6458d91dec2e80252a7e58270dbb2491c17df15b447",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "nectar_pump__PumpHandle_teal_06",
+      "mesh_data_name": "nectar_pump__PumpHandle_teal_06",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 44,
+      "vertices": 24,
+      "motion_group": "PumpHandle",
+      "motion_pivot": [
+        0.1553044,
+        -0.0773359,
+        1.8658736
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.1553044,
+        -0.0773359,
+        1.8658736
+      ],
+      "center_blender_studs": [
+        0.1553044,
+        -0.0773359,
+        1.8658736
+      ],
+      "size_blender_studs": [
+        0.8506088,
+        0.3246717,
+        0.2777094
+      ],
+      "bounds_min": [
+        -0.27,
+        -0.2396718,
+        1.727019
+      ],
+      "bounds_max": [
+        0.5806088,
+        0.085,
+        2.0047283
+      ],
+      "geometry_sha256": "5e7d16d7dfa1ec97a81057a38d121779519d3b26fa3da5ce8ade0d408aef35e5",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/nectar_pump/nectar_pump.blend",
+  "source_preserved": false,
+  "blend_sha256": "051d4b95ee3bfca363cf64e2dea2c5c0f331124b848905b4d7c36c1a9dccd1a3"
+}

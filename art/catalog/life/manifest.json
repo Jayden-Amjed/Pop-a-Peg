@@ -1,0 +1,90 @@
+{
+  "schema": 2,
+  "id": "life",
+  "display_name": "Ball",
+  "category": "utility",
+  "generator": "scripts/models/catalog_mechanical.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 960,
+  "pieces": 1,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    2e-07,
+    2e-07,
+    0.73
+  ],
+  "bounds_min": [
+    -0.6799994,
+    -0.6799996,
+    0.05
+  ],
+  "bounds_max": [
+    0.6799998,
+    0.6800001,
+    1.4100001
+  ],
+  "size_blender_studs": [
+    1.3599992,
+    1.3599997,
+    1.3600001
+  ],
+  "objects": [
+    {
+      "name": "life__Ball_blue_01",
+      "mesh_data_name": "life__Ball_blue_01",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 960,
+      "vertices": 482,
+      "motion_group": "Ball",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.73
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        2e-07,
+        2e-07,
+        0.73
+      ],
+      "center_blender_studs": [
+        2e-07,
+        2e-07,
+        0.73
+      ],
+      "size_blender_studs": [
+        1.3599992,
+        1.3599997,
+        1.3600001
+      ],
+      "bounds_min": [
+        -0.6799994,
+        -0.6799996,
+        0.05
+      ],
+      "bounds_max": [
+        0.6799998,
+        0.6800001,
+        1.4100001
+      ],
+      "geometry_sha256": "b75fbc4ea159dcedcbe1483b1a443ea20e369f41573a61e89c885990e2db0928",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/life/life.blend",
+  "source_preserved": false,
+  "blend_sha256": "cfe779569acdc000e1b60897b31ed2eab6d58fbf870a2d055e1031f7f660a0a4"
+}

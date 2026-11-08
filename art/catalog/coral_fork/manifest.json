@@ -1,0 +1,384 @@
+{
+  "schema": 2,
+  "id": "coral_fork",
+  "display_name": "Coral Fork",
+  "category": "equipment",
+  "generator": "scripts/models/catalog_nature.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 844,
+  "pieces": 7,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    0.0,
+    1.0350001
+  ],
+  "bounds_min": [
+    -0.81,
+    -0.34,
+    0.0
+  ],
+  "bounds_max": [
+    0.81,
+    0.34,
+    2.0700002
+  ],
+  "size_blender_studs": [
+    1.62,
+    0.68,
+    2.0700002
+  ],
+  "objects": [
+    {
+      "name": "coral_fork__Fixed_dark_01",
+      "mesh_data_name": "coral_fork__Fixed_dark_01",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.12
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.12
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.12
+      ],
+      "size_blender_studs": [
+        1.05,
+        0.68,
+        0.24
+      ],
+      "bounds_min": [
+        -0.525,
+        -0.34,
+        0.0
+      ],
+      "bounds_max": [
+        0.525,
+        0.34,
+        0.24
+      ],
+      "geometry_sha256": "dea90b3da21c8f19d4a76d0e4089f9e4c6efe1f7c2f3f804ab36ba29b0a94f3d",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "coral_fork__CoralTip_gold_02",
+      "mesh_data_name": "coral_fork__CoralTip_gold_02",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 120,
+      "vertices": 62,
+      "motion_group": "CoralTip",
+      "motion_pivot": [
+        -0.25,
+        0.0,
+        0.48
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.68,
+        0.0,
+        1.9400001
+      ],
+      "center_blender_studs": [
+        -0.68,
+        0.0,
+        1.9400001
+      ],
+      "size_blender_studs": [
+        0.26,
+        0.26,
+        0.2600001
+      ],
+      "bounds_min": [
+        -0.81,
+        -0.13,
+        1.8100001
+      ],
+      "bounds_max": [
+        -0.55,
+        0.13,
+        2.0700002
+      ],
+      "geometry_sha256": "1da3eda649500e7b20e4f805fdb74e253238ea93741fc9da11d396669221c5b6",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "coral_fork__CoralTip_gold_03",
+      "mesh_data_name": "coral_fork__CoralTip_gold_03",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 120,
+      "vertices": 62,
+      "motion_group": "CoralTip",
+      "motion_pivot": [
+        0.25,
+        0.0,
+        0.48
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.68,
+        0.0,
+        1.9400001
+      ],
+      "center_blender_studs": [
+        0.68,
+        0.0,
+        1.9400001
+      ],
+      "size_blender_studs": [
+        0.26,
+        0.26,
+        0.2600001
+      ],
+      "bounds_min": [
+        0.55,
+        -0.13,
+        1.8100001
+      ],
+      "bounds_max": [
+        0.81,
+        0.13,
+        2.0700002
+      ],
+      "geometry_sha256": "2363e025c47ccd9ec97b276d80c5e31eb4942f036d23736db6d44b4ce2dd0734",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "coral_fork__CoralCrown_pearl_04",
+      "mesh_data_name": "coral_fork__CoralCrown_pearl_04",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 288,
+      "vertices": 144,
+      "motion_group": "CoralCrown",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.12
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.12
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.12
+      ],
+      "size_blender_studs": [
+        0.62,
+        0.0866025,
+        0.6199999
+      ],
+      "bounds_min": [
+        -0.31,
+        -0.0433013,
+        0.81
+      ],
+      "bounds_max": [
+        0.31,
+        0.0433013,
+        1.4299999
+      ],
+      "geometry_sha256": "44d2da0e018aadd65d708d540a1d57d787402c6e2e0a74b43b1f28f986254c1e",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "coral_fork__Fixed_pearl_05",
+      "mesh_data_name": "coral_fork__Fixed_pearl_05",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 120,
+      "vertices": 62,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.35
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.35
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.35
+      ],
+      "size_blender_studs": [
+        1.0,
+        0.56,
+        0.44
+      ],
+      "bounds_min": [
+        -0.5,
+        -0.28,
+        0.13
+      ],
+      "bounds_max": [
+        0.5,
+        0.28,
+        0.57
+      ],
+      "geometry_sha256": "69532ce53642de413ebbe8d543fc480e8d9fec49a91283782ea66888ffd45789",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "coral_fork__CoralTine_teal_06",
+      "mesh_data_name": "coral_fork__CoralTine_teal_06",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 44,
+      "vertices": 24,
+      "motion_group": "CoralTine",
+      "motion_pivot": [
+        -0.25,
+        0.0,
+        0.48
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.4151385,
+        0.0,
+        1.1724272
+      ],
+      "center_blender_studs": [
+        -0.4151385,
+        0.0,
+        1.1724272
+      ],
+      "size_blender_studs": [
+        0.6568711,
+        0.19,
+        1.6195886
+      ],
+      "bounds_min": [
+        -0.7435741,
+        -0.095,
+        0.3626329
+      ],
+      "bounds_max": [
+        -0.086703,
+        0.095,
+        1.9822215
+      ],
+      "geometry_sha256": "f70f6d2adc356777e83f1e9019ac749135725c6bdf57f94184394ea0cd6f7c04",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "coral_fork__CoralTine_teal_07",
+      "mesh_data_name": "coral_fork__CoralTine_teal_07",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 44,
+      "vertices": 24,
+      "motion_group": "CoralTine",
+      "motion_pivot": [
+        0.25,
+        0.0,
+        0.48
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.4151385,
+        0.0,
+        1.1724272
+      ],
+      "center_blender_studs": [
+        0.4151385,
+        0.0,
+        1.1724272
+      ],
+      "size_blender_studs": [
+        0.6568711,
+        0.19,
+        1.6195886
+      ],
+      "bounds_min": [
+        0.086703,
+        -0.095,
+        0.3626329
+      ],
+      "bounds_max": [
+        0.7435741,
+        0.095,
+        1.9822215
+      ],
+      "geometry_sha256": "25bba343d5c6c8565be32a509036c8ce0c00c08cf0aaffda00674a58375dc47f",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/coral_fork/coral_fork.blend",
+  "source_preserved": false,
+  "blend_sha256": "037b9a1cb1298a2b446a02bc930cce985030f444ef9aed0b4dfc5c62460b677c"
+}

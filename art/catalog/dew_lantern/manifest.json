@@ -1,0 +1,286 @@
+{
+  "schema": 2,
+  "id": "dew_lantern",
+  "display_name": "Dew Lantern",
+  "category": "equipment",
+  "generator": "scripts/models/catalog_nature.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 1580,
+  "pieces": 5,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    0.0,
+    1.2625
+  ],
+  "bounds_min": [
+    -0.59,
+    -0.59,
+    0.0
+  ],
+  "bounds_max": [
+    0.59,
+    0.59,
+    2.5250001
+  ],
+  "size_blender_studs": [
+    1.1799999,
+    1.1799999,
+    2.5250001
+  ],
+  "objects": [
+    {
+      "name": "dew_lantern__Fixed_dark_01",
+      "mesh_data_name": "dew_lantern__Fixed_dark_01",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.12
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.12
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.12
+      ],
+      "size_blender_studs": [
+        0.92,
+        0.92,
+        0.24
+      ],
+      "bounds_min": [
+        -0.46,
+        -0.46,
+        0.0
+      ],
+      "bounds_max": [
+        0.46,
+        0.46,
+        0.24
+      ],
+      "geometry_sha256": "c76490e709b2f186ad055b982449f2c92bb1e8ac410db305935aa2f9c500da1f",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "dew_lantern__Fixed_gold_02",
+      "mesh_data_name": "dew_lantern__Fixed_gold_02",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 576,
+      "vertices": 288,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        2.1775
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        2.1775
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        2.1775
+      ],
+      "size_blender_studs": [
+        1.08,
+        1.08,
+        0.6950001
+      ],
+      "bounds_min": [
+        -0.54,
+        -0.54,
+        1.83
+      ],
+      "bounds_max": [
+        0.54,
+        0.54,
+        2.5250001
+      ],
+      "geometry_sha256": "975828371a6261fb3b975f56ed8fa25dbf88572e98bb9d89b4a89da9bcdd3fd1",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "dew_lantern__LanternMote_gold_03",
+      "mesh_data_name": "dew_lantern__LanternMote_gold_03",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 360,
+      "vertices": 186,
+      "motion_group": "LanternMote",
+      "motion_pivot": [
+        -0.02,
+        -0.25,
+        0.98
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.02,
+        -0.25,
+        0.98
+      ],
+      "center_blender_studs": [
+        -0.02,
+        -0.25,
+        0.98
+      ],
+      "size_blender_studs": [
+        0.57,
+        0.09,
+        0.65
+      ],
+      "bounds_min": [
+        -0.305,
+        -0.295,
+        0.655
+      ],
+      "bounds_max": [
+        0.265,
+        -0.205,
+        1.3049999
+      ],
+      "geometry_sha256": "e782ccc6cf6f93ace8f5c4d38f884f958c58077615f36d20899525ef7a770530",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "dew_lantern__Fixed_pearl_04",
+      "mesh_data_name": "dew_lantern__Fixed_pearl_04",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 416,
+      "vertices": 216,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.0840549
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.0840549
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.0840549
+      ],
+      "size_blender_studs": [
+        1.1799999,
+        1.1799999,
+        1.6772382
+      ],
+      "bounds_min": [
+        -0.59,
+        -0.59,
+        0.2454359
+      ],
+      "bounds_max": [
+        0.59,
+        0.59,
+        1.9226741
+      ],
+      "geometry_sha256": "2e2a5cbfca7c9eb4250e728a86c6872519414c95a47208a74f65c8e9eb9c45f5",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "dew_lantern__LanternDrop_teal_05",
+      "mesh_data_name": "dew_lantern__LanternDrop_teal_05",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 120,
+      "vertices": 62,
+      "motion_group": "LanternDrop",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.1
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.1
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.1
+      ],
+      "size_blender_studs": [
+        0.5,
+        0.5,
+        0.96
+      ],
+      "bounds_min": [
+        -0.25,
+        -0.25,
+        0.62
+      ],
+      "bounds_max": [
+        0.25,
+        0.25,
+        1.58
+      ],
+      "geometry_sha256": "4f7331a3c3cf908b45a8adaa0b78e278cf60e0955ee042d3753f06d7a0b2a622",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/dew_lantern/dew_lantern.blend",
+  "source_preserved": false,
+  "blend_sha256": "d9140811f7ed4aba3924b3b9978fd5f6872fabb562742697b5c5a6fc5f62ef98"
+}

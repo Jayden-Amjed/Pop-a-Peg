@@ -1,0 +1,286 @@
+{
+  "schema": 2,
+  "id": "growth_ring",
+  "display_name": "Growth Ring",
+  "category": "perk",
+  "generator": "scripts/models/catalog_rewards.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 1884,
+  "pieces": 5,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.135,
+    0.0,
+    0.9882993
+  ],
+  "bounds_min": [
+    -0.79,
+    -0.79,
+    0.0
+  ],
+  "bounds_max": [
+    1.0599999,
+    0.79,
+    1.9765985
+  ],
+  "size_blender_studs": [
+    1.8499999,
+    1.58,
+    1.9765985
+  ],
+  "objects": [
+    {
+      "name": "growth_ring__Fixed_dark_01",
+      "mesh_data_name": "growth_ring__Fixed_dark_01",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 440,
+      "vertices": 224,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.39875
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.39875
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.39875
+      ],
+      "size_blender_studs": [
+        1.3200001,
+        1.3200001,
+        0.5025001
+      ],
+      "bounds_min": [
+        -0.66,
+        -0.66,
+        0.1475
+      ],
+      "bounds_max": [
+        0.66,
+        0.66,
+        0.65
+      ],
+      "geometry_sha256": "03a8eda81de91e637270cb289d235fe616423c32a5762a84ae7dee8c2dc87c29",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "growth_ring__Fixed_gold_02",
+      "mesh_data_name": "growth_ring__Fixed_gold_02",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 528,
+      "vertices": 266,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        1e-07,
+        0.0,
+        1.15
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        1e-07,
+        1e-07,
+        1.15
+      ],
+      "center_blender_studs": [
+        1e-07,
+        1e-07,
+        1.15
+      ],
+      "size_blender_studs": [
+        0.6199998,
+        0.6199999,
+        0.6200001
+      ],
+      "bounds_min": [
+        -0.3099998,
+        -0.3099999,
+        0.84
+      ],
+      "bounds_max": [
+        0.3099999,
+        0.31,
+        1.46
+      ],
+      "geometry_sha256": "5959b7a2ca7f6aeadab764f18bf30c01ccb1d5502e064536467cc344c733349b",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "growth_ring__Orbit_green_03",
+      "mesh_data_name": "growth_ring__Orbit_green_03",
+      "material": "green",
+      "color_srgb": [
+        142,
+        220,
+        103
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 24,
+      "vertices": 18,
+      "motion_group": "Orbit",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.15
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.2649999,
+        1e-07,
+        1.1499999
+      ],
+      "center_blender_studs": [
+        0.2649999,
+        1e-07,
+        1.1499999
+      ],
+      "size_blender_studs": [
+        1.5900002,
+        0.7985855,
+        1.6531973
+      ],
+      "bounds_min": [
+        -0.5300002,
+        -0.3992927,
+        0.3234012
+      ],
+      "bounds_max": [
+        1.0599999,
+        0.3992928,
+        1.9765985
+      ],
+      "geometry_sha256": "116ab36db86e10b38e09fb40c7285d6c3d14c3fa4594ae9ff068d3ff798957b6",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "growth_ring__Fixed_pearl_04",
+      "mesh_data_name": "growth_ring__Fixed_pearl_04",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 380,
+      "vertices": 192,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.08
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.08
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.08
+      ],
+      "size_blender_studs": [
+        1.58,
+        1.58,
+        0.16
+      ],
+      "bounds_min": [
+        -0.79,
+        -0.79,
+        0.0
+      ],
+      "bounds_max": [
+        0.79,
+        0.79,
+        0.16
+      ],
+      "geometry_sha256": "25d99c5bf7d7e5d94ee6befd09fb2160f77b127398080ee90c1a40510dd02221",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "growth_ring__Orbit_teal_05",
+      "mesh_data_name": "growth_ring__Orbit_teal_05",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 512,
+      "vertices": 256,
+      "motion_group": "Orbit",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.15
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.15
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.15
+      ],
+      "size_blender_studs": [
+        1.49,
+        0.7143095,
+        1.3473644
+      ],
+      "bounds_min": [
+        -0.745,
+        -0.3571547,
+        0.4763178
+      ],
+      "bounds_max": [
+        0.745,
+        0.3571547,
+        1.8236822
+      ],
+      "geometry_sha256": "8b3d5541419361dcb5816ac27b970887b20b06e746df1ec04c1a33b7acd40459",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/growth_ring/growth_ring.blend",
+  "source_preserved": false,
+  "blend_sha256": "c34ade5f44cf45131690f2c22d00bf68c30d30809ad01e8df5d8c7d40d755c44"
+}

@@ -1,0 +1,237 @@
+{
+  "schema": 2,
+  "id": "first_spark",
+  "display_name": "First Spark",
+  "category": "perk",
+  "generator": "scripts/models/catalog_rewards.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 1200,
+  "pieces": 4,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    0.0,
+    0.8842515
+  ],
+  "bounds_min": [
+    -0.79,
+    -0.79,
+    0.0
+  ],
+  "bounds_max": [
+    0.79,
+    0.79,
+    1.768503
+  ],
+  "size_blender_studs": [
+    1.58,
+    1.58,
+    1.768503
+  ],
+  "objects": [
+    {
+      "name": "first_spark__Fixed_dark_01",
+      "mesh_data_name": "first_spark__Fixed_dark_01",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 440,
+      "vertices": 224,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.55875
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.55875
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.55875
+      ],
+      "size_blender_studs": [
+        1.3200001,
+        1.3200001,
+        0.8225001
+      ],
+      "bounds_min": [
+        -0.66,
+        -0.66,
+        0.1475
+      ],
+      "bounds_max": [
+        0.66,
+        0.66,
+        0.97
+      ],
+      "geometry_sha256": "efe07fb5252831076d9e9d2c26526ea456e2a37116792d412819783e7d19a07b",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "first_spark__Spark_gold_02",
+      "mesh_data_name": "first_spark__Spark_gold_02",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 164,
+      "vertices": 84,
+      "motion_group": "Spark",
+      "motion_pivot": [
+        0.0,
+        -0.36,
+        1.23
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.001708,
+        -0.36,
+        1.2143025
+      ],
+      "center_blender_studs": [
+        -0.001708,
+        -0.36,
+        1.2143025
+      ],
+      "size_blender_studs": [
+        0.7770555,
+        0.13,
+        1.1084009
+      ],
+      "bounds_min": [
+        -0.3902357,
+        -0.425,
+        0.660102
+      ],
+      "bounds_max": [
+        0.3868198,
+        -0.295,
+        1.768503
+      ],
+      "geometry_sha256": "bb5f6f34a3d004676a986360de1ddef323e468331f160b4c0df5f2f258aa3792",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "first_spark__Fixed_pearl_03",
+      "mesh_data_name": "first_spark__Fixed_pearl_03",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 488,
+      "vertices": 248,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.61
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.61
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.61
+      ],
+      "size_blender_studs": [
+        1.58,
+        1.58,
+        1.2199999
+      ],
+      "bounds_min": [
+        -0.79,
+        -0.79,
+        0.0
+      ],
+      "bounds_max": [
+        0.79,
+        0.79,
+        1.2199999
+      ],
+      "geometry_sha256": "d6bfe9cb7b8e150f78f325ca25c45ad1c485ba4f4f67691ab2c2fd1010549558",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "first_spark__Fixed_teal_04",
+      "mesh_data_name": "first_spark__Fixed_teal_04",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.08,
+        0.66
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.08,
+        0.66
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.08,
+        0.66
+      ],
+      "size_blender_studs": [
+        1.0,
+        0.58,
+        0.9
+      ],
+      "bounds_min": [
+        -0.5,
+        -0.21,
+        0.21
+      ],
+      "bounds_max": [
+        0.5,
+        0.37,
+        1.11
+      ],
+      "geometry_sha256": "eb93c864a8c42245ddd7912b8c21120571b8f49417a501e7b6ee28873db32a1b",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/first_spark/first_spark.blend",
+  "source_preserved": false,
+  "blend_sha256": "914fcef44d44afa20ff78255c22c378785afc8be93d64565d6e03c1bcc8cfa4e"
+}

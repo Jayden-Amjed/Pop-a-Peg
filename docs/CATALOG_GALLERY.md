@@ -26,7 +26,7 @@ New-Item -ItemType Directory -Path build -Force | Out-Null
 ```
 
 Open `build/peg-catalog-gallery.rbxlx` in Roblox Studio and press **Play**. The
-project maps `art/catalog/runtime` to `ReplicatedStorage.CatalogAssets`; it loads
+project maps `art/catalog/CatalogAssets.rbxm` to `ReplicatedStorage.CatalogAssets`; it loads
 the inspector instead of the normal game. Follow the repository's
 [Studio ownership and sync workflow](WORKFLOW.md) when changing target places.
 
@@ -103,7 +103,7 @@ source policy and upload records.
 | `art/catalog/<id>/<id>.blend` | Editable source for each of the 75 new catalog models. |
 | `art/catalog/<id>/manifest.json` | Current source hash, geometry audit, bounds, materials, motion groups and pivots. |
 | `art/catalog/index.json` | Generated index of all 78 IDs, source paths and build metadata. |
-| `art/catalog/runtime/<id>.rbxm` | Imported runtime model used by the inspector; includes mesh references and normalized motion metadata. |
+| `art/catalog/CatalogAssets.rbxm` | Engine-exported folder of all imported runtime models; includes mesh references and normalized motion metadata. |
 | `art/models/<id>/<id>.blend` | Existing accepted Wave Spring (`spring_coil`), Seed Bank (`seed_bank`) and Meadow Chest (`chest_common`) pilot sources. |
 | `scripts/models/catalog_mechanical.py` | 27 equipment, Supply and utility builders. |
 | `scripts/models/catalog_nature.py` | 20 nature item and 13 evolution builders. |
@@ -162,7 +162,7 @@ For a changed model, retain the exact GLB, source hashes and observed import dat
 for its new upload. `bind_catalog_import.py` binds those observations into a new
 receipt; `NormalizeCatalogImport.luau` normalizes local clones using the imported
 calibration geometry. Preserve the raw package and previous receipt, then export
-the normalized model to `art/catalog/runtime/<id>.rbxm` and rebuild the gallery.
+the normalized catalog folder to `art/catalog/CatalogAssets.rbxm` and rebuild the gallery.
 Do not point an old upload receipt at changed geometry. These tools associate
 observed MeshIds with source/export bytes; they do not independently download and
 rehash Roblox's remote mesh bytes. Follow [MODELING_WORKFLOW](MODELING_WORKFLOW.md)

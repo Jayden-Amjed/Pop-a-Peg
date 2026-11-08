@@ -1,0 +1,188 @@
+{
+  "schema": 2,
+  "id": "restock",
+  "display_name": "Restock",
+  "category": "utility",
+  "generator": "scripts/models/catalog_mechanical.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 1196,
+  "pieces": 3,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    -0.04,
+    0.9299999
+  ],
+  "bounds_min": [
+    -0.87,
+    -0.26,
+    0.06
+  ],
+  "bounds_max": [
+    0.87,
+    0.18,
+    1.8
+  ],
+  "size_blender_studs": [
+    1.74,
+    0.44,
+    1.74
+  ],
+  "objects": [
+    {
+      "name": "restock__Fixed_dark_01",
+      "mesh_data_name": "restock__Fixed_dark_01",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 284,
+      "vertices": 144,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.09,
+        0.9300001
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.09,
+        0.9300001
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.09,
+        0.9300001
+      ],
+      "size_blender_studs": [
+        1.0,
+        0.1000001,
+        1.0
+      ],
+      "bounds_min": [
+        -0.5,
+        0.04,
+        0.43
+      ],
+      "bounds_max": [
+        0.5,
+        0.14,
+        1.4300001
+      ],
+      "geometry_sha256": "0713bab29d70fc6c42ea2f33fdd34ebe1959da2f96dddcfe0034a3afa7ee96b6",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "restock__Fixed_pearl_02",
+      "mesh_data_name": "restock__Fixed_pearl_02",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 448,
+      "vertices": 224,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.9299999
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.9299999
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.9299999
+      ],
+      "size_blender_studs": [
+        1.74,
+        0.36,
+        1.74
+      ],
+      "bounds_min": [
+        -0.87,
+        -0.18,
+        0.06
+      ],
+      "bounds_max": [
+        0.87,
+        0.18,
+        1.8
+      ],
+      "geometry_sha256": "875cd8be052c3567b4c5185cedc70689d2b9d761e9b7174cd9efa5bfe1d33aa3",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "restock__RefillArrows_teal_03",
+      "mesh_data_name": "restock__RefillArrows_teal_03",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 464,
+      "vertices": 240,
+      "motion_group": "RefillArrows",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.93
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.2,
+        0.9300001
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.2,
+        0.9300001
+      ],
+      "size_blender_studs": [
+        1.4437032,
+        0.12,
+        1.306211
+      ],
+      "bounds_min": [
+        -0.7218516,
+        -0.26,
+        0.2768945
+      ],
+      "bounds_max": [
+        0.7218516,
+        -0.14,
+        1.5831056
+      ],
+      "geometry_sha256": "237cd578bf82e59ddf5cf08e11337a452fea78f0c63c012b1677901d0566c07a",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/restock/restock.blend",
+  "source_preserved": false,
+  "blend_sha256": "c7a86822c67bc7f65f3154c7a55a27149e99d7298a6e03bb54337e7c7ca1fb1b"
+}

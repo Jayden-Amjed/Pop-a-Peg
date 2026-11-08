@@ -1,0 +1,384 @@
+{
+  "schema": 2,
+  "id": "horizon_observatory",
+  "display_name": "Horizon Observatory",
+  "category": "evolved",
+  "generator": "scripts/models/catalog_nature.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 1580,
+  "pieces": 7,
+  "budget": {
+    "triangles": 6000,
+    "pieces": 12
+  },
+  "center_blender_studs": [
+    0.0,
+    0.0036843,
+    1.2125
+  ],
+  "bounds_min": [
+    -0.675,
+    -0.8476314,
+    0.0
+  ],
+  "bounds_max": [
+    0.675,
+    0.855,
+    2.425
+  ],
+  "size_blender_studs": [
+    1.35,
+    1.7026315,
+    2.425
+  ],
+  "objects": [
+    {
+      "name": "horizon_observatory__EvolvedLens_blue_01",
+      "mesh_data_name": "horizon_observatory__EvolvedLens_blue_01",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 284,
+      "vertices": 144,
+      "motion_group": "EvolvedLens",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.62
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.62
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.62
+      ],
+      "size_blender_studs": [
+        0.68,
+        1.48,
+        0.6800001
+      ],
+      "bounds_min": [
+        -0.34,
+        -0.74,
+        1.28
+      ],
+      "bounds_max": [
+        0.34,
+        0.74,
+        1.96
+      ],
+      "geometry_sha256": "a735ed1a4dbd98ab188cecebf85c384e45e417dc20f7c61de027a35a717399f1",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "horizon_observatory__Fixed_dark_02",
+      "mesh_data_name": "horizon_observatory__Fixed_dark_02",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 296,
+      "vertices": 152,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.2
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.2
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.2
+      ],
+      "size_blender_studs": [
+        1.35,
+        1.04,
+        0.4
+      ],
+      "bounds_min": [
+        -0.675,
+        -0.52,
+        0.0
+      ],
+      "bounds_max": [
+        0.675,
+        0.52,
+        0.4
+      ],
+      "geometry_sha256": "8976bec5f49aae196593b6b25ddc74d0cd2917fabc45d1714e38538227948d66",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "horizon_observatory__EvolvedLens_glass_03",
+      "mesh_data_name": "horizon_observatory__EvolvedLens_glass_03",
+      "material": "glass",
+      "color_srgb": [
+        145,
+        244,
+        255
+      ],
+      "alpha": 0.25,
+      "transparency": 0.75,
+      "triangles": 284,
+      "vertices": 144,
+      "motion_group": "EvolvedLens",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.62
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.81,
+        1.62
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.81,
+        1.62
+      ],
+      "size_blender_studs": [
+        0.56,
+        0.0400001,
+        0.5599999
+      ],
+      "bounds_min": [
+        -0.28,
+        -0.83,
+        1.34
+      ],
+      "bounds_max": [
+        0.28,
+        -0.79,
+        1.9
+      ],
+      "geometry_sha256": "cdb0c8656e39b840056b21a4b7502272f1499fac55da20fb61ebf284c0a62fee",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "horizon_observatory__EvolvedNeedle_gold_04",
+      "mesh_data_name": "horizon_observatory__EvolvedNeedle_gold_04",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 12,
+      "vertices": 8,
+      "motion_group": "EvolvedNeedle",
+      "motion_pivot": [
+        0.0,
+        -0.56,
+        0.7
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.57,
+        0.65
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.57,
+        0.65
+      ],
+      "size_blender_studs": [
+        0.24,
+        0.0599999,
+        0.6
+      ],
+      "bounds_min": [
+        -0.12,
+        -0.6,
+        0.35
+      ],
+      "bounds_max": [
+        0.12,
+        -0.54,
+        0.95
+      ],
+      "geometry_sha256": "8c64b48cb6a3b09eaae500416342766925fce668c457e79126877ed0240c7caf",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "horizon_observatory__EvolvedOrbit_gold_05",
+      "mesh_data_name": "horizon_observatory__EvolvedOrbit_gold_05",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 384,
+      "vertices": 192,
+      "motion_group": "EvolvedOrbit",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.62
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.05,
+        1.62
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.05,
+        1.62
+      ],
+      "size_blender_studs": [
+        0.0606218,
+        1.61,
+        1.6099999
+      ],
+      "bounds_min": [
+        -0.0303109,
+        -0.755,
+        0.815
+      ],
+      "bounds_max": [
+        0.0303109,
+        0.855,
+        2.425
+      ],
+      "geometry_sha256": "a8a41d4e3b425b0662efc4ff910199079b294a3a9f73e4cbb510a46137a23d74",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "horizon_observatory__EvolvedLens_pearl_06",
+      "mesh_data_name": "horizon_observatory__EvolvedLens_pearl_06",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 288,
+      "vertices": 144,
+      "motion_group": "EvolvedLens",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.62
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.8,
+        1.6200001
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.8,
+        1.6200001
+      ],
+      "size_blender_studs": [
+        0.81,
+        0.0952628,
+        0.8100001
+      ],
+      "bounds_min": [
+        -0.405,
+        -0.8476314,
+        1.215
+      ],
+      "bounds_max": [
+        0.405,
+        -0.7523686,
+        2.0250001
+      ],
+      "geometry_sha256": "ff6e0b7e375fb0ed9e37ed78720851275aaeddc9d78a932bfab527778d50f851",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "horizon_observatory__Fixed_pearl_07",
+      "mesh_data_name": "horizon_observatory__Fixed_pearl_07",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 32,
+      "vertices": 18,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        -0.080737,
+        0.12,
+        0.8334423
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.080737,
+        0.12,
+        0.8334422
+      ],
+      "center_blender_studs": [
+        -0.080737,
+        0.12,
+        0.8334422
+      ],
+      "size_blender_studs": [
+        0.4214741,
+        0.2251666,
+        1.2668846
+      ],
+      "bounds_min": [
+        -0.2914741,
+        0.0074167,
+        0.2
+      ],
+      "bounds_max": [
+        0.13,
+        0.2325833,
+        1.4668845
+      ],
+      "geometry_sha256": "0341ce0f70237bddbe6b0d665987c7f9935dc53686c0e76a149758296070acf4",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/horizon_observatory/horizon_observatory.blend",
+  "source_preserved": false,
+  "blend_sha256": "9e2f50e25fe8c9d0b3cff0abcf3f08d6a70ea3522fe086012ae299c3d698cd58"
+}

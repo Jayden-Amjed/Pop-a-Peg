@@ -1,0 +1,286 @@
+{
+  "schema": 2,
+  "id": "moss_capacitor",
+  "display_name": "Moss Capacitor",
+  "category": "equipment",
+  "generator": "scripts/models/catalog_nature.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 1088,
+  "pieces": 5,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    0.0,
+    1.0810206
+  ],
+  "bounds_min": [
+    -0.7,
+    -0.45,
+    0.0
+  ],
+  "bounds_max": [
+    0.7,
+    0.45,
+    2.1620412
+  ],
+  "size_blender_studs": [
+    1.4,
+    0.9,
+    2.1620412
+  ],
+  "objects": [
+    {
+      "name": "moss_capacitor__MossCharge_blue_01",
+      "mesh_data_name": "moss_capacitor__MossCharge_blue_01",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 216,
+      "vertices": 112,
+      "motion_group": "MossCharge",
+      "motion_pivot": [
+        0.0,
+        -0.318,
+        1.1
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.318,
+        1.1
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.318,
+        1.1
+      ],
+      "size_blender_studs": [
+        1.05,
+        0.045,
+        0.96
+      ],
+      "bounds_min": [
+        -0.525,
+        -0.3405,
+        0.62
+      ],
+      "bounds_max": [
+        0.525,
+        -0.2955,
+        1.58
+      ],
+      "geometry_sha256": "f042b24b5ef9b2c0d03b6b6b7c61ade67cc627a3ab6f7039fcdc748feba4d672",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "moss_capacitor__Fixed_dark_02",
+      "mesh_data_name": "moss_capacitor__Fixed_dark_02",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 324,
+      "vertices": 168,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.84
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.84
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.84
+      ],
+      "size_blender_studs": [
+        1.4,
+        0.9,
+        1.6800001
+      ],
+      "bounds_min": [
+        -0.7,
+        -0.45,
+        0.0
+      ],
+      "bounds_max": [
+        0.7,
+        0.45,
+        1.6800001
+      ],
+      "geometry_sha256": "0bb89581770ea75b2b6f0e9eaaeec3b138d39c4e9486a0440df525126c6dc819",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "moss_capacitor__MossBridge_gold_03",
+      "mesh_data_name": "moss_capacitor__MossBridge_gold_03",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 44,
+      "vertices": 24,
+      "motion_group": "MossBridge",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.9
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        2.0060205
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        2.0060205
+      ],
+      "size_blender_studs": [
+        0.93,
+        0.1125833,
+        0.3120412
+      ],
+      "bounds_min": [
+        -0.465,
+        -0.0562916,
+        1.85
+      ],
+      "bounds_max": [
+        0.465,
+        0.0562916,
+        2.1620412
+      ],
+      "geometry_sha256": "f6c1f9cc55052fd8fd4a6dd6a27cbeed586c66c0696a7e1df1ae0a75755126c2",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "moss_capacitor__Fixed_green_04",
+      "mesh_data_name": "moss_capacitor__Fixed_green_04",
+      "material": "green",
+      "color_srgb": [
+        142,
+        220,
+        103
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 32,
+      "vertices": 24,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.9655871
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.9655871
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.9655871
+      ],
+      "size_blender_studs": [
+        1.03,
+        0.3,
+        0.3511744
+      ],
+      "bounds_min": [
+        -0.515,
+        -0.15,
+        1.79
+      ],
+      "bounds_max": [
+        0.515,
+        0.15,
+        2.1411743
+      ],
+      "geometry_sha256": "50d5e93d86c580215cfe49aab77b43f16dccf81b3ac0a2363fdeaf7d4fb7b9fb",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "moss_capacitor__Fixed_pearl_05",
+      "mesh_data_name": "moss_capacitor__Fixed_pearl_05",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 472,
+      "vertices": 240,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.03
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.03
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.03
+      ],
+      "size_blender_studs": [
+        1.38,
+        0.58,
+        1.5999999
+      ],
+      "bounds_min": [
+        -0.69,
+        -0.29,
+        0.23
+      ],
+      "bounds_max": [
+        0.69,
+        0.29,
+        1.8299999
+      ],
+      "geometry_sha256": "8904ebb52d044632175a55a3cb9bd313dd5330c7df88e89bc59786ea3d74fee1",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/moss_capacitor/moss_capacitor.blend",
+  "source_preserved": false,
+  "blend_sha256": "85baab9006b59ad9c2123244c1364519157cb2ea2c2add0e95732482edcdc95c"
+}

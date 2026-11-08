@@ -1,0 +1,335 @@
+{
+  "schema": 2,
+  "id": "monsoon_loom",
+  "display_name": "Monsoon Loom",
+  "category": "equipment",
+  "generator": "scripts/models/catalog_nature.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 1416,
+  "pieces": 6,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    0.1,
+    1.2725002
+  ],
+  "bounds_min": [
+    -1.0549999,
+    -0.29,
+    0.025
+  ],
+  "bounds_max": [
+    1.0549999,
+    0.49,
+    2.5200002
+  ],
+  "size_blender_studs": [
+    2.1099999,
+    0.78,
+    2.4950001
+  ],
+  "objects": [
+    {
+      "name": "monsoon_loom__Fixed_blue_01",
+      "mesh_data_name": "monsoon_loom__Fixed_blue_01",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 216,
+      "vertices": 112,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.1,
+        0.15
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.1,
+        0.15
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.1,
+        0.15
+      ],
+      "size_blender_studs": [
+        2.1099999,
+        0.78,
+        0.25
+      ],
+      "bounds_min": [
+        -1.0549999,
+        -0.29,
+        0.025
+      ],
+      "bounds_max": [
+        1.0549999,
+        0.49,
+        0.275
+      ],
+      "geometry_sha256": "da9ab04e689391e21cafbe3c074c358f854990d47411a48d2624e6935fbed6e7",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "monsoon_loom__LoomShuttle_dark_02",
+      "mesh_data_name": "monsoon_loom__LoomShuttle_dark_02",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "LoomShuttle",
+      "motion_pivot": [
+        0.0,
+        -0.17,
+        1.62
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.17,
+        1.62
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.17,
+        1.62
+      ],
+      "size_blender_studs": [
+        0.48,
+        0.16,
+        0.1299999
+      ],
+      "bounds_min": [
+        -0.24,
+        -0.25,
+        1.5550001
+      ],
+      "bounds_max": [
+        0.24,
+        -0.09,
+        1.6849999
+      ],
+      "geometry_sha256": "cbfbe61f6ca4cf7f47deaa452235a404aae8d41d997ac274d34309036d12ceea",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "monsoon_loom__LoomRain_glass_03",
+      "mesh_data_name": "monsoon_loom__LoomRain_glass_03",
+      "material": "glass",
+      "color_srgb": [
+        145,
+        244,
+        255
+      ],
+      "alpha": 0.25,
+      "transparency": 0.75,
+      "triangles": 240,
+      "vertices": 124,
+      "motion_group": "LoomRain",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        2.3800001
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        2.3800001
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        2.3800001
+      ],
+      "size_blender_studs": [
+        0.92,
+        0.12,
+        0.2800002
+      ],
+      "bounds_min": [
+        -0.46,
+        -0.06,
+        2.24
+      ],
+      "bounds_max": [
+        0.46,
+        0.06,
+        2.5200002
+      ],
+      "geometry_sha256": "6b57a2a2c7a738a21d3f61c305cdf71f126789b2e0b271426cb4856974956b30",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "monsoon_loom__LoomThread_gold_04",
+      "mesh_data_name": "monsoon_loom__LoomThread_gold_04",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 140,
+      "vertices": 84,
+      "motion_group": "LoomThread",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.2
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.01,
+        0.0,
+        1.265
+      ],
+      "center_blender_studs": [
+        -0.01,
+        0.0,
+        1.265
+      ],
+      "size_blender_studs": [
+        1.304,
+        0.0381051,
+        1.5699999
+      ],
+      "bounds_min": [
+        -0.662,
+        -0.0190526,
+        0.48
+      ],
+      "bounds_max": [
+        0.642,
+        0.0190526,
+        2.05
+      ],
+      "geometry_sha256": "fc71c0a85658a3b4b3cde2db48f0140b3ef3b3ded4ad50485ea19582d72fe449",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "monsoon_loom__Fixed_pearl_05",
+      "mesh_data_name": "monsoon_loom__Fixed_pearl_05",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 432,
+      "vertices": 224,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.1,
+        1.1499999
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.1,
+        1.1499999
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.1,
+        1.1499999
+      ],
+      "size_blender_studs": [
+        1.8,
+        0.25,
+        2.0999999
+      ],
+      "bounds_min": [
+        -0.9,
+        -0.025,
+        0.1
+      ],
+      "bounds_max": [
+        0.9,
+        0.225,
+        2.1999998
+      ],
+      "geometry_sha256": "c200ed78d5810e8913ae957255a4dfe91255463f876fe70e1525c939c31943a5",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "monsoon_loom__LoomWeave_teal_06",
+      "mesh_data_name": "monsoon_loom__LoomWeave_teal_06",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 280,
+      "vertices": 150,
+      "motion_group": "LoomWeave",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.1
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.07,
+        1.0
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.07,
+        1.0
+      ],
+      "size_blender_studs": [
+        1.3350264,
+        0.144,
+        0.8727461
+      ],
+      "bounds_min": [
+        -0.6675132,
+        -0.142,
+        0.5636269
+      ],
+      "bounds_max": [
+        0.6675132,
+        0.002,
+        1.436373
+      ],
+      "geometry_sha256": "bee26adefb0016042cc619bb78e969a8340958744b1bbe2b493f7d50fe398e5d",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/monsoon_loom/monsoon_loom.blend",
+  "source_preserved": false,
+  "blend_sha256": "6bd27f012fd9f58711a572b76afa01353b598c4aa8f8686d1d7d129639d6fe07"
+}

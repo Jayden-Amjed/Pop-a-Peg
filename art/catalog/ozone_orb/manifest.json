@@ -1,0 +1,335 @@
+{
+  "schema": 2,
+  "id": "ozone_orb",
+  "display_name": "Ozone Orb",
+  "category": "equipment",
+  "generator": "scripts/models/catalog_nature.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 1648,
+  "pieces": 6,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    0.0,
+    1.0625
+  ],
+  "bounds_min": [
+    -0.945,
+    -0.78,
+    0.0
+  ],
+  "bounds_max": [
+    0.945,
+    0.78,
+    2.125
+  ],
+  "size_blender_studs": [
+    1.89,
+    1.5599999,
+    2.125
+  ],
+  "objects": [
+    {
+      "name": "ozone_orb__OzoneCore_blue_01",
+      "mesh_data_name": "ozone_orb__OzoneCore_blue_01",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 120,
+      "vertices": 62,
+      "motion_group": "OzoneCore",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.25
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.25
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.25
+      ],
+      "size_blender_studs": [
+        0.64,
+        0.64,
+        0.6399999
+      ],
+      "bounds_min": [
+        -0.32,
+        -0.32,
+        0.93
+      ],
+      "bounds_max": [
+        0.32,
+        0.32,
+        1.5699999
+      ],
+      "geometry_sha256": "2a907f7e32e416a8dd0de7616f9b4203b337283a374c4a3a7360a763613f4856",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "ozone_orb__Fixed_dark_02",
+      "mesh_data_name": "ozone_orb__Fixed_dark_02",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 296,
+      "vertices": 152,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.415
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.415
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.415
+      ],
+      "size_blender_studs": [
+        0.7,
+        0.7,
+        0.83
+      ],
+      "bounds_min": [
+        -0.35,
+        -0.35,
+        0.0
+      ],
+      "bounds_max": [
+        0.35,
+        0.35,
+        0.83
+      ],
+      "geometry_sha256": "9280e0503ad33a87f9420b9f2e282d408414a5d884accd1a6f239350084115d8",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "ozone_orb__OzoneShell_glass_03",
+      "mesh_data_name": "ozone_orb__OzoneShell_glass_03",
+      "material": "glass",
+      "color_srgb": [
+        145,
+        244,
+        255
+      ],
+      "alpha": 0.25,
+      "transparency": 0.75,
+      "triangles": 224,
+      "vertices": 114,
+      "motion_group": "OzoneShell",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.25
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.25
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.25
+      ],
+      "size_blender_studs": [
+        1.1599998,
+        1.16,
+        1.1599998
+      ],
+      "bounds_min": [
+        -0.5799999,
+        -0.58,
+        0.67
+      ],
+      "bounds_max": [
+        0.5799999,
+        0.58,
+        1.8299999
+      ],
+      "geometry_sha256": "a30075d716b5e2117242acf8373f31485fad9bc594777eae9b0e0831317a384f",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "ozone_orb__OzoneOrbitA_gold_04",
+      "mesh_data_name": "ozone_orb__OzoneOrbitA_gold_04",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 384,
+      "vertices": 192,
+      "motion_group": "OzoneOrbitA",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.25
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.25
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.25
+      ],
+      "size_blender_studs": [
+        1.75,
+        0.0779423,
+        1.75
+      ],
+      "bounds_min": [
+        -0.875,
+        -0.0389711,
+        0.375
+      ],
+      "bounds_max": [
+        0.875,
+        0.0389711,
+        2.125
+      ],
+      "geometry_sha256": "4386dcdf962cfce543299bcb4d19974bcd8a7fdffa47f55f49bb5e27e7307958",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "ozone_orb__OzoneOrbitB_pearl_05",
+      "mesh_data_name": "ozone_orb__OzoneOrbitB_pearl_05",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 384,
+      "vertices": 192,
+      "motion_group": "OzoneOrbitB",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.25
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.25
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.25
+      ],
+      "size_blender_studs": [
+        1.5599999,
+        1.5599999,
+        0.0866024
+      ],
+      "bounds_min": [
+        -0.78,
+        -0.78,
+        1.2066988
+      ],
+      "bounds_max": [
+        0.78,
+        0.78,
+        1.2933012
+      ],
+      "geometry_sha256": "7fc95d2e861eaaf3f85be666c516a4e9b5392683b80c5cee89a155ff18a75622",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "ozone_orb__OzoneSatellite_teal_06",
+      "mesh_data_name": "ozone_orb__OzoneSatellite_teal_06",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 240,
+      "vertices": 124,
+      "motion_group": "OzoneSatellite",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.25
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.05,
+        1.25
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.05,
+        1.25
+      ],
+      "size_blender_studs": [
+        1.89,
+        0.21,
+        0.21
+      ],
+      "bounds_min": [
+        -0.945,
+        -0.155,
+        1.145
+      ],
+      "bounds_max": [
+        0.945,
+        0.055,
+        1.355
+      ],
+      "geometry_sha256": "e1e62e2ac2d373f136f185d890b747f39a7676828c6983a38faf1c5045c7bbd7",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/ozone_orb/ozone_orb.blend",
+  "source_preserved": false,
+  "blend_sha256": "d0e16491876281240157972267f826564f5cc9755fa852545c0883d8a707b42b"
+}

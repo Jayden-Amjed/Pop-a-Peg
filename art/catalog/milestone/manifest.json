@@ -1,0 +1,384 @@
+{
+  "schema": 2,
+  "id": "milestone",
+  "display_name": "Milestone",
+  "category": "perk",
+  "generator": "scripts/models/catalog_rewards.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 1172,
+  "pieces": 7,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.1020251,
+    0.0,
+    1.05
+  ],
+  "bounds_min": [
+    -0.79,
+    -0.79,
+    0.0
+  ],
+  "bounds_max": [
+    0.9940503,
+    0.79,
+    2.0999999
+  ],
+  "size_blender_studs": [
+    1.7840502,
+    1.58,
+    2.0999999
+  ],
+  "objects": [
+    {
+      "name": "milestone__Fixed_dark_01",
+      "mesh_data_name": "milestone__Fixed_dark_01",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 332,
+      "vertices": 168,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.175
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.175
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.175
+      ],
+      "size_blender_studs": [
+        1.3200001,
+        1.3200001,
+        0.055
+      ],
+      "bounds_min": [
+        -0.66,
+        -0.66,
+        0.1475
+      ],
+      "bounds_max": [
+        0.66,
+        0.66,
+        0.2025
+      ],
+      "geometry_sha256": "82e258a57036b2e860ddb147f8ea32acefe429543972caefb796f255d14ebe94",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "milestone__Flag_dark_02",
+      "mesh_data_name": "milestone__Flag_dark_02",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 28,
+      "vertices": 16,
+      "motion_group": "Flag",
+      "motion_pivot": [
+        0.45,
+        0.06,
+        1.18
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.45,
+        0.06,
+        1.6399999
+      ],
+      "center_blender_studs": [
+        0.45,
+        0.06,
+        1.6399999
+      ],
+      "size_blender_studs": [
+        0.09,
+        0.09,
+        0.92
+      ],
+      "bounds_min": [
+        0.405,
+        0.015,
+        1.1799999
+      ],
+      "bounds_max": [
+        0.495,
+        0.105,
+        2.0999999
+      ],
+      "geometry_sha256": "95749786833da28a948540d55df19bb19f37ccf89b0bdad3d50b66aef8497cc9",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "milestone__Flag_green_03",
+      "mesh_data_name": "milestone__Flag_green_03",
+      "material": "green",
+      "color_srgb": [
+        142,
+        220,
+        103
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Flag",
+      "motion_pivot": [
+        0.45,
+        0.06,
+        1.18
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.7220252,
+        0.06,
+        1.8097212
+      ],
+      "center_blender_studs": [
+        0.7220252,
+        0.06,
+        1.8097212
+      ],
+      "size_blender_studs": [
+        0.5440503,
+        0.075,
+        0.4331568
+      ],
+      "bounds_min": [
+        0.45,
+        0.0225,
+        1.5931429
+      ],
+      "bounds_max": [
+        0.9940503,
+        0.0975,
+        2.0262997
+      ],
+      "geometry_sha256": "018cf320d84abc230d791e66703c04daab9f612703a9403325759138b7365c2c",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "milestone__Fixed_pearl_04",
+      "mesh_data_name": "milestone__Fixed_pearl_04",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 380,
+      "vertices": 192,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.08
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.08
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.08
+      ],
+      "size_blender_studs": [
+        1.58,
+        1.58,
+        0.16
+      ],
+      "bounds_min": [
+        -0.79,
+        -0.79,
+        0.0
+      ],
+      "bounds_max": [
+        0.79,
+        0.79,
+        0.16
+      ],
+      "geometry_sha256": "25d99c5bf7d7e5d94ee6befd09fb2160f77b127398080ee90c1a40510dd02221",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "milestone__Step_pearl_05",
+      "mesh_data_name": "milestone__Step_pearl_05",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Step",
+      "motion_pivot": [
+        -0.03,
+        0.0,
+        0.55
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.03,
+        0.0,
+        0.55
+      ],
+      "center_blender_studs": [
+        -0.03,
+        0.0,
+        0.55
+      ],
+      "size_blender_studs": [
+        0.46,
+        0.65,
+        0.6999999
+      ],
+      "bounds_min": [
+        -0.26,
+        -0.325,
+        0.2
+      ],
+      "bounds_max": [
+        0.2,
+        0.325,
+        0.9
+      ],
+      "geometry_sha256": "121ac90edd53ac5f3dd775ba4082b972dcd10416bdedb478479cc035f5b445ba",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "milestone__Step_pearl_06",
+      "mesh_data_name": "milestone__Step_pearl_06",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Step",
+      "motion_pivot": [
+        -0.45,
+        0.0,
+        0.39
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.45,
+        0.0,
+        0.39
+      ],
+      "center_blender_studs": [
+        -0.45,
+        0.0,
+        0.39
+      ],
+      "size_blender_studs": [
+        0.46,
+        0.65,
+        0.38
+      ],
+      "bounds_min": [
+        -0.68,
+        -0.325,
+        0.2
+      ],
+      "bounds_max": [
+        -0.22,
+        0.325,
+        0.58
+      ],
+      "geometry_sha256": "60886c27be76bdadbfbb3329729f60b2d0717d451aa981f53614ab9b5c4fe9a9",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "milestone__Step_pearl_07",
+      "mesh_data_name": "milestone__Step_pearl_07",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Step",
+      "motion_pivot": [
+        0.39,
+        0.0,
+        0.71
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.39,
+        0.0,
+        0.71
+      ],
+      "center_blender_studs": [
+        0.39,
+        0.0,
+        0.71
+      ],
+      "size_blender_studs": [
+        0.46,
+        0.65,
+        1.02
+      ],
+      "bounds_min": [
+        0.16,
+        -0.325,
+        0.2
+      ],
+      "bounds_max": [
+        0.62,
+        0.325,
+        1.22
+      ],
+      "geometry_sha256": "fe53f2994afbdb1499908816281d21f15baa819f1a1f52fcde027c3d2e736152",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/milestone/milestone.blend",
+  "source_preserved": false,
+  "blend_sha256": "2ec97fef949e14c9ddba1da47e23ba962a0ab5dd1594d7aeb0cf389043b1e496"
+}

@@ -1,0 +1,237 @@
+{
+  "schema": 2,
+  "id": "aurora_kite",
+  "display_name": "Aurora Kite",
+  "category": "equipment",
+  "generator": "scripts/models/catalog_nature.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 100,
+  "pieces": 4,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    -0.025,
+    1.2331598
+  ],
+  "bounds_min": [
+    -0.72,
+    -0.105,
+    -0.1336805
+  ],
+  "bounds_max": [
+    0.72,
+    0.055,
+    2.5999999
+  ],
+  "size_blender_studs": [
+    1.4400001,
+    0.16,
+    2.7336802
+  ],
+  "objects": [
+    {
+      "name": "aurora_kite__KiteRibbon_blue_01",
+      "mesh_data_name": "aurora_kite__KiteRibbon_blue_01",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 44,
+      "vertices": 24,
+      "motion_group": "KiteRibbon",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.58
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.1051188,
+        0.0,
+        0.2413403
+      ],
+      "center_blender_studs": [
+        -0.1051188,
+        0.0,
+        0.2413403
+      ],
+      "size_blender_studs": [
+        0.4044161,
+        0.11,
+        0.7500416
+      ],
+      "bounds_min": [
+        -0.3073268,
+        -0.055,
+        -0.1336805
+      ],
+      "bounds_max": [
+        0.0970893,
+        0.055,
+        0.6163611
+      ],
+      "geometry_sha256": "2998dcb844c73af3a251d2c22319b8f7c907d20b1430bcd0f3892f78daf4bb5c",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "aurora_kite__KiteSpar_gold_02",
+      "mesh_data_name": "aurora_kite__KiteSpar_gold_02",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 40,
+      "vertices": 24,
+      "motion_group": "KiteSpar",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.55
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.07,
+        1.575
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.07,
+        1.575
+      ],
+      "size_blender_studs": [
+        1.4400001,
+        0.07,
+        2.0499997
+      ],
+      "bounds_min": [
+        -0.72,
+        -0.105,
+        0.5500001
+      ],
+      "bounds_max": [
+        0.72,
+        -0.035,
+        2.5999999
+      ],
+      "geometry_sha256": "af8140c35304c67d987f948b064cf559a27d7c340be4832332e40741ab04cd79",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "aurora_kite__KiteSail_pearl_03",
+      "mesh_data_name": "aurora_kite__KiteSail_pearl_03",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 8,
+      "vertices": 6,
+      "motion_group": "KiteSail",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.55
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.36,
+        0.0,
+        1.575
+      ],
+      "center_blender_studs": [
+        0.36,
+        0.0,
+        1.575
+      ],
+      "size_blender_studs": [
+        0.72,
+        0.08,
+        2.0499997
+      ],
+      "bounds_min": [
+        0.0,
+        -0.04,
+        0.5500001
+      ],
+      "bounds_max": [
+        0.72,
+        0.04,
+        2.5999999
+      ],
+      "geometry_sha256": "640fe520c37adbd36bfc039bc782a6612d0520a71b3c1617038b079e4fcd343a",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "aurora_kite__KiteSail_teal_04",
+      "mesh_data_name": "aurora_kite__KiteSail_teal_04",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 8,
+      "vertices": 6,
+      "motion_group": "KiteSail",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.55
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.36,
+        0.0,
+        1.575
+      ],
+      "center_blender_studs": [
+        -0.36,
+        0.0,
+        1.575
+      ],
+      "size_blender_studs": [
+        0.72,
+        0.08,
+        2.0499997
+      ],
+      "bounds_min": [
+        -0.72,
+        -0.04,
+        0.5500001
+      ],
+      "bounds_max": [
+        0.0,
+        0.04,
+        2.5999999
+      ],
+      "geometry_sha256": "71331a495db6138f351bceec67c36e4a6d8a0191a8feee71700933cfec313f94",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/aurora_kite/aurora_kite.blend",
+  "source_preserved": false,
+  "blend_sha256": "0c26307a51838b8c139eb55b932d801a9a583f641394b132fea4cf3f254147d8"
+}

@@ -1,0 +1,2018 @@
+{
+  "schema": 1,
+  "name": "catalog-006",
+  "file": "catalog-006.glb",
+  "glb_sha256": "044b45a4fe0e8256ebaf69d79b9ae712661613b4a038b02cb98b8f128e35e199",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "models": [
+    {
+      "id": "milestone",
+      "blend_sha256": "2ec97fef949e14c9ddba1da47e23ba962a0ab5dd1594d7aeb0cf389043b1e496",
+      "source_center_blender_studs": [
+        0.1020251,
+        0.0,
+        1.05
+      ],
+      "layout_center_blender_studs": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "export_translation_blender_studs": [
+        -0.1020251,
+        0.0,
+        -1.05
+      ],
+      "objects": [
+        "milestone__Fixed_dark_01",
+        "milestone__Flag_dark_02",
+        "milestone__Flag_green_03",
+        "milestone__Fixed_pearl_04",
+        "milestone__Step_pearl_05",
+        "milestone__Step_pearl_06",
+        "milestone__Step_pearl_07"
+      ]
+    },
+    {
+      "id": "mist_fan",
+      "blend_sha256": "d6774c0157fc9b4b087fca292a173867aef0af14886fb8819dacc8222625e9af",
+      "source_center_blender_studs": [
+        0.0,
+        -0.0525,
+        1.2025
+      ],
+      "layout_center_blender_studs": [
+        5.0,
+        0.0,
+        0.0
+      ],
+      "export_translation_blender_studs": [
+        5.0,
+        0.0525,
+        -1.2025
+      ],
+      "objects": [
+        "mist_fan__Fixed_blue_01",
+        "mist_fan__Fixed_dark_02",
+        "mist_fan__MistPuff_glass_03",
+        "mist_fan__MistRotor_gold_04",
+        "mist_fan__Fixed_pearl_05",
+        "mist_fan__MistRotor_teal_06"
+      ]
+    },
+    {
+      "id": "monsoon_loom",
+      "blend_sha256": "6bd27f012fd9f58711a572b76afa01353b598c4aa8f8686d1d7d129639d6fe07",
+      "source_center_blender_studs": [
+        0.0,
+        0.1,
+        1.2725002
+      ],
+      "layout_center_blender_studs": [
+        10.0,
+        0.0,
+        0.0
+      ],
+      "export_translation_blender_studs": [
+        10.0,
+        -0.1,
+        -1.2725002
+      ],
+      "objects": [
+        "monsoon_loom__Fixed_blue_01",
+        "monsoon_loom__LoomShuttle_dark_02",
+        "monsoon_loom__LoomRain_glass_03",
+        "monsoon_loom__LoomThread_gold_04",
+        "monsoon_loom__Fixed_pearl_05",
+        "monsoon_loom__LoomWeave_teal_06"
+      ]
+    },
+    {
+      "id": "moss_capacitor",
+      "blend_sha256": "85baab9006b59ad9c2123244c1364519157cb2ea2c2add0e95732482edcdc95c",
+      "source_center_blender_studs": [
+        0.0,
+        0.0,
+        1.0810206
+      ],
+      "layout_center_blender_studs": [
+        15.0,
+        0.0,
+        0.0
+      ],
+      "export_translation_blender_studs": [
+        15.0,
+        0.0,
+        -1.0810206
+      ],
+      "objects": [
+        "moss_capacitor__MossCharge_blue_01",
+        "moss_capacitor__Fixed_dark_02",
+        "moss_capacitor__MossBridge_gold_03",
+        "moss_capacitor__Fixed_green_04",
+        "moss_capacitor__Fixed_pearl_05"
+      ]
+    },
+    {
+      "id": "nectar_pump",
+      "blend_sha256": "051d4b95ee3bfca363cf64e2dea2c5c0f331124b848905b4d7c36c1a9dccd1a3",
+      "source_center_blender_studs": [
+        0.0,
+        -0.03,
+        1.0323641
+      ],
+      "layout_center_blender_studs": [
+        0.0,
+        5.0,
+        0.0
+      ],
+      "export_translation_blender_studs": [
+        0.0,
+        5.0300002,
+        -1.0323641
+      ],
+      "objects": [
+        "nectar_pump__PumpStem_dark_01",
+        "nectar_pump__NectarDrop_gold_02",
+        "nectar_pump__NectarLiquid_gold_03",
+        "nectar_pump__Fixed_green_04",
+        "nectar_pump__Fixed_pearl_05",
+        "nectar_pump__PumpHandle_teal_06"
+      ]
+    },
+    {
+      "id": "ocean_orchestra",
+      "blend_sha256": "1824cea01769e8f554ffda00875f80fa84b30231ca44b4ea975a32afd721e1a8",
+      "source_center_blender_studs": [
+        0.0,
+        -0.0284786,
+        0.975
+      ],
+      "layout_center_blender_studs": [
+        5.0,
+        5.0,
+        0.0
+      ],
+      "export_translation_blender_studs": [
+        5.0,
+        5.0284786,
+        -0.975
+      ],
+      "objects": [
+        "ocean_orchestra__EvolvedHorn_blue_01",
+        "ocean_orchestra__EvolvedHorn_blue_02",
+        "ocean_orchestra__EvolvedHorn_blue_03",
+        "ocean_orchestra__Fixed_dark_04",
+        "ocean_orchestra__EvolvedHorn_gold_05",
+        "ocean_orchestra__EvolvedHorn_gold_06",
+        "ocean_orchestra__EvolvedHorn_gold_07",
+        "ocean_orchestra__EvolvedShell_gold_08",
+        "ocean_orchestra__EvolvedFork_pearl_09",
+        "ocean_orchestra__EvolvedFork_pearl_10",
+        "ocean_orchestra__Fixed_pearl_11",
+        "ocean_orchestra__EvolvedShell_teal_12"
+      ]
+    },
+    {
+      "id": "ozone_orb",
+      "blend_sha256": "d0e16491876281240157972267f826564f5cc9755fa852545c0883d8a707b42b",
+      "source_center_blender_studs": [
+        0.0,
+        0.0,
+        1.0625
+      ],
+      "layout_center_blender_studs": [
+        10.0,
+        5.0,
+        0.0
+      ],
+      "export_translation_blender_studs": [
+        10.0,
+        5.0,
+        -1.0625
+      ],
+      "objects": [
+        "ozone_orb__OzoneCore_blue_01",
+        "ozone_orb__Fixed_dark_02",
+        "ozone_orb__OzoneShell_glass_03",
+        "ozone_orb__OzoneOrbitA_gold_04",
+        "ozone_orb__OzoneOrbitB_pearl_05",
+        "ozone_orb__OzoneSatellite_teal_06"
+      ]
+    },
+    {
+      "id": "pearl_diver",
+      "blend_sha256": "f64ba9f6c050bc0a3cdf214363c030589f6cbc8677c6d1709e463968d60cf24a",
+      "source_center_blender_studs": [
+        0.0,
+        0.0,
+        0.7925
+      ],
+      "layout_center_blender_studs": [
+        15.0,
+        5.0,
+        0.0
+      ],
+      "export_translation_blender_studs": [
+        15.0,
+        5.0,
+        -0.7925
+      ],
+      "objects": [
+        "pearl_diver__Fixed_dark_01",
+        "pearl_diver__Fixed_gold_02",
+        "pearl_diver__DiverPearl_pearl_03",
+        "pearl_diver__Fixed_pearl_04",
+        "pearl_diver__DiverClaw_teal_05",
+        "pearl_diver__DiverClaw_teal_06"
+      ]
+    }
+  ],
+  "objects": [
+    {
+      "name": "milestone__Fixed_dark_01",
+      "mesh_data_name": "milestone__Fixed_dark_01",
+      "id": "milestone",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.175
+      ],
+      "batch_center_blender_studs": [
+        -0.1020251,
+        0.0,
+        -0.8749999
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.175
+      ],
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.3200001,
+        1.3200001,
+        0.055
+      ]
+    },
+    {
+      "name": "milestone__Flag_dark_02",
+      "mesh_data_name": "milestone__Flag_dark_02",
+      "id": "milestone",
+      "center_blender_studs": [
+        0.45,
+        0.06,
+        1.6399999
+      ],
+      "batch_center_blender_studs": [
+        0.3479749,
+        0.06,
+        0.5899999
+      ],
+      "motion_group": "Flag",
+      "motion_pivot": [
+        0.45,
+        0.06,
+        1.18
+      ],
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.09,
+        0.09,
+        0.92
+      ]
+    },
+    {
+      "name": "milestone__Flag_green_03",
+      "mesh_data_name": "milestone__Flag_green_03",
+      "id": "milestone",
+      "center_blender_studs": [
+        0.7220252,
+        0.06,
+        1.8097212
+      ],
+      "batch_center_blender_studs": [
+        0.6200001,
+        0.06,
+        0.7597213
+      ],
+      "motion_group": "Flag",
+      "motion_pivot": [
+        0.45,
+        0.06,
+        1.18
+      ],
+      "color_srgb": [
+        142,
+        220,
+        103
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.5440503,
+        0.075,
+        0.4331568
+      ]
+    },
+    {
+      "name": "milestone__Fixed_pearl_04",
+      "mesh_data_name": "milestone__Fixed_pearl_04",
+      "id": "milestone",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.08
+      ],
+      "batch_center_blender_studs": [
+        -0.1020251,
+        0.0,
+        -0.97
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.08
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.58,
+        1.58,
+        0.16
+      ]
+    },
+    {
+      "name": "milestone__Step_pearl_05",
+      "mesh_data_name": "milestone__Step_pearl_05",
+      "id": "milestone",
+      "center_blender_studs": [
+        -0.03,
+        0.0,
+        0.55
+      ],
+      "batch_center_blender_studs": [
+        -0.1320251,
+        0.0,
+        -0.4999999
+      ],
+      "motion_group": "Step",
+      "motion_pivot": [
+        -0.03,
+        0.0,
+        0.55
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.46,
+        0.65,
+        0.6999999
+      ]
+    },
+    {
+      "name": "milestone__Step_pearl_06",
+      "mesh_data_name": "milestone__Step_pearl_06",
+      "id": "milestone",
+      "center_blender_studs": [
+        -0.45,
+        0.0,
+        0.39
+      ],
+      "batch_center_blender_studs": [
+        -0.5520251,
+        0.0,
+        -0.66
+      ],
+      "motion_group": "Step",
+      "motion_pivot": [
+        -0.45,
+        0.0,
+        0.39
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.46,
+        0.65,
+        0.38
+      ]
+    },
+    {
+      "name": "milestone__Step_pearl_07",
+      "mesh_data_name": "milestone__Step_pearl_07",
+      "id": "milestone",
+      "center_blender_studs": [
+        0.39,
+        0.0,
+        0.71
+      ],
+      "batch_center_blender_studs": [
+        0.2879749,
+        0.0,
+        -0.34
+      ],
+      "motion_group": "Step",
+      "motion_pivot": [
+        0.39,
+        0.0,
+        0.71
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.46,
+        0.65,
+        1.02
+      ]
+    },
+    {
+      "name": "mist_fan__Fixed_blue_01",
+      "mesh_data_name": "mist_fan__Fixed_blue_01",
+      "id": "mist_fan",
+      "center_blender_studs": [
+        0.0,
+        0.14,
+        0.62
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        0.1925,
+        -0.5825
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.14,
+        0.62
+      ],
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.35,
+        0.32,
+        1.05
+      ]
+    },
+    {
+      "name": "mist_fan__Fixed_dark_02",
+      "mesh_data_name": "mist_fan__Fixed_dark_02",
+      "id": "mist_fan",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.13
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        0.0525,
+        -0.0725
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.13
+      ],
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.42,
+        0.85,
+        2.26
+      ]
+    },
+    {
+      "name": "mist_fan__MistPuff_glass_03",
+      "mesh_data_name": "mist_fan__MistPuff_glass_03",
+      "id": "mist_fan",
+      "center_blender_studs": [
+        -0.05,
+        -0.43,
+        1.55
+      ],
+      "batch_center_blender_studs": [
+        4.9499998,
+        -0.3775,
+        0.3475
+      ],
+      "motion_group": "MistPuff",
+      "motion_pivot": [
+        -0.05,
+        -0.43,
+        1.55
+      ],
+      "color_srgb": [
+        145,
+        244,
+        255
+      ],
+      "alpha": 0.25,
+      "size_blender_studs": [
+        0.86,
+        0.2,
+        0.26
+      ]
+    },
+    {
+      "name": "mist_fan__MistRotor_gold_04",
+      "mesh_data_name": "mist_fan__MistRotor_gold_04",
+      "id": "mist_fan",
+      "center_blender_studs": [
+        0.0,
+        -0.12,
+        1.55
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        -0.0675,
+        0.3475
+      ],
+      "motion_group": "MistRotor",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.55
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.32,
+        0.2,
+        0.3199999
+      ]
+    },
+    {
+      "name": "mist_fan__Fixed_pearl_05",
+      "mesh_data_name": "mist_fan__Fixed_pearl_05",
+      "id": "mist_fan",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.55
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        0.0525,
+        0.3475
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.55
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.71,
+        0.1472243,
+        1.71
+      ]
+    },
+    {
+      "name": "mist_fan__MistRotor_teal_06",
+      "mesh_data_name": "mist_fan__MistRotor_teal_06",
+      "id": "mist_fan",
+      "center_blender_studs": [
+        0.0,
+        -0.05,
+        1.55
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        0.0025,
+        0.3475
+      ],
+      "motion_group": "MistRotor",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.55
+      ],
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.28,
+        0.09,
+        1.2800001
+      ]
+    },
+    {
+      "name": "monsoon_loom__Fixed_blue_01",
+      "mesh_data_name": "monsoon_loom__Fixed_blue_01",
+      "id": "monsoon_loom",
+      "center_blender_studs": [
+        0.0,
+        0.1,
+        0.15
+      ],
+      "batch_center_blender_studs": [
+        10.0,
+        0.0,
+        -1.1225002
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.1,
+        0.15
+      ],
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        2.1099999,
+        0.78,
+        0.25
+      ]
+    },
+    {
+      "name": "monsoon_loom__LoomShuttle_dark_02",
+      "mesh_data_name": "monsoon_loom__LoomShuttle_dark_02",
+      "id": "monsoon_loom",
+      "center_blender_studs": [
+        0.0,
+        -0.17,
+        1.62
+      ],
+      "batch_center_blender_studs": [
+        10.0,
+        -0.27,
+        0.3474998
+      ],
+      "motion_group": "LoomShuttle",
+      "motion_pivot": [
+        0.0,
+        -0.17,
+        1.62
+      ],
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.48,
+        0.16,
+        0.1299999
+      ]
+    },
+    {
+      "name": "monsoon_loom__LoomRain_glass_03",
+      "mesh_data_name": "monsoon_loom__LoomRain_glass_03",
+      "id": "monsoon_loom",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        2.3800001
+      ],
+      "batch_center_blender_studs": [
+        10.0,
+        -0.1,
+        1.1075
+      ],
+      "motion_group": "LoomRain",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        2.3800001
+      ],
+      "color_srgb": [
+        145,
+        244,
+        255
+      ],
+      "alpha": 0.25,
+      "size_blender_studs": [
+        0.92,
+        0.12,
+        0.2800002
+      ]
+    },
+    {
+      "name": "monsoon_loom__LoomThread_gold_04",
+      "mesh_data_name": "monsoon_loom__LoomThread_gold_04",
+      "id": "monsoon_loom",
+      "center_blender_studs": [
+        -0.01,
+        0.0,
+        1.265
+      ],
+      "batch_center_blender_studs": [
+        9.9899998,
+        -0.1,
+        -0.0075002
+      ],
+      "motion_group": "LoomThread",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.2
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.304,
+        0.0381051,
+        1.5699999
+      ]
+    },
+    {
+      "name": "monsoon_loom__Fixed_pearl_05",
+      "mesh_data_name": "monsoon_loom__Fixed_pearl_05",
+      "id": "monsoon_loom",
+      "center_blender_studs": [
+        0.0,
+        0.1,
+        1.1499999
+      ],
+      "batch_center_blender_studs": [
+        10.0,
+        0.0,
+        -0.1225003
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.1,
+        1.1499999
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.8,
+        0.25,
+        2.0999999
+      ]
+    },
+    {
+      "name": "monsoon_loom__LoomWeave_teal_06",
+      "mesh_data_name": "monsoon_loom__LoomWeave_teal_06",
+      "id": "monsoon_loom",
+      "center_blender_studs": [
+        0.0,
+        -0.07,
+        1.0
+      ],
+      "batch_center_blender_studs": [
+        10.0,
+        -0.17,
+        -0.2725002
+      ],
+      "motion_group": "LoomWeave",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.1
+      ],
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.3350264,
+        0.144,
+        0.8727461
+      ]
+    },
+    {
+      "name": "moss_capacitor__MossCharge_blue_01",
+      "mesh_data_name": "moss_capacitor__MossCharge_blue_01",
+      "id": "moss_capacitor",
+      "center_blender_studs": [
+        0.0,
+        -0.318,
+        1.1
+      ],
+      "batch_center_blender_studs": [
+        15.0,
+        -0.318,
+        0.0189794
+      ],
+      "motion_group": "MossCharge",
+      "motion_pivot": [
+        0.0,
+        -0.318,
+        1.1
+      ],
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.05,
+        0.045,
+        0.96
+      ]
+    },
+    {
+      "name": "moss_capacitor__Fixed_dark_02",
+      "mesh_data_name": "moss_capacitor__Fixed_dark_02",
+      "id": "moss_capacitor",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.84
+      ],
+      "batch_center_blender_studs": [
+        15.0,
+        0.0,
+        -0.2410206
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.84
+      ],
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.4,
+        0.9,
+        1.6800001
+      ]
+    },
+    {
+      "name": "moss_capacitor__MossBridge_gold_03",
+      "mesh_data_name": "moss_capacitor__MossBridge_gold_03",
+      "id": "moss_capacitor",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        2.0060205
+      ],
+      "batch_center_blender_studs": [
+        15.0,
+        0.0,
+        0.925
+      ],
+      "motion_group": "MossBridge",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.9
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.93,
+        0.1125833,
+        0.3120412
+      ]
+    },
+    {
+      "name": "moss_capacitor__Fixed_green_04",
+      "mesh_data_name": "moss_capacitor__Fixed_green_04",
+      "id": "moss_capacitor",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.9655871
+      ],
+      "batch_center_blender_studs": [
+        15.0,
+        0.0,
+        0.8845665
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.9655871
+      ],
+      "color_srgb": [
+        142,
+        220,
+        103
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.03,
+        0.3,
+        0.3511744
+      ]
+    },
+    {
+      "name": "moss_capacitor__Fixed_pearl_05",
+      "mesh_data_name": "moss_capacitor__Fixed_pearl_05",
+      "id": "moss_capacitor",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.03
+      ],
+      "batch_center_blender_studs": [
+        15.0,
+        0.0,
+        -0.0510206
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.03
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.38,
+        0.58,
+        1.5999999
+      ]
+    },
+    {
+      "name": "nectar_pump__PumpStem_dark_01",
+      "mesh_data_name": "nectar_pump__PumpStem_dark_01",
+      "id": "nectar_pump",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.65
+      ],
+      "batch_center_blender_studs": [
+        0.0,
+        5.0300002,
+        0.6176358
+      ],
+      "motion_group": "PumpStem",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.65
+      ],
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.18,
+        0.18,
+        0.51
+      ]
+    },
+    {
+      "name": "nectar_pump__NectarDrop_gold_02",
+      "mesh_data_name": "nectar_pump__NectarDrop_gold_02",
+      "id": "nectar_pump",
+      "center_blender_studs": [
+        0.52,
+        -0.2,
+        1.53
+      ],
+      "batch_center_blender_studs": [
+        0.52,
+        4.8300004,
+        0.4976358
+      ],
+      "motion_group": "NectarDrop",
+      "motion_pivot": [
+        0.52,
+        -0.2,
+        1.53
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.14,
+        0.14,
+        0.26
+      ]
+    },
+    {
+      "name": "nectar_pump__NectarLiquid_gold_03",
+      "mesh_data_name": "nectar_pump__NectarLiquid_gold_03",
+      "id": "nectar_pump",
+      "center_blender_studs": [
+        0.0,
+        -0.605,
+        0.75
+      ],
+      "batch_center_blender_studs": [
+        0.0,
+        4.4250002,
+        -0.2823641
+      ],
+      "motion_group": "NectarLiquid",
+      "motion_pivot": [
+        0.0,
+        -0.605,
+        0.75
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.6,
+        0.15,
+        0.78
+      ]
+    },
+    {
+      "name": "nectar_pump__Fixed_green_04",
+      "mesh_data_name": "nectar_pump__Fixed_green_04",
+      "id": "nectar_pump",
+      "center_blender_studs": [
+        0.0,
+        0.1091799,
+        0.3940056
+      ],
+      "batch_center_blender_studs": [
+        0.0,
+        5.1391802,
+        -0.6383585
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.1091799,
+        0.3940056
+      ],
+      "color_srgb": [
+        142,
+        220,
+        103
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.323167,
+        0.2216402,
+        0.5480112
+      ]
+    },
+    {
+      "name": "nectar_pump__Fixed_pearl_05",
+      "mesh_data_name": "nectar_pump__Fixed_pearl_05",
+      "id": "nectar_pump",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.765
+      ],
+      "batch_center_blender_studs": [
+        0.0,
+        5.0300002,
+        -0.2673641
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.765
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.24,
+        1.24,
+        1.4100001
+      ]
+    },
+    {
+      "name": "nectar_pump__PumpHandle_teal_06",
+      "mesh_data_name": "nectar_pump__PumpHandle_teal_06",
+      "id": "nectar_pump",
+      "center_blender_studs": [
+        0.1553044,
+        -0.0773359,
+        1.8658736
+      ],
+      "batch_center_blender_studs": [
+        0.1553044,
+        4.9526644,
+        0.8335094
+      ],
+      "motion_group": "PumpHandle",
+      "motion_pivot": [
+        0.1553044,
+        -0.0773359,
+        1.8658736
+      ],
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.8506088,
+        0.3246717,
+        0.2777094
+      ]
+    },
+    {
+      "name": "ocean_orchestra__EvolvedHorn_blue_01",
+      "mesh_data_name": "ocean_orchestra__EvolvedHorn_blue_01",
+      "id": "ocean_orchestra",
+      "center_blender_studs": [
+        -0.58,
+        0.0,
+        1.125
+      ],
+      "batch_center_blender_studs": [
+        4.4200001,
+        5.0284786,
+        0.15
+      ],
+      "motion_group": "EvolvedHorn",
+      "motion_pivot": [
+        -0.58,
+        0.0,
+        0.8
+      ],
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.76,
+        0.76,
+        0.65
+      ]
+    },
+    {
+      "name": "ocean_orchestra__EvolvedHorn_blue_02",
+      "mesh_data_name": "ocean_orchestra__EvolvedHorn_blue_02",
+      "id": "ocean_orchestra",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.375
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        5.0284786,
+        0.4
+      ],
+      "motion_group": "EvolvedHorn",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.05
+      ],
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.76,
+        0.76,
+        0.6500001
+      ]
+    },
+    {
+      "name": "ocean_orchestra__EvolvedHorn_blue_03",
+      "mesh_data_name": "ocean_orchestra__EvolvedHorn_blue_03",
+      "id": "ocean_orchestra",
+      "center_blender_studs": [
+        0.58,
+        0.0,
+        1.125
+      ],
+      "batch_center_blender_studs": [
+        5.5799999,
+        5.0284786,
+        0.15
+      ],
+      "motion_group": "EvolvedHorn",
+      "motion_pivot": [
+        0.58,
+        0.0,
+        0.8
+      ],
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.76,
+        0.76,
+        0.65
+      ]
+    },
+    {
+      "name": "ocean_orchestra__Fixed_dark_04",
+      "mesh_data_name": "ocean_orchestra__Fixed_dark_04",
+      "id": "ocean_orchestra",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.12
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        5.0284786,
+        -0.855
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.12
+      ],
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.92,
+        1.03,
+        0.24
+      ]
+    },
+    {
+      "name": "ocean_orchestra__EvolvedHorn_gold_05",
+      "mesh_data_name": "ocean_orchestra__EvolvedHorn_gold_05",
+      "id": "ocean_orchestra",
+      "center_blender_studs": [
+        -0.58,
+        0.0,
+        1.45
+      ],
+      "batch_center_blender_studs": [
+        4.4200001,
+        5.0284786,
+        0.475
+      ],
+      "motion_group": "EvolvedHorn",
+      "motion_pivot": [
+        -0.58,
+        0.0,
+        0.8
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.78,
+        0.78,
+        0.0692821
+      ]
+    },
+    {
+      "name": "ocean_orchestra__EvolvedHorn_gold_06",
+      "mesh_data_name": "ocean_orchestra__EvolvedHorn_gold_06",
+      "id": "ocean_orchestra",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.7
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        5.0284786,
+        0.725
+      ],
+      "motion_group": "EvolvedHorn",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.05
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.78,
+        0.78,
+        0.0692821
+      ]
+    },
+    {
+      "name": "ocean_orchestra__EvolvedHorn_gold_07",
+      "mesh_data_name": "ocean_orchestra__EvolvedHorn_gold_07",
+      "id": "ocean_orchestra",
+      "center_blender_studs": [
+        0.58,
+        0.0,
+        1.45
+      ],
+      "batch_center_blender_studs": [
+        5.5799999,
+        5.0284786,
+        0.475
+      ],
+      "motion_group": "EvolvedHorn",
+      "motion_pivot": [
+        0.58,
+        0.0,
+        0.8
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.78,
+        0.78,
+        0.0692821
+      ]
+    },
+    {
+      "name": "ocean_orchestra__EvolvedShell_gold_08",
+      "mesh_data_name": "ocean_orchestra__EvolvedShell_gold_08",
+      "id": "ocean_orchestra",
+      "center_blender_studs": [
+        0.0,
+        -0.5301662,
+        0.5709908
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        4.4983125,
+        -0.4040092
+      ],
+      "motion_group": "EvolvedShell",
+      "motion_pivot": [
+        0.0,
+        -0.41,
+        0.56
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.9276273,
+        0.0835818,
+        0.4458992
+      ]
+    },
+    {
+      "name": "ocean_orchestra__EvolvedFork_pearl_09",
+      "mesh_data_name": "ocean_orchestra__EvolvedFork_pearl_09",
+      "id": "ocean_orchestra",
+      "center_blender_studs": [
+        -0.56,
+        0.3,
+        1.3
+      ],
+      "batch_center_blender_studs": [
+        4.4400001,
+        5.3284788,
+        0.3249999
+      ],
+      "motion_group": "EvolvedFork",
+      "motion_pivot": [
+        -0.56,
+        0.3,
+        0.65
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.09,
+        0.0779423,
+        1.3000001
+      ]
+    },
+    {
+      "name": "ocean_orchestra__EvolvedFork_pearl_10",
+      "mesh_data_name": "ocean_orchestra__EvolvedFork_pearl_10",
+      "id": "ocean_orchestra",
+      "center_blender_studs": [
+        0.56,
+        0.3,
+        1.3
+      ],
+      "batch_center_blender_studs": [
+        5.5599999,
+        5.3284788,
+        0.3249999
+      ],
+      "motion_group": "EvolvedFork",
+      "motion_pivot": [
+        0.56,
+        0.3,
+        0.65
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.09,
+        0.0779423,
+        1.3000001
+      ]
+    },
+    {
+      "name": "ocean_orchestra__Fixed_pearl_11",
+      "mesh_data_name": "ocean_orchestra__Fixed_pearl_11",
+      "id": "ocean_orchestra",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.5
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        5.0284786,
+        -0.475
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.5
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.7,
+        0.9,
+        0.5799999
+      ]
+    },
+    {
+      "name": "ocean_orchestra__EvolvedShell_teal_12",
+      "mesh_data_name": "ocean_orchestra__EvolvedShell_teal_12",
+      "id": "ocean_orchestra",
+      "center_blender_studs": [
+        0.0,
+        -0.41,
+        0.56
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        4.6184788,
+        -0.415
+      ],
+      "motion_group": "EvolvedShell",
+      "motion_pivot": [
+        0.0,
+        -0.41,
+        0.56
+      ],
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.14,
+        0.26,
+        0.6
+      ]
+    },
+    {
+      "name": "ozone_orb__OzoneCore_blue_01",
+      "mesh_data_name": "ozone_orb__OzoneCore_blue_01",
+      "id": "ozone_orb",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.25
+      ],
+      "batch_center_blender_studs": [
+        10.0,
+        5.0,
+        0.1875
+      ],
+      "motion_group": "OzoneCore",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.25
+      ],
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.64,
+        0.64,
+        0.6399999
+      ]
+    },
+    {
+      "name": "ozone_orb__Fixed_dark_02",
+      "mesh_data_name": "ozone_orb__Fixed_dark_02",
+      "id": "ozone_orb",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.415
+      ],
+      "batch_center_blender_studs": [
+        10.0,
+        5.0,
+        -0.6475
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.415
+      ],
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.7,
+        0.7,
+        0.83
+      ]
+    },
+    {
+      "name": "ozone_orb__OzoneShell_glass_03",
+      "mesh_data_name": "ozone_orb__OzoneShell_glass_03",
+      "id": "ozone_orb",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.25
+      ],
+      "batch_center_blender_studs": [
+        10.0,
+        5.0,
+        0.1875
+      ],
+      "motion_group": "OzoneShell",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.25
+      ],
+      "color_srgb": [
+        145,
+        244,
+        255
+      ],
+      "alpha": 0.25,
+      "size_blender_studs": [
+        1.1599998,
+        1.16,
+        1.1599998
+      ]
+    },
+    {
+      "name": "ozone_orb__OzoneOrbitA_gold_04",
+      "mesh_data_name": "ozone_orb__OzoneOrbitA_gold_04",
+      "id": "ozone_orb",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.25
+      ],
+      "batch_center_blender_studs": [
+        10.0,
+        5.0,
+        0.1875
+      ],
+      "motion_group": "OzoneOrbitA",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.25
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.75,
+        0.0779423,
+        1.75
+      ]
+    },
+    {
+      "name": "ozone_orb__OzoneOrbitB_pearl_05",
+      "mesh_data_name": "ozone_orb__OzoneOrbitB_pearl_05",
+      "id": "ozone_orb",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.25
+      ],
+      "batch_center_blender_studs": [
+        10.0,
+        5.0,
+        0.1875
+      ],
+      "motion_group": "OzoneOrbitB",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.25
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.5599999,
+        1.5599999,
+        0.0866024
+      ]
+    },
+    {
+      "name": "ozone_orb__OzoneSatellite_teal_06",
+      "mesh_data_name": "ozone_orb__OzoneSatellite_teal_06",
+      "id": "ozone_orb",
+      "center_blender_studs": [
+        0.0,
+        -0.05,
+        1.25
+      ],
+      "batch_center_blender_studs": [
+        10.0,
+        4.9499998,
+        0.1875
+      ],
+      "motion_group": "OzoneSatellite",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.25
+      ],
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.89,
+        0.21,
+        0.21
+      ]
+    },
+    {
+      "name": "pearl_diver__Fixed_dark_01",
+      "mesh_data_name": "pearl_diver__Fixed_dark_01",
+      "id": "pearl_diver",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.12
+      ],
+      "batch_center_blender_studs": [
+        15.0,
+        5.0,
+        -0.6725
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.12
+      ],
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.15,
+        0.8,
+        0.24
+      ]
+    },
+    {
+      "name": "pearl_diver__Fixed_gold_02",
+      "mesh_data_name": "pearl_diver__Fixed_gold_02",
+      "id": "pearl_diver",
+      "center_blender_studs": [
+        0.0,
+        -0.05,
+        1.15
+      ],
+      "batch_center_blender_studs": [
+        15.0,
+        4.9499998,
+        0.3575
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.05,
+        1.15
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.14,
+        0.28,
+        0.28
+      ]
+    },
+    {
+      "name": "pearl_diver__DiverPearl_pearl_03",
+      "mesh_data_name": "pearl_diver__DiverPearl_pearl_03",
+      "id": "pearl_diver",
+      "center_blender_studs": [
+        0.0,
+        -0.04,
+        0.75
+      ],
+      "batch_center_blender_studs": [
+        15.0,
+        4.96,
+        -0.0425
+      ],
+      "motion_group": "DiverPearl",
+      "motion_pivot": [
+        0.0,
+        -0.04,
+        0.75
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.64,
+        0.64,
+        0.6399999
+      ]
+    },
+    {
+      "name": "pearl_diver__Fixed_pearl_04",
+      "mesh_data_name": "pearl_diver__Fixed_pearl_04",
+      "id": "pearl_diver",
+      "center_blender_studs": [
+        0.0,
+        0.15,
+        0.886883
+      ],
+      "batch_center_blender_studs": [
+        15.0,
+        5.1500001,
+        0.094383
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.15,
+        0.8868831
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.3194764,
+        0.1472243,
+        1.396234
+      ]
+    },
+    {
+      "name": "pearl_diver__DiverClaw_teal_05",
+      "mesh_data_name": "pearl_diver__DiverClaw_teal_05",
+      "id": "pearl_diver",
+      "center_blender_studs": [
+        -0.3906074,
+        -0.108913,
+        0.7659486
+      ],
+      "batch_center_blender_studs": [
+        14.6093922,
+        4.8910871,
+        -0.0265514
+      ],
+      "motion_group": "DiverClaw",
+      "motion_pivot": [
+        -0.43,
+        -0.05,
+        1.15
+      ],
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.5092793,
+        0.2889403,
+        0.8218626
+      ]
+    },
+    {
+      "name": "pearl_diver__DiverClaw_teal_06",
+      "mesh_data_name": "pearl_diver__DiverClaw_teal_06",
+      "id": "pearl_diver",
+      "center_blender_studs": [
+        0.3906074,
+        -0.108913,
+        0.7659486
+      ],
+      "batch_center_blender_studs": [
+        15.3906078,
+        4.8910871,
+        -0.0265514
+      ],
+      "motion_group": "DiverClaw",
+      "motion_pivot": [
+        0.43,
+        -0.05,
+        1.15
+      ],
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.5092793,
+        0.2889403,
+        0.8218626
+      ]
+    }
+  ],
+  "calibration": [
+    {
+      "name": "catalog_006__calibration_origin",
+      "center_blender_studs": [
+        -4,
+        -4,
+        0
+      ],
+      "size_blender_studs": [
+        1,
+        1,
+        1
+      ],
+      "size_meters": [
+        0.28,
+        0.28,
+        0.28
+      ]
+    },
+    {
+      "name": "catalog_006__calibration_right",
+      "center_blender_studs": [
+        -1,
+        -4,
+        0
+      ],
+      "size_blender_studs": [
+        1,
+        1,
+        1
+      ],
+      "size_meters": [
+        0.28,
+        0.28,
+        0.28
+      ]
+    },
+    {
+      "name": "catalog_006__calibration_front",
+      "center_blender_studs": [
+        -4,
+        -7,
+        0
+      ],
+      "size_blender_studs": [
+        1,
+        1,
+        1
+      ],
+      "size_meters": [
+        0.28,
+        0.28,
+        0.28
+      ]
+    }
+  ]
+}

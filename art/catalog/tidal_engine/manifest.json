@@ -1,0 +1,286 @@
+{
+  "schema": 2,
+  "id": "tidal_engine",
+  "display_name": "Tidal Engine",
+  "category": "evolved",
+  "generator": "scripts/models/catalog_nature.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 2100,
+  "pieces": 5,
+  "budget": {
+    "triangles": 6000,
+    "pieces": 12
+  },
+  "center_blender_studs": [
+    0.1075,
+    -0.0775,
+    1.085
+  ],
+  "bounds_min": [
+    -0.825,
+    -0.68,
+    0.0
+  ],
+  "bounds_max": [
+    1.04,
+    0.525,
+    2.1700001
+  ],
+  "size_blender_studs": [
+    1.865,
+    1.2049999,
+    2.1700001
+  ],
+  "objects": [
+    {
+      "name": "tidal_engine__EvolvedWeight_blue_01",
+      "mesh_data_name": "tidal_engine__EvolvedWeight_blue_01",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "EvolvedWeight",
+      "motion_pivot": [
+        0.0,
+        -0.3,
+        1.9
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.3,
+        1.9000001
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.3,
+        1.9000001
+      ],
+      "size_blender_studs": [
+        1.05,
+        0.76,
+        0.2500001
+      ],
+      "bounds_min": [
+        -0.525,
+        -0.68,
+        1.775
+      ],
+      "bounds_max": [
+        0.525,
+        0.08,
+        2.0250001
+      ],
+      "geometry_sha256": "496afb25d72baf367883db404a3f63be5001c170030425ef196783d63604a6f7",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "tidal_engine__Fixed_dark_02",
+      "mesh_data_name": "tidal_engine__Fixed_dark_02",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 452,
+      "vertices": 232,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0725,
+        0.0,
+        0.995
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0725,
+        0.0,
+        0.995
+      ],
+      "center_blender_studs": [
+        0.0725,
+        0.0,
+        0.995
+      ],
+      "size_blender_studs": [
+        1.7950001,
+        1.05,
+        1.99
+      ],
+      "bounds_min": [
+        -0.825,
+        -0.525,
+        0.0
+      ],
+      "bounds_max": [
+        0.97,
+        0.525,
+        1.99
+      ],
+      "geometry_sha256": "3b7d43833b3dbe0e54b4d3f7763932077a1adee15743fc901d5a61ce36716b7e",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "tidal_engine__EvolvedNeedle_gold_03",
+      "mesh_data_name": "tidal_engine__EvolvedNeedle_gold_03",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "EvolvedNeedle",
+      "motion_pivot": [
+        0.7,
+        -0.25,
+        0.7
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.7,
+        -0.25,
+        0.8
+      ],
+      "center_blender_studs": [
+        0.7,
+        -0.25,
+        0.8
+      ],
+      "size_blender_studs": [
+        0.045,
+        0.035,
+        0.27
+      ],
+      "bounds_min": [
+        0.6775,
+        -0.2675,
+        0.665
+      ],
+      "bounds_max": [
+        0.7225,
+        -0.2325,
+        0.935
+      ],
+      "geometry_sha256": "3cfe9ada394ebd3a1177c685f60691e09cd10847c4b4600f54e6e4d496dfd00c",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "tidal_engine__Fixed_pearl_04",
+      "mesh_data_name": "tidal_engine__Fixed_pearl_04",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 344,
+      "vertices": 176,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.17,
+        0.14,
+        1.1800001
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.17,
+        0.14,
+        1.1800001
+      ],
+      "center_blender_studs": [
+        0.17,
+        0.14,
+        1.1800001
+      ],
+      "size_blender_studs": [
+        1.74,
+        0.66,
+        1.9800001
+      ],
+      "bounds_min": [
+        -0.7,
+        -0.19,
+        0.1899999
+      ],
+      "bounds_max": [
+        1.04,
+        0.47,
+        2.1700001
+      ],
+      "geometry_sha256": "7294b410536ef294ac5a6e9b76be0482eef6ef4c2870d826b7cdbe146a6fbb4c",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "tidal_engine__EvolvedSpring_teal_05",
+      "mesh_data_name": "tidal_engine__EvolvedSpring_teal_05",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 1088,
+      "vertices": 546,
+      "motion_group": "EvolvedSpring",
+      "motion_pivot": [
+        0.0,
+        -0.3,
+        0.44
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0006977,
+        -0.2987467,
+        1.1246529
+      ],
+      "center_blender_studs": [
+        0.0006977,
+        -0.2987467,
+        1.1246529
+      ],
+      "size_blender_studs": [
+        0.8283521,
+        0.5847301,
+        1.4333245
+      ],
+      "bounds_min": [
+        -0.4134783,
+        -0.5911118,
+        0.4079907
+      ],
+      "bounds_max": [
+        0.4148738,
+        -0.0063817,
+        1.8413152
+      ],
+      "geometry_sha256": "bb558c140baa3a4442c8a621a9adea162ac1aba12cb39b380c551b12ad711eb8",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/tidal_engine/tidal_engine.blend",
+  "source_preserved": false,
+  "blend_sha256": "63bc9e72da34d00fba68208b5b0f1cbc6b4ae7f57b33cedacd0cd858493755fc"
+}

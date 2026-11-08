@@ -1,0 +1,188 @@
+{
+  "schema": 2,
+  "id": "event_repair",
+  "display_name": "Repair",
+  "category": "utility",
+  "generator": "scripts/models/catalog_rewards.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 608,
+  "pieces": 3,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    -0.085,
+    0.9825296
+  ],
+  "bounds_min": [
+    -0.76,
+    -0.49,
+    0.26
+  ],
+  "bounds_max": [
+    0.76,
+    0.32,
+    1.7050592
+  ],
+  "size_blender_studs": [
+    1.52,
+    0.81,
+    1.4450592
+  ],
+  "objects": [
+    {
+      "name": "event_repair__EventCross_green_01",
+      "mesh_data_name": "event_repair__EventCross_green_01",
+      "material": "green",
+      "color_srgb": [
+        142,
+        220,
+        103
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 332,
+      "vertices": 168,
+      "motion_group": "EventCross",
+      "motion_pivot": [
+        0.0,
+        -0.43,
+        0.82
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.43,
+        0.8200001
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.43,
+        0.8200001
+      ],
+      "size_blender_studs": [
+        0.72,
+        0.12,
+        0.7200001
+      ],
+      "bounds_min": [
+        -0.36,
+        -0.49,
+        0.46
+      ],
+      "bounds_max": [
+        0.36,
+        -0.37,
+        1.1800001
+      ],
+      "geometry_sha256": "1cf29c0a07498d693d0e67a6ba43efd4a90acb8fd4014504914b9036a7c050c6",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "event_repair__Fixed_pearl_02",
+      "mesh_data_name": "event_repair__Fixed_pearl_02",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.82
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.82
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.82
+      ],
+      "size_blender_studs": [
+        1.52,
+        0.64,
+        1.12
+      ],
+      "bounds_min": [
+        -0.76,
+        -0.32,
+        0.26
+      ],
+      "bounds_max": [
+        0.76,
+        0.32,
+        1.38
+      ],
+      "geometry_sha256": "7da2a3d8d965819d952662d0c60a04feebd3d60d65f9d52b54a3b92d4771c1de",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "event_repair__Fixed_teal_03",
+      "mesh_data_name": "event_repair__Fixed_teal_03",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 168,
+      "vertices": 88,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.15,
+        1.0450296
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.15,
+        1.0450296
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.15,
+        1.0450296
+      ],
+      "size_blender_studs": [
+        1.26,
+        0.44,
+        1.3200592
+      ],
+      "bounds_min": [
+        -0.63,
+        -0.37,
+        0.385
+      ],
+      "bounds_max": [
+        0.63,
+        0.07,
+        1.7050592
+      ],
+      "geometry_sha256": "d72b4b96dbe851f184cd04938232eb225c087cf04038070b94c797e0fe80f15f",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/event_repair/event_repair.blend",
+  "source_preserved": false,
+  "blend_sha256": "6a230a8e50142326c01bd3e17d70173a92cbbe494d3bd36e7ad8d126a88f7121"
+}

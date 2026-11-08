@@ -1,0 +1,286 @@
+{
+  "schema": 2,
+  "id": "gain_dial",
+  "display_name": "Gain Dial",
+  "category": "equipment",
+  "generator": "scripts/models/catalog_mechanical.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 2208,
+  "pieces": 5,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    -0.09125,
+    1.1280513
+  ],
+  "bounds_min": [
+    -1.0311027,
+    -0.5425,
+    0.015
+  ],
+  "bounds_max": [
+    1.0311027,
+    0.36,
+    2.2411027
+  ],
+  "size_blender_studs": [
+    2.0622053,
+    0.9025,
+    2.2261028
+  ],
+  "objects": [
+    {
+      "name": "gain_dial__Fixed_dark_01",
+      "mesh_data_name": "gain_dial__Fixed_dark_01",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 332,
+      "vertices": 168,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.26,
+        1.21
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.26,
+        1.21
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.26,
+        1.21
+      ],
+      "size_blender_studs": [
+        1.64,
+        0.0450001,
+        1.6399999
+      ],
+      "bounds_min": [
+        -0.82,
+        -0.2825,
+        0.39
+      ],
+      "bounds_max": [
+        0.82,
+        -0.2375,
+        2.03
+      ],
+      "geometry_sha256": "a5eee940b87f70482d8fa846c55cb97c0b4be9166d148c634f02423f45bad4a0",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "gain_dial__Knob_gold_02",
+      "mesh_data_name": "gain_dial__Knob_gold_02",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Knob",
+      "motion_pivot": [
+        0.0,
+        -0.39,
+        1.21
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.525,
+        1.4400001
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.525,
+        1.4400001
+      ],
+      "size_blender_studs": [
+        0.075,
+        0.035,
+        0.25
+      ],
+      "bounds_min": [
+        -0.0375,
+        -0.5425,
+        1.3150001
+      ],
+      "bounds_max": [
+        0.0375,
+        -0.5075,
+        1.5650001
+      ],
+      "geometry_sha256": "eeba0c8f3034024d5b04d704213b067b081a125ac9efaf4dad2a4a37ffa6727e",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "gain_dial__Fixed_pearl_03",
+      "mesh_data_name": "gain_dial__Fixed_pearl_03",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 296,
+      "vertices": 152,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.03,
+        1.1280514
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.03,
+        1.1280513
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.03,
+        1.1280513
+      ],
+      "size_blender_studs": [
+        2.0622053,
+        0.66,
+        2.2261028
+      ],
+      "bounds_min": [
+        -1.0311027,
+        -0.3,
+        0.015
+      ],
+      "bounds_max": [
+        1.0311027,
+        0.36,
+        2.2411027
+      ],
+      "geometry_sha256": "a47db6400a910be492587c500e7f1a5ae35859b0c11872e5a6eb56bc5730db61",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "gain_dial__Fixed_teal_04",
+      "mesh_data_name": "gain_dial__Fixed_teal_04",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 1188,
+      "vertices": 616,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.3,
+        1.3158852
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.3,
+        1.3158852
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.3,
+        1.3158852
+      ],
+      "size_blender_studs": [
+        1.5050409,
+        0.025,
+        1.3082297
+      ],
+      "bounds_min": [
+        -0.7525204,
+        -0.3125,
+        0.6617704
+      ],
+      "bounds_max": [
+        0.7525204,
+        -0.2875,
+        1.97
+      ],
+      "geometry_sha256": "905a907d7aaeef1c01c8e0487eb5b58c0f709b7eec040bbaefd71a87cba23d02",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "gain_dial__Knob_teal_05",
+      "mesh_data_name": "gain_dial__Knob_teal_05",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 284,
+      "vertices": 144,
+      "motion_group": "Knob",
+      "motion_pivot": [
+        0.0,
+        -0.39,
+        1.21
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.39,
+        1.21
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.39,
+        1.21
+      ],
+      "size_blender_studs": [
+        0.86,
+        0.24,
+        0.8600001
+      ],
+      "bounds_min": [
+        -0.43,
+        -0.51,
+        0.78
+      ],
+      "bounds_max": [
+        0.43,
+        -0.27,
+        1.6400001
+      ],
+      "geometry_sha256": "42fee728762db253f8710fcea5e28bae04d941cdcf7880ec14b4cd1ae2007d68",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/gain_dial/gain_dial.blend",
+  "source_preserved": false,
+  "blend_sha256": "a7a08c76ba34b85ec0b726987eb3008a47956d363a7db10570d1547900fbf9ae"
+}

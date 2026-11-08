@@ -1,0 +1,335 @@
+{
+  "schema": 2,
+  "id": "metronome",
+  "display_name": "Metronome",
+  "category": "perk",
+  "generator": "scripts/models/catalog_rewards.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 1224,
+  "pieces": 6,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    0.0,
+    1.03
+  ],
+  "bounds_min": [
+    -0.79,
+    -0.79,
+    0.0
+  ],
+  "bounds_max": [
+    0.79,
+    0.79,
+    2.0599999
+  ],
+  "size_blender_studs": [
+    1.58,
+    1.58,
+    2.0599999
+  ],
+  "objects": [
+    {
+      "name": "metronome__Fixed_blue_01",
+      "mesh_data_name": "metronome__Fixed_blue_01",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 224,
+      "vertices": 114,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.1,
+        1.72
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.1,
+        1.72
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.1,
+        1.72
+      ],
+      "size_blender_studs": [
+        0.26,
+        0.24,
+        0.26
+      ],
+      "bounds_min": [
+        -0.13,
+        -0.22,
+        1.59
+      ],
+      "bounds_max": [
+        0.13,
+        0.02,
+        1.85
+      ],
+      "geometry_sha256": "90277e0e7b6ea422b529ee1bc6ab2ce4bd36ff609a89478f7ae2c2c538d0d4db",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "metronome__Fixed_dark_02",
+      "mesh_data_name": "metronome__Fixed_dark_02",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 332,
+      "vertices": 168,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.175
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.175
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.175
+      ],
+      "size_blender_studs": [
+        1.3200001,
+        1.3200001,
+        0.055
+      ],
+      "bounds_min": [
+        -0.66,
+        -0.66,
+        0.1475
+      ],
+      "bounds_max": [
+        0.66,
+        0.66,
+        0.2025
+      ],
+      "geometry_sha256": "82e258a57036b2e860ddb147f8ea32acefe429543972caefb796f255d14ebe94",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "metronome__Pendulum_dark_03",
+      "mesh_data_name": "metronome__Pendulum_dark_03",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 28,
+      "vertices": 16,
+      "motion_group": "Pendulum",
+      "motion_pivot": [
+        0.0,
+        -0.1,
+        1.72
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.1,
+        1.165
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.1,
+        1.165
+      ],
+      "size_blender_studs": [
+        0.11,
+        0.11,
+        1.11
+      ],
+      "bounds_min": [
+        -0.055,
+        -0.155,
+        0.61
+      ],
+      "bounds_max": [
+        0.055,
+        -0.045,
+        1.72
+      ],
+      "geometry_sha256": "c3f3e68b63439ce1f94fe1aa13f3fd28a78df6d841974f17a5c3783fbd04c2c1",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "metronome__Pendulum_gold_04",
+      "mesh_data_name": "metronome__Pendulum_gold_04",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Pendulum",
+      "motion_pivot": [
+        0.0,
+        -0.1,
+        1.72
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.1,
+        0.78
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.1,
+        0.78
+      ],
+      "size_blender_studs": [
+        0.31,
+        0.21,
+        0.3199999
+      ],
+      "bounds_min": [
+        -0.155,
+        -0.205,
+        0.62
+      ],
+      "bounds_max": [
+        0.155,
+        0.005,
+        0.9399999
+      ],
+      "geometry_sha256": "6ba0a4ead5bcbc38d7b5f163da3fc11e9e581f5e2b5504a383f7cee2358b3f9e",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "metronome__Fixed_pearl_05",
+      "mesh_data_name": "metronome__Fixed_pearl_05",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 424,
+      "vertices": 216,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.03
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.03
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.03
+      ],
+      "size_blender_studs": [
+        1.58,
+        1.58,
+        2.0599999
+      ],
+      "bounds_min": [
+        -0.79,
+        -0.79,
+        0.0
+      ],
+      "bounds_max": [
+        0.79,
+        0.79,
+        2.0599999
+      ],
+      "geometry_sha256": "ab65d8a115293eb2619ff876e09bfe511263b0cff3470a38c021151cecdbd4c1",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "metronome__Fixed_teal_06",
+      "mesh_data_name": "metronome__Fixed_teal_06",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.34
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.34
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.34
+      ],
+      "size_blender_studs": [
+        1.22,
+        0.54,
+        0.22
+      ],
+      "bounds_min": [
+        -0.61,
+        -0.27,
+        0.23
+      ],
+      "bounds_max": [
+        0.61,
+        0.27,
+        0.45
+      ],
+      "geometry_sha256": "e80f3db22b1013ccd04d08c7c42095a3e3721cc4243036582e9cc1e3bcda83fd",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/metronome/metronome.blend",
+  "source_preserved": false,
+  "blend_sha256": "e1bf260259f955efcb4486b1eb822d5f509feb28e599401e93b4d7d90e87302c"
+}

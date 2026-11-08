@@ -1,0 +1,433 @@
+{
+  "schema": 2,
+  "id": "solar_leaf",
+  "display_name": "Solar Leaf",
+  "category": "equipment",
+  "generator": "scripts/models/catalog_nature.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 356,
+  "pieces": 8,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    0.0,
+    1.34
+  ],
+  "bounds_min": [
+    -0.8595986,
+    -0.37,
+    0.0
+  ],
+  "bounds_max": [
+    0.8595986,
+    0.37,
+    2.6800001
+  ],
+  "size_blender_studs": [
+    1.7191973,
+    0.74,
+    2.6800001
+  ],
+  "objects": [
+    {
+      "name": "solar_leaf__SolarCell_blue_01",
+      "mesh_data_name": "solar_leaf__SolarCell_blue_01",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 8,
+      "vertices": 6,
+      "motion_group": "SolarCell",
+      "motion_pivot": [
+        -0.035,
+        0.0,
+        1.0
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.4887896,
+        -0.08,
+        1.6543746
+      ],
+      "center_blender_studs": [
+        -0.4887896,
+        -0.08,
+        1.6543746
+      ],
+      "size_blender_studs": [
+        0.4275793,
+        0.09,
+        0.5287493
+      ],
+      "bounds_min": [
+        -0.7025793,
+        -0.125,
+        1.39
+      ],
+      "bounds_max": [
+        -0.275,
+        -0.035,
+        1.9187493
+      ],
+      "geometry_sha256": "ff9ee2063f45b395f1abfae3423fa847774589780fb9559c77107224ccaf76f4",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "solar_leaf__SolarCell_blue_02",
+      "mesh_data_name": "solar_leaf__SolarCell_blue_02",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 8,
+      "vertices": 6,
+      "motion_group": "SolarCell",
+      "motion_pivot": [
+        0.035,
+        0.0,
+        1.0
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.4887896,
+        -0.08,
+        1.6543746
+      ],
+      "center_blender_studs": [
+        0.4887896,
+        -0.08,
+        1.6543746
+      ],
+      "size_blender_studs": [
+        0.4275793,
+        0.09,
+        0.5287493
+      ],
+      "bounds_min": [
+        0.275,
+        -0.125,
+        1.39
+      ],
+      "bounds_max": [
+        0.7025793,
+        -0.035,
+        1.9187493
+      ],
+      "geometry_sha256": "1c981dceb95408a7742de1ee70a5cb01e923ad3a94cdc027749a439afa447ea5",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "solar_leaf__Fixed_dark_03",
+      "mesh_data_name": "solar_leaf__Fixed_dark_03",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 140,
+      "vertices": 74,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.7526718
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.7526718
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.7526718
+      ],
+      "size_blender_studs": [
+        0.85,
+        0.74,
+        1.5053436
+      ],
+      "bounds_min": [
+        -0.425,
+        -0.37,
+        0.0
+      ],
+      "bounds_max": [
+        0.425,
+        0.37,
+        1.5053436
+      ],
+      "geometry_sha256": "10eedec8387512edb907f1701a93eaf7e801db64ba3bceb5262a3b4ffb207a63",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "solar_leaf__SolarSun_gold_04",
+      "mesh_data_name": "solar_leaf__SolarSun_gold_04",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 120,
+      "vertices": 62,
+      "motion_group": "SolarSun",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        2.5
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        2.5
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        2.5
+      ],
+      "size_blender_studs": [
+        0.36,
+        0.36,
+        0.3600001
+      ],
+      "bounds_min": [
+        -0.18,
+        -0.18,
+        2.3199999
+      ],
+      "bounds_max": [
+        0.18,
+        0.18,
+        2.6800001
+      ],
+      "geometry_sha256": "6749eedd54387ff894c4628445ff72b3b9488ac6abc7c4778145918abfd25c6e",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "solar_leaf__SolarVein_gold_05",
+      "mesh_data_name": "solar_leaf__SolarVein_gold_05",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 32,
+      "vertices": 18,
+      "motion_group": "SolarVein",
+      "motion_pivot": [
+        -0.035,
+        0.0,
+        1.0
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.3507554,
+        -0.09,
+        1.4739769
+      ],
+      "center_blender_studs": [
+        -0.3507554,
+        -0.09,
+        1.4739769
+      ],
+      "size_blender_studs": [
+        0.6647757,
+        0.05,
+        0.8756745
+      ],
+      "bounds_min": [
+        -0.6831432,
+        -0.115,
+        1.0361396
+      ],
+      "bounds_max": [
+        -0.0183675,
+        -0.065,
+        1.9118141
+      ],
+      "geometry_sha256": "3c6528ed286cf8c0be9b5a5f741156d2d1cdd26f26a343430ba0fe03846274c8",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "solar_leaf__SolarVein_gold_06",
+      "mesh_data_name": "solar_leaf__SolarVein_gold_06",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 32,
+      "vertices": 18,
+      "motion_group": "SolarVein",
+      "motion_pivot": [
+        0.035,
+        0.0,
+        1.0
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.3507554,
+        -0.09,
+        1.4739769
+      ],
+      "center_blender_studs": [
+        0.3507554,
+        -0.09,
+        1.4739769
+      ],
+      "size_blender_studs": [
+        0.6647757,
+        0.05,
+        0.8756745
+      ],
+      "bounds_min": [
+        0.0183675,
+        -0.115,
+        1.0361396
+      ],
+      "bounds_max": [
+        0.6831432,
+        -0.065,
+        1.9118141
+      ],
+      "geometry_sha256": "47ed1d7136ea8bfc9a9e4f11882d7bec8853f030f35e2632a13de444307e797d",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "solar_leaf__SolarLeaf_green_07",
+      "mesh_data_name": "solar_leaf__SolarLeaf_green_07",
+      "material": "green",
+      "color_srgb": [
+        142,
+        220,
+        103
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 8,
+      "vertices": 6,
+      "motion_group": "SolarLeaf",
+      "motion_pivot": [
+        -0.035,
+        0.0,
+        1.0
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.4472993,
+        -0.01,
+        1.489499
+      ],
+      "center_blender_studs": [
+        -0.4472993,
+        -0.01,
+        1.489499
+      ],
+      "size_blender_studs": [
+        0.8245987,
+        0.09,
+        0.9789979
+      ],
+      "bounds_min": [
+        -0.8595986,
+        -0.055,
+        1.0
+      ],
+      "bounds_max": [
+        -0.035,
+        0.035,
+        1.9789979
+      ],
+      "geometry_sha256": "1946af142c4e2d41bd9d83f37bdb0527c88bc2fd879577ca7c330c0ac2fb8dda",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "solar_leaf__SolarLeaf_green_08",
+      "mesh_data_name": "solar_leaf__SolarLeaf_green_08",
+      "material": "green",
+      "color_srgb": [
+        142,
+        220,
+        103
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 8,
+      "vertices": 6,
+      "motion_group": "SolarLeaf",
+      "motion_pivot": [
+        0.035,
+        0.0,
+        1.0
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.4472993,
+        -0.01,
+        1.489499
+      ],
+      "center_blender_studs": [
+        0.4472993,
+        -0.01,
+        1.489499
+      ],
+      "size_blender_studs": [
+        0.8245987,
+        0.09,
+        0.9789979
+      ],
+      "bounds_min": [
+        0.035,
+        -0.055,
+        1.0
+      ],
+      "bounds_max": [
+        0.8595986,
+        0.035,
+        1.9789979
+      ],
+      "geometry_sha256": "a366015e1f1a14dabfb98e0f705afa6a35d3d4df46cbade2efb3f1fb8911bdb6",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/solar_leaf/solar_leaf.blend",
+  "source_preserved": false,
+  "blend_sha256": "5f5415583f9b42ec996a0846e69b000c4f3f01b728a1513d97302a385c91e76f"
+}

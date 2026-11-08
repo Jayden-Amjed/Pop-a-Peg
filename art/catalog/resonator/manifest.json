@@ -1,0 +1,384 @@
+{
+  "schema": 2,
+  "id": "resonator",
+  "display_name": "Reef Chime",
+  "category": "equipment",
+  "generator": "scripts/models/catalog_mechanical.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 1240,
+  "pieces": 7,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    0.0,
+    1.22
+  ],
+  "bounds_min": [
+    -0.575,
+    -0.44,
+    0.0
+  ],
+  "bounds_max": [
+    0.575,
+    0.44,
+    2.4400001
+  ],
+  "size_blender_studs": [
+    1.15,
+    0.88,
+    2.4400001
+  ],
+  "objects": [
+    {
+      "name": "resonator__Fixed_dark_01",
+      "mesh_data_name": "resonator__Fixed_dark_01",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 472,
+      "vertices": 244,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.09
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.09
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.09
+      ],
+      "size_blender_studs": [
+        0.936,
+        0.66,
+        2.1800001
+      ],
+      "bounds_min": [
+        -0.468,
+        -0.33,
+        0.0
+      ],
+      "bounds_max": [
+        0.468,
+        0.33,
+        2.1800001
+      ],
+      "geometry_sha256": "9e641a8d5e4bfcbadb61f0ef38630e7f7dc7c68b6a28176414dfe547778626a3",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "resonator__Chime_gold_02",
+      "mesh_data_name": "resonator__Chime_gold_02",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 120,
+      "vertices": 62,
+      "motion_group": "Chime",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.37
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.37
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.37
+      ],
+      "size_blender_studs": [
+        0.38,
+        0.38,
+        0.48
+      ],
+      "bounds_min": [
+        -0.19,
+        -0.19,
+        1.13
+      ],
+      "bounds_max": [
+        0.19,
+        0.19,
+        1.61
+      ],
+      "geometry_sha256": "a283a30cb9bca1f0c5c6e495b35447aa22fc48c07362f659bcd8558f11148c92",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "resonator__Fixed_pearl_03",
+      "mesh_data_name": "resonator__Fixed_pearl_03",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 216,
+      "vertices": 112,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.44
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.44
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.44
+      ],
+      "size_blender_studs": [
+        1.15,
+        0.88,
+        0.88
+      ],
+      "bounds_min": [
+        -0.575,
+        -0.44,
+        0.0
+      ],
+      "bounds_max": [
+        0.575,
+        0.44,
+        0.88
+      ],
+      "geometry_sha256": "972e9647c19b1b4033d3e098d95c92c089792eeb9e9483708588ed73c07c6c30",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "resonator__LeftFork_pearl_04",
+      "mesh_data_name": "resonator__LeftFork_pearl_04",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "LeftFork",
+      "motion_pivot": [
+        -0.43,
+        0.0,
+        1.6
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.43,
+        0.0,
+        1.5800002
+      ],
+      "center_blender_studs": [
+        -0.43,
+        0.0,
+        1.5800002
+      ],
+      "size_blender_studs": [
+        0.24,
+        0.26,
+        1.5200001
+      ],
+      "bounds_min": [
+        -0.55,
+        -0.13,
+        0.8200001
+      ],
+      "bounds_max": [
+        -0.31,
+        0.13,
+        2.3400002
+      ],
+      "geometry_sha256": "a659bfc901ac5225c2a30dfd01555870bd63bd60c504afab829f55c23d99a5e7",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "resonator__RightFork_pearl_05",
+      "mesh_data_name": "resonator__RightFork_pearl_05",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "RightFork",
+      "motion_pivot": [
+        0.43,
+        0.0,
+        1.6
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.43,
+        0.0,
+        1.5800002
+      ],
+      "center_blender_studs": [
+        0.43,
+        0.0,
+        1.5800002
+      ],
+      "size_blender_studs": [
+        0.24,
+        0.26,
+        1.5200001
+      ],
+      "bounds_min": [
+        0.31,
+        -0.13,
+        0.8200001
+      ],
+      "bounds_max": [
+        0.55,
+        0.13,
+        2.3400002
+      ],
+      "geometry_sha256": "a659bfc901ac5225c2a30dfd01555870bd63bd60c504afab829f55c23d99a5e7",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "resonator__LeftFork_teal_06",
+      "mesh_data_name": "resonator__LeftFork_teal_06",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "LeftFork",
+      "motion_pivot": [
+        -0.43,
+        0.0,
+        1.6
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.43,
+        0.0,
+        2.28
+      ],
+      "center_blender_studs": [
+        -0.43,
+        0.0,
+        2.28
+      ],
+      "size_blender_studs": [
+        0.29,
+        0.31,
+        0.3200002
+      ],
+      "bounds_min": [
+        -0.575,
+        -0.155,
+        2.1199999
+      ],
+      "bounds_max": [
+        -0.285,
+        0.155,
+        2.4400001
+      ],
+      "geometry_sha256": "1a6a7085ba504599ca85cce527dfe48c1ec840112c9ee6d80ee756e876324579",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "resonator__RightFork_teal_07",
+      "mesh_data_name": "resonator__RightFork_teal_07",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "RightFork",
+      "motion_pivot": [
+        0.43,
+        0.0,
+        1.6
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.43,
+        0.0,
+        2.28
+      ],
+      "center_blender_studs": [
+        0.43,
+        0.0,
+        2.28
+      ],
+      "size_blender_studs": [
+        0.29,
+        0.31,
+        0.3200002
+      ],
+      "bounds_min": [
+        0.285,
+        -0.155,
+        2.1199999
+      ],
+      "bounds_max": [
+        0.575,
+        0.155,
+        2.4400001
+      ],
+      "geometry_sha256": "1a6a7085ba504599ca85cce527dfe48c1ec840112c9ee6d80ee756e876324579",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/resonator/resonator.blend",
+  "source_preserved": false,
+  "blend_sha256": "51831982b3dc5ecdfd9aa8d1383d05b923204e3dc315b8c36cd235d101ac6ef5"
+}

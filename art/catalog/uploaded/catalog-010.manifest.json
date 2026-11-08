@@ -1,0 +1,692 @@
+{
+  "schema": 1,
+  "name": "catalog-010",
+  "file": "catalog-010.glb",
+  "glb_sha256": "36e4106b5e8007572f41ce774445422d71785a34f98e895ee1b00f2be4a55928",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "models": [
+    {
+      "id": "tide_valve",
+      "blend_sha256": "05f59ec8a25f5b08f02fd6f475638f72be9a136cdaf312ff107d380d57f605cb",
+      "source_center_blender_studs": [
+        0.0,
+        0.0,
+        0.7518061
+      ],
+      "layout_center_blender_studs": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "export_translation_blender_studs": [
+        0.0,
+        0.0,
+        -0.7518061
+      ],
+      "objects": [
+        "tide_valve__Fixed_blue_01",
+        "tide_valve__Fixed_dark_02",
+        "tide_valve__ValveFlow_gold_03",
+        "tide_valve__Fixed_pearl_04",
+        "tide_valve__ValveWheel_teal_05"
+      ]
+    },
+    {
+      "id": "tuning_oil",
+      "blend_sha256": "2ef87d4aa31bbe4d034e3efef66a98034afcda43ca1f74ab3ebd9753eadde093",
+      "source_center_blender_studs": [
+        0.2087614,
+        0.0,
+        0.755
+      ],
+      "layout_center_blender_studs": [
+        5.0,
+        0.0,
+        0.0
+      ],
+      "export_translation_blender_studs": [
+        4.7912388,
+        0.0,
+        -0.755
+      ],
+      "objects": [
+        "tuning_oil__Drop_gold_01",
+        "tuning_oil__Fixed_gold_02",
+        "tuning_oil__Fixed_pearl_03",
+        "tuning_oil__Fixed_teal_04",
+        "tuning_oil__Spout_teal_05"
+      ]
+    },
+    {
+      "id": "wall_meter",
+      "blend_sha256": "ca21572744e82a97a7d2dc70cea4ea96e74159860f7c377fe1d8314c6bf4f6af",
+      "source_center_blender_studs": [
+        -0.03,
+        0.0,
+        1.1125001
+      ],
+      "layout_center_blender_studs": [
+        10.0,
+        0.0,
+        0.0
+      ],
+      "export_translation_blender_studs": [
+        10.0299997,
+        0.0,
+        -1.1125001
+      ],
+      "objects": [
+        "wall_meter__Fixed_dark_01",
+        "wall_meter__Gauge_gold_02",
+        "wall_meter__Gauge_gold_03",
+        "wall_meter__Gauge_gold_04",
+        "wall_meter__Fixed_pearl_05",
+        "wall_meter__Bumper_teal_06",
+        "wall_meter__Fixed_teal_07"
+      ]
+    }
+  ],
+  "objects": [
+    {
+      "name": "tide_valve__Fixed_blue_01",
+      "mesh_data_name": "tide_valve__Fixed_blue_01",
+      "id": "tide_valve",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.55
+      ],
+      "batch_center_blender_studs": [
+        0.0,
+        0.0,
+        -0.2018061
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.55
+      ],
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.7,
+        0.48,
+        0.4156922
+      ]
+    },
+    {
+      "name": "tide_valve__Fixed_dark_02",
+      "mesh_data_name": "tide_valve__Fixed_dark_02",
+      "id": "tide_valve",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.6825
+      ],
+      "batch_center_blender_studs": [
+        0.0,
+        0.0,
+        -0.0693061
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.6825
+      ],
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.55,
+        0.85,
+        1.365
+      ]
+    },
+    {
+      "name": "tide_valve__ValveFlow_gold_03",
+      "mesh_data_name": "tide_valve__ValveFlow_gold_03",
+      "id": "tide_valve",
+      "center_blender_studs": [
+        0.0,
+        -0.27,
+        0.55
+      ],
+      "batch_center_blender_studs": [
+        0.0,
+        -0.27,
+        -0.2018061
+      ],
+      "motion_group": "ValveFlow",
+      "motion_pivot": [
+        0.0,
+        -0.27,
+        0.55
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.54,
+        0.12,
+        0.26
+      ]
+    },
+    {
+      "name": "tide_valve__Fixed_pearl_04",
+      "mesh_data_name": "tide_valve__Fixed_pearl_04",
+      "id": "tide_valve",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.55
+      ],
+      "batch_center_blender_studs": [
+        0.0,
+        0.0,
+        -0.2018061
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.55
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.6900001,
+        0.62,
+        0.62
+      ]
+    },
+    {
+      "name": "tide_valve__ValveWheel_teal_05",
+      "mesh_data_name": "tide_valve__ValveWheel_teal_05",
+      "id": "tide_valve",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.4300001
+      ],
+      "batch_center_blender_studs": [
+        0.0,
+        0.0,
+        0.678194
+      ],
+      "motion_group": "ValveWheel",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.43
+      ],
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.33,
+        1.33,
+        0.1472243
+      ]
+    },
+    {
+      "name": "tuning_oil__Drop_gold_01",
+      "mesh_data_name": "tuning_oil__Drop_gold_01",
+      "id": "tuning_oil",
+      "center_blender_studs": [
+        1.38,
+        0.0,
+        1.05
+      ],
+      "batch_center_blender_studs": [
+        6.1712389,
+        0.0,
+        0.295
+      ],
+      "motion_group": "Drop",
+      "motion_pivot": [
+        1.38,
+        0.0,
+        1.05
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.1900001,
+        0.19,
+        0.3199999
+      ]
+    },
+    {
+      "name": "tuning_oil__Fixed_gold_02",
+      "mesh_data_name": "tuning_oil__Fixed_gold_02",
+      "id": "tuning_oil",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.35
+      ],
+      "batch_center_blender_studs": [
+        4.7912388,
+        0.0,
+        0.595
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.35
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.54,
+        0.54,
+        0.1199999
+      ]
+    },
+    {
+      "name": "tuning_oil__Fixed_pearl_03",
+      "mesh_data_name": "tuning_oil__Fixed_pearl_03",
+      "id": "tuning_oil",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.62
+      ],
+      "batch_center_blender_studs": [
+        4.7912388,
+        0.0,
+        -0.135
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.62
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.1799999,
+        0.9204,
+        1.04
+      ]
+    },
+    {
+      "name": "tuning_oil__Fixed_teal_04",
+      "mesh_data_name": "tuning_oil__Fixed_teal_04",
+      "id": "tuning_oil",
+      "center_blender_studs": [
+        -0.2187386,
+        0.0,
+        0.7948446
+      ],
+      "batch_center_blender_studs": [
+        4.5725002,
+        0.0,
+        0.0398446
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        -0.2187386,
+        0.0,
+        0.7948446
+      ],
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.6774772,
+        0.9672,
+        1.0503109
+      ]
+    },
+    {
+      "name": "tuning_oil__Spout_teal_05",
+      "mesh_data_name": "tuning_oil__Spout_teal_05",
+      "id": "tuning_oil",
+      "center_blender_studs": [
+        0.8224396,
+        0.0,
+        1.0102588
+      ],
+      "batch_center_blender_studs": [
+        5.6136785,
+        0.0,
+        0.2552588
+      ],
+      "motion_group": "Spout",
+      "motion_pivot": [
+        0.42,
+        0.0,
+        0.78
+      ],
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.9413114,
+        0.13,
+        0.5718953
+      ]
+    },
+    {
+      "name": "wall_meter__Fixed_dark_01",
+      "mesh_data_name": "wall_meter__Fixed_dark_01",
+      "id": "wall_meter",
+      "center_blender_studs": [
+        -0.01,
+        -0.00625,
+        1.0600001
+      ],
+      "batch_center_blender_studs": [
+        10.0199995,
+        -0.00625,
+        -0.0525
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        -0.01,
+        -0.00625,
+        1.0600001
+      ],
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.46,
+        0.8325,
+        2.1200001
+      ]
+    },
+    {
+      "name": "wall_meter__Gauge_gold_02",
+      "mesh_data_name": "wall_meter__Gauge_gold_02",
+      "id": "wall_meter",
+      "center_blender_studs": [
+        -0.02,
+        -0.46,
+        0.95
+      ],
+      "batch_center_blender_studs": [
+        10.0099993,
+        -0.46,
+        -0.1625001
+      ],
+      "motion_group": "Gauge",
+      "motion_pivot": [
+        -0.02,
+        -0.46,
+        0.95
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.16,
+        0.06,
+        0.4
+      ]
+    },
+    {
+      "name": "wall_meter__Gauge_gold_03",
+      "mesh_data_name": "wall_meter__Gauge_gold_03",
+      "id": "wall_meter",
+      "center_blender_studs": [
+        0.28,
+        -0.46,
+        1.0599999
+      ],
+      "batch_center_blender_studs": [
+        10.3099995,
+        -0.46,
+        -0.0525001
+      ],
+      "motion_group": "Gauge",
+      "motion_pivot": [
+        0.28,
+        -0.46,
+        1.06
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.16,
+        0.06,
+        0.6199999
+      ]
+    },
+    {
+      "name": "wall_meter__Gauge_gold_04",
+      "mesh_data_name": "wall_meter__Gauge_gold_04",
+      "id": "wall_meter",
+      "center_blender_studs": [
+        0.58,
+        -0.46,
+        1.17
+      ],
+      "batch_center_blender_studs": [
+        10.6099997,
+        -0.46,
+        0.0574999
+      ],
+      "motion_group": "Gauge",
+      "motion_pivot": [
+        0.58,
+        -0.46,
+        1.17
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.16,
+        0.06,
+        0.8399999
+      ]
+    },
+    {
+      "name": "wall_meter__Fixed_pearl_05",
+      "mesh_data_name": "wall_meter__Fixed_pearl_05",
+      "id": "wall_meter",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.1125001
+      ],
+      "batch_center_blender_studs": [
+        10.0299997,
+        0.0,
+        0.0
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.1125001
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.9,
+        1.0,
+        2.2250001
+      ]
+    },
+    {
+      "name": "wall_meter__Bumper_teal_06",
+      "mesh_data_name": "wall_meter__Bumper_teal_06",
+      "id": "wall_meter",
+      "center_blender_studs": [
+        -0.86,
+        0.03,
+        1.24
+      ],
+      "batch_center_blender_studs": [
+        9.1700001,
+        0.03,
+        0.1274999
+      ],
+      "motion_group": "Bumper",
+      "motion_pivot": [
+        -0.86,
+        0.03,
+        1.24
+      ],
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.3,
+        0.9,
+        1.8699999
+      ]
+    },
+    {
+      "name": "wall_meter__Fixed_teal_07",
+      "mesh_data_name": "wall_meter__Fixed_teal_07",
+      "id": "wall_meter",
+      "center_blender_studs": [
+        0.28,
+        -0.43,
+        0.48
+      ],
+      "batch_center_blender_studs": [
+        10.3099995,
+        -0.43,
+        -0.6325001
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.28,
+        -0.43,
+        0.48
+      ],
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.26,
+        0.08,
+        0.26
+      ]
+    }
+  ],
+  "calibration": [
+    {
+      "name": "catalog_010__calibration_origin",
+      "center_blender_studs": [
+        -4,
+        -4,
+        0
+      ],
+      "size_blender_studs": [
+        1,
+        1,
+        1
+      ],
+      "size_meters": [
+        0.28,
+        0.28,
+        0.28
+      ]
+    },
+    {
+      "name": "catalog_010__calibration_right",
+      "center_blender_studs": [
+        -1,
+        -4,
+        0
+      ],
+      "size_blender_studs": [
+        1,
+        1,
+        1
+      ],
+      "size_meters": [
+        0.28,
+        0.28,
+        0.28
+      ]
+    },
+    {
+      "name": "catalog_010__calibration_front",
+      "center_blender_studs": [
+        -4,
+        -7,
+        0
+      ],
+      "size_blender_studs": [
+        1,
+        1,
+        1
+      ],
+      "size_meters": [
+        0.28,
+        0.28,
+        0.28
+      ]
+    }
+  ]
+}

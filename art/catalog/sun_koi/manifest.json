@@ -1,0 +1,384 @@
+{
+  "schema": 2,
+  "id": "sun_koi",
+  "display_name": "Sun Koi",
+  "category": "evolved",
+  "generator": "scripts/models/catalog_nature.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 1516,
+  "pieces": 7,
+  "budget": {
+    "triangles": 6000,
+    "pieces": 12
+  },
+  "center_blender_studs": [
+    -0.05575,
+    0.0,
+    1.3099999
+  ],
+  "bounds_min": [
+    -1.0815001,
+    -0.34125,
+    0.28
+  ],
+  "bounds_max": [
+    0.97,
+    0.34125,
+    2.3399999
+  ],
+  "size_blender_studs": [
+    2.0515001,
+    0.6825,
+    2.0599999
+  ],
+  "objects": [
+    {
+      "name": "sun_koi__EvolvedCrystal_blue_01",
+      "mesh_data_name": "sun_koi__EvolvedCrystal_blue_01",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 44,
+      "vertices": 24,
+      "motion_group": "EvolvedCrystal",
+      "motion_pivot": [
+        0.02,
+        0.0,
+        1.76
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.02,
+        0.0,
+        2.05
+      ],
+      "center_blender_studs": [
+        0.02,
+        0.0,
+        2.05
+      ],
+      "size_blender_studs": [
+        0.36,
+        0.3117692,
+        0.5799999
+      ],
+      "bounds_min": [
+        -0.16,
+        -0.1558846,
+        1.76
+      ],
+      "bounds_max": [
+        0.2,
+        0.1558846,
+        2.3399999
+      ],
+      "geometry_sha256": "ea600a687d1760cba8434f6ae2d81e992943cbd62bd1b27b4e05b4a83e1be09e",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "sun_koi__FishBody_dark_02",
+      "mesh_data_name": "sun_koi__FishBody_dark_02",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 240,
+      "vertices": 124,
+      "motion_group": "FishBody",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.25
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.42,
+        0.0,
+        1.3655
+      ],
+      "center_blender_studs": [
+        0.42,
+        0.0,
+        1.3655
+      ],
+      "size_blender_studs": [
+        0.1533,
+        0.567,
+        0.1533
+      ],
+      "bounds_min": [
+        0.34335,
+        -0.2835,
+        1.2888499
+      ],
+      "bounds_max": [
+        0.49665,
+        0.2835,
+        1.44215
+      ],
+      "geometry_sha256": "5e0f5a6c2f6df1a416e9304b9524e33c89bf3b1770f1ff8a0a0f22402c64d82c",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "sun_koi__FishBody_gold_03",
+      "mesh_data_name": "sun_koi__FishBody_gold_03",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 344,
+      "vertices": 176,
+      "motion_group": "FishBody",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.25
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0315,
+        0.0,
+        1.25
+      ],
+      "center_blender_studs": [
+        0.0315,
+        0.0,
+        1.25
+      ],
+      "size_blender_studs": [
+        1.428,
+        0.567,
+        0.8399999
+      ],
+      "bounds_min": [
+        -0.6825,
+        -0.2835,
+        0.83
+      ],
+      "bounds_max": [
+        0.7455,
+        0.2835,
+        1.67
+      ],
+      "geometry_sha256": "710941f27caafd3ecda5d9986a5174a1628ca38a54fe14eb4f9fe14fec538f89",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "sun_koi__FishTail_gold_04",
+      "mesh_data_name": "sun_koi__FishTail_gold_04",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 16,
+      "vertices": 10,
+      "motion_group": "FishTail",
+      "motion_pivot": [
+        -0.5775,
+        0.0,
+        1.25
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.8295,
+        0.0,
+        1.25
+      ],
+      "center_blender_studs": [
+        -0.8295,
+        0.0,
+        1.25
+      ],
+      "size_blender_studs": [
+        0.5040001,
+        0.1365,
+        0.756
+      ],
+      "bounds_min": [
+        -1.0815001,
+        -0.06825,
+        0.872
+      ],
+      "bounds_max": [
+        -0.5775,
+        0.06825,
+        1.628
+      ],
+      "geometry_sha256": "a57e1adf5910007157781fa748418e3d664086d087a5183cc51cca1d4bfb4244",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "sun_koi__FishBody_pearl_05",
+      "mesh_data_name": "sun_koi__FishBody_pearl_05",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 240,
+      "vertices": 124,
+      "motion_group": "FishBody",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.25
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.1,
+        -0.28,
+        1.27
+      ],
+      "center_blender_studs": [
+        -0.1,
+        -0.28,
+        1.27
+      ],
+      "size_blender_studs": [
+        0.9,
+        0.05,
+        0.1600001
+      ],
+      "bounds_min": [
+        -0.55,
+        -0.305,
+        1.1899999
+      ],
+      "bounds_max": [
+        0.35,
+        -0.255,
+        1.35
+      ],
+      "geometry_sha256": "46b0a8109d386055c986b0f5a2c0fbe047f9664e9de4dd14fce34b824c261e35",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "sun_koi__FishFin_pearl_06",
+      "mesh_data_name": "sun_koi__FishFin_pearl_06",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 248,
+      "vertices": 130,
+      "motion_group": "FishFin",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.25
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.00525,
+        0.0,
+        1.4495
+      ],
+      "center_blender_studs": [
+        -0.00525,
+        0.0,
+        1.4495
+      ],
+      "size_blender_studs": [
+        0.6615,
+        0.6825,
+        0.924
+      ],
+      "bounds_min": [
+        -0.336,
+        -0.34125,
+        0.9875
+      ],
+      "bounds_max": [
+        0.3255,
+        0.34125,
+        1.9115
+      ],
+      "geometry_sha256": "023e2055daf1c122b5101580b267da668bc63c9dbc7669a7fdcd988336ea9857",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "sun_koi__EvolvedOrbit_teal_07",
+      "mesh_data_name": "sun_koi__EvolvedOrbit_teal_07",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 384,
+      "vertices": 192,
+      "motion_group": "EvolvedOrbit",
+      "motion_pivot": [
+        0.0,
+        0.1,
+        1.25
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.1,
+        1.25
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.1,
+        1.25
+      ],
+      "size_blender_studs": [
+        1.9400001,
+        0.069282,
+        1.9400001
+      ],
+      "bounds_min": [
+        -0.97,
+        0.065359,
+        0.28
+      ],
+      "bounds_max": [
+        0.97,
+        0.134641,
+        2.22
+      ],
+      "geometry_sha256": "338f12595dc8dd37d22cb3c0d5b29781842a969ac919794b4ecb5d0b9c75a466",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/sun_koi/sun_koi.blend",
+  "source_preserved": false,
+  "blend_sha256": "3941f354470e4ac0ab7293848338129efe90efe5d7655b0b293315227fe135fd"
+}

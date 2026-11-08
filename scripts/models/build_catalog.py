@@ -120,7 +120,7 @@ def normalize_and_pack(objects, model_id, common):
         obj.parent = None
         obj.matrix_world = Matrix.Identity(4)
         pivot = tuple(vector(obj['motion_pivot'])) if 'motion_pivot' in obj else None
-        span = tuple(vector(obj['compression_span'])) if 'compression_span' in obj else None
+        span = float(obj['compression_span']) if 'compression_span' in obj else None
         key = (material_key(obj.data.materials[0]), str(obj['motion_group']), pivot, span)
         groups[key].append(obj)
     packed = []
@@ -178,7 +178,7 @@ def audit(objects, info, generator):
             'alpha': alpha, 'transparency': round(1 - alpha, 7),
             'triangles': triangles, 'vertices': len(obj.data.vertices),
             'motion_group': obj['motion_group'], 'motion_pivot': vector(obj['motion_pivot']),
-            'compression_span': list(obj['compression_span']) if 'compression_span' in obj else None,
+            'compression_span': float(obj['compression_span']) if 'compression_span' in obj else None,
             'original_center_blender_studs': vector((low + high) / 2),
             'center_blender_studs': vector((low + high) / 2),
             'size_blender_studs': vector(high - low),

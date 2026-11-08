@@ -1,0 +1,286 @@
+{
+  "schema": 2,
+  "id": "tide_valve",
+  "display_name": "Tide Valve",
+  "category": "equipment",
+  "generator": "scripts/models/catalog_nature.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 1164,
+  "pieces": 5,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    0.0,
+    0.7518061
+  ],
+  "bounds_min": [
+    -0.85,
+    -0.665,
+    0.0
+  ],
+  "bounds_max": [
+    0.85,
+    0.665,
+    1.5036122
+  ],
+  "size_blender_studs": [
+    1.7,
+    1.33,
+    1.5036122
+  ],
+  "objects": [
+    {
+      "name": "tide_valve__Fixed_blue_01",
+      "mesh_data_name": "tide_valve__Fixed_blue_01",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 44,
+      "vertices": 24,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.55
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.55
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.55
+      ],
+      "size_blender_studs": [
+        1.7,
+        0.48,
+        0.4156922
+      ],
+      "bounds_min": [
+        -0.85,
+        -0.24,
+        0.3421539
+      ],
+      "bounds_max": [
+        0.85,
+        0.24,
+        0.7578461
+      ],
+      "geometry_sha256": "735a962f7c499394d84b59de82c0247e50fa9b1df6b5dc93d4a56a1a399a44a7",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "tide_valve__Fixed_dark_02",
+      "mesh_data_name": "tide_valve__Fixed_dark_02",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 296,
+      "vertices": 152,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.6825
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.6825
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.6825
+      ],
+      "size_blender_studs": [
+        1.55,
+        0.85,
+        1.365
+      ],
+      "bounds_min": [
+        -0.775,
+        -0.425,
+        0.0
+      ],
+      "bounds_max": [
+        0.775,
+        0.425,
+        1.365
+      ],
+      "geometry_sha256": "996346d62e4de77eb957f530399f42bae72b0e391948c1db0c9fc4619fd63e9a",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "tide_valve__ValveFlow_gold_03",
+      "mesh_data_name": "tide_valve__ValveFlow_gold_03",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 120,
+      "vertices": 62,
+      "motion_group": "ValveFlow",
+      "motion_pivot": [
+        0.0,
+        -0.27,
+        0.55
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.27,
+        0.55
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.27,
+        0.55
+      ],
+      "size_blender_studs": [
+        0.54,
+        0.12,
+        0.26
+      ],
+      "bounds_min": [
+        -0.27,
+        -0.33,
+        0.42
+      ],
+      "bounds_max": [
+        0.27,
+        -0.21,
+        0.68
+      ],
+      "geometry_sha256": "5c745f3992601c1671e3c1f5aa591ce8f89713b8dcc54a61a30a094ca03e9117",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "tide_valve__Fixed_pearl_04",
+      "mesh_data_name": "tide_valve__Fixed_pearl_04",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 376,
+      "vertices": 192,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.55
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.55
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.55
+      ],
+      "size_blender_studs": [
+        1.6900001,
+        0.62,
+        0.62
+      ],
+      "bounds_min": [
+        -0.845,
+        -0.31,
+        0.24
+      ],
+      "bounds_max": [
+        0.845,
+        0.31,
+        0.86
+      ],
+      "geometry_sha256": "861ec0e2e6fe84163a5be40d22d4774180bff17dd608728218bb156d36ae9b39",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "tide_valve__ValveWheel_teal_05",
+      "mesh_data_name": "tide_valve__ValveWheel_teal_05",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 328,
+      "vertices": 168,
+      "motion_group": "ValveWheel",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.43
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.4300001
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.4300001
+      ],
+      "size_blender_studs": [
+        1.33,
+        1.33,
+        0.1472243
+      ],
+      "bounds_min": [
+        -0.665,
+        -0.665,
+        1.3563879
+      ],
+      "bounds_max": [
+        0.665,
+        0.665,
+        1.5036122
+      ],
+      "geometry_sha256": "4b81dba9369428e49110a426d23120029076fa2f6f3377198fa1b6016df484c7",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/tide_valve/tide_valve.blend",
+  "source_preserved": false,
+  "blend_sha256": "05f59ec8a25f5b08f02fd6f475638f72be9a136cdaf312ff107d380d57f605cb"
+}

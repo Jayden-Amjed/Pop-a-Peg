@@ -1,0 +1,237 @@
+{
+  "schema": 2,
+  "id": "jumble",
+  "display_name": "Shuffle",
+  "category": "utility",
+  "generator": "scripts/models/catalog_mechanical.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 696,
+  "pieces": 4,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    0.0,
+    0.98
+  ],
+  "bounds_min": [
+    -0.865,
+    -0.2,
+    0.115
+  ],
+  "bounds_max": [
+    0.865,
+    0.2,
+    1.845
+  ],
+  "size_blender_studs": [
+    1.73,
+    0.4,
+    1.73
+  ],
+  "objects": [
+    {
+      "name": "jumble__ShufflePeg_blue_01",
+      "mesh_data_name": "jumble__ShufflePeg_blue_01",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 120,
+      "vertices": 62,
+      "motion_group": "ShufflePeg",
+      "motion_pivot": [
+        -0.36,
+        0.0,
+        0.75
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.36,
+        0.0,
+        0.75
+      ],
+      "center_blender_studs": [
+        -0.36,
+        0.0,
+        0.75
+      ],
+      "size_blender_studs": [
+        0.46,
+        0.4,
+        0.46
+      ],
+      "bounds_min": [
+        -0.59,
+        -0.2,
+        0.52
+      ],
+      "bounds_max": [
+        -0.13,
+        0.2,
+        0.98
+      ],
+      "geometry_sha256": "ce13fb4b62517f476a3143805d9f6d665723f52cf5797c25be944a4da3b6b564",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "jumble__ShufflePeg_gold_02",
+      "mesh_data_name": "jumble__ShufflePeg_gold_02",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 120,
+      "vertices": 62,
+      "motion_group": "ShufflePeg",
+      "motion_pivot": [
+        0.36,
+        0.0,
+        0.75
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.36,
+        0.0,
+        0.75
+      ],
+      "center_blender_studs": [
+        0.36,
+        0.0,
+        0.75
+      ],
+      "size_blender_studs": [
+        0.46,
+        0.4,
+        0.46
+      ],
+      "bounds_min": [
+        0.13,
+        -0.2,
+        0.52
+      ],
+      "bounds_max": [
+        0.59,
+        0.2,
+        0.98
+      ],
+      "geometry_sha256": "3e2773aafd1d9db709820ac65a861200c214adf319f4784e1878b0cc46f48ed4",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "jumble__ShufflePeg_green_03",
+      "mesh_data_name": "jumble__ShufflePeg_green_03",
+      "material": "green",
+      "color_srgb": [
+        142,
+        220,
+        103
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 120,
+      "vertices": 62,
+      "motion_group": "ShufflePeg",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.35
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.35
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.35
+      ],
+      "size_blender_studs": [
+        0.46,
+        0.4,
+        0.46
+      ],
+      "bounds_min": [
+        -0.23,
+        -0.2,
+        1.12
+      ],
+      "bounds_max": [
+        0.23,
+        0.2,
+        1.58
+      ],
+      "geometry_sha256": "ce13fb4b62517f476a3143805d9f6d665723f52cf5797c25be944a4da3b6b564",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "jumble__Fixed_pearl_04",
+      "mesh_data_name": "jumble__Fixed_pearl_04",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 336,
+      "vertices": 168,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.13,
+        0.98
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.13,
+        0.98
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.13,
+        0.98
+      ],
+      "size_blender_studs": [
+        1.73,
+        0.0952628,
+        1.73
+      ],
+      "bounds_min": [
+        -0.865,
+        0.0823686,
+        0.115
+      ],
+      "bounds_max": [
+        0.865,
+        0.1776314,
+        1.845
+      ],
+      "geometry_sha256": "97c1f7c8114c722e65a99dcf71d37e98ad20d7b7bd3f9988d3227bda22c83f50",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/jumble/jumble.blend",
+  "source_preserved": false,
+  "blend_sha256": "fdcf38056580f9949bad2eeb90cf3dc8b64d497c69943f9db871ee1f5950b103"
+}

@@ -1,0 +1,286 @@
+{
+  "schema": 2,
+  "id": "goldfish",
+  "display_name": "Goldfish",
+  "category": "equipment",
+  "generator": "scripts/models/catalog_nature.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 1208,
+  "pieces": 5,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.068,
+    0.0,
+    1.423
+  ],
+  "bounds_min": [
+    -1.03,
+    -0.325,
+    0.7
+  ],
+  "bounds_max": [
+    1.1659999,
+    0.325,
+    2.1459999
+  ],
+  "size_blender_studs": [
+    2.1959999,
+    0.65,
+    1.4459999
+  ],
+  "objects": [
+    {
+      "name": "goldfish__FishBody_dark_01",
+      "mesh_data_name": "goldfish__FishBody_dark_01",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 240,
+      "vertices": 124,
+      "motion_group": "FishBody",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.1
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.4,
+        0.0,
+        1.21
+      ],
+      "center_blender_studs": [
+        0.4,
+        0.0,
+        1.21
+      ],
+      "size_blender_studs": [
+        0.146,
+        0.54,
+        0.1459999
+      ],
+      "bounds_min": [
+        0.327,
+        -0.27,
+        1.1370001
+      ],
+      "bounds_max": [
+        0.473,
+        0.27,
+        1.283
+      ],
+      "geometry_sha256": "9c216f56538f915a0ecedfe65fcbb18ca2c1a4efd7e476f00a07d28e3fae5c10",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "goldfish__Bubbles_glass_02",
+      "mesh_data_name": "goldfish__Bubbles_glass_02",
+      "material": "glass",
+      "color_srgb": [
+        145,
+        244,
+        255
+      ],
+      "alpha": 0.25,
+      "transparency": 0.75,
+      "triangles": 360,
+      "vertices": 186,
+      "motion_group": "Bubbles",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.9679999,
+        -0.02,
+        1.7879999
+      ],
+      "center_blender_studs": [
+        0.9679999,
+        -0.02,
+        1.7879999
+      ],
+      "size_blender_studs": [
+        0.3959999,
+        0.212,
+        0.716
+      ],
+      "bounds_min": [
+        0.77,
+        -0.126,
+        1.4299999
+      ],
+      "bounds_max": [
+        1.1659999,
+        0.086,
+        2.1459999
+      ],
+      "geometry_sha256": "b532f8421b48dbb5053a7c7b7ef6837bea85ff4a7bf9b3de62db71c688804023",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "goldfish__FishBody_gold_03",
+      "mesh_data_name": "goldfish__FishBody_gold_03",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 344,
+      "vertices": 176,
+      "motion_group": "FishBody",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.1
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.03,
+        0.0,
+        1.1
+      ],
+      "center_blender_studs": [
+        0.03,
+        0.0,
+        1.1
+      ],
+      "size_blender_studs": [
+        1.3599999,
+        0.54,
+        0.8
+      ],
+      "bounds_min": [
+        -0.6499999,
+        -0.27,
+        0.7
+      ],
+      "bounds_max": [
+        0.71,
+        0.27,
+        1.5
+      ],
+      "geometry_sha256": "6d3883e96a33e362f926b0bcfaa6b4a0dc494463374e4443dc7399b221dbaf72",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "goldfish__FishTail_gold_04",
+      "mesh_data_name": "goldfish__FishTail_gold_04",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 16,
+      "vertices": 10,
+      "motion_group": "FishTail",
+      "motion_pivot": [
+        -0.55,
+        0.0,
+        1.1
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.79,
+        0.0,
+        1.1
+      ],
+      "center_blender_studs": [
+        -0.79,
+        0.0,
+        1.1
+      ],
+      "size_blender_studs": [
+        0.48,
+        0.13,
+        0.72
+      ],
+      "bounds_min": [
+        -1.03,
+        -0.065,
+        0.74
+      ],
+      "bounds_max": [
+        -0.55,
+        0.065,
+        1.46
+      ],
+      "geometry_sha256": "e2e8d52883081b0b467895f1c88fe7f235f8a0df976507c0621c4865a95843c3",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "goldfish__FishFin_pearl_05",
+      "mesh_data_name": "goldfish__FishFin_pearl_05",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 248,
+      "vertices": 130,
+      "motion_group": "FishFin",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.1
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.005,
+        0.0,
+        1.29
+      ],
+      "center_blender_studs": [
+        -0.005,
+        0.0,
+        1.29
+      ],
+      "size_blender_studs": [
+        0.63,
+        0.65,
+        0.8800001
+      ],
+      "bounds_min": [
+        -0.32,
+        -0.325,
+        0.85
+      ],
+      "bounds_max": [
+        0.31,
+        0.325,
+        1.73
+      ],
+      "geometry_sha256": "a0e61da20bce5ab29b85fe039cd58eeea4e6d41078c5ce245c0eb5aa90429c10",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/goldfish/goldfish.blend",
+  "source_preserved": false,
+  "blend_sha256": "c08fe9ade37235819f42336e30e2bfb431b6357f1924f54cbe8e67e273f52251"
+}
