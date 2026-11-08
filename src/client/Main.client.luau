@@ -31,16 +31,29 @@ end
 local function restoreCamera()
     local camera = workspace.CurrentCamera
     local humanoid = player.Character and player.Character:FindFirstChildOfClass("Humanoid")
+    local rootPart = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
     if camera then
         camera.CameraType = Enum.CameraType.Custom
         camera.FieldOfView = 70
         if humanoid then
             camera.CameraSubject = humanoid
         end
+        if rootPart and rootPart:IsA("BasePart") then
+            local look = rootPart.CFrame.LookVector
+            local heading = Vector3.new(look.X, 0, look.Z)
+            if heading.Magnitude < 0.01 then
+                heading = Vector3.new(0, 0, -1)
+            else
+                heading = heading.Unit
+            end
+            local focus = rootPart.Position + Vector3.new(0, 2.5, 0)
+            camera.CFrame = CFrame.lookAt(focus - heading * 18 + Vector3.new(0, 8, 0), focus)
+            camera.Focus = CFrame.new(focus)
+        end
     end
 end
 
-local function setMovement(inRun)
+local function setMovement(inRun, orientCamera)
     if inRun then
         ContextActionService:BindActionAtPriority(
             "PegRunMovement",
@@ -62,7 +75,9 @@ local function setMovement(inRun)
         if controls then
             controls:Enable()
         end
-        restoreCamera()
+        if orientCamera ~= false then
+            restoreCamera()
+        end
     end
 end
 
@@ -75,13 +90,15 @@ task.spawn(function()
         end)
         if ok then
             controls = result
-            setMovement(mode == "run")
+            -- Loading the controls module late must not rotate an active hub camera.
+            setMovement(mode == "run", false)
         end
     end
 end)
 
 player.CharacterAdded:Connect(function(character)
     character:WaitForChild("Humanoid", 10)
+    character:WaitForChild("HumanoidRootPart", 10)
     if mode ~= "run" then
         restoreCamera()
     end
