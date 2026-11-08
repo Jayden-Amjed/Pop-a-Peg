@@ -405,7 +405,7 @@ return function(options)
                     and not issueSet["Rest/fixed color drift"]
                 local samples = {}
                 motion:apply(0.37, 2, CFrame.new())
-                local body = require(libraries.ItemMotion).bodySample(id, 0.37, 2)
+                local body = require(libraries.BlenderChoreography).bodySample(id, 0.37, 2)
                 local size = motion.restSize
                 local bodyFrame = CFrame.new(body.x * size.X, body.y * size.Y, body.z * size.Z)
                     * CFrame.Angles(body.rx, body.ry, body.rz)

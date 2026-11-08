@@ -1,0 +1,335 @@
+{
+  "schema": 2,
+  "id": "soft_saw",
+  "display_name": "Soft Current",
+  "category": "equipment",
+  "generator": "scripts/models/catalog_mechanical.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 1980,
+  "pieces": 6,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0481393,
+    0.02,
+    0.9276214
+  ],
+  "bounds_min": [
+    -0.73,
+    -0.34,
+    0.02
+  ],
+  "bounds_max": [
+    0.8262786,
+    0.38,
+    1.8352427
+  ],
+  "size_blender_studs": [
+    1.5562786,
+    0.72,
+    1.8152428
+  ],
+  "objects": [
+    {
+      "name": "soft_saw__Current_blue_01",
+      "mesh_data_name": "soft_saw__Current_blue_01",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 476,
+      "vertices": 240,
+      "motion_group": "Current",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.1
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.125712,
+        0.035,
+        1.1757723
+      ],
+      "center_blender_studs": [
+        0.125712,
+        0.035,
+        1.1757723
+      ],
+      "size_blender_studs": [
+        1.2490755,
+        0.09,
+        1.1668873
+      ],
+      "bounds_min": [
+        -0.4988257,
+        -0.01,
+        0.5923287
+      ],
+      "bounds_max": [
+        0.7502498,
+        0.08,
+        1.759216
+      ],
+      "geometry_sha256": "f3879e8db52ce40a3f74e25458c13bfef8e0d41e5ddd62bd895ebeada27f0563",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "soft_saw__Fixed_pearl_02",
+      "mesh_data_name": "soft_saw__Fixed_pearl_02",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.02,
+        0.17
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.02,
+        0.17
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.02,
+        0.17
+      ],
+      "size_blender_studs": [
+        1.46,
+        0.72,
+        0.3
+      ],
+      "bounds_min": [
+        -0.73,
+        -0.34,
+        0.02
+      ],
+      "bounds_max": [
+        0.73,
+        0.38,
+        0.32
+      ],
+      "geometry_sha256": "8b115c5e5688d921c00c56cf054d76dc32d76b5a42fef9f38b2c9d20fa5453a9",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "soft_saw__Foam_pearl_03",
+      "mesh_data_name": "soft_saw__Foam_pearl_03",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 120,
+      "vertices": 62,
+      "motion_group": "Foam",
+      "motion_pivot": [
+        -0.3,
+        -0.1,
+        0.82
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.3,
+        -0.1,
+        0.82
+      ],
+      "center_blender_studs": [
+        -0.3,
+        -0.1,
+        0.82
+      ],
+      "size_blender_studs": [
+        0.16,
+        0.16,
+        0.16
+      ],
+      "bounds_min": [
+        -0.38,
+        -0.18,
+        0.74
+      ],
+      "bounds_max": [
+        -0.22,
+        -0.02,
+        0.9
+      ],
+      "geometry_sha256": "0d99896e7e48757d5b662e8e59c61fb99b46360df7da8a36b7958beccc0e37f8",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "soft_saw__Foam_pearl_04",
+      "mesh_data_name": "soft_saw__Foam_pearl_04",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 120,
+      "vertices": 62,
+      "motion_group": "Foam",
+      "motion_pivot": [
+        -0.6,
+        -0.1,
+        0.54
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.6,
+        -0.1,
+        0.54
+      ],
+      "center_blender_studs": [
+        -0.6,
+        -0.1,
+        0.54
+      ],
+      "size_blender_studs": [
+        0.16,
+        0.16,
+        0.16
+      ],
+      "bounds_min": [
+        -0.68,
+        -0.18,
+        0.46
+      ],
+      "bounds_max": [
+        -0.52,
+        -0.02,
+        0.62
+      ],
+      "geometry_sha256": "0e7bed707f16b13b4f63335a37e9bc962b5c14ccdd82b89144d90b993fcdeecc",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "soft_saw__Foam_pearl_05",
+      "mesh_data_name": "soft_saw__Foam_pearl_05",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 120,
+      "vertices": 62,
+      "motion_group": "Foam",
+      "motion_pivot": [
+        0.0,
+        -0.1,
+        1.1
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.1,
+        1.1
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.1,
+        1.1
+      ],
+      "size_blender_studs": [
+        0.16,
+        0.16,
+        0.1600001
+      ],
+      "bounds_min": [
+        -0.08,
+        -0.18,
+        1.02
+      ],
+      "bounds_max": [
+        0.08,
+        -0.02,
+        1.1800001
+      ],
+      "geometry_sha256": "2597497f8dd568b0d62112c40166bd74b51b655a4af68e4cef7d65cb025428b0",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "soft_saw__Current_teal_06",
+      "mesh_data_name": "soft_saw__Current_teal_06",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 1036,
+      "vertices": 520,
+      "motion_group": "Current",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.1
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.1208119,
+        0.0,
+        1.0089146
+      ],
+      "center_blender_studs": [
+        0.1208119,
+        0.0,
+        1.0089146
+      ],
+      "size_blender_studs": [
+        1.4109334,
+        0.23,
+        1.6526563
+      ],
+      "bounds_min": [
+        -0.5846548,
+        -0.115,
+        0.1825864
+      ],
+      "bounds_max": [
+        0.8262786,
+        0.115,
+        1.8352427
+      ],
+      "geometry_sha256": "8dde54aa86dd8ec24c43b2077dced3c411adf0a72a068e96b98e761094a9885c",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/soft_saw/soft_saw.blend",
+  "source_preserved": false,
+  "blend_sha256": "5305cf83e2e3e7933d39b45f1fc37b63cdda3ac5b7cdf758209b3d8d4c9789ea"
+}

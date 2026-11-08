@@ -8,6 +8,12 @@ For model or art work, follow [MODEL_STYLE_GUIDE](docs/MODEL_STYLE_GUIDE.md) and
 the relevant [modeling workflow](docs/MODELING_WORKFLOW.md). Verify actual rendered
 geometry and motion; generated output or a successful audit alone is not visual acceptance.
 
+User direction from RBX-027: freeze native item geometry and native animation.
+Continue model, motion and effect reviews in Blender/catalog-specific modules.
+Do not propagate gallery revisions through shared native choreography, item
+builders or gameplay sound. Only an explicit later user instruction lifts this
+boundary. Native comparison remains a preserved reference, not a second target.
+
 Human instructions determine authorization and scope. Resolve disagreements by
 preferring actual implementation and reproducible behavior, then executed checks,
 current status, task evidence, overview, other documentation, and chat/memory.

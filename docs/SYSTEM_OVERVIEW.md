@@ -509,12 +509,17 @@ candidate exports stay in ignored `build/model-exports/` until reviewed/imported
 The [full catalog inspector](CATALOG_GALLERY.md) builds with
 `catalog-gallery.project.json`. `art/catalog/CatalogAssets.rbxm` restores 78 models
 with 477 MeshParts; 75 editable sources live under `art/catalog/` and the original
-three stay under `art/models/`. Ten recorded uploads cover the new meshes.
-`CatalogMotion` applies the same choreography through shared pivots and a coherent
-whole-object transform; the original pilot gallery uses this adapter too. Only the selected model plus
+three stay under `art/models/`. Ten initial uploads and the immutable RBX-025 and
+RBX-027 revision receipts cover the active meshes.
+`CatalogMotion` uses `BlenderChoreography`, which layers Blender-only performances
+over the frozen native definitions without modifying them. `CatalogEffects` uses
+78 per-item designs from `CatalogEffectProfiles` in a bounded sibling part pool.
+`GallerySoundBank` and `GallerySoundEngine` provide 78 authored phrases across 12
+timbre families while reusing the existing audio assets. The original pilot gallery
+uses the motion adapter too. Only the selected model plus
 an optional native comparison mounts in viewports. `PreviewLighting` is shared
 with normal item cards; `UiTheme` adds restrained contrast. Gameplay still uses
-native geometry. Source files, upload receipts, runtime copies, tests and publication
+frozen native geometry and animation. Source files, upload receipts, runtime copies, tests and publication
 remain distinct; see the task and dashboard for current verification.
 
 ## Development and publication

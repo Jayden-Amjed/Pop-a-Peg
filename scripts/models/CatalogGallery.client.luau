@@ -9,12 +9,15 @@ local assets = ReplicatedStorage:WaitForChild("CatalogAssets")
 local ItemModels = require(libraries.ItemModels)
 local ItemMotion = require(libraries.ItemMotion)
 local CatalogMotion = require(libraries.CatalogMotion)
+local CatalogLabels = require(libraries.CatalogLabels)
+local CatalogEffects = require(libraries.CatalogEffects)
 local PreviewLighting = require(libraries.PreviewLighting)
 local GalleryAudio = require(libraries.GalleryAudio)
 local audio = GalleryAudio.new()
 local catalog = {}
 for index, metadata in require(libraries.CatalogInfo) do
     local entry = table.clone(metadata)
+    entry.name = CatalogLabels[entry.id] or entry.name
     entry.index = index
     table.insert(catalog, entry)
 end
@@ -53,6 +56,7 @@ gui:SetAttribute("NativeComparison", false)
 gui:SetAttribute("TotalCount", #catalog)
 gui:SetAttribute("CompletedCycles", 0)
 gui:SetAttribute("MountedModels", 0)
+gui:SetAttribute("EffectsEnabled", true)
 gui:SetAttribute("SoundEnabled", true)
 gui:SetAttribute("Volume", 0.5)
 gui:SetAttribute("AudioStarts", 0)
@@ -218,7 +222,7 @@ local function viewport(name)
     local caption = text(
         view,
         "SourceCaption",
-        if name == "BlenderViewport" then "BLENDER" else "CURRENT NATIVE",
+        if name == "BlenderViewport" then "BLENDER" else "FROZEN NATIVE REFERENCE",
         11,
         C.navy
     )
@@ -289,6 +293,9 @@ end
 local function clearMounts()
     audio:stop()
     for _, mount in mounts do
+        if mount.effects then
+            mount.effects:destroy()
+        end
         mount.model:Destroy()
         mount.camera:Destroy()
     end
@@ -317,17 +324,32 @@ local function makeMount(view, model, id, isBlender)
     table.insert(mounts, mount)
     assert(model:FindFirstChildWhichIsA("BasePart", true), "Model contains no renderable pieces")
     local motion = if isBlender then CatalogMotion.new(model) else ItemMotion.new(model, id)
+    mount.effects = if isBlender then CatalogEffects.new(model, id) else nil
     local _, restSize = model:GetBoundingBox()
     local lower, upper = includeBounds(model, Vector3.one * math.huge, -Vector3.one * math.huge)
+    local function includeEffects(pose)
+        if mount.effects then
+            mount.effects:apply(pose, 2, CFrame.new())
+            local effectLower, effectUpper = mount.effects:bounds()
+            if effectLower then
+                lower, upper = lower:Min(effectLower), upper:Max(effectUpper)
+            end
+        end
+    end
     for step = 0, 40 do
         motion:apply(step / 40, 2, CFrame.new())
         lower, upper = includeBounds(model, lower, upper)
+        includeEffects(step / 40)
     end
     for _, pose in { 0.0773, 0.2426 } do
         motion:apply(pose, 2, CFrame.new())
         lower, upper = includeBounds(model, lower, upper)
+        includeEffects(pose)
     end
     motion:apply(0, 1, CFrame.new())
+    if mount.effects then
+        mount.effects:apply(0, 1, CFrame.new())
+    end
     mount.motion, mount.size, mount.lower, mount.upper = motion, restSize, lower, upper
     return mount
 end
@@ -438,7 +460,7 @@ local function changeSelection(id, preservePlayback)
             "%s triangles  •  %s mesh pieces  •  %s",
             tostring(source:GetAttribute("TriangleCount") or "?"),
             tostring(source:GetAttribute("PartCount") or #source:GetChildren()),
-            tostring(ItemMotion.Profiles[id].name)
+            tostring(mounts[1].motion.profile)
         )
         gui:SetAttribute("LoadedCount", loadedCount)
         gui:SetAttribute("MountedModels", #mounts)
@@ -524,6 +546,9 @@ end)
 
 local animationTitle = text(controlsPanel, "AnimationTitle", "ANIMATION", 14)
 animationTitle.Font = Enum.Font.GothamBold
+local effectsButton = button(controlsPanel, "Effects", "FX ON", function()
+    gui:SetAttribute("EffectsEnabled", not gui:GetAttribute("EffectsEnabled"))
+end)
 local triggerButton = button(controlsPanel, "Trigger", "TRIGGER", function()
     startAt(0)
 end)
@@ -790,7 +815,9 @@ local function layout()
     rect(frameTag, 14, contentHeight - 28, middle - 28, 18)
     frameTag.TextTruncate = Enum.TextTruncate.AtEnd
     local half = (right - 30) / 2
-    rect(animationTitle, 12, 10, right - 24, 22)
+    rect(animationTitle, 12, 10, right - 108, 22)
+    rect(effectsButton, right - 85, 9, 73, 24)
+    effectsButton.TextSize = 11
     rect(triggerButton, 12, 41, half, 32)
     rect(pauseButton, 18 + half, 41, half, 32)
     rect(loopButton, 12, 81, half, 28)
@@ -820,6 +847,8 @@ local function layout()
     rect(sessionHint, 12, contentHeight - 21, right - 24, 16)
 end
 local function appearance()
+    effectsButton.Text = if gui:GetAttribute("EffectsEnabled") then "FX ON" else "FX OFF"
+    effectsButton.BackgroundColor3 = if gui:GetAttribute("EffectsEnabled") then C.teal else C.navy
     soundButton.Text = if gui:GetAttribute("SoundEnabled") then "SOUND ON" else "SOUND OFF"
     soundButton.BackgroundColor3 = if gui:GetAttribute("SoundEnabled") then C.teal else C.navy
     volumeButton.Text = string.format("VOLUME %.0f%%", numberAttribute("Volume", 0.5, 0, 1) * 100)
@@ -858,7 +887,7 @@ gui:GetAttributeChangedSignal("NativeComparison"):Connect(function()
         changeSelection(selected.id, true)
     end
 end)
-for _, name in { "LightingPreset", "CameraView", "Speed", "Strength" } do
+for _, name in { "LightingPreset", "CameraView", "Speed", "Strength", "EffectsEnabled" } do
     gui:GetAttributeChangedSignal(name):Connect(appearance)
 end
 gui:GetAttributeChangedSignal("Zoom"):Connect(function()
@@ -983,6 +1012,13 @@ local renderConnection = RunService.RenderStepped:Connect(function(dt)
             ) * CFrame.Angles(hoverPose.pitch, hoverPose.yaw, hoverPose.roll)
         end
         mount.motion:apply(currentPose, numberAttribute("Strength", 1, 0, 2), rootPose)
+        if mount.effects then
+            mount.effects:apply(
+                if gui:GetAttribute("EffectsEnabled") then currentPose else 0,
+                numberAttribute("Strength", 1, 0, 2),
+                rootPose
+            )
+        end
     end
     fill.Size, knob.Position = UDim2.fromScale(currentPose, 1), UDim2.fromScale(currentPose, 0.5)
     gui:SetAttribute("CurrentPose", currentPose)

@@ -3,12 +3,12 @@
   "id": "ozone_orb",
   "display_name": "Ozone Orb",
   "category": "equipment",
-  "generator": "scripts/models/catalog_nature.py",
+  "generator": "scripts/models/revise_effect_models.py",
   "blender": "4.5.9 LTS",
   "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
   "units": "studs in blend; 0.28 meters per stud in GLB",
-  "triangles": 1648,
-  "pieces": 6,
+  "triangles": 1352,
+  "pieces": 5,
   "budget": {
     "triangles": 4000,
     "pieces": 8
@@ -16,12 +16,12 @@
   "center_blender_studs": [
     0.0,
     0.0,
-    1.0625
+    1.25
   ],
   "bounds_min": [
     -0.945,
     -0.78,
-    0.0
+    0.375
   ],
   "bounds_max": [
     0.945,
@@ -31,7 +31,7 @@
   "size_blender_studs": [
     1.89,
     1.5599999,
-    2.125
+    1.75
   ],
   "objects": [
     {
@@ -84,57 +84,8 @@
       "degenerate_faces": 0
     },
     {
-      "name": "ozone_orb__Fixed_dark_02",
-      "mesh_data_name": "ozone_orb__Fixed_dark_02",
-      "material": "dark",
-      "color_srgb": [
-        44,
-        88,
-        126
-      ],
-      "alpha": 1.0,
-      "transparency": 0.0,
-      "triangles": 296,
-      "vertices": 152,
-      "motion_group": "Fixed",
-      "motion_pivot": [
-        0.0,
-        0.0,
-        0.415
-      ],
-      "compression_span": null,
-      "original_center_blender_studs": [
-        0.0,
-        0.0,
-        0.415
-      ],
-      "center_blender_studs": [
-        0.0,
-        0.0,
-        0.415
-      ],
-      "size_blender_studs": [
-        0.7,
-        0.7,
-        0.83
-      ],
-      "bounds_min": [
-        -0.35,
-        -0.35,
-        0.0
-      ],
-      "bounds_max": [
-        0.35,
-        0.35,
-        0.83
-      ],
-      "geometry_sha256": "9280e0503ad33a87f9420b9f2e282d408414a5d884accd1a6f239350084115d8",
-      "nonmanifold_edges": 0,
-      "degenerate_faces": 0
-    },
-    {
-      "name": "ozone_orb__OzoneShell_glass_03",
-      "mesh_data_name": "ozone_orb__OzoneShell_glass_03",
+      "name": "ozone_orb__OzoneShell_glass_02",
+      "mesh_data_name": "ozone_orb__OzoneShell_glass_02",
       "material": "glass",
       "color_srgb": [
         145,
@@ -177,13 +128,13 @@
         0.58,
         1.8299999
       ],
-      "geometry_sha256": "a30075d716b5e2117242acf8373f31485fad9bc594777eae9b0e0831317a384f",
+      "geometry_sha256": "046b9894a5f77a36d3f5832a17273d054736a96a9ba58e00814a64f610e96b75",
       "nonmanifold_edges": 0,
       "degenerate_faces": 0
     },
     {
-      "name": "ozone_orb__OzoneOrbitA_gold_04",
-      "mesh_data_name": "ozone_orb__OzoneOrbitA_gold_04",
+      "name": "ozone_orb__OzoneOrbitA_gold_03",
+      "mesh_data_name": "ozone_orb__OzoneOrbitA_gold_03",
       "material": "gold",
       "color_srgb": [
         249,
@@ -231,8 +182,8 @@
       "degenerate_faces": 0
     },
     {
-      "name": "ozone_orb__OzoneOrbitB_pearl_05",
-      "mesh_data_name": "ozone_orb__OzoneOrbitB_pearl_05",
+      "name": "ozone_orb__OzoneOrbitB_pearl_04",
+      "mesh_data_name": "ozone_orb__OzoneOrbitB_pearl_04",
       "material": "pearl",
       "color_srgb": [
         249,
@@ -280,8 +231,8 @@
       "degenerate_faces": 0
     },
     {
-      "name": "ozone_orb__OzoneSatellite_teal_06",
-      "mesh_data_name": "ozone_orb__OzoneSatellite_teal_06",
+      "name": "ozone_orb__OzoneSatellite_teal_05",
+      "mesh_data_name": "ozone_orb__OzoneSatellite_teal_05",
       "material": "teal",
       "color_srgb": [
         39,
@@ -324,12 +275,15 @@
         0.055,
         1.355
       ],
-      "geometry_sha256": "e1e62e2ac2d373f136f185d890b747f39a7676828c6983a38faf1c5045c7bbd7",
+      "geometry_sha256": "af2212686381eff448147e1b5e5eb1cac618d425bb4e70d842b6a9c07755f96c",
       "nonmanifold_edges": 0,
       "degenerate_faces": 0
     }
   ],
   "source": "art/catalog/ozone_orb/ozone_orb.blend",
   "source_preserved": false,
-  "blend_sha256": "d0e16491876281240157972267f826564f5cc9755fa852545c0883d8a707b42b"
+  "blend_sha256": "f8f5cc410fa8c4e727b14b23d272e33164831165be50198f1b543b2ba6b818ac",
+  "revision": "RBX-027-distinct-floating-mechanisms",
+  "predecessor_blend_sha256": "d0e16491876281240157972267f826564f5cc9755fa852545c0883d8a707b42b",
+  "edit_policy": "Requested Blender-only rebuild or bounded detail edit; native sources frozen."
 }

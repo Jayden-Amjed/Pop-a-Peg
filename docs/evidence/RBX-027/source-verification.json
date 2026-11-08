@@ -1,0 +1,119 @@
+{
+  "source": "7f7339bd3bacb427a840ed43bb2295fd6eae32f3",
+  "build_sha256": "12366dd766e60bc83fbd659ace0895d15367babfa48f53957072e3ecbc90f5de",
+  "count": 28,
+  "scripts": {
+    "BlenderChoreography": {
+      "bytes": 10080,
+      "hash": 1753417639
+    },
+    "CatalogEffectProfiles": {
+      "bytes": 31936,
+      "hash": 4148051898
+    },
+    "CatalogEffects": {
+      "bytes": 8263,
+      "hash": 2406602444
+    },
+    "CatalogInfo": {
+      "bytes": 42066,
+      "hash": 2975962722
+    },
+    "CatalogLabels": {
+      "bytes": 250,
+      "hash": 4284541706
+    },
+    "CatalogMotion": {
+      "bytes": 6531,
+      "hash": 367144668
+    },
+    "GalleryAudio": {
+      "bytes": 3373,
+      "hash": 2120586910
+    },
+    "GallerySoundBank": {
+      "bytes": 17945,
+      "hash": 1169113453
+    },
+    "GallerySoundEngine": {
+      "bytes": 3185,
+      "hash": 1551979211
+    },
+    "GallerySoundTimeline": {
+      "bytes": 2426,
+      "hash": 3132402389
+    },
+    "ItemChoreography": {
+      "bytes": 1428,
+      "hash": 2211261593
+    },
+    "ItemModels": {
+      "bytes": 91084,
+      "hash": 3280591556
+    },
+    "ItemMotion": {
+      "bytes": 38644,
+      "hash": 3904855870
+    },
+    "NativeAssemblies": {
+      "bytes": 5920,
+      "hash": 1585437367
+    },
+    "PreviewLighting": {
+      "bytes": 1045,
+      "hash": 3267749119
+    },
+    "SoundEffects": {
+      "bytes": 8708,
+      "hash": 3392681209
+    },
+    "StudioCatalogAudit": {
+      "bytes": 20770,
+      "hash": 860436242
+    },
+    "StudioEffectsAudit": {
+      "bytes": 5407,
+      "hash": 2621227958
+    },
+    "StudioGalleryAudioAudit": {
+      "bytes": 13394,
+      "hash": 2360961168
+    },
+    "StudioGalleryAudit": {
+      "bytes": 3189,
+      "hash": 3652337653
+    },
+    "StudioNativeMotionAudit": {
+      "bytes": 17489,
+      "hash": 1760548310
+    },
+    "StudioReviewMechanicsAudit": {
+      "bytes": 19082,
+      "hash": 16142586
+    },
+    "Curves": {
+      "bytes": 912,
+      "hash": 983285944
+    },
+    "Mechanical": {
+      "bytes": 26494,
+      "hash": 710179124
+    },
+    "Nature": {
+      "bytes": 46529,
+      "hash": 2050957084
+    },
+    "Rewards": {
+      "bytes": 23168,
+      "hash": 2986850918
+    },
+    "ItemFeedback": {
+      "bytes": 11634,
+      "hash": 956377503
+    },
+    "CatalogGallery": {
+      "bytes": 39316,
+      "hash": 3107311600
+    }
+  }
+}

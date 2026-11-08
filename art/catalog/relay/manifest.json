@@ -3,12 +3,12 @@
   "id": "relay",
   "display_name": "Current Relay",
   "category": "equipment",
-  "generator": "scripts/models/catalog_mechanical.py",
+  "generator": "scripts/models/revise_effect_models.py",
   "blender": "4.5.9 LTS",
   "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
   "units": "studs in blend; 0.28 meters per stud in GLB",
-  "triangles": 2792,
-  "pieces": 6,
+  "triangles": 3660,
+  "pieces": 5,
   "budget": {
     "triangles": 4000,
     "pieces": 8
@@ -35,8 +35,57 @@
   ],
   "objects": [
     {
-      "name": "relay__Fixed_dark_01",
-      "mesh_data_name": "relay__Fixed_dark_01",
+      "name": "relay__Fixed_blue_01",
+      "mesh_data_name": "relay__Fixed_blue_01",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 280,
+      "vertices": 144,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.07,
+        1.5599999
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.07,
+        1.5599999
+      ],
+      "size_blender_studs": [
+        1.6600001,
+        0.04,
+        0.1800001
+      ],
+      "bounds_min": [
+        -0.83,
+        -0.09,
+        1.4699999
+      ],
+      "bounds_max": [
+        0.83,
+        -0.05,
+        1.65
+      ],
+      "geometry_sha256": "06ee377240ac9d545f5252b9b0831e325b13d132f4e9954df1ab8f3316c37906",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "relay__Fixed_dark_02",
+      "mesh_data_name": "relay__Fixed_dark_02",
       "material": "dark",
       "color_srgb": [
         44,
@@ -51,7 +100,7 @@
       "motion_pivot": [
         0.0,
         0.0,
-        0.665
+        0.0
       ],
       "compression_span": null,
       "original_center_blender_studs": [
@@ -84,55 +133,6 @@
       "degenerate_faces": 0
     },
     {
-      "name": "relay__Contact_gold_02",
-      "mesh_data_name": "relay__Contact_gold_02",
-      "material": "gold",
-      "color_srgb": [
-        249,
-        189,
-        63
-      ],
-      "alpha": 1.0,
-      "transparency": 0.0,
-      "triangles": 108,
-      "vertices": 56,
-      "motion_group": "Contact",
-      "motion_pivot": [
-        0.0,
-        -0.35,
-        1.72
-      ],
-      "compression_span": null,
-      "original_center_blender_studs": [
-        0.0,
-        -0.35,
-        1.72
-      ],
-      "center_blender_studs": [
-        0.0,
-        -0.35,
-        1.72
-      ],
-      "size_blender_studs": [
-        1.16,
-        0.18,
-        0.0999999
-      ],
-      "bounds_min": [
-        -0.58,
-        -0.44,
-        1.6700001
-      ],
-      "bounds_max": [
-        0.58,
-        -0.26,
-        1.77
-      ],
-      "geometry_sha256": "f88263356f85e06f3b1d18f90b427971ceada9c37880f3e153a17857273ad4fa",
-      "nonmanifold_edges": 0,
-      "degenerate_faces": 0
-    },
-    {
       "name": "relay__Fixed_gold_03",
       "mesh_data_name": "relay__Fixed_gold_03",
       "material": "gold",
@@ -143,41 +143,41 @@
       ],
       "alpha": 1.0,
       "transparency": 0.0,
-      "triangles": 328,
-      "vertices": 168,
+      "triangles": 1144,
+      "vertices": 584,
       "motion_group": "Fixed",
       "motion_pivot": [
         0.0,
-        -0.41,
-        0.52
+        0.0,
+        0.0
       ],
       "compression_span": null,
       "original_center_blender_studs": [
         0.0,
-        -0.41,
-        0.52
+        0.1,
+        1.2020113
       ],
       "center_blender_studs": [
         0.0,
-        -0.41,
-        0.52
+        0.1,
+        1.2020113
       ],
       "size_blender_studs": [
-        1.5139828,
-        0.24,
-        0.25
+        1.86,
+        0.44,
+        1.4840225
       ],
       "bounds_min": [
-        -0.7569914,
-        -0.53,
-        0.395
+        -0.93,
+        -0.12,
+        0.46
       ],
       "bounds_max": [
-        0.7569914,
-        -0.29,
-        0.645
+        0.93,
+        0.32,
+        1.9440225
       ],
-      "geometry_sha256": "aac729577135cb3fce035529442cd24571b1e8c22a5f0f105f50403bf93061ae",
+      "geometry_sha256": "535acc156f3f27009f4ad11e8495852859b40c9a39bc29e3946f116c7684d066",
       "nonmanifold_edges": 0,
       "degenerate_faces": 0
     },
@@ -198,7 +198,7 @@
       "motion_pivot": [
         0.0,
         0.0,
-        1.02
+        0.0
       ],
       "compression_span": null,
       "original_center_blender_studs": [
@@ -231,57 +231,8 @@
       "degenerate_faces": 0
     },
     {
-      "name": "relay__Contact_teal_05",
-      "mesh_data_name": "relay__Contact_teal_05",
-      "material": "teal",
-      "color_srgb": [
-        39,
-        189,
-        220
-      ],
-      "alpha": 1.0,
-      "transparency": 0.0,
-      "triangles": 120,
-      "vertices": 62,
-      "motion_group": "Contact",
-      "motion_pivot": [
-        0.0,
-        -0.35,
-        1.72
-      ],
-      "compression_span": null,
-      "original_center_blender_studs": [
-        0.5,
-        -0.35,
-        1.79
-      ],
-      "center_blender_studs": [
-        0.5,
-        -0.35,
-        1.79
-      ],
-      "size_blender_studs": [
-        0.16,
-        0.16,
-        0.1199999
-      ],
-      "bounds_min": [
-        0.42,
-        -0.43,
-        1.73
-      ],
-      "bounds_max": [
-        0.58,
-        -0.27,
-        1.8499999
-      ],
-      "geometry_sha256": "b413313aa068d32e67c777ade6adf724270246fdd4baaeb82c20bc0f44bb6f5c",
-      "nonmanifold_edges": 0,
-      "degenerate_faces": 0
-    },
-    {
-      "name": "relay__Winding_teal_06",
-      "mesh_data_name": "relay__Winding_teal_06",
+      "name": "relay__Winding_teal_05",
+      "mesh_data_name": "relay__Winding_teal_05",
       "material": "teal",
       "color_srgb": [
         39,
@@ -324,12 +275,15 @@
         0.4267778,
         1.4667759
       ],
-      "geometry_sha256": "c8995a2b223babf99644f42b5f2c4b3c270af76ed5b26e9b79d96960d5a1755e",
+      "geometry_sha256": "53f59cbc2e2ad57c6ca88f90f295338290b4e66c8628db67c11470e3950e74f4",
       "nonmanifold_edges": 0,
       "degenerate_faces": 0
     }
   ],
   "source": "art/catalog/relay/relay.blend",
   "source_preserved": false,
-  "blend_sha256": "926104d3ec8424bc1fe7b046af1ba5df96bf986a74dfc97bfd4bc27228b98007"
+  "blend_sha256": "705d5bb3cd6d88d2a8c3283dc09551c3949895fc3e32e7f8dfc58c8850c555a5",
+  "revision": "RBX-027-distinct-floating-mechanisms",
+  "predecessor_blend_sha256": "926104d3ec8424bc1fe7b046af1ba5df96bf986a74dfc97bfd4bc27228b98007",
+  "edit_policy": "Requested Blender-only rebuild or bounded detail edit; native sources frozen."
 }

@@ -9,16 +9,24 @@ are mounted in the preview.
 
 The normal game retains its native geometry. The gallery evaluates the Blender
 catalog; it does not adopt that geometry into gameplay or publish an experience.
-The shared [animation direction](ITEM_ANIMATION_GUIDE.md) gives all 78 models
-individual whole-object reactions and articulated performances. Native gameplay
-and the Blender inspector share motion definitions. The first review pass updates
-the capsule cap and press geometry as well as their motion.
+The [animation direction](ITEM_ANIMATION_GUIDE.md) gives all 78 models individual
+whole-object reactions, articulation and brief effects. From RBX-027 onward,
+new motion, effects and sound live in gallery-only modules. Native geometry and
+animation are a frozen reference at source `07be76a`; the hash manifest
+`art/catalog/native-reference.json` records that boundary. The Blender adapter
+can reuse those read-only baseline samples, then add its own behavior. Changing
+the gallery does not update the normal game's models, motion or sound.
 Use [PROJECT_STATUS](../PROJECT_STATUS.md) for current accepted state and
 [RBX-021](../tasks/RBX-021-catalog-lab.md) for exact checks, source SHAs, Studio
 evidence. See [RBX-023](../tasks/RBX-023-expressive-motion.md) for the expressive
 animation pass, and [RBX-025](../tasks/RBX-025-review-audio.md) for the subsequent
-review notes and sound pass. A registered entry is not proof that its remote
-meshes loaded successfully.
+review notes and sound pass. [RBX-027](../tasks/RBX-027-blender-effects.md) records
+the subsequent Blender-only detail, effects and sound work. A registered entry
+is not proof that its remote meshes loaded successfully.
+
+The [all-item treatment reference](MODEL_TREATMENTS.md) lists each visual accent
+and sound instrument. [RBX-027 Studio evidence](evidence/RBX-027/REVIEW.md) records
+the observed checks, screenshots and source identities.
 
 ## Open the inspector
 
@@ -49,6 +57,7 @@ does not grant another account permission to the remote meshes.
 | TRIGGER | Restarts the selected activation from its beginning. |
 | SOUND ON / OFF | Enables the selected model's sound; switching off clears live and scheduled voices. |
 | VOLUME | Cycles 25%, 50%, 75%, 100%; starts at 50%. |
+| FX ON / OFF | Shows or hides the Blender model's transient accents without changing its articulation or the native reference. |
 | PAUSE / RESUME | Holds playback, resumes it, or resumes from a scrubbed pose. |
 | LOOP | Repeats the activation with a short idle interval. |
 | 0.25x / 0.5x / 1x / 2x | Changes playback speed without changing the animation's normalized pose. |
@@ -56,25 +65,62 @@ does not grant another account permission to the remote meshes.
 | REST | Holds the authored rest pose without idle movement. |
 | Pose slider | Scrubs and holds any normalized activation pose from `0` to `1`; endpoints restore rest. |
 | Front / 3/4 / Side / Rear | Changes camera direction; framing includes sampled activation bounds. |
-| COMPARE NATIVE | Adds the current native L1 model beside the Blender model with a shared camera fit and lighting. |
+| COMPARE NATIVE | Adds the frozen native L1 reference beside the Blender model with a shared camera fit and lighting. New Blender effects are absent from the reference. |
 | LIGHT: BALANCED / ORIGINAL | Compares the shared deeper lighting rig with the previous brighter rig. |
 | TAG POSE | Appends the selected ID, pose, speed, strength, camera and lighting to that item's notes. |
 | COPY NOTES | Opens selectable text containing all nonempty notes from this Play session. |
 
-All 78 entries have a sound timeline. Equipment/perks/Supplies reuse their game
-motifs; utility models reuse their corresponding game cues. Chests rattle before
-the low opening impact and reward chime. Cue attacks follow animation pose when
-speed changes; pitch remains stable. Comparison plays one soundtrack. Scrubbing
-is silent; pausing, changing model or restarting clears previous voices. Resume
-does not replay skipped cues. This is a preview of existing assets, with no new
-audio upload. The game still triggers its item motifs through its own feedback
-system; gallery timing does not change scoring or trigger rules.
+All 78 entries have an explicit effect design in `CatalogEffectProfiles` and an
+authored sound phrase in `GallerySoundBank`. Effects match the object's function:
+lightning bridges Coral Spark's rods, Ocean Chorus emits cone echoes, Lagoon Synth
+shows a traveling phase through a stationary wave, and seeds, water, clocks and
+chests use their own accents. These are deterministic pose samples, so pause and
+scrub hold the effect at the same pose as the mechanism. The renderer reuses at
+most 40 effect parts for the selected Blender model and removes them on disposal.
+Use **FX OFF** to inspect the underlying mesh and its movement separately.
 
-RBX-025 gives Bubble Wand a vertical-axis twirl and coordinated pop, opens and
-reseats the capsule cap, and adds a crank plus seated squashable coin to the
-Blender press. Chest performances now last 3.4/3.6/3.9/4.2 seconds by tier, with
+Gallery sound varies spectrum, register, timing and envelope as well as melody.
+Each ID has a distinct phrase; it does not simply transpose one shared beep.
+`GallerySoundBank.describe(id)` exposes its design description, timbre, note and
+partial counts, register, phrase duration and optional attack cue for review.
+
+| Timbre family | Authored character |
+| --- | --- |
+| Glass | Bright, short inharmonic glints. |
+| Bell | Longer inharmonic ringing. |
+| Reed | Odd-harmonic body with vibrato. |
+| Electric | Harmonic buzz and rapid amplitude modulation. |
+| Water | Droplet-like downward pitch movement. |
+| Air | Detuned partials, slower attack and flutter. |
+| Wood | Dry, fast-decaying knocks. |
+| Bass | Low impacts with a falling pitch envelope. |
+| Organ | Sustained chord body and slower modulation. |
+| Pluck | Sharp attack with rapidly fading upper partials. |
+| Sonar | Rounded pings and upward glide. |
+| Metal | Short, inharmonic strikes. |
+
+These are additive approximations made from the existing licensed C4 sine asset,
+with selected established cue assets adding quiet physical attacks. They require
+no new audio upload. Gallery playback uses a separate bank and an instance-local
+adapter around the unchanged game sound pool; it does not rewrite game motifs.
+It caps tone voices at 12, pending partials at 32 and summed tone gain at 0.32.
+The authored phrases span 45 semitones and last at most 1.06 seconds before any
+separate sampled cue tail. These bounds describe the implementation, not a claim
+about perceived loudness or successful playback on every account.
+
+Cue attacks follow animation pose when speed changes; phrase pitch remains
+stable. Chests retain accelerating rattles before their tier-specific opening
+phrase and reward cue. Comparison plays one Blender soundtrack. Scrubbing is
+silent; pausing, changing model or restarting clears previous voices. Resume
+does not replay skipped cues. Volume and mute apply to that whole soundtrack.
+
+The earlier RBX-025 pass gave Bubble Wand a vertical-axis twirl and coordinated
+pop, opened and reseated the capsule cap, and added a crank plus seated squashable
+coin to the Blender press. Chest performances last 3.4/3.6/3.9/4.2 seconds by tier, with
 closed anticipation through pose .52, fast opening, held reveal and recovery.
-The hub waits for actual model playback completion before replacing the chest.
+That pass also made the hub wait for actual model playback completion before
+replacing the chest. These are historical baseline changes; RBX-027 does not
+propagate its gallery revisions back into the hub or native renderer.
 
 Start with **REST** and inspect all four camera views for silhouette, seams,
 unintended intersections and floating connections. Play **TRIGGER** at normal
@@ -138,7 +184,14 @@ source policy and upload records.
 | `scripts/models/catalog_rewards.py` | 8 perk, 3 chest and 4 event builders. |
 | `scripts/models/CatalogInfo.luau` | Generated gallery names, categories, source paths and counts. |
 | `scripts/models/CatalogGallery.client.luau` | Searchable inspector, playback controls and session feedback export. |
-| `scripts/models/CatalogMotion.luau` | Imported-model adapter using shared `ItemMotion` activation profiles. |
+| `scripts/models/CatalogMotion.luau` | Imported-model adapter using gallery-only `BlenderChoreography`. |
+| `scripts/models/BlenderChoreography.luau` | Blender articulation and whole-object overrides; reads frozen native samples as a baseline without modifying them. |
+| `scripts/models/CatalogEffectProfiles.luau` | Explicit pose-addressable effect designs for all 78 IDs. |
+| `scripts/models/CatalogEffects.luau` | Bounded transient-effect renderer attached only to the Blender preview. |
+| `scripts/models/GallerySoundBank.luau` | Per-ID sound phrases, additive timbres, envelopes and review descriptors. |
+| `scripts/models/GallerySoundEngine.luau` | Gallery-local tone scheduling over the unchanged game voice pools. |
+| `scripts/models/GallerySoundTimeline.luau` | Animation-pose timing for gallery sound attacks. |
+| `art/catalog/native-reference.json` | Frozen native source hashes and predecessor SHA. |
 | `src/client/PreviewLighting.luau` | Shared Balanced/Original preview-lighting presets. |
 
 The three [Blender pilots](BLENDER_PILOTS.md) are reused rather than regenerated
@@ -231,10 +284,20 @@ Source coordinates use Blender X right, Y back and Z up, with front at -Y;
 normalization maps them to Roblox `(X, Z, -Y)`. Shared pivots keep connected
 material pieces together; separate pivots preserve individual moving mechanisms.
 The runtime adapter restores frame, size and color at activation endpoints.
+Transient gallery accents disappear at rest and at the activation endpoint;
+they are not additional imported mesh pieces. Viewport accents simulate light,
+arcs and waves with geometry and color rather than promising scene illumination
+or cast shadows. Sampled preview framing includes their bounds.
 This is rigid-piece animation, not a physics simulation or a skinned mesh rig.
 Wave Spring compresses its mesh along the spring axis, which also changes the
 wire's vertical cross-section; constant-thickness skinned coil deformation remains
 a future improvement.
+
+The pure gallery audio checks cover all 78 phrases, finite envelopes, voice and
+queue bounds, mute, pause/resume, seek, loop and disposal behavior. The Studio
+audio audit separately checks actual asset loading, advancing playback and
+nonzero gain through complete phrase tails. Neither proves subjective quality;
+listening comparisons must be recorded as observations in task evidence.
 
 Geometry audits, offline motion checks, Studio loading, visual review, Git merge
 and Roblox publication are separate facts. Sampled bounds and poses cannot prove

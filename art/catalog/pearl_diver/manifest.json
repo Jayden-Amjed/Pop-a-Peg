@@ -3,89 +3,89 @@
   "id": "pearl_diver",
   "display_name": "Pearl Diver",
   "category": "equipment",
-  "generator": "scripts/models/catalog_nature.py",
+  "generator": "scripts/models/revise_effect_models.py",
   "blender": "4.5.9 LTS",
   "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
   "units": "studs in blend; 0.28 meters per stud in GLB",
-  "triangles": 588,
-  "pieces": 6,
+  "triangles": 1752,
+  "pieces": 5,
   "budget": {
     "triangles": 4000,
     "pieces": 8
   },
   "center_blender_studs": [
+    0.0225,
     0.0,
-    0.0,
-    0.7925
+    1.2
   ],
   "bounds_min": [
-    -0.6597382,
-    -0.4,
-    0.0
+    -1.425,
+    -0.7140304,
+    -0.0463331
   ],
   "bounds_max": [
-    0.6597382,
-    0.4,
-    1.585
+    1.47,
+    0.7140304,
+    2.4463332
   ],
   "size_blender_studs": [
-    1.3194764,
-    0.8,
-    1.585
+    2.895,
+    1.4280608,
+    2.4926662
   ],
   "objects": [
     {
-      "name": "pearl_diver__Fixed_dark_01",
-      "mesh_data_name": "pearl_diver__Fixed_dark_01",
-      "material": "dark",
+      "name": "pearl_diver__OrbitBlue_blue_01",
+      "mesh_data_name": "pearl_diver__OrbitBlue_blue_01",
+      "material": "blue",
       "color_srgb": [
-        44,
-        88,
-        126
+        48,
+        153,
+        239
       ],
       "alpha": 1.0,
       "transparency": 0.0,
-      "triangles": 108,
-      "vertices": 56,
-      "motion_group": "Fixed",
+      "triangles": 600,
+      "vertices": 302,
+      "motion_group": "OrbitBlue",
       "motion_pivot": [
         0.0,
         0.0,
-        0.12
+        1.2
       ],
       "compression_span": null,
       "original_center_blender_studs": [
-        0.0,
-        0.0,
-        0.12
+        0.0225,
+        1e-07,
+        1.2
       ],
       "center_blender_studs": [
-        0.0,
-        0.0,
-        0.12
+        0.0225,
+        1e-07,
+        1.2
       ],
       "size_blender_studs": [
-        1.15,
-        0.8,
-        0.24
+        2.4949999,
+        1.1612941,
+        2.1829658
       ],
       "bounds_min": [
-        -0.575,
-        -0.4,
-        0.0
+        -1.2249999,
+        -0.580647,
+        0.1085171
       ],
       "bounds_max": [
-        0.575,
-        0.4,
-        0.24
+        1.27,
+        0.5806471,
+        2.2914829
       ],
-      "geometry_sha256": "c06d235fedd33c832c2b19d6539da6e7f86ffe0216def273ab7969701a923bad",
+      "geometry_sha256": "daf80c3f92f7ee4df0e8b39186df356634e2b58e2d4bad1bfd2121f9ea3a8b89",
       "nonmanifold_edges": 0,
       "degenerate_faces": 0
     },
     {
-      "name": "pearl_diver__Fixed_gold_02",
-      "mesh_data_name": "pearl_diver__Fixed_gold_02",
+      "name": "pearl_diver__OrbitGold_gold_02",
+      "mesh_data_name": "pearl_diver__OrbitGold_gold_02",
       "material": "gold",
       "color_srgb": [
         249,
@@ -94,41 +94,41 @@
       ],
       "alpha": 1.0,
       "transparency": 0.0,
-      "triangles": 240,
-      "vertices": 124,
-      "motion_group": "Fixed",
+      "triangles": 600,
+      "vertices": 302,
+      "motion_group": "OrbitGold",
       "motion_pivot": [
         0.0,
-        -0.05,
-        1.15
+        0.0,
+        1.2
       ],
       "compression_span": null,
       "original_center_blender_studs": [
+        0.0225,
         0.0,
-        -0.05,
-        1.15
+        1.2
       ],
       "center_blender_studs": [
+        0.0225,
         0.0,
-        -0.05,
-        1.15
+        1.2
       ],
       "size_blender_studs": [
-        1.14,
-        0.28,
-        0.28
+        2.895,
+        1.4280608,
+        2.4926662
       ],
       "bounds_min": [
-        -0.57,
-        -0.19,
-        1.01
+        -1.425,
+        -0.7140304,
+        -0.0463331
       ],
       "bounds_max": [
-        0.57,
-        0.09,
-        1.29
+        1.47,
+        0.7140304,
+        2.4463332
       ],
-      "geometry_sha256": "947a9a18855e0944b65cbf302c70f0264114156abbc934da961d20b8731ca103",
+      "geometry_sha256": "3188031343a2b5602734f86597ddbed50acab7c4693b4f7e3279a9f9226e1f49",
       "nonmanifold_edges": 0,
       "degenerate_faces": 0
     },
@@ -143,47 +143,47 @@
       ],
       "alpha": 1.0,
       "transparency": 0.0,
-      "triangles": 120,
-      "vertices": 62,
+      "triangles": 360,
+      "vertices": 182,
       "motion_group": "DiverPearl",
       "motion_pivot": [
         0.0,
-        -0.04,
-        0.75
+        0.0,
+        1.2
       ],
       "compression_span": null,
       "original_center_blender_studs": [
-        0.0,
-        -0.04,
-        0.75
+        -1e-07,
+        -0.0,
+        1.2
       ],
       "center_blender_studs": [
-        0.0,
-        -0.04,
-        0.75
+        -1e-07,
+        -0.0,
+        1.2
       ],
       "size_blender_studs": [
-        0.64,
-        0.64,
-        0.6399999
+        0.6200002,
+        0.6200001,
+        0.6199999
       ],
       "bounds_min": [
-        -0.32,
-        -0.36,
-        0.43
+        -0.3100002,
+        -0.3100001,
+        0.89
       ],
       "bounds_max": [
-        0.32,
-        0.28,
-        1.0699999
+        0.31,
+        0.31,
+        1.51
       ],
-      "geometry_sha256": "f505560f2b65fcc0c158272d36f94eb152f2848e90d951bd51c0a60d6862f450",
+      "geometry_sha256": "bac2adde1639aff0d2fb05709ce9570a57085cc27e6214d098c1f9db617923eb",
       "nonmanifold_edges": 0,
       "degenerate_faces": 0
     },
     {
-      "name": "pearl_diver__Fixed_pearl_04",
-      "mesh_data_name": "pearl_diver__Fixed_pearl_04",
+      "name": "pearl_diver__HexRing_pearl_04",
+      "mesh_data_name": "pearl_diver__HexRing_pearl_04",
       "material": "pearl",
       "color_srgb": [
         249,
@@ -192,47 +192,47 @@
       ],
       "alpha": 1.0,
       "transparency": 0.0,
-      "triangles": 56,
-      "vertices": 30,
-      "motion_group": "Fixed",
+      "triangles": 48,
+      "vertices": 24,
+      "motion_group": "HexRing",
       "motion_pivot": [
         0.0,
-        0.15,
-        0.8868831
+        0.0,
+        1.2
       ],
       "compression_span": null,
       "original_center_blender_studs": [
         0.0,
-        0.15,
-        0.886883
+        0.0,
+        1.2
       ],
       "center_blender_studs": [
         0.0,
-        0.15,
-        0.886883
+        0.0,
+        1.2
       ],
       "size_blender_studs": [
-        1.3194764,
-        0.1472243,
-        1.396234
+        1.88,
+        0.2,
+        1.6281277
       ],
       "bounds_min": [
-        -0.6597382,
-        0.0763878,
-        0.1887661
+        -0.94,
+        -0.1,
+        0.3859361
       ],
       "bounds_max": [
-        0.6597382,
-        0.2236122,
-        1.585
+        0.94,
+        0.1,
+        2.0140638
       ],
-      "geometry_sha256": "99fca09aca89d655b7d0439b697bc6c4baa289ad000996e1e9106f84d6ab41ed",
+      "geometry_sha256": "2d9aaad0b8b4a510ab5c013c30c196064bd829428156122dd87858b188374428",
       "nonmanifold_edges": 0,
       "degenerate_faces": 0
     },
     {
-      "name": "pearl_diver__DiverClaw_teal_05",
-      "mesh_data_name": "pearl_diver__DiverClaw_teal_05",
+      "name": "pearl_diver__HexRing_teal_05",
+      "mesh_data_name": "pearl_diver__HexRing_teal_05",
       "material": "teal",
       "color_srgb": [
         39,
@@ -241,95 +241,49 @@
       ],
       "alpha": 1.0,
       "transparency": 0.0,
-      "triangles": 32,
-      "vertices": 18,
-      "motion_group": "DiverClaw",
+      "triangles": 144,
+      "vertices": 78,
+      "motion_group": "HexRing",
       "motion_pivot": [
-        -0.43,
-        -0.05,
-        1.15
+        0.0,
+        0.0,
+        1.2
       ],
       "compression_span": null,
       "original_center_blender_studs": [
-        -0.3906074,
-        -0.108913,
-        0.7659486
+        -0.2125,
+        -0.11,
+        1.1999999
       ],
       "center_blender_studs": [
-        -0.3906074,
-        -0.108913,
-        0.7659486
+        -0.2125,
+        -0.11,
+        1.1999999
       ],
       "size_blender_studs": [
-        0.5092793,
-        0.2889403,
-        0.8218626
+        1.375,
+        0.07,
+        1.5722432
       ],
       "bounds_min": [
-        -0.645247,
-        -0.2533831,
-        0.3550173
+        -0.9,
+        -0.145,
+        0.4138784
       ],
       "bounds_max": [
-        -0.1359678,
-        0.0355572,
-        1.1768799
+        0.475,
+        -0.075,
+        1.9861215
       ],
-      "geometry_sha256": "21fb48bbe943bde4cdf2a23c8bacf84a09d1562ae76fed03b46f2b493392d5f2",
-      "nonmanifold_edges": 0,
-      "degenerate_faces": 0
-    },
-    {
-      "name": "pearl_diver__DiverClaw_teal_06",
-      "mesh_data_name": "pearl_diver__DiverClaw_teal_06",
-      "material": "teal",
-      "color_srgb": [
-        39,
-        189,
-        220
-      ],
-      "alpha": 1.0,
-      "transparency": 0.0,
-      "triangles": 32,
-      "vertices": 18,
-      "motion_group": "DiverClaw",
-      "motion_pivot": [
-        0.43,
-        -0.05,
-        1.15
-      ],
-      "compression_span": null,
-      "original_center_blender_studs": [
-        0.3906074,
-        -0.108913,
-        0.7659486
-      ],
-      "center_blender_studs": [
-        0.3906074,
-        -0.108913,
-        0.7659486
-      ],
-      "size_blender_studs": [
-        0.5092793,
-        0.2889403,
-        0.8218626
-      ],
-      "bounds_min": [
-        0.1359678,
-        -0.2533831,
-        0.3550173
-      ],
-      "bounds_max": [
-        0.645247,
-        0.0355572,
-        1.1768799
-      ],
-      "geometry_sha256": "34892cdd91aa72557e076520ea913ac7ae1321f67f3919eec95f24e5231f803b",
+      "geometry_sha256": "bc93095d4dad4b39a392f820902787ff4ec6b95a3ff2eacde7171f0aa6646a95",
       "nonmanifold_edges": 0,
       "degenerate_faces": 0
     }
   ],
   "source": "art/catalog/pearl_diver/pearl_diver.blend",
   "source_preserved": false,
-  "blend_sha256": "f64ba9f6c050bc0a3cdf214363c030589f6cbc8677c6d1709e463968d60cf24a"
+  "blend_sha256": "be7672601545c2ac65e038bb97ced0842e063ac0e9d2932489f0a23048897061",
+  "revision": "RBX-027-distinct-floating-mechanisms",
+  "predecessor_blend_sha256": "f64ba9f6c050bc0a3cdf214363c030589f6cbc8677c6d1709e463968d60cf24a",
+  "edit_policy": "Requested Blender-only rebuild or bounded detail edit; native sources frozen."
 }

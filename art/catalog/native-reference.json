@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "policy": "User freezes native item geometry and animation from RBX-027; gallery revisions stay separate.",
+  "files": {
+    "src/client/ItemModels.luau": "b2edcf078aaf0db892a249d59ea2d637186af92fbe3441f6df0f0d506ec045b6",
+    "src/client/ItemMotion.luau": "daf0b266737076f2b98eb2fa3ef32dc72692363c01384d838042191703c63af0",
+    "src/client/NativeAssemblies.luau": "15bb4b33e6523224613cb8d19ead59343133bda024d71d90406682840f167f09",
+    "src/client/ItemChoreography.luau": "6610d2764964b1aef507f49850275953fa38cc0252fc3d0c119bb9968fcb4460",
+    "src/client/motion/Curves.luau": "f7b1e77f73f9ec2c5ccbb08c3a1a818389d00b928dacc427f027db1ab90cb0ce",
+    "src/client/motion/Mechanical.luau": "acd6480ec9be7abe72cff98578f466b7903454522492aa0807c7b7c32525d7f6",
+    "src/client/motion/Nature.luau": "18b41ebb5ba1236b40976c76017f2bcb1861f991c9a77cc01107611aafb4c878",
+    "src/client/motion/Rewards.luau": "c6a82780b43a2e5f77a9491c615c02b9c6721c6a5e0284857f6554044890d1fb"
+  },
+  "source_sha": "07be76a57335fa3aaa05009c91bd2e36ed05dd0e"
+}

@@ -1,0 +1,6953 @@
+{
+  "schema": 1,
+  "initial_source": "9f0a5b9e7984fbca1cca75d22d65b6f1c22832ed",
+  "final_source": "7f7339bd3bacb427a840ed43bb2295fd6eae32f3",
+  "studio": "9f7afcd3-3f7d-45ea-8f2d-9769db7f8564",
+  "native_baseline": "07be76a57335fa3aaa05009c91bd2e36ed05dd0e",
+  "audit_results": {
+    "effectsAudit1": {
+      "ok": true,
+      "items": {
+        "1": {
+          "ok": true,
+          "pool": 40,
+          "id": "aurora_aquarium",
+          "samples": 42,
+          "maxVisible": 18
+        },
+        "2": {
+          "ok": true,
+          "pool": 40,
+          "id": "aurora_kite",
+          "samples": 42,
+          "maxVisible": 10
+        },
+        "3": {
+          "ok": true,
+          "pool": 40,
+          "id": "balance_scale",
+          "samples": 42,
+          "maxVisible": 8
+        },
+        "4": {
+          "ok": true,
+          "pool": 40,
+          "id": "biolume_jar",
+          "samples": 42,
+          "maxVisible": 18
+        },
+        "5": {
+          "ok": true,
+          "pool": 40,
+          "id": "bubble_reactor",
+          "samples": 42,
+          "maxVisible": 24
+        },
+        "6": {
+          "ok": true,
+          "pool": 40,
+          "id": "bubble_wand",
+          "samples": 42,
+          "maxVisible": 14
+        },
+        "7": {
+          "ok": true,
+          "pool": 40,
+          "id": "burst_capsule",
+          "samples": 42,
+          "maxVisible": 9
+        },
+        "8": {
+          "ok": true,
+          "pool": 40,
+          "id": "chest_common",
+          "samples": 42,
+          "maxVisible": 16
+        },
+        "9": {
+          "ok": true,
+          "pool": 40,
+          "id": "chest_legendary",
+          "samples": 42,
+          "maxVisible": 24
+        },
+        "10": {
+          "ok": true,
+          "pool": 40,
+          "id": "chest_rare",
+          "samples": 42,
+          "maxVisible": 20
+        },
+        "11": {
+          "ok": true,
+          "pool": 40,
+          "id": "chest_uncommon",
+          "samples": 42,
+          "maxVisible": 18
+        },
+        "12": {
+          "ok": true,
+          "pool": 40,
+          "id": "clockwork",
+          "samples": 42,
+          "maxVisible": 13
+        },
+        "13": {
+          "ok": true,
+          "pool": 40,
+          "id": "cloud_mirror",
+          "samples": 42,
+          "maxVisible": 10
+        },
+        "14": {
+          "ok": true,
+          "pool": 40,
+          "id": "coin",
+          "samples": 42,
+          "maxVisible": 8
+        },
+        "15": {
+          "ok": true,
+          "pool": 40,
+          "id": "coin_press",
+          "samples": 42,
+          "maxVisible": 14
+        },
+        "16": {
+          "ok": true,
+          "pool": 40,
+          "id": "compass",
+          "samples": 42,
+          "maxVisible": 5
+        },
+        "17": {
+          "ok": true,
+          "pool": 40,
+          "id": "coral_fork",
+          "samples": 42,
+          "maxVisible": 18
+        },
+        "18": {
+          "ok": true,
+          "pool": 40,
+          "id": "current_nexus",
+          "samples": 42,
+          "maxVisible": 18
+        },
+        "19": {
+          "ok": true,
+          "pool": 40,
+          "id": "dew_lantern",
+          "samples": 42,
+          "maxVisible": 21
+        },
+        "20": {
+          "ok": true,
+          "pool": 40,
+          "id": "echo_plate",
+          "samples": 42,
+          "maxVisible": 24
+        },
+        "21": {
+          "ok": true,
+          "pool": 40,
+          "id": "eden_greenhouse",
+          "samples": 42,
+          "maxVisible": 40
+        },
+        "22": {
+          "ok": true,
+          "pool": 40,
+          "id": "encore",
+          "samples": 42,
+          "maxVisible": 30
+        },
+        "23": {
+          "ok": true,
+          "pool": 40,
+          "id": "event_growth",
+          "samples": 42,
+          "maxVisible": 14
+        },
+        "24": {
+          "ok": true,
+          "pool": 40,
+          "id": "event_overtime",
+          "samples": 42,
+          "maxVisible": 9
+        },
+        "25": {
+          "ok": true,
+          "pool": 40,
+          "id": "event_repair",
+          "samples": 42,
+          "maxVisible": 8
+        },
+        "26": {
+          "ok": true,
+          "pool": 40,
+          "id": "event_upgrade",
+          "samples": 42,
+          "maxVisible": 12
+        }
+      },
+      "checked": 26,
+      "maxPool": 40,
+      "elapsedSeconds": 0.4872672999990755,
+      "failures": [],
+      "passed": 26,
+      "samples": 1092
+    },
+    "effectsAudit27": {
+      "ok": true,
+      "items": {
+        "1": {
+          "ok": true,
+          "pool": 40,
+          "id": "first_spark",
+          "samples": 42,
+          "maxVisible": 5
+        },
+        "2": {
+          "ok": true,
+          "pool": 40,
+          "id": "fishbowl",
+          "samples": 42,
+          "maxVisible": 12
+        },
+        "3": {
+          "ok": true,
+          "pool": 40,
+          "id": "gain_dial",
+          "samples": 42,
+          "maxVisible": 19
+        },
+        "4": {
+          "ok": true,
+          "pool": 40,
+          "id": "goldfish",
+          "samples": 42,
+          "maxVisible": 12
+        },
+        "5": {
+          "ok": true,
+          "pool": 40,
+          "id": "growth_array",
+          "samples": 42,
+          "maxVisible": 40
+        },
+        "6": {
+          "ok": true,
+          "pool": 40,
+          "id": "growth_ring",
+          "samples": 42,
+          "maxVisible": 12
+        },
+        "7": {
+          "ok": true,
+          "pool": 40,
+          "id": "horizon_observatory",
+          "samples": 42,
+          "maxVisible": 17
+        },
+        "8": {
+          "ok": true,
+          "pool": 40,
+          "id": "jumble",
+          "samples": 42,
+          "maxVisible": 10
+        },
+        "9": {
+          "ok": true,
+          "pool": 40,
+          "id": "lagoon_synth",
+          "samples": 42,
+          "maxVisible": 29
+        },
+        "10": {
+          "ok": true,
+          "pool": 40,
+          "id": "landing_fund",
+          "samples": 42,
+          "maxVisible": 14
+        },
+        "11": {
+          "ok": true,
+          "pool": 40,
+          "id": "last_word",
+          "samples": 42,
+          "maxVisible": 16
+        },
+        "12": {
+          "ok": true,
+          "pool": 40,
+          "id": "life",
+          "samples": 42,
+          "maxVisible": 10
+        },
+        "13": {
+          "ok": true,
+          "pool": 40,
+          "id": "lily_pad",
+          "samples": 42,
+          "maxVisible": 30
+        },
+        "14": {
+          "ok": true,
+          "pool": 40,
+          "id": "lock",
+          "samples": 42,
+          "maxVisible": 6
+        },
+        "15": {
+          "ok": true,
+          "pool": 40,
+          "id": "metronome",
+          "samples": 42,
+          "maxVisible": 7
+        },
+        "16": {
+          "ok": true,
+          "pool": 40,
+          "id": "milestone",
+          "samples": 42,
+          "maxVisible": 9
+        },
+        "17": {
+          "ok": true,
+          "pool": 40,
+          "id": "mist_fan",
+          "samples": 42,
+          "maxVisible": 12
+        },
+        "18": {
+          "ok": true,
+          "pool": 40,
+          "id": "monsoon_loom",
+          "samples": 42,
+          "maxVisible": 27
+        },
+        "19": {
+          "ok": true,
+          "pool": 40,
+          "id": "moss_capacitor",
+          "samples": 42,
+          "maxVisible": 16
+        },
+        "20": {
+          "ok": true,
+          "pool": 40,
+          "id": "nectar_pump",
+          "samples": 42,
+          "maxVisible": 14
+        },
+        "21": {
+          "ok": true,
+          "pool": 40,
+          "id": "ocean_orchestra",
+          "samples": 42,
+          "maxVisible": 32
+        },
+        "22": {
+          "ok": true,
+          "pool": 40,
+          "id": "ozone_orb",
+          "samples": 42,
+          "maxVisible": 22
+        },
+        "23": {
+          "ok": true,
+          "pool": 40,
+          "id": "pearl_diver",
+          "samples": 42,
+          "maxVisible": 20
+        },
+        "24": {
+          "ok": true,
+          "pool": 40,
+          "id": "pearl_turbine",
+          "samples": 42,
+          "maxVisible": 20
+        },
+        "25": {
+          "ok": true,
+          "pool": 40,
+          "id": "pulse_cell",
+          "samples": 42,
+          "maxVisible": 15
+        },
+        "26": {
+          "ok": true,
+          "pool": 40,
+          "id": "quota_bonus",
+          "samples": 42,
+          "maxVisible": 6
+        }
+      },
+      "checked": 26,
+      "maxPool": 40,
+      "elapsedSeconds": 0.521382499999163,
+      "failures": [],
+      "passed": 26,
+      "samples": 1092
+    },
+    "effectsAudit53": {
+      "ok": true,
+      "items": {
+        "1": {
+          "ok": true,
+          "pool": 40,
+          "id": "rain_catcher",
+          "samples": 42,
+          "maxVisible": 16
+        },
+        "2": {
+          "ok": true,
+          "pool": 40,
+          "id": "recovery",
+          "samples": 42,
+          "maxVisible": 10
+        },
+        "3": {
+          "ok": true,
+          "pool": 40,
+          "id": "relay",
+          "samples": 42,
+          "maxVisible": 29
+        },
+        "4": {
+          "ok": true,
+          "pool": 40,
+          "id": "reserve_pack",
+          "samples": 42,
+          "maxVisible": 12
+        },
+        "5": {
+          "ok": true,
+          "pool": 40,
+          "id": "resonator",
+          "samples": 42,
+          "maxVisible": 24
+        },
+        "6": {
+          "ok": true,
+          "pool": 40,
+          "id": "restock",
+          "samples": 42,
+          "maxVisible": 16
+        },
+        "7": {
+          "ok": true,
+          "pool": 40,
+          "id": "ricochet",
+          "samples": 42,
+          "maxVisible": 4
+        },
+        "8": {
+          "ok": true,
+          "pool": 40,
+          "id": "score",
+          "samples": 42,
+          "maxVisible": 9
+        },
+        "9": {
+          "ok": true,
+          "pool": 40,
+          "id": "seed_bank",
+          "samples": 42,
+          "maxVisible": 24
+        },
+        "10": {
+          "ok": true,
+          "pool": 40,
+          "id": "soft_saw",
+          "samples": 42,
+          "maxVisible": 13
+        },
+        "11": {
+          "ok": true,
+          "pool": 40,
+          "id": "solar_leaf",
+          "samples": 42,
+          "maxVisible": 10
+        },
+        "12": {
+          "ok": true,
+          "pool": 40,
+          "id": "solar_treasury",
+          "samples": 42,
+          "maxVisible": 12
+        },
+        "13": {
+          "ok": true,
+          "pool": 40,
+          "id": "spectrum_reef",
+          "samples": 42,
+          "maxVisible": 22
+        },
+        "14": {
+          "ok": true,
+          "pool": 40,
+          "id": "split_prism",
+          "samples": 42,
+          "maxVisible": 7
+        },
+        "15": {
+          "ok": true,
+          "pool": 40,
+          "id": "spring_coil",
+          "samples": 42,
+          "maxVisible": 16
+        },
+        "16": {
+          "ok": true,
+          "pool": 40,
+          "id": "storm_clock",
+          "samples": 42,
+          "maxVisible": 13
+        },
+        "17": {
+          "ok": true,
+          "pool": 40,
+          "id": "stream_wheel",
+          "samples": 42,
+          "maxVisible": 16
+        },
+        "18": {
+          "ok": true,
+          "pool": 40,
+          "id": "sun_koi",
+          "samples": 42,
+          "maxVisible": 18
+        },
+        "19": {
+          "ok": true,
+          "pool": 40,
+          "id": "survey_lens",
+          "samples": 42,
+          "maxVisible": 17
+        },
+        "20": {
+          "ok": true,
+          "pool": 40,
+          "id": "tailwind",
+          "samples": 42,
+          "maxVisible": 9
+        },
+        "21": {
+          "ok": true,
+          "pool": 40,
+          "id": "tap_driver",
+          "samples": 42,
+          "maxVisible": 8
+        },
+        "22": {
+          "ok": true,
+          "pool": 40,
+          "id": "tidal_engine",
+          "samples": 42,
+          "maxVisible": 24
+        },
+        "23": {
+          "ok": true,
+          "pool": 40,
+          "id": "tide_gyroscope",
+          "samples": 42,
+          "maxVisible": 24
+        },
+        "24": {
+          "ok": true,
+          "pool": 40,
+          "id": "tide_valve",
+          "samples": 42,
+          "maxVisible": 10
+        },
+        "25": {
+          "ok": true,
+          "pool": 40,
+          "id": "tuning_oil",
+          "samples": 42,
+          "maxVisible": 6
+        },
+        "26": {
+          "ok": true,
+          "pool": 40,
+          "id": "wall_meter",
+          "samples": 42,
+          "maxVisible": 21
+        }
+      },
+      "checked": 26,
+      "maxPool": 40,
+      "elapsedSeconds": 0.562708699999348,
+      "failures": [],
+      "passed": 26,
+      "samples": 1092
+    },
+    "effectsCamera1": {
+      "ok": true,
+      "checked": 26,
+      "loaded": {
+        "1": "aurora_aquarium",
+        "2": "aurora_kite",
+        "3": "balance_scale",
+        "4": "biolume_jar",
+        "5": "bubble_reactor",
+        "6": "bubble_wand",
+        "7": "burst_capsule",
+        "8": "chest_common",
+        "9": "chest_legendary",
+        "10": "chest_rare",
+        "11": "chest_uncommon",
+        "12": "clockwork",
+        "13": "cloud_mirror",
+        "14": "coin",
+        "15": "coin_press",
+        "16": "compass",
+        "17": "coral_fork",
+        "18": "current_nexus",
+        "19": "dew_lantern",
+        "20": "echo_plate",
+        "21": "eden_greenhouse",
+        "22": "encore",
+        "23": "event_growth",
+        "24": "event_overtime",
+        "25": "event_repair",
+        "26": "event_upgrade"
+      },
+      "failures": [],
+      "corners": 39880,
+      "minimumMargin": 0.08694664875922387
+    },
+    "effectsCamera27": {
+      "ok": true,
+      "checked": 26,
+      "loaded": {
+        "1": "first_spark",
+        "2": "fishbowl",
+        "3": "gain_dial",
+        "4": "goldfish",
+        "5": "growth_array",
+        "6": "growth_ring",
+        "7": "horizon_observatory",
+        "8": "jumble",
+        "9": "lagoon_synth",
+        "10": "landing_fund",
+        "11": "last_word",
+        "12": "life",
+        "13": "lily_pad",
+        "14": "lock",
+        "15": "metronome",
+        "16": "milestone",
+        "17": "mist_fan",
+        "18": "monsoon_loom",
+        "19": "moss_capacitor",
+        "20": "nectar_pump",
+        "21": "ocean_orchestra",
+        "22": "ozone_orb",
+        "23": "pearl_diver",
+        "24": "pearl_turbine",
+        "25": "pulse_cell",
+        "26": "quota_bonus"
+      },
+      "failures": [],
+      "corners": 41600,
+      "minimumMargin": 0.09868357432840624
+    },
+    "effectsCamera53": {
+      "ok": true,
+      "checked": 26,
+      "loaded": {
+        "1": "rain_catcher",
+        "2": "recovery",
+        "3": "relay",
+        "4": "reserve_pack",
+        "5": "resonator",
+        "6": "restock",
+        "7": "ricochet",
+        "8": "score",
+        "9": "seed_bank",
+        "10": "soft_saw",
+        "11": "solar_leaf",
+        "12": "solar_treasury",
+        "13": "spectrum_reef",
+        "14": "split_prism",
+        "15": "spring_coil",
+        "16": "storm_clock",
+        "17": "stream_wheel",
+        "18": "sun_koi",
+        "19": "survey_lens",
+        "20": "tailwind",
+        "21": "tap_driver",
+        "22": "tidal_engine",
+        "23": "tide_gyroscope",
+        "24": "tide_valve",
+        "25": "tuning_oil",
+        "26": "wall_meter"
+      },
+      "failures": [],
+      "corners": 39576,
+      "minimumMargin": 0.09677727994290408
+    },
+    "effectsAudio1": {
+      "assets": {
+        "rbxassetid://9119319842": "Success",
+        "rbxassetid://9119669074": "Success",
+        "rbxassetid://77129402344871": "Success",
+        "rbxassetid://9119642864": "Success",
+        "rbxassetid://127645268874265": "Success",
+        "rbxassetid://9114210044": "Success",
+        "rbxassetid://9126132550": "Success"
+      },
+      "checked": 13,
+      "loadedAssetFailures": [],
+      "passed": 13,
+      "maximumPendingNotes": 12,
+      "maximumTotalVolume": 0.13604681639679406,
+      "requested": 13,
+      "failed": 0,
+      "ok": true,
+      "cleanup": true,
+      "cancellation": "PASS pause/resume, mute and stale-cue suppression",
+      "scope": "Real asset loading, Sound.IsPlaying, advancing TimePosition, positive finite gain, bounded voices, cancellation and disposal. No recorded output or human-listening claim.",
+      "maximumLiveVoices": 13,
+      "unrun": [],
+      "items": {
+        "1": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "aurora_aquarium",
+              "peakLoudness": 730.8411598205566,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "aurora_aquarium",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "water",
+            "notes": 4,
+            "description": "Deep-to-bright aquarium cascade",
+            "duration": 0.77,
+            "lowSemitone": -12,
+            "highSemitone": 16,
+            "partials": 2,
+            "id": "aurora_aquarium"
+          }
+        },
+        "2": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "aurora_kite",
+              "peakLoudness": 720.6745147705078,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "aurora_kite",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "air",
+            "notes": 4,
+            "description": "Rising wind ribbon",
+            "duration": 0.81,
+            "lowSemitone": 0,
+            "highSemitone": 19,
+            "partials": 3,
+            "id": "aurora_kite"
+          }
+        },
+        "3": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "balance_scale",
+              "peakLoudness": 728.3297777175903,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "balance_scale",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "bell",
+            "notes": 3,
+            "description": "Alternating bronze scale pans",
+            "duration": 0.6100000000000001,
+            "lowSemitone": -9,
+            "highSemitone": 3,
+            "partials": 3,
+            "id": "balance_scale"
+          }
+        },
+        "4": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "biolume_jar",
+              "peakLoudness": 727.0618677139282,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "biolume_jar",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "glass",
+            "notes": 4,
+            "description": "Tiny glowing glass taps",
+            "duration": 0.8,
+            "lowSemitone": -7,
+            "highSemitone": 12,
+            "partials": 3,
+            "id": "biolume_jar"
+          }
+        },
+        "5": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "bubble_reactor",
+              "peakLoudness": 727.152407169342,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "bubble_reactor",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "bass",
+            "notes": 4,
+            "description": "Reactor kick climbing into bubble chirps",
+            "duration": 0.6799999999999999,
+            "lowSemitone": -22,
+            "highSemitone": 9,
+            "partials": 3,
+            "id": "bubble_reactor"
+          }
+        },
+        "6": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "bubble_wand",
+              "peakLoudness": 716.2618637084961,
+              "positiveGain": true,
+              "phase": 0.68,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "bubble_wand",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "water",
+            "notes": 2,
+            "description": "One bright joined bubble pop",
+            "partials": 2,
+            "attackCue": "pop",
+            "highSemitone": 12,
+            "duration": 0.255,
+            "id": "bubble_wand",
+            "lowSemitone": 5
+          }
+        },
+        "7": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "burst_capsule",
+              "peakLoudness": 721.455991268158,
+              "positiveGain": true,
+              "phase": 0.3,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "burst_capsule",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "bass",
+            "notes": 2,
+            "description": "Falling capsule thump and cap ping",
+            "partials": 3,
+            "attackCue": "restock",
+            "highSemitone": -11,
+            "duration": 0.405,
+            "id": "burst_capsule",
+            "lowSemitone": -23
+          }
+        },
+        "8": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "click",
+              "peakLoudness": 7.6970914378762245,
+              "positiveGain": true,
+              "phase": 0.08,
+              "kind": "cue",
+              "advancing": true,
+              "playing": true
+            },
+            "2": {
+              "id": "click",
+              "peakLoudness": 9.379995055496693,
+              "positiveGain": true,
+              "phase": 0.2,
+              "kind": "cue",
+              "advancing": true,
+              "playing": true
+            },
+            "3": {
+              "id": "click",
+              "peakLoudness": 8.442999795079231,
+              "positiveGain": true,
+              "phase": 0.3,
+              "kind": "cue",
+              "advancing": true,
+              "playing": true
+            },
+            "4": {
+              "id": "click",
+              "peakLoudness": 8.676412515342236,
+              "positiveGain": true,
+              "phase": 0.38,
+              "kind": "cue",
+              "advancing": true,
+              "playing": true
+            },
+            "5": {
+              "id": "click",
+              "peakLoudness": 8.739355951547623,
+              "positiveGain": true,
+              "phase": 0.44,
+              "kind": "cue",
+              "advancing": true,
+              "playing": true
+            },
+            "6": {
+              "id": "click",
+              "peakLoudness": 8.662424981594086,
+              "positiveGain": true,
+              "phase": 0.49,
+              "kind": "cue",
+              "advancing": true,
+              "playing": true
+            },
+            "7": {
+              "id": "restock",
+              "peakLoudness": 16.15931699052453,
+              "positiveGain": true,
+              "phase": 0.56,
+              "kind": "cue",
+              "advancing": true,
+              "playing": true
+            },
+            "8": {
+              "id": "chest_common",
+              "peakLoudness": 732.9158782958984,
+              "positiveGain": true,
+              "phase": 0.56,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            },
+            "9": {
+              "id": "clear",
+              "peakLoudness": 82.99990557134151,
+              "positiveGain": true,
+              "phase": 0.64,
+              "kind": "cue",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 9,
+          "id": "chest_common",
+          "observed": 9,
+          "scheduled": 9,
+          "instrument": {
+            "timbre": "wood",
+            "notes": 3,
+            "description": "Meadow wooden latch and warm reward",
+            "duration": 0.5700000000000001,
+            "lowSemitone": -12,
+            "highSemitone": 7,
+            "partials": 3,
+            "id": "chest_common"
+          }
+        },
+        "9": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "click",
+              "peakLoudness": 87.16270793229342,
+              "positiveGain": true,
+              "phase": 0.08,
+              "kind": "cue",
+              "advancing": true,
+              "playing": true
+            },
+            "2": {
+              "id": "click",
+              "peakLoudness": 9.379995055496693,
+              "positiveGain": true,
+              "phase": 0.2,
+              "kind": "cue",
+              "advancing": true,
+              "playing": true
+            },
+            "3": {
+              "id": "click",
+              "peakLoudness": 8.442999795079231,
+              "positiveGain": true,
+              "phase": 0.3,
+              "kind": "cue",
+              "advancing": true,
+              "playing": true
+            },
+            "4": {
+              "id": "click",
+              "peakLoudness": 9.896731935441494,
+              "positiveGain": true,
+              "phase": 0.38,
+              "kind": "cue",
+              "advancing": true,
+              "playing": true
+            },
+            "5": {
+              "id": "click",
+              "peakLoudness": 10.091735981404781,
+              "positiveGain": true,
+              "phase": 0.44,
+              "kind": "cue",
+              "advancing": true,
+              "playing": true
+            },
+            "6": {
+              "id": "click",
+              "peakLoudness": 8.662424981594086,
+              "positiveGain": true,
+              "phase": 0.49,
+              "kind": "cue",
+              "advancing": true,
+              "playing": true
+            },
+            "7": {
+              "id": "restock",
+              "peakLoudness": 15.662684105336666,
+              "positiveGain": true,
+              "phase": 0.56,
+              "kind": "cue",
+              "advancing": true,
+              "playing": true
+            },
+            "8": {
+              "id": "chest_legendary",
+              "peakLoudness": 738.5079860687256,
+              "positiveGain": true,
+              "phase": 0.56,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            },
+            "9": {
+              "id": "clear",
+              "peakLoudness": 86.03724651038647,
+              "positiveGain": true,
+              "phase": 0.64,
+              "kind": "cue",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 9,
+          "id": "chest_legendary",
+          "observed": 9,
+          "scheduled": 9,
+          "instrument": {
+            "timbre": "organ",
+            "notes": 4,
+            "description": "Celestial bass chord opening into light",
+            "partials": 3,
+            "attackCue": "restock",
+            "highSemitone": 4,
+            "duration": 1.06,
+            "id": "chest_legendary",
+            "lowSemitone": -24
+          }
+        },
+        "10": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "click",
+              "peakLoudness": 80.24551160633564,
+              "positiveGain": true,
+              "phase": 0.08,
+              "kind": "cue",
+              "advancing": true,
+              "playing": true
+            },
+            "2": {
+              "id": "click",
+              "peakLoudness": 7.992052473127842,
+              "positiveGain": true,
+              "phase": 0.2,
+              "kind": "cue",
+              "advancing": true,
+              "playing": true
+            },
+            "3": {
+              "id": "click",
+              "peakLoudness": 9.63844545185566,
+              "positiveGain": true,
+              "phase": 0.3,
+              "kind": "cue",
+              "advancing": true,
+              "playing": true
+            },
+            "4": {
+              "id": "click",
+              "peakLoudness": 8.676412515342236,
+              "positiveGain": true,
+              "phase": 0.38,
+              "kind": "cue",
+              "advancing": true,
+              "playing": true
+            },
+            "5": {
+              "id": "click",
+              "peakLoudness": 8.739355951547623,
+              "positiveGain": true,
+              "phase": 0.44,
+              "kind": "cue",
+              "advancing": true,
+              "playing": true
+            },
+            "6": {
+              "id": "click",
+              "peakLoudness": 10.375690646469593,
+              "positiveGain": true,
+              "phase": 0.49,
+              "kind": "cue",
+              "advancing": true,
+              "playing": true
+            },
+            "7": {
+              "id": "restock",
+              "peakLoudness": 16.131592448800802,
+              "positiveGain": true,
+              "phase": 0.56,
+              "kind": "cue",
+              "advancing": true,
+              "playing": true
+            },
+            "8": {
+              "id": "chest_rare",
+              "peakLoudness": 728.3297777175903,
+              "positiveGain": true,
+              "phase": 0.56,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            },
+            "9": {
+              "id": "clear",
+              "peakLoudness": 86.70332282781601,
+              "positiveGain": true,
+              "phase": 0.64,
+              "kind": "cue",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 9,
+          "id": "chest_rare",
+          "observed": 9,
+          "scheduled": 9,
+          "instrument": {
+            "timbre": "bell",
+            "notes": 4,
+            "description": "Aurora metal blossom and long shimmer",
+            "duration": 0.89,
+            "lowSemitone": -9,
+            "highSemitone": 15,
+            "partials": 3,
+            "id": "chest_rare"
+          }
+        },
+        "11": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "click",
+              "peakLoudness": 82.3554890230298,
+              "positiveGain": true,
+              "phase": 0.08,
+              "kind": "cue",
+              "advancing": true,
+              "playing": true
+            },
+            "2": {
+              "id": "click",
+              "peakLoudness": 9.379995055496693,
+              "positiveGain": true,
+              "phase": 0.2,
+              "kind": "cue",
+              "advancing": true,
+              "playing": true
+            },
+            "3": {
+              "id": "click",
+              "peakLoudness": 8.442999795079231,
+              "positiveGain": true,
+              "phase": 0.3,
+              "kind": "cue",
+              "advancing": true,
+              "playing": true
+            },
+            "4": {
+              "id": "click",
+              "peakLoudness": 8.676412515342236,
+              "positiveGain": true,
+              "phase": 0.38,
+              "kind": "cue",
+              "advancing": true,
+              "playing": true
+            },
+            "5": {
+              "id": "click",
+              "peakLoudness": 10.091735981404781,
+              "positiveGain": true,
+              "phase": 0.44,
+              "kind": "cue",
+              "advancing": true,
+              "playing": true
+            },
+            "6": {
+              "id": "click",
+              "peakLoudness": 10.375690646469593,
+              "positiveGain": true,
+              "phase": 0.49,
+              "kind": "cue",
+              "advancing": true,
+              "playing": true
+            },
+            "7": {
+              "id": "restock",
+              "peakLoudness": 15.773182734847069,
+              "positiveGain": true,
+              "phase": 0.56,
+              "kind": "cue",
+              "advancing": true,
+              "playing": true
+            },
+            "8": {
+              "id": "chest_uncommon",
+              "peakLoudness": 727.3370623588562,
+              "positiveGain": true,
+              "phase": 0.56,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            },
+            "9": {
+              "id": "clear",
+              "peakLoudness": 86.29477489739656,
+              "positiveGain": true,
+              "phase": 0.64,
+              "kind": "cue",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 9,
+          "id": "chest_uncommon",
+          "observed": 9,
+          "scheduled": 9,
+          "instrument": {
+            "timbre": "water",
+            "notes": 4,
+            "description": "Lagoon pressure glug and pearl reveal",
+            "duration": 0.73,
+            "lowSemitone": -14,
+            "highSemitone": 10,
+            "partials": 2,
+            "id": "chest_uncommon"
+          }
+        },
+        "12": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "clockwork",
+              "peakLoudness": 717.3680663108826,
+              "positiveGain": true,
+              "phase": 0.3,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "clockwork",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "wood",
+            "notes": 4,
+            "description": "Four dry clock ticks",
+            "partials": 3,
+            "attackCue": "click",
+            "highSemitone": 14,
+            "duration": 0.37,
+            "id": "clockwork",
+            "lowSemitone": 2
+          }
+        },
+        "13": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "cloud_mirror",
+              "peakLoudness": 719.8129296302795,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "cloud_mirror",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "air",
+            "notes": 3,
+            "description": "High airy reflection with a delayed return",
+            "duration": 0.9600000000000001,
+            "lowSemitone": 7,
+            "highSemitone": 14,
+            "partials": 3,
+            "id": "cloud_mirror"
+          }
+        }
+      },
+      "last": 13,
+      "maximumPlaybackLoudness": 738.5079860687256,
+      "first": 1,
+      "elapsedSeconds": 14.568487799999275,
+      "failures": [],
+      "schema": 1,
+      "maximumLiveToneVoices": 12
+    },
+    "effectsAudio14": {
+      "assets": {
+        "rbxassetid://9119319842": "Success",
+        "rbxassetid://9119669074": "Success",
+        "rbxassetid://9114210044": "Success",
+        "rbxassetid://9119642864": "Success",
+        "rbxassetid://127645268874265": "Success",
+        "rbxassetid://77129402344871": "Success",
+        "rbxassetid://9126132550": "Success"
+      },
+      "checked": 13,
+      "loadedAssetFailures": [],
+      "passed": 13,
+      "maximumPendingNotes": 12,
+      "maximumTotalVolume": 0.06746567321600574,
+      "requested": 13,
+      "failed": 0,
+      "ok": true,
+      "cleanup": true,
+      "cancellation": "PASS pause/resume, mute and stale-cue suppression",
+      "scope": "Real asset loading, Sound.IsPlaying, advancing TimePosition, positive finite gain, bounded voices, cancellation and disposal. No recorded output or human-listening claim.",
+      "maximumLiveVoices": 12,
+      "unrun": [],
+      "items": {
+        "1": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "coin",
+              "peakLoudness": 716.5564298629761,
+              "positiveGain": true,
+              "phase": 0.3,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "coin",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "metal",
+            "notes": 2,
+            "description": "Single bright minted coin",
+            "partials": 3,
+            "attackCue": "coin",
+            "highSemitone": 19,
+            "duration": 0.29000000000000004,
+            "id": "coin",
+            "lowSemitone": 12
+          }
+        },
+        "2": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "coin_press",
+              "peakLoudness": 744.9558973312378,
+              "positiveGain": true,
+              "phase": 0.4,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "coin_press",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "metal",
+            "notes": 3,
+            "description": "Press clunk then two metallic coin rings",
+            "partials": 3,
+            "attackCue": "coin",
+            "highSemitone": 12,
+            "duration": 0.47,
+            "id": "coin_press",
+            "lowSemitone": -20
+          }
+        },
+        "3": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "compass",
+              "peakLoudness": 715.2829766273499,
+              "positiveGain": true,
+              "phase": 0.36,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "compass",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "bell",
+            "notes": 2,
+            "description": "Small compass chime and needle stop",
+            "duration": 0.55,
+            "lowSemitone": 4,
+            "highSemitone": 11,
+            "partials": 3,
+            "id": "compass"
+          }
+        },
+        "4": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "coral_fork",
+              "peakLoudness": 724.2485284805298,
+              "positiveGain": true,
+              "phase": 0.24,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "coral_fork",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "electric",
+            "notes": 3,
+            "description": "Sharp coral arc crackle",
+            "partials": 3,
+            "attackCue": "trigger",
+            "highSemitone": 14,
+            "duration": 0.29000000000000004,
+            "id": "coral_fork",
+            "lowSemitone": -3
+          }
+        },
+        "5": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "current_nexus",
+              "peakLoudness": 735.1105809211731,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "current_nexus",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "electric",
+            "notes": 4,
+            "description": "Interlocking nexus surge",
+            "duration": 0.75,
+            "lowSemitone": -19,
+            "highSemitone": 7,
+            "partials": 3,
+            "id": "current_nexus"
+          }
+        },
+        "6": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "dew_lantern",
+              "peakLoudness": 724.6615290641785,
+              "positiveGain": true,
+              "phase": 0.18,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "dew_lantern",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "glass",
+            "notes": 2,
+            "description": "Lamp switch with a warm glass bloom",
+            "partials": 3,
+            "attackCue": "click",
+            "highSemitone": 7,
+            "duration": 0.78,
+            "id": "dew_lantern",
+            "lowSemitone": -5
+          }
+        },
+        "7": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "echo_plate",
+              "peakLoudness": 721.8772768974304,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "echo_plate",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "sonar",
+            "notes": 3,
+            "description": "Descending-volume echo pings",
+            "duration": 0.5800000000000001,
+            "lowSemitone": 5,
+            "highSemitone": 5,
+            "partials": 2,
+            "id": "echo_plate"
+          }
+        },
+        "8": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "eden_greenhouse",
+              "peakLoudness": 732.1892380714417,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "eden_greenhouse",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "organ",
+            "notes": 4,
+            "description": "Lush greenhouse chord bloom",
+            "duration": 0.93,
+            "lowSemitone": -12,
+            "highSemitone": 4,
+            "partials": 3,
+            "id": "eden_greenhouse"
+          }
+        },
+        "9": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "encore",
+              "peakLoudness": 732.1892380714417,
+              "positiveGain": true,
+              "phase": 0.26,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "encore",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "organ",
+            "notes": 4,
+            "description": "Warm speaker chord with a soft echo",
+            "duration": 0.8400000000000001,
+            "lowSemitone": -12,
+            "highSemitone": -5,
+            "partials": 3,
+            "id": "encore"
+          }
+        },
+        "10": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "event_growth",
+              "peakLoudness": 731.1821579933167,
+              "positiveGain": true,
+              "phase": 0.38,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "event_growth",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "organ",
+            "notes": 4,
+            "description": "Broad growth event bloom",
+            "duration": 0.87,
+            "lowSemitone": -15,
+            "highSemitone": 4,
+            "partials": 3,
+            "id": "event_growth"
+          }
+        },
+        "11": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "event_overtime",
+              "peakLoudness": 725.1667976379395,
+              "positiveGain": true,
+              "phase": 0.36,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "event_overtime",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "reed",
+            "notes": 4,
+            "description": "Time-stretch winding call",
+            "duration": 0.59,
+            "lowSemitone": -8,
+            "highSemitone": 6,
+            "partials": 3,
+            "id": "event_overtime"
+          }
+        },
+        "12": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "event_repair",
+              "peakLoudness": 731.2729954719543,
+              "positiveGain": true,
+              "phase": 0.38,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "event_repair",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "sonar",
+            "notes": 3,
+            "description": "Repair heartbeat and confirmation",
+            "duration": 0.71,
+            "lowSemitone": -12,
+            "highSemitone": 5,
+            "partials": 2,
+            "id": "event_repair"
+          }
+        },
+        "13": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "event_upgrade",
+              "peakLoudness": 720.3596830368042,
+              "positiveGain": true,
+              "phase": 0.38,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "event_upgrade",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "glass",
+            "notes": 4,
+            "description": "Ascending upgrade glass ladder",
+            "duration": 0.65,
+            "lowSemitone": 2,
+            "highSemitone": 21,
+            "partials": 3,
+            "id": "event_upgrade"
+          }
+        }
+      },
+      "last": 26,
+      "maximumPlaybackLoudness": 744.9558973312378,
+      "first": 14,
+      "elapsedSeconds": 9.255433300000732,
+      "failures": [],
+      "schema": 1,
+      "maximumLiveToneVoices": 12
+    },
+    "effectsAudio27": {
+      "assets": {
+        "rbxassetid://9119319842": "Success",
+        "rbxassetid://9119669074": "Success",
+        "rbxassetid://9114210044": "Success",
+        "rbxassetid://9119642864": "Success",
+        "rbxassetid://127645268874265": "Success",
+        "rbxassetid://77129402344871": "Success",
+        "rbxassetid://9126132550": "Success"
+      },
+      "checked": 13,
+      "loadedAssetFailures": [],
+      "passed": 13,
+      "maximumPendingNotes": 15,
+      "maximumTotalVolume": 0.06901604450586467,
+      "requested": 13,
+      "failed": 0,
+      "ok": true,
+      "cleanup": true,
+      "cancellation": "PASS pause/resume, mute and stale-cue suppression",
+      "scope": "Real asset loading, Sound.IsPlaying, advancing TimePosition, positive finite gain, bounded voices, cancellation and disposal. No recorded output or human-listening claim.",
+      "maximumLiveVoices": 9,
+      "unrun": [],
+      "items": {
+        "1": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "first_spark",
+              "peakLoudness": 715.6935930252075,
+              "positiveGain": true,
+              "phase": 0.29,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "first_spark",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "electric",
+            "notes": 2,
+            "description": "Tiny high spark zip",
+            "duration": 0.185,
+            "lowSemitone": 12,
+            "highSemitone": 19,
+            "partials": 3,
+            "id": "first_spark"
+          }
+        },
+        "2": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "fishbowl",
+              "peakLoudness": 730.851411819458,
+              "positiveGain": true,
+              "phase": 0.4,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "fishbowl",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "water",
+            "notes": 3,
+            "description": "Deep bowl glugs with a glass rim",
+            "duration": 0.6000000000000001,
+            "lowSemitone": -12,
+            "highSemitone": 0,
+            "partials": 2,
+            "id": "fishbowl"
+          }
+        },
+        "3": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "gain_dial",
+              "peakLoudness": 731.8030595779419,
+              "positiveGain": true,
+              "phase": 0.33,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "gain_dial",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "reed",
+            "notes": 3,
+            "description": "Rounded three-step dial chirrup",
+            "duration": 0.44,
+            "lowSemitone": -12,
+            "highSemitone": -5,
+            "partials": 3,
+            "id": "gain_dial"
+          }
+        },
+        "4": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "goldfish",
+              "peakLoudness": 716.8238759040833,
+              "positiveGain": true,
+              "phase": 0.38,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "goldfish",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "water",
+            "notes": 3,
+            "description": "Bright fish bubble chatter",
+            "duration": 0.47000000000000003,
+            "lowSemitone": 2,
+            "highSemitone": 11,
+            "partials": 2,
+            "id": "goldfish"
+          }
+        },
+        "5": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "growth_array",
+              "peakLoudness": 725.1036763191223,
+              "positiveGain": true,
+              "phase": 0.42,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "growth_array",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "pluck",
+            "notes": 4,
+            "description": "Four springy sprout plucks",
+            "duration": 0.49,
+            "lowSemitone": -7,
+            "highSemitone": 5,
+            "partials": 3,
+            "id": "growth_array"
+          }
+        },
+        "6": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "growth_ring",
+              "peakLoudness": 728.1761765480042,
+              "positiveGain": true,
+              "phase": 0.46,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "growth_ring",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "organ",
+            "notes": 3,
+            "description": "Warm root chord unfolding",
+            "duration": 0.72,
+            "lowSemitone": -17,
+            "highSemitone": -5,
+            "partials": 3,
+            "id": "growth_ring"
+          }
+        },
+        "7": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "horizon_observatory",
+              "peakLoudness": 724.4804501533508,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "horizon_observatory",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "sonar",
+            "notes": 4,
+            "description": "Wide ascending observatory scan",
+            "duration": 0.8400000000000001,
+            "lowSemitone": -5,
+            "highSemitone": 14,
+            "partials": 2,
+            "id": "horizon_observatory"
+          }
+        },
+        "8": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "jumble",
+              "peakLoudness": 720.0971841812134,
+              "positiveGain": true,
+              "phase": 0.2,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "jumble",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "wood",
+            "notes": 4,
+            "description": "Irregular shuffling peg knocks",
+            "duration": 0.55,
+            "lowSemitone": -5,
+            "highSemitone": 12,
+            "partials": 3,
+            "id": "jumble"
+          }
+        },
+        "9": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "lagoon_synth",
+              "peakLoudness": 728.661298751831,
+              "positiveGain": true,
+              "phase": 0.16,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "lagoon_synth",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "reed",
+            "notes": 5,
+            "description": "Traveling liquid synth phrase",
+            "duration": 0.8400000000000001,
+            "lowSemitone": -14,
+            "highSemitone": 3,
+            "partials": 3,
+            "id": "lagoon_synth"
+          }
+        },
+        "10": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "landing_fund",
+              "peakLoudness": 718.5595035552979,
+              "positiveGain": true,
+              "phase": 0.38,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "landing_fund",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "bell",
+            "notes": 3,
+            "description": "Warm shell bell and coin glint",
+            "partials": 3,
+            "attackCue": "coin",
+            "highSemitone": 12,
+            "duration": 0.74,
+            "id": "landing_fund",
+            "lowSemitone": 0
+          }
+        },
+        "11": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "last_word",
+              "peakLoudness": 724.6615290641785,
+              "positiveGain": true,
+              "phase": 0.5,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "last_word",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "bell",
+            "notes": 3,
+            "description": "Three deliberate closing bells",
+            "duration": 0.77,
+            "lowSemitone": -5,
+            "highSemitone": 7,
+            "partials": 3,
+            "id": "last_word"
+          }
+        },
+        "12": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "life",
+              "peakLoudness": 717.003345489502,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "life",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "water",
+            "notes": 2,
+            "description": "Soft ball pop and bright recovery",
+            "duration": 0.4,
+            "lowSemitone": -2,
+            "highSemitone": 10,
+            "partials": 2,
+            "id": "life"
+          }
+        },
+        "13": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "lily_pad",
+              "peakLoudness": 726.6262173652649,
+              "positiveGain": true,
+              "phase": 0.34,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "lily_pad",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "pluck",
+            "notes": 3,
+            "description": "Round lily pluck and water drop",
+            "duration": 0.5900000000000001,
+            "lowSemitone": -10,
+            "highSemitone": 4,
+            "partials": 3,
+            "id": "lily_pad"
+          }
+        }
+      },
+      "last": 39,
+      "maximumPlaybackLoudness": 731.8030595779419,
+      "first": 27,
+      "elapsedSeconds": 8.722670899998775,
+      "failures": [],
+      "schema": 1,
+      "maximumLiveToneVoices": 9
+    },
+    "effectsAudio40": {
+      "assets": {
+        "rbxassetid://9119319842": "Success",
+        "rbxassetid://9119669074": "Success",
+        "rbxassetid://9114210044": "Success",
+        "rbxassetid://9119642864": "Success",
+        "rbxassetid://127645268874265": "Success",
+        "rbxassetid://77129402344871": "Success",
+        "rbxassetid://9126132550": "Success"
+      },
+      "checked": 13,
+      "loadedAssetFailures": [],
+      "passed": 13,
+      "maximumPendingNotes": 12,
+      "maximumTotalVolume": 0.06946812863901781,
+      "requested": 13,
+      "failed": 0,
+      "ok": true,
+      "cleanup": true,
+      "cancellation": "PASS pause/resume, mute and stale-cue suppression",
+      "scope": "Real asset loading, Sound.IsPlaying, advancing TimePosition, positive finite gain, bounded voices, cancellation and disposal. No recorded output or human-listening claim.",
+      "maximumLiveVoices": 12,
+      "unrun": [],
+      "items": {
+        "1": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "lock",
+              "peakLoudness": 734.9386215209961,
+              "positiveGain": true,
+              "phase": 0.36,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "lock",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "metal",
+            "notes": 2,
+            "description": "Small lock click and low latch",
+            "partials": 3,
+            "attackCue": "click",
+            "highSemitone": -9,
+            "duration": 0.23,
+            "id": "lock",
+            "lowSemitone": -21
+          }
+        },
+        "2": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "metronome",
+              "peakLoudness": 720.7253575325012,
+              "positiveGain": true,
+              "phase": 0.31,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "metronome",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "wood",
+            "notes": 4,
+            "description": "Sharp alternating metronome blocks",
+            "duration": 0.45999999999999996,
+            "lowSemitone": 2,
+            "highSemitone": 14,
+            "partials": 3,
+            "id": "metronome"
+          }
+        },
+        "3": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "milestone",
+              "peakLoudness": 724.6615290641785,
+              "positiveGain": true,
+              "phase": 0.4,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "milestone",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "bell",
+            "notes": 4,
+            "description": "Four bright milestone bells",
+            "duration": 0.79,
+            "lowSemitone": -5,
+            "highSemitone": 14,
+            "partials": 3,
+            "id": "milestone"
+          }
+        },
+        "4": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "mist_fan",
+              "peakLoudness": 739.122211933136,
+              "positiveGain": true,
+              "phase": 0.16,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "mist_fan",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "air",
+            "notes": 4,
+            "description": "Breezy paper rotor flutter",
+            "duration": 0.8300000000000001,
+            "lowSemitone": -16,
+            "highSemitone": -4,
+            "partials": 3,
+            "id": "mist_fan"
+          }
+        },
+        "5": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "monsoon_loom",
+              "peakLoudness": 742.250382900238,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "monsoon_loom",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "reed",
+            "notes": 4,
+            "description": "Low woven reed sweep",
+            "partials": 3,
+            "attackCue": "restock",
+            "highSemitone": -2,
+            "duration": 0.71,
+            "id": "monsoon_loom",
+            "lowSemitone": -21
+          }
+        },
+        "6": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "moss_capacitor",
+              "peakLoudness": 739.5986914634705,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "moss_capacitor",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "electric",
+            "notes": 3,
+            "description": "Spongy low charge and discharge",
+            "duration": 0.7,
+            "lowSemitone": -19,
+            "highSemitone": -7,
+            "partials": 3,
+            "id": "moss_capacitor"
+          }
+        },
+        "7": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "nectar_pump",
+              "peakLoudness": 730.5657863616943,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "nectar_pump",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "water",
+            "notes": 3,
+            "description": "Sticky low pump gulps",
+            "partials": 2,
+            "attackCue": "pop",
+            "highSemitone": -3,
+            "duration": 0.56,
+            "id": "nectar_pump",
+            "lowSemitone": -15
+          }
+        },
+        "8": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "ocean_orchestra",
+              "peakLoudness": 732.9952716827393,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "ocean_orchestra",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "organ",
+            "notes": 4,
+            "description": "Deep ocean chord and brass-like harmonics",
+            "duration": 0.94,
+            "lowSemitone": -17,
+            "highSemitone": -5,
+            "partials": 3,
+            "id": "ocean_orchestra"
+          }
+        },
+        "9": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "ozone_orb",
+              "peakLoudness": 737.837016582489,
+              "positiveGain": true,
+              "phase": 0.18,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "ozone_orb",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "bass",
+            "notes": 3,
+            "description": "Sub-bass orb charge with electric shimmer",
+            "duration": 0.76,
+            "lowSemitone": -24,
+            "highSemitone": -5,
+            "partials": 3,
+            "id": "ozone_orb"
+          }
+        },
+        "10": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "pearl_diver",
+              "peakLoudness": 723.8045334815979,
+              "positiveGain": true,
+              "phase": 0.22,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "pearl_diver",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "sonar",
+            "notes": 4,
+            "description": "Orbiting pearl sonar answers",
+            "duration": 0.77,
+            "lowSemitone": -8,
+            "highSemitone": 11,
+            "partials": 2,
+            "id": "pearl_diver"
+          }
+        },
+        "11": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "pearl_turbine",
+              "peakLoudness": 727.3175716400146,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "pearl_turbine",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "metal",
+            "notes": 4,
+            "description": "Turbine metal with pearl overtones",
+            "duration": 0.6000000000000001,
+            "lowSemitone": -7,
+            "highSemitone": 12,
+            "partials": 3,
+            "id": "pearl_turbine"
+          }
+        },
+        "12": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "pulse_cell",
+              "peakLoudness": 740.9699559211731,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "pulse_cell",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "electric",
+            "notes": 3,
+            "description": "Three bass battery pulses",
+            "duration": 0.52,
+            "lowSemitone": -21,
+            "highSemitone": -9,
+            "partials": 3,
+            "id": "pulse_cell"
+          }
+        },
+        "13": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "quota_bonus",
+              "peakLoudness": 726.0298132896423,
+              "positiveGain": true,
+              "phase": 0.32,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "quota_bonus",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "metal",
+            "notes": 2,
+            "description": "Heavy stamp with bright register ping",
+            "partials": 3,
+            "attackCue": "pop",
+            "highSemitone": 6,
+            "duration": 0.36,
+            "id": "quota_bonus",
+            "lowSemitone": -18
+          }
+        }
+      },
+      "last": 52,
+      "maximumPlaybackLoudness": 742.250382900238,
+      "first": 40,
+      "elapsedSeconds": 9.194286200003262,
+      "failures": [],
+      "schema": 1,
+      "maximumLiveToneVoices": 12
+    },
+    "effectsAudio53": {
+      "assets": {
+        "rbxassetid://9119319842": "Success",
+        "rbxassetid://9119669074": "Success",
+        "rbxassetid://9114210044": "Success",
+        "rbxassetid://9119642864": "Success",
+        "rbxassetid://127645268874265": "Success",
+        "rbxassetid://77129402344871": "Success",
+        "rbxassetid://9126132550": "Success"
+      },
+      "checked": 13,
+      "loadedAssetFailures": [],
+      "passed": 13,
+      "maximumPendingNotes": 12,
+      "maximumTotalVolume": 0.07735995811914828,
+      "requested": 13,
+      "failed": 0,
+      "ok": true,
+      "cleanup": true,
+      "cancellation": "PASS pause/resume, mute and stale-cue suppression",
+      "scope": "Real asset loading, Sound.IsPlaying, advancing TimePosition, positive finite gain, bounded voices, cancellation and disposal. No recorded output or human-listening claim.",
+      "maximumLiveVoices": 10,
+      "unrun": [],
+      "items": {
+        "1": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "rain_catcher",
+              "peakLoudness": 722.8499054908752,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "rain_catcher",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "water",
+            "notes": 4,
+            "description": "Uneven falling raindrop taps",
+            "duration": 0.5,
+            "lowSemitone": -3,
+            "highSemitone": 9,
+            "partials": 2,
+            "id": "rain_catcher"
+          }
+        },
+        "2": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "recovery",
+              "peakLoudness": 733.9470386505127,
+              "positiveGain": true,
+              "phase": 0.4,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "recovery",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "sonar",
+            "notes": 2,
+            "description": "Two rounded restorative pulses",
+            "duration": 0.7,
+            "lowSemitone": -19,
+            "highSemitone": -7,
+            "partials": 2,
+            "id": "recovery"
+          }
+        },
+        "3": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "relay",
+              "peakLoudness": 728.6680340766907,
+              "positiveGain": true,
+              "phase": 0.2,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "relay",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "electric",
+            "notes": 4,
+            "description": "Low coil buzz with stepped voltage",
+            "duration": 0.63,
+            "lowSemitone": -17,
+            "highSemitone": -5,
+            "partials": 3,
+            "id": "relay"
+          }
+        },
+        "4": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "reserve_pack",
+              "peakLoudness": 721.5827703475952,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "reserve_pack",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "wood",
+            "notes": 3,
+            "description": "Three rounded ball-case knocks",
+            "duration": 0.49,
+            "lowSemitone": 0,
+            "highSemitone": 9,
+            "partials": 3,
+            "id": "reserve_pack"
+          }
+        },
+        "5": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "resonator",
+              "peakLoudness": 716.3495421409607,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "resonator",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "glass",
+            "notes": 2,
+            "description": "Clear fork strike and octave answer",
+            "duration": 0.7000000000000001,
+            "lowSemitone": -2,
+            "highSemitone": 10,
+            "partials": 3,
+            "id": "resonator"
+          }
+        },
+        "6": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "restock",
+              "peakLoudness": 734.4827651977539,
+              "positiveGain": true,
+              "phase": 0.32,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "restock",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "bass",
+            "notes": 3,
+            "description": "Restock mechanism thump and fill",
+            "partials": 3,
+            "attackCue": "restock",
+            "highSemitone": 2,
+            "duration": 0.52,
+            "id": "restock",
+            "lowSemitone": -17
+          }
+        },
+        "7": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "ricochet",
+              "peakLoudness": 718.5389399528503,
+              "positiveGain": true,
+              "phase": 0.22,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "ricochet",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "wood",
+            "notes": 3,
+            "description": "Hollow high-low bounce",
+            "duration": 0.4,
+            "lowSemitone": -2,
+            "highSemitone": 10,
+            "partials": 3,
+            "id": "ricochet"
+          }
+        },
+        "8": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "score",
+              "peakLoudness": 719.1759347915649,
+              "positiveGain": true,
+              "phase": 0.36,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "score",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "pluck",
+            "notes": 3,
+            "description": "Score counter plucks climbing fast",
+            "duration": 0.43000000000000005,
+            "lowSemitone": 2,
+            "highSemitone": 14,
+            "partials": 3,
+            "id": "score"
+          }
+        },
+        "9": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "seed_bank",
+              "peakLoudness": 719.9960947036743,
+              "positiveGain": true,
+              "phase": 0.38,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "seed_bank",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "wood",
+            "notes": 3,
+            "description": "Hollow seed clicks rising out of the bank",
+            "duration": 0.41000000000000003,
+            "lowSemitone": -5,
+            "highSemitone": 9,
+            "partials": 3,
+            "id": "seed_bank"
+          }
+        },
+        "10": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "soft_saw",
+              "peakLoudness": 727.1064519882202,
+              "positiveGain": true,
+              "phase": 0.3,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "soft_saw",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "air",
+            "notes": 3,
+            "description": "Soft descending current flutter",
+            "duration": 0.69,
+            "lowSemitone": -7,
+            "highSemitone": 0,
+            "partials": 3,
+            "id": "soft_saw"
+          }
+        },
+        "11": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "solar_leaf",
+              "peakLoudness": 716.6250944137573,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "solar_leaf",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "glass",
+            "notes": 3,
+            "description": "Sunlit leaf sparkle with a high fall",
+            "duration": 0.6499999999999999,
+            "lowSemitone": 9,
+            "highSemitone": 16,
+            "partials": 3,
+            "id": "solar_leaf"
+          }
+        },
+        "12": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "solar_treasury",
+              "peakLoudness": 715.6102657318115,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "solar_treasury",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "bell",
+            "notes": 4,
+            "description": "Gold treasury peal",
+            "partials": 3,
+            "attackCue": "coin",
+            "highSemitone": 17,
+            "duration": 0.88,
+            "id": "solar_treasury",
+            "lowSemitone": -2
+          }
+        },
+        "13": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "spectrum_reef",
+              "peakLoudness": 718.5595035552979,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "spectrum_reef",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "glass",
+            "notes": 4,
+            "description": "Prismatic cascading reef glass",
+            "duration": 0.75,
+            "lowSemitone": 0,
+            "highSemitone": 19,
+            "partials": 3,
+            "id": "spectrum_reef"
+          }
+        }
+      },
+      "last": 65,
+      "maximumPlaybackLoudness": 734.4827651977539,
+      "first": 53,
+      "elapsedSeconds": 8.532667800001946,
+      "failures": [],
+      "schema": 1,
+      "maximumLiveToneVoices": 9
+    },
+    "effectsAudio66": {
+      "assets": {
+        "rbxassetid://9119319842": "Success",
+        "rbxassetid://9119669074": "Success",
+        "rbxassetid://77129402344871": "Success",
+        "rbxassetid://9119642864": "Success",
+        "rbxassetid://127645268874265": "Success",
+        "rbxassetid://9114210044": "Success",
+        "rbxassetid://9126132550": "Success"
+      },
+      "checked": 13,
+      "loadedAssetFailures": [],
+      "passed": 13,
+      "maximumPendingNotes": 12,
+      "maximumTotalVolume": 0.050097686814517386,
+      "requested": 13,
+      "failed": 0,
+      "ok": true,
+      "cleanup": true,
+      "cancellation": "PASS pause/resume, mute and stale-cue suppression",
+      "scope": "Real asset loading, Sound.IsPlaying, advancing TimePosition, positive finite gain, bounded voices, cancellation and disposal. No recorded output or human-listening claim.",
+      "maximumLiveVoices": 9,
+      "unrun": [],
+      "items": {
+        "1": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "split_prism",
+              "peakLoudness": 716.6250944137573,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "split_prism",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "glass",
+            "notes": 3,
+            "description": "Three split glass rays",
+            "duration": 0.52,
+            "lowSemitone": 5,
+            "highSemitone": 12,
+            "partials": 3,
+            "id": "split_prism"
+          }
+        },
+        "2": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "spring_coil",
+              "peakLoudness": 741.5764927864075,
+              "positiveGain": true,
+              "phase": 0.3,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "spring_coil",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "bass",
+            "notes": 3,
+            "description": "Elastic low boing and recoil",
+            "duration": 0.47,
+            "lowSemitone": -20,
+            "highSemitone": -8,
+            "partials": 3,
+            "id": "spring_coil"
+          }
+        },
+        "3": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "storm_clock",
+              "peakLoudness": 732.1892380714417,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "storm_clock",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "electric",
+            "notes": 4,
+            "description": "Thunder-clock ticking voltage",
+            "duration": 0.64,
+            "lowSemitone": -12,
+            "highSemitone": 7,
+            "partials": 3,
+            "id": "storm_clock"
+          }
+        },
+        "4": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "stream_wheel",
+              "peakLoudness": 720.943033695221,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "stream_wheel",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "wood",
+            "notes": 4,
+            "description": "Wooden paddle clacks speeding up",
+            "duration": 0.42000000000000004,
+            "lowSemitone": 2,
+            "highSemitone": 14,
+            "partials": 3,
+            "id": "stream_wheel"
+          }
+        },
+        "5": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "sun_koi",
+              "peakLoudness": 718.4782028198242,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "sun_koi",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "pluck",
+            "notes": 4,
+            "description": "Koi leap with warm sun-string plucks",
+            "duration": 0.71,
+            "lowSemitone": 4,
+            "highSemitone": 16,
+            "partials": 3,
+            "id": "sun_koi"
+          }
+        },
+        "6": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "survey_lens",
+              "peakLoudness": 721.0211157798767,
+              "positiveGain": true,
+              "phase": 0.32,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "survey_lens",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "sonar",
+            "notes": 2,
+            "description": "High scan followed by a low return",
+            "duration": 0.45,
+            "lowSemitone": -4,
+            "highSemitone": 8,
+            "partials": 2,
+            "id": "survey_lens"
+          }
+        },
+        "7": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "tailwind",
+              "peakLoudness": 728.4299731254578,
+              "positiveGain": true,
+              "phase": 0.36,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "tailwind",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "air",
+            "notes": 3,
+            "description": "Gentle accelerating tailwind",
+            "duration": 0.78,
+            "lowSemitone": -5,
+            "highSemitone": 9,
+            "partials": 3,
+            "id": "tailwind"
+          }
+        },
+        "8": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "tap_driver",
+              "peakLoudness": 722.3609685897827,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "tap_driver",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "wood",
+            "notes": 2,
+            "description": "Dry double wooden knock",
+            "partials": 3,
+            "attackCue": "pop",
+            "highSemitone": -2,
+            "duration": 0.28500000000000003,
+            "id": "tap_driver",
+            "lowSemitone": -14
+          }
+        },
+        "9": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "tidal_engine",
+              "peakLoudness": 737.6173138618469,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "tidal_engine",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "bass",
+            "notes": 4,
+            "description": "Four heavy engine strokes",
+            "partials": 3,
+            "attackCue": "restock",
+            "highSemitone": -12,
+            "duration": 0.75,
+            "id": "tidal_engine",
+            "lowSemitone": -24
+          }
+        },
+        "10": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "tide_gyroscope",
+              "peakLoudness": 738.8014793395996,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "tide_gyroscope",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "reed",
+            "notes": 4,
+            "description": "Rotating low gyroscope hum",
+            "duration": 0.79,
+            "lowSemitone": -19,
+            "highSemitone": 0,
+            "partials": 3,
+            "id": "tide_gyroscope"
+          }
+        },
+        "11": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "tide_valve",
+              "peakLoudness": 739.672839641571,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "tide_valve",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "bass",
+            "notes": 3,
+            "description": "Pressure valve kick with a wet release",
+            "partials": 3,
+            "attackCue": "merge",
+            "highSemitone": -12,
+            "duration": 0.65,
+            "id": "tide_valve",
+            "lowSemitone": -24
+          }
+        },
+        "12": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "tuning_oil",
+              "peakLoudness": 727.0922064781189,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "tuning_oil",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "water",
+            "notes": 3,
+            "description": "Oil drop with a polished finish",
+            "duration": 0.53,
+            "lowSemitone": -9,
+            "highSemitone": 8,
+            "partials": 2,
+            "id": "tuning_oil"
+          }
+        },
+        "13": {
+          "ok": true,
+          "cues": {
+            "1": {
+              "id": "wall_meter",
+              "peakLoudness": 732.0346236228943,
+              "positiveGain": true,
+              "phase": 0.28,
+              "kind": "item",
+              "advancing": true,
+              "playing": true
+            }
+          },
+          "fired": 1,
+          "id": "wall_meter",
+          "observed": 1,
+          "scheduled": 1,
+          "instrument": {
+            "timbre": "metal",
+            "notes": 3,
+            "description": "Low metal wall counter",
+            "duration": 0.37,
+            "lowSemitone": -12,
+            "highSemitone": -5,
+            "partials": 3,
+            "id": "wall_meter"
+          }
+        }
+      },
+      "last": 78,
+      "maximumPlaybackLoudness": 741.5764927864075,
+      "first": 66,
+      "elapsedSeconds": 8.244855700002518,
+      "failures": [],
+      "schema": 1,
+      "maximumLiveToneVoices": 9
+    },
+    "effectsCatalogAudit": {
+      "checked": 78,
+      "phases": {
+        "1": 0,
+        "2": 0.0773,
+        "3": 0.2426,
+        "4": 0.28,
+        "5": 0.5,
+        "6": 0.67,
+        "7": 0.75,
+        "8": 1
+      },
+      "passed": 78,
+      "requested": 78,
+      "expected": 78,
+      "failed": 0,
+      "ok": true,
+      "scope": "Client asset loading, bounded motion, root transform, restoration and real geometry movement; visual quality and camera fit are separate checks.",
+      "strengths": {
+        "1": 1,
+        "2": 2
+      },
+      "unrun": [],
+      "items": {
+        "1": {
+          "movedGroups": {
+            "FishBody": true,
+            "EvolvedOrbit": true,
+            "Reeds": true,
+            "Bubbles": true,
+            "FishFin": true,
+            "FishTail": true
+          },
+          "duration": 1.6,
+          "maxPartDimension": 3.0012457370758057,
+          "preload": {
+            "ok": true,
+            "successful": 10,
+            "timedOut": false,
+            "callbacks": 10,
+            "failures": [],
+            "checkedMeshAssets": 10,
+            "failureCount": 0
+          },
+          "groups": {
+            "FishBody": 2,
+            "EvolvedOrbit": 1,
+            "Reeds": 2,
+            "Bubbles": 1,
+            "Fixed": 2,
+            "FishFin": 1,
+            "FishTail": 1
+          },
+          "parts": 10,
+          "ok": true,
+          "deterministic": true,
+          "id": "aurora_aquarium",
+          "profile": "aurora-aquarium-tidal-halo-parade",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 4.514472961425781,
+          "maxPositionMagnitude": 7.194951057434082,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 8,
+          "triangles": 2100
+        },
+        "2": {
+          "movedGroups": {
+            "KiteSpar": true,
+            "KiteSail": true,
+            "KiteRibbon": true
+          },
+          "duration": 1.56,
+          "maxPartDimension": 2.837336540222168,
+          "preload": {
+            "ok": true,
+            "successful": 4,
+            "timedOut": false,
+            "callbacks": 4,
+            "failures": [],
+            "checkedMeshAssets": 4,
+            "failureCount": 0
+          },
+          "groups": {
+            "KiteSail": 2,
+            "KiteSpar": 1,
+            "KiteRibbon": 1
+          },
+          "parts": 4,
+          "ok": true,
+          "deterministic": true,
+          "id": "aurora_kite",
+          "profile": "aurora-kite-looping-gust",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.528017520904541,
+          "maxPositionMagnitude": 6.5411601066589355,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 4,
+          "triangles": 100
+        },
+        "3": {
+          "movedGroups": {
+            "Pan": true,
+            "BalanceBeam": true
+          },
+          "duration": 1.28,
+          "maxPartDimension": 2.651278495788574,
+          "preload": {
+            "ok": true,
+            "successful": 8,
+            "timedOut": false,
+            "callbacks": 8,
+            "failures": [],
+            "checkedMeshAssets": 8,
+            "failureCount": 0
+          },
+          "groups": {
+            "Fixed": 3,
+            "Pan": 4,
+            "BalanceBeam": 1
+          },
+          "parts": 8,
+          "ok": true,
+          "deterministic": true,
+          "id": "balance_scale",
+          "profile": "pearl-tipping-point",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.553982973098755,
+          "maxPositionMagnitude": 6.428811550140381,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 5,
+          "triangles": 1352
+        },
+        "4": {
+          "movedGroups": {
+            "LumeStem": true,
+            "LumeCap": true,
+            "LumeFirefly": true
+          },
+          "duration": 1.36,
+          "maxPartDimension": 2.3116488456726074,
+          "preload": {
+            "ok": true,
+            "successful": 6,
+            "timedOut": false,
+            "callbacks": 6,
+            "failures": [],
+            "checkedMeshAssets": 6,
+            "failureCount": 0
+          },
+          "groups": {
+            "LumeStem": 1,
+            "Fixed": 3,
+            "LumeCap": 1,
+            "LumeFirefly": 1
+          },
+          "parts": 6,
+          "ok": true,
+          "deterministic": true,
+          "id": "biolume_jar",
+          "profile": "biolume-jar-firefly-awakening",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 2.8223023414611816,
+          "maxPositionMagnitude": 6.174822807312012,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 3,
+          "triangles": 1868
+        },
+        "5": {
+          "movedGroups": {
+            "EvolvedPiston": true,
+            "EvolvedCore": true,
+            "Bubbles": true
+          },
+          "duration": 1.32,
+          "maxPartDimension": 2.580864667892456,
+          "preload": {
+            "ok": true,
+            "successful": 7,
+            "timedOut": false,
+            "callbacks": 7,
+            "failures": [],
+            "checkedMeshAssets": 7,
+            "failureCount": 0
+          },
+          "groups": {
+            "Bubbles": 1,
+            "Fixed": 3,
+            "EvolvedCore": 1,
+            "EvolvedPiston": 2
+          },
+          "parts": 7,
+          "ok": true,
+          "deterministic": true,
+          "id": "bubble_reactor",
+          "profile": "bubble-reactor-pressure-cork-pop",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 2.9940361976623535,
+          "maxPositionMagnitude": 6.356897830963135,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 4,
+          "triangles": 2140
+        },
+        "6": {
+          "movedGroups": {
+            "WandBubble": true,
+            "WandLoop": true,
+            "WandStem": true
+          },
+          "duration": 1.46,
+          "maxPartDimension": 2.1151626110076904,
+          "preload": {
+            "ok": true,
+            "successful": 4,
+            "timedOut": false,
+            "callbacks": 4,
+            "failures": [],
+            "checkedMeshAssets": 4,
+            "failureCount": 0
+          },
+          "groups": {
+            "WandBubble": 1,
+            "WandLoop": 1,
+            "WandStem": 2
+          },
+          "parts": 4,
+          "ok": true,
+          "deterministic": true,
+          "id": "bubble_wand",
+          "profile": "bubble-wand-twirl-together-pop",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 4.1252617835998535,
+          "maxPositionMagnitude": 6.858344078063965,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 4,
+          "triangles": 976
+        },
+        "7": {
+          "movedGroups": {
+            "BurstCap": true,
+            "Fins": true
+          },
+          "duration": 1.5,
+          "maxPartDimension": 1.8254027366638184,
+          "preload": {
+            "ok": true,
+            "successful": 6,
+            "timedOut": false,
+            "callbacks": 6,
+            "failures": [],
+            "checkedMeshAssets": 6,
+            "failureCount": 0
+          },
+          "groups": {
+            "Fixed": 2,
+            "BurstCap": 2,
+            "Fins": 2
+          },
+          "parts": 6,
+          "ok": true,
+          "deterministic": true,
+          "id": "burst_capsule",
+          "profile": "capsule-lift-off-reseal",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 4.901468276977539,
+          "maxPositionMagnitude": 7.374601364135742,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 4,
+          "triangles": 2100
+        },
+        "8": {
+          "movedGroups": {
+            "ChestTreasure": true,
+            "ChestLid": true,
+            "ChestClasp": true
+          },
+          "duration": 3.4,
+          "maxPartDimension": 3.271608591079712,
+          "preload": {
+            "ok": true,
+            "successful": 10,
+            "timedOut": false,
+            "callbacks": 10,
+            "failures": [],
+            "checkedMeshAssets": 10,
+            "failureCount": 0
+          },
+          "groups": {
+            "ChestClasp": 2,
+            "Fixed": 4,
+            "ChestLid": 3,
+            "ChestTreasure": 1
+          },
+          "parts": 10,
+          "ok": true,
+          "deterministic": true,
+          "id": "chest_common",
+          "profile": "meadow-rattle-bouquet-boom",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 4.262783050537109,
+          "maxPositionMagnitude": 7.745507717132568,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 6,
+          "triangles": 3168
+        },
+        "9": {
+          "movedGroups": {
+            "ChestLid": true,
+            "ChestTreasure": true,
+            "ChestClasp": true,
+            "ChestOrbit": true
+          },
+          "duration": 4.2,
+          "maxPartDimension": 4.119190216064453,
+          "preload": {
+            "ok": true,
+            "successful": 11,
+            "timedOut": false,
+            "callbacks": 11,
+            "failures": [],
+            "checkedMeshAssets": 11,
+            "failureCount": 0
+          },
+          "groups": {
+            "ChestOrbit": 1,
+            "ChestLid": 2,
+            "Fixed": 4,
+            "ChestClasp": 1,
+            "ChestTreasure": 3
+          },
+          "parts": 11,
+          "ok": true,
+          "deterministic": true,
+          "id": "chest_legendary",
+          "profile": "celestial-supernova-coronation",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 5.611452102661133,
+          "maxPositionMagnitude": 8.059271812438965,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 7,
+          "triangles": 3468
+        },
+        "10": {
+          "movedGroups": {
+            "ChestTreasure": true,
+            "ChestClasp": true,
+            "ChestLid": true
+          },
+          "duration": 3.9,
+          "maxPartDimension": 3.241335153579712,
+          "preload": {
+            "ok": true,
+            "successful": 11,
+            "timedOut": false,
+            "callbacks": 11,
+            "failures": [],
+            "checkedMeshAssets": 11,
+            "failureCount": 0
+          },
+          "groups": {
+            "ChestLid": 3,
+            "ChestTreasure": 3,
+            "ChestClasp": 1,
+            "Fixed": 4
+          },
+          "parts": 11,
+          "ok": true,
+          "deterministic": true,
+          "id": "chest_rare",
+          "profile": "aurora-lockdown-eruption",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 4.466316223144531,
+          "maxPositionMagnitude": 7.995177745819092,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 7,
+          "triangles": 2592
+        },
+        "11": {
+          "movedGroups": {
+            "ChestTreasure": true,
+            "ChestClasp": true,
+            "ChestLid": true
+          },
+          "duration": 3.6,
+          "maxPartDimension": 2.9547066688537598,
+          "preload": {
+            "ok": true,
+            "successful": 11,
+            "timedOut": false,
+            "callbacks": 11,
+            "failures": [],
+            "checkedMeshAssets": 11,
+            "failureCount": 0
+          },
+          "groups": {
+            "ChestClasp": 1,
+            "Fixed": 5,
+            "ChestLid": 2,
+            "ChestTreasure": 3
+          },
+          "parts": 11,
+          "ok": true,
+          "deterministic": true,
+          "id": "chest_uncommon",
+          "profile": "lagoon-pressure-wave-burst",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 4.462892532348633,
+          "maxPositionMagnitude": 7.750072956085205,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 6,
+          "triangles": 2984
+        },
+        "12": {
+          "movedGroups": {
+            "MinuteHand": true,
+            "RightGear": true,
+            "HourHand": true,
+            "LeftGear": true
+          },
+          "duration": 1.38,
+          "maxPartDimension": 3.0053815841674805,
+          "preload": {
+            "ok": true,
+            "successful": 7,
+            "timedOut": false,
+            "callbacks": 7,
+            "failures": [],
+            "checkedMeshAssets": 7,
+            "failureCount": 0
+          },
+          "groups": {
+            "RightGear": 1,
+            "MinuteHand": 1,
+            "Fixed": 3,
+            "HourHand": 1,
+            "LeftGear": 1
+          },
+          "parts": 7,
+          "ok": true,
+          "deterministic": true,
+          "id": "clockwork",
+          "profile": "tide-clock-overdrive",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.804427146911621,
+          "maxPositionMagnitude": 5.9834208488464355,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 4,
+          "triangles": 3100
+        },
+        "13": {
+          "movedGroups": {
+            "CloudGlass": true,
+            "CloudFrame": true,
+            "CloudGlint": true,
+            "CloudRain": true
+          },
+          "duration": 1.34,
+          "maxPartDimension": 2.39876651763916,
+          "preload": {
+            "ok": true,
+            "successful": 5,
+            "timedOut": false,
+            "callbacks": 5,
+            "failures": [],
+            "checkedMeshAssets": 5,
+            "failureCount": 0
+          },
+          "groups": {
+            "CloudGlass": 1,
+            "CloudGlint": 1,
+            "Fixed": 1,
+            "CloudFrame": 1,
+            "CloudRain": 1
+          },
+          "parts": 5,
+          "ok": true,
+          "deterministic": true,
+          "id": "cloud_mirror",
+          "profile": "cloud-mirror-reflection-reveal",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.1781840324401855,
+          "maxPositionMagnitude": 6.846963405609131,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 4,
+          "triangles": 1568
+        },
+        "14": {
+          "movedGroups": {
+            "Coin": true
+          },
+          "duration": 1.1,
+          "maxPartDimension": 2.1440258026123047,
+          "preload": {
+            "ok": true,
+            "successful": 3,
+            "timedOut": false,
+            "callbacks": 3,
+            "failures": [],
+            "checkedMeshAssets": 3,
+            "failureCount": 0
+          },
+          "groups": {
+            "Coin": 3
+          },
+          "parts": 3,
+          "ok": true,
+          "deterministic": true,
+          "id": "coin",
+          "profile": "coin-double-flip-catch",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 2.3781094551086426,
+          "maxPositionMagnitude": 5.722751140594482,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 3,
+          "triangles": 1296
+        },
+        "15": {
+          "movedGroups": {
+            "Crank": true,
+            "MintCoin": true,
+            "PressScrew": true
+          },
+          "duration": 1.65,
+          "maxPartDimension": 3.4296066761016846,
+          "preload": {
+            "ok": true,
+            "successful": 8,
+            "timedOut": false,
+            "callbacks": 8,
+            "failures": [],
+            "checkedMeshAssets": 8,
+            "failureCount": 0
+          },
+          "groups": {
+            "Crank": 1,
+            "MintCoin": 2,
+            "PressScrew": 2,
+            "Fixed": 3
+          },
+          "parts": 8,
+          "ok": true,
+          "deterministic": true,
+          "id": "coin_press",
+          "profile": "mint-crank-contact-squash",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.8609509468078613,
+          "maxPositionMagnitude": 6.642593860626221,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 5,
+          "triangles": 3368
+        },
+        "16": {
+          "movedGroups": {
+            "Needle": true
+          },
+          "duration": 1.3,
+          "maxPartDimension": 2.646986722946167,
+          "preload": {
+            "ok": true,
+            "successful": 5,
+            "timedOut": false,
+            "callbacks": 5,
+            "failures": [],
+            "checkedMeshAssets": 5,
+            "failureCount": 0
+          },
+          "groups": {
+            "Needle": 2,
+            "Fixed": 3
+          },
+          "parts": 5,
+          "ok": true,
+          "deterministic": true,
+          "id": "compass",
+          "profile": "compass-north-flourish",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 2.8379411697387695,
+          "maxPositionMagnitude": 5.8576579093933105,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 2,
+          "triangles": 2308
+        },
+        "17": {
+          "movedGroups": {
+            "CoralCrown": true,
+            "CoralTip": true,
+            "CoralTine": true
+          },
+          "duration": 1.25,
+          "maxPartDimension": 1.7807714939117432,
+          "preload": {
+            "ok": true,
+            "successful": 7,
+            "timedOut": false,
+            "callbacks": 7,
+            "failures": [],
+            "checkedMeshAssets": 7,
+            "failureCount": 0
+          },
+          "groups": {
+            "CoralCrown": 1,
+            "CoralTine": 2,
+            "Fixed": 2,
+            "CoralTip": 2
+          },
+          "parts": 7,
+          "ok": true,
+          "deterministic": true,
+          "id": "coral_fork",
+          "profile": "coral-spark-conductive-strike",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 2.324179172515869,
+          "maxPositionMagnitude": 6.45758581161499,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 5,
+          "triangles": 844
+        },
+        "18": {
+          "movedGroups": {
+            "EvolvedPiston": true,
+            "EvolvedOrbit": true,
+            "EvolvedCore": true
+          },
+          "duration": 1.24,
+          "maxPartDimension": 2.7727339267730713,
+          "preload": {
+            "ok": true,
+            "successful": 7,
+            "timedOut": false,
+            "callbacks": 7,
+            "failures": [],
+            "checkedMeshAssets": 7,
+            "failureCount": 0
+          },
+          "groups": {
+            "EvolvedPiston": 2,
+            "Fixed": 2,
+            "EvolvedCore": 2,
+            "EvolvedOrbit": 1
+          },
+          "parts": 7,
+          "ok": true,
+          "deterministic": true,
+          "id": "current_nexus",
+          "profile": "current-nexus-contact-snap-broadcast",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.1515798568725586,
+          "maxPositionMagnitude": 5.730586528778076,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 5,
+          "triangles": 2100
+        },
+        "19": {
+          "movedGroups": {
+            "LanternDrop": true,
+            "LanternMote": true
+          },
+          "duration": 1.6,
+          "maxPartDimension": 1.820312738418579,
+          "preload": {
+            "ok": true,
+            "successful": 5,
+            "timedOut": false,
+            "callbacks": 5,
+            "failures": [],
+            "checkedMeshAssets": 5,
+            "failureCount": 0
+          },
+          "groups": {
+            "LanternMote": 1,
+            "Fixed": 3,
+            "LanternDrop": 1
+          },
+          "parts": 5,
+          "ok": true,
+          "deterministic": true,
+          "id": "dew_lantern",
+          "profile": "dew-lantern-warm-switch-on",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 2.8805763721466064,
+          "maxPositionMagnitude": 6.070312976837158,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 2,
+          "triangles": 1580
+        },
+        "20": {
+          "movedGroups": {
+            "Pearl": true,
+            "ShellRibs": true
+          },
+          "duration": 1.12,
+          "maxPartDimension": 2.855937957763672,
+          "preload": {
+            "ok": true,
+            "successful": 4,
+            "timedOut": false,
+            "callbacks": 4,
+            "failures": [],
+            "checkedMeshAssets": 4,
+            "failureCount": 0
+          },
+          "groups": {
+            "Fixed": 1,
+            "ShellRibs": 2,
+            "Pearl": 1
+          },
+          "parts": 4,
+          "ok": true,
+          "deterministic": true,
+          "id": "echo_plate",
+          "profile": "echo-shell-sonic-bloom",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.073711633682251,
+          "maxPositionMagnitude": 5.990215301513672,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 3,
+          "triangles": 728
+        },
+        "21": {
+          "movedGroups": {
+            "EvolvedCore": true,
+            "EvolvedSprout": true
+          },
+          "duration": 1.52,
+          "maxPartDimension": 3.365410566329956,
+          "preload": {
+            "ok": true,
+            "successful": 6,
+            "timedOut": false,
+            "callbacks": 6,
+            "failures": [],
+            "checkedMeshAssets": 6,
+            "failureCount": 0
+          },
+          "groups": {
+            "EvolvedSprout": 1,
+            "EvolvedCore": 1,
+            "Fixed": 4
+          },
+          "parts": 6,
+          "ok": true,
+          "deterministic": true,
+          "id": "eden_greenhouse",
+          "profile": "eden-greenhouse-three-stage-sprouting",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.7394511699676514,
+          "maxPositionMagnitude": 6.072973251342773,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 2,
+          "triangles": 1084
+        },
+        "22": {
+          "movedGroups": {
+            "Horn": true
+          },
+          "duration": 1.55,
+          "maxPartDimension": 2.1731698513031006,
+          "preload": {
+            "ok": true,
+            "successful": 8,
+            "timedOut": false,
+            "callbacks": 8,
+            "failures": [],
+            "checkedMeshAssets": 8,
+            "failureCount": 0
+          },
+          "groups": {
+            "Horn": 6,
+            "Fixed": 2
+          },
+          "parts": 8,
+          "ok": true,
+          "deterministic": true,
+          "id": "encore",
+          "profile": "ocean-chorus-cone-echo",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 2.6372599601745605,
+          "maxPositionMagnitude": 6.214350700378418,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 6,
+          "triangles": 2692
+        },
+        "23": {
+          "movedGroups": {
+            "EventSprout": true
+          },
+          "duration": 1.23,
+          "maxPartDimension": 1.649837851524353,
+          "preload": {
+            "ok": true,
+            "successful": 4,
+            "timedOut": false,
+            "callbacks": 4,
+            "failures": [],
+            "checkedMeshAssets": 4,
+            "failureCount": 0
+          },
+          "groups": {
+            "Fixed": 2,
+            "EventSprout": 2
+          },
+          "parts": 4,
+          "ok": true,
+          "deterministic": true,
+          "id": "event_growth",
+          "profile": "sprout-jack-in-the-pot",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 2.3508148193359375,
+          "maxPositionMagnitude": 5.78500509262085,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 2,
+          "triangles": 748
+        },
+        "24": {
+          "movedGroups": {
+            "EventStream": true,
+            "EventSand": true
+          },
+          "duration": 1.4,
+          "maxPartDimension": 2.2898430824279785,
+          "preload": {
+            "ok": true,
+            "successful": 6,
+            "timedOut": false,
+            "callbacks": 6,
+            "failures": [],
+            "checkedMeshAssets": 6,
+            "failureCount": 0
+          },
+          "groups": {
+            "EventStream": 1,
+            "Fixed": 4,
+            "EventSand": 1
+          },
+          "parts": 6,
+          "ok": true,
+          "deterministic": true,
+          "id": "event_overtime",
+          "profile": "hourglass-somersault-reset",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 2.9403958320617676,
+          "maxPositionMagnitude": 5.841214179992676,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 2,
+          "triangles": 1036
+        },
+        "25": {
+          "movedGroups": {
+            "EventCross": true
+          },
+          "duration": 1.03,
+          "maxPartDimension": 1.8996188640594482,
+          "preload": {
+            "ok": true,
+            "successful": 3,
+            "timedOut": false,
+            "callbacks": 3,
+            "failures": [],
+            "checkedMeshAssets": 3,
+            "failureCount": 0
+          },
+          "groups": {
+            "EventCross": 1,
+            "Fixed": 2
+          },
+          "parts": 3,
+          "ok": true,
+          "deterministic": true,
+          "id": "event_repair",
+          "profile": "repair-heartbeat-defibrillation",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 2.2586021423339844,
+          "maxPositionMagnitude": 5.438017845153809,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 1,
+          "triangles": 608
+        },
+        "26": {
+          "movedGroups": {
+            "EventArrow": true
+          },
+          "duration": 1.17,
+          "maxPartDimension": 2.2944445610046387,
+          "preload": {
+            "ok": true,
+            "successful": 4,
+            "timedOut": false,
+            "callbacks": 4,
+            "failures": [],
+            "checkedMeshAssets": 4,
+            "failureCount": 0
+          },
+          "groups": {
+            "EventArrow": 3,
+            "Fixed": 1
+          },
+          "parts": 4,
+          "ok": true,
+          "deterministic": true,
+          "id": "event_upgrade",
+          "profile": "upgrade-chevron-launch",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.0582761764526367,
+          "maxPositionMagnitude": 6.141286849975586,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 3,
+          "triangles": 684
+        },
+        "27": {
+          "movedGroups": {
+            "Spark": true
+          },
+          "duration": 0.92,
+          "maxPartDimension": 1.9544178247451782,
+          "preload": {
+            "ok": true,
+            "successful": 4,
+            "timedOut": false,
+            "callbacks": 4,
+            "failures": [],
+            "checkedMeshAssets": 4,
+            "failureCount": 0
+          },
+          "groups": {
+            "Spark": 1,
+            "Fixed": 3
+          },
+          "parts": 4,
+          "ok": true,
+          "deterministic": true,
+          "id": "first_spark",
+          "profile": "battery-crackle-kick",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 2.6519064903259277,
+          "maxPositionMagnitude": 5.424715518951416,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 1,
+          "triangles": 1200
+        },
+        "28": {
+          "movedGroups": {
+            "Water": true,
+            "Waterline": true,
+            "Reeds": true,
+            "FishTail": true,
+            "FishFin": true,
+            "FishBody": true
+          },
+          "duration": 1.22,
+          "maxPartDimension": 2.473778486251831,
+          "preload": {
+            "ok": true,
+            "successful": 8,
+            "timedOut": false,
+            "callbacks": 8,
+            "failures": [],
+            "checkedMeshAssets": 8,
+            "failureCount": 0
+          },
+          "groups": {
+            "FishBody": 2,
+            "Waterline": 1,
+            "Reeds": 1,
+            "FishTail": 1,
+            "Fixed": 1,
+            "FishFin": 1,
+            "Water": 1
+          },
+          "parts": 8,
+          "ok": true,
+          "deterministic": true,
+          "id": "fishbowl",
+          "profile": "fishbowl-slush-and-hop",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.5116488933563232,
+          "maxPositionMagnitude": 6.118011951446533,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 7,
+          "triangles": 1916
+        },
+        "29": {
+          "movedGroups": {
+            "Knob": true
+          },
+          "duration": 1.02,
+          "maxPartDimension": 3.046067714691162,
+          "preload": {
+            "ok": true,
+            "successful": 5,
+            "timedOut": false,
+            "callbacks": 5,
+            "failures": [],
+            "checkedMeshAssets": 5,
+            "failureCount": 0
+          },
+          "groups": {
+            "Knob": 2,
+            "Fixed": 3
+          },
+          "parts": 5,
+          "ok": true,
+          "deterministic": true,
+          "id": "gain_dial",
+          "profile": "gain-crank-kick",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.320335865020752,
+          "maxPositionMagnitude": 5.664656639099121,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 2,
+          "triangles": 2208
+        },
+        "30": {
+          "movedGroups": {
+            "FishBody": true,
+            "FishTail": true,
+            "FishFin": true,
+            "Bubbles": true
+          },
+          "duration": 1.32,
+          "maxPartDimension": 1.8116633892059326,
+          "preload": {
+            "ok": true,
+            "successful": 5,
+            "timedOut": false,
+            "callbacks": 5,
+            "failures": [],
+            "checkedMeshAssets": 5,
+            "failureCount": 0
+          },
+          "groups": {
+            "FishTail": 1,
+            "Bubbles": 1,
+            "FishFin": 1,
+            "FishBody": 2
+          },
+          "parts": 5,
+          "ok": true,
+          "deterministic": true,
+          "id": "goldfish",
+          "profile": "goldfish-breach-and-barrel-roll",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 4.273561477661133,
+          "maxPositionMagnitude": 6.696835994720459,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 5,
+          "triangles": 1208
+        },
+        "31": {
+          "movedGroups": {
+            "Coral": true
+          },
+          "duration": 1.34,
+          "maxPartDimension": 3.5505621433258057,
+          "preload": {
+            "ok": true,
+            "successful": 7,
+            "timedOut": false,
+            "callbacks": 7,
+            "failures": [],
+            "checkedMeshAssets": 7,
+            "failureCount": 0
+          },
+          "groups": {
+            "Coral": 4,
+            "Fixed": 3
+          },
+          "parts": 7,
+          "ok": true,
+          "deterministic": true,
+          "id": "growth_array",
+          "profile": "coral-wave-bloom",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 4.209505081176758,
+          "maxPositionMagnitude": 6.485238075256348,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 4,
+          "triangles": 1680
+        },
+        "32": {
+          "movedGroups": {
+            "Orbit": true
+          },
+          "duration": 1.28,
+          "maxPartDimension": 2.434603452682495,
+          "preload": {
+            "ok": true,
+            "successful": 5,
+            "timedOut": false,
+            "callbacks": 5,
+            "failures": [],
+            "checkedMeshAssets": 5,
+            "failureCount": 0
+          },
+          "groups": {
+            "Orbit": 2,
+            "Fixed": 3
+          },
+          "parts": 5,
+          "ok": true,
+          "deterministic": true,
+          "id": "growth_ring",
+          "profile": "seed-orbit-bloom",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.2769298553466797,
+          "maxPositionMagnitude": 5.706046104431152,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 2,
+          "triangles": 1884
+        },
+        "33": {
+          "movedGroups": {
+            "EvolvedNeedle": true,
+            "EvolvedOrbit": true,
+            "EvolvedLens": true
+          },
+          "duration": 1.64,
+          "maxPartDimension": 2.231142282485962,
+          "preload": {
+            "ok": true,
+            "successful": 7,
+            "timedOut": false,
+            "callbacks": 7,
+            "failures": [],
+            "checkedMeshAssets": 7,
+            "failureCount": 0
+          },
+          "groups": {
+            "EvolvedNeedle": 1,
+            "EvolvedOrbit": 1,
+            "Fixed": 2,
+            "EvolvedLens": 3
+          },
+          "parts": 7,
+          "ok": true,
+          "deterministic": true,
+          "id": "horizon_observatory",
+          "profile": "horizon-observatory-orbital-survey",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.3913352489471436,
+          "maxPositionMagnitude": 7.0587849617004395,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 5,
+          "triangles": 1580
+        },
+        "34": {
+          "movedGroups": {
+            "ShufflePeg": true
+          },
+          "duration": 1.26,
+          "maxPartDimension": 2.3470098972320557,
+          "preload": {
+            "ok": true,
+            "successful": 4,
+            "timedOut": false,
+            "callbacks": 4,
+            "failures": [],
+            "checkedMeshAssets": 4,
+            "failureCount": 0
+          },
+          "groups": {
+            "ShufflePeg": 3,
+            "Fixed": 1
+          },
+          "parts": 4,
+          "ok": true,
+          "deterministic": true,
+          "id": "jumble",
+          "profile": "shuffle-orbital-mix",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 2.9251763820648193,
+          "maxPositionMagnitude": 6.709696292877197,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 3,
+          "triangles": 696
+        },
+        "35": {
+          "movedGroups": {
+            "SynthKey": true
+          },
+          "duration": 1.8,
+          "maxPartDimension": 1.9200000762939453,
+          "preload": {
+            "ok": true,
+            "successful": 6,
+            "timedOut": false,
+            "callbacks": 6,
+            "failures": [],
+            "checkedMeshAssets": 6,
+            "failureCount": 0
+          },
+          "groups": {
+            "SynthKey": 3,
+            "Fixed": 3
+          },
+          "parts": 6,
+          "ok": true,
+          "deterministic": true,
+          "id": "lagoon_synth",
+          "profile": "lagoon-synth-travelling-phase",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 2.180008888244629,
+          "maxPositionMagnitude": 5.688866138458252,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 3,
+          "triangles": 1132
+        },
+        "36": {
+          "movedGroups": {
+            "CatchCoin": true,
+            "ShellLid": true
+          },
+          "duration": 1.45,
+          "maxPartDimension": 2.3590359687805176,
+          "preload": {
+            "ok": true,
+            "successful": 8,
+            "timedOut": false,
+            "callbacks": 8,
+            "failures": [],
+            "checkedMeshAssets": 8,
+            "failureCount": 0
+          },
+          "groups": {
+            "ShellLid": 3,
+            "CatchCoin": 2,
+            "Fixed": 3
+          },
+          "parts": 8,
+          "ok": true,
+          "deterministic": true,
+          "id": "landing_fund",
+          "profile": "landing-shell-pearl-polish",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 2.779773473739624,
+          "maxPositionMagnitude": 6.233978271484375,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 5,
+          "triangles": 1818
+        },
+        "37": {
+          "movedGroups": {
+            "Quote": true
+          },
+          "duration": 1.13,
+          "maxPartDimension": 2.0562503337860107,
+          "preload": {
+            "ok": true,
+            "successful": 5,
+            "timedOut": false,
+            "callbacks": 5,
+            "failures": [],
+            "checkedMeshAssets": 5,
+            "failureCount": 0
+          },
+          "groups": {
+            "Quote": 2,
+            "Fixed": 3
+          },
+          "parts": 5,
+          "ok": true,
+          "deterministic": true,
+          "id": "last_word",
+          "profile": "quotation-double-stamp",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 2.805360794067383,
+          "maxPositionMagnitude": 5.8178019523620605,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 2,
+          "triangles": 1420
+        },
+        "38": {
+          "movedGroups": {
+            "Ball": true
+          },
+          "duration": 0.98,
+          "maxPartDimension": 1.963395357131958,
+          "preload": {
+            "ok": true,
+            "successful": 1,
+            "timedOut": false,
+            "callbacks": 1,
+            "failures": [],
+            "checkedMeshAssets": 1,
+            "failureCount": 0
+          },
+          "groups": {
+            "Ball": 1
+          },
+          "parts": 1,
+          "ok": true,
+          "deterministic": true,
+          "id": "life",
+          "profile": "ball-superbounce",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 2.6586151123046875,
+          "maxPositionMagnitude": 5.598404884338379,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 1,
+          "triangles": 960
+        },
+        "39": {
+          "movedGroups": {
+            "LilyPad": true,
+            "LilyHeart": true,
+            "LilyDew": true,
+            "LilyPetal": true
+          },
+          "duration": 1.6,
+          "maxPartDimension": 2.129591941833496,
+          "preload": {
+            "ok": true,
+            "successful": 7,
+            "timedOut": false,
+            "callbacks": 7,
+            "failures": [],
+            "checkedMeshAssets": 7,
+            "failureCount": 0
+          },
+          "groups": {
+            "LilyPad": 4,
+            "LilyHeart": 1,
+            "LilyDew": 1,
+            "LilyPetal": 1
+          },
+          "parts": 7,
+          "ok": true,
+          "deterministic": true,
+          "id": "lily_pad",
+          "profile": "lily-pad-front-bloom",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 2.776937961578369,
+          "maxPositionMagnitude": 6.272836685180664,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 7,
+          "triangles": 784
+        },
+        "40": {
+          "movedGroups": {
+            "Shackle": true
+          },
+          "duration": 1.16,
+          "maxPartDimension": 1.760484218597412,
+          "preload": {
+            "ok": true,
+            "successful": 4,
+            "timedOut": false,
+            "callbacks": 4,
+            "failures": [],
+            "checkedMeshAssets": 4,
+            "failureCount": 0
+          },
+          "groups": {
+            "Shackle": 1,
+            "Fixed": 3
+          },
+          "parts": 4,
+          "ok": true,
+          "deterministic": true,
+          "id": "lock",
+          "profile": "lock-click-flourish",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.354973793029785,
+          "maxPositionMagnitude": 6.360891342163086,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 1,
+          "triangles": 812
+        },
+        "41": {
+          "movedGroups": {
+            "Pendulum": true
+          },
+          "duration": 1.3,
+          "maxPartDimension": 2.457376718521118,
+          "preload": {
+            "ok": true,
+            "successful": 6,
+            "timedOut": false,
+            "callbacks": 6,
+            "failures": [],
+            "checkedMeshAssets": 6,
+            "failureCount": 0
+          },
+          "groups": {
+            "Pendulum": 2,
+            "Fixed": 4
+          },
+          "parts": 6,
+          "ok": true,
+          "deterministic": true,
+          "id": "metronome",
+          "profile": "pendulum-whip-cadence",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 2.6888341903686523,
+          "maxPositionMagnitude": 5.911299705505371,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 2,
+          "triangles": 1224
+        },
+        "42": {
+          "movedGroups": {
+            "Flag": true,
+            "Step": true
+          },
+          "duration": 1.34,
+          "maxPartDimension": 1.9149096012115479,
+          "preload": {
+            "ok": true,
+            "successful": 7,
+            "timedOut": false,
+            "callbacks": 7,
+            "failures": [],
+            "checkedMeshAssets": 7,
+            "failureCount": 0
+          },
+          "groups": {
+            "Flag": 2,
+            "Fixed": 2,
+            "Step": 3
+          },
+          "parts": 7,
+          "ok": true,
+          "deterministic": true,
+          "id": "milestone",
+          "profile": "three-step-flag-fanfare",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 2.7968008518218994,
+          "maxPositionMagnitude": 6.5134782791137695,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 5,
+          "triangles": 1172
+        },
+        "43": {
+          "movedGroups": {
+            "PaperRotor": true
+          },
+          "duration": 1.45,
+          "maxPartDimension": 1.7206013202667236,
+          "preload": {
+            "ok": true,
+            "successful": 7,
+            "timedOut": false,
+            "callbacks": 7,
+            "failures": [],
+            "checkedMeshAssets": 7,
+            "failureCount": 0
+          },
+          "groups": {
+            "Fixed": 3,
+            "PaperRotor": 4
+          },
+          "parts": 7,
+          "ok": true,
+          "deterministic": true,
+          "id": "mist_fan",
+          "profile": "breeze-fan-paper-gust",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 2.7560033798217773,
+          "maxPositionMagnitude": 5.767136573791504,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 4,
+          "triangles": 706
+        },
+        "44": {
+          "movedGroups": {
+            "LoomThread": true,
+            "LoomRain": true,
+            "LoomWeave": true,
+            "LoomShuttle": true
+          },
+          "duration": 1.32,
+          "maxPartDimension": 2.862807035446167,
+          "preload": {
+            "ok": true,
+            "successful": 6,
+            "timedOut": false,
+            "callbacks": 6,
+            "failures": [],
+            "checkedMeshAssets": 6,
+            "failureCount": 0
+          },
+          "groups": {
+            "LoomShuttle": 1,
+            "LoomRain": 1,
+            "Fixed": 2,
+            "LoomWeave": 1,
+            "LoomThread": 1
+          },
+          "parts": 6,
+          "ok": true,
+          "deterministic": true,
+          "id": "monsoon_loom",
+          "profile": "monsoon-loom-shuttle-storm",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.061814069747925,
+          "maxPositionMagnitude": 5.986278533935547,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 4,
+          "triangles": 1416
+        },
+        "45": {
+          "movedGroups": {
+            "MossBridge": true,
+            "MossCharge": true
+          },
+          "duration": 1.12,
+          "maxPartDimension": 2.3065402507781982,
+          "preload": {
+            "ok": true,
+            "successful": 5,
+            "timedOut": false,
+            "callbacks": 5,
+            "failures": [],
+            "checkedMeshAssets": 5,
+            "failureCount": 0
+          },
+          "groups": {
+            "Fixed": 3,
+            "MossBridge": 1,
+            "MossCharge": 1
+          },
+          "parts": 5,
+          "ok": true,
+          "deterministic": true,
+          "id": "moss_capacitor",
+          "profile": "moss-capacitor-charge-discharge",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.039658546447754,
+          "maxPositionMagnitude": 6.325877666473389,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 2,
+          "triangles": 1088
+        },
+        "46": {
+          "movedGroups": {
+            "PumpStem": true,
+            "PumpHandle": true,
+            "NectarLiquid": true,
+            "NectarDrop": true
+          },
+          "duration": 1.08,
+          "maxPartDimension": 1.885353446006775,
+          "preload": {
+            "ok": true,
+            "successful": 6,
+            "timedOut": false,
+            "callbacks": 6,
+            "failures": [],
+            "checkedMeshAssets": 6,
+            "failureCount": 0
+          },
+          "groups": {
+            "PumpHandle": 1,
+            "NectarDrop": 1,
+            "PumpStem": 1,
+            "Fixed": 2,
+            "NectarLiquid": 1
+          },
+          "parts": 6,
+          "ok": true,
+          "deterministic": true,
+          "id": "nectar_pump",
+          "profile": "nectar-pump-double-squirt",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 2.366760492324829,
+          "maxPositionMagnitude": 6.068950653076172,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 4,
+          "triangles": 968
+        },
+        "47": {
+          "movedGroups": {
+            "EvolvedFork": true,
+            "EvolvedShell": true,
+            "EvolvedHorn": true
+          },
+          "duration": 1.48,
+          "maxPartDimension": 2.5300230979919434,
+          "preload": {
+            "ok": true,
+            "successful": 12,
+            "timedOut": false,
+            "callbacks": 12,
+            "failures": [],
+            "checkedMeshAssets": 12,
+            "failureCount": 0
+          },
+          "groups": {
+            "EvolvedFork": 2,
+            "Fixed": 2,
+            "EvolvedShell": 2,
+            "EvolvedHorn": 6
+          },
+          "parts": 12,
+          "ok": true,
+          "deterministic": true,
+          "id": "ocean_orchestra",
+          "profile": "ocean-orchestra-brass-and-shell-fanfare",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 2.975792646408081,
+          "maxPositionMagnitude": 6.385092735290527,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 10,
+          "triangles": 2400
+        },
+        "48": {
+          "movedGroups": {
+            "OzoneCore": true,
+            "OzoneShell": true,
+            "OzoneSatellite": true,
+            "OzoneOrbitB": true,
+            "OzoneOrbitA": true
+          },
+          "duration": 1.65,
+          "maxPartDimension": 2.239318609237671,
+          "preload": {
+            "ok": true,
+            "successful": 5,
+            "timedOut": false,
+            "callbacks": 5,
+            "failures": [],
+            "checkedMeshAssets": 5,
+            "failureCount": 0
+          },
+          "groups": {
+            "OzoneCore": 1,
+            "OzoneShell": 1,
+            "OzoneSatellite": 1,
+            "OzoneOrbitB": 1,
+            "OzoneOrbitA": 1
+          },
+          "parts": 5,
+          "ok": true,
+          "deterministic": true,
+          "id": "ozone_orb",
+          "profile": "ozone-orb-free-charge",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 2.2205777168273926,
+          "maxPositionMagnitude": 5.536844253540039,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 5,
+          "triangles": 1352
+        },
+        "49": {
+          "movedGroups": {
+            "HexRing": true,
+            "OrbitGold": true,
+            "OrbitBlue": true,
+            "DiverPearl": true
+          },
+          "duration": 1.8,
+          "maxPartDimension": 3.1831133365631104,
+          "preload": {
+            "ok": true,
+            "successful": 5,
+            "timedOut": false,
+            "callbacks": 5,
+            "failures": [],
+            "checkedMeshAssets": 5,
+            "failureCount": 0
+          },
+          "groups": {
+            "HexRing": 2,
+            "OrbitGold": 1,
+            "OrbitBlue": 1,
+            "DiverPearl": 1
+          },
+          "parts": 5,
+          "ok": true,
+          "deterministic": true,
+          "id": "pearl_diver",
+          "profile": "pearl-diver-hex-orbits",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 4.287242889404297,
+          "maxPositionMagnitude": 5.559311866760254,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 5,
+          "triangles": 1752
+        },
+        "50": {
+          "movedGroups": {
+            "EvolvedBalance": true,
+            "EvolvedRotor": true
+          },
+          "duration": 1.42,
+          "maxPartDimension": 3.100991725921631,
+          "preload": {
+            "ok": true,
+            "successful": 6,
+            "timedOut": false,
+            "callbacks": 6,
+            "failures": [],
+            "checkedMeshAssets": 6,
+            "failureCount": 0
+          },
+          "groups": {
+            "Fixed": 2,
+            "EvolvedBalance": 2,
+            "EvolvedRotor": 2
+          },
+          "parts": 6,
+          "ok": true,
+          "deterministic": true,
+          "id": "pearl_turbine",
+          "profile": "pearl-turbine-balance-powered-surge",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.3440256118774414,
+          "maxPositionMagnitude": 6.482851505279541,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 4,
+          "triangles": 1008
+        },
+        "51": {
+          "movedGroups": {
+            "ChargeBar": true
+          },
+          "duration": 1.08,
+          "maxPartDimension": 2.834440231323242,
+          "preload": {
+            "ok": true,
+            "successful": 7,
+            "timedOut": false,
+            "callbacks": 7,
+            "failures": [],
+            "checkedMeshAssets": 7,
+            "failureCount": 0
+          },
+          "groups": {
+            "ChargeBar": 4,
+            "Fixed": 3
+          },
+          "parts": 7,
+          "ok": true,
+          "deterministic": true,
+          "id": "pulse_cell",
+          "profile": "dew-charge-release",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.4271178245544434,
+          "maxPositionMagnitude": 6.491296768188477,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 4,
+          "triangles": 1132
+        },
+        "52": {
+          "movedGroups": {
+            "Stamp": true
+          },
+          "duration": 0.88,
+          "maxPartDimension": 3.268036127090454,
+          "preload": {
+            "ok": true,
+            "successful": 6,
+            "timedOut": false,
+            "callbacks": 6,
+            "failures": [],
+            "checkedMeshAssets": 6,
+            "failureCount": 0
+          },
+          "groups": {
+            "Stamp": 2,
+            "Fixed": 4
+          },
+          "parts": 6,
+          "ok": true,
+          "deterministic": true,
+          "id": "quota_bonus",
+          "profile": "quota-heavy-stamp",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.539964437484741,
+          "maxPositionMagnitude": 7.408503532409668,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 2,
+          "triangles": 1156
+        },
+        "53": {
+          "movedGroups": {
+            "RainDrop": true,
+            "RainWater": true
+          },
+          "duration": 1.1,
+          "maxPartDimension": 2.1996166706085205,
+          "preload": {
+            "ok": true,
+            "successful": 6,
+            "timedOut": false,
+            "callbacks": 6,
+            "failures": [],
+            "checkedMeshAssets": 6,
+            "failureCount": 0
+          },
+          "groups": {
+            "Fixed": 4,
+            "RainWater": 1,
+            "RainDrop": 1
+          },
+          "parts": 6,
+          "ok": true,
+          "deterministic": true,
+          "id": "rain_catcher",
+          "profile": "rain-catcher-heavy-drop-catch",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.4024100303649902,
+          "maxPositionMagnitude": 6.603050708770752,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 2,
+          "triangles": 1400
+        },
+        "54": {
+          "movedGroups": {
+            "RecoveryArrows": true
+          },
+          "duration": 1.24,
+          "maxPartDimension": 2.1012754440307617,
+          "preload": {
+            "ok": true,
+            "successful": 4,
+            "timedOut": false,
+            "callbacks": 4,
+            "failures": [],
+            "checkedMeshAssets": 4,
+            "failureCount": 0
+          },
+          "groups": {
+            "RecoveryArrows": 1,
+            "Fixed": 3
+          },
+          "parts": 4,
+          "ok": true,
+          "deterministic": true,
+          "id": "recovery",
+          "profile": "renewal-corkscrew-return",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 2.8466134071350098,
+          "maxPositionMagnitude": 5.603959560394287,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 1,
+          "triangles": 2460
+        },
+        "55": {
+          "movedGroups": {
+            "Winding": true
+          },
+          "duration": 1.6,
+          "maxPartDimension": 2.0400002002716064,
+          "preload": {
+            "ok": true,
+            "successful": 5,
+            "timedOut": false,
+            "callbacks": 5,
+            "failures": [],
+            "checkedMeshAssets": 5,
+            "failureCount": 0
+          },
+          "groups": {
+            "Fixed": 4,
+            "Winding": 1
+          },
+          "parts": 5,
+          "ok": true,
+          "deterministic": true,
+          "id": "relay",
+          "profile": "current-relay-fixed-coil-surge",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 2.27919864654541,
+          "maxPositionMagnitude": 5.624521732330322,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 1,
+          "triangles": 3660
+        },
+        "56": {
+          "movedGroups": {
+            "ReserveBall": true
+          },
+          "duration": 1.13,
+          "maxPartDimension": 2.4006431102752686,
+          "preload": {
+            "ok": true,
+            "successful": 7,
+            "timedOut": false,
+            "callbacks": 7,
+            "failures": [],
+            "checkedMeshAssets": 7,
+            "failureCount": 0
+          },
+          "groups": {
+            "ReserveBall": 3,
+            "Fixed": 4
+          },
+          "parts": 7,
+          "ok": true,
+          "deterministic": true,
+          "id": "reserve_pack",
+          "profile": "reserve-jackpot-juggle",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.162424325942993,
+          "maxPositionMagnitude": 6.915680408477783,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 3,
+          "triangles": 1380
+        },
+        "57": {
+          "movedGroups": {
+            "Chime": true,
+            "LeftFork": true,
+            "RightFork": true
+          },
+          "duration": 0.94,
+          "maxPartDimension": 3.0956003665924072,
+          "preload": {
+            "ok": true,
+            "successful": 7,
+            "timedOut": false,
+            "callbacks": 7,
+            "failures": [],
+            "checkedMeshAssets": 7,
+            "failureCount": 0
+          },
+          "groups": {
+            "RightFork": 2,
+            "Fixed": 2,
+            "Chime": 1,
+            "LeftFork": 2
+          },
+          "parts": 7,
+          "ok": true,
+          "deterministic": true,
+          "id": "resonator",
+          "profile": "reef-ringing-recoil",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.544746160507202,
+          "maxPositionMagnitude": 6.941222190856934,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 5,
+          "triangles": 1240
+        },
+        "58": {
+          "movedGroups": {
+            "RefillArrows": true
+          },
+          "duration": 1.08,
+          "maxPartDimension": 2.472270965576172,
+          "preload": {
+            "ok": true,
+            "successful": 3,
+            "timedOut": false,
+            "callbacks": 3,
+            "failures": [],
+            "checkedMeshAssets": 3,
+            "failureCount": 0
+          },
+          "groups": {
+            "RefillArrows": 1,
+            "Fixed": 2
+          },
+          "parts": 3,
+          "ok": true,
+          "deterministic": true,
+          "id": "restock",
+          "profile": "restock-turbine-spool",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 2.7970051765441895,
+          "maxPositionMagnitude": 5.759428977966309,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 1,
+          "triangles": 1196
+        },
+        "59": {
+          "movedGroups": {
+            "ReboundBall": true
+          },
+          "duration": 1.12,
+          "maxPartDimension": 2.0960817337036133,
+          "preload": {
+            "ok": true,
+            "successful": 5,
+            "timedOut": false,
+            "callbacks": 5,
+            "failures": [],
+            "checkedMeshAssets": 5,
+            "failureCount": 0
+          },
+          "groups": {
+            "ReboundBall": 1,
+            "Fixed": 4
+          },
+          "parts": 5,
+          "ok": true,
+          "deterministic": true,
+          "id": "ricochet",
+          "profile": "pearl-three-cushion-rally",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 2.6124966144561768,
+          "maxPositionMagnitude": 5.642792224884033,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 1,
+          "triangles": 1820
+        },
+        "60": {
+          "movedGroups": {
+            "ScoreBar": true
+          },
+          "duration": 1.03,
+          "maxPartDimension": 2.815594434738159,
+          "preload": {
+            "ok": true,
+            "successful": 4,
+            "timedOut": false,
+            "callbacks": 4,
+            "failures": [],
+            "checkedMeshAssets": 4,
+            "failureCount": 0
+          },
+          "groups": {
+            "Fixed": 1,
+            "ScoreBar": 3
+          },
+          "parts": 4,
+          "ok": true,
+          "deterministic": true,
+          "id": "score",
+          "profile": "score-staircase-surge",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 4.12226676940918,
+          "maxPositionMagnitude": 6.565593242645264,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 3,
+          "triangles": 432
+        },
+        "61": {
+          "movedGroups": {
+            "Lid": true,
+            "Seed": true
+          },
+          "duration": 1.2,
+          "maxPartDimension": 3.0140438079833984,
+          "preload": {
+            "ok": true,
+            "successful": 8,
+            "timedOut": false,
+            "callbacks": 8,
+            "failures": [],
+            "checkedMeshAssets": 8,
+            "failureCount": 0
+          },
+          "groups": {
+            "Fixed": 4,
+            "Lid": 2,
+            "Seed": 2
+          },
+          "parts": 8,
+          "ok": true,
+          "deterministic": true,
+          "id": "seed_bank",
+          "profile": "seedbank-greenhouse-pop",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 4.317599296569824,
+          "maxPositionMagnitude": 7.3244147300720215,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 4,
+          "triangles": 2040
+        },
+        "62": {
+          "movedGroups": {
+            "Foam": true,
+            "Current": true
+          },
+          "duration": 1.6,
+          "maxPartDimension": 2.359487295150757,
+          "preload": {
+            "ok": true,
+            "successful": 5,
+            "timedOut": false,
+            "callbacks": 5,
+            "failures": [],
+            "checkedMeshAssets": 5,
+            "failureCount": 0
+          },
+          "groups": {
+            "Foam": 3,
+            "Current": 2
+          },
+          "parts": 5,
+          "ok": true,
+          "deterministic": true,
+          "id": "soft_saw",
+          "profile": "soft-current-free-water-roll",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.0091700553894043,
+          "maxPositionMagnitude": 5.852555751800537,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 5,
+          "triangles": 1556
+        },
+        "63": {
+          "movedGroups": {
+            "SolarLeaf": true,
+            "SolarCell": true,
+            "SolarSun": true,
+            "SolarVein": true
+          },
+          "duration": 1.24,
+          "maxPartDimension": 2.0059680938720703,
+          "preload": {
+            "ok": true,
+            "successful": 8,
+            "timedOut": false,
+            "callbacks": 8,
+            "failures": [],
+            "checkedMeshAssets": 8,
+            "failureCount": 0
+          },
+          "groups": {
+            "SolarVein": 2,
+            "SolarLeaf": 2,
+            "Fixed": 1,
+            "SolarSun": 1,
+            "SolarCell": 2
+          },
+          "parts": 8,
+          "ok": true,
+          "deterministic": true,
+          "id": "solar_leaf",
+          "profile": "solar-leaf-sun-salute",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 4.455327987670898,
+          "maxPositionMagnitude": 7.3671345710754395,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 7,
+          "triangles": 356
+        },
+        "64": {
+          "movedGroups": {
+            "EvolvedCoin": true,
+            "EvolvedNeedle": true,
+            "EvolvedCore": true,
+            "EvolvedWeight": true
+          },
+          "duration": 1.46,
+          "maxPartDimension": 2.4025020599365234,
+          "preload": {
+            "ok": true,
+            "successful": 7,
+            "timedOut": false,
+            "callbacks": 7,
+            "failures": [],
+            "checkedMeshAssets": 7,
+            "failureCount": 0
+          },
+          "groups": {
+            "EvolvedCoin": 1,
+            "EvolvedCore": 1,
+            "EvolvedWeight": 1,
+            "Fixed": 3,
+            "EvolvedNeedle": 1
+          },
+          "parts": 7,
+          "ok": true,
+          "deterministic": true,
+          "id": "solar_treasury",
+          "profile": "solar-treasury-mint-and-coin-salute",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.8978092670440674,
+          "maxPositionMagnitude": 6.837049961090088,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 4,
+          "triangles": 1552
+        },
+        "65": {
+          "movedGroups": {
+            "EvolvedFork": true,
+            "EvolvedCrystal": true,
+            "EvolvedOrbit": true
+          },
+          "duration": 1.38,
+          "maxPartDimension": 3.067704439163208,
+          "preload": {
+            "ok": true,
+            "successful": 6,
+            "timedOut": false,
+            "callbacks": 6,
+            "failures": [],
+            "checkedMeshAssets": 6,
+            "failureCount": 0
+          },
+          "groups": {
+            "EvolvedFork": 2,
+            "Fixed": 2,
+            "EvolvedOrbit": 1,
+            "EvolvedCrystal": 1
+          },
+          "parts": 6,
+          "ok": true,
+          "deterministic": true,
+          "id": "spectrum_reef",
+          "profile": "spectrum-reef-prismatic-chord-bloom",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.8659236431121826,
+          "maxPositionMagnitude": 6.4530439376831055,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 4,
+          "triangles": 796
+        },
+        "66": {
+          "movedGroups": {
+            "Prism": true
+          },
+          "duration": 1.14,
+          "maxPartDimension": 3.285921096801758,
+          "preload": {
+            "ok": true,
+            "successful": 6,
+            "timedOut": false,
+            "callbacks": 6,
+            "failures": [],
+            "checkedMeshAssets": 6,
+            "failureCount": 0
+          },
+          "groups": {
+            "Prism": 4,
+            "Fixed": 2
+          },
+          "parts": 6,
+          "ok": true,
+          "deterministic": true,
+          "id": "split_prism",
+          "profile": "prism-refract-fan",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.5475785732269287,
+          "maxPositionMagnitude": 6.366483688354492,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 4,
+          "triangles": 952
+        },
+        "67": {
+          "movedGroups": {
+            "Weight": true,
+            "SpringMesh": true,
+            "SpringGuide": true
+          },
+          "duration": 1.02,
+          "maxPartDimension": 3.3652470111846924,
+          "preload": {
+            "ok": true,
+            "successful": 7,
+            "timedOut": false,
+            "callbacks": 7,
+            "failures": [],
+            "checkedMeshAssets": 7,
+            "failureCount": 0
+          },
+          "groups": {
+            "SpringGuide": 1,
+            "Fixed": 2,
+            "SpringMesh": 1,
+            "Weight": 3
+          },
+          "parts": 7,
+          "ok": true,
+          "deterministic": true,
+          "id": "spring_coil",
+          "profile": "wave-spring-launch",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 4.3042988777160645,
+          "maxPositionMagnitude": 7.150775909423828,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 5,
+          "triangles": 3184
+        },
+        "68": {
+          "movedGroups": {
+            "EvolvedFastHand": true,
+            "EvolvedCrystal": true,
+            "EvolvedCore": true,
+            "EvolvedSlowHand": true,
+            "EvolvedRotor": true
+          },
+          "duration": 1.44,
+          "maxPartDimension": 2.7803101539611816,
+          "preload": {
+            "ok": true,
+            "successful": 8,
+            "timedOut": false,
+            "callbacks": 8,
+            "failures": [],
+            "checkedMeshAssets": 8,
+            "failureCount": 0
+          },
+          "groups": {
+            "EvolvedFastHand": 1,
+            "EvolvedCrystal": 1,
+            "EvolvedCore": 1,
+            "EvolvedRotor": 1,
+            "Fixed": 3,
+            "EvolvedSlowHand": 1
+          },
+          "parts": 8,
+          "ok": true,
+          "deterministic": true,
+          "id": "storm_clock",
+          "profile": "storm-clock-lightning-overdrive",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 4.239934921264648,
+          "maxPositionMagnitude": 6.862274646759033,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 5,
+          "triangles": 3448
+        },
+        "69": {
+          "movedGroups": {
+            "StreamPaddle": true,
+            "StreamSpoke": true
+          },
+          "duration": 1.38,
+          "maxPartDimension": 2.1127686500549316,
+          "preload": {
+            "ok": true,
+            "successful": 4,
+            "timedOut": false,
+            "callbacks": 4,
+            "failures": [],
+            "checkedMeshAssets": 4,
+            "failureCount": 0
+          },
+          "groups": {
+            "StreamPaddle": 1,
+            "Fixed": 1,
+            "StreamSpoke": 2
+          },
+          "parts": 4,
+          "ok": true,
+          "deterministic": true,
+          "id": "stream_wheel",
+          "profile": "stream-wheel-water-hammer",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.263885021209717,
+          "maxPositionMagnitude": 5.871330738067627,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 3,
+          "triangles": 2112
+        },
+        "70": {
+          "movedGroups": {
+            "FishBody": true,
+            "EvolvedOrbit": true,
+            "FishTail": true,
+            "FishFin": true,
+            "EvolvedCrystal": true
+          },
+          "duration": 1.62,
+          "maxPartDimension": 2.843818187713623,
+          "preload": {
+            "ok": true,
+            "successful": 7,
+            "timedOut": false,
+            "callbacks": 7,
+            "failures": [],
+            "checkedMeshAssets": 7,
+            "failureCount": 0
+          },
+          "groups": {
+            "FishBody": 3,
+            "EvolvedOrbit": 1,
+            "FishTail": 1,
+            "FishFin": 1,
+            "EvolvedCrystal": 1
+          },
+          "parts": 7,
+          "ok": true,
+          "deterministic": true,
+          "id": "sun_koi",
+          "profile": "sun-koi-crowned-solar-somersault",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.7399117946624756,
+          "maxPositionMagnitude": 6.675574779510498,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 7,
+          "triangles": 1516
+        },
+        "71": {
+          "movedGroups": {
+            "Lens": true
+          },
+          "duration": 1.2,
+          "maxPartDimension": 2.318911552429199,
+          "preload": {
+            "ok": true,
+            "successful": 7,
+            "timedOut": false,
+            "callbacks": 7,
+            "failures": [],
+            "checkedMeshAssets": 7,
+            "failureCount": 0
+          },
+          "groups": {
+            "Fixed": 3,
+            "Lens": 4
+          },
+          "parts": 7,
+          "ok": true,
+          "deterministic": true,
+          "id": "survey_lens",
+          "profile": "lens-flip-focus",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.9085822105407715,
+          "maxPositionMagnitude": 5.921878337860107,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 4,
+          "triangles": 1656
+        },
+        "72": {
+          "movedGroups": {
+            "Turbine": true
+          },
+          "duration": 1.18,
+          "maxPartDimension": 2.3870303630828857,
+          "preload": {
+            "ok": true,
+            "successful": 4,
+            "timedOut": false,
+            "callbacks": 4,
+            "failures": [],
+            "checkedMeshAssets": 4,
+            "failureCount": 0
+          },
+          "groups": {
+            "Fixed": 2,
+            "Turbine": 2
+          },
+          "parts": 4,
+          "ok": true,
+          "deterministic": true,
+          "id": "tailwind",
+          "profile": "fan-jet-launch",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 2.7913296222686768,
+          "maxPositionMagnitude": 5.767947673797607,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 2,
+          "triangles": 2268
+        },
+        "73": {
+          "movedGroups": {
+            "Piston": true
+          },
+          "duration": 0.84,
+          "maxPartDimension": 2.7909295558929443,
+          "preload": {
+            "ok": true,
+            "successful": 5,
+            "timedOut": false,
+            "callbacks": 5,
+            "failures": [],
+            "checkedMeshAssets": 5,
+            "failureCount": 0
+          },
+          "groups": {
+            "Piston": 2,
+            "Fixed": 3
+          },
+          "parts": 5,
+          "ok": true,
+          "deterministic": true,
+          "id": "tap_driver",
+          "profile": "cock-punch-double-tap",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.8251805305480957,
+          "maxPositionMagnitude": 7.134544372558594,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 2,
+          "triangles": 1584
+        },
+        "74": {
+          "movedGroups": {
+            "EvolvedNeedle": true,
+            "EvolvedSpring": true,
+            "EvolvedWeight": true
+          },
+          "duration": 1.4,
+          "maxPartDimension": 2.7132785320281982,
+          "preload": {
+            "ok": true,
+            "successful": 5,
+            "timedOut": false,
+            "callbacks": 5,
+            "failures": [],
+            "checkedMeshAssets": 5,
+            "failureCount": 0
+          },
+          "groups": {
+            "EvolvedNeedle": 1,
+            "Fixed": 2,
+            "EvolvedSpring": 1,
+            "EvolvedWeight": 1
+          },
+          "parts": 5,
+          "ok": true,
+          "deterministic": true,
+          "id": "tidal_engine",
+          "profile": "tidal-engine-hydraulic-launch",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.2390360832214355,
+          "maxPositionMagnitude": 6.640251159667969,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 3,
+          "triangles": 2100
+        },
+        "75": {
+          "movedGroups": {
+            "EvolvedFastHand": true,
+            "EvolvedOrbit": true,
+            "EvolvedSlowHand": true,
+            "EvolvedGyro": true,
+            "EvolvedSpring": true
+          },
+          "duration": 1.66,
+          "maxPartDimension": 2.545715570449829,
+          "preload": {
+            "ok": true,
+            "successful": 8,
+            "timedOut": false,
+            "callbacks": 8,
+            "failures": [],
+            "checkedMeshAssets": 8,
+            "failureCount": 0
+          },
+          "groups": {
+            "EvolvedFastHand": 1,
+            "EvolvedOrbit": 1,
+            "EvolvedSlowHand": 1,
+            "Fixed": 3,
+            "EvolvedGyro": 1,
+            "EvolvedSpring": 1
+          },
+          "parts": 8,
+          "ok": true,
+          "deterministic": true,
+          "id": "tide_gyroscope",
+          "profile": "tide-gyroscope-gimbal-cascade",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.4617795944213867,
+          "maxPositionMagnitude": 5.939915180206299,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 5,
+          "triangles": 3836
+        },
+        "76": {
+          "movedGroups": {
+            "ValveFlow": true,
+            "ValveWheel": true
+          },
+          "duration": 1.3,
+          "maxPartDimension": 2.3309710025787354,
+          "preload": {
+            "ok": true,
+            "successful": 5,
+            "timedOut": false,
+            "callbacks": 5,
+            "failures": [],
+            "checkedMeshAssets": 5,
+            "failureCount": 0
+          },
+          "groups": {
+            "ValveFlow": 1,
+            "Fixed": 3,
+            "ValveWheel": 1
+          },
+          "parts": 5,
+          "ok": true,
+          "deterministic": true,
+          "id": "tide_valve",
+          "profile": "tide-valve-pressure-release",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 2.6234264373779297,
+          "maxPositionMagnitude": 6.043635845184326,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 2,
+          "triangles": 1164
+        },
+        "77": {
+          "movedGroups": {
+            "Spout": true,
+            "Drop": true
+          },
+          "duration": 1.32,
+          "maxPartDimension": 2.2188565731048584,
+          "preload": {
+            "ok": true,
+            "successful": 5,
+            "timedOut": false,
+            "callbacks": 5,
+            "failures": [],
+            "checkedMeshAssets": 5,
+            "failureCount": 0
+          },
+          "groups": {
+            "Spout": 1,
+            "Fixed": 3,
+            "Drop": 1
+          },
+          "parts": 5,
+          "ok": true,
+          "deterministic": true,
+          "id": "tuning_oil",
+          "profile": "oil-flair-pour",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 3.4588146209716797,
+          "maxPositionMagnitude": 6.926471710205078,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 2,
+          "triangles": 1376
+        },
+        "78": {
+          "movedGroups": {
+            "Bumper": true,
+            "Gauge": true
+          },
+          "duration": 0.92,
+          "maxPartDimension": 2.9829769134521484,
+          "preload": {
+            "ok": true,
+            "successful": 7,
+            "timedOut": false,
+            "callbacks": 7,
+            "failures": [],
+            "checkedMeshAssets": 7,
+            "failureCount": 0
+          },
+          "groups": {
+            "Bumper": 1,
+            "Fixed": 3,
+            "Gauge": 3
+          },
+          "parts": 7,
+          "ok": true,
+          "deterministic": true,
+          "id": "wall_meter",
+          "profile": "shore-sidekick-surge",
+          "rootTransform": true,
+          "restored": true,
+          "failures": [],
+          "maxModelDimension": 4.350987911224365,
+          "maxPositionMagnitude": 5.72166633605957,
+          "completedCycles": 24,
+          "posesChecked": 192,
+          "movedParts": 4,
+          "triangles": 1316
+        }
+      },
+      "limits": {
+        "partDimension": 20,
+        "positionMagnitude": 100,
+        "modelDimension": 32
+      },
+      "cyclesPerStrength": 12,
+      "elapsedSeconds": 4.334765299998253,
+      "failures": [],
+      "schema": 1,
+      "templates": 78
+    },
+    "effectsMechanicsAudit": {
+      "ok": true,
+      "checked": 4,
+      "passed": 4,
+      "scope": "Actual native/Blender press contact, anchored axial coin squash, fixed crank support, rigid removable cap, restoration and native animation lifetime.",
+      "samples": 808,
+      "strengths": {
+        "1": 1,
+        "2": 2
+      },
+      "assertions": 10806,
+      "items": {
+        "1": {
+          "source": "native",
+          "maxRigidError": 0,
+          "duration": 1.65,
+          "minimumThicknessRatio": 0.25999966444819833,
+          "parts": 32,
+          "ok": true,
+          "crankSupportGap": 0,
+          "maxAnchorDrift": 1.7881393432617188e-7,
+          "coinParts": 1,
+          "minimumGap": -1.7881393432617188e-7,
+          "restCoinThickness": 0.1350001096725464,
+          "id": "coin_press",
+          "samples": 202,
+          "restContactGap": 0.2399999499320984,
+          "maxReseatError": 0,
+          "maxContactError": 1.7881393432617188e-7,
+          "maxCrankYDrift": 2.384185791015625e-7,
+          "crankParts": 2
+        },
+        "2": {
+          "ok": true,
+          "source": "native",
+          "maxRigidError": 5.495276695910434e-7,
+          "maxAnchorDrift": 0,
+          "samples": 202,
+          "maxReseatError": 2.3888378564151935e-7,
+          "id": "burst_capsule",
+          "duration": 1.5,
+          "maxCrankYDrift": 0,
+          "minimumThicknessRatio": 1,
+          "maxContactError": 0,
+          "capParts": 16,
+          "parts": 28
+        },
+        "3": {
+          "source": "blender",
+          "maxRigidError": 0,
+          "duration": 1.65,
+          "minimumThicknessRatio": 0.2599994525202612,
+          "parts": 8,
+          "ok": true,
+          "crankSupportGap": 0.059999942779541016,
+          "maxAnchorDrift": 1.1920928955078125e-7,
+          "coinParts": 2,
+          "minimumGap": -5.960464477539063e-8,
+          "restCoinThickness": 0.13499999046325684,
+          "id": "coin_press",
+          "samples": 202,
+          "restContactGap": 0.330000102519989,
+          "maxReseatError": 0,
+          "maxContactError": 2.384185791015625e-7,
+          "maxCrankYDrift": 2.384185791015625e-7,
+          "crankParts": 1
+        },
+        "4": {
+          "ok": true,
+          "source": "blender",
+          "maxRigidError": 4.769681254401803e-7,
+          "maxAnchorDrift": 0,
+          "samples": 202,
+          "maxReseatError": 6.006850128414953e-8,
+          "id": "burst_capsule",
+          "duration": 1.5,
+          "maxCrankYDrift": 0,
+          "minimumThicknessRatio": 1,
+          "maxContactError": 0,
+          "capParts": 2,
+          "parts": 6
+        }
+      },
+      "handleProbes": {
+        "1": {
+          "activeThroughSeconds": 1.4500000000000006,
+          "id": "coin_press",
+          "completed": true,
+          "available": true
+        },
+        "2": {
+          "activeThroughSeconds": 1.3000000000000005,
+          "id": "burst_capsule",
+          "completed": true,
+          "available": true
+        },
+        "3": {
+          "activeThroughSeconds": 3.7499999999999947,
+          "id": "chest_legendary",
+          "completed": true,
+          "available": true
+        }
+      },
+      "elapsedSeconds": 0.3726712000025145,
+      "requested": 4,
+      "phaseSteps": 100,
+      "failures": [],
+      "failed": 0,
+      "schema": 1
+    },
+    "effectsPauseProbe": {
+      "before": 0.13299789224263459,
+      "after": 0.13299789224263459,
+      "starts": 2,
+      "events": 2,
+      "paused": true
+    },
+    "effectsFinalAudit": {
+      "ok": true,
+      "items": {
+        "1": {
+          "ok": true,
+          "pool": 40,
+          "id": "aurora_aquarium",
+          "samples": 42,
+          "maxVisible": 18
+        },
+        "2": {
+          "ok": true,
+          "pool": 40,
+          "id": "aurora_kite",
+          "samples": 42,
+          "maxVisible": 10
+        },
+        "3": {
+          "ok": true,
+          "pool": 40,
+          "id": "balance_scale",
+          "samples": 42,
+          "maxVisible": 8
+        },
+        "4": {
+          "ok": true,
+          "pool": 40,
+          "id": "biolume_jar",
+          "samples": 42,
+          "maxVisible": 18
+        },
+        "5": {
+          "ok": true,
+          "pool": 40,
+          "id": "bubble_reactor",
+          "samples": 42,
+          "maxVisible": 24
+        },
+        "6": {
+          "ok": true,
+          "pool": 40,
+          "id": "bubble_wand",
+          "samples": 42,
+          "maxVisible": 14
+        },
+        "7": {
+          "ok": true,
+          "pool": 40,
+          "id": "burst_capsule",
+          "samples": 42,
+          "maxVisible": 9
+        },
+        "8": {
+          "ok": true,
+          "pool": 40,
+          "id": "chest_common",
+          "samples": 42,
+          "maxVisible": 16
+        },
+        "9": {
+          "ok": true,
+          "pool": 40,
+          "id": "chest_legendary",
+          "samples": 42,
+          "maxVisible": 24
+        },
+        "10": {
+          "ok": true,
+          "pool": 40,
+          "id": "chest_rare",
+          "samples": 42,
+          "maxVisible": 20
+        },
+        "11": {
+          "ok": true,
+          "pool": 40,
+          "id": "chest_uncommon",
+          "samples": 42,
+          "maxVisible": 18
+        },
+        "12": {
+          "ok": true,
+          "pool": 40,
+          "id": "clockwork",
+          "samples": 42,
+          "maxVisible": 13
+        },
+        "13": {
+          "ok": true,
+          "pool": 40,
+          "id": "cloud_mirror",
+          "samples": 42,
+          "maxVisible": 10
+        },
+        "14": {
+          "ok": true,
+          "pool": 40,
+          "id": "coin",
+          "samples": 42,
+          "maxVisible": 8
+        },
+        "15": {
+          "ok": true,
+          "pool": 40,
+          "id": "coin_press",
+          "samples": 42,
+          "maxVisible": 14
+        },
+        "16": {
+          "ok": true,
+          "pool": 40,
+          "id": "compass",
+          "samples": 42,
+          "maxVisible": 5
+        },
+        "17": {
+          "ok": true,
+          "pool": 40,
+          "id": "coral_fork",
+          "samples": 42,
+          "maxVisible": 18
+        },
+        "18": {
+          "ok": true,
+          "pool": 40,
+          "id": "current_nexus",
+          "samples": 42,
+          "maxVisible": 18
+        },
+        "19": {
+          "ok": true,
+          "pool": 40,
+          "id": "dew_lantern",
+          "samples": 42,
+          "maxVisible": 21
+        },
+        "20": {
+          "ok": true,
+          "pool": 40,
+          "id": "echo_plate",
+          "samples": 42,
+          "maxVisible": 24
+        },
+        "21": {
+          "ok": true,
+          "pool": 40,
+          "id": "eden_greenhouse",
+          "samples": 42,
+          "maxVisible": 40
+        },
+        "22": {
+          "ok": true,
+          "pool": 40,
+          "id": "encore",
+          "samples": 42,
+          "maxVisible": 30
+        },
+        "23": {
+          "ok": true,
+          "pool": 40,
+          "id": "event_growth",
+          "samples": 42,
+          "maxVisible": 14
+        },
+        "24": {
+          "ok": true,
+          "pool": 40,
+          "id": "event_overtime",
+          "samples": 42,
+          "maxVisible": 9
+        },
+        "25": {
+          "ok": true,
+          "pool": 40,
+          "id": "event_repair",
+          "samples": 42,
+          "maxVisible": 8
+        },
+        "26": {
+          "ok": true,
+          "pool": 40,
+          "id": "event_upgrade",
+          "samples": 42,
+          "maxVisible": 12
+        },
+        "27": {
+          "ok": true,
+          "pool": 40,
+          "id": "first_spark",
+          "samples": 42,
+          "maxVisible": 5
+        },
+        "28": {
+          "ok": true,
+          "pool": 40,
+          "id": "fishbowl",
+          "samples": 42,
+          "maxVisible": 12
+        },
+        "29": {
+          "ok": true,
+          "pool": 40,
+          "id": "gain_dial",
+          "samples": 42,
+          "maxVisible": 19
+        },
+        "30": {
+          "ok": true,
+          "pool": 40,
+          "id": "goldfish",
+          "samples": 42,
+          "maxVisible": 12
+        },
+        "31": {
+          "ok": true,
+          "pool": 40,
+          "id": "growth_array",
+          "samples": 42,
+          "maxVisible": 40
+        },
+        "32": {
+          "ok": true,
+          "pool": 40,
+          "id": "growth_ring",
+          "samples": 42,
+          "maxVisible": 12
+        },
+        "33": {
+          "ok": true,
+          "pool": 40,
+          "id": "horizon_observatory",
+          "samples": 42,
+          "maxVisible": 17
+        },
+        "34": {
+          "ok": true,
+          "pool": 40,
+          "id": "jumble",
+          "samples": 42,
+          "maxVisible": 10
+        },
+        "35": {
+          "ok": true,
+          "pool": 40,
+          "id": "lagoon_synth",
+          "samples": 42,
+          "maxVisible": 29
+        },
+        "36": {
+          "ok": true,
+          "pool": 40,
+          "id": "landing_fund",
+          "samples": 42,
+          "maxVisible": 14
+        },
+        "37": {
+          "ok": true,
+          "pool": 40,
+          "id": "last_word",
+          "samples": 42,
+          "maxVisible": 16
+        },
+        "38": {
+          "ok": true,
+          "pool": 40,
+          "id": "life",
+          "samples": 42,
+          "maxVisible": 10
+        },
+        "39": {
+          "ok": true,
+          "pool": 40,
+          "id": "lily_pad",
+          "samples": 42,
+          "maxVisible": 30
+        },
+        "40": {
+          "ok": true,
+          "pool": 40,
+          "id": "lock",
+          "samples": 42,
+          "maxVisible": 6
+        },
+        "41": {
+          "ok": true,
+          "pool": 40,
+          "id": "metronome",
+          "samples": 42,
+          "maxVisible": 7
+        },
+        "42": {
+          "ok": true,
+          "pool": 40,
+          "id": "milestone",
+          "samples": 42,
+          "maxVisible": 9
+        },
+        "43": {
+          "ok": true,
+          "pool": 40,
+          "id": "mist_fan",
+          "samples": 42,
+          "maxVisible": 12
+        },
+        "44": {
+          "ok": true,
+          "pool": 40,
+          "id": "monsoon_loom",
+          "samples": 42,
+          "maxVisible": 27
+        },
+        "45": {
+          "ok": true,
+          "pool": 40,
+          "id": "moss_capacitor",
+          "samples": 42,
+          "maxVisible": 16
+        },
+        "46": {
+          "ok": true,
+          "pool": 40,
+          "id": "nectar_pump",
+          "samples": 42,
+          "maxVisible": 14
+        },
+        "47": {
+          "ok": true,
+          "pool": 40,
+          "id": "ocean_orchestra",
+          "samples": 42,
+          "maxVisible": 32
+        },
+        "48": {
+          "ok": true,
+          "pool": 40,
+          "id": "ozone_orb",
+          "samples": 42,
+          "maxVisible": 22
+        },
+        "49": {
+          "ok": true,
+          "pool": 40,
+          "id": "pearl_diver",
+          "samples": 42,
+          "maxVisible": 20
+        },
+        "50": {
+          "ok": true,
+          "pool": 40,
+          "id": "pearl_turbine",
+          "samples": 42,
+          "maxVisible": 20
+        },
+        "51": {
+          "ok": true,
+          "pool": 40,
+          "id": "pulse_cell",
+          "samples": 42,
+          "maxVisible": 15
+        },
+        "52": {
+          "ok": true,
+          "pool": 40,
+          "id": "quota_bonus",
+          "samples": 42,
+          "maxVisible": 6
+        },
+        "53": {
+          "ok": true,
+          "pool": 40,
+          "id": "rain_catcher",
+          "samples": 42,
+          "maxVisible": 16
+        },
+        "54": {
+          "ok": true,
+          "pool": 40,
+          "id": "recovery",
+          "samples": 42,
+          "maxVisible": 10
+        },
+        "55": {
+          "ok": true,
+          "pool": 40,
+          "id": "relay",
+          "samples": 42,
+          "maxVisible": 36
+        },
+        "56": {
+          "ok": true,
+          "pool": 40,
+          "id": "reserve_pack",
+          "samples": 42,
+          "maxVisible": 12
+        },
+        "57": {
+          "ok": true,
+          "pool": 40,
+          "id": "resonator",
+          "samples": 42,
+          "maxVisible": 24
+        },
+        "58": {
+          "ok": true,
+          "pool": 40,
+          "id": "restock",
+          "samples": 42,
+          "maxVisible": 16
+        },
+        "59": {
+          "ok": true,
+          "pool": 40,
+          "id": "ricochet",
+          "samples": 42,
+          "maxVisible": 4
+        },
+        "60": {
+          "ok": true,
+          "pool": 40,
+          "id": "score",
+          "samples": 42,
+          "maxVisible": 9
+        },
+        "61": {
+          "ok": true,
+          "pool": 40,
+          "id": "seed_bank",
+          "samples": 42,
+          "maxVisible": 24
+        },
+        "62": {
+          "ok": true,
+          "pool": 40,
+          "id": "soft_saw",
+          "samples": 42,
+          "maxVisible": 13
+        },
+        "63": {
+          "ok": true,
+          "pool": 40,
+          "id": "solar_leaf",
+          "samples": 42,
+          "maxVisible": 10
+        },
+        "64": {
+          "ok": true,
+          "pool": 40,
+          "id": "solar_treasury",
+          "samples": 42,
+          "maxVisible": 12
+        },
+        "65": {
+          "ok": true,
+          "pool": 40,
+          "id": "spectrum_reef",
+          "samples": 42,
+          "maxVisible": 22
+        },
+        "66": {
+          "ok": true,
+          "pool": 40,
+          "id": "split_prism",
+          "samples": 42,
+          "maxVisible": 7
+        },
+        "67": {
+          "ok": true,
+          "pool": 40,
+          "id": "spring_coil",
+          "samples": 42,
+          "maxVisible": 16
+        },
+        "68": {
+          "ok": true,
+          "pool": 40,
+          "id": "storm_clock",
+          "samples": 42,
+          "maxVisible": 13
+        },
+        "69": {
+          "ok": true,
+          "pool": 40,
+          "id": "stream_wheel",
+          "samples": 42,
+          "maxVisible": 16
+        },
+        "70": {
+          "ok": true,
+          "pool": 40,
+          "id": "sun_koi",
+          "samples": 42,
+          "maxVisible": 18
+        },
+        "71": {
+          "ok": true,
+          "pool": 40,
+          "id": "survey_lens",
+          "samples": 42,
+          "maxVisible": 17
+        },
+        "72": {
+          "ok": true,
+          "pool": 40,
+          "id": "tailwind",
+          "samples": 42,
+          "maxVisible": 9
+        },
+        "73": {
+          "ok": true,
+          "pool": 40,
+          "id": "tap_driver",
+          "samples": 42,
+          "maxVisible": 8
+        },
+        "74": {
+          "ok": true,
+          "pool": 40,
+          "id": "tidal_engine",
+          "samples": 42,
+          "maxVisible": 24
+        },
+        "75": {
+          "ok": true,
+          "pool": 40,
+          "id": "tide_gyroscope",
+          "samples": 42,
+          "maxVisible": 24
+        },
+        "76": {
+          "ok": true,
+          "pool": 40,
+          "id": "tide_valve",
+          "samples": 42,
+          "maxVisible": 10
+        },
+        "77": {
+          "ok": true,
+          "pool": 40,
+          "id": "tuning_oil",
+          "samples": 42,
+          "maxVisible": 6
+        },
+        "78": {
+          "ok": true,
+          "pool": 40,
+          "id": "wall_meter",
+          "samples": 42,
+          "maxVisible": 21
+        }
+      },
+      "checked": 78,
+      "maxPool": 40,
+      "elapsedSeconds": 2.2631088999987696,
+      "failures": [],
+      "passed": 78,
+      "samples": 3276
+    },
+    "effectsFinalCamera": {
+      "ok": true,
+      "checked": 1,
+      "loaded": {
+        "1": "relay"
+      },
+      "failures": [],
+      "corners": 3360,
+      "minimumMargin": 0.09813206579066258
+    }
+  }
+}

@@ -5,6 +5,13 @@ It defines the intended art quality; passing a geometry script alone does not
 establish that a model looks good. See [modeling workflow](MODELING_WORKFLOW.md)
 for the Blender pipeline and [asset provenance](ASSETS.md) for sources.
 
+**Current scope: Blender models and the catalog gallery only.** The user has
+frozen native models, animations and effects; the entire `src/` tree is read-only
+for this review work. Native comparison remains a reference, not an invitation to
+update it. Refine each Blender object according to its own mechanism and feedback;
+preserve accepted geometry on unrelated models. Production migration is outside
+this pass.
+
 The first implemented examples are the three [RBX-019 Blender pilots](BLENDER_PILOTS.md).
 Their editable sources and Studio images illustrate the palette, continuous coil,
 clear seed display and hollow hinged chest. They are evaluation assets; adopting
@@ -46,8 +53,12 @@ Keep dark inset faces under pearl rims so shape reads without extra outline shel
 UI panels use restrained navy depth and a pearl-to-aqua gradient. ViewportFrames
 support directional shading, not cast shadows; do not add duplicate geometry to
 fake an outline or a generic shadow pedestal. Original lighting remains available
-in the inspector for direct comparison. Activation glow is capped at 0.22 in the
-Blender adapter so surface details remain visible during procs.
+in the inspector for direct comparison. Keep the broad-surface activation accent
+restrained (the adapter's general glow cap is 0.22) so surface details remain
+visible. A short, localized functional light may be brighter: a lantern bulb
+turning on, a spark between contacts or an energized coil. Its glow must end with
+the action while the housing and surrounding mass retain their contrasting
+materials. Do not brighten the whole object to make one active part readable.
 
 Each catalog ID needs its own geometry. Sharing a housing, hinge or material is
 fine; a recolor or extra bolt does not create a new item. Evolutions should visibly
@@ -89,6 +100,16 @@ Check rest, quarter, half, three-quarter and end poses plus repeated activations
 Coils compress along their axis; clock hands rotate about their hub; lids open
 around a hinge. Pivots and clearance must support these movements without clipping.
 
+Put new Blender-only performances in `scripts/models/BlenderChoreography.luau`
+and the catalog adapter, leaving shared/native definitions unchanged. Give each
+object a purposeful anticipation, action and recovery rather than a common
+spin or pulse. A mounted relay can spin its winding while its mount stays still;
+a floating ring can orbit a pearl; a paper rotor can accelerate around its hub.
+Keep temporary lightning, sound-wave rings and travelling display waves in
+`CatalogEffectProfiles.luau` / `CatalogEffects.luau`, not baked into the mesh as
+permanent duplicate geometry. Effects belong to the action, use a bounded lifetime
+and return to an empty/rest state on completion, restart or model change.
+
 Retain catalog IDs and explicit `MotionGroup` names. Define `MotionPivot` for
 articulated parts in the model's authored coordinate space. The current adapter
 sets `AuthoredPosition`, `ArtCenter` and `MotionProfile`, centers the model at the
@@ -113,8 +134,9 @@ Keep separate pieces for actual articulation or material needs. Start with flat
 colors and no textures; when a texture materially improves readability, target
 one 512px set per item or a shared atlas and document the decision. Count active
 preview copies, any contour pass and effect bursts together when profiling.
-The existing native audit's `<256` parts and bounds checks are regression guards,
-not quality targets. Imported triangle counts need an additional export audit.
+The native-parts column and existing native audit's `<256` parts and bounds checks
+are historical reference/regression guards, not authorization to revise frozen
+native assets. Imported triangle counts need an additional export audit.
 
 ## Acceptance checklist
 

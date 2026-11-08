@@ -1,12 +1,12 @@
 {
   "schema": 1,
-  "source": "Roblox Studio SerializationService; RBX-025 bounded two-model replacement",
+  "source": "Roblox Studio SerializationService; RBX-027 bounded eight-model replacement",
   "models": 78,
   "mesh_parts": 477,
   "artifacts": [
     {
       "path": "art/catalog/CatalogAssets.rbxm",
-      "sha256": "5388562a14002a7e7aafc963e2f78aeeb1c3a67cea12b093e1a57c9e70affcdb"
+      "sha256": "8602f1d9c1f074f716654d040267412087559be9dc55ffe79c5f3a8badbabd9a"
     }
   ]
 }

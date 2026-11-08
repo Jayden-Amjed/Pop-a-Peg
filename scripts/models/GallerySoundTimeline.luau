@@ -1,8 +1,8 @@
 -- Review-only sound placement. Phases follow the motion clock, so changing
 -- preview speed moves the attack with the mechanism without transposing it.
-local Signatures = if script
-    then require(game:GetService("ReplicatedStorage").Shared.ItemFeedback)
-    else require("../../src/shared/ItemFeedback")
+local Bank = if script
+    then require(script.Parent.GallerySoundBank)
+    else require("./GallerySoundBank")
 
 local Timeline = {}
 
@@ -28,6 +28,27 @@ local impacts = {
     last_word = 0.50,
     metronome = 0.31,
     milestone = 0.40,
+    coral_fork = 0.24,
+    dew_lantern = 0.18,
+    encore = 0.26,
+    lagoon_synth = 0.16,
+    landing_fund = 0.38,
+    lily_pad = 0.34,
+    mist_fan = 0.16,
+    ozone_orb = 0.18,
+    pearl_diver = 0.22,
+    relay = 0.20,
+    soft_saw = 0.30,
+    coin = 0.30,
+    life = 0.28,
+    lock = 0.36,
+    restock = 0.32,
+    score = 0.36,
+    jumble = 0.20,
+    event_growth = 0.38,
+    event_overtime = 0.36,
+    event_repair = 0.38,
+    event_upgrade = 0.38,
 }
 
 local function item(id, phase, gain)
@@ -37,21 +58,6 @@ end
 local function cue(id, phase, pitch, gain)
     return { kind = "cue", id = id, phase = phase, pitch = pitch or 1, gain = gain or 1 }
 end
-
--- Utility models use the same cue or motif as their corresponding game action.
--- Keeping this table explicit catches a new silent utility during catalog checks.
-local utilities = {
-    coin = { cue("coin", 0.30) },
-    life = { cue("launch", 0.28, 1.1) },
-    lock = { cue("click", 0.36, 0.76) },
-    restock = { cue("restock", 0.32) },
-    score = { cue("goal", 0.36) },
-    jumble = { cue("merge", 0.20, 0.9), cue("merge", 0.38), cue("merge", 0.56, 1.15) },
-    event_growth = { item("growth_array", 0.38) },
-    event_overtime = { item("clockwork", 0.36) },
-    event_repair = { item("recovery", 0.38) },
-    event_upgrade = { item("tuning_oil", 0.38) },
-}
 
 local chestTier = {
     chest_common = 1,
@@ -70,22 +76,14 @@ function Timeline.forId(id)
             table.insert(events, cue("click", phase, 0.76 + index * 0.025, 0.18 + index * 0.065))
         end
         table.insert(events, cue("restock", 0.56, 0.88 + tier * 0.035, 0.8))
-        table.insert(events, item("burst_capsule", 0.56, 0.65 + tier * 0.07))
+        table.insert(events, item(id, 0.56, 0.65 + tier * 0.07))
         table.insert(events, cue("clear", 0.64, 0.84 + tier * 0.09, 0.55 + tier * 0.08))
         return events
     end
-    if Signatures.Profiles[id] then
+    if Bank.Profiles[id] then
         return { item(id, impacts[id] or 0.28) }
     end
-    local source = utilities[id]
-    if not source then
-        return nil
-    end
-    local events = {}
-    for _, event in source do
-        table.insert(events, table.clone(event))
-    end
-    return events
+    return nil
 end
 
 return Timeline

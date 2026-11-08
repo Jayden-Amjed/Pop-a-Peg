@@ -192,7 +192,23 @@ The raw package remains unchanged. The gallery uses normalized local copies with
 measured .28 scale correction, orientation, restored colors and physics flags;
 reinserting/updating the raw package does not apply those local repairs.
 
-Gallery audio reuses the documented game assets and 64 item motifs, adding
+At RBX-025, gallery audio reused the documented game assets and 64 item motifs, adding
 explicit utility mappings and chest cue timing. All 78 entries passed Studio
 asset loading, active playback and advancing time checks; output loudness was
 observed. This establishes runtime playback, not subjective listening approval.
+
+## RBX-027 Blender-only refinement
+
+Original Model asset **107372484175276**, owned by **583716264**, contains eight
+revised models (48 model meshes and three calibration meshes). Operation
+`a1daa18e-9157-4506-8a3c-0c45f69ccfa4` returned Approved. Sources, previous sources,
+GLB, observation and binding receipt are retained under
+`art/catalog/revisions/RBX-027/`; the active revision index resolves each model.
+The raw upload is preserved. Runtime copies have the measured .28 scale correction,
+orientation, colors, articulation metadata and inert physics flags restored.
+
+The gallery now uses 78 authored sound phrases across 12 additive timbre families.
+It reuses the existing licensed tone/cue assets: no new audio or textures were
+uploaded. Transient visual effects use local primitive pools, not external assets.
+Native models, animation and gameplay audio remain unchanged. The task record
+distinguishes offline checks, Studio verification and subjective review.

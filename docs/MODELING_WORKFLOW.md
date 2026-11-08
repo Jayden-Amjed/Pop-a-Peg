@@ -1,8 +1,10 @@
-# Modeling workflow: native builders and Blender catalog
+# Modeling workflow: Blender catalog and frozen native reference
 
-The game currently builds its models in `src/client/ItemModels.luau`; it does not
-load a Blender asset library. Keep that reproducible path while reviewing the
-complete [Blender catalog](CATALOG_GALLERY.md) for cleaner surfaces and silhouettes.
+The normal game uses its existing native builders. **Native models, animations
+and effects are frozen by the user's instruction; do not edit the `src/` tree for
+catalog review work.** Author and refine the [Blender catalog](CATALOG_GALLERY.md)
+and its separate inspector. Native comparison is read-only. This work does not
+replace game models or imply a production migration.
 Follow the [style guide](MODEL_STYLE_GUIDE.md), [ownership policy](SYSTEM_OVERVIEW.md#ownership-and-restoration)
 and [Studio workflow](WORKFLOW.md#agent-workflow-through-mcp).
 
@@ -14,8 +16,10 @@ Blender CLI/Python API and Roblox Studio MCP; no Blender MCP is required.
 Follow the [catalog guide](CATALOG_GALLERY.md) for all 78 models, preserved-source
 exports, import receipts and individual animation feedback. The earlier
 [pilot guide](BLENDER_PILOTS.md) retains the three-model comparison workflow.
-The normal game still uses native builders; the separate gallery uses the imported
-meshes and has actual Studio evidence. Model upload did not publish an experience.
+The separate gallery uses imported meshes. Earlier tasks retain their own Studio
+evidence; each new revision needs its own loading and visual checks. Model upload
+does not publish an experience, and a successful Blender render does not establish
+that the current Studio revision has passed review.
 
 ## Original pipeline pilots
 
@@ -25,10 +29,10 @@ meshes and has actual Studio evidence. Model upload did not publish an experienc
 | Seed Bank (`seed_bank`) | Pearl frame, readable seeds behind a restrained glass window, crisp small-scale silhouette |
 | Meadow Chest (`chest_common`) | Distinct body/lid, a correct rear hinge, readable opening and return to rest |
 
-Compare each with its native model in the same UI lighting, camera, size and
-animation. Adopt a mesh only when it improves that comparison and stays inside
-the agreed runtime budget. A failed pilot stays on the native builder. Expand
-to production only after reviewing the individual catalog model and its animation.
+These pilots established the original comparison workflow. Compare lighting,
+camera, size and rest pose with the frozen native reference where useful, while
+reviewing Blender-only motion on its own merits. Keep revisions within the
+agreed runtime budget; current feedback changes the gallery, not native gameplay.
 
 ## Author, export and inspect
 
@@ -37,6 +41,9 @@ to production only after reviewing the individual catalog model and its animatio
    Use scriptable Blender primitives, curves, bevels and repeated structures for
    quick variants, then inspect and refine their proportions and joins by eye.
    Automation produces candidates; it does not establish visual acceptance.
+   For an accepted model, inspect its existing source and tagged feedback first.
+   Preserve unrelated geometry; rebuild a whole object only when that matches the
+   requested change. Give each mechanism its own proportions and moving groups.
 2. **Set the frame and dimensions.** Use a 1-unit calibration cube and compare it
    with a 1-stud Studio part. Establish a single preset with Blender unit system
    `None`, rotation in degrees and matching Studio import units. Verify the final
@@ -68,13 +75,18 @@ to production only after reviewing the individual catalog model and its animatio
    GLB/glTF may create nested Models and multiple MeshParts per mesh, unlike FBX;
    node names can receive suffixes. Capture the actual hierarchy, not a guessed
    name mapping. See [Studio Importer](https://create.roblox.com/docs/studio/importer).
-6. **Adapt, then test.** Normalize imported render parts into the structure expected
-   by `ItemModels.create` and `ItemMotion`, preserving their world transforms.
+6. **Adapt, then test.** Normalize imported render parts into the catalog adapter's
+   direct-child structure, preserving their world transforms.
    Reconstruct `MotionGroup` and authored-space `MotionPivot` from a reviewed
    manifest; then let the existing adapter tag positions, calculate `ArtCenter`
    and center the model. Its current motion code enumerates direct `BasePart`
    children, so glTF wrapper Models cannot simply be dropped into it unchanged.
-   Keep Luau-driven idle and activation for these rigid pilots. Bone animation is
+   Put new articulation in `scripts/models/BlenderChoreography.luau` and
+   `CatalogMotion.luau`; shared/native motion stays read-only. Keep transient
+   effects in `CatalogEffectProfiles.luau` and `CatalogEffects.luau`, separate from
+   the authored mesh. A functional light may brighten locally and briefly while
+   the object keeps contrasting mass; verify exact material/color restoration.
+   Keep Luau-driven idle and activation for these rigid models. Bone animation is
    a separate future path, not an automatic part of mesh import.
 
 Decorative preview meshes need no physical interaction. Keep `CanCollide`,
@@ -86,38 +98,61 @@ and [performance guidance](https://create.roblox.com/docs/performance-optimizati
 
 ## Repeatable source and delivery
 
-Implemented layout for the first pilots:
+Current catalog layout, with the original pilot sources retained:
 
 | Path | Authority / purpose |
 | --- | --- |
-| `art/models/<id>/<id>.blend` | Editable authoring source; one approved version |
-| `art/models/<id>/manifest.json` | Source revision, dimensions, group/pivot mapping, export preset, asset IDs, ownership and license |
-| `scripts/models/` | Deterministic generators, non-destructive export, motion audits and Studio pilot adapter |
-| `build/model-exports/` | Regenerable GLB/FBX files and inspection images |
-| `art/models/BlenderPilots.rbxm` | Engine-serialized runtime export mapped only into the isolated pilot gallery |
-| `art/models/uploaded/` | Exact uploaded GLB and observed import snapshot, pinned for identity replay |
+| `art/catalog/<id>/<id>.blend` and `manifest.json` | Current editable catalog source, hash, geometry audit, groups and pivots |
+| `art/models/<id>/<id>.blend` and `manifest.json` | Accepted Wave Spring, Seed Bank and Meadow Chest pilot sources; ordinary catalog builds preserve them |
+| `scripts/models/` | Targeted revision recipes, non-destructive export, gallery-only motion/effects and inspection tools |
+| `build/model-exports/` / `build/catalog-exports/` | Regenerable export candidates and inspection images; not import receipts |
+| `art/catalog/CatalogAssets.rbxm` | Engine-serialized imported runtime folder mapped into the isolated catalog gallery |
+| `art/catalog/revisions/index.json` | Active receipt selection plus predecessor source/manifest archive mappings |
+| `art/catalog/uploaded/` and `art/models/uploaded/` | Immutable uploaded GLB bytes and observed import evidence |
 
 Keep `.blend` authoring files outside the Rojo-mapped `assets` subtree. The `.rbxm`
-is the runtime import result, not a competing editable geometry source. The pilot
-adapter uses stable catalog IDs and the production fallback remains native.
+is the runtime import result, not a competing editable geometry source. The catalog
+adapter uses stable IDs; the normal game continues using its frozen native assets.
 Restoration is documented in `ASSETS.md`. A local GLB is not automatically a deployable Roblox
 mesh: asset ownership, access, moderation and observed IDs must be recorded after
 the actual import. A fresh clone must be able to identify every dependency.
 
 The batch script loads the editable blend without overwriting it, exports its
 tagged meshes, validates geometry/group names, emits candidate manifests and can
-render fixed-camera previews. `-Regenerate` explicitly recreates the blends from
-their Python recipes. Use Blender background execution and an explicit
+render fixed-camera previews. `build_catalog.py --regenerate` recreates selected
+catalog blends from their original Python builders and can erase accepted manual
+or targeted revisions. It is not the ordinary review/export path. Use Blender
+background execution and an explicit
 Python error exit code so a failed export fails the job. The official
 [command-line reference](https://docs.blender.org/manual/en/4.2/advanced/command_line/arguments.html)
 documents those controls; match flags to the pinned installed version. Keep
 machine-generated candidates separate from accepted sources, and inspect the
-Studio result before replacing a native model.
+Studio result before accepting the revised catalog entry.
+
+For the RBX-027 feedback, `scripts/models/revise_effect_models.py -- --apply`
+is a bounded recipe for eight named sources. It checks pinned predecessor hashes,
+preserves unselected files, and refuses unrecognized source edits. A second run
+on its matching revision exports without rebuilding it. Use `--ids` to narrow
+the requested set, `--render` for inspection images and `--upload-dir` for a
+task-specific candidate folder. The earlier `revise_review_models.py` similarly
+records the cap/crank pass. These recipes document particular revisions; they
+are not a general license to regenerate the catalog. After later hand edits,
+use the preserving catalog export path instead of forcing a recipe's hash guard.
+
+Before replacing an accepted source, retain its exact bytes and manifest under
+the predecessor archive mapping in `art/catalog/revisions/index.json`. Keep every
+uploaded GLB, receipt and observed import snapshot immutable. Changed geometry
+requires a new export/import receipt; never rewrite an old receipt to point at
+new source bytes or asset IDs. Bind the new observations, normalize the imported
+clones, then select the new active receipt for only the revised IDs. Preserve
+superseded receipt/source pairs so both old and new uploads remain verifiable.
+The archive validator must agree with the sources, active selection and exported
+runtime artifact; a new local source alone does not complete that chain.
 
 Pilot evidence includes source/export versions, hashes, actual triangle and
 render-piece counts, the imported hierarchy, motion checks and the style-guide
-checklist. Run the repository checks and extend the native model audit to cover
-MeshPart identity/metadata; its current primitive geometry signature does not
-compare imported mesh topology. Record visual QA independently from scripts,
+checklist. Run the catalog archive and motion checks for imported MeshPart
+identity/metadata; the frozen native primitive signature does not compare imported
+mesh topology. Record visual QA independently from scripts,
 Git integration and Roblox publication. See [RBX-019](../tasks/RBX-019-blender-pilots.md)
 and its linked Studio images/audit for the first executed pass.
