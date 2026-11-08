@@ -4,10 +4,16 @@ local Profile = if Shared then require(Shared.Profile) else require("./Profile")
 local Rng = if Shared then require(Shared.Rng) else require("./Rng")
 local Chests = {}
 Chests.Tiers = {
-    { id = "common", name = "Meadow Chest", researchValue = 1, cost = 6 },
-    { id = "uncommon", name = "Lagoon Chest", researchValue = 3, cost = 12 },
-    { id = "rare", name = "Aurora Chest", researchValue = 6, cost = 24 },
-    { id = "legendary", name = "Celestial Chest", researchValue = 10, cost = 40 },
+    { id = "common", name = "Meadow Chest", researchValue = 1, cost = 6, restockCost = 100 },
+    { id = "uncommon", name = "Lagoon Chest", researchValue = 3, cost = 12, restockCost = 250 },
+    { id = "rare", name = "Aurora Chest", researchValue = 6, cost = 24, restockCost = 500 },
+    {
+        id = "legendary",
+        name = "Celestial Chest",
+        researchValue = 10,
+        cost = 40,
+        restockCost = 1000,
+    },
 }
 
 local function tierInfo(tier)
@@ -65,6 +71,15 @@ function Chests.observe(session)
     if not run then
         return
     end
+    local receipt = run.settlementReceipt
+    if receipt and receipt.id > (session.rewardedRestockReceipt or 0) then
+        -- Only finalized authoritative receipts mint currency. Animation, captures,
+        -- hub visits and repeated result snapshots cannot mint it a second time.
+        local extra = math.max(0, receipt.earnedRestocks - 1)
+        session.profile.restockCredits =
+            math.min(Profile.RestockCreditLimit, session.profile.restockCredits + extra)
+        session.rewardedRestockReceipt = receipt.id
+    end
     local completed = run.highestClearedRound or 0
     session.rewardedMilestones = session.rewardedMilestones or {}
     for _, milestone in { 15, 40, 65, 100 } do
@@ -116,6 +131,35 @@ local function remember(profile, result)
         table.remove(profile.chestReceipts, 1)
     end
     profile.lastOpened = result
+end
+
+function Chests.buy(profile, tier, requestId)
+    local info = tierInfo(tier)
+    if not info or not requestValid(requestId) then
+        return false, "Choose a chest to buy."
+    end
+    local acknowledged, message = replay(profile, requestId, "purchase", tier)
+    if acknowledged ~= nil then
+        return acknowledged, message
+    end
+    if (profile.chests[tier] or 0) >= 10000 then
+        return false, "Open a chest of this tier before buying another."
+    end
+    if profile.restockCredits < info.restockCost then
+        return false, "Earn more extra restocks to buy this chest."
+    end
+    profile.restockCredits -= info.restockCost
+    Chests.award(profile, tier)
+    profile.chestSerial += 1
+    remember(profile, {
+        serial = profile.chestSerial,
+        requestId = requestId,
+        tier = tier,
+        kind = "purchase",
+        restockCost = info.restockCost,
+        research = 0,
+    })
+    return true
 end
 
 function Chests.open(profile, tier, requestId, seed)
@@ -183,8 +227,13 @@ end
 
 function Chests.snapshot(profile)
     local clean = Profile.clean(profile)
-    local result =
-        { tiers = {}, research = clean.research, unlocks = {}, lastOpened = clean.lastOpened }
+    local result = {
+        tiers = {},
+        research = clean.research,
+        restockCredits = clean.restockCredits,
+        unlocks = {},
+        lastOpened = clean.lastOpened,
+    }
     for _, tier in Chests.Tiers do
         local pool, total = Chests.pool(clean, tier.id)
         table.insert(result.tiers, {
@@ -194,6 +243,7 @@ function Chests.snapshot(profile)
             remaining = #pool,
             total = total,
             researchValue = tier.researchValue,
+            restockCost = tier.restockCost,
         })
     end
     for _, id in Catalog.ItemIds do

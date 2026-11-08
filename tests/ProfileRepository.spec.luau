@@ -65,7 +65,7 @@ return function()
     end
 
     local store = fakeStore()
-    store.data.player_1 = { bestRound = 40, chests = { common = 3 } }
+    store.data.player_1 = { bestRound = 40, chests = { common = 3 }, restockCredits = 350 }
     store.plan = { "after", "repeat" }
     local a = repository(store, "a")
     local profile, status = a:load(1)
@@ -86,10 +86,14 @@ return function()
 
     profile.chests.common = 1
     profile.research = 5
+    profile.restockCredits = 100
     store.plan = { "after", "repeat" }
     local saved, saveStatus = a:save(1, profile)
     assert(
-        saved and saveStatus == "saved" and store.data.player_1.chests.common == 1,
+        saved
+            and saveStatus == "saved"
+            and store.data.player_1.chests.common == 1
+            and store.data.player_1.restockCredits == 100,
         "Ambiguous consumed balance save resolves without resurrection"
     )
     assert(
@@ -112,7 +116,10 @@ return function()
     assert(not a:save(1, profile), "Released token is cleared")
     local joined = b:load(1)
     assert(
-        joined and joined.chests.common == 0 and joined.research == 5,
+        joined
+            and joined.chests.common == 0
+            and joined.research == 5
+            and joined.restockCredits == 100,
         "Reconnect loads durable consumed balances"
     )
 

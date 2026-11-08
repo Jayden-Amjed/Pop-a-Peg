@@ -47,6 +47,7 @@ local allowed = {
     endless = true,
     speed = true,
     openChest = true,
+    buyChest = true,
     researchItem = true,
 }
 
@@ -174,7 +175,7 @@ requestAction = function(player, kind, payload)
         return
     end
     local before = session.view
-    local progression = kind == "openChest" or kind == "researchItem"
+    local progression = kind == "openChest" or kind == "researchItem" or kind == "buyChest"
     if progression and session.saving then
         sendState(player, session, "Finishing your save. Try again in a moment.")
         return
@@ -205,7 +206,7 @@ requestAction = function(player, kind, payload)
             sendState(
                 player,
                 session,
-                "Unlock received here; saving is retrying. Stay connected to keep progress."
+                "Reward received here; saving is retrying. Stay connected to keep progress."
             )
             return
         end
