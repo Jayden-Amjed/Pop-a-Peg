@@ -25,32 +25,32 @@ were retained. Both sessions ended in Edit, with no live sync server.
 | --- | --- |
 | Local suite | Formatting/lint, 23 suites, native/Blender adapter contracts, three builds, 45 exact source mappings and doc validation passed. |
 | All-model mesh audit | 78/78 loaded; 477 MeshParts; 24 cycles/model; 14976 sampled poses; restoration, shared body transform and deterministic replay passed. |
-| Native audit | 78/78; three cycles at each of strengths1/2; root transforms, connected body pieces, reduced motion and two queued triggers passed. |
+| Native audit | 78/78; three cycles at each of strengths 1/2; root transforms, connected body pieces, reduced motion and two queued triggers passed. |
 | Native framing | 2575232 real part-corner checks at 160×112 and 300×260; no clipping, including perk plinths. |
-| Gallery framing | 45792 corner checks across12 held poses/model at strength2 and default Fit; no clipping; smallest margin0.09868. |
+| Gallery framing | 45792 corner checks across 12 held poses/model at strength 2 and default Fit; no clipping; smallest margin 0.09868. |
 | Geometry archive | All source/export/import/runtime hashes still match;78 unique geometry signatures;124332 triangles; no asset uploads or geometry edits. |
-| Actual playback | Six representative models played on RenderStepped for3seconds; transformations changed through the live interval. |
-| Normal game | Real mouse input entered the hub/run and completed6shots, clearing rounds1/2;36 mounted viewports; no new game errors. |
+| Actual playback | Six representative models played on RenderStepped for 3 seconds; transformations changed through the live interval. |
+| Normal game | Real mouse input entered the hub/run and completed6shots, clearing rounds 1/2;36 mounted viewports; no new game errors. |
 
 Reports: [Blender audit](studio-catalog-audit.json),
 [native audit](studio-native-audit.json), [gallery fit](studio-gallery-fit.json),
 [archive](catalog-integrity.json), [playback/game](playback-and-game.json).
 
-The fresh game run did not reach the round5 shop, so equipped-item procs in that
+The fresh game run did not reach the round 5 shop, so equipped-item procs in that
 particular run were not observed. Actual item controllers, queued procs, both
-preview sizes and reduced motion were instead exercised for all78 IDs by the
+preview sizes and reduced motion were instead exercised for all 78 IDs by the
 native Studio audit. This distinction is intentional.
 
 ## Visual review
 
-[Animated study](expressive-motion.gif) uses25 captured Studio poses at synchronized
+[Animated study](expressive-motion.gif) uses 25 captured Studio poses at synchronized
 normalized phases, with a shared palette and held endpoints. It is a pose-study GIF,
 not a recording of the different real-time durations. The normal inspector plays
 each model at its own authored duration.
 
-[Final inspector](final-inspector.jpg) shows Wave Spring loaded at pose0.320,
+[Final inspector](final-inspector.jpg) shows Wave Spring loaded at pose 0.320,
 125% zoom, with the current choreography label. The full-catalog contact sheets
-below show the actual Blender assemblies at pose0.36, normal strength:
+below show the actual Blender assemblies at pose 0.36, normal strength:
 
 - [Page 1](contact-01.jpg)
 - [Page 2](contact-02.jpg)
@@ -77,7 +77,7 @@ cover spring, seed bank, kite, stamp, hourglass and legendary chest.
   All-pose automation checks bounds/restoration, not artistic appeal.
 - Inspector high manual zoom can intentionally crop. Mobile inspector layout
   and access from a different Roblox account remain unverified.
-- Existing unrelated avatar asset203785492 type warnings remain.
+- Existing unrelated avatar asset 203785492 type warnings remain.
 - Approved Blender models remain in the gallery; gameplay retains native shapes.
   Both use the same new motion definitions. No game experience was published.
 
