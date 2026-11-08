@@ -533,6 +533,8 @@ function Presentation:_buildHud()
     self.scoreCaption = label(self.scorePlate, "Caption", "SHOT SCORE", 23, C.paper, 5)
     self.score = label(self.scorePlate, "Total", "0", 60, C.paper, 5)
     self.quota = label(self.scorePlate, "Quota", "TARGET 10", 23, C.paper, 5)
+    self.quotaConstraint =
+        make("UITextSizeConstraint", { MinTextSize = 16, MaxTextSize = 25 }, self.quota)
     self.progressCaption = label(self.scorePlate, "Next", "NEXT RESTOCK", 18, C.muted, 5)
     self.progress = frame(self.scorePlate, "RepeatMeter", C.ink, 4)
     stroke(self.progress, C.ink, 4)
@@ -691,6 +693,8 @@ function Presentation:_layout()
         self.score.TextSize = 31
         setRect(self.quota, uiW - 127, 3, 117, 34)
         self.quota.TextSize = 19
+        self.quota.TextScaled = true
+        self.quotaConstraint.MaxTextSize = 19
         self.quota.TextXAlignment = Enum.TextXAlignment.Right
         setRect(self.progress, 10, 45, uiW - 132, 32)
         self.fraction.TextSize = 25
@@ -825,6 +829,8 @@ function Presentation:_layout()
         self.score.TextSize = 60
         setRect(self.quota, 16, 120, rightW - 32, 32)
         self.quota.TextSize = 25
+        self.quota.TextScaled = false
+        self.quotaConstraint.MaxTextSize = 25
         self.quota.TextXAlignment = Enum.TextXAlignment.Left
         setRect(self.progressCaption, 16, 161, rightW - 32, 26)
         setRect(self.progress, 15, 194, rightW - 30, 48)
@@ -1120,12 +1126,15 @@ function Presentation:_updateModal()
     self.modal = modal
     setRect(modal, (size.X - width) / 2, top, width, height)
     local title = label(modal, "Title", "", width < 500 and 26 or 34, C.paper, 25)
-    setRect(title, 16, 9, width - 32, 43)
+    if self.shortWide then
+        title.TextSize = 28
+    end
+    setRect(title, 16, self.shortWide and 8 or 9, width - 32, self.shortWide and 32 or 43)
     local subtitle = label(modal, "Subtitle", "", 18, C.paper, 25)
     subtitle.TextWrapped = true
-    setRect(subtitle, 16, 55, width - 32, self.shortWide and 24 or 47)
-    local bodyTop = self.shortWide and 84 or 112
-    local footerY = height - 67
+    setRect(subtitle, 16, self.shortWide and 44 or 55, width - 32, self.shortWide and 20 or 47)
+    local bodyTop = self.shortWide and 70 or 112
+    local footerY = height - (self.shortWide and 54 or 67)
     local body = make("ScrollingFrame", {
         Name = "Content",
         BackgroundTransparency = 1,
@@ -1136,11 +1145,17 @@ function Presentation:_updateModal()
         ScrollingDirection = Enum.ScrollingDirection.Y,
         ZIndex = 24,
     }, modal)
-    setRect(body, 14, bodyTop, width - 28, math.max(50, footerY - bodyTop - 13))
+    setRect(
+        body,
+        14,
+        bodyTop,
+        width - 28,
+        math.max(50, footerY - bodyTop - (self.shortWide and 10 or 13))
+    )
     local function action(name, text, x, buttonWidth, color, callback)
         local result = button(modal, name, text, color, callback, 27)
-        setRect(result, x, footerY, buttonWidth, 51)
-        result.TextSize = width < 500 and 18 or 24
+        setRect(result, x, footerY, buttonWidth, self.shortWide and 42 or 51)
+        result.TextSize = width < 650 and 18 or 24
         result.TextWrapped = true
         return result
     end
@@ -1154,6 +1169,10 @@ function Presentation:_updateModal()
                 Format.integer(state.coins)
                 .. " COINS • Matching equipment upgrades it. Select two slots to reorder."
             )
+        if self.shortWide and definition then
+            setRect(subtitle, 16, 44, width - 32, 38)
+            setRect(body, 14, 86, width - 28, math.max(50, footerY - 96))
+        end
         local columns = width >= 650 and 2 or 1
         local cw = (width - 42 - (columns - 1) * 16) / columns
         local cardHeight = self.shortWide and 216 or 248
@@ -1262,7 +1281,7 @@ function Presentation:_updateModal()
         local choices = phase == "perk" and state.perkOffers or state.eventChoices
         local columns = width >= 650 and 2 or 1
         local cw = (width - 42 - (columns - 1) * 16) / columns
-        local ch = 320
+        local ch = phase == "perk" and 368 or 320
         body.Size = UDim2.fromOffset(width - 28, height - bodyTop - 16)
         for index, choice in choices or {} do
             local id = type(choice) == "table" and choice.id or choice
@@ -1281,10 +1300,23 @@ function Presentation:_updateModal()
             name.TextXAlignment = Enum.TextXAlignment.Center
             name.TextWrapped = true
             setRect(name, 12, 123, cw - 24, 48)
+            if phase == "perk" then
+                local trigger =
+                    label(card, "Trigger", data.triggerText or "PASSIVE EFFECT", 18, C.gold, 28)
+                trigger.TextWrapped = true
+                trigger.TextXAlignment = Enum.TextXAlignment.Center
+                setRect(trigger, 15, 177, cw - 30, 36)
+            end
             local description = label(card, "Effect", data.description, 19, C.paper, 28)
             description.TextWrapped = true
             description.TextYAlignment = Enum.TextYAlignment.Top
-            setRect(description, 15, 181, cw - 30, 71)
+            setRect(
+                description,
+                15,
+                phase == "perk" and 219 or 181,
+                cw - 30,
+                phase == "perk" and 80 or 71
+            )
             local choose = button(card, "Choose", "CHOOSE", C.mint, function()
                 self:_send(phase == "perk" and "choosePerk" or "chooseEvent", { index = index })
             end, 29)
