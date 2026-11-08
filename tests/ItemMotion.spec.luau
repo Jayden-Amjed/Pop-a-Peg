@@ -134,6 +134,14 @@ return function()
                         "Evolution scale escaped model envelope"
                     )
                 end
+                local nearRest = Motion.sample(id, group, 0.999999, 1, 1, 1, 1)
+                for _, axis in ipairs({ "rx", "ry", "rz" }) do
+                    assert(
+                        math.abs(math.sin(nearRest[axis])) < 0.0001
+                            and math.cos(nearRest[axis]) > 0.9999,
+                        "Evolution rotor snaps at the end: " .. id
+                    )
+                end
             end
         end
     end

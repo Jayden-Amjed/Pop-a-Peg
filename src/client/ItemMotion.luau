@@ -261,9 +261,12 @@ function ItemMotion.sample(id, group, t, strength, x, y, z)
     if profiles[id] and profiles[id].evolved then
         local turns = profiles[id].turns
         if group == "EvolvedOrbit" or group == "EvolvedRotor" or group == "EvolvedGyro" then
-            local spin = turn * turns
+            -- Finish on whole revolutions so returning to the rest pose never
+            -- snaps an asymmetric ring or rotor through a fractional turn.
+            local revolutions = math.ceil(math.abs(turns)) * (turns < 0 and -1 or 1)
+            local spin = turn * revolutions + envelope * turns * 0.35
             if group == "EvolvedGyro" then
-                v.rx, v.ry = spin, spin * 0.5
+                v.rx, v.ry = spin, -spin
             elseif group == "EvolvedRotor" then
                 v.rz = -spin
                 v.ry = envelope * 0.35
