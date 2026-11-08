@@ -5,10 +5,23 @@ return function(C)
     local function gain(a)
         return math.min(a, 1.25)
     end
-    local function lid(t, start, finish)
+    local function lid(t)
         -- The imported lids have clearance through 105 degrees. Treasure must
         -- return below the rim before this held-open interval starts closing.
-        return -rad(105) * (C.phase(t, start, start + 0.14) - C.phase(t, finish, 0.96))
+        return -rad(105) * (C.phase(t, 0.52, 0.60) - C.phase(t, 0.88, 0.98))
+    end
+    local function clear(v)
+        v.x, v.y, v.z, v.rx, v.ry, v.rz = 0, 0, 0, 0, 0, 0
+        v.scale, v.axial, v.glow = 1, 1, 0
+    end
+    local function rattle(t, cycles)
+        -- Escalating frequency and amplitude over a long closed-lid windup;
+        -- ease fully into the opening so the reveal has a clean silhouette.
+        local time = math.clamp(t / 0.52, 0, 1)
+        local envelope = C.phase(t, 0, 0.10) * (1 - C.phase(t, 0.48, 0.52))
+        return math.sin(math.pi * 2 * cycles * (0.35 * time + 0.65 * time * time))
+            * envelope
+            * (0.25 + 0.75 * time)
     end
 
     return {
@@ -229,132 +242,137 @@ return function(C)
             end,
         },
         chest_common = {
-            duration = 1.55,
-            name = "meadow-latch-surprise",
-            description = "Chest gives a curious rocking windup, pops its leaf clasp, hops open with a seed bouquet and gently closes after the seeds return.",
+            duration = 3.40,
+            name = "meadow-rattle-bouquet-boom",
+            description = "Rattles with growing impatience for a long closed-lid windup, then bursts into a springy seed bouquet and holds its lid proudly open.",
             body = function(t, a)
                 local k = gain(a)
-                local reveal = C.pulse(t, 0.18, 0.35, 0.70)
+                local reveal = C.pulse(t, 0.52, 0.59, 0.85)
                 local b = C.body()
-                b.rz = (0.13 * C.ring(t, 0, 0.25, 1) + 0.07 * C.ring(t, 0.40, 0.89, 1)) * k
-                b.y = (-0.035 * C.pulse(t, 0.02, 0.14, 0.24) + 0.105 * reveal) * k
-                b.scale = 1 + 0.13 * reveal * k
+                b.rz = (0.14 * rattle(t, 6) + 0.06 * C.ring(t, 0.65, 0.97, 1)) * k
+                b.x = 0.018 * rattle(t, 6) * k
+                b.y = (-0.045 * C.pulse(t, 0.08, 0.48, 0.55) + 0.21 * reveal) * k
+                b.scale = 1 + (-0.055 * C.pulse(t, 0.10, 0.48, 0.54) + 0.25 * reveal) * k
                 return b
             end,
             part = function(group, t, a, _x, _y, _z, v)
+                clear(v)
                 if group == "ChestLid" then
-                    v.rx = lid(t, 0.20, 0.79)
+                    v.rx = lid(t)
                 elseif group == "ChestClasp" then
-                    v.z = 0.22 * C.pulse(t, 0.10, 0.20, 0.39) * gain(a)
-                    v.rz = 0.30 * C.ring(t, 0.12, 0.43, 1)
+                    v.z = 0.25 * C.pulse(t, 0.47, 0.56, 0.74) * gain(a)
+                    v.rz = 0.35 * C.ring(t, 0.49, 0.76, 1)
                 elseif group == "ChestTreasure" then
-                    local reveal = C.pulse(t, 0.34, 0.49, 0.76)
-                    v.y = 0.82 * reveal * gain(a)
-                    v.ry = C.spin(t, 0.34, 0.75, 1)
-                    v.scale = 1 + 0.22 * reveal
+                    local reveal = C.pulse(t, 0.60, 0.70, 0.85)
+                    v.y = 1.08 * reveal * gain(a)
+                    v.ry = C.spin(t, 0.60, 0.85, 1)
+                    v.scale = 1 + 0.30 * reveal
                     v.glow = 0.85 * reveal
                 end
                 return v
             end,
         },
         chest_uncommon = {
-            duration = 1.70,
-            name = "lagoon-tidal-reveal",
-            description = "Lagoon coffer rolls with an incoming wave, releases its seal and floats its reward on a sweeping tide before a soft ebb and closure.",
+            duration = 3.60,
+            name = "lagoon-pressure-wave-burst",
+            description = "Rocks and rattles as a tide gathers behind its seal, then explodes into a rolling wave of treasure before the water ebbs and the lid closes.",
             body = function(t, a)
                 local k = gain(a)
-                local tide = C.pulse(t, 0.14, 0.39, 0.87)
+                local tide = C.pulse(t, 0.52, 0.59, 0.86)
                 local b = C.body()
-                b.x = 0.07 * C.ring(t, 0.03, 0.90, 1) * k
-                b.y = 0.14 * tide * k
-                b.rz = 0.23 * C.ring(t, 0.02, 0.93, 1.5) * k
+                b.x = (0.024 * rattle(t, 7) + 0.07 * C.ring(t, 0.54, 0.93, 1)) * k
+                b.y = (-0.04 * C.pulse(t, 0.08, 0.48, 0.55) + 0.23 * tide) * k
+                b.rz = (0.17 * rattle(t, 7) + 0.17 * C.ring(t, 0.55, 0.95, 1)) * k
                 b.rx = -0.10 * tide * k
-                b.scale = 1 + 0.16 * tide * k
+                b.scale = 1 + (-0.06 * C.pulse(t, 0.10, 0.48, 0.54) + 0.26 * tide) * k
                 return b
             end,
             part = function(group, t, a, _x, _y, _z, v)
+                clear(v)
                 if group == "ChestLid" then
-                    v.rx = lid(t, 0.21, 0.80)
+                    v.rx = lid(t)
                 elseif group == "ChestClasp" then
-                    v.z = 0.24 * C.pulse(t, 0.12, 0.22, 0.40) * gain(a)
-                    v.rz = C.spin(t, 0.15, 0.53, 1)
+                    v.z = 0.28 * C.pulse(t, 0.47, 0.56, 0.75) * gain(a)
+                    v.rz = C.spin(t, 0.49, 0.77, 1)
                 elseif group == "ChestTreasure" then
-                    local tide = C.pulse(t, 0.35, 0.53, 0.77)
-                    v.y = 0.92 * tide * gain(a)
-                    v.x = 0.09 * C.ring(t, 0.38, 0.73, 1) * gain(a)
-                    v.ry = C.spin(t, 0.36, 0.75, 1)
-                    v.scale = 1 + 0.28 * tide
+                    local tide = C.pulse(t, 0.60, 0.70, 0.85)
+                    v.y = 1.20 * tide * gain(a)
+                    v.x = 0.12 * C.ring(t, 0.60, 0.85, 1) * gain(a)
+                    v.ry = C.spin(t, 0.60, 0.85, 1)
+                    v.scale = 1 + 0.34 * tide
                     v.glow = 0.9 * tide
                 end
                 return v
             end,
         },
         chest_rare = {
-            duration = 1.84,
-            name = "aurora-vault-eruption",
-            description = "Heavy vault compresses and trembles, kicks upward as its crystal lid opens, ejects rewards in two pulses and settles with a cushioned thud.",
+            duration = 3.90,
+            name = "aurora-lockdown-eruption",
+            description = "Shudders through a long escalating crystal pressure build, then kicks its lid open and throws treasure into a huge double-pulse eruption.",
             body = function(t, a)
                 local k = gain(a)
-                local load = C.pulse(t, 0, 0.19, 0.29)
-                local leap = C.pulse(t, 0.20, 0.35, 0.68)
+                local load = C.pulse(t, 0, 0.48, 0.55)
+                local leap = C.pulse(t, 0.52, 0.59, 0.86)
                 local b = C.body()
-                b.y = (-0.05 * load + 0.18 * leap + 0.035 * C.pulse(t, 0.65, 0.73, 0.89)) * k
-                b.rz = 0.06 * C.ring(t, 0.02, 0.24, 3) * k
-                b.rx = -0.16 * leap * k
-                b.scale = 1 + (-0.08 * load + 0.19 * leap) * k
+                b.y = (-0.06 * load + 0.27 * leap + 0.04 * C.pulse(t, 0.80, 0.86, 0.96)) * k
+                b.rz = 0.17 * rattle(t, 8) * k
+                b.rx = (0.06 * rattle(t, 11) - 0.16 * leap) * k
+                b.scale = 1 + (-0.08 * load + 0.28 * leap) * k
                 return b
             end,
             part = function(group, t, a, _x, _y, _z, v)
+                clear(v)
                 if group == "ChestLid" then
-                    v.rx = lid(t, 0.23, 0.82)
+                    v.rx = lid(t)
                 elseif group == "ChestClasp" then
-                    local release = C.pulse(t, 0.16, 0.25, 0.43)
+                    local release = C.pulse(t, 0.47, 0.56, 0.76)
                     v.z = 0.29 * release * gain(a)
                     v.y = 0.10 * release * gain(a)
-                    v.rz = 0.48 * C.ring(t, 0.18, 0.47, 1)
+                    v.rz = 0.48 * C.ring(t, 0.49, 0.78, 1)
                 elseif group == "ChestTreasure" then
-                    local reveal = C.pulse(t, 0.37, 0.50, 0.79)
-                    v.y = (1.02 * reveal + 0.12 * C.pulse(t, 0.54, 0.61, 0.71)) * gain(a)
-                    v.ry = -C.spin(t, 0.38, 0.77, 2)
-                    v.scale = 1 + 0.32 * reveal
+                    local reveal = C.pulse(t, 0.60, 0.70, 0.85)
+                    v.y = (1.32 * reveal + 0.15 * C.pulse(t, 0.72, 0.77, 0.83)) * gain(a)
+                    v.ry = -C.spin(t, 0.60, 0.85, 2)
+                    v.scale = 1 + 0.39 * reveal
                     v.glow = 0.95 * reveal
                 end
                 return v
             end,
         },
         chest_legendary = {
-            duration = 2.0,
-            name = "celestial-coronation",
-            description = "Celestial chest levitates into a full coronation turn, orbit ring races around the crown, then rewards ascend before a deliberate royal closure.",
+            duration = 4.20,
+            name = "celestial-supernova-coronation",
+            description = "Trembles through a long celestial pressure build and a full closed-lid turn, then detonates into a levitating crown of treasure and a held royal reveal.",
             body = function(t, a)
                 local k = gain(a)
-                local coronation = C.pulse(t, 0.13, 0.43, 0.91)
+                local coronation = C.pulse(t, 0.52, 0.59, 0.90)
                 local b = C.body()
-                b.y = (-0.035 * C.pulse(t, 0, 0.12, 0.24) + 0.19 * coronation) * k
-                b.ry = C.spin(t, 0.13, 0.63, 1)
+                b.y = (-0.04 * C.pulse(t, 0, 0.48, 0.55) + 0.30 * coronation) * k
+                b.ry = C.spin(t, 0.04, 0.50, 1)
                 b.rx = -0.11 * coronation * k
-                b.rz = 0.08 * C.ring(t, 0.60, 0.95, 1) * k
-                b.scale = 1 + 0.22 * coronation * k
+                b.rz = (0.18 * rattle(t, 9) + 0.08 * C.ring(t, 0.67, 0.97, 1)) * k
+                b.scale = 1 + (-0.07 * C.pulse(t, 0.10, 0.48, 0.54) + 0.30 * coronation) * k
                 return b
             end,
             part = function(group, t, a, _x, _y, _z, v)
+                clear(v)
                 if group == "ChestLid" then
-                    v.rx = lid(t, 0.28, 0.83)
+                    v.rx = lid(t)
                 elseif group == "ChestClasp" then
-                    local release = C.pulse(t, 0.18, 0.29, 0.46)
+                    local release = C.pulse(t, 0.47, 0.56, 0.77)
                     v.z = 0.30 * release * gain(a)
-                    v.rz = C.spin(t, 0.22, 0.53, 1)
+                    v.rz = C.spin(t, 0.49, 0.79, 1)
                 elseif group == "ChestTreasure" then
-                    local reveal = C.pulse(t, 0.42, 0.60, 0.80)
-                    v.y = 1.12 * reveal * gain(a)
-                    v.ry = C.spin(t, 0.43, 0.78, 2)
-                    v.scale = 1 + 0.37 * reveal
+                    local reveal = C.pulse(t, 0.60, 0.70, 0.85)
+                    v.y = 1.46 * reveal * gain(a)
+                    v.ry = C.spin(t, 0.60, 0.85, 2)
+                    v.scale = 1 + 0.44 * reveal
                     v.glow = reveal
                 elseif group == "ChestOrbit" then
-                    v.ry = C.spin(t, 0.12, 0.89, 3)
-                    v.rx = 0.19 * C.pulse(t, 0.15, 0.46, 0.88)
-                    v.scale = 1 + 0.12 * C.pulse(t, 0.14, 0.42, 0.88)
-                    v.glow = 0.70 * C.pulse(t, 0.23, 0.49, 0.88)
+                    v.ry = C.spin(t, 0.04, 0.87, 4)
+                    v.rx = 0.19 * C.pulse(t, 0.50, 0.64, 0.88)
+                    v.scale = 1 + 0.16 * C.pulse(t, 0.50, 0.64, 0.88)
+                    v.glow = 0.70 * C.pulse(t, 0.52, 0.64, 0.88)
                 end
                 return v
             end,

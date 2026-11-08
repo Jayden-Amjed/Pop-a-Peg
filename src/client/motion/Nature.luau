@@ -123,28 +123,26 @@ return function(C)
         },
         bubble_wand = {
             duration = 1.46,
-            name = "bubble-wand-baton-flourish",
-            description = "Cocks back, tosses through a full front-facing baton turn, and exhales bubbles on the catch.",
+            name = "bubble-wand-twirl-together-pop",
+            description = "Twists around its long axis, gathers every bubble into one shared swell, and pops the whole silhouette on the catch.",
             body = function(t, a)
                 local wind = P(t, 0, 0.14, 0.30)
                 local toss = P(t, 0.12, 0.39, 0.82)
+                local pop = P(t, 0.59, 0.68, 0.92)
                 return pose(
                     R(t, 0.13, 0.87, 1) * 0.10 * a,
-                    (toss * 0.18 - wind * 0.04) * a,
+                    (toss * 0.13 + pop * 0.07 - wind * 0.04) * a,
                     toss * 0.035 * a,
                     R(t, 0.14, 0.88, 1) * 0.16 * a,
-                    0,
-                    spin(t, 0.17, 0.76, -1, a) + wind * 0.24 * a,
-                    1 + (toss * 0.21 - wind * 0.05) * a
+                    spin(t, 0.16, 0.62, -1, a),
+                    wind * 0.24 * a,
+                    1 + (toss * 0.10 + pop * 0.24 - wind * 0.05) * a
                 )
             end,
-            part = function(group, t, a, x, _y, _z, v)
+            part = function(_group, _t, _a, _x, _y, _z, v)
                 clear(v)
-                if group == "WandBubble" then
-                    local release = P(t, 0.42, 0.68, 0.98)
-                    v.x, v.y = release * (0.08 + math.abs(x) * 0.10) * a, release * 0.34 * a
-                    v.scale = 1 + release * 0.34 * a
-                end
+                -- Bubbles stay attached to the loop. The single body swell is
+                -- deliberately shared by the handle, loop, bubbles and highlights.
                 return v
             end,
         },

@@ -13,7 +13,7 @@ return function()
     for id, profile in Motion.Profiles do
         count += 1
         assert(
-            profile.duration >= 0.65 and profile.duration <= 2.5,
+            profile.duration >= 0.65 and profile.duration <= (if profile.chest then 4.5 else 2.5),
             "Unreadable performance timing: " .. id
         )
         assert(#profile.description > 20, "Missing choreography rationale: " .. id)
@@ -254,6 +254,7 @@ return function()
             local bodyOnly = {
                 ["bubble_wand/WandStem"] = true,
                 ["bubble_wand/WandLoop"] = true,
+                ["bubble_wand/WandBubble"] = true,
                 ["ozone_orb/OzoneShell"] = true,
                 ["aurora_kite/KiteSail"] = true,
                 ["aurora_kite/KiteSpar"] = true,
@@ -270,12 +271,50 @@ return function()
             end
         end
         if profile.chest then
-            local opening = Motion.sample(id, "ChestLid", 0.45, 1, 0, 0, 0)
-            local holding = Motion.sample(id, "ChestLid", 0.6, 1, 0, 0, 0)
+            assert(profile.duration >= 3.4, "Chest anticipation was shortened")
+            for index = 0, 52 do
+                local closed = Motion.sample(id, "ChestLid", index / 100, 1, 0, 0, 0)
+                assert(closed.rx == 0, "Chest opens before its long pressure build finishes")
+            end
+            local opening = Motion.sample(id, "ChestLid", 0.60, 1, 0, 0, 0)
+            local holding = Motion.sample(id, "ChestLid", 0.87, 1, 0, 0, 0)
             assert(opening.rx < -math.pi / 2, "Chest must visibly open past upright")
             assert(opening.rx == holding.rx, "Chest must hold open for its reveal")
+            for index = 0, 100 do
+                local sampleTime = index / 100
+                local treasure = Motion.sample(id, "ChestTreasure", sampleTime, 2, 0, 0, 0)
+                if treasure.y > 0 then
+                    local opened = Motion.sample(id, "ChestLid", sampleTime, 2, 0, 0, 0)
+                    assert(opened.rx == opening.rx, "Treasure crosses a closing or closed lid")
+                end
+            end
         end
     end
+    -- Review corrections: the wand's attached bubbles no longer spit outward;
+    -- the capsule's complete cap clears its shoulder and comes back to its seat.
+    for index = 0, 100 do
+        local sampleTime = index / 100
+        for _, group in { "WandStem", "WandLoop", "WandBubble" } do
+            samePose(
+                Motion.sample("bubble_wand", group, sampleTime, 2, 0, 1, 0),
+                Motion.sample("bubble_wand", group, 0, 2, 0, 1, 0),
+                0
+            )
+        end
+        local cap = Motion.sample("burst_capsule", "BurstCap", sampleTime, 2, 0, 1.765, 0)
+        assert(cap.y >= 0, "Capsule cap sinks through its seat")
+        if sampleTime >= 0.76 then
+            samePose(cap, Motion.sample("burst_capsule", "BurstCap", 0, 2, 0, 1.765, 0), 0.000001)
+        end
+    end
+    assert(
+        math.abs(Motion.bodySample("bubble_wand", 0.62, 1).ry) > math.pi * 1.99,
+        "Wand must complete its long-axis twirl"
+    )
+    assert(
+        Motion.sample("burst_capsule", "BurstCap", 0.4, 1, 0, 1.765, 0).y > 1,
+        "Cap does not visibly lift off"
+    )
     assert(
         unlockModels == 18 and chestModels == 4 and eventModels == 4,
         "New motion coverage incomplete"
