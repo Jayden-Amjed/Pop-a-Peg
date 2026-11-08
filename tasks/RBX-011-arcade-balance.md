@@ -87,6 +87,7 @@ No contributor operated Studio.
 | Ambient motion | PASS | 120 sampled steps move 65 parts in ten groups; destroy restores each CFrame/transparency |
 | Review | PASS | Read-only lifecycle review caught victory discard; fixed and regression passed; no additional findings |
 | Main / CI | PENDING | Final branch push and verified merge receipt remain |
+| Fresh tool setup / fallback | PASS | All four pinned tools downloaded in a clean scratch install; a second install forced primary URL failures and verified all four official API fallbacks and checksums |
 
 Local evidence files in the original root scratch folder include
 arcade-eight-pass.json, arcade-eight-final.json, arcade-playtest-final.json, arcade-transitions.json,
@@ -121,6 +122,10 @@ performance or real network conditions.
   to that already runtime-tested enum access.
 - Documentation validation caught renamed required dashboard labels; restored
   Accepted source and Studio-tested source before final checks.
+- Initial GitHub push/PR runs 42465310409 / 42465314592 and their second attempts
+  failed before checks on HTTP 504 tool downloads. Setup now retries at most three
+  times and uses locked official release-asset API URLs after failure. Fresh normal
+  and forced-fallback installs pass; all tool versions and checksums are unchanged.
 - Automatic review rejected opening QA through the unrelated user Studio window.
   No open-file action occurred; isolated MCP execution completed the work instead.
 - Physical touch/gamepad, cloud persistence and production publication: NOT RUN.

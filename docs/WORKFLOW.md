@@ -55,6 +55,9 @@ Run from the task worktree:
 
 The tool pins are Rojo **7.7.1**, StyLua **2.6.0**, Selene **0.32.0**, and Luau **0.746**.
 Setup is local to the checkout. Checks use these same tools locally and in CI.
+Tool downloads retry at most three times. After an initial failure, setup uses
+the locked official GitHub release-asset API URL when available; the same SHA256
+check remains mandatory. Neither fallback nor retry changes a tool version.
 Record command, environment, source SHA, exit/result, and limitations in the task.
 Use `PASS`, `FAIL`, or `NOT RUN`; existing tests and prior logs are not new runs.
 CI verifies its actual checkout only and does not prove Studio behavior.
