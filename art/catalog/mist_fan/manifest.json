@@ -3,35 +3,35 @@
   "id": "mist_fan",
   "display_name": "Mist Fan",
   "category": "equipment",
-  "generator": "scripts/models/catalog_nature.py",
+  "generator": "scripts/models/revise_effect_models.py",
   "blender": "4.5.9 LTS",
   "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
   "units": "studs in blend; 0.28 meters per stud in GLB",
-  "triangles": 1280,
-  "pieces": 6,
+  "triangles": 706,
+  "pieces": 7,
   "budget": {
     "triangles": 4000,
     "pieces": 8
   },
   "center_blender_studs": [
     0.0,
-    -0.0525,
-    1.2025
+    0.1,
+    1.215
   ],
   "bounds_min": [
-    -0.855,
-    -0.53,
-    0.0
+    -0.883346,
+    -0.27,
+    0.01
   ],
   "bounds_max": [
-    0.855,
-    0.425,
-    2.405
+    0.883346,
+    0.47,
+    2.4200001
   ],
   "size_blender_studs": [
-    1.71,
-    0.955,
-    2.405
+    1.7666919,
+    0.74,
+    2.4100001
   ],
   "objects": [
     {
@@ -50,42 +50,91 @@
       "motion_group": "Fixed",
       "motion_pivot": [
         0.0,
-        0.14,
-        0.62
+        0.0,
+        0.0
       ],
       "compression_span": null,
       "original_center_blender_studs": [
         0.0,
-        0.14,
-        0.62
+        0.12,
+        1.4
       ],
       "center_blender_studs": [
         0.0,
-        0.14,
-        0.62
+        0.12,
+        1.4
       ],
       "size_blender_studs": [
-        0.35,
-        0.32,
-        1.05
+        0.46,
+        0.38,
+        0.46
       ],
       "bounds_min": [
-        -0.175,
-        -0.02,
-        0.095
+        -0.23,
+        -0.07,
+        1.17
       ],
       "bounds_max": [
-        0.175,
-        0.3,
-        1.145
+        0.23,
+        0.31,
+        1.63
       ],
-      "geometry_sha256": "44879ffcf6dd99557601a71a4eee26b67ef34c2e9581b95df8b3d0669ee78fb7",
+      "geometry_sha256": "17766c3da9781ebfd07e1aaa0f85c7d5a15d0a7188187f944b9c930b6d623597",
       "nonmanifold_edges": 0,
       "degenerate_faces": 0
     },
     {
-      "name": "mist_fan__Fixed_dark_02",
-      "mesh_data_name": "mist_fan__Fixed_dark_02",
+      "name": "mist_fan__PaperRotor_blue_02",
+      "mesh_data_name": "mist_fan__PaperRotor_blue_02",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 78,
+      "vertices": 45,
+      "motion_group": "PaperRotor",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.4
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0003654,
+        -0.1650417,
+        1.6257119
+      ],
+      "center_blender_studs": [
+        0.0003654,
+        -0.1650417,
+        1.6257119
+      ],
+      "size_blender_studs": [
+        1.6280167,
+        0.0658935,
+        1.4118738
+      ],
+      "bounds_min": [
+        -0.8136429,
+        -0.1979884,
+        0.9197751
+      ],
+      "bounds_max": [
+        0.8143738,
+        -0.1320949,
+        2.3316488
+      ],
+      "geometry_sha256": "d8ae6105567fc38310af4326276ecd4416fd435c7938f316ace60974c92bacc5",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "mist_fan__Fixed_dark_03",
+      "mesh_data_name": "mist_fan__Fixed_dark_03",
       "material": "dark",
       "color_srgb": [
         44,
@@ -94,96 +143,47 @@
       ],
       "alpha": 1.0,
       "transparency": 0.0,
-      "triangles": 396,
-      "vertices": 200,
+      "triangles": 188,
+      "vertices": 96,
       "motion_group": "Fixed",
       "motion_pivot": [
         0.0,
         0.0,
-        1.13
-      ],
-      "compression_span": null,
-      "original_center_blender_studs": [
-        0.0,
-        0.0,
-        1.13
-      ],
-      "center_blender_studs": [
-        0.0,
-        0.0,
-        1.13
-      ],
-      "size_blender_studs": [
-        1.42,
-        0.85,
-        2.26
-      ],
-      "bounds_min": [
-        -0.71,
-        -0.425,
         0.0
       ],
-      "bounds_max": [
-        0.71,
-        0.425,
-        2.26
-      ],
-      "geometry_sha256": "c297e7c02dba6ba81a864ce18f68f1bd8099416630f46e3877fd1ca324bdc36b",
-      "nonmanifold_edges": 0,
-      "degenerate_faces": 0
-    },
-    {
-      "name": "mist_fan__MistPuff_glass_03",
-      "mesh_data_name": "mist_fan__MistPuff_glass_03",
-      "material": "glass",
-      "color_srgb": [
-        145,
-        244,
-        255
-      ],
-      "alpha": 0.25,
-      "transparency": 0.75,
-      "triangles": 240,
-      "vertices": 124,
-      "motion_group": "MistPuff",
-      "motion_pivot": [
-        -0.05,
-        -0.43,
-        1.55
-      ],
       "compression_span": null,
       "original_center_blender_studs": [
-        -0.05,
-        -0.43,
-        1.55
+        0.0,
+        -0.09,
+        1.4
       ],
       "center_blender_studs": [
-        -0.05,
-        -0.43,
-        1.55
+        0.0,
+        -0.09,
+        1.4
       ],
       "size_blender_studs": [
-        0.86,
-        0.2,
-        0.26
+        0.36,
+        0.11,
+        0.3599999
       ],
       "bounds_min": [
-        -0.48,
-        -0.53,
-        1.42
+        -0.18,
+        -0.145,
+        1.22
       ],
       "bounds_max": [
-        0.38,
-        -0.33,
-        1.6799999
+        0.18,
+        -0.035,
+        1.5799999
       ],
-      "geometry_sha256": "4e1494c92640c7465e9b2249693cdc826748750eeb6c294c68d925ec7924a2ee",
+      "geometry_sha256": "0312a4adabbb88fa587c3c61a831216ca8fd5742c8434c4987fcf3cc688eff58",
       "nonmanifold_edges": 0,
       "degenerate_faces": 0
     },
     {
-      "name": "mist_fan__MistRotor_gold_04",
-      "mesh_data_name": "mist_fan__MistRotor_gold_04",
+      "name": "mist_fan__PaperRotor_gold_04",
+      "mesh_data_name": "mist_fan__PaperRotor_gold_04",
       "material": "gold",
       "color_srgb": [
         249,
@@ -194,39 +194,39 @@
       "transparency": 0.0,
       "triangles": 120,
       "vertices": 62,
-      "motion_group": "MistRotor",
+      "motion_group": "PaperRotor",
       "motion_pivot": [
         0.0,
         0.0,
-        1.55
+        1.4
       ],
       "compression_span": null,
       "original_center_blender_studs": [
         0.0,
-        -0.12,
-        1.55
+        -0.17,
+        1.4
       ],
       "center_blender_studs": [
         0.0,
-        -0.12,
-        1.55
+        -0.17,
+        1.4
       ],
       "size_blender_studs": [
-        0.32,
+        0.36,
         0.2,
-        0.3199999
+        0.3599999
       ],
       "bounds_min": [
-        -0.16,
-        -0.22,
-        1.39
+        -0.18,
+        -0.27,
+        1.22
       ],
       "bounds_max": [
-        0.16,
-        -0.02,
-        1.7099999
+        0.18,
+        -0.07,
+        1.5799999
       ],
-      "geometry_sha256": "70d5bb78d6a815df8b494e4affd6dc1f36484ae0af305df16504689140430174",
+      "geometry_sha256": "1183d7b4e88bd1700f213794f3b99fa220b1f1017a28fff647a293ed6726a9b0",
       "nonmanifold_edges": 0,
       "degenerate_faces": 0
     },
@@ -241,47 +241,96 @@
       ],
       "alpha": 1.0,
       "transparency": 0.0,
-      "triangles": 384,
-      "vertices": 192,
+      "triangles": 152,
+      "vertices": 80,
       "motion_group": "Fixed",
       "motion_pivot": [
         0.0,
         0.0,
-        1.55
+        0.0
       ],
       "compression_span": null,
       "original_center_blender_studs": [
-        0.0,
-        0.0,
-        1.55
-      ],
-      "center_blender_studs": [
-        0.0,
-        0.0,
-        1.55
-      ],
-      "size_blender_studs": [
-        1.71,
-        0.1472243,
-        1.71
-      ],
-      "bounds_min": [
-        -0.855,
-        -0.0736122,
+        -0.0185775,
+        0.18,
         0.695
       ],
-      "bounds_max": [
-        0.855,
-        0.0736122,
-        2.405
+      "center_blender_studs": [
+        -0.0185775,
+        0.18,
+        0.695
       ],
-      "geometry_sha256": "c715170cec23f3e95c150d9a10049bd9aaeafb6c227aec267d99c133702bec97",
+      "size_blender_studs": [
+        0.8871549,
+        0.58,
+        1.37
+      ],
+      "bounds_min": [
+        -0.4621549,
+        -0.11,
+        0.01
+      ],
+      "bounds_max": [
+        0.425,
+        0.47,
+        1.38
+      ],
+      "geometry_sha256": "025819c544b971b5a779ebe2daca5ca48334e22be8f4321cac45de82d177f357",
       "nonmanifold_edges": 0,
       "degenerate_faces": 0
     },
     {
-      "name": "mist_fan__MistRotor_teal_06",
-      "mesh_data_name": "mist_fan__MistRotor_teal_06",
+      "name": "mist_fan__PaperRotor_pearl_06",
+      "mesh_data_name": "mist_fan__PaperRotor_pearl_06",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 40,
+      "vertices": 24,
+      "motion_group": "PaperRotor",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.4
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.261673,
+        -0.0475,
+        1.6247373
+      ],
+      "center_blender_studs": [
+        -0.261673,
+        -0.0475,
+        1.6247373
+      ],
+      "size_blender_studs": [
+        1.243346,
+        0.205,
+        1.5905256
+      ],
+      "bounds_min": [
+        -0.883346,
+        -0.15,
+        0.8294745
+      ],
+      "bounds_max": [
+        0.36,
+        0.055,
+        2.4200001
+      ],
+      "geometry_sha256": "ff9794208e59e1e1422276a06cea88ef5e68f3c57ff51b7dc1c0a2422394a71e",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "mist_fan__PaperRotor_teal_07",
+      "mesh_data_name": "mist_fan__PaperRotor_teal_07",
       "material": "teal",
       "color_srgb": [
         39,
@@ -290,46 +339,49 @@
       ],
       "alpha": 1.0,
       "transparency": 0.0,
-      "triangles": 32,
-      "vertices": 24,
-      "motion_group": "MistRotor",
+      "triangles": 20,
+      "vertices": 12,
+      "motion_group": "PaperRotor",
       "motion_pivot": [
         0.0,
         0.0,
-        1.55
+        1.4
       ],
       "compression_span": null,
       "original_center_blender_studs": [
-        0.0,
-        -0.05,
-        1.55
+        0.4729166,
+        -0.0475,
+        1.2006218
       ],
       "center_blender_studs": [
-        0.0,
-        -0.05,
-        1.55
+        0.4729166,
+        -0.0475,
+        1.2006218
       ],
       "size_blender_studs": [
-        1.28,
-        0.09,
-        1.2800001
+        0.8208588,
+        0.205,
+        0.7422947
       ],
       "bounds_min": [
-        -0.64,
-        -0.095,
-        0.91
+        0.0624872,
+        -0.15,
+        0.8294745
       ],
       "bounds_max": [
-        0.64,
-        -0.005,
-        2.1900001
+        0.883346,
+        0.055,
+        1.5717692
       ],
-      "geometry_sha256": "da1a470da159000d67459f1df3f4379e3efa182a3858919ec5ff09aad0664c8b",
+      "geometry_sha256": "26daf580881789fca61214f9941e93909d61567479a9e9191213b9c6b7925b53",
       "nonmanifold_edges": 0,
       "degenerate_faces": 0
     }
   ],
   "source": "art/catalog/mist_fan/mist_fan.blend",
   "source_preserved": false,
-  "blend_sha256": "d6774c0157fc9b4b087fca292a173867aef0af14886fb8819dacc8222625e9af"
+  "blend_sha256": "4217d2af78df21aab86c7423c4c5b7c70f825ac4d8133883ef04a603e88e135e",
+  "revision": "RBX-027-distinct-floating-mechanisms",
+  "predecessor_blend_sha256": "d6774c0157fc9b4b087fca292a173867aef0af14886fb8819dacc8222625e9af",
+  "edit_policy": "Requested Blender-only rebuild or bounded detail edit; native sources frozen."
 }

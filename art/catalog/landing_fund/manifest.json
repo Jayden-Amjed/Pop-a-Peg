@@ -3,12 +3,12 @@
   "id": "landing_fund",
   "display_name": "Landing Shell",
   "category": "equipment",
-  "generator": "scripts/models/catalog_mechanical.py",
+  "generator": "scripts/models/revise_effect_models.py",
   "blender": "4.5.9 LTS",
   "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
   "units": "studs in blend; 0.28 meters per stud in GLB",
-  "triangles": 792,
-  "pieces": 5,
+  "triangles": 1818,
+  "pieces": 8,
   "budget": {
     "triangles": 4000,
     "pieces": 8
@@ -16,22 +16,22 @@
   "center_blender_studs": [
     0.0,
     0.0,
-    1.0749999
+    1.0849913
   ],
   "bounds_min": [
     -1.02,
     -0.714,
-    0.08
+    0.0719825
   ],
   "bounds_max": [
     1.02,
     0.714,
-    2.0699999
+    2.098
   ],
   "size_blender_studs": [
     2.04,
     1.428,
-    1.9899999
+    2.0260174
   ],
   "objects": [
     {
@@ -84,8 +84,106 @@
       "degenerate_faces": 0
     },
     {
-      "name": "landing_fund__CatchCoin_pearl_02",
-      "mesh_data_name": "landing_fund__CatchCoin_pearl_02",
+      "name": "landing_fund__Fixed_gold_02",
+      "mesh_data_name": "landing_fund__Fixed_gold_02",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 408,
+      "vertices": 208,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.255
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.48,
+        0.4
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.48,
+        0.4
+      ],
+      "size_blender_studs": [
+        1.26,
+        0.1767252,
+        0.1767252
+      ],
+      "bounds_min": [
+        -0.63,
+        0.3916374,
+        0.3116374
+      ],
+      "bounds_max": [
+        0.63,
+        0.5683626,
+        0.4883626
+      ],
+      "geometry_sha256": "959738d17a2e71976670f082b1091140e2b73a793bf96fd8e474ef213c7abc8a",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "landing_fund__ShellLid_gold_03",
+      "mesh_data_name": "landing_fund__ShellLid_gold_03",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 104,
+      "vertices": 60,
+      "motion_group": "ShellLid",
+      "motion_pivot": [
+        0.0,
+        0.48,
+        0.4
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -4.23e-05,
+        0.3945,
+        1.1303551
+      ],
+      "center_blender_studs": [
+        -4.23e-05,
+        0.3945,
+        1.1303551
+      ],
+      "size_blender_studs": [
+        1.3903189,
+        0.0409989,
+        1.3178213
+      ],
+      "bounds_min": [
+        -0.6952018,
+        0.3740005,
+        0.4714445
+      ],
+      "bounds_max": [
+        0.6951171,
+        0.4149995,
+        1.7892658
+      ],
+      "geometry_sha256": "782da0146c466a96fde6b0a917d8a096a4dbe6ddf152a97dc49493a07b35d431",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "landing_fund__CatchCoin_pearl_04",
+      "mesh_data_name": "landing_fund__CatchCoin_pearl_04",
       "material": "pearl",
       "color_srgb": [
         249,
@@ -133,8 +231,8 @@
       "degenerate_faces": 0
     },
     {
-      "name": "landing_fund__Fixed_pearl_03",
-      "mesh_data_name": "landing_fund__Fixed_pearl_03",
+      "name": "landing_fund__Fixed_pearl_05",
+      "mesh_data_name": "landing_fund__Fixed_pearl_05",
       "material": "pearl",
       "color_srgb": [
         249,
@@ -143,8 +241,8 @@
       ],
       "alpha": 1.0,
       "transparency": 0.0,
-      "triangles": 240,
-      "vertices": 122,
+      "triangles": 520,
+      "vertices": 266,
       "motion_group": "Fixed",
       "motion_pivot": [
         0.0,
@@ -155,17 +253,17 @@
       "original_center_blender_studs": [
         0.0,
         0.0,
-        0.255
+        0.2925
       ],
       "center_blender_studs": [
         0.0,
         0.0,
-        0.255
+        0.2925
       ],
       "size_blender_studs": [
         2.04,
         1.428,
-        0.35
+        0.425
       ],
       "bounds_min": [
         -1.02,
@@ -175,15 +273,15 @@
       "bounds_max": [
         1.02,
         0.714,
-        0.43
+        0.505
       ],
-      "geometry_sha256": "3c8716562b6db4a22907556899728ac6311911b96397a9ebe70a5eb750d67b09",
+      "geometry_sha256": "2c63527dacbed2cd9881f77c7723552a5d4666719c5cfc8cb5fb62d66097d451",
       "nonmanifold_edges": 0,
       "degenerate_faces": 0
     },
     {
-      "name": "landing_fund__ShellLid_pearl_04",
-      "mesh_data_name": "landing_fund__ShellLid_pearl_04",
+      "name": "landing_fund__ShellLid_pearl_06",
+      "mesh_data_name": "landing_fund__ShellLid_pearl_06",
       "material": "pearl",
       "color_srgb": [
         249,
@@ -192,8 +290,8 @@
       ],
       "alpha": 1.0,
       "transparency": 0.0,
-      "triangles": 32,
-      "vertices": 18,
+      "triangles": 136,
+      "vertices": 72,
       "motion_group": "ShellLid",
       "motion_pivot": [
         0.0,
@@ -203,36 +301,85 @@
       "compression_span": null,
       "original_center_blender_studs": [
         0.0,
-        0.5,
-        1.25
+        0.4703756,
+        1.2625836
       ],
       "center_blender_studs": [
         0.0,
-        0.5,
-        1.25
+        0.4703756,
+        1.2625836
       ],
       "size_blender_studs": [
-        1.92,
-        0.16,
-        1.6399999
+        1.9756742,
+        0.2192487,
+        1.6708329
       ],
       "bounds_min": [
-        -0.96,
-        0.42,
-        0.43
+        -0.9878371,
+        0.3607513,
+        0.4271672
       ],
       "bounds_max": [
-        0.96,
+        0.9878371,
         0.58,
-        2.0699999
+        2.098
       ],
-      "geometry_sha256": "1acb0ac8f6d7c1e2457112fb4b003e85a73cbba981b3dcfef0d45c72ea136dd5",
+      "geometry_sha256": "b1b412828be35ecb324522ca5f9d1ac88282628aec6957c087a8cf87424ab625",
       "nonmanifold_edges": 0,
       "degenerate_faces": 0
     },
     {
-      "name": "landing_fund__ShellLid_teal_05",
-      "mesh_data_name": "landing_fund__ShellLid_teal_05",
+      "name": "landing_fund__Fixed_teal_07",
+      "mesh_data_name": "landing_fund__Fixed_teal_07",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 130,
+      "vertices": 75,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.255
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -2.73e-05,
+        -0.4744664,
+        0.1923297
+      ],
+      "center_blender_studs": [
+        -2.73e-05,
+        -0.4744664,
+        0.1923297
+      ],
+      "size_blender_studs": [
+        1.5372186,
+        0.4286858,
+        0.2406943
+      ],
+      "bounds_min": [
+        -0.7686366,
+        -0.6888093,
+        0.0719825
+      ],
+      "bounds_max": [
+        0.768582,
+        -0.2601234,
+        0.3126768
+      ],
+      "geometry_sha256": "ae8ed9162999337144c5c75a8ce20e6bd01e449fd4f5f79908e336d8369dd793",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "landing_fund__ShellLid_teal_08",
+      "mesh_data_name": "landing_fund__ShellLid_teal_08",
       "material": "teal",
       "color_srgb": [
         39,
@@ -282,5 +429,8 @@
   ],
   "source": "art/catalog/landing_fund/landing_fund.blend",
   "source_preserved": false,
-  "blend_sha256": "d27a3f305916c662a7148f2425806d041aaa4962ad15d7339b2a52d74db33f34"
+  "blend_sha256": "8b150415fd10208b12247137e6a6d3c2a8e7b5f418186be61be2ae044141ae5d",
+  "revision": "RBX-027-distinct-floating-mechanisms",
+  "predecessor_blend_sha256": "d27a3f305916c662a7148f2425806d041aaa4962ad15d7339b2a52d74db33f34",
+  "edit_policy": "Requested Blender-only rebuild or bounded detail edit; native sources frozen."
 }

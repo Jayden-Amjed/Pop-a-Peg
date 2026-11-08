@@ -3,12 +3,12 @@
   "id": "lagoon_synth",
   "display_name": "Lagoon Synth",
   "category": "equipment",
-  "generator": "scripts/models/catalog_nature.py",
+  "generator": "scripts/models/revise_effect_models.py",
   "blender": "4.5.9 LTS",
   "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
   "units": "studs in blend; 0.28 meters per stud in GLB",
-  "triangles": 1224,
-  "pieces": 7,
+  "triangles": 1132,
+  "pieces": 6,
   "budget": {
     "triangles": 4000,
     "pieces": 8
@@ -16,7 +16,7 @@
   "center_blender_studs": [
     0.0,
     -0.0225,
-    0.5749999
+    0.61
   ],
   "bounds_min": [
     -0.96,
@@ -26,12 +26,12 @@
   "bounds_max": [
     0.96,
     0.55,
-    1.0899999
+    1.16
   ],
   "size_blender_studs": [
     1.92,
     1.145,
-    1.03
+    1.0999999
   ],
   "objects": [
     {
@@ -94,8 +94,8 @@
       ],
       "alpha": 1.0,
       "transparency": 0.0,
-      "triangles": 484,
-      "vertices": 248,
+      "triangles": 592,
+      "vertices": 304,
       "motion_group": "Fixed",
       "motion_pivot": [
         0.0,
@@ -106,17 +106,17 @@
       "original_center_blender_studs": [
         0.0,
         -0.085,
-        0.855
+        0.865
       ],
       "center_blender_studs": [
         0.0,
         -0.085,
-        0.855
+        0.865
       ],
       "size_blender_studs": [
         1.7199999,
         0.89,
-        0.4699999
+        0.49
       ],
       "bounds_min": [
         -0.86,
@@ -126,64 +126,15 @@
       "bounds_max": [
         0.86,
         0.36,
-        1.0899999
+        1.11
       ],
-      "geometry_sha256": "23bb8bdb50ab3b4d2f7a96b3425f57e8a1f6e4c2e8fd128cc460b1e24e7cc880",
+      "geometry_sha256": "fa0ac25653d9c3772fc07a628ac26768e70f5f9db66bf153a1b17ab0c984f223",
       "nonmanifold_edges": 0,
       "degenerate_faces": 0
     },
     {
-      "name": "lagoon_synth__SynthWave_gold_03",
-      "mesh_data_name": "lagoon_synth__SynthWave_gold_03",
-      "material": "gold",
-      "color_srgb": [
-        249,
-        189,
-        63
-      ],
-      "alpha": 1.0,
-      "transparency": 0.0,
-      "triangles": 200,
-      "vertices": 102,
-      "motion_group": "SynthWave",
-      "motion_pivot": [
-        0.0,
-        0.12,
-        0.95
-      ],
-      "compression_span": null,
-      "original_center_blender_studs": [
-        0.0,
-        0.12,
-        0.96
-      ],
-      "center_blender_studs": [
-        0.0,
-        0.12,
-        0.96
-      ],
-      "size_blender_studs": [
-        1.3245299,
-        0.07,
-        0.2265182
-      ],
-      "bounds_min": [
-        -0.6622649,
-        0.085,
-        0.8467409
-      ],
-      "bounds_max": [
-        0.6622649,
-        0.155,
-        1.0732591
-      ],
-      "geometry_sha256": "1040a65578b326ab480ec4715da62de8c8b3760d930bfcd037cacf28e5052182",
-      "nonmanifold_edges": 0,
-      "degenerate_faces": 0
-    },
-    {
-      "name": "lagoon_synth__SynthKey_pearl_04",
-      "mesh_data_name": "lagoon_synth__SynthKey_pearl_04",
+      "name": "lagoon_synth__SynthKey_pearl_03",
+      "mesh_data_name": "lagoon_synth__SynthKey_pearl_03",
       "material": "pearl",
       "color_srgb": [
         249,
@@ -231,8 +182,8 @@
       "degenerate_faces": 0
     },
     {
-      "name": "lagoon_synth__SynthKey_pearl_05",
-      "mesh_data_name": "lagoon_synth__SynthKey_pearl_05",
+      "name": "lagoon_synth__SynthKey_pearl_04",
+      "mesh_data_name": "lagoon_synth__SynthKey_pearl_04",
       "material": "pearl",
       "color_srgb": [
         249,
@@ -280,8 +231,8 @@
       "degenerate_faces": 0
     },
     {
-      "name": "lagoon_synth__SynthKey_pearl_06",
-      "mesh_data_name": "lagoon_synth__SynthKey_pearl_06",
+      "name": "lagoon_synth__SynthKey_pearl_05",
+      "mesh_data_name": "lagoon_synth__SynthKey_pearl_05",
       "material": "pearl",
       "color_srgb": [
         249,
@@ -329,8 +280,8 @@
       "degenerate_faces": 0
     },
     {
-      "name": "lagoon_synth__Fixed_teal_07",
-      "mesh_data_name": "lagoon_synth__Fixed_teal_07",
+      "name": "lagoon_synth__Fixed_teal_06",
+      "mesh_data_name": "lagoon_synth__Fixed_teal_06",
       "material": "teal",
       "color_srgb": [
         39,
@@ -351,17 +302,17 @@
       "original_center_blender_studs": [
         0.0,
         0.24,
-        0.78
+        0.87
       ],
       "center_blender_studs": [
         0.0,
         0.24,
-        0.78
+        0.87
       ],
       "size_blender_studs": [
         1.48,
         0.2,
-        0.4
+        0.58
       ],
       "bounds_min": [
         -0.74,
@@ -371,14 +322,17 @@
       "bounds_max": [
         0.74,
         0.34,
-        0.98
+        1.16
       ],
-      "geometry_sha256": "eef58b499b772f1a70939504c1b156432db1d4a66bb456d558973aa6868158ba",
+      "geometry_sha256": "dfa12b0829f381ac42ce4f5662966ecfb2fe0c6c9a2d55c500d3d2cca7119fa3",
       "nonmanifold_edges": 0,
       "degenerate_faces": 0
     }
   ],
   "source": "art/catalog/lagoon_synth/lagoon_synth.blend",
   "source_preserved": false,
-  "blend_sha256": "91248d39e4a57b095c49f0e291541a032fc05de991cf732d7d7a1b41adec0f1e"
+  "blend_sha256": "c7ebfa989fac56536da0da3e40d9ac2f0249f355036c1e9656b1f0423336c132",
+  "revision": "RBX-027-distinct-floating-mechanisms",
+  "predecessor_blend_sha256": "91248d39e4a57b095c49f0e291541a032fc05de991cf732d7d7a1b41adec0f1e",
+  "edit_policy": "Requested Blender-only rebuild or bounded detail edit; native sources frozen."
 }
