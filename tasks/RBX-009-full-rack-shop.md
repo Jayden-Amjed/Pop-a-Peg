@@ -1,14 +1,14 @@
 # RBX-009 — Full-rack shop guarantees
 
 - Owner: Codex coordinator; full_rack_tests for independent regressions.
-- Status: VERIFIED; awaiting CI and merge
+- Status: COMPLETE; MERGED
 - Reservation / issue: [#9](https://github.com/Jayden-Amjed/Pop-a-Peg/issues/9)
-- Reviewed: 2026-11-07 (America/Los_Angeles)
+- Reviewed: 2026-11-08 (America/Los_Angeles)
 - Starting main: 35eb7e3468de31cfc14f565a657f153b6f123741
 - Branch: task/RBX-009-full-rack-shop
 - PR: [#10](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/10)
 - Implementation evidence SHA: a34b8e57c1a0648294de72d07a42496d37f75daa
-- Confirmed merge SHA: NOT MERGED
+- Confirmed merge SHA: a896e56a91041d6f8aaea9c7cefa19439a0897b5
 
 ## Objective and scope
 
@@ -27,7 +27,7 @@ not implementation of a hub, products, purchases, or persistent power.
 - [x] Random offers, holds, prices, rerolls, evolution cycling and Supply limits remain coherent.
 - [x] Purchases do not replenish sold guaranteed offers or bypass the level cap.
 - [x] Focused regressions, complete checks and isolated Studio purchase checks pass.
-- [ ] Maintained docs and verified main delivery record the actual implementation.
+- [x] Maintained docs and verified main delivery record the actual implementation.
 
 ## Dependencies and overlapping paths
 
@@ -45,7 +45,8 @@ Root is sole operator of isolated peg-aero-qa Studio; user sessions untouched.
 | Studio suites | PASS | All fourteen suites in Client runtime; 13 shop contracts also in Server runtime |
 | Studio UI | PASS | Native clicks purchased Wave Spring L4→5 and Tap Driver L1→2 in a full seven-slot rack, 90→81 coins; sold cards remained sold; two-upgrade reroll, scarce and capped cases verified |
 | Production smoke | PASS | All 26 normal sources restored exactly; actual remote launch entered flight with 34 snapshots, no notices or project errors |
-| Main | NOT MERGED | Existing user delivery authorization applies |
+| CI | PASS | Push 42460978053 and PR 42460982630 at 78246be728692fd57fc2eb0a245a5a21b24d7487 |
+| Main | MERGED | PR #10 returned a896e56a91041d6f8aaea9c7cefa19439a0897b5; fetched main confirms; issue #9 closed |
 
 ## Implementation notes and limits
 
@@ -72,8 +73,8 @@ Root is sole operator of isolated peg-aero-qa Studio; user sessions untouched.
 
 - Owner: Codex coordinator.
 - Checkout: C:/Users/Amjedd/Documents/ChatGPT/Pop a Peg/.worktrees/full-rack.
-- Accepted State Version: 4; proposed version: 5.
+- Accepted State Version: 5, advanced once from version 4.
 - Studio target: isolated peg-aero-qa; root only, Rojo disconnected.
 - Published: NOT PUBLISHED.
 - Playable output: build/peg-full-rack.rbxlx in this checkout.
-- Next action: verify remote CI, merge PR #10, record the actual receipt, and deliver ideas.
+- Next action: human playtest the new build; hub and monetization proposals await a separate implementation scope.

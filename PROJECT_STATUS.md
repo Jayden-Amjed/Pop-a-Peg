@@ -1,12 +1,12 @@
 # Current project state
 
-State Version: 5 (proposed from accepted version 4; awaiting PR #10 acceptance)
-Reviewed: 2026-11-07, America/Los_Angeles
+State Version: 5 (accepted full-rack shop revision)
+Reviewed: 2026-11-08, America/Los_Angeles
 Objective: Guarantee two useful upgrades in full-rack shops while preserving holds, random offers and evolution access.
 
-Accepted source: 35eb7e3468de31cfc14f565a657f153b6f123741 (version 4 main predecessor).
+Accepted source: a896e56a91041d6f8aaea9c7cefa19439a0897b5 (PR #10 merged into main).
 Implementation: a34b8e57c1a0648294de72d07a42496d37f75daa.
-Active task: [RBX-009](tasks/RBX-009-full-rack-shop.md), Codex coordinator.
+Completed task: [RBX-009](tasks/RBX-009-full-rack-shop.md), Codex coordinator.
 Branch: task/RBX-009-full-rack-shop; [PR #10](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/10).
 
 | Capability | Verified state |
@@ -31,11 +31,11 @@ Playable output: build/peg-full-rack.rbxlx in the full-rack worktree.
 Studio target: isolated peg-aero-qa.rbxlx stopped in Edit; all 26 normal sources
 restored exactly, Rojo disconnected. User-owned Studio windows are untouched.
 
-Blockers: none. Local checks and Studio verification pass; remote CI and merge pending.
+Blockers: none. Push CI 42460978053 and PR CI 42460982630 passed at 78246be728692fd57fc2eb0a245a5a21b24d7487; GitHub returned the merge receipt above and fetched main confirms it.
 Unrun: physical touch/gamepad, two clients, cloud persistence, live plugin sync, publication.
 Limits: device-specific FX performance and long-run balance need human playtesting.
 MCP captures can omit peg numbers; the unrelated 203785492 asset-type warning remains.
 Detailed tests, corrected QA observations and resolved failures are in the task.
-Next action: verify PR #10 CI, merge under existing user authorization, and record the actual merge receipt.
+Next action: human playtest build/peg-full-rack.rbxlx; choose a hub concept before reserving a hub implementation task.
 Hub and monetization: researched proposals only; neither a lobby nor payments are implemented.
 Repository administration: main unprotected; temporary default remains starter branch.
