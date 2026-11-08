@@ -86,7 +86,7 @@ function Display:update(id, area, onWhite)
             if visible then
                 local ready = column == 3 and status.ready
                     or (status.levels[column] or 0) >= Catalog.MaxLevel
-                local text = column == 3 and "EVOLVED"
+                local text = column == 3 and (geometry.compact and "EVO" or "EVOLVED")
                     or (
                         ready and "READY"
                         or (

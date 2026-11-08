@@ -100,7 +100,7 @@ end
 
 function Layout.equations(width, height, count)
     count = math.clamp(count, 0, 2)
-    local compact = height < 110
+    local compact = height < 20 + count * 64
     local titleH = compact and 13 or 20
     local result = { title = rect(0, 0, width, count > 0 and titleH or 0), rows = {} }
     if count == 0 then
@@ -111,7 +111,7 @@ function Layout.equations(width, height, count)
     local symbolW = compact and 12 or 16
     local boxSize =
         math.floor(math.max(8, math.min(62, rowH - statusH - 3, (width - symbolW * 2 - 8) / 3)))
-    local left = (width - boxSize * 3 - symbolW * 2) / 2
+    local columnW = (width - symbolW * 2) / 3
     for index = 1, count do
         local y = titleH + (index - 1) * rowH
         local row = {
@@ -119,13 +119,15 @@ function Layout.equations(width, height, count)
             statuses = {},
             symbols = {},
             font = compact and math.min(10, statusH) or 13,
+            compact = compact,
         }
         for column = 1, 3 do
-            local x = left + (column - 1) * (boxSize + symbolW)
-            row.statuses[column] = rect(x - 3, y, boxSize + 6, statusH)
+            local columnX = (column - 1) * (columnW + symbolW)
+            local x = columnX + (columnW - boxSize) / 2
+            row.statuses[column] = rect(columnX, y, columnW, statusH)
             row.boxes[column] = rect(x, y + statusH, boxSize, boxSize)
             if column < 3 then
-                row.symbols[column] = rect(x + boxSize, y + statusH, symbolW, boxSize)
+                row.symbols[column] = rect(columnX + columnW, y + statusH, symbolW, boxSize)
             end
         end
         table.insert(result.rows, row)
