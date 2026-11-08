@@ -1,7 +1,7 @@
 # RBX-019 — Blender model pilots
 
 - Owner: Codex coordinator; sole Studio operator.
-- Status: VERIFIED, awaiting merge
+- Status: MERGED
 - Reservation: [issue 19](https://github.com/Jayden-Amjed/Pop-a-Peg/issues/19)
 - Reviewed: 2026-11-08 (America/Los_Angeles)
 - Starting main: 098b7b6fa24e423703db6e9ceb68eb020010d3aa; accepted State Version 9.
@@ -9,7 +9,7 @@
 - Worktree: `.worktrees/blender-pilots`
 - PR: [20](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/20)
 - Implementation evidence SHA: 0a0e40c9861b10ef35ee07226f8e2abe453f0e93
-- Confirmed merge SHA: NOT MERGED
+- Confirmed merge SHA: 3fd22c83dbda10240dd6f12642610e14cfb73a7a
 
 ## Objective and delivered scope
 
@@ -66,6 +66,8 @@ found before reservation. Existing checkouts and Studio sessions were preserved.
 | UI and asset loading | 0a0e40c; MCP mouse and capture | PASS; Activate/Rest/Open/Size/Native controls; actual meshes loaded, Ready true, no preload failures |
 | Pilot formatting/lint | 0a0e40c; pinned StyLua/Selene | PASS; 0 errors/warnings |
 | Repository checks | d2c167f0557c11350a55403c780564e05a01ba7d; check.ps1 | PASS; 23 suites, build, 38 source mappings and docs; final docs recheck recorded below |
+| Final local / PR CI | e5bb12d0e7dd52c8a62527fa9ca1d651fa6bda67 | PASS; final docs, repository checks, pilot lint and import replay; GitHub Actions 42514389825 success |
+| Merge | 3fd22c83dbda10240dd6f12642610e14cfb73a7a | PASS; GitHub confirmed merged; fetched main and fast-forwarded isolated worktree |
 | Publication | This task | NOT RUN; no experience update published |
 
 Evidence: [motion audit](../docs/evidence/RBX-019/motion-audit.json),
@@ -98,7 +100,7 @@ production-catalog adoption is made.
 
 ## Handoff
 
-- Root owns task/RBX-019-blender-pilots / PR20; proposal advances accepted version 9 to 10.
+- Root owns task/RBX-019-blender-pilots / merged PR20; accepted version advanced once from 9 to 10.
 - Tested implementation: 0a0e40c9861b10ef35ee07226f8e2abe453f0e93.
 - Studio target: peg-blender-pilots.rbxlx, 466c063b-5d2e-4435-8c22-ad2394ef1d77;
   Studio 0.746.0.7461269, local place 0, Play stopped in Edit.
@@ -106,5 +108,5 @@ production-catalog adoption is made.
 - Playable output: build/peg-blender-pilots.rbxlx in the pilot worktree.
   SHA256 3394E5363B89CB0F4BD36565CC420E32BCA3618DDA0D93DC7D760E7D9C7B628E.
 - Production remains the accepted native model path. User's other places preserved.
-- Next action: final docs checks/CI and merge review branch; user can open gallery
-  and press Play to evaluate the three pilots before production replacement.
+- Next action: user can open the gallery and press Play to evaluate the three
+  pilots before production replacement. Merge is confirmed; no experience update.
