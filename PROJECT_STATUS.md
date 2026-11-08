@@ -4,11 +4,11 @@ State Version: 10 (proposed Blender pilot workflow; predecessor accepted version
 Reviewed: 2026-11-08, America/Los_Angeles
 Objective: Evaluate three original Blender models in a separate Studio gallery.
 
-Accepted main inspected: 098b7b6fa24e423703db6e9ceb68eb020010d3aa.
+Accepted source: 098b7b6fa24e423703db6e9ceb68eb020010d3aa (main inspected).
 Production gameplay implementation remains 21ac14748710be87635fb7e0d40ec9f65d6bc683.
 Active task: [RBX-019](tasks/RBX-019-blender-pilots.md), Codex coordinator.
 Branch: task/RBX-019-blender-pilots; [PR20](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/20).
-Pilot implementation / Studio evidence: 0a0e40c9861b10ef35ee07226f8e2abe453f0e93.
+Studio-tested source: 0a0e40c9861b10ef35ee07226f8e2abe453f0e93 (pilot implementation).
 Merge: NOT MERGED. Main still represents accepted version 9.
 
 | Capability | Verified state |

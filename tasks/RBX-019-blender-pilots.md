@@ -85,6 +85,9 @@ append the current blend into itself; a fresh bundle scene fixed it. The audit's
 original quad/end-cap assumption was revised for the triangulated editable source.
 An open lid initially clipped its viewport; fitting the full activation envelope
 fixed it and numerical projection checks passed.
+The first final-docs CI run 42514280718 failed because two mandatory dashboard
+field labels were renamed; the required Accepted source / Studio-tested source
+labels were restored without changing the reported evidence.
 
 The unrelated existing avatar ContentId 203785492 warning remains in Output.
 No pilot script errors or failed mesh loads were observed. The rigid spring mesh
