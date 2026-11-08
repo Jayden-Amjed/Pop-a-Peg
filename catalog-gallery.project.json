@@ -38,6 +38,9 @@
         },
         "StudioNativeMotionAudit": {
           "$path": "scripts/models/StudioNativeMotionAudit.luau"
+        },
+        "NativeAssemblies": {
+          "$path": "src/client/NativeAssemblies.luau"
         }
       }
     },

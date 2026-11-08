@@ -882,6 +882,11 @@ function ItemMotion.new(model, id, options)
                 phasePosition.Z
             )
             local offset = Vector3.new(state.x, state.y, state.z)
+            if id == "quota_bonus" and record.group == "Stamp" then
+                offset = Vector3.new(state.x, state.y * 0.23 / 0.43, state.z)
+            elseif id == "coin_press" and record.group == "PressScrew" then
+                offset = Vector3.new(state.x, state.y * 0.25 / (0.32 * 1.4), state.z)
+            end
             local transform = CFrame.new(record.pivot + offset)
                 * CFrame.Angles(state.rx, state.ry, state.rz)
             local frame, dimensions

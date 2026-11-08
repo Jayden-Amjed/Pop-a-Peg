@@ -1,5 +1,6 @@
 local ItemModels = {}
 local ItemMotion = require(script.Parent.ItemMotion)
+local prepareAssemblies = require(script.Parent.NativeAssemblies)
 local PreviewLighting = require(script.Parent.PreviewLighting)
 
 local P = {
@@ -2363,6 +2364,7 @@ function ItemModels.create(id, level)
     -- The rack/shop level badge remains the consistent upgrade indicator.
     local bounds = model:GetBoundingBox()
     ItemMotion.tag(model, canonical)
+    prepareAssemblies(model, canonical)
     model:SetAttribute("ArtCenter", bounds.Position)
     model.WorldPivot = CFrame.new(bounds.Position)
     model:PivotTo(CFrame.new())
@@ -2404,7 +2406,10 @@ function ItemModels.mount(viewport, id, level, options)
     local motion = ItemMotion.new(model, canonical, options)
     -- Fit the complete performance once, then hold the camera still. Cache by
     -- geometry/level so rebuilding shop cards does not re-sample every mechanism.
-    local envelopeKey = canonical .. ":" .. tostring(level or 1)
+    local envelopeKey = canonical
+        .. ":"
+        .. tostring(level or 1)
+        .. (if options and options.reducedMotion then ":reduced" else ":full")
     local envelope = previewEnvelopes[envelopeKey]
     if not envelope then
         local lower, upper = -size / 2, size / 2
@@ -2418,9 +2423,7 @@ function ItemModels.mount(viewport, id, level, options)
         end
         motion:apply(0, 1, CFrame.new())
         envelope = { focus = (lower + upper) / 2, radius = (upper - lower).Magnitude / 2 }
-        if not (options and options.reducedMotion) then
-            previewEnvelopes[envelopeKey] = envelope
-        end
+        previewEnvelopes[envelopeKey] = envelope
     end
     focus, radius = envelope.focus, envelope.radius
     local handle = { model = model }

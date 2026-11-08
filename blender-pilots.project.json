@@ -26,6 +26,9 @@
         },
         "CatalogMotion": {
           "$path": "scripts/models/CatalogMotion.luau"
+        },
+        "NativeAssemblies": {
+          "$path": "src/client/NativeAssemblies.luau"
         }
       },
       "BlenderPilots": {
