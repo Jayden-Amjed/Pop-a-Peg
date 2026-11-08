@@ -7,8 +7,8 @@
   "blender": "4.5.9 LTS",
   "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
   "units": "studs in blend; 0.28 meters per stud in GLB",
-  "triangles": 1648,
-  "pieces": 7,
+  "triangles": 2100,
+  "pieces": 6,
   "budget": {
     "triangles": 4000,
     "pieces": 8
@@ -84,8 +84,8 @@
       "degenerate_faces": 0
     },
     {
-      "name": "burst_capsule__Fixed_gold_02",
-      "mesh_data_name": "burst_capsule__Fixed_gold_02",
+      "name": "burst_capsule__BurstCap_gold_02",
+      "mesh_data_name": "burst_capsule__BurstCap_gold_02",
       "material": "gold",
       "color_srgb": [
         249,
@@ -94,90 +94,90 @@
       ],
       "alpha": 1.0,
       "transparency": 0.0,
-      "triangles": 336,
-      "vertices": 168,
-      "motion_group": "Fixed",
+      "triangles": 780,
+      "vertices": 392,
+      "motion_group": "BurstCap",
       "motion_pivot": [
         0.0,
         0.0,
-        1.48
+        1.765
       ],
       "compression_span": null,
       "original_center_blender_studs": [
         0.0,
         0.0,
-        1.48
+        2.1255145
       ],
       "center_blender_studs": [
         0.0,
         0.0,
-        1.48
+        2.1255145
       ],
       "size_blender_studs": [
         1.26,
         1.26,
-        0.0779423
+        0.7989713
       ],
       "bounds_min": [
         -0.63,
         -0.63,
-        1.4410288
+        1.7260288
       ],
       "bounds_max": [
         0.63,
         0.63,
-        1.5189711
+        2.5250001
       ],
-      "geometry_sha256": "af90988d1d302f3ea5cfc55352e438391b4af78bc0f0697626d7a43a77b4f2a5",
+      "geometry_sha256": "4668d3c0a1e2be6205f5e81b01e829d11cf4e47926ab4abbe84558be8f7ab465",
       "nonmanifold_edges": 0,
       "degenerate_faces": 0
     },
     {
-      "name": "burst_capsule__Pin_gold_03",
-      "mesh_data_name": "burst_capsule__Pin_gold_03",
-      "material": "gold",
+      "name": "burst_capsule__BurstCap_pearl_03",
+      "mesh_data_name": "burst_capsule__BurstCap_pearl_03",
+      "material": "pearl",
       "color_srgb": [
         249,
-        189,
-        63
+        253,
+        255
       ],
       "alpha": 1.0,
       "transparency": 0.0,
-      "triangles": 444,
-      "vertices": 224,
-      "motion_group": "Pin",
+      "triangles": 768,
+      "vertices": 386,
+      "motion_group": "BurstCap",
       "motion_pivot": [
         0.0,
         0.0,
-        2.18
+        1.765
       ],
       "compression_span": null,
       "original_center_blender_studs": [
         0.0,
         0.0,
-        2.2375
+        1.9575
       ],
       "center_blender_studs": [
         0.0,
         0.0,
-        2.2375
+        1.9575
       ],
       "size_blender_studs": [
-        0.47,
-        0.1963613,
-        0.5750002
+        1.14,
+        1.14,
+        0.3850001
       ],
       "bounds_min": [
-        -0.235,
-        -0.0981807,
-        1.9499999
+        -0.57,
+        -0.57,
+        1.765
       ],
       "bounds_max": [
-        0.235,
-        0.0981807,
-        2.5250001
+        0.57,
+        0.57,
+        2.1500001
       ],
-      "geometry_sha256": "d79fa7449fbcfa004cbb3147645e9fe696aae5877c4bda8415568b591422760c",
+      "geometry_sha256": "3b398c00323ebb85f72fc4433932853500402cfb66243dafa5e54da9779c83fa",
       "nonmanifold_edges": 0,
       "degenerate_faces": 0
     },
@@ -280,57 +280,8 @@
       "degenerate_faces": 0
     },
     {
-      "name": "burst_capsule__Fixed_pearl_06",
-      "mesh_data_name": "burst_capsule__Fixed_pearl_06",
-      "material": "pearl",
-      "color_srgb": [
-        249,
-        253,
-        255
-      ],
-      "alpha": 1.0,
-      "transparency": 0.0,
-      "triangles": 224,
-      "vertices": 114,
-      "motion_group": "Fixed",
-      "motion_pivot": [
-        0.0,
-        0.0,
-        1.78
-      ],
-      "compression_span": null,
-      "original_center_blender_studs": [
-        0.0,
-        0.0,
-        1.78
-      ],
-      "center_blender_studs": [
-        0.0,
-        0.0,
-        1.78
-      ],
-      "size_blender_studs": [
-        1.1399999,
-        1.14,
-        0.7400001
-      ],
-      "bounds_min": [
-        -0.5699999,
-        -0.57,
-        1.41
-      ],
-      "bounds_max": [
-        0.5699999,
-        0.57,
-        2.1500001
-      ],
-      "geometry_sha256": "af29e5d6f93285a4d3960be040650e87c2d9ab6e489c816a55f00c6c178b2159",
-      "nonmanifold_edges": 0,
-      "degenerate_faces": 0
-    },
-    {
-      "name": "burst_capsule__Fixed_teal_07",
-      "mesh_data_name": "burst_capsule__Fixed_teal_07",
+      "name": "burst_capsule__Fixed_teal_06",
+      "mesh_data_name": "burst_capsule__Fixed_teal_06",
       "material": "teal",
       "color_srgb": [
         39,
@@ -339,8 +290,8 @@
       ],
       "alpha": 1.0,
       "transparency": 0.0,
-      "triangles": 284,
-      "vertices": 144,
+      "triangles": 192,
+      "vertices": 98,
       "motion_group": "Fixed",
       "motion_pivot": [
         0.0,
@@ -373,12 +324,15 @@
         0.57,
         1.765
       ],
-      "geometry_sha256": "c7ee41bf2764ab0fe229c7dfbae02ee653f50694400c510b96d953b31da1e411",
+      "geometry_sha256": "3ab8a50d99b363517d7c0bb93d454012a858718f8877980072d5f00a58e9774a",
       "nonmanifold_edges": 0,
       "degenerate_faces": 0
     }
   ],
   "source": "art/catalog/burst_capsule/burst_capsule.blend",
   "source_preserved": false,
-  "blend_sha256": "2d77757c04a7bf6ed49f0878056e422dd4693fb58915cdd62d646e672f235e60"
+  "blend_sha256": "f7ba911498cee1d6d29fd7feb34b899f0de58ac733f71884807754d97a07cd69",
+  "revision": "RBX-025-removable-cap-and-crank",
+  "predecessor_blend_sha256": "2d77757c04a7bf6ed49f0878056e422dd4693fb58915cdd62d646e672f235e60",
+  "edit_policy": "Targeted source edit; unrelated original meshes preserved."
 }

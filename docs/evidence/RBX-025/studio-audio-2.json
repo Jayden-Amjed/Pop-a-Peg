@@ -1,0 +1,519 @@
+{
+  "assets": {
+    "rbxassetid://9119319842": "Success",
+    "rbxassetid://9119669074": "Success",
+    "rbxassetid://77129402344871": "Success",
+    "rbxassetid://9119642864": "Success",
+    "rbxassetid://127645268874265": "Success",
+    "rbxassetid://9114210044": "Success",
+    "rbxassetid://9126132550": "Success"
+  },
+  "checked": 26,
+  "loadedAssetFailures": [],
+  "passed": 26,
+  "maximumPendingNotes": 5,
+  "maximumTotalVolume": 0.12600000286102286,
+  "requested": 26,
+  "failed": 0,
+  "ok": true,
+  "cleanup": true,
+  "cancellation": "PASS pause/resume, mute and stale-cue suppression",
+  "scope": "Real asset loading, Sound.IsPlaying, advancing TimePosition, positive finite gain, bounded voices, cancellation and disposal. No recorded output or human-listening claim.",
+  "maximumLiveVoices": 5,
+  "unrun": [],
+  "items": {
+    "1": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "first_spark",
+          "peakLoudness": 715.6935930252075,
+          "positiveGain": true,
+          "phase": 0.29,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "first_spark",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "2": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "fishbowl",
+          "peakLoudness": 732.1892380714417,
+          "positiveGain": true,
+          "phase": 0.4,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "fishbowl",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "3": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "gain_dial",
+          "peakLoudness": 723.8759994506836,
+          "positiveGain": true,
+          "phase": 0.33,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "gain_dial",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "4": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "goldfish",
+          "peakLoudness": 712.9403948783875,
+          "positiveGain": true,
+          "phase": 0.38,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "goldfish",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "5": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "growth_array",
+          "peakLoudness": 716.5693044662476,
+          "positiveGain": true,
+          "phase": 0.42,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "growth_array",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "6": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "growth_ring",
+          "peakLoudness": 724.2552638053894,
+          "positiveGain": true,
+          "phase": 0.46,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "growth_ring",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "7": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "horizon_observatory",
+          "peakLoudness": 716.5693044662476,
+          "positiveGain": true,
+          "phase": 0.28,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "horizon_observatory",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "8": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "merge",
+          "peakLoudness": 12.381513137370348,
+          "positiveGain": true,
+          "phase": 0.2,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        },
+        "2": {
+          "id": "merge",
+          "peakLoudness": 14.864860568195581,
+          "positiveGain": true,
+          "phase": 0.38,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        },
+        "3": {
+          "id": "merge",
+          "peakLoudness": 13.576526194810867,
+          "positiveGain": true,
+          "phase": 0.56,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 3,
+      "id": "jumble",
+      "scheduled": 3,
+      "observed": 3
+    },
+    "9": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "lagoon_synth",
+          "peakLoudness": 726.5404462814331,
+          "positiveGain": true,
+          "phase": 0.28,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "lagoon_synth",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "10": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "landing_fund",
+          "peakLoudness": 732.1892380714417,
+          "positiveGain": true,
+          "phase": 0.28,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "landing_fund",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "11": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "last_word",
+          "peakLoudness": 718.5595035552979,
+          "positiveGain": true,
+          "phase": 0.5,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "last_word",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "12": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "launch",
+          "peakLoudness": 75.03730803728104,
+          "positiveGain": true,
+          "phase": 0.28,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "life",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "13": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "lily_pad",
+          "peakLoudness": 719.7404503822327,
+          "positiveGain": true,
+          "phase": 0.28,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "lily_pad",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "14": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "click",
+          "peakLoudness": 7.458317559212446,
+          "positiveGain": true,
+          "phase": 0.36,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "lock",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "15": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "metronome",
+          "peakLoudness": 715.6935930252075,
+          "positiveGain": true,
+          "phase": 0.31,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "metronome",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "16": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "milestone",
+          "peakLoudness": 715.9541845321655,
+          "positiveGain": true,
+          "phase": 0.4,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "milestone",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "17": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "mist_fan",
+          "peakLoudness": 714.2855525016785,
+          "positiveGain": true,
+          "phase": 0.28,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "mist_fan",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "18": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "monsoon_loom",
+          "peakLoudness": 740.9699559211731,
+          "positiveGain": true,
+          "phase": 0.28,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "monsoon_loom",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "19": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "moss_capacitor",
+          "peakLoudness": 738.7503981590271,
+          "positiveGain": true,
+          "phase": 0.28,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "moss_capacitor",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "20": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "nectar_pump",
+          "peakLoudness": 736.2075448036194,
+          "positiveGain": true,
+          "phase": 0.28,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "nectar_pump",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "21": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "ocean_orchestra",
+          "peakLoudness": 718.5595035552979,
+          "positiveGain": true,
+          "phase": 0.28,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "ocean_orchestra",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "22": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "ozone_orb",
+          "peakLoudness": 724.9435782432556,
+          "positiveGain": true,
+          "phase": 0.28,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "ozone_orb",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "23": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "pearl_diver",
+          "peakLoudness": 727.8478145599365,
+          "positiveGain": true,
+          "phase": 0.28,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "pearl_diver",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "24": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "pearl_turbine",
+          "peakLoudness": 739.3184900283813,
+          "positiveGain": true,
+          "phase": 0.28,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "pearl_turbine",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "25": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "pulse_cell",
+          "peakLoudness": 732.1892380714417,
+          "positiveGain": true,
+          "phase": 0.28,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "pulse_cell",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "26": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "quota_bonus",
+          "peakLoudness": 718.5595035552979,
+          "positiveGain": true,
+          "phase": 0.32,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "quota_bonus",
+      "scheduled": 1,
+      "observed": 1
+    }
+  },
+  "last": 52,
+  "maximumPlaybackLoudness": 740.9699559211731,
+  "first": 27,
+  "elapsedSeconds": 10.329100999999355,
+  "failures": [],
+  "schema": 1,
+  "maximumLiveToneVoices": 5
+}

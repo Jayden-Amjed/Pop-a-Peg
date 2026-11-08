@@ -180,3 +180,19 @@ loading, playback and subjective listening are separate Studio checks.
 
 Availability can change: recheck preloading and playback in the target experience
 before publishing. Studio loading does not establish publication or future access.
+
+## RBX-025 model revision and gallery audio
+
+One new original Model upload, asset **117621047528393**, belongs to user
+**583716264**. Operation `a082d5ba-3a75-4d22-a0e0-5c86a6cd054a` returned Approved.
+It contains the revised Burst Capsule and Coin Press (14 model meshes plus three
+calibration meshes); no textures or audio assets were uploaded. Exact bytes and
+observed identities are retained under `art/catalog/revisions/RBX-025/`.
+The raw package remains unchanged. The gallery uses normalized local copies with
+measured .28 scale correction, orientation, restored colors and physics flags;
+reinserting/updating the raw package does not apply those local repairs.
+
+Gallery audio reuses the documented game assets and 64 item motifs, adding
+explicit utility mappings and chest cue timing. All 78 entries passed Studio
+asset loading, active playback and advancing time checks; output loudness was
+observed. This establishes runtime playback, not subjective listening approval.

@@ -1,0 +1,110 @@
+{
+  "ok": true,
+  "checked": 4,
+  "passed": 4,
+  "scope": "Actual native/Blender press contact, anchored axial coin squash, fixed crank support, rigid removable cap, restoration and native animation lifetime.",
+  "samples": 808,
+  "strengths": {
+    "1": 1,
+    "2": 2
+  },
+  "assertions": 10806,
+  "items": {
+    "1": {
+      "source": "native",
+      "maxRigidError": 0,
+      "duration": 1.65,
+      "minimumThicknessRatio": 0.25999966444819833,
+      "parts": 32,
+      "ok": true,
+      "crankSupportGap": 0,
+      "maxAnchorDrift": 1.7881393432617188e-7,
+      "coinParts": 1,
+      "minimumGap": -1.7881393432617188e-7,
+      "restCoinThickness": 0.1350001096725464,
+      "id": "coin_press",
+      "samples": 202,
+      "restContactGap": 0.2399999499320984,
+      "maxReseatError": 0,
+      "maxContactError": 1.7881393432617188e-7,
+      "maxCrankYDrift": 2.384185791015625e-7,
+      "crankParts": 2
+    },
+    "2": {
+      "ok": true,
+      "source": "native",
+      "maxRigidError": 5.495276695910434e-7,
+      "maxAnchorDrift": 0,
+      "samples": 202,
+      "maxReseatError": 2.3888378564151935e-7,
+      "id": "burst_capsule",
+      "duration": 1.5,
+      "maxCrankYDrift": 0,
+      "minimumThicknessRatio": 1,
+      "maxContactError": 0,
+      "capParts": 16,
+      "parts": 28
+    },
+    "3": {
+      "source": "blender",
+      "maxRigidError": 0,
+      "duration": 1.65,
+      "minimumThicknessRatio": 0.2599994525202612,
+      "parts": 8,
+      "ok": true,
+      "crankSupportGap": 0.059999942779541016,
+      "maxAnchorDrift": 1.1920928955078125e-7,
+      "coinParts": 2,
+      "minimumGap": -5.960464477539063e-8,
+      "restCoinThickness": 0.13499999046325684,
+      "id": "coin_press",
+      "samples": 202,
+      "restContactGap": 0.330000102519989,
+      "maxReseatError": 0,
+      "maxContactError": 2.384185791015625e-7,
+      "maxCrankYDrift": 2.384185791015625e-7,
+      "crankParts": 1
+    },
+    "4": {
+      "ok": true,
+      "source": "blender",
+      "maxRigidError": 4.769681254401803e-7,
+      "maxAnchorDrift": 0,
+      "samples": 202,
+      "maxReseatError": 6.006850128414953e-8,
+      "id": "burst_capsule",
+      "duration": 1.5,
+      "maxCrankYDrift": 0,
+      "minimumThicknessRatio": 1,
+      "maxContactError": 0,
+      "capParts": 2,
+      "parts": 6
+    }
+  },
+  "handleProbes": {
+    "1": {
+      "activeThroughSeconds": 1.4500000000000006,
+      "id": "coin_press",
+      "completed": true,
+      "available": true
+    },
+    "2": {
+      "activeThroughSeconds": 1.3000000000000005,
+      "id": "burst_capsule",
+      "completed": true,
+      "available": true
+    },
+    "3": {
+      "activeThroughSeconds": 3.7499999999999947,
+      "id": "chest_legendary",
+      "completed": true,
+      "available": true
+    }
+  },
+  "elapsedSeconds": 0.24617809999836027,
+  "requested": 4,
+  "phaseSteps": 100,
+  "failures": [],
+  "failed": 0,
+  "schema": 1
+}

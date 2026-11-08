@@ -96,9 +96,9 @@
       "manifest": "art/catalog/burst_capsule/manifest.json",
       "accepted_pilot": false,
       "status": "ready",
-      "triangles": 1648,
-      "pieces": 7,
-      "blend_sha256": "2d77757c04a7bf6ed49f0878056e422dd4693fb58915cdd62d646e672f235e60"
+      "triangles": 2100,
+      "pieces": 6,
+      "blend_sha256": "f7ba911498cee1d6d29fd7feb34b899f0de58ac733f71884807754d97a07cd69"
     },
     {
       "id": "chest_common",
@@ -208,9 +208,9 @@
       "manifest": "art/catalog/coin_press/manifest.json",
       "accepted_pilot": false,
       "status": "ready",
-      "triangles": 2580,
-      "pieces": 7,
-      "blend_sha256": "c6da331ea10428a5016470550cedd9d1dd8b946168291a0dafd238288f1d351f"
+      "triangles": 3368,
+      "pieces": 8,
+      "blend_sha256": "9810388529b9c045efebb010069b1cedad7007ba9a42c0427edeb93442475c60"
     },
     {
       "id": "compass",

@@ -222,6 +222,49 @@ for i = 0, 100 do
     near(cap.Size.Y, 0.3, "Spring cap compressed")
 end
 
+-- The minted coin is a flat two-material assembly resting on the anvil. The die
+-- meets it only after the free travel, then stays in contact while flattening it.
+local mintPivot = V.new(0, 0.57, 0)
+local minted = part("MintCoin", V.new(0, 0.625, 0), mintPivot, nil, V.new(0.78, 0.11, 0.78))
+local stamp = part("MintCoin", V.new(0, 0.6925, 0), mintPivot, nil, V.new(0.25, 0.025, 0.25))
+local die = part("PressScrew", V.new(0, 1.1, 0), V.new(0, 1.5, 0), nil, V.new(0.9, 0.13, 0.9))
+local crank = part("Crank", V.new(0, 2.55, 0), V.new(0, 2.55, 0), nil, V.new(1.4, 0.15, 0.15))
+local press = controller("coin_press", { minted, stamp, die, crank })
+for strength = 1, 2 do
+    for index = 0, 200 do
+        local phase = index / 200
+        press:apply(phase, strength, CF.new())
+        near(minted.CFrame.Position.Y - minted.Size.Y / 2, 0.57, "Coin lifted off the anvil")
+        near(minted.Size.X, 0.78, "Coin flattened radially instead of vertically")
+        near(
+            stamp.CFrame.Position.Y - stamp.Size.Y / 2,
+            minted.CFrame.Position.Y + minted.Size.Y / 2,
+            "Minted stamp separated from coin"
+        )
+        near(crank.CFrame.Position.Y, 2.55, "Top crank travelled with the die")
+        local gap = die.CFrame.Position.Y
+            - die.Size.Y / 2
+            - (stamp.CFrame.Position.Y + stamp.Size.Y / 2)
+        assert(gap >= -0.000001, "Die penetrated its minted coin")
+        if Motion.sample("coin_press", "MintCoin", phase, strength, 0, 0.6, 0).axial < 1 then
+            near(gap, 0, "Squashed coin lost contact with press die")
+        end
+    end
+end
+-- Separate materials in the removed cap must travel as one rigid object.
+local capPivot = V.new(0, 1.765, 0)
+local capPearl = part("BurstCap", V.new(0, 1.95, 0), capPivot)
+local capPin = part("BurstCap", V.new(0, 2.5, 0), capPivot)
+local capsule = controller("burst_capsule", { capPearl, capPin })
+for index = 0, 100 do
+    capsule:apply(index / 100, 2, CF.new())
+    near(
+        distance(capPearl.CFrame.Position, capPin.CFrame.Position),
+        0.55,
+        "Cap material assembly split"
+    )
+end
+
 -- A chest lid's hinge point is invariant through its complete open/close cycle.
 local hinge = V.new(0, -0.25, -0.5)
 local lid = part("ChestLid", V.new(0, 0.25, 0), hinge)

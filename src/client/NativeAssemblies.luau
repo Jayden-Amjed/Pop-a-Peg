@@ -22,7 +22,7 @@ return function(model, id)
             continue
         end
         local group = part:GetAttribute("MotionGroup")
-        local p, size = part.Position, part.Size
+        local p = part.Position
         if id == "survey_lens" and group == "Lens" then
             -- Lens, barrel, bezel, bolts and focus gear form one rigid telescope.
             -- Their differing authored Z must not create differing focus offsets.
@@ -64,21 +64,6 @@ return function(model, id)
                 assign(part, "Fixed", p)
             elseif group == "Lid" then
                 assign(part, "Lid", V(0, 1, 0))
-            end
-        elseif id == "coin_press" then
-            if math.abs(p.X + 0.41) <= 0.31 and math.abs(p.Y + 0.49) <= 0.31 and p.Z >= 0.57 then
-                -- Face, rim, twelve ticks and symbol belong to the single front
-                -- coin. The independent stack at X=.53 keeps separate pivots.
-                assign(part, "MintCoin", V(-0.41, -0.49, 0.58))
-            elseif math.abs(p.Y - 1.01) < 0.001 and size.X > 1.7 then
-                -- The centered crosshead supports the screw; it must not turn
-                -- with it merely because the old classifier matched abs(X)<.22.
-                assign(part, "Fixed", p)
-            elseif
-                group == "PressScrew" or (math.abs(p.X - 0.55) < 0.001 and p.Y > 1.3 and p.Z < 0)
-            then
-                -- Attach the end knob that the old abs(X)<.22 classifier missed.
-                assign(part, "PressScrew", V(0, 0.3, -0.25))
             end
         elseif id == "tuning_oil" then
             if group == "Spout" then

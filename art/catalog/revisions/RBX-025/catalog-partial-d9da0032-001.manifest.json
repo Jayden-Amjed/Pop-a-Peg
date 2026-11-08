@@ -1,0 +1,572 @@
+{
+  "schema": 1,
+  "name": "catalog-partial-d9da0032-001",
+  "file": "catalog-partial-d9da0032-001.glb",
+  "glb_sha256": "49d68152f119aa0cf5088fa3cdd4f7188f18937f2d0a87acbaf904c6c321c054",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "models": [
+    {
+      "id": "burst_capsule",
+      "blend_sha256": "f7ba911498cee1d6d29fd7feb34b899f0de58ac733f71884807754d97a07cd69",
+      "source_center_blender_studs": [
+        0.0,
+        0.0,
+        1.3525001
+      ],
+      "layout_center_blender_studs": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "export_translation_blender_studs": [
+        0.0,
+        0.0,
+        -1.3525001
+      ],
+      "objects": [
+        "burst_capsule__Fixed_dark_01",
+        "burst_capsule__BurstCap_gold_02",
+        "burst_capsule__BurstCap_pearl_03",
+        "burst_capsule__Fins_pearl_04",
+        "burst_capsule__Fins_pearl_05",
+        "burst_capsule__Fixed_teal_06"
+      ]
+    },
+    {
+      "id": "coin_press",
+      "blend_sha256": "9810388529b9c045efebb010069b1cedad7007ba9a42c0427edeb93442475c60",
+      "source_center_blender_studs": [
+        0.0,
+        0.0,
+        1.3399999
+      ],
+      "layout_center_blender_studs": [
+        5.0,
+        0.0,
+        0.0
+      ],
+      "export_translation_blender_studs": [
+        5.0,
+        0.0,
+        -1.3399999
+      ],
+      "objects": [
+        "coin_press__Fixed_dark_01",
+        "coin_press__PressScrew_dark_02",
+        "coin_press__Crank_gold_03",
+        "coin_press__MintCoin_gold_04",
+        "coin_press__PressScrew_gold_05",
+        "coin_press__Fixed_pearl_06",
+        "coin_press__MintCoin_pearl_07",
+        "coin_press__Fixed_teal_08"
+      ]
+    }
+  ],
+  "objects": [
+    {
+      "name": "burst_capsule__Fixed_dark_01",
+      "mesh_data_name": "burst_capsule__Fixed_dark_01",
+      "id": "burst_capsule",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.7825
+      ],
+      "batch_center_blender_studs": [
+        0.0,
+        0.0,
+        -0.5700001
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.7825
+      ],
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.1799999,
+        1.1799999,
+        0.955
+      ]
+    },
+    {
+      "name": "burst_capsule__BurstCap_gold_02",
+      "mesh_data_name": "burst_capsule__BurstCap_gold_02",
+      "id": "burst_capsule",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        2.1255145
+      ],
+      "batch_center_blender_studs": [
+        0.0,
+        0.0,
+        0.7730144
+      ],
+      "motion_group": "BurstCap",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.765
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.26,
+        1.26,
+        0.7989713
+      ]
+    },
+    {
+      "name": "burst_capsule__BurstCap_pearl_03",
+      "mesh_data_name": "burst_capsule__BurstCap_pearl_03",
+      "id": "burst_capsule",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.9575
+      ],
+      "batch_center_blender_studs": [
+        0.0,
+        0.0,
+        0.6049999
+      ],
+      "motion_group": "BurstCap",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.765
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.14,
+        1.14,
+        0.3850001
+      ]
+    },
+    {
+      "name": "burst_capsule__Fins_pearl_04",
+      "mesh_data_name": "burst_capsule__Fins_pearl_04",
+      "id": "burst_capsule",
+      "center_blender_studs": [
+        -0.665,
+        0.0,
+        0.45
+      ],
+      "batch_center_blender_studs": [
+        -0.665,
+        0.0,
+        -0.9025001
+      ],
+      "motion_group": "Fins",
+      "motion_pivot": [
+        -0.58,
+        0.0,
+        0.5
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.47,
+        0.18,
+        0.54
+      ]
+    },
+    {
+      "name": "burst_capsule__Fins_pearl_05",
+      "mesh_data_name": "burst_capsule__Fins_pearl_05",
+      "id": "burst_capsule",
+      "center_blender_studs": [
+        0.665,
+        0.0,
+        0.45
+      ],
+      "batch_center_blender_studs": [
+        0.665,
+        0.0,
+        -0.9025001
+      ],
+      "motion_group": "Fins",
+      "motion_pivot": [
+        0.58,
+        0.0,
+        0.5
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.47,
+        0.18,
+        0.54
+      ]
+    },
+    {
+      "name": "burst_capsule__Fixed_teal_06",
+      "mesh_data_name": "burst_capsule__Fixed_teal_06",
+      "id": "burst_capsule",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.11
+      ],
+      "batch_center_blender_studs": [
+        0.0,
+        0.0,
+        -0.2425001
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.11
+      ],
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.14,
+        1.14,
+        1.3099999
+      ]
+    },
+    {
+      "name": "coin_press__Fixed_dark_01",
+      "mesh_data_name": "coin_press__Fixed_dark_01",
+      "id": "coin_press",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.245
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        0.0,
+        -0.0949999
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.045
+      ],
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.3200001,
+        0.9225,
+        2.49
+      ]
+    },
+    {
+      "name": "coin_press__PressScrew_dark_02",
+      "mesh_data_name": "coin_press__PressScrew_dark_02",
+      "id": "coin_press",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.7925
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        0.0,
+        0.4525001
+      ],
+      "motion_group": "PressScrew",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.5
+      ],
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.7,
+        0.7,
+        1.5149999
+      ]
+    },
+    {
+      "name": "coin_press__Crank_gold_03",
+      "mesh_data_name": "coin_press__Crank_gold_03",
+      "id": "coin_press",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        2.55
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        0.0,
+        1.21
+      ],
+      "motion_group": "Crank",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        2.55
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.4399999,
+        0.4,
+        0.2599998
+      ]
+    },
+    {
+      "name": "coin_press__MintCoin_gold_04",
+      "mesh_data_name": "coin_press__MintCoin_gold_04",
+      "id": "coin_press",
+      "center_blender_studs": [
+        0.0,
+        -0.0,
+        0.625
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        0.0,
+        -0.7149999
+      ],
+      "motion_group": "MintCoin",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.57
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.56,
+        0.56,
+        0.11
+      ]
+    },
+    {
+      "name": "coin_press__PressScrew_gold_05",
+      "mesh_data_name": "coin_press__PressScrew_gold_05",
+      "id": "coin_press",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.605
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        0.0,
+        0.2650001
+      ],
+      "motion_group": "PressScrew",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.5
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.45,
+        0.45,
+        0.636574
+      ]
+    },
+    {
+      "name": "coin_press__Fixed_pearl_06",
+      "mesh_data_name": "coin_press__Fixed_pearl_06",
+      "id": "coin_press",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.0550001
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        0.0,
+        -0.2849998
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.0550001
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.75,
+        1.23,
+        2.1100001
+      ]
+    },
+    {
+      "name": "coin_press__MintCoin_pearl_07",
+      "mesh_data_name": "coin_press__MintCoin_pearl_07",
+      "id": "coin_press",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.6925
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        0.0,
+        -0.6474999
+      ],
+      "motion_group": "MintCoin",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.57
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.3,
+        0.3,
+        0.025
+      ]
+    },
+    {
+      "name": "coin_press__Fixed_teal_08",
+      "mesh_data_name": "coin_press__Fixed_teal_08",
+      "id": "coin_press",
+      "center_blender_studs": [
+        0.0,
+        0.025,
+        1.335
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        0.025,
+        -0.0049999
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.025,
+        1.335
+      ],
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.63,
+        0.83,
+        1.9300002
+      ]
+    }
+  ],
+  "calibration": [
+    {
+      "name": "catalog_partial_d9da0032_001__calibration_origin",
+      "center_blender_studs": [
+        -4,
+        -4,
+        0
+      ],
+      "size_blender_studs": [
+        1,
+        1,
+        1
+      ],
+      "size_meters": [
+        0.28,
+        0.28,
+        0.28
+      ]
+    },
+    {
+      "name": "catalog_partial_d9da0032_001__calibration_right",
+      "center_blender_studs": [
+        -1,
+        -4,
+        0
+      ],
+      "size_blender_studs": [
+        1,
+        1,
+        1
+      ],
+      "size_meters": [
+        0.28,
+        0.28,
+        0.28
+      ]
+    },
+    {
+      "name": "catalog_partial_d9da0032_001__calibration_front",
+      "center_blender_studs": [
+        -4,
+        -7,
+        0
+      ],
+      "size_blender_studs": [
+        1,
+        1,
+        1
+      ],
+      "size_meters": [
+        0.28,
+        0.28,
+        0.28
+      ]
+    }
+  ]
+}

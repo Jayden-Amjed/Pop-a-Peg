@@ -6,7 +6,7 @@ normalized-time samples to the shared motion controller. It changes motion only;
 the approved Blender geometry, materials, identifiers and motion pivots remain.
 
 Whole-model offsets are fractions of resting bounds. Whole-model scale peaks are
-deliberately stronger than idle, generally 13–22% at normal strength. The controller
+deliberately stronger than idle, generally 13–30% at normal strength. The controller
 restores the resting model before resuming the shared figure eight. Completed
 rotations are integer turns independent of strength, preventing a fractional-turn
 snap on return. Larger strength increases bounce within a capped range. Perk
@@ -22,10 +22,10 @@ plinths travel with their whole model; they retain their distinguishing white ba
 | `last_word` | Quotation double stamp, 1.13 s | Left and right quotation marks punch out sequentially; the larger second stamp produces an emphatic nod from the speech card. |
 | `metronome` | Pendulum whip cadence, 1.30 s | A cocked pendulum makes one broad whip and two diminishing counterbeats. The front-mounted pivot carries the weight and stem together. |
 | `milestone` | Three-step flag fanfare, 1.34 s | Three stairs rise in ascending order; the final step cues a wide flag wave and proud body lift. |
-| `chest_common` | Meadow latch surprise, 1.55 s | Curious rocking, leaf-clasp release, a light hop and one rotating seed bouquet. |
-| `chest_uncommon` | Lagoon tidal reveal, 1.70 s | Sweeping lateral tide, rolling coffer, spinning seal and a floating reward wave. |
-| `chest_rare` | Aurora vault eruption, 1.84 s | Heavy crouch and tremor, vertical kick, crystal-lid reveal, two reward pulses and a cushioned landing. |
-| `chest_legendary` | Celestial coronation, 2.00 s | Full-body coronation turn while levitating, three orbit-ring turns, ascending rewards and a deliberate closure. |
+| `chest_common` | Meadow rattle and bouquet boom, 3.40 s | Six accelerating rattles in a long closed-lid windup, then an explosive seed bouquet, proud open hold and gentle return. |
+| `chest_uncommon` | Lagoon pressure wave burst, 3.60 s | Seven gathering tremors become a rolling tide, spinning seal and a large floating reward wave. |
+| `chest_rare` | Aurora lockdown eruption, 3.90 s | A long heavy pressure build with two-axis shaking, then a vertical kick, crystal-lid burst, double treasure pulse and cushioned landing. |
+| `chest_legendary` | Celestial supernova coronation, 4.20 s | Prolonged escalating tremor and closed-lid coronation turn; an explosive levitating reveal, four orbit-ring turns and the largest treasure bloom. |
 | `event_growth` | Sprout jack-in-the-pot, 1.23 s | Planter gathers down and its rooted sprout scales into a bloom with diminishing leafy sways. The stem stays attached to its soil pivot. |
 | `event_repair` | Repair heartbeat defibrillation, 1.03 s | Two distinct heartbeat jolts push the healing cross toward the viewer; the second pulse is stronger. |
 | `event_upgrade` | Upgrade chevron launch, 1.17 s | Side arrows launch first, then the gold center arrow rises higher and overtakes them. The stand follows the formation. |
@@ -35,10 +35,12 @@ plinths travel with their whole model; they retain their distinguishing white ba
 
 Chest lids keep their existing rear hinges and never exceed the previously
 audited 105-degree opening. Rewards begin emerging after the lid reaches its
-open pose and return before closure starts. Common treasure finishes returning
-at normalized 0.76 before closure at 0.79; uncommon uses 0.77/0.80, rare uses
-0.79/0.82, and legendary uses 0.80/0.83. There is no lid overshoot into an untested
-angle. Every chest has a separate timing and body performance.
+open pose and return before closure starts. The RBX-025 review pass keeps every
+lid fully closed through normalized 0.52, opens rapidly from 0.52 to 0.60, and
+holds at 105 degrees through 0.88. Treasure emerges from 0.60 and returns by 0.85;
+closure runs from 0.88 to 0.98. This provides 1.77–2.18 seconds of anticipation
+before opening. The main sound impact is at 0.56 and reveal accent at 0.64. There
+is no lid-angle overshoot. Each tier retains its own body performance and duration.
 
 Ricochet travel is bounded inside the arch at normal strength. The metronome
 uses the explicit front-mounted pivot and moves its stem forward along the

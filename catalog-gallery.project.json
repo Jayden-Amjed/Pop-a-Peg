@@ -4,11 +4,20 @@
   "tree": {
     "$className": "DataModel",
     "ReplicatedStorage": {
+      "Shared": {
+        "$className": "Folder",
+        "ItemFeedback": { "$path": "src/shared/ItemFeedback.luau" }
+      },
       "CatalogAssets": {
         "$path": "art/catalog/CatalogAssets.rbxm"
       },
       "CatalogLibrary": {
         "$className": "Folder",
+        "GalleryAudio": { "$path": "scripts/models/GalleryAudio.luau" },
+        "StudioGalleryAudioAudit": { "$path": "scripts/models/StudioGalleryAudioAudit.luau" },
+        "StudioReviewMechanicsAudit": { "$path": "scripts/models/StudioReviewMechanicsAudit.luau" },
+        "GallerySoundTimeline": { "$path": "scripts/models/GallerySoundTimeline.luau" },
+        "SoundEffects": { "$path": "src/client/SoundEffects.luau" },
         "ItemModels": {
           "$path": "src/client/ItemModels.luau"
         },

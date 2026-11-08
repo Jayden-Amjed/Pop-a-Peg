@@ -127,22 +127,22 @@ return function(C)
 
     add(
         "burst_capsule",
-        1.04,
-        "capsule-corkscrew-pop",
-        "Squats under pressure, launches in a corkscrew, then lands with two fin flutters.",
+        1.50,
+        "capsule-lift-off-reseal",
+        "Builds pressure, blows its complete top clear of the capsule, then catches and reseats the cap with a springy landing.",
         function(t, a)
             local v = C.body()
-            v.y = a * (-0.045 * P(t, 0, 0.13, 0.24) + 0.20 * P(t, 0.17, 0.37, 0.82))
-            v.ry = spin(t, a, 0.22, 0.78, 1)
-            v.rz = a * 0.12 * R(t, 0.52, 0.97, 1)
-            v.scale = 1 + a * (-0.055 * P(t, 0, 0.13, 0.23) + 0.23 * P(t, 0.18, 0.30, 0.69))
+            v.y = a * (-0.045 * P(t, 0, 0.18, 0.27) + 0.16 * P(t, 0.23, 0.32, 0.67))
+            v.rz = a * (0.05 * R(t, 0, 0.23, 3) + 0.10 * R(t, 0.70, 0.98, 1))
+            v.scale = 1 + a * (-0.055 * P(t, 0, 0.18, 0.26) + 0.23 * P(t, 0.23, 0.30, 0.69))
             return v
         end,
         function(group, t, a, x, _, _, v)
             clean(v)
-            if group == "Pin" then
-                v.y = a * 0.45 * P(t, 0.12, 0.25, 0.67)
-                v.rz = a * 0.32 * P(t, 0.15, 0.35, 0.72)
+            if group == "BurstCap" or group == "Pin" then
+                local lift = C.phase(t, 0.22, 0.32) - C.phase(t, 0.52, 0.76)
+                v.y = math.min(a, 1.3) * 1.15 * lift
+                v.rz = math.min(a, 1.3) * 0.24 * P(t, 0.30, 0.44, 0.60)
             else
                 v.x = x * a * 0.21 * P(t, 0.18, 0.33, 0.73)
                 v.ry = a * 0.30 * R(t, 0.29, 0.94, 2)
@@ -553,25 +553,30 @@ return function(C)
 
     add(
         "coin_press",
-        1.25,
-        "mint-crank-strike-payoff",
-        "Cranks the screw, plants a heavy press stroke, then flips the fresh coin upward.",
+        1.65,
+        "mint-crank-contact-squash",
+        "Turns its top crank, presses the coin flat against the anvil, then releases the die as the coin springs back to its minted shape.",
         function(t, a)
             local v = C.body()
             v.ry = a * -0.22 * P(t, 0, 0.17, 0.38)
-            v.y = a * (-0.055 * P(t, 0.24, 0.34, 0.46) + 0.13 * P(t, 0.39, 0.56, 0.90))
-            v.rx = a * 0.11 * R(t, 0.35, 0.96, 1)
-            v.scale = 1 + a * 0.19 * P(t, 0.29, 0.43, 0.87)
+            v.y = a * (-0.055 * P(t, 0.29, 0.40, 0.51) + 0.13 * P(t, 0.48, 0.64, 0.93))
+            v.rx = a * 0.11 * R(t, 0.40, 0.97, 1)
+            v.scale = 1 + a * 0.19 * P(t, 0.34, 0.46, 0.89)
             return v
         end,
         function(group, t, a, _, _, _, v)
             clean(v)
+            -- Contact geometry caps the stroke even at 2x strength; stronger
+            -- triggers add body recoil, never drive the die through the anvil.
+            local stroke = (C.phase(t, 0.12, 0.40) - C.phase(t, 0.48, 0.74)) * math.min(a, 1)
+            v.press = stroke
             if group == "PressScrew" then
-                v.y = -math.min(a, 1.4) * 0.32 * P(t, 0.13, 0.34, 0.61)
-                v.ry = spin(t, a, 0.08, 0.65, 2)
-            else
-                v.y = a * 0.56 * P(t, 0.37, 0.60, 0.94)
-                v.ry = spin(t, a, 0.40, 0.93, 2)
+                v.y = -0.4299 * stroke
+                v.ry = spin(t, a, 0.12, 0.74, 2)
+            elseif group == "Crank" then
+                v.ry = spin(t, a, 0.12, 0.74, 2)
+            elseif group == "MintCoin" then
+                v.axial = 1 - math.max(0, 0.4299 * stroke - 0.33) / 0.135
             end
             return v
         end

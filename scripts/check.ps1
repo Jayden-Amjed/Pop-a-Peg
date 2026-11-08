@@ -23,6 +23,8 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'Gameplay tests failed' }
     & .\.tools\luau.exe scripts/models/test_catalog_motion.luau
     if ($LASTEXITCODE -ne 0) { throw 'Catalog motion contracts failed' }
+    & .\.tools\luau.exe scripts/models/test_gallery_audio.luau
+    if ($LASTEXITCODE -ne 0) { throw 'Gallery audio contracts failed' }
     & "$PSScriptRoot/build.ps1"
     & .\.tools\rojo.exe build catalog-gallery.project.json --output build\peg-catalog-gallery.rbxlx
     if ($LASTEXITCODE -ne 0) { throw 'Catalog gallery build failed' }

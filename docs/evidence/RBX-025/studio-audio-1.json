@@ -1,0 +1,789 @@
+{
+  "assets": {
+    "rbxassetid://9119319842": "Success",
+    "rbxassetid://9119669074": "Success",
+    "rbxassetid://9114210044": "Success",
+    "rbxassetid://9119642864": "Success",
+    "rbxassetid://127645268874265": "Success",
+    "rbxassetid://77129402344871": "Success",
+    "rbxassetid://9126132550": "Success"
+  },
+  "checked": 26,
+  "loadedAssetFailures": [],
+  "passed": 26,
+  "maximumPendingNotes": 5,
+  "maximumTotalVolume": 0.13181735574232922,
+  "requested": 26,
+  "failed": 0,
+  "ok": true,
+  "cleanup": true,
+  "cancellation": "PASS pause/resume, mute and stale-cue suppression",
+  "scope": "Real asset loading, Sound.IsPlaying, advancing TimePosition, positive finite gain, bounded voices, cancellation and disposal. No recorded output or human-listening claim.",
+  "maximumLiveVoices": 5,
+  "unrun": [],
+  "items": {
+    "1": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "aurora_aquarium",
+          "peakLoudness": 719.7404503822327,
+          "positiveGain": true,
+          "phase": 0.28,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "aurora_aquarium",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "2": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "aurora_kite",
+          "peakLoudness": 718.4310555458069,
+          "positiveGain": true,
+          "phase": 0.28,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "aurora_kite",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "3": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "balance_scale",
+          "peakLoudness": 726.208746433258,
+          "positiveGain": true,
+          "phase": 0.28,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "balance_scale",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "4": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "biolume_jar",
+          "peakLoudness": 728.3297777175903,
+          "positiveGain": true,
+          "phase": 0.28,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "biolume_jar",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "5": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "bubble_reactor",
+          "peakLoudness": 738.7436628341675,
+          "positiveGain": true,
+          "phase": 0.28,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "bubble_reactor",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "6": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "bubble_wand",
+          "peakLoudness": 715.6935930252075,
+          "positiveGain": true,
+          "phase": 0.68,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "bubble_wand",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "7": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "burst_capsule",
+          "peakLoudness": 737.5732064247131,
+          "positiveGain": true,
+          "phase": 0.3,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "burst_capsule",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "8": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "click",
+          "peakLoudness": 7.6970914378762245,
+          "positiveGain": true,
+          "phase": 0.08,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        },
+        "2": {
+          "id": "click",
+          "peakLoudness": 7.992052473127842,
+          "positiveGain": true,
+          "phase": 0.2,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        },
+        "3": {
+          "id": "click",
+          "peakLoudness": 8.442999795079231,
+          "positiveGain": true,
+          "phase": 0.3,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        },
+        "4": {
+          "id": "click",
+          "peakLoudness": 9.896731935441494,
+          "positiveGain": true,
+          "phase": 0.38,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        },
+        "5": {
+          "id": "click",
+          "peakLoudness": 10.091735981404781,
+          "positiveGain": true,
+          "phase": 0.44,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        },
+        "6": {
+          "id": "click",
+          "peakLoudness": 8.662424981594086,
+          "positiveGain": true,
+          "phase": 0.49,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        },
+        "7": {
+          "id": "restock",
+          "peakLoudness": 16.15931699052453,
+          "positiveGain": true,
+          "phase": 0.56,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        },
+        "8": {
+          "id": "burst_capsule",
+          "peakLoudness": 736.5515232086182,
+          "positiveGain": true,
+          "phase": 0.56,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        },
+        "9": {
+          "id": "clear",
+          "peakLoudness": 82.99990557134151,
+          "positiveGain": true,
+          "phase": 0.64,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 9,
+      "id": "chest_common",
+      "scheduled": 9,
+      "observed": 9
+    },
+    "9": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "click",
+          "peakLoudness": 87.16270793229342,
+          "positiveGain": true,
+          "phase": 0.08,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        },
+        "2": {
+          "id": "click",
+          "peakLoudness": 9.379995055496693,
+          "positiveGain": true,
+          "phase": 0.2,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        },
+        "3": {
+          "id": "click",
+          "peakLoudness": 8.442999795079231,
+          "positiveGain": true,
+          "phase": 0.3,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        },
+        "4": {
+          "id": "click",
+          "peakLoudness": 8.676412515342236,
+          "positiveGain": true,
+          "phase": 0.38,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        },
+        "5": {
+          "id": "click",
+          "peakLoudness": 8.739355951547623,
+          "positiveGain": true,
+          "phase": 0.44,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        },
+        "6": {
+          "id": "click",
+          "peakLoudness": 8.662424981594086,
+          "positiveGain": true,
+          "phase": 0.49,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        },
+        "7": {
+          "id": "restock",
+          "peakLoudness": 15.662684105336666,
+          "positiveGain": true,
+          "phase": 0.56,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        },
+        "8": {
+          "id": "burst_capsule",
+          "peakLoudness": 737.9453778266907,
+          "positiveGain": true,
+          "phase": 0.56,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        },
+        "9": {
+          "id": "clear",
+          "peakLoudness": 86.03724651038647,
+          "positiveGain": true,
+          "phase": 0.64,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 9,
+      "id": "chest_legendary",
+      "scheduled": 9,
+      "observed": 9
+    },
+    "10": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "click",
+          "peakLoudness": 72.59038742631674,
+          "positiveGain": true,
+          "phase": 0.08,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        },
+        "2": {
+          "id": "click",
+          "peakLoudness": 7.992052473127842,
+          "positiveGain": true,
+          "phase": 0.2,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        },
+        "3": {
+          "id": "click",
+          "peakLoudness": 9.63844545185566,
+          "positiveGain": true,
+          "phase": 0.3,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        },
+        "4": {
+          "id": "click",
+          "peakLoudness": 8.676412515342236,
+          "positiveGain": true,
+          "phase": 0.38,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        },
+        "5": {
+          "id": "click",
+          "peakLoudness": 10.091735981404781,
+          "positiveGain": true,
+          "phase": 0.44,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        },
+        "6": {
+          "id": "click",
+          "peakLoudness": 8.662424981594086,
+          "positiveGain": true,
+          "phase": 0.49,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        },
+        "7": {
+          "id": "restock",
+          "peakLoudness": 16.131592448800802,
+          "positiveGain": true,
+          "phase": 0.56,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        },
+        "8": {
+          "id": "burst_capsule",
+          "peakLoudness": 739.2362952232361,
+          "positiveGain": true,
+          "phase": 0.56,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        },
+        "9": {
+          "id": "clear",
+          "peakLoudness": 86.70332282781601,
+          "positiveGain": true,
+          "phase": 0.64,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 9,
+      "id": "chest_rare",
+      "scheduled": 9,
+      "observed": 9
+    },
+    "11": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "click",
+          "peakLoudness": 82.3554890230298,
+          "positiveGain": true,
+          "phase": 0.08,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        },
+        "2": {
+          "id": "click",
+          "peakLoudness": 7.992052473127842,
+          "positiveGain": true,
+          "phase": 0.2,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        },
+        "3": {
+          "id": "click",
+          "peakLoudness": 8.442999795079231,
+          "positiveGain": true,
+          "phase": 0.3,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        },
+        "4": {
+          "id": "click",
+          "peakLoudness": 8.676412515342236,
+          "positiveGain": true,
+          "phase": 0.38,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        },
+        "5": {
+          "id": "click",
+          "peakLoudness": 10.091735981404781,
+          "positiveGain": true,
+          "phase": 0.44,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        },
+        "6": {
+          "id": "click",
+          "peakLoudness": 8.662424981594086,
+          "positiveGain": true,
+          "phase": 0.49,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        },
+        "7": {
+          "id": "restock",
+          "peakLoudness": 15.773182734847069,
+          "positiveGain": true,
+          "phase": 0.56,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        },
+        "8": {
+          "id": "burst_capsule",
+          "peakLoudness": 739.1320466995239,
+          "positiveGain": true,
+          "phase": 0.56,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        },
+        "9": {
+          "id": "clear",
+          "peakLoudness": 86.29477489739656,
+          "positiveGain": true,
+          "phase": 0.64,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 9,
+      "id": "chest_uncommon",
+      "scheduled": 9,
+      "observed": 9
+    },
+    "12": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "clockwork",
+          "peakLoudness": 723.8759994506836,
+          "positiveGain": true,
+          "phase": 0.3,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "clockwork",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "13": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "cloud_mirror",
+          "peakLoudness": 717.047929763794,
+          "positiveGain": true,
+          "phase": 0.28,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "cloud_mirror",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "14": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "coin",
+          "peakLoudness": 119.7882704436779,
+          "positiveGain": true,
+          "phase": 0.3,
+          "kind": "cue",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "coin",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "15": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "coin_press",
+          "peakLoudness": 718.5595035552979,
+          "positiveGain": true,
+          "phase": 0.4,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "coin_press",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "16": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "compass",
+          "peakLoudness": 716.5693044662476,
+          "positiveGain": true,
+          "phase": 0.36,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "compass",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "17": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "coral_fork",
+          "peakLoudness": 719.1189527511597,
+          "positiveGain": true,
+          "phase": 0.28,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "coral_fork",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "18": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "current_nexus",
+          "peakLoudness": 732.1892380714417,
+          "positiveGain": true,
+          "phase": 0.28,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "current_nexus",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "19": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "dew_lantern",
+          "peakLoudness": 720.3596830368042,
+          "positiveGain": true,
+          "phase": 0.28,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "dew_lantern",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "20": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "echo_plate",
+          "peakLoudness": 718.5595035552979,
+          "positiveGain": true,
+          "phase": 0.28,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "echo_plate",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "21": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "eden_greenhouse",
+          "peakLoudness": 723.8759994506836,
+          "positiveGain": true,
+          "phase": 0.28,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "eden_greenhouse",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "22": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "encore",
+          "peakLoudness": 718.5595035552979,
+          "positiveGain": true,
+          "phase": 0.28,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "encore",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "23": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "growth_array",
+          "peakLoudness": 715.9541845321655,
+          "positiveGain": true,
+          "phase": 0.38,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "event_growth",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "24": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "clockwork",
+          "peakLoudness": 723.8759994506836,
+          "positiveGain": true,
+          "phase": 0.36,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "event_overtime",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "25": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "recovery",
+          "peakLoudness": 726.208746433258,
+          "positiveGain": true,
+          "phase": 0.38,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "event_repair",
+      "scheduled": 1,
+      "observed": 1
+    },
+    "26": {
+      "ok": true,
+      "cues": {
+        "1": {
+          "id": "tuning_oil",
+          "peakLoudness": 720.3596830368042,
+          "positiveGain": true,
+          "phase": 0.38,
+          "kind": "item",
+          "advancing": true,
+          "playing": true
+        }
+      },
+      "fired": 1,
+      "id": "event_upgrade",
+      "scheduled": 1,
+      "observed": 1
+    }
+  },
+  "last": 26,
+  "maximumPlaybackLoudness": 739.2362952232361,
+  "first": 1,
+  "elapsedSeconds": 15.292188200000965,
+  "failures": [],
+  "schema": 1,
+  "maximumLiveToneVoices": 5
+}

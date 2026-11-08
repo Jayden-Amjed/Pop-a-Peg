@@ -382,7 +382,8 @@ local pivots = {
 
 -- Samples are plain numbers so motion envelopes can be checked without rendering.
 function ItemMotion.sample(id, group, t, strength, x, y, z)
-    local v = { x = 0, y = 0, z = 0, rx = 0, ry = 0, rz = 0, scale = 1, glow = 0, axial = 1 }
+    local v =
+        { x = 0, y = 0, z = 0, rx = 0, ry = 0, rz = 0, scale = 1, glow = 0, axial = 1, press = 0 }
     if t ~= t or t <= 0 or t >= 1 or group == "Fixed" or strength == 0 then
         return v
     end
@@ -812,6 +813,9 @@ end
 function ItemMotion.new(model, id, options)
     local center = model:GetAttribute("ArtCenter") or Vector3.zero
     local _, restSize = model:GetBoundingBox()
+    local pressContact = model:GetAttribute("PressContact") or 0.33
+    local coinThickness = model:GetAttribute("CoinThickness") or 0.135
+    local pressTravel = pressContact + coinThickness * 0.74
     local reducedMotion = options and options.reducedMotion == true
     local records = {}
     local assemblies = {}
@@ -834,6 +838,11 @@ function ItemMotion.new(model, id, options)
                 ) - center or object.Position),
                 springA = object:GetAttribute("SpringA"),
                 springB = object:GetAttribute("SpringB"),
+                verticalAxes = Vector3.new(
+                    object.CFrame.RightVector.Y ^ 2,
+                    object.CFrame.UpVector.Y ^ 2,
+                    object.CFrame.LookVector.Y ^ 2
+                ),
             })
         end
     end
@@ -885,12 +894,26 @@ function ItemMotion.new(model, id, options)
             if id == "quota_bonus" and record.group == "Stamp" then
                 offset = Vector3.new(state.x, state.y * 0.23 / 0.43, state.z)
             elseif id == "coin_press" and record.group == "PressScrew" then
-                offset = Vector3.new(state.x, state.y * 0.25 / (0.32 * 1.4), state.z)
+                offset = Vector3.new(0, -pressTravel * state.press, 0)
             end
             local transform = CFrame.new(record.pivot + offset)
                 * CFrame.Angles(state.rx, state.ry, state.rz)
             local frame, dimensions
-            if id == "spring_coil" and record.springA and t > 0 and t < 1 then
+            if id == "coin_press" and record.group == "MintCoin" then
+                local axial = 1
+                    - math.max(0, pressTravel * state.press - pressContact) / coinThickness
+                -- Squash world Y about the anvil, including spacing between the
+                -- coin's materials. Native cylinders use local X for their axis.
+                local relative = record.frame.Position - record.pivot
+                frame = CFrame.new(0, relative.Y * (axial - 1), 0) * record.frame
+                local axes, change = record.verticalAxes, axial * axial - 1
+                dimensions = record.size
+                    * Vector3.new(
+                        math.sqrt(1 + change * axes.X),
+                        math.sqrt(1 + change * axes.Y),
+                        math.sqrt(1 + change * axes.Z)
+                    )
+            elseif id == "spring_coil" and record.springA and t > 0 and t < 1 then
                 local a, b = record.springA, record.springB
                 a = Vector3.new(a.X, -1 + (a.Y + 1) * state.axial, a.Z) - center
                 b = Vector3.new(b.X, -1 + (b.Y + 1) * state.axial, b.Z) - center

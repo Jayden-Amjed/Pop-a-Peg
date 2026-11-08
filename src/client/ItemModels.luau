@@ -313,8 +313,8 @@ register("clockwork", "equipment", function(m, level)
 end)
 
 register("burst_capsule", "equipment", function(m, level)
-    drum(m, P.orange, 0.68, 1.5, 0, 0, 0)
-    sphere(m, P.orange, 1.36, 0.8, 1.36, 0, 0.69, 0)
+    drum(m, P.orange, 0.68, 1.12, 0, -0.19, 0)
+    named(sphere(m, P.orange, 1.36, 0.8, 1.36, 0, 0.77, 0), "BurstCap")
     sphere(m, P.steel, 1.38, 0.65, 1.38, 0, -0.7, 0)
     drum(m, P.dark, 0.72, 0.28, 0, 0.05, 0)
     light(drum(m, P.cyan, 0.735, 0.12, 0, 0.05, 0))
@@ -327,14 +327,28 @@ register("burst_capsule", "equipment", function(m, level)
             frame(math.cos(angle) * 0.7, -0.45, math.sin(angle) * 0.7, 0, -index * 120, 0)
         )
     end
-    drum(m, P.brass, 0.22, 0.15, 0, 1.1, 0)
+    named(drum(m, P.brass, 0.22, 0.15, 0, 1.1, 0), "BurstCap")
+    local beforeRing = #m:GetChildren()
     ring(m, P.silver, 0.23, 0.045, frame(0, 1.41, 0), 12)
+    for index, object in m:GetChildren() do
+        if index > beforeRing then
+            named(object, "BurstCap")
+        end
+    end
     for _, side in ipairs({ -1, 1 }) do
-        block(m, P.dark, 0.08, 0.4, 0.055, side * 0.35, 0.6, 0.61, 0, 0, -side * 25)
+        named(
+            block(m, P.dark, 0.08, 0.3, 0.055, side * 0.35, 0.65, 0.61, 0, 0, -side * 25),
+            "BurstCap"
+        )
         bolt(m, side * 0.4, -0.58, 0.6)
     end
     if level >= 2 then
         light(drum(m, P.gold, 0.74, 0.1, 0, 0.31, 0))
+    end
+    for _, object in m:GetChildren() do
+        if object:GetAttribute("MotionGroup") == "BurstCap" then
+            object:SetAttribute("MotionPivot", V(0, 0.37, 0))
+        end
     end
 end)
 
@@ -2012,24 +2026,37 @@ register("reserve_pack", "consumable", function(m)
 end)
 
 register("coin_press", "consumable", function(m)
+    m:SetAttribute("PressContact", 0.24)
+    m:SetAttribute("CoinThickness", 0.135)
+    local screwPivot, crankPivot = V(0, 0.3, -0.25), V(0, 1.37, -0.25)
     plinth(m, 1.8, -0.97, 1.3, P.teal)
     for _, x in ipairs({ -0.66, 0.66 }) do
         block(m, P.steel, 0.24, 1.92, 0.37, x, 0.04, -0.25)
         bolt(m, x, -0.73, -0.03)
     end
     block(m, P.teal, 1.81, 0.3, 0.66, 0, 1.01, -0.25)
-    rod(m, P.silver, V(0, -0.16, -0.25), V(0, 1.33, -0.25), 0.11)
+    named(rod(m, P.dark, V(0, 1.12, -0.25), V(0, 1.37, -0.25), 0.085), "Fixed")
+    moving(rod(m, P.silver, V(0, -0.16, -0.25), V(0, 1.55, -0.25), 0.11), "PressScrew", screwPivot)
     for index = 0, 8 do
-        drum(m, P.brass, 0.17, 0.05, 0, -0.01 + index * 0.14, -0.25)
+        moving(
+            drum(m, P.brass, 0.17, 0.05, 0, -0.01 + index * 0.14, -0.25),
+            "PressScrew",
+            screwPivot
+        )
     end
-    drum(m, P.steel, 0.38, 0.26, 0, -0.31, -0.25)
-    drum(m, P.gold, 0.43, 0.11, 0, -0.76, -0.25)
-    rod(m, P.silver, V(-0.55, 1.37, -0.25), V(0.55, 1.37, -0.25), 0.06)
-    sphere(m, P.dark, 0.22, 0.22, 0.22, 0.55, 1.37, -0.25)
+    moving(drum(m, P.steel, 0.38, 0.26, 0, -0.31, -0.25), "PressScrew", screwPivot)
+    drum(m, P.dark, 0.47, 0.08, 0, -0.855, -0.25)
+    moving(drum(m, P.gold, 0.43, 0.135, 0, -0.7475, -0.25), "MintCoin", V(0, -0.815, -0.25))
+    moving(rod(m, P.silver, V(-0.55, 1.37, -0.25), V(0.55, 1.37, -0.25), 0.06), "Crank", crankPivot)
+    moving(sphere(m, P.dark, 0.22, 0.22, 0.22, 0.55, 1.37, -0.25), "Crank", crankPivot)
     for index = 0, 3 do
         drum(m, P.gold, 0.26, 0.07, 0.53, -0.73 + index * 0.08, 0.33)
     end
-    coin(m, -0.41, -0.49, 0.58, 0.29)
+    for _, object in m:GetChildren() do
+        if not object:GetAttribute("MotionGroup") then
+            named(object, "Fixed")
+        end
+    end
 end)
 
 register("tuning_oil", "consumable", function(m)
@@ -2539,6 +2566,10 @@ function ItemModels.mount(viewport, id, level, options)
             end
         end
     end
+    function handle:isAnimating()
+        return not destroyed and active
+    end
+
     function handle:destroy()
         if destroyed then
             return

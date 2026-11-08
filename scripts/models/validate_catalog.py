@@ -192,20 +192,78 @@ def validate_pilots(root, manifests, owner):
     return len(records)
 
 
+def upload_name(row):
+    explicit = row.get('batchName')
+    if explicit is not None:
+        require(isinstance(explicit, str) and re.fullmatch(r'catalog-[a-z0-9-]+', explicit), 'Invalid explicit batch name')
+        return explicit
+    number = row['number']
+    require(isinstance(number, int) and not isinstance(number, bool) and number > 0, 'Invalid legacy upload number')
+    return 'catalog-' + str(number).zfill(3)
+
+
+def named_uploads(path):
+    rows = read_json(path)
+    result = {upload_name(row): row for row in rows}
+    require(len(result) == len(rows), str(path) + ': duplicate batch identity')
+    return result
+
+
+def revision_index(root, manifests):
+    path = root / 'art/catalog/revisions/index.json'
+    if not path.is_file():
+        return None, {}
+    index = read_json(path)
+    require(index['schema'] == 1 and set(index['active']) == set(manifests), 'Revision index must select all 78 active models')
+    active = index['active']
+    for ident, receipt in active.items():
+        require(isinstance(receipt, str), ident + ': invalid active receipt path')
+        local_path(root, receipt)
+        if ident in PILOTS:
+            require(receipt == 'art/models/studio-import.json', ident + ': pilot revisions require their own reviewed importer')
+    historical = {}
+    for record in index['historical_sources']:
+        key = (record['receipt'], record['id'])
+        require(key not in historical and record['id'] in manifests and record['id'] not in PILOTS,
+                'Duplicate or unknown historical source')
+        for field in ('source', 'manifest'):
+            resolved = local_path(root, record[field])
+            require(resolved.is_relative_to(root / 'art/catalog/revisions'), 'Historical source must stay in revisions archive')
+        historical[key] = record
+    return active, historical
+
+
 def validate_batches(root, manifests, owner):
-    archive = root / 'art/catalog/uploaded'
-    uploads = unique(read_json(archive / 'receipts.json'), 'number', 'Upload receipts')
-    operations = unique(read_json(archive / 'operations.json'), 'number', 'Upload operations')
-    batches = sorted(archive.glob('catalog-*.manifest.json'))
-    require(len(batches) == len(uploads) == len(operations) == math.ceil((78-len(PILOTS))/8), 'Incomplete batch archive')
-    seen, mesh_ids, model_parts = set(), [], 0
-    for batch_path in batches:
+    original = root / 'art/catalog/uploaded'
+    revisions = root / 'art/catalog/revisions'
+    active, historical = revision_index(root, manifests)
+    revision_archives = sorted(path for path in revisions.glob('*') if path.is_dir()
+                               and (list(path.glob('catalog-*')) or (path / 'receipts.json').exists() or (path / 'operations.json').exists()))
+    require(active is not None or not revision_archives, 'Revision uploads require an explicit active index')
+    batches, original_batch_count = [], 0
+    for archive in [original, *revision_archives]:
+        uploads = named_uploads(archive / 'receipts.json')
+        operations = named_uploads(archive / 'operations.json')
+        paths = sorted(archive.glob('catalog-*.manifest.json'))
+        names = {path.name.removesuffix('.manifest.json') for path in paths}
+        require(names == set(uploads) == set(operations), str(archive) + ': incomplete batch archive')
+        if archive == original:
+            require(names == {'catalog-' + str(n).zfill(3) for n in range(1, math.ceil((78-len(PILOTS))/8)+1)},
+                    'Incomplete original ten-batch archive')
+            original_batch_count = len(paths)
+        batches.extend((path, uploads, operations) for path in paths)
+    original_seen, active_seen, all_pairs, used_history = set(), set(), set(), set()
+    mesh_ids, model_parts, archived_parts = [], 0, 0
+    for batch_path, uploads, operations in batches:
+        archive = batch_path.parent
         batch = read_json(batch_path)
         name = batch['name']
         require(batch_path.name == name + '.manifest.json', 'Batch filename mismatch')
-        number = int(name.rsplit('-', 1)[1])
-        upload, operation = uploads[number], operations[number]
-        proof = read_json(archive / (name + '.receipt.json'))
+        upload, operation = uploads[name], operations[name]
+        proof_path = archive / (name + '.receipt.json')
+        proof_relative = proof_path.relative_to(root).as_posix()
+        proof = read_json(proof_path)
+        require(batch['schema'] == proof['schema'] == 1, name + ': unsupported archive schema')
         raw_path = archive / (name + '.raw.json')
         glb = local_path(archive.resolve(), batch['file'])
         require(upload['done'] is True and upload['operationId'] == operation['operationId'] == proof['operation'], name + ': operation mismatch')
@@ -224,9 +282,11 @@ def validate_batches(root, manifests, owner):
         models = unique(batch['models'], 'id', name + ' model entries')
         bound = unique(proof['models'], 'id', name + ' bound models')
         require(set(models) == set(bound) and 1 <= len(models) <= 8, name + ': model coverage mismatch')
-        require(not (seen & set(models)), name + ': model uploaded twice')
         require(not (PILOTS & set(models)), name + ': accepted pilot unexpectedly re-uploaded')
-        seen.update(models)
+        require(set(models).issubset(manifests), name + ': unknown catalog model')
+        if archive == original:
+            require(not (original_seen & set(models)), name + ': model duplicated in original archive')
+            original_seen.update(models)
         expected_nodes = set(exports) | {item['name'] for item in batch['calibration']}
         require(set(nodes) == expected_nodes, name + ': GLB node set differs')
         expected_raw = {doc['meshes'][node['mesh']]['name'] for node in nodes.values()}
@@ -235,11 +295,31 @@ def validate_batches(root, manifests, owner):
         require(set(proof['manifest_sha256']) == expected_hashes, name + ': manifest evidence coverage differs')
         covered = set()
         for ident, entry in models.items():
-            source = manifests[ident]
+            key = (proof_relative, ident)
+            require(key not in all_pairs, ident + ': duplicate receipt/model pair')
+            all_pairs.add(key)
+            is_active = active is None or active[ident] == proof_relative
+            if is_active:
+                require(ident not in active_seen, ident + ': more than one active receipt')
+                active_seen.add(ident)
+                source = manifests[ident]
+                source_path = root / f'art/catalog/{ident}/{ident}.blend'
+                manifest_path = root / f'art/catalog/{ident}/manifest.json'
+            else:
+                require(key in historical, ident + ': missing preserved source for superseded receipt ' + proof_relative)
+                record = historical[key]
+                used_history.add(key)
+                source_path = local_path(root, record['source'])
+                manifest_path = local_path(root, record['manifest'])
+                verify_hash(manifest_path, proof['manifest_sha256'][f'art/catalog/{ident}/manifest.json'], ident + ' historical manifest')
+                source = read_json(manifest_path)
+                validate_manifest(source, {'id': ident, 'name': source['display_name'],
+                                           'category': source['category'], 'pieces': source['pieces'],
+                                           'triangles': source['triangles']})
             receipt = bound[ident]
-            verify_hash(root / f'art/catalog/{ident}/{ident}.blend', entry['blend_sha256'], ident + ' uploaded source')
+            verify_hash(source_path, entry['blend_sha256'], ident + ' uploaded source')
             require(source['blend_sha256'] == receipt['blend_sha256'] == entry['blend_sha256'], ident + ': source identity mismatch')
-            verify_hash(root / f'art/catalog/{ident}/manifest.json', proof['manifest_sha256'][f'art/catalog/{ident}/manifest.json'], ident + ' uploaded manifest')
+            verify_hash(manifest_path, proof['manifest_sha256'][f'art/catalog/{ident}/manifest.json'], ident + ' uploaded manifest')
             require(all(receipt[key] == value for key, value in source.items() if key != 'objects'), ident + ': bound model metadata differs')
             require(source['center_blender_studs'] == entry['source_center_blender_studs'], ident + ': export center differs')
             source_parts = unique(source['objects'], 'name', ident)
@@ -257,8 +337,11 @@ def validate_batches(root, manifests, owner):
                 require(MESH_ID.fullmatch(record['mesh_id']), part_name + ': invalid uploaded MeshId')
                 require(record['imported_size'] == raw[imported]['size'], part_name + ': observed size differs')
                 require(gltf_triangles(doc, node) == part['triangles'], part_name + ': GLB triangles differ')
-                mesh_ids.append(record['mesh_id'])
+                if is_active:
+                    mesh_ids.append(record['mesh_id'])
                 covered.add(part_name)
+            if is_active:
+                model_parts += len(source_parts)
         require(covered == set(exports), name + ': unbound exported pieces')
         require(len(batch['calibration']) == len(proof['calibration']) == 3, name + ': missing calibration')
         for exported, recorded in zip(batch['calibration'], proof['calibration']):
@@ -270,9 +353,13 @@ def validate_batches(root, manifests, owner):
             finite_vector(part['size'], name + ': raw size', positive=True)
             finite_vector(part['pos'], name + ': raw position')
             finite_vector(part['cf'], name + ': raw transform', 12)
-        model_parts += len(exports)
-    require(seen == set(manifests)-PILOTS, 'Uploaded models do not cover the 75 new sources')
-    return {'batches': len(batches), 'new_models': len(seen), 'new_mesh_parts': model_parts,
+        archived_parts += len(exports)
+    require(original_seen == set(manifests)-PILOTS, 'Original uploads do not cover the 75 non-pilot sources')
+    require(active_seen == set(manifests)-PILOTS, 'Active receipts do not cover the 75 current non-pilot sources')
+    require(used_history == set(historical), 'Unused historical source entry; receipt or active selection differs')
+    return {'batches': len(batches), 'revision_batches': len(batches)-original_batch_count,
+            'new_models': len(active_seen), 'new_mesh_parts': model_parts,
+            'archived_mesh_parts': archived_parts, 'superseded_models': len(used_history),
             'new_mesh_ids': len(set(mesh_ids)), 'shared_mesh_id_occurrences': len(mesh_ids)-len(set(mesh_ids))}
 
 

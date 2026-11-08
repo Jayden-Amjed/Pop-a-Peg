@@ -84,7 +84,12 @@ function CatalogMotion.new(model, testTypes)
             end
             local state = assembly.state
             local frame, dimensions
-            if
+            if id == "coin_press" and assembly.group == "MintCoin" then
+                -- The flat minted coin's bottom pivot stays on the anvil. Its
+                -- material layers flatten together and recover under the die.
+                frame = CF.new(0, record.relative.Y * (state.axial - 1), 0) * record.frame
+                dimensions = V.new(record.size.X, record.size.Y * state.axial, record.size.Z)
+            elseif
                 (
                     id == "spring_coil"
                     and (assembly.group == "SpringMesh" or assembly.group == "SpringGuide")

@@ -22,4 +22,9 @@ jobs:
         run: ./scripts/check.ps1
       - name: Verify model source and import archive
         shell: pwsh
-        run: python scripts/models/validate_catalog.py --expected-owner 583716264 --runtime-manifest art/catalog/runtime-artifacts.json
+        run: |
+          python scripts/models/validate_catalog.py --expected-owner 583716264 --runtime-manifest art/catalog/runtime-artifacts.json
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python scripts/models/test_catalog_revisions.py
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python scripts/models/test_hub_reveal.py --luau .tools/luau.exe

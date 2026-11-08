@@ -24,7 +24,12 @@ def bind(batch_path, raw_path, asset_id, operation, output):
     uploads = json.loads((batch_path.parent / 'receipts.json').read_text(encoding='utf8'))
     upload = next(r for r in uploads if r['operationId'] == operation)
     assert upload['done'] and upload['response']['assetId'] == str(asset_id)
-    assert batch['name'] == 'catalog-' + str(upload['number']).zfill(3)
+    # Partial revision batches have an explicit immutable name. Legacy receipts
+    # retain their numeric identity; never reinterpret an old upload as a new one.
+    upload_name = upload.get('batchName')
+    if upload_name is None:
+        upload_name = 'catalog-' + str(upload['number']).zfill(3)
+    assert batch['name'] == upload_name, 'Upload belongs to a different batch'
     assert upload['response']['creationContext']['creator']['userId'] == '583716264'
     moderation = upload['response']['moderationResult']['moderationState']
     assert moderation == 'Approved', 'Upload is not approved'

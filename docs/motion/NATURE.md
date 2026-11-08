@@ -20,7 +20,7 @@ Zero strength produces no movement. Durations range from 0.98 to 1.66 seconds.
 | `goldfish` | Breach and barrel roll, 1.32s | A backward dip precedes a swimming leap and one roll around the fish's long axis. Tail and fins paddle; bubbles trail the landing. |
 | `fishbowl` | Slush and hop, 1.22s | A heavy bowl leans and hops without overturning. The enclosed fish and water move less than the housing; reeds answer the returning current. |
 | `rain_catcher` | Heavy-drop catch, 1.10s | The funnel reaches up, takes the falling rain's impact, and rebounds as water rises slightly inside the reservoir. |
-| `bubble_wand` | Baton flourish, 1.46s | The long handle cocks back and completes a front-facing 360-degree baton toss. The connected handle and loop stay rigid while bubbles release during the catch. |
+| `bubble_wand` | Long-axis twirl and shared pop, 1.46s | The complete wand twirls around Y, then its handle, loop and bubbles swell and pop together on the catch. Bubbles never detach or spit outward. RBX-025 model-review revision. |
 | `lily_pad` | Flower pop, 1.28s | A floating trampoline dip opens the flower at release; the dew bead continues upward after the petals, then returns. |
 | `solar_leaf` | Sun salute, 1.24s | A forward bow becomes a proud upward lift. The paired collectors fan open at their roots, keeping the inset cells and gold veins attached. |
 | `mist_fan` | Turbo kick, 1.16s | An accelerating five-turn rotor drives a mist burst toward the viewer; the fan housing recoils from its own airflow. |

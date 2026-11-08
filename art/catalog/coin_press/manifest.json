@@ -7,31 +7,31 @@
   "blender": "4.5.9 LTS",
   "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
   "units": "studs in blend; 0.28 meters per stud in GLB",
-  "triangles": 2580,
-  "pieces": 7,
+  "triangles": 3368,
+  "pieces": 8,
   "budget": {
     "triangles": 4000,
     "pieces": 8
   },
   "center_blender_studs": [
     0.0,
-    -0.00125,
-    1.1500001
+    0.0,
+    1.3399999
   ],
   "bounds_min": [
     -0.875,
-    -0.6175,
+    -0.615,
     0.0
   ],
   "bounds_max": [
     0.875,
     0.615,
-    2.3000002
+    2.6799998
   ],
   "size_blender_studs": [
     1.75,
-    1.2325001,
-    2.3000002
+    1.23,
+    2.6799998
   ],
   "objects": [
     {
@@ -45,8 +45,8 @@
       ],
       "alpha": 1.0,
       "transparency": 0.0,
-      "triangles": 216,
-      "vertices": 112,
+      "triangles": 500,
+      "vertices": 256,
       "motion_group": "Fixed",
       "motion_pivot": [
         0.0,
@@ -57,17 +57,17 @@
       "original_center_blender_studs": [
         0.0,
         0.0,
-        0.045
+        1.245
       ],
       "center_blender_studs": [
         0.0,
         0.0,
-        0.045
+        1.245
       ],
       "size_blender_studs": [
         1.3200001,
         0.9225,
-        0.09
+        2.49
       ],
       "bounds_min": [
         -0.66,
@@ -77,9 +77,9 @@
       "bounds_max": [
         0.66,
         0.46125,
-        0.09
+        2.49
       ],
-      "geometry_sha256": "bf5de2eaf92ce4ff0ec1c65776dc81586e592dfa1d7bbff4111b67e6bbe3a94b",
+      "geometry_sha256": "c7736cec168a7cd3108a83bcae08220f2ae1674dd726ef35e6fe247e6d7f8c33",
       "nonmanifold_edges": 0,
       "degenerate_faces": 0
     },
@@ -106,17 +106,17 @@
       "original_center_blender_studs": [
         0.0,
         0.0,
-        1.5600001
+        1.7925
       ],
       "center_blender_studs": [
         0.0,
         0.0,
-        1.5600001
+        1.7925
       ],
       "size_blender_studs": [
         0.7,
         0.7,
-        1.05
+        1.5149999
       ],
       "bounds_min": [
         -0.35,
@@ -126,15 +126,64 @@
       "bounds_max": [
         0.35,
         0.35,
-        2.085
+        2.55
       ],
-      "geometry_sha256": "1219d225b63aef16d983c9ded0f3b594d04e4161f9c216648a2acc168cf1da67",
+      "geometry_sha256": "85b553666c7a0de09b00a9fce5410f5e1f2bb80ad4a0204eae0e72f31df08489",
       "nonmanifold_edges": 0,
       "degenerate_faces": 0
     },
     {
-      "name": "coin_press__MintCoin_gold_03",
-      "mesh_data_name": "coin_press__MintCoin_gold_03",
+      "name": "coin_press__Crank_gold_03",
+      "mesh_data_name": "coin_press__Crank_gold_03",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 504,
+      "vertices": 260,
+      "motion_group": "Crank",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        2.55
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        2.55
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        2.55
+      ],
+      "size_blender_studs": [
+        1.4399999,
+        0.4,
+        0.2599998
+      ],
+      "bounds_min": [
+        -0.72,
+        -0.2,
+        2.4200001
+      ],
+      "bounds_max": [
+        0.72,
+        0.2,
+        2.6799998
+      ],
+      "geometry_sha256": "fe8b366306f9d2a935941d4b3ed96ed5e52e9d659e804f927fca63f40c0384fa",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "coin_press__MintCoin_gold_04",
+      "mesh_data_name": "coin_press__MintCoin_gold_04",
       "material": "gold",
       "color_srgb": [
         249,
@@ -147,43 +196,43 @@
       "vertices": 120,
       "motion_group": "MintCoin",
       "motion_pivot": [
-        0.35,
-        -0.54,
-        0.75
+        0.0,
+        0.0,
+        0.57
       ],
       "compression_span": null,
       "original_center_blender_studs": [
-        0.35,
-        -0.54,
-        0.75
+        0.0,
+        -0.0,
+        0.625
       ],
       "center_blender_studs": [
-        0.35,
-        -0.54,
-        0.75
+        0.0,
+        -0.0,
+        0.625
       ],
       "size_blender_studs": [
         0.56,
-        0.11,
-        0.5599999
+        0.56,
+        0.11
       ],
       "bounds_min": [
-        0.07,
-        -0.595,
-        0.47
+        -0.28,
+        -0.28,
+        0.57
       ],
       "bounds_max": [
-        0.63,
-        -0.485,
-        1.03
+        0.28,
+        0.28,
+        0.68
       ],
-      "geometry_sha256": "2dc6bc6f48959af610667ea04b733b1bc59f207b5087f8a63dc5fdfbe0758017",
+      "geometry_sha256": "8d5b44d7f9878a4115b8c54d99b636e81d0f875e6d9b3920a21e0a5b1deedd3c",
       "nonmanifold_edges": 0,
       "degenerate_faces": 0
     },
     {
-      "name": "coin_press__PressScrew_gold_04",
-      "mesh_data_name": "coin_press__PressScrew_gold_04",
+      "name": "coin_press__PressScrew_gold_05",
+      "mesh_data_name": "coin_press__PressScrew_gold_05",
       "material": "gold",
       "color_srgb": [
         249,
@@ -231,8 +280,8 @@
       "degenerate_faces": 0
     },
     {
-      "name": "coin_press__Fixed_pearl_05",
-      "mesh_data_name": "coin_press__Fixed_pearl_05",
+      "name": "coin_press__Fixed_pearl_06",
+      "mesh_data_name": "coin_press__Fixed_pearl_06",
       "material": "pearl",
       "color_srgb": [
         249,
@@ -280,8 +329,8 @@
       "degenerate_faces": 0
     },
     {
-      "name": "coin_press__MintCoin_pearl_06",
-      "mesh_data_name": "coin_press__MintCoin_pearl_06",
+      "name": "coin_press__MintCoin_pearl_07",
+      "mesh_data_name": "coin_press__MintCoin_pearl_07",
       "material": "pearl",
       "color_srgb": [
         249,
@@ -294,43 +343,43 @@
       "vertices": 96,
       "motion_group": "MintCoin",
       "motion_pivot": [
-        0.35,
-        -0.54,
-        0.75
+        0.0,
+        0.0,
+        0.57
       ],
       "compression_span": null,
       "original_center_blender_studs": [
-        0.35,
-        -0.605,
-        0.75
+        0.0,
+        0.0,
+        0.6925
       ],
       "center_blender_studs": [
-        0.35,
-        -0.605,
-        0.75
+        0.0,
+        0.0,
+        0.6925
       ],
       "size_blender_studs": [
         0.3,
-        0.025,
-        0.3
+        0.3,
+        0.025
       ],
       "bounds_min": [
-        0.2,
-        -0.6175,
-        0.6
+        -0.15,
+        -0.15,
+        0.68
       ],
       "bounds_max": [
-        0.5,
-        -0.5925,
-        0.9
+        0.15,
+        0.15,
+        0.705
       ],
-      "geometry_sha256": "b7cc1d665d85c3cef1ed5ded80302e2f122f887a1d9e7554f6e03b8aa965c221",
+      "geometry_sha256": "df043f271744692db8ccf60d8fdd918ca373b8cbfb0f6af5c75cf274535633bb",
       "nonmanifold_edges": 0,
       "degenerate_faces": 0
     },
     {
-      "name": "coin_press__Fixed_teal_07",
-      "mesh_data_name": "coin_press__Fixed_teal_07",
+      "name": "coin_press__Fixed_teal_08",
+      "mesh_data_name": "coin_press__Fixed_teal_08",
       "material": "teal",
       "color_srgb": [
         39,
@@ -380,5 +429,8 @@
   ],
   "source": "art/catalog/coin_press/coin_press.blend",
   "source_preserved": false,
-  "blend_sha256": "c6da331ea10428a5016470550cedd9d1dd8b946168291a0dafd238288f1d351f"
+  "revision": "RBX-025-removable-cap-and-crank",
+  "predecessor_blend_sha256": "c6da331ea10428a5016470550cedd9d1dd8b946168291a0dafd238288f1d351f",
+  "edit_policy": "Targeted source edit; unrelated original meshes preserved.",
+  "blend_sha256": "9810388529b9c045efebb010069b1cedad7007ba9a42c0427edeb93442475c60"
 }

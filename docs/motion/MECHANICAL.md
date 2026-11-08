@@ -21,7 +21,7 @@ its individual mechanism motion is applied. Timing and movement differ by model.
 | `split_prism` | 1.14 s | Tilt to aim; lift through a complete yaw turn; project the crystal forward for the final focus beat and ease back. |
 | `wall_meter` | 0.92 s | Brace away from impact; kick sideways as the bumper compresses; send a rising scale/glow wave through the gauge and bounce once. |
 | `clockwork` | 1.38 s | Load torsion in the body; accelerate the minute hand through five turns, hour hand through two and gears through opposing four/three turns; stop with a weighted tick. |
-| `burst_capsule` | 1.04 s | Squat under pressure; pop the pin and launch through a corkscrew turn; land with two fin flutters. |
+| `burst_capsule` | 1.50 s | Rattle under pressure; blow the complete cap, neck and pin clear as one assembly; briefly tilt it above the shoulder, catch and reseat it, then settle. |
 | `relay` | 1.17 s | Wind the coil and cock the housing; barrel-roll over its long axis while the contact snaps twice; settle with a forward/back rock. |
 | `landing_fund` | 1.08 s | Dip to catch the reward; hinge the shell open and toss its coin through two turns; recover with a cheerful leaning bounce. |
 | `survey_lens` | 1.20 s | Pull back; roll the complete tool through 360 degrees; extend the lens into a sharp late focus beat and damp its tiny final shimmy. |
@@ -38,7 +38,7 @@ its individual mechanism motion is applied. Timing and movement differ by model.
 | `seed_bank` | 1.20 s | Build pressure beneath the canopy; pop the lid and bounce into a rooted sprout bloom; settle with a small second hop. Seeds and stems scale together from the shared seated pivot. |
 | `encore` | 1.16 s | Take a backward breath; blast forward; answer with a smaller paired horn beat offset left/right, then ease out. |
 | `reserve_pack` | 1.13 s | Dip like a loaded basket; toss the reserve balls in a staggered juggling burst; rock the basket underneath their return. |
-| `coin_press` | 1.25 s | Wind the housing and screw; plant a heavy press stroke; toss the minted coin through two turns on the late payoff beat. Ram travel is limited to the anvil clearance. |
+| `coin_press` | 1.65 s | Turn the separate top crank through two revolutions; lower the die onto a flat coin; compress its thickness to 26%, hold, then release and restore. The coin stays seated on its anvil. |
 | `tuning_oil` | 1.32 s | Flip the complete can through a full roll; pause into a clear pouring tilt and moving droplet; snap smoothly upright. |
 | `coin` | 1.10 s | Dip edge-first; toss through two face turns with a large reward pop; catch and make one smaller final bounce. No duplicate per-part rotation. |
 | `restock` | 1.08 s | Wind backward; spool its arrows through two turns while the body enlarges generously; brake with a small opposing rock. |
@@ -48,6 +48,15 @@ its individual mechanism motion is applied. Timing and movement differ by model.
 | `jumble` | 1.26 s | Wind backward; roll the complete frame once; send its three pegs through a small orbital mixing wave, then collect them into the resting arrangement. |
 
 ## Continuity and fit
+
+RBX-025 refines the capsule and press from the first model-review notes. The
+capsule's new `BurstCap` carries its complete top with a shared pivot. Coin Press
+uses separate `Crank`, `PressScrew` and `MintCoin` groups. The imported coin has
+0.135-stud total thickness, anvil Y=0.57, and a 0.33-stud gap to the die. Its
+0.4299-stud stroke reaches contact before compressing the coin; the native adapter
+reads its own `PressContact` and `CoinThickness` to maintain the same relationship.
+Both adapters squash height and layer spacing about the anvil pivot, preserving
+the diameter. A stronger trigger does not push the die through the anvil.
 
 - Full turns use the shared quintic phase and integer turn counts. Strength scales
   the expressive offsets but never multiplies the turn count; partial-strength
