@@ -408,6 +408,8 @@ function Presentation:_buildHud()
         self:_layout()
         self:_updateModal()
     end, 40)
+    self.rackToggle.TextColor3 = C.ink
+    self.rackToggle.TextStrokeTransparency = 1
     self.rackToggle.Visible = false
     self.brand = label(self.root, "Brand", "POP A PEG", 37, C.paper, 5)
     self.tag = label(self.root, "Tag", "BUILD A BIGGER BOUNCE!", 18, C.gold, 5)
@@ -1682,11 +1684,13 @@ function Presentation:_layoutShopCard(cell, data, recipeCount, canCycle)
     setRect(cell.trigger, 5, modelH + nameH + 5, rect.w - 16, triggerH)
     setRect(cell.level, 3, 0, rect.w - 16, short and 13 or 18)
     cell.trigger.Visible = triggerH > 0
-    cell.level.Visible = bandH >= 70
-    if short and bandH < 70 then
-        local side = math.max(20, math.min(rect.w < 110 and 20 or 36, bandH - 2))
-        setRect(cell.viewport, 1, (bandH - side) / 2, side, side)
-        setRect(cell.name, side + 5, 0, rect.w - side - 14, bandH)
+    cell.level.Visible = bandH >= 70 and rect.w >= 110
+    if short and bandH < 110 then
+        local contentY = cell.level.Visible and 14 or 0
+        local contentH = bandH - contentY
+        local side = math.max(20, math.min(rect.w < 110 and 20 or 64, contentH - 4))
+        setRect(cell.viewport, 1, contentY + (contentH - side) / 2, side, side)
+        setRect(cell.name, side + 5, contentY, rect.w - side - 14, contentH)
     end
     if rect.w < 110 then
         cell.recipeHint.Text = "EVOLVE ›"
