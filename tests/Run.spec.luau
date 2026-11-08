@@ -110,7 +110,7 @@ return function()
         expect(run:action("launch", { angle = 0 }))
         expect(run:action("endShot"))
         equal(run.score, 0, "manual end must not trigger drain rewards")
-        for _ = 1, 5 do
+        for _ = 1, 4 do
             expect(run:action("continue"))
             expect(run:action("launch", { angle = 0 }))
             expect(run:action("endShot"))
@@ -340,7 +340,146 @@ return function()
         finishSettlement(run)
         equal(run.score, 150)
         equal(run.lastResult.reason, "drain")
-        expect(#run.events <= 32)
+        expect(#run.events <= Run.Config.eventHistory)
+    end)
+
+    test(function()
+        local run = Run.new(80)
+        for remaining = 4, 0, -1 do
+            expect(run:action("launch", { angle = 0 }))
+            equal(run.reserves, remaining, "Launch must consume one of five total balls")
+            expect(run:action("endShot"))
+            if remaining > 0 then
+                equal(run.phase, "result")
+                expect(run:action("continue"))
+            end
+        end
+        equal(run.phase, "gameover")
+        equal(run.reserves, 0)
+        expect(not run:action("launch", { angle = 0 }))
+        expect(run:action("restart"))
+        run.reserves = 1
+        expect(run:action("launch", { angle = 0 }))
+        equal(run.reserves, 0)
+        run:_addScore(run.quota)
+        equal(run.coins, 3, "Goal crossings must not pay out before the shot settles")
+        expect(run:action("endShot"))
+        equal(run.phase, "result", "Last ball may earn its replacement")
+        equal(run.reserves, 1)
+        equal(run.coins, 4)
+        expect(not run:action("endShot"))
+        equal(run.reserves, 1)
+        equal(run.coins, 4)
+    end)
+
+    test(function()
+        for _, count in ipairs({ 1, 3, 8, 9, 10000 }) do
+            local run = Run.new(100 + count)
+            local original = Board.copy(run.baseline)
+            expect(run:action("launch", { angle = 0 }))
+            run:_pop(1)
+            local shot = Board.copy(run.values)
+            run:_addScore(run.quota * count - run.score)
+            expect(run:action("endShot"))
+            if count > Run.Config.restocksPerStep then
+                equal(run.settlementReceipt, nil, "Partial receipt must not be published")
+            end
+            finishSettlement(run)
+            local receipt = run:snapshot().settlementReceipt
+            equal(receipt.earnedRestocks, count)
+            equal(receipt.round, 1)
+            equal(receipt.coinsBefore, 3)
+            equal(receipt.coinsAfter, 3 + count)
+            equal(receipt.reservesBefore, 4)
+            equal(receipt.reservesAfter, 5)
+            sameValues(receipt.shotValues, shot)
+            sameValues(receipt.restoredValues, original)
+            equal(#receipt.cycles, if count <= 8 then count else 5)
+            local replay = Board.copy(receipt.restoredValues)
+            local previous = 0
+            for _, cycle in ipairs(receipt.cycles) do
+                if cycle.index > previous + 1 then
+                    replay = Board.copy(cycle.beforeValues)
+                end
+                sameValues(replay, cycle.beforeValues)
+                for _, refill in ipairs(cycle.refills) do
+                    equal(replay[refill.to], 0, "Refill must target an empty slot")
+                    replay[refill.to] = refill.value
+                end
+                for _, merge in ipairs(cycle.merges) do
+                    equal(replay[merge.from], replay[merge.to], "Merge values must match")
+                    replay[merge.from] = 0
+                    replay[merge.to] = merge.value
+                end
+                sameValues(replay, cycle.afterValues)
+                previous = cycle.index
+            end
+            equal(previous, count)
+            sameValues(replay, receipt.finalValues)
+            sameValues(replay, run.baseline)
+            receipt.finalValues[1] = -100
+            expect(run.settlementReceipt.finalValues[1] >= 0, "Snapshot mutated the receipt")
+            expect(run:action("continue"))
+            equal(run.settlementReceipt, nil, "Starting the next shot must clear the prior receipt")
+        end
+    end)
+
+    test(function()
+        local run = Run.new(81)
+        run.reserves = 1
+        expect(run:action("launch", { angle = 0 }))
+        expect(run:action("endShot"))
+        local firstId = run.settlementReceipt.id
+        local firstEvent = run.eventSerial
+        equal(#run.settlementReceipt.cycles, 0)
+        sameValues(run.settlementReceipt.finalValues, run.baseline)
+        expect(run:action("restart"))
+        expect(run.eventSerial > firstEvent)
+        equal(run.settlementReceipt, nil)
+        finishRound(run, 2)
+        equal(run.settlementReceipt.id, firstId + 1)
+        for _ = 1, Run.Config.eventHistory + 10 do
+            run:_event("trigger", { text = "test" })
+        end
+        equal(#run.events, Run.Config.eventHistory)
+        equal(
+            run:snapshot().settlementReceipt.id,
+            firstId + 1,
+            "Receipt must survive event-history eviction"
+        )
+    end)
+
+    test(function()
+        local run = Run.new(82)
+        expect(run:action("launch", { angle = 0 }))
+        run:_addScore(run.quota * 2, { slot = 2 })
+        local scoreEvent, goalEvent, launchEvent
+        for _, event in ipairs(run.events) do
+            if event.kind == "score" then
+                scoreEvent = event
+            elseif event.kind == "goal" then
+                goalEvent = event
+            elseif event.kind == "life" then
+                launchEvent = event
+            end
+        end
+        equal(scoreEvent.slot, 2)
+        equal(scoreEvent.fromScore, 0)
+        equal(scoreEvent.toScore, run.quota * 2)
+        equal(goalEvent.from, 0)
+        equal(goalEvent.to, 2)
+        equal(goalEvent.count, 2)
+        equal(launchEvent.amount, -1)
+        equal(launchEvent.balance, 4)
+        equal(launchEvent.reason, "launch")
+        expect(run:action("endShot"))
+        local paid = 0
+        for _, event in ipairs(run.events) do
+            if event.kind == "coins" and event.reason == "restock" then
+                paid += event.amount
+            end
+        end
+        equal(paid, 2)
     end)
 
     return checks

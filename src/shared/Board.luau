@@ -87,13 +87,19 @@ function Board.jumble(values, rng)
     return values
 end
 
-function Board.restock(values, completedRound, _rng)
+function Board.restock(values, completedRound, _rng, capture)
     local transitions = {}
+    local cycle = if capture
+        then { beforeValues = Board.copy(values), refills = {}, merges = {} }
+        else nil
     local fillValue = 2 ^ math.min(996, math.max(0, math.floor(completedRound / 5)))
     for id = 1, #Board.Slots do
         if not values[id] or values[id] == 0 then
             values[id] = fillValue
             table.insert(transitions, { from = 0, to = id, value = fillValue })
+            if cycle then
+                table.insert(cycle.refills, { to = id, value = fillValue })
+            end
         end
     end
 
@@ -108,11 +114,17 @@ function Board.restock(values, completedRound, _rng)
             values[id] = 0
             waiting[value] = nil
             table.insert(transitions, { from = id, to = partner, value = merged })
+            if cycle then
+                table.insert(cycle.merges, { from = id, to = partner, value = merged })
+            end
         else
             waiting[value] = id
         end
     end
-    return transitions
+    if cycle then
+        cycle.afterValues = Board.copy(values)
+    end
+    return transitions, cycle
 end
 
 function Board.pop(values, id)

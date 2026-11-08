@@ -151,9 +151,42 @@ return function()
         Board.pop(values, id)
     end)
     assert(
-        hits == 1 and values[1] == 0 and fast.vy > 0,
-        "Fast shot tunneled or repeated the removed peg"
+        hits == 1 and values[1] == 0 and fast.vy < 0 and fast.vx == 0,
+        "One-point peg must pop without reflecting the ball"
     )
+
+    values = filled(0)
+    values[1] = 2
+    local solid = Simulation.new(0)
+    solid.x, solid.y, solid.vx, solid.vy = Board.Slots[1].x, Board.Slots[1].y + 3, 0, -500
+    local solidHits = 0
+    Simulation.step(solid, 0.07, values, Rng.new(3), function(id)
+        solidHits += 1
+        Board.pop(values, id)
+    end)
+    assert(
+        solidHits == 1 and values[1] == 1 and solid.vy > 0,
+        "Two-point peg must reflect before becoming pass-through"
+    )
+
+    values = filled(0)
+    local weakId, solidId
+    for id, slot in ipairs(Board.Slots) do
+        if slot.x == 0 and math.abs(slot.y - 8.2) < 1e-8 then
+            weakId = id
+        elseif slot.x == 0 and math.abs(slot.y - 4.8) < 1e-8 then
+            solidId = id
+        end
+    end
+    assert(weakId and solidId, "Preview fixture slots missing")
+    values[weakId], values[solidId] = 1, 2
+    local throughPreview = Simulation.preview(0, values)
+    local lastPreviewPoint = throughPreview[#throughPreview]
+    assert(
+        lastPreviewPoint.y < Board.Slots[weakId].y and lastPreviewPoint.y > Board.Slots[solidId].y,
+        "Aim preview stopped on a one-point peg or passed through a solid peg"
+    )
+    assert(values[weakId] == 1 and values[solidId] == 2, "Preview changed live peg values")
 
     values = filled(0)
     values[1] = 16
@@ -206,5 +239,26 @@ return function()
         "Nonfinite formatting incorrect"
     )
     assert(Format.number(1e100) == "1.00e100", "Large number formatting incorrect")
+    local replay = filled(0)
+    replay[1], replay[3] = 4, 4
+    local _, cycle = Board.restock(replay, 5, Rng.new(5), true)
+    local reproduced = Board.copy(cycle.beforeValues)
+    for _, refill in ipairs(cycle.refills) do
+        assert(reproduced[refill.to] == 0, "Refill transition targets occupied slot")
+        reproduced[refill.to] = refill.value
+    end
+    for _, merge in ipairs(cycle.merges) do
+        assert(
+            reproduced[merge.from] == reproduced[merge.to],
+            "Merge transition combines different values"
+        )
+        reproduced[merge.from], reproduced[merge.to] = 0, merge.value
+    end
+    for id, value in ipairs(replay) do
+        assert(
+            reproduced[id] == value and cycle.afterValues[id] == value,
+            "Captured restock does not reproduce the board"
+        )
+    end
     return true
 end

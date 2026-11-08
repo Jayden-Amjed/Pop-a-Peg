@@ -17,6 +17,7 @@ Run.Config = {
     restocksPerStep = 32,
     slotPrice = 5,
     rerollPrice = 1,
+    eventHistory = 128,
 }
 
 local function finite(value)
@@ -59,7 +60,7 @@ function Run:_event(kind, data)
     entry.id = self.eventSerial
     entry.kind = kind
     table.insert(self.events, entry)
-    if #self.events > 32 then
+    if #self.events > Run.Config.eventHistory then
         table.remove(self.events, 1)
     end
 end
@@ -69,8 +70,29 @@ function Run:_phase(phase)
     self:_event("phase", { text = phase })
 end
 
-function Run:_coins(amount)
+function Run:_coins(amount, reason)
+    local before = self.coins
     self.coins = math.clamp(self.coins + amount, 0, Run.Config.maxCoins)
+    if self.coins ~= before then
+        self:_event(
+            "coins",
+            { amount = self.coins - before, balance = self.coins, reason = reason }
+        )
+    end
+end
+
+function Run:_life(amount, reason)
+    local before = self.reserves
+    self.reserves = math.clamp(self.reserves + amount, 0, self.maxReserves)
+    if self.reserves ~= before then
+        self:_event("life", {
+            amount = self.reserves - before,
+            from = before,
+            to = self.reserves,
+            balance = self.reserves,
+            reason = reason,
+        })
+    end
 end
 
 function Run:_occupied()
@@ -139,14 +161,25 @@ function Run:_signal(event, amount)
     end
 end
 
-function Run:_addScore(amount)
+function Run:_addScore(amount, origin)
     if not finite(amount) or amount <= 0 then
         return
     end
+    local before = self.score
     self.score = math.min(Run.Config.maxScore, self.score + amount)
+    if self.score > before then
+        self:_event("score", {
+            value = self.score - before,
+            fromScore = before,
+            toScore = self.score,
+            pegId = origin and origin.pegId,
+            slot = origin and origin.slot,
+        })
+    end
     local crossings = math.min(Run.Config.maxRestocks, math.floor(self.score / self.quota))
     if crossings > self.goalCrossings then
         local delta = crossings - self.goalCrossings
+        self:_event("goal", { count = delta, from = self.goalCrossings, to = crossings })
         self.goalCrossings = crossings
         self:_signal("goal", delta)
     end
@@ -164,14 +197,17 @@ function Run:_clear()
     self:_endShot("clear")
 end
 
-function Run:_pop(id)
+function Run:_pop(id, slot)
     if self.ending or not id or self.values[id] <= 0 then
         return
     end
     local points, old, new = Board.pop(self.values, id)
     self.pops += 1
-    self:_addScore(points)
-    self:_event("pop", { pegId = id, value = points, oldValue = old, newValue = new })
+    self:_addScore(points, { pegId = id, slot = slot })
+    self:_event(
+        "pop",
+        { pegId = id, value = points, old = old, new = new, oldValue = old, newValue = new }
+    )
     if self.pops == 1 then
         self:_signal("first")
     end
@@ -189,7 +225,13 @@ function Run:_double(id)
     self.values[id] = math.min(Run.Config.maxPeg, before * 2)
     if self.values[id] > before then
         self.doubles += 1
-        self:_event("trigger", { pegId = id, value = self.values[id], text = "Double" })
+        self:_event("trigger", {
+            pegId = id,
+            value = self.values[id],
+            old = before,
+            new = self.values[id],
+            text = "Double",
+        })
         self:_signal("double")
     end
 end
@@ -198,9 +240,13 @@ function Run:_halve(id)
     if self.ending or not id or self.values[id] <= 1 then
         return
     end
+    local before = self.values[id]
     self.values[id] = math.max(1, self.values[id] / 2)
     self.halves += 1
-    self:_event("trigger", { pegId = id, value = self.values[id], text = "Halve" })
+    self:_event(
+        "trigger",
+        { pegId = id, value = self.values[id], old = before, new = self.values[id], text = "Halve" }
+    )
     self:_signal("halve")
 end
 
@@ -219,7 +265,7 @@ function Run:_activateItem(index)
     local effect = definition.effect
     if effect == "pop" then
         for _ = 1, level do
-            self:_pop(self:_randomPeg())
+            self:_pop(self:_randomPeg(), index)
         end
     elseif effect == "double" or effect == "doubleMany" then
         for _ = 1, level * (if effect == "doubleMany" then 4 else 1) do
@@ -240,7 +286,7 @@ function Run:_activateItem(index)
                     < (pb.x - center.x) ^ 2 + (pb.y - center.y) ^ 2
             end)
             for order = 1, math.min(#ids, 1 + level * 2) do
-                self:_pop(ids[order])
+                self:_pop(ids[order], index)
             end
         end
     elseif effect == "highestPop" or effect == "firstScore" then
@@ -251,10 +297,10 @@ function Run:_activateItem(index)
             end
         end
         if effect == "firstScore" then
-            self:_addScore(highest * 2 * level)
+            self:_addScore(highest * 2 * level, { slot = index })
         else
             for _ = 1, level do
-                self:_pop(id)
+                self:_pop(id, index)
             end
         end
     elseif effect == "halfScore" then
@@ -265,18 +311,18 @@ function Run:_activateItem(index)
             end
         end
         if lowest < math.huge then
-            self:_addScore(lowest * 4 * level)
+            self:_addScore(lowest * 4 * level, { slot = index })
         end
     elseif effect == "multiply" then
-        self:_addScore(self.score * 0.15 * level)
+        self:_addScore(self.score * 0.15 * level, { slot = index })
     elseif effect == "wallScore" then
-        self:_addScore(45 * level)
+        self:_addScore(45 * level, { slot = index })
     elseif effect == "drainScore" then
-        self:_addScore(150 * level)
+        self:_addScore(150 * level, { slot = index })
     elseif effect == "pulseScore" then
-        self:_addScore(25 * level)
+        self:_addScore(25 * level, { slot = index })
     elseif effect == "goalScore" then
-        self:_addScore(40 * level)
+        self:_addScore(40 * level, { slot = index })
     elseif effect == "left" or effect == "right" then
         local direction = if effect == "left" then -1 else 1
         local target = index + direction
@@ -353,6 +399,7 @@ function Run:_resetShot()
     self.ball = nil
     self.ending = false
     self.settlement = nil
+    self.settlementReceipt = nil
     self.queue = {}
     self.pending = {}
     self.itemCounts = {}
@@ -397,6 +444,7 @@ function Run.new(seed, profile)
     self.routes = {}
     self.events = {}
     self.eventSerial = 0
+    self.settlementSerial = 0
     self.bestScore = 0
     self.bestRound = 0
     self.unlocks = {}
@@ -437,8 +485,9 @@ function Run:_endShot(reason)
     self.pending = {}
     local restocks = math.min(Run.Config.maxRestocks, math.floor(self.score / self.quota))
     self.restocks = restocks
-    self.reserves = math.min(self.maxReserves, self.reserves + restocks - 1)
-    self:_coins(restocks)
+    local coinsBefore, reservesBefore = self.coins, self.reserves
+    self:_life(restocks, "restock")
+    self:_coins(restocks, "restock")
     self.lastResult = {
         success = restocks > 0,
         reason = reason,
@@ -448,7 +497,27 @@ function Run:_endShot(reason)
     }
     self.bestScore = math.max(self.bestScore, self.score)
     self.bestRound = math.max(self.bestRound, self.round)
-    self.settlement = { remaining = restocks, completed = 0 }
+    self.settlementSerial += 1
+    self.settlement = {
+        remaining = restocks,
+        completed = 0,
+        receipt = {
+            id = self.settlementSerial,
+            round = self.round,
+            reason = reason,
+            success = restocks > 0,
+            score = self.score,
+            quota = self.quota,
+            earnedRestocks = restocks,
+            coinsBefore = coinsBefore,
+            coinsAfter = self.coins,
+            reservesBefore = reservesBefore,
+            reservesAfter = self.reserves,
+            shotValues = Board.copy(self.values),
+            restoredValues = Board.copy(self.baseline),
+            cycles = {},
+        },
+    }
     if restocks > 0 then
         for id, definition in pairs(Catalog.Unlocks) do
             if self.round >= definition.round then
@@ -472,7 +541,13 @@ function Run:_settle()
         return
     end
     for _ = 1, math.min(Run.Config.restocksPerStep, settlement.remaining) do
-        Board.restock(self.baseline, self.round, self.rng)
+        local index = settlement.completed + 1
+        local capture = self.restocks <= 8 or index <= 3 or index > self.restocks - 2
+        local _, cycle = Board.restock(self.baseline, self.round, self.rng, capture)
+        if cycle then
+            cycle.index = index
+            table.insert(settlement.receipt.cycles, cycle)
+        end
         settlement.remaining -= 1
         settlement.completed += 1
     end
@@ -483,8 +558,10 @@ function Run:_settle()
         )
     end
     if settlement.remaining == 0 then
+        settlement.receipt.finalValues = Board.copy(self.baseline)
+        self.settlementReceipt = settlement.receipt
         self.settlement = nil
-        self:_phase(if self.reserves < 0 then "gameover" else "result")
+        self:_phase(if self.reserves <= 0 then "gameover" else "result")
     end
 end
 
@@ -692,7 +769,7 @@ end
 
 function Run:_consume(effect)
     if effect == "repair" then
-        self.reserves = math.min(self.maxReserves, self.reserves + 2)
+        self:_life(2, "consumable")
     elseif effect == "reserveCoins" then
         self:_coins(self.reserves)
     elseif effect == "upgrade" then
@@ -715,12 +792,12 @@ function Run:_chooseEvent(index)
     if choice.id == "coins" then
         self:_coins(4)
     elseif choice.id == "repair" then
-        self.reserves = math.min(self.maxReserves, self.reserves + 2)
+        self:_life(2, "event")
     elseif choice.id == "overtime" then
-        if self.reserves < 1 then
-            return false, "You need a reserve ball for overtime."
+        if self.reserves <= 1 then
+            return false, "Keep at least one ball for the next shot."
         end
-        self.reserves -= 1
+        self:_life(-1, "event")
         self:_coins(8)
     elseif choice.id == "grow" then
         local ids = {}
@@ -762,10 +839,16 @@ function Run:action(kind, payload)
         self.speed = input.value
         return true
     elseif kind == "launch" then
-        if self.phase ~= "aim" or not finite(input.angle) or math.abs(input.angle) > 1.25 then
+        if
+            self.phase ~= "aim"
+            or self.reserves <= 0
+            or not finite(input.angle)
+            or math.abs(input.angle) > 1.25
+        then
             return false, "Aim within the board before launching."
         end
         self.ball = Simulation.new(input.angle)
+        self:_life(-1, "launch")
         self.canJumble = false
         self:_phase("flight")
         return true
@@ -894,6 +977,7 @@ function Run:action(kind, payload)
         local restarted = Run.new(self.rng:integer(1, 2147483646), self:profile())
         restarted.speed = self.speed
         local serial = self.eventSerial
+        local receiptSerial = self.settlementSerial
         for key in pairs(self) do
             self[key] = nil
         end
@@ -901,6 +985,7 @@ function Run:action(kind, payload)
             self[key] = value
         end
         self.eventSerial = serial
+        self.settlementSerial = receiptSerial
         self.events = {}
         self:_event("phase", { text = "aim" })
         return true
@@ -954,6 +1039,7 @@ function Run:snapshot()
         unlocks = unlockList(self.unlocks),
         boss = self.boss,
         settling = self.settlement ~= nil,
+        settlementReceipt = self.settlementReceipt,
         pendingEffects = #self.queue,
         events = self.events,
     })

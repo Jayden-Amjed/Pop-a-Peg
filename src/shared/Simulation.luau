@@ -33,6 +33,7 @@ function Simulation.new(angle)
         elapsed = 0,
         _accumulator = 0,
         _contacts = {},
+        _passThrough = {},
     }
 end
 
@@ -63,8 +64,13 @@ local function earliestContact(ball, remaining, values)
             if (values[id] or 0) > 0 then
                 local dx, dy = ball.x - slot.x, ball.y - slot.y
                 local separation = dx * dx + dy * dy - RADIUS * RADIUS
+                if separation > EPSILON then
+                    ball._passThrough[id] = nil
+                end
                 local toward = dx * ball.vx + dy * ball.vy
-                if separation < 0 then
+                if values[id] <= 1 and ball._passThrough[id] then
+                    continue
+                elseif separation < 0 then
                     consider(0, "peg", id)
                 elseif toward < 0 then
                     local discriminant = toward * toward - speedSquared * separation
@@ -137,11 +143,16 @@ local function integrate(ball, values, rng, onHit, onWall)
             ball.active = false
             return "drain"
         elseif kind == "peg" then
-            pegBounce(ball, id, rng)
+            local oldValue = values[id]
+            if oldValue <= 1 then
+                ball._passThrough[id] = true
+            else
+                pegBounce(ball, id, rng)
+            end
             if ball.elapsed >= (ball._contacts[id] or -1) then
                 ball._contacts[id] = ball.elapsed + CONTACT_DELAY
                 if onHit then
-                    onHit(id)
+                    onHit(id, oldValue)
                 end
             end
         else
@@ -173,6 +184,7 @@ function Simulation.step(ball, dt, values, rng, onHit, onWall)
     end
     ball._accumulator = (ball._accumulator or 0) + dt
     ball._contacts = ball._contacts or {}
+    ball._passThrough = ball._passThrough or {}
     while ball._accumulator + 1e-12 >= STEP and ball.active do
         ball._accumulator = math.max(0, ball._accumulator - STEP)
         if integrate(ball, values, rng, onHit, onWall) == "drain" then
@@ -184,12 +196,19 @@ end
 
 function Simulation.preview(angle, values)
     local ball = Simulation.new(angle)
+    local previewValues = Board.copy(values)
     local points = { { x = ball.x, y = ball.y } }
     local function stop()
         ball.active = false
     end
     for _ = 1, 28 do
-        Simulation.step(ball, 1 / 30, values, nil, stop, stop)
+        Simulation.step(ball, 1 / 30, previewValues, nil, function(id, oldValue)
+            if oldValue <= 1 then
+                Board.pop(previewValues, id)
+            else
+                stop()
+            end
+        end, stop)
         table.insert(points, { x = ball.x, y = ball.y })
         if not ball.active then
             break
