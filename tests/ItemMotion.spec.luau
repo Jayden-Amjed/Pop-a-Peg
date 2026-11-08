@@ -84,7 +84,61 @@ return function()
     Motion.stepHover(hover, math.huge, false)
     Motion.stepHover(hover, -1, false)
     assert(hover.phase == hover.phase and hover.resume <= 1, "Invalid frame time corrupted hover")
+    local evolved, uniqueNames = 0, {}
+    local groups = {
+        "EvolvedOrbit",
+        "EvolvedRotor",
+        "EvolvedGyro",
+        "EvolvedFastHand",
+        "EvolvedSlowHand",
+        "EvolvedSpring",
+        "EvolvedWeight",
+        "EvolvedCrystal",
+        "EvolvedSprout",
+        "EvolvedLens",
+        "EvolvedNeedle",
+        "EvolvedBalance",
+        "EvolvedHorn",
+        "EvolvedShell",
+        "EvolvedPiston",
+        "EvolvedCoin",
+        "FishBody",
+        "FishFin",
+        "FishTail",
+        "Bubbles",
+        "Reeds",
+        "EvolvedFork",
+        "EvolvedCore",
+    }
+    for id, profile in pairs(Motion.Profiles) do
+        assert(not uniqueNames[profile.name], "Duplicate motion identity: " .. id)
+        uniqueNames[profile.name] = true
+        if profile.evolved then
+            evolved += 1
+            for _, group in ipairs(groups) do
+                samePose(
+                    Motion.sample(id, group, 0, 2, 1, 1, 1),
+                    Motion.sample(id, group, 1, 2, 1, 1, 1),
+                    0
+                )
+                for index = 0, 80 do
+                    local pose = Motion.sample(id, group, index / 80, 2, 1, 1, 1)
+                    for _, value in pairs(pose) do
+                        assert(
+                            value == value and math.abs(value) < 50,
+                            "Nonfinite or excessive evolution motion: " .. id
+                        )
+                    end
+                    assert(
+                        pose.scale >= 0.8 and pose.scale <= 1.4,
+                        "Evolution scale escaped model envelope"
+                    )
+                end
+            end
+        end
+    end
+    assert(evolved == 13, "Expected thirteen distinct evolution motion profiles")
     print(
-        "PASS item motion: closed bounded figure eight, frozen activation, one smooth handoff, static opt-out"
+        "PASS item motion: figure eight, frozen activation, smooth handoff, static opt-out and thirteen bounded evolution profiles"
     )
 end
