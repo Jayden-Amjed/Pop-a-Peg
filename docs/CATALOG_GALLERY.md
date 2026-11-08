@@ -24,6 +24,10 @@ review notes and sound pass. [RBX-027](../tasks/RBX-027-blender-effects.md) reco
 the subsequent Blender-only detail, effects and sound work. A registered entry
 is not proof that its remote meshes loaded successfully.
 
+The [all-item treatment reference](MODEL_TREATMENTS.md) lists each visual accent
+and sound instrument. [RBX-027 Studio evidence](evidence/RBX-027/REVIEW.md) records
+the observed checks, screenshots and source identities.
+
 ## Open the inspector
 
 From the checkout containing the catalog sources and imported runtime models:
