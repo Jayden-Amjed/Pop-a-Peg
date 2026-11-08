@@ -1,14 +1,14 @@
 # RBX-007 — Equipment evolutions and round stages
 
 - Owner: Codex coordinator; evolution_ui, evolution_effects and evolution_board contributors.
-- Status: VERIFIED; main acceptance pending.
+- Status: MERGED
 - Reservation / issue: [#7](https://github.com/Jayden-Amjed/Pop-a-Peg/issues/7)
 - Reviewed: 2026-11-07 (America/Los_Angeles)
 - Starting main: fef03bb55a07b1cf4a5e0d68a6ac4635f9805acc
 - Branch: task/RBX-007-evolution-stages
 - PR: [#8](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/8)
 - Implementation evidence SHA: 5047ee70100b7e2b154f795d024cf25726222584
-- Confirmed merge SHA: NOT MERGED
+- Confirmed merge SHA: e94fb7ec6146ab037b5da8c90bb4f66c1ac54571
 
 ## Objective and scope
 
@@ -36,7 +36,7 @@ Dense native bursts, beams, impacts and ribbons retain bounded visual/audio work
 - [x] Both original max-level ability channels and fixed operation costs preserved.
 - [x] Stage success/failure boundaries, bosses and round-100 endless transition.
 - [x] Monitor decorations and item effects inspected in isolated Studio.
-- [ ] Final normal-source playtest, CI and main delivery receipt.
+- [x] Final normal-source playtest, CI and main delivery receipt.
 
 ## Dependencies and overlapping paths
 
@@ -80,7 +80,7 @@ or below the maximum score. These failures are retained here as resolved finding
 | Stress loadout | PASS | On 1cc2335: seven evolved items, score 5.46e107, 4,096 activations, peak 203 effects; completed settlement and advanced round 41→42 perk choice without project errors |
 | Feedback races | PASS | Final normal modules: wallet race, receipt ordering/replay, score/coin/restock bounce, no reserve-icon launch and perk cues |
 | Fresh normal-source play | PASS | Final source:167 seconds, round41,47 shots,8 shops,7 upgrades,4 Supplies,3 perks,5 purchases; no notices or project errors |
-| CI / main receipt | PENDING | User's existing main-delivery authorization applies |
+| CI / main receipt | PASS | Push 42458549807 and PR 42458553472 passed; PR #8 merged as e94fb7ec6146ab037b5da8c90bb4f66c1ac54571 |
 | Roblox publication | NOT RUN | No production place selected |
 
 Studio: isolated peg-aero-qa.rbxlx, id e848e7a7-b569-4600-b4e6-14ec13ecbaac.
@@ -100,15 +100,21 @@ tests do not establish long-run balance for every possible build.
 - Owner: Codex coordinator.
 - Checkout: C:/Users/Amjedd/Documents/ChatGPT/Pop a Peg/.worktrees/evolution.
 - Branch / PR: task/RBX-007-evolution-stages / #8.
-- Accepted State Version: 3; proposed State Version: 4.
+- Accepted State Version: 4.
 - Source: 5047ee70100b7e2b154f795d024cf25726222584.
 - Playable build: build/peg-evolutions.rbxlx, generated from normal sources.
 - Studio: sole root operator; Rojo disconnected; stopped in Edit, all26 normal sources restored exactly.
 - Published: NOT PUBLISHED.
-- Next action: verify push/PR CI, merge authorized main, then record the actual receipt.
+- Next action: human playtest the generated build; reserve follow-up tuning or deployment verification separately.
 
 Final goal-display verification on5047ee7: all four completed goals render progress1.
 An immediate event observer initially read the previous frame before the normal
 snapshot handler; explicit post-render checks resolved that QA timing race.
 Final six-layout/36-hover rerun also passed; all26 normal sources restored and
 Studio confirmed stopped in Edit. Generated dev.rbxlx and peg-evolutions.rbxlx match.
+
+Acceptance receipt: PR #8 merged to main as e94fb7ec6146ab037b5da8c90bb4f66c1ac54571.
+Push CI: https://github.com/Jayden-Amjed/Pop-a-Peg/actions/runs/42458549807
+PR CI: https://github.com/Jayden-Amjed/Pop-a-Peg/actions/runs/42458553472
+Fetched main contains the exact tested source, tests and check script from 5047ee7.
+No Roblox publication was performed. This receipt advances State Version once to 4.

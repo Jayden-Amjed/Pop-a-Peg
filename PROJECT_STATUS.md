@@ -1,12 +1,12 @@
 # Current project state
 
-State Version: 4 (proposed evolution revision; acceptance pending)
+State Version: 4 (accepted evolution revision)
 Reviewed: 2026-11-07, America/Los_Angeles
 Objective: Five-level equipment, unique shop evolutions, continuous round goals and richer activation feedback.
 
-Accepted source: fef03bb55a07b1cf4a5e0d68a6ac4635f9805acc (previous accepted main).
+Accepted source: e94fb7ec6146ab037b5da8c90bb4f66c1ac54571 (PR #8 merged into main).
 Implementation: 5047ee70100b7e2b154f795d024cf25726222584.
-Active task: [RBX-007](tasks/RBX-007-evolution-stages.md), Codex coordinator.
+Completed task: [RBX-007](tasks/RBX-007-evolution-stages.md), Codex coordinator.
 Branch: task/RBX-007-evolution-stages; [PR #8](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/8).
 
 | Capability | Verified state |
@@ -30,10 +30,10 @@ Playable output: build/peg-evolutions.rbxlx in the evolution worktree.
 Studio target: isolated peg-aero-qa.rbxlx stopped in Edit; all 26 normal sources
 restored exactly, Rojo disconnected. User-owned Studio windows are untouched.
 
-Blockers: none; push/PR CI and merge receipt pending.
+Blockers: none. Push CI 42458549807 and PR CI 42458553472 passed at c796b0df6b6556b80a45d61c22214afdbe1098d3; GitHub returned the merge receipt above and fetched main confirms it.
 Unrun: physical touch/gamepad, two clients, cloud persistence, live plugin sync, publication.
 Limits: device-specific FX performance and long-run balance need human playtesting.
 MCP captures can omit peg numbers; the unrelated 203785492 asset-type warning remains.
 Detailed tests, corrected QA observations and resolved failures are in the task.
-Next action: verify CI, merge under existing authorization, then record the actual receipt.
+Next action: human playtest build/peg-evolutions.rbxlx; reserve a new task for balance tuning or multiplayer/mobile/cloud verification.
 Repository administration: main unprotected; temporary default remains starter branch.
