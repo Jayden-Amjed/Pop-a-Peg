@@ -230,13 +230,18 @@ function Feedback:_score(toScore, source)
     self.queuedScore = toScore
     local active = 0
     local latest
+    local sameOrigin
     for _, effect in ipairs(self.fx) do
         if effect.reward == "score" then
             active += 1
             latest = effect
+            if effect.age < 0.08 and (effect.start - source).Magnitude < 2 then
+                sameOrigin = effect
+            end
         end
     end
-    if active >= 24 and latest then
+    latest = sameOrigin or latest
+    if (sameOrigin or active >= 24) and latest then
         latest.value += amount
         latest.gui.Text = "+" .. Format.number(latest.value)
         latest.onArrival = function()
