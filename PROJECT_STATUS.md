@@ -1,39 +1,41 @@
 # Current project state
 
-State Version: 4 (accepted evolution revision)
+State Version: 5 (proposed from accepted version 4; awaiting PR #10 acceptance)
 Reviewed: 2026-11-07, America/Los_Angeles
-Objective: Five-level equipment, unique shop evolutions, continuous round goals and richer activation feedback.
+Objective: Guarantee two useful upgrades in full-rack shops while preserving holds, random offers and evolution access.
 
-Accepted source: e94fb7ec6146ab037b5da8c90bb4f66c1ac54571 (PR #8 merged into main).
-Implementation: 5047ee70100b7e2b154f795d024cf25726222584.
-Completed task: [RBX-007](tasks/RBX-007-evolution-stages.md), Codex coordinator.
-Branch: task/RBX-007-evolution-stages; [PR #8](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/8).
+Accepted source: 35eb7e3468de31cfc14f565a657f153b6f123741 (version 4 main predecessor).
+Implementation: a34b8e57c1a0648294de72d07a42496d37f75daa.
+Active task: [RBX-009](tasks/RBX-009-full-rack-shop.md), Codex coordinator.
+Branch: task/RBX-009-full-rack-shop; [PR #10](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/10).
 
 | Capability | Verified state |
 | --- | --- |
 | Equipment upgrades | Levels 1–5, one level per purchase/Supply/event; full racks supported |
 | Evolutions | 13 distinct recipes covering all 22 base items; two L5 ingredients combine atomically for no additional coins |
 | Evolved abilities | Both original L5 trigger channels and ordered operations preserved in one slot |
-| Shop | Four equipment + at most two Supplies; eligible offers refresh; hidden recipes cycle without spending; expected-ID stale guard |
+| Shop | Full racks reserve two useful upgrades on opening/reroll; remaining offers roll normally; held prices and evolution access preserved; four equipment + at most two Supplies |
 | UI | Modeled equations and readiness labels; evolved/perk/Supply cards omit recipes; six responsive layouts, stable preview objects |
 | Stages | Clear 15, 40, 65, 100, then every 50; bosses at campaign goals; success-only completion and full goal indicators |
 | Models and motion | 52 native models, 13 unique evolved devices, five tiers; 260 variants tested with exact rest restoration |
 | Board | 235 original native parts; decorated attached monitor, unchanged collision/projection anchors |
 | Feedback | 46 motifs; dense bursts/beams/ribbons; 184 decorative / 240 total FX cap; reward delivery preserved |
 | Extreme builds | 4,096 activations per shot; huge-score meter and boss quota bounds; stress run advanced 41→42 at 5.46e107 score |
-| Local / Studio checks | Thirteen suites pass; 20 evolution cases + 28 progression cases; 21 exact mapping/source checks |
-| Production play | 167 seconds, round 41, 47 shots, eight shops, seven upgrades, four Supplies, three perks; no notices/project errors |
+| Local / Studio checks | Fourteen suites pass locally and in Studio; 13 new shop contracts covering 800 seeded rolls; server-runtime shop suite also passes; 21 exact source mappings |
+| Shop UI verification | Two native clicks upgrade a full seven-slot rack, levels 4→5 and 1→2, coins 90→81; reroll, one-upgrade-left and all-capped cases pass |
+| Production play | Normal restored client launches a server-owned shot with 34 state snapshots and no project errors; longer evolution playtest remains recorded in RBX-007 |
 
-Studio-tested source: 5047ee70100b7e2b154f795d024cf25726222584.
+Studio-tested source: a34b8e57c1a0648294de72d07a42496d37f75daa.
 Published: NOT PUBLISHED; no production experience/place selected.
-Playable output: build/peg-evolutions.rbxlx in the evolution worktree.
+Playable output: build/peg-full-rack.rbxlx in the full-rack worktree.
 Studio target: isolated peg-aero-qa.rbxlx stopped in Edit; all 26 normal sources
 restored exactly, Rojo disconnected. User-owned Studio windows are untouched.
 
-Blockers: none. Push CI 42458549807 and PR CI 42458553472 passed at c796b0df6b6556b80a45d61c22214afdbe1098d3; GitHub returned the merge receipt above and fetched main confirms it.
+Blockers: none. Local checks and Studio verification pass; remote CI and merge pending.
 Unrun: physical touch/gamepad, two clients, cloud persistence, live plugin sync, publication.
 Limits: device-specific FX performance and long-run balance need human playtesting.
 MCP captures can omit peg numbers; the unrelated 203785492 asset-type warning remains.
 Detailed tests, corrected QA observations and resolved failures are in the task.
-Next action: human playtest build/peg-evolutions.rbxlx; reserve a new task for balance tuning or multiplayer/mobile/cloud verification.
+Next action: verify PR #10 CI, merge under existing user authorization, and record the actual merge receipt.
+Hub and monetization: researched proposals only; neither a lobby nor payments are implemented.
 Repository administration: main unprotected; temporary default remains starter branch.
