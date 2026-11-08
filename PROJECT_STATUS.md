@@ -1,14 +1,14 @@
 # Current project state
 
-State Version: 9 (proposed from accepted version 8; PR 18 pending)
+State Version: 9 (accepted restock market, sound and model cleanup)
 Reviewed: 2026-11-08, America/Los_Angeles
 Objective: Save extra restocks for hub chest purchases, bound reward playback, improve item sound and remove model artifacts.
 
-Accepted source: a056cfc4773b69df2ef986d72c1c483ac3bd4c10 (version 8 predecessor).
+Accepted source: fa7f6e36662dad86f145ec8133390c1a3c2987d5 (PR 18 merged into main).
 Implementation: 21ac14748710be87635fb7e0d40ec9f65d6bc683.
-Active task: [RBX-017](tasks/RBX-017-restock-market.md), Codex coordinator.
+Completed task: [RBX-017](tasks/RBX-017-restock-market.md), Codex coordinator.
 Branch: task/RBX-017-restock-market; [PR18](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/18).
-Main: freshly fetched predecessor unchanged; proposed version 9 advances once at acceptance.
+Main: GitHub confirmed merge; fetched checkout matches. State advanced once from accepted version 8.
 
 | Capability | Verified state |
 | --- | --- |
@@ -35,12 +35,12 @@ Balance: 24 simulated runs and two natural native runs measured. Beginner bots
 earned 0 extras; future-best-shot upper-bound runs earned 0–540. The wallet is optional
 long-term targeting alongside free early chests; human earning pace needs tuning.
 Yellow monitor border: resolved by closing our capture runtime; user confirmed.
-Blockers: none; remote CI/merge pending.
+Blockers: none. PR CI 42510936404 passed at 1bc9eca322290c5b82af1890d86260414b8f0864.
 Unrun: physical touch/gamepad, production storage/rankings, live plugin sync, publication.
 Limits: native/simulated tests do not prove human pacing or physical-device performance;
 native audio checks do not establish subjective listening quality. Existing unrelated
 203785492 asset warning remains. Detailed evidence and resolved test failure are in the task.
 Monetization: no paid products/prompts/receipt processing.
 Published: NOT PUBLISHED; no production target selected.
-Next action: observe final PR checks, merge under existing user authorization, record observed merge identity.
+Next action: human playtest build/peg-restock-market.rbxlx for savings pace; use the documented three-pilot workflow for the next modeling pass.
 Repository administration: main unprotected; temporary default remains starter branch.

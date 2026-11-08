@@ -2,7 +2,7 @@
 
 - Task ID: RBX-017
 - Owner: Codex coordinator (sole Studio operator), isolated backend/audio/model contributors
-- Status: READY FOR REVIEW
+- Status: MERGED
 - Reservation / issue: https://github.com/Jayden-Amjed/Pop-a-Peg/issues/17
 - Reviewed: 2026-11-08 (America/Los_Angeles)
 - Starting main: a056cfc4773b69df2ef986d72c1c483ac3bd4c10
@@ -10,7 +10,7 @@
 - Worktree / checkout: C:\Users\Amjedd\Documents\ChatGPT\Pop a Peg\.worktrees\restock-market
 - PR: https://github.com/Jayden-Amjed/Pop-a-Peg/pull/18
 - Implementation evidence SHA: 21ac14748710be87635fb7e0d40ec9f65d6bc683
-- Confirmed merge SHA: NOT MERGED
+- Confirmed merge SHA: fa7f6e36662dad86f145ec8133390c1a3c2987d5 (GitHub confirmed PR 18 merged)
 
 ## Objective and scope
 
@@ -34,7 +34,7 @@ preserve identity/motion. No Blender conversion, monetization or publication.
 - [x] Yellow screen border resolved; user confirmed after our capture runtime reset.
 - [x] Model cleanup and native geometry/motion/remount audit; before/after comparison.
 - [x] Modeling guides linked from README/AGENTS; local checks and source audit.
-- [ ] Remote CI and authorized main integration confirmed.
+- [x] Remote CI 42510936404 passed at 1bc9eca322290c5b82af1890d86260414b8f0864; GitHub confirmed main merge.
 
 ## Dependencies and overlapping paths
 
@@ -128,16 +128,16 @@ unrelated203785492 asset warning remains. No monetization added.
 
 ## Handoff
 
-- Objective / completed work: implemented, locally checked and Studio verified; remote CI/merge pending.
+- Objective / completed work: implemented, locally checked, Studio verified and merged; no Roblox publication.
 - Owner / next owner: Codex coordinator.
 - Absolute checkout / branch / PR: checkout above; task/RBX-017-restock-market; PR18.
-- Main SHA inspected / accepted State Version: a056cfc4773b69df2ef986d72c1c483ac3bd4c10 /8.
-- Evidence SHA / proposed State Version:21ac14748710be87635fb7e0d40ec9f65d6bc683 /9.
-- Checks and remaining limitations: above; CI and merge pending.
+- Main SHA inspected / accepted State Version: fa7f6e36662dad86f145ec8133390c1a3c2987d5 / 9; predecessor a056cfc was version 8.
+- Evidence SHA / accepted State Version: 21ac14748710be87635fb7e0d40ec9f65d6bc683 / 9.
+- Checks and remaining limitations: above; PR CI passed, merge confirmed. Production and human-pacing limits remain.
 - Studio version / development target / operator:0.746.0.7461269; peg-restock-qa.rbxlx; fcaa7ed5-f945-4708-abd8-d081f39a8ee2; root.
 - Sync state: Rojo disconnected; explicit source handoff, Play stopped in Edit;41 sources verified, fixtures removed.
 - Playable output: build/peg-restock-market.rbxlx.
 - Build SHA256:E4611D91B7F2D0682EFA1D6C64E9CC109E826CC9977940FD4366238E80E32FF7.
 - Published experience / place / observed version: NOT PUBLISHED; local PlaceId/GameId0.
 - Preserved work: user's running place and unrelated checkouts untouched.
-- Next smallest executable action: publish final PR head, observe CI, merge under existing authorization.
+- Next smallest executable action: human playtest the generated build for savings pace; follow the guides for future Blender pilots.
