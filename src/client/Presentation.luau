@@ -435,6 +435,7 @@ function Presentation:_buildHud()
     self.brand = label(self.root, "Brand", "POP A PEG", 37, C.paper, 5)
     self.tag = label(self.root, "Tag", "BUILD A BIGGER BOUNCE!", 18, C.gold, 5)
     self.roundPlate = plate(self.root, "RoundPlate", C.panel, 3)
+    blockAim(self.roundPlate)
     self.roundLabel = label(self.roundPlate, "Round", "ROUND 1", 30, C.paper, 5)
     self.phaseLabel = label(self.roundPlate, "Phase", "READY TO LAUNCH", 17, C.muted, 5)
 
@@ -515,6 +516,13 @@ function Presentation:_buildHud()
     )
     self.detailBody.TextWrapped = true
     self.detailBody.TextYAlignment = Enum.TextYAlignment.Top
+    self.detailClose = button(self.detail, "CloseDetail", "×", C.coral, function()
+        self.selectedSlot = nil
+        self.modalKey = nil
+        self:_updateInventory()
+        self:_updateModal()
+    end, 6)
+    self.detailClose.Visible = false
     self.stats = label(self.left, "ShotStats", "0 POPS   0 WALLS", 19, C.paper, 5)
     self.timer = label(self.left, "Time", "00:00.00", 18, C.muted, 5)
 
@@ -577,7 +585,8 @@ function Presentation:_buildHud()
     end
     self.soundButton = button(self.root, "Sound", "SOUND ON", C.panel, function()
         self.muted = not self.muted
-        self.soundButton.Text = self.muted and "SOUND OFF" or "SOUND ON"
+        self.soundButton.Text = (self.shortWide and "SFX " or "SOUND ")
+            .. (self.muted and "OFF" or "ON")
         if self.feedback then
             self.feedback:setMuted(self.muted)
         end
@@ -593,6 +602,7 @@ function Presentation:_buildHud()
     blockAim(self.settlement)
     self.settlementText = label(self.settlement, "Text", "", 26, C.paper, 57)
     self.settlementText.TextXAlignment = Enum.TextXAlignment.Center
+    self.settlementText.TextWrapped = true
     self.settlementProgress = frame(self.settlement, "Progress", C.mint, 57)
     self.skipButton = button(self.settlement, "Skip", "SKIP", C.mint, function()
         if self.feedback then
@@ -633,14 +643,20 @@ function Presentation:_layout()
     local boardRect, invWidth, invHeight
     self.brand.Visible = not compact
     self.tag.Visible = not compact
-    self.roundPlate.Visible = not compact
+    self.roundPlate.Visible = true
+    self.phaseLabel.Visible = not compact
     self.detail.Visible = not compact
     self.stats.Visible = not compact
     self.timer.Visible = not compact
     self.coinCaption.Visible = not compact
     self.scoreCaption.Visible = true
     self.progressCaption.Visible = not compact
-    self.restockCaption.Visible = not compact
+    self.restockCaption.Visible = true
+    self.restockCaption.Text = compact and "RESTOCKS" or "RESTOCKS EARNED"
+    self.restockCaption.TextXAlignment = Enum.TextXAlignment.Left
+    self.detailClose.Visible = false
+    self.detailPopup = compact
+    self.inlineDetail = false
     self.restockHint.Visible = not compact
     self.restockModel.Visible = not compact
     self.best.Visible = not compact
@@ -651,7 +667,7 @@ function Presentation:_layout()
         local uiW = self.shortWide and w - uiX - 12 or w - 24
         local resourceTop = self.shortWide and top + 72 or top
         local scoreTop = resourceTop + 50
-        local invTop = self.shortWide and top or top + 148
+        local invTop = self.shortWide and top or top + 188
         invWidth, invHeight = uiW, 64
         setRect(self.inventory, uiX, invTop, uiW, invHeight)
         setRect(self.left, uiX, resourceTop, uiW, 42)
@@ -676,10 +692,13 @@ function Presentation:_layout()
         setRect(self.quota, uiW - 127, 3, 117, 34)
         self.quota.TextSize = 19
         self.quota.TextXAlignment = Enum.TextXAlignment.Right
-        setRect(self.progress, 10, 45, uiW - 98, 32)
+        setRect(self.progress, 10, 45, uiW - 132, 32)
         self.fraction.TextSize = 25
-        setRect(self.restockPlate, uiW - 77, 44, 65, 33)
-        setRect(self.restockCount, 3, 0, 59, 33)
+        setRect(self.restockPlate, uiW - 111, 39, 101, 42)
+        setRect(self.restockCaption, 4, 0, 93, 17)
+        self.restockCaption.TextSize = 15
+        self.restockCaption.TextXAlignment = Enum.TextXAlignment.Center
+        setRect(self.restockCount, 4, 15, 93, 27)
         self.restockCount.TextSize = 27
         self.restockCount.TextXAlignment = Enum.TextXAlignment.Center
         for _, icon in self.reserveIcons do
@@ -689,7 +708,11 @@ function Presentation:_layout()
             icon.Visible = false
         end
         if self.shortWide then
-            boardRect = { x = 12, y = top + 3, w = uiX - 32, h = h - top - 19 }
+            setRect(self.roundPlate, 12, top + 1, uiX - 32, 34)
+            setRect(self.roundLabel, 8, 0, uiX - 48, 32)
+            self.roundLabel.TextSize = 23
+            self.roundLabel.TextXAlignment = Enum.TextXAlignment.Center
+            boardRect = { x = 12, y = top + 47, w = uiX - 32, h = h - top - 63 }
             setRect(self.controls, uiX, h - 70, math.max(235, uiW - 168), 54)
             local cw = self.controls.Size.X.Offset
             setRect(self.jumbleButton, 0, 0, cw * 0.40 - 5, 52)
@@ -699,8 +722,40 @@ function Presentation:_layout()
             end
             setRect(self.soundButton, 14, h - 61, 65, 43)
             self.soundButton.TextSize = 15
+            local detailTop = scoreTop + 105
+            local detailHeight = math.min(200, h - 86 - detailTop)
+            if detailHeight >= 125 then
+                self.inlineDetail = true
+                self.detailPopup = false
+                self.detail.Visible = true
+                self.restockModel.Visible = true
+                local rewardWidth = 154
+                setRect(self.restockPlate, 0, 105, rewardWidth, detailHeight)
+                setRect(self.restockCaption, 8, 4, rewardWidth - 16, 27)
+                self.restockCaption.TextSize = 20
+                setRect(self.restockModel, 0, 33, 74, 78)
+                setRect(self.restockCount, 72, 39, rewardWidth - 78, 64)
+                self.restockCount.TextSize = 37
+                setRect(self.progress, 10, 45, uiW - 20, 32)
+                setRect(
+                    self.detail,
+                    rewardWidth + 15,
+                    detailTop - resourceTop,
+                    uiW - rewardWidth - 15,
+                    detailHeight
+                )
+                local detailW = uiW - rewardWidth - 15
+                setRect(self.detailTitle, 12, 6, detailW - 24, 31)
+                self.detailTitle.TextSize = 23
+                setRect(self.detailTrigger, 12, 41, detailW - 24, 26)
+                setRect(self.detailBody, 12, 76, detailW - 24, detailHeight - 83)
+            end
         else
-            boardRect = { x = 14, y = top + 226, w = w - 28, h = h - top - 368 }
+            setRect(self.roundPlate, 12, top + 148, uiW, 30)
+            setRect(self.roundLabel, 8, 0, uiW - 16, 29)
+            self.roundLabel.TextSize = 22
+            self.roundLabel.TextXAlignment = Enum.TextXAlignment.Center
+            boardRect = { x = 14, y = top + 266, w = w - 28, h = h - top - 408 }
             setRect(self.controls, 12, h - 126, uiW, 54)
             setRect(self.jumbleButton, 0, 0, uiW * 0.36 - 5, 54)
             setRect(self.primary, uiW * 0.36 + 5, 0, uiW * 0.64 - 5, 54)
@@ -713,17 +768,30 @@ function Presentation:_layout()
         end
         self.primary.TextSize = 25
         self.jumbleButton.TextSize = 20
+        if self.detailPopup then
+            local detailW = math.min(520, w - 28)
+            local detailY = self.mobile and (invTop + invHeight + 12) or math.max(top + 82, h - 230)
+            setRect(self.detail, (w - detailW) / 2 - uiX, detailY - resourceTop, detailW, 208)
+            setRect(self.detailTitle, 13, 9, detailW - 80, 47)
+            self.detailTitle.TextSize = 24
+            setRect(self.detailClose, detailW - 58, 9, 44, 44)
+            setRect(self.detailTrigger, 13, 65, detailW - 26, 43)
+            setRect(self.detailBody, 13, 117, detailW - 26, 80)
+        end
     else
         local leftW = math.clamp(w * 0.19, 225, 290)
         local rightW = math.clamp(w * 0.215, 265, 330)
-        invWidth, invHeight = math.min(760, w - leftW - rightW - 44), 110
+        local rackSpace = w - leftW - rightW - 64
+        invWidth, invHeight = math.min(760, rackSpace), 110
         setRect(self.brand, 22, top + 12, leftW, 45)
         self.brand.TextSize = w < 1200 and 30 or 37
         setRect(self.tag, 24, top + 59, leftW, 26)
         self.tag.TextSize = w < 1200 and 15 or 18
-        setRect(self.inventory, (w - invWidth) / 2, top, invWidth, invHeight)
+        setRect(self.inventory, leftW + 32 + (rackSpace - invWidth) / 2, top, invWidth, invHeight)
         setRect(self.roundPlate, w - rightW - 22, top + 7, rightW, 87)
         setRect(self.roundLabel, 14, 7, rightW - 28, 40)
+        self.roundLabel.TextSize = 30
+        self.roundLabel.TextXAlignment = Enum.TextXAlignment.Left
         setRect(self.phaseLabel, 14, 49, rightW - 28, 27)
         setRect(self.left, 22, top + 139, leftW, 570)
         setRect(self.wallet, 0, 0, leftW, 114)
@@ -743,6 +811,7 @@ function Presentation:_layout()
         end
         setRect(self.detail, 0, 273, leftW, 220)
         setRect(self.detailTitle, 14, 10, leftW - 28, 57)
+        self.detailTitle.TextSize = 23
         setRect(self.detailTrigger, 14, 75, leftW - 28, 42)
         setRect(self.detailBody, 14, 126, leftW - 28, 84)
         setRect(self.stats, 4, 511, leftW - 8, 26)
@@ -762,6 +831,7 @@ function Presentation:_layout()
         self.fraction.TextSize = 29
         setRect(self.restockPlate, 0, 281, rightW, 218)
         setRect(self.restockCaption, 14, 10, rightW - 28, 31)
+        self.restockCaption.TextSize = 20
         setRect(self.restockModel, 4, 43, 106, 92)
         setRect(self.restockCount, 114, 44, rightW - 125, 78)
         self.restockCount.TextSize = 55
@@ -825,7 +895,7 @@ function Presentation:_layout()
     local noticeY = self.mobile and h - 177 or h - 139
     setRect(self.notice, math.max(12, (w - 710) / 2), noticeY, math.min(710, w - 24), 42)
     self.notice.TextSize = compact and 20 or 24
-    local settleW = math.min(compact and 460 or 600, w - 32)
+    local settleW = math.min(compact and 460 or 600, w - 32, boardRect.w)
     setRect(
         self.settlement,
         boardRect.x + (boardRect.w - settleW) / 2,
@@ -852,6 +922,7 @@ function Presentation:_layout()
     camera.CFrame = self.cameraCFrame
     self:_renderCounters()
     self:_renderControls()
+    self:_updateInventory()
 end
 
 function Presentation:_updateInventory()
@@ -892,12 +963,24 @@ function Presentation:_updateInventory()
         self.detailBody.Text =
             "Shop for gadgets. Buy a matching gadget to upgrade it. Let every bounce count!"
     end
-    local detailKey = definition and (tostring(self.selectedSlot) .. ":" .. tostring(item.level))
-        or ""
-    if self.compact and definition and state.phase == "aim" and self.detailKey ~= detailKey then
-        self:setNotice(definition.name .. " • " .. definition.description)
+    local showPopup = self.detailPopup
+        and definition ~= nil
+        and not self.busy
+        and (state.phase == "aim" or state.phase == "shop")
+    self.detail.Visible = not self.compact or self.inlineDetail or showPopup
+    self.detailClose.Visible = showPopup
+    local detailObjects = self.detail:GetDescendants()
+    table.insert(detailObjects, self.detail)
+    for _, object in detailObjects do
+        if object:IsA("GuiObject") then
+            local original = object:GetAttribute("DetailZ")
+            if not original then
+                original = object.ZIndex
+                object:SetAttribute("DetailZ", original)
+            end
+            object.ZIndex = original + (showPopup and 42 or 0)
+        end
     end
-    self.detailKey = detailKey
 end
 
 function Presentation:_renderCounters()
@@ -913,11 +996,12 @@ function Presentation:_renderCounters()
     local coins = overrides.coins or state.coins or 0
     local reserves = overrides.reserves or state.reserves or 0
     self.score.Text = Format.number(math.floor(score + 0.5))
-    self.coins.Text = Format.integer(coins)
+    self.coins.Text = coins >= 1000 and Format.number(coins) or Format.integer(coins)
     self.reserves.Text = tostring(math.floor(reserves + 0.5))
         .. "/"
         .. tostring(state.maxReserves or 5)
-    self.restockCount.Text = "×" .. Format.integer(restocks)
+    self.restockCount.Text = "×"
+        .. (restocks >= 1000 and Format.number(restocks) or Format.integer(restocks))
     self.quota.Text = "TARGET " .. Format.number(quota)
     local remainder = score % quota
     self.fraction.Text = Format.number(math.floor(remainder + 0.5)) .. " / " .. Format.number(quota)
@@ -957,6 +1041,8 @@ function Presentation:_renderControls()
         return
     end
     local phase = state.phase
+    self.soundButton.Text = (self.shortWide and "SFX " or "SOUND ")
+        .. (self.muted and "OFF" or "ON")
     local playable = (phase == "aim" or phase == "flight") and not self.busy
     self.controls.Visible = playable
     self.jumbleButton.Visible = phase == "aim"
@@ -1307,7 +1393,7 @@ function Presentation:getAnchor(kind, index)
         local camera = workspace.CurrentCamera
         if object and camera then
             local point = camera:WorldToViewportPoint(object.Position)
-            return Vector2.new(point.X, point.Y) - layerOrigin
+            return Vector2.new(point.X, point.Y)
         end
     end
     local object = ({
