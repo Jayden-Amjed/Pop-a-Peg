@@ -1,35 +1,44 @@
 # Current project state
 
-State Version: 1 (proposal; no accepted main predecessor)
+State Version: 2 (gameplay proposal over accepted starter version 1)
 Reviewed: 2026-11-07, America/Los_Angeles
-Objective: Bootstrap a neutral, reproducible Roblox starter and durable agent workflow.
+Objective: Independent peg-bounce runs with clear rewards, varied hybrid builds, and an aquatic glass presentation.
 
-Accepted source: `9349530edb7eaf536ceabfed5e922ae5b65499a6` (README-only seed on main).
-Starter implementation and this first status ledger remain proposed in PR #2.
-Implementation evidence: `755ac2539fd913e664dd48fe97a91ea046ec3da0`; see [RBX-001](tasks/RBX-001-bootstrap.md).
+Accepted source: `18f2b17c2e3daf00ee2edd30f7b0db4d5b88e17c` (starter PR #2 merged).
+Implementation / Studio-tested source: `c1f524c321d7ebdeb8c6d9f9f2fbb2c21c264037`.
+Integration reconciles main at `644ba6327ce3a6dc84a2081883fa23e874e1a9be` without source changes.
+Gameplay [PR #4](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/4) now targets main.
+The user authorized this integration after playtesting; final CI and merge are pending.
 
 | Capability | Verified state |
 | --- | --- |
-| Fresh checkout, pinned Windows tools, build, format/lint | PASS; PowerShell 5.1 and 7 tested |
-| Server/client/shared instance mapping, docs links/fields | PASS; built XML classes and source verified |
-| Studio → MCP source capture → GitHub → rebuilt Studio | PASS with temporary expanding-ball probe |
-| Shared XML → scratch syncback | PASS with generated fixture; real Studio XML export NOT RUN |
-| Rojo serve command | PASS; localhost endpoint responds; stopped after check |
-| Live Rojo plugin propagation / branch reconnect | NOT RUN; explicit build/reopen tested instead |
-| GitHub CI / PR integration | CI PASS at `ade0ab5`; PR #2 OPEN, NOT MERGED |
+| Board, quotas, restocks, run/shop/perk/event/reset rules | PASS standalone and Studio; 28 progression cases |
+| Hybrid effects and themed synergies | PASS ordered operations, costs, fish-pair scoring, bounded relay chains |
+| Full rack and capped upgrades | PASS actual L1 Seed Bank upgrade with seven occupied slots, 33 to 28 coins; L2 remains MAX LEVEL |
+| Grouped shop | PASS four equipment plus at most two Supplies, separate white enclosures, larger centered price/coin groups; 30 inspection cases across five sizes |
+| Stable shop selection | PASS actual clicks preserve all 12 preview/model instances, with zero model additions/removals |
+| Item/perk interaction | PASS stronger selection, separate perk inspection, all eight perks plus duplicate counts, short-desktop detail bounds |
+| Idle and activation motion | PASS 39 figure-eight models, paused activation and smooth resume; 78 static level variants return exactly to rest |
+| Counter feedback | PASS score/coins/restocks bounce and reset, guarded reward arrivals, perk cue, no reserve-to-ball launch flight |
+| Scenery stability | PASS all 24 clouds opaque/shadowless; 147 mouse-sweep frames with zero camera/cloud transform changes |
+| Repository checks | PASS eight suites, pinned format/lint, build, 15 exact mappings, documentation checks |
+| Production Studio play | PASS all 20 normal sources restored exactly; 134-second ordinary-action run, four shops, two perk choices, highest round 15, no project errors |
 
-Studio-tested source: `9a9ee6b57678a551e593cc5df749fda126d6e70d`, Windows Studio
-0.746.0.7461269, Rojo/plugin 7.7.1; server + one client. Probe removed at implementation SHA above.
-Published: NOT PUBLISHED by this starter; no target experience/place selected.
+Studio-tested source: `c1f524c321d7ebdeb8c6d9f9f2fbb2c21c264037`.
+Visual checks use controlled fixtures; production play was checked separately.
+Detailed evidence and limits: [RBX-003](tasks/RBX-003-peg-run-loop.md).
+Published: NOT PUBLISHED; no production experience/place selected.
 
-Active task: [RBX-001 bootstrap](tasks/RBX-001-bootstrap.md), owner Codex coordinator,
-branch `task/RBX-001-bootstrap`, [reservation #1](https://github.com/Jayden-Amjed/Pop-a-Peg/issues/1).
-PR: [#2](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/2) OPEN; task READY FOR REVIEW.
-
-Blockers / dependencies: review and merge remain pending. User authorized main creation
-and PR opening; both completed. Task branch remains the temporary default.
-Rulesets: none; main is unprotected (API, 2026-11-07).
-Unrun: live plugin round trip/branch reconnect, real XML export, two-client test, merge/publish.
-Observed limitation: Studio Output contains asset-type warnings for ID 203785492 (not referenced by starter source).
-Next action: review PR #2 and resolve pending checks; merge only when authorized.
-Repository setup remaining: required CI/review protection and default main after integration.
+Active task: RBX-003, owner Codex gameplay coordinator, branch `task/RBX-003-peg-run-loop`.
+Current playable file: generated `build/peg-polished.rbxlx` in the game worktree.
+Studio: isolated `peg-aero-qa.rbxlx` stopped in Edit; all normal sources restored; Rojo disconnected.
+The user's separate existing place/play windows were not modified.
+Blockers / dependencies: none; starter PR #2 is accepted.
+Unrun: physical mobile/touch, two clients in one server, cloud persistence, live plugin sync, publication.
+Limits: other compact choice menus may scroll. Automated aiming is not human balance testing.
+The play driver counts attempted actions and restarts directly after gameover;
+terminal menu timing is covered by controlled feedback tests, not that driver.
+Human playtesting remains useful for balance, visual preference, and the sound mix.
+Observed limitation: unrelated Studio asset-type warning for 203785492; no project source reference.
+Next action: verify final GitHub CI, merge PR #4, and record the observed merge receipt.
+Repository administration: main remains unprotected; temporary default branch remains the starter branch.

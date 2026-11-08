@@ -1,16 +1,16 @@
 # RBX-001 — Reusable Roblox starter
 
 Owner: Codex bootstrap coordinator; documentation contributor in isolated worktree.
-Status: READY FOR REVIEW (PR #2 open; not merged)
+Status: MERGED — PR #2 accepted at 18f2b17c2e3daf00ee2edd30f7b0db4d5b88e17c
 Objective: Provide the requested neutral starter and small, durable collaboration workflow.
 Scope: source mapping, smoke scripts, pinned tools, build/sync helpers, CI, docs, evidence.
 Non-goals: gameplay framework, game design, production publishing, full-place round trip.
 Starting main: NONE (empty remote inspected 2026-11-07); local seed `9349530edb7eaf536ceabfed5e922ae5b65499a6`.
 Branch: `task/RBX-001-bootstrap`
 Worktree: `C:\Users\Amjedd\Documents\ChatGPT\Pop a Peg`
-PR: [#2](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/2), base `main`, OPEN.
+PR: [#2](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/2), base `main`, MERGED.
 Reservation: [GitHub issue #1](https://github.com/Jayden-Amjed/Pop-a-Peg/issues/1).
-Dependencies: PR review, current GitHub checks, and merge authorization; pending Studio checks below.
+Dependencies: none for integration; pending Studio checks below remain explicit.
 Overlapping paths: repository-wide bootstrap. Docs contributor owns README, AGENTS, overview/workflow, task/PR templates in `.worktrees/workflow`; coordinator owns implementation and current evidence.
 
 ## Acceptance
@@ -25,7 +25,7 @@ Overlapping paths: repository-wide bootstrap. Docs contributor owns README, AGEN
 - [x] CI and GitHub settings inspected; unavailable checks remain explicit.
 - [x] Task branch and evidence discoverable; merge/publish distinct.
 - [x] Main initialized from seed and PR #2 opened after explicit user approval.
-- [ ] PR integration (not authorized by the create-main/open-PR approval).
+- [x] PR integration, separately authorized by the later request to push the verified game to main.
 
 ## Implementation evidence
 
@@ -103,17 +103,17 @@ Sync: no Rojo plugin connected; serve command stopped; endpoint was `127.0.0.1:3
 Completed: neutral starter, pinned setup/checks/CI, docs, clean clone, explicit MCP round trip.
 Resolved blocker: automatic approval review initially denied direct main initialization.
 The user explicitly approved creating main from the minimal seed and opening the PR;
-both completed on 2026-11-07. That approval did not include merging the starter.
+both completed on 2026-11-07. A later request explicitly authorized integration
+of the verified gameplay version into main, including this prerequisite.
 MCP: local `Roblox_Studio` configuration exists; chat tools were not loaded, but a
 read-only stdio diagnostic proved the installed server works. User then authorized
 the MCP workflow test. A temporary ignored client was used; no machine-specific
 bridge or credentials are part of the starter. Prefer normal MCP tools in a fresh
 client session. Do not resume desktop control without user direction.
-Remote main reviewed: `9349530edb7eaf536ceabfed5e922ae5b65499a6`, README only,
-confirmed ancestor of the task branch. No accepted status ledger exists, so candidate
-State Version remains 1. The task branch is still the repository's temporary default.
-Next action: review PR #2, check its current CI, and resolve pending validation;
-merge only when authorized. Inspect/configure required `validate` CI protection via
-an admin-capable route; the connector exposes reads but no settings mutation.
-After authorized merge, confirm GitHub's merge result and set default branch main.
-Pending live plugin/XML/two-client checks above must stay explicit.
+Merge receipt: GitHub confirmed PR #2 merged at
+`18f2b17c2e3daf00ee2edd30f7b0db4d5b88e17c` after both push and PR CI passed
+at head `608c273d9f31022d2f161584c4c92188bb4405cd`. State Version 1 is accepted.
+The task branch remains the temporary repository default; fresh-clone instructions
+explicitly select main. Administration settings require an admin-capable route.
+Next action: follow the current dashboard and gameplay task. Pending live plugin,
+real XML export and two-client checks remain explicit; merge does not publish Roblox.

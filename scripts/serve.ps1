@@ -1,4 +1,4 @@
-param([ValidateRange(1024, 65535)][int]$Port = 34872)
+param([ValidateRange(1024, 65535)][int]$Port = 34873)
 $ErrorActionPreference = 'Stop'
 $root = Split-Path $PSScriptRoot -Parent
 Push-Location $root

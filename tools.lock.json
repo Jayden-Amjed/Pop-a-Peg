@@ -18,6 +18,13 @@
       "version": "0.32.0",
       "url": "https://github.com/Kampfkarren/selene/releases/download/0.32.0/selene-0.32.0-windows.zip",
       "sha256": "c8b693de81d0ddc11490d8e1170dd98d775c2b21431144bd8286f738ef416109"
+    },
+    {
+      "name": "luau",
+      "version": "0.746",
+      "url": "https://github.com/luau-lang/luau/releases/download/0.746/luau-windows.zip",
+      "sha256": "e149fdb4fe78a52ce457fbd40741484eaab1dbf9907e7f878c6d8a9a3dac2ddd",
+      "binarySha256": "225c8eb1a5b526f25835c7530cbeddE6e3dc643f607e1c9b6b562c21e8766277"
     }
   ]
 }

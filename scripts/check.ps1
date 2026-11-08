@@ -4,21 +4,41 @@ Push-Location $root
 try {
     $lock = Get-Content tools.lock.json -Raw | ConvertFrom-Json
     foreach ($tool in $lock.tools) {
+        if ($tool.binarySha256) {
+            if ((Get-FileHash (Join-Path '.tools' ($tool.name + '.exe')) -Algorithm SHA256).Hash -ne $tool.binarySha256) {
+                throw "Incorrect $($tool.name) executable; run scripts/setup.ps1"
+            }
+            continue
+        }
         $actual = & (Join-Path '.tools' ($tool.name + '.exe')) --version
         if ($LASTEXITCODE -ne 0 -or "$actual" -notmatch ('\b' + [regex]::Escape($tool.version) + '$')) {
             throw "Incorrect tool version: $actual; run scripts/setup.ps1"
         }
     }
-    & .\.tools\stylua.exe --check src
+    & .\.tools\stylua.exe --check src tests
     if ($LASTEXITCODE -ne 0) { throw 'Formatting failed' }
-    & .\.tools\selene.exe src
+    & .\.tools\selene.exe src tests
     if ($LASTEXITCODE -ne 0) { throw 'Lint failed' }
+    & .\.tools\luau.exe tests/run.luau
+    if ($LASTEXITCODE -ne 0) { throw 'Gameplay tests failed' }
     & "$PSScriptRoot/build.ps1"
     [xml]$place = Get-Content build/dev.rbxlx -Raw
     $mappings = @(
         @{ Path = 'ServerScriptService/Server/Main'; Class = 'Script'; Source = 'src/server/Main.server.luau' },
         @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/Main'; Class = 'LocalScript'; Source = 'src/client/Main.client.luau' },
-        @{ Path = 'ReplicatedStorage/Shared/Smoke'; Class = 'ModuleScript'; Source = 'src/shared/Smoke.luau' }
+        @{ Path = 'ReplicatedStorage/Shared/Run'; Class = 'ModuleScript'; Source = 'src/shared/Run.luau' },
+        @{ Path = 'ReplicatedStorage/Shared/Board'; Class = 'ModuleScript'; Source = 'src/shared/Board.luau' },
+        @{ Path = 'ReplicatedStorage/Shared/Simulation'; Class = 'ModuleScript'; Source = 'src/shared/Simulation.luau' },
+        @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/Presentation'; Class = 'ModuleScript'; Source = 'src/client/Presentation.luau' },
+        @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/Feedback'; Class = 'ModuleScript'; Source = 'src/client/Feedback.luau' },
+        @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/ItemModels'; Class = 'ModuleScript'; Source = 'src/client/ItemModels.luau' },
+        @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/ItemMotion'; Class = 'ModuleScript'; Source = 'src/client/ItemMotion.luau' },
+        @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/InventorySelection'; Class = 'ModuleScript'; Source = 'src/client/InventorySelection.luau' },
+        @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/ShopLayout'; Class = 'ModuleScript'; Source = 'src/client/ShopLayout.luau' },
+        @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/UiTheme'; Class = 'ModuleScript'; Source = 'src/client/UiTheme.luau' },
+        @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/SoundEffects'; Class = 'ModuleScript'; Source = 'src/client/SoundEffects.luau' },
+        @{ Path = 'ReplicatedStorage/Shared/RewardTimeline'; Class = 'ModuleScript'; Source = 'src/shared/RewardTimeline.luau' },
+        @{ Path = 'ReplicatedStorage/Shared/ItemFeedback'; Class = 'ModuleScript'; Source = 'src/shared/ItemFeedback.luau' }
     )
     foreach ($mapping in $mappings) {
         $node = $place.roblox

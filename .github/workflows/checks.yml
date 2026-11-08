@@ -1,9 +1,9 @@
-name: Starter checks
+name: Project checks
 on:
   push:
     branches: [main, 'task/**']
   pull_request:
-    branches: [main]
+    branches: [main, 'task/**']
 permissions:
   contents: read
 concurrency:
@@ -17,6 +17,6 @@ jobs:
       - name: Install pinned tools
         shell: pwsh
         run: ./scripts/setup.ps1
-      - name: Format, lint, build, and verify contracts
+      - name: Format, lint, test, build, and verify contracts
         shell: pwsh
         run: ./scripts/check.ps1
