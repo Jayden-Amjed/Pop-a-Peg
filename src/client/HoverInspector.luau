@@ -1,8 +1,10 @@
 --!nonstrict
 
 local UserInputService = game:GetService("UserInputService")
+local TextService = game:GetService("TextService")
 local Catalog = require(game:GetService("ReplicatedStorage").Shared.Catalog)
 local Theme = require(script.Parent.UiTheme)
+local EvolutionDisplay = require(script.Parent.EvolutionDisplay)
 local C = Theme.colors
 local Inspector = {}
 Inspector.__index = Inspector
@@ -11,7 +13,6 @@ function Inspector.new(host)
     local self = setmetatable({
         host = host,
         effectLabels = {},
-        pairs = {},
         resolvers = setmetatable({}, { __mode = "k" }),
     }, Inspector)
     local panel = Theme.plate(host.root, "HoverStats", C.paper, 80)
@@ -21,6 +22,9 @@ function Inspector.new(host)
     self.title = Theme.label(panel, "Name", "", 28, C.ink, 82)
     self.title.Font = Enum.Font.SourceSansBold
     self.title.TextWrapped = true
+    self.title.TextScaled = true
+    self.titleScale =
+        Theme.make("UITextSizeConstraint", { MinTextSize = 17, MaxTextSize = 28 }, self.title)
     self.kind = Theme.label(panel, "Kind", "", 14, C.board, 82)
     self.trigger = Theme.label(panel, "Trigger", "", 21, C.trigger, 82)
     self.trigger.Font = Enum.Font.SourceSansBold
@@ -29,31 +33,13 @@ function Inspector.new(host)
         self:hide()
     end, 84)
     self.close.TextSize = 24
-    for index = 1, 4 do
+    for index = 1, 12 do
         local line = Theme.label(panel, "Effect" .. index, "", 21, C.positive, 82)
         line.TextWrapped = true
         line.TextYAlignment = Enum.TextYAlignment.Center
         self.effectLabels[index] = line
     end
-    self.pairsTitle = Theme.label(panel, "Pairs", "PAIRS", 16, C.ink, 82)
-    self.pairsTitle.Font = Enum.Font.SourceSansBold
-    for index = 1, 3 do
-        local box = Theme.tile(panel, "Pair" .. index, C.muted, 82)
-        local status = Theme.label(box, "Ownership", "", 13, C.ink, 84)
-        status.Font = Enum.Font.SourceSansBold
-        status.TextXAlignment = Enum.TextXAlignment.Center
-        local viewport = Theme.make("ViewportFrame", {
-            Name = "Item",
-            BackgroundTransparency = 1,
-            BorderSizePixel = 0,
-            ZIndex = 84,
-        }, box)
-        viewport:SetAttribute("NoOutline", true)
-        local name = Theme.label(box, "Name", "", 13, C.ink, 84)
-        name.TextXAlignment = Enum.TextXAlignment.Center
-        name.TextTruncate = Enum.TextTruncate.AtEnd
-        self.pairs[index] = { box = box, status = status, viewport = viewport, name = name }
-    end
+    self.evolutions = EvolutionDisplay.new(panel, host, 82, false)
     panel.MouseEnter:Connect(function()
         self.overPanel = true
         self.hideAt = nil
@@ -71,9 +57,6 @@ function Inspector:hide()
     self.panel.Visible = false
     self.anchor, self.id, self.pinned, self.hideAt = nil, nil, false, nil
     self.overPanel = false
-    for _, pair in self.pairs do
-        pair.viewport.Visible = false
-    end
 end
 
 function Inspector:show(id, level, anchor, pinned)
@@ -139,57 +122,65 @@ function Inspector:refresh()
     local data = self.detail
     local size = self.host.viewport or Vector2.new(1280, 720)
     local small = size.Y < 500
-    local width = math.min(small and 360 or 420, size.X - 20)
+    local width = math.min(small and 380 or 430, size.X - 20)
+    local recipeCount = math.min(2, #(data.evolutions or {}))
+    local recipeHeight = recipeCount > 0
+            and ((small and 14 or 20) + recipeCount * (small and 44 or 80))
+        or 0
     local font = small and 17 or 21
-    self.title.Text, self.kind.Text = data.name, string.upper(data.kind)
+    local titleH = small and 32 or 42
+    local function measured(text, textSize)
+        return math.ceil(
+            TextService:GetTextSize(
+                text,
+                textSize,
+                Enum.Font.SourceSansBold,
+                Vector2.new(width - 30, 1000)
+            ).Y
+        ) + 5
+    end
+    local function contentHeight(textSize)
+        local total = 26 + titleH + measured(data.trigger, textSize) + recipeHeight + 15
+        for _, effect in data.effects do
+            total += measured((effect.tone == "trigger" and "" or "• ") .. effect.text, textSize) + 3
+        end
+        return total
+    end
+    while font > 13 and contentHeight(font) > size.Y - 20 do
+        font -= 1
+    end
+    self.title.Text = data.name
+    self.kind.Text = data.kind == "evolved" and "EVOLVED • MAX POWER"
+        or (
+            data.kind == "item" and ("ITEM • LEVEL " .. tostring(data.level) .. "/5")
+            or string.upper(data.kind)
+        )
     self.title.TextSize = small and 23 or 28
+    self.titleScale.MaxTextSize = small and 23 or 28
     self.trigger.Text, self.trigger.TextSize = data.trigger, font
-    local y = small and 54 or 64
+    local y = 23 + titleH
     Theme.rect(self.kind, 14, 5, width - 68, 18)
-    Theme.rect(self.title, 14, 21, width - 65, small and 30 or 39)
+    Theme.rect(self.title, 14, 21, width - 65, titleH)
     Theme.rect(self.close, width - 44, 10, 32, 30)
-    local triggerH = small and 36 or 44
+    local triggerH = measured(data.trigger, font)
     Theme.rect(self.trigger, 14, y, width - 28, triggerH)
     y += triggerH + 3
     for index, line in self.effectLabels do
         local effect = data.effects[index]
         line.Visible = effect ~= nil
         if effect then
-            line.Text = "• " .. effect.text
+            line.Text = (effect.tone == "trigger" and "" or "• ") .. effect.text
             line.TextColor3 = C[effect.tone] or C.ink
+            line.Font = effect.tone == "trigger" and Enum.Font.SourceSansBold
+                or Enum.Font.SourceSansSemibold
             line.TextSize = font
-            local h = small and 36 or 44
-            Theme.rect(line, 14, y, width - 28, h)
-            y += h + 3
+            local lineH = measured(line.Text, font)
+            Theme.rect(line, 14, y, width - 28, lineH)
+            y += lineH + 3
         end
     end
-    local count = math.min(3, #data.partners)
-    self.pairsTitle.Visible = count > 0
-    if count > 0 then
-        Theme.rect(self.pairsTitle, 14, y, width - 28, 20)
-        y += 23
-    end
-    local boxSize = small and 66 or 86
-    local start = (width - count * boxSize - math.max(0, count - 1) * 10) / 2
-    local inventory = self.host.snapshot and self.host.snapshot.inventory or {}
-    for index, pair in self.pairs do
-        local id = data.partners[index]
-        pair.box.Visible, pair.viewport.Visible = id ~= nil, id ~= nil
-        if id then
-            local owned = Catalog.owns(inventory, id)
-            pair.status.Text = owned and "OWNED" or "NEED"
-            pair.status.TextColor3 = owned and C.positive or C.ink
-            pair.name.Text = Catalog.Items[id].name
-            Theme.rect(pair.box, start + (index - 1) * (boxSize + 10), y, boxSize, boxSize + 29)
-            Theme.rect(pair.status, 1, 0, boxSize - 2, 18)
-            Theme.rect(pair.viewport, 3, 18, boxSize - 6, boxSize - 10)
-            Theme.rect(pair.name, 2, boxSize + 8, boxSize - 4, 19)
-            self.host:_mount(pair.viewport, id, 1)
-        end
-    end
-    if count > 0 then
-        y += boxSize + 29
-    end
+    self.evolutions:update(self.id, { x = 14, y = y, w = width - 28, h = recipeHeight }, true)
+    y += recipeHeight
     self.panel.Size = UDim2.fromOffset(width, y + 12)
     self:_position()
 end
