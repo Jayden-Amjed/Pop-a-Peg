@@ -1,0 +1,433 @@
+{
+  "schema": 2,
+  "id": "tide_gyroscope",
+  "display_name": "Tide Gyroscope",
+  "category": "evolved",
+  "generator": "scripts/models/catalog_nature.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 3836,
+  "pieces": 8,
+  "budget": {
+    "triangles": 6000,
+    "pieces": 12
+  },
+  "center_blender_studs": [
+    -0.0028109,
+    0.0,
+    1.1275001
+  ],
+  "bounds_min": [
+    -0.8806218,
+    -0.755,
+    0.0
+  ],
+  "bounds_max": [
+    0.875,
+    0.755,
+    2.2550001
+  ],
+  "size_blender_studs": [
+    1.7556218,
+    1.51,
+    2.2550001
+  ],
+  "objects": [
+    {
+      "name": "tide_gyroscope__EvolvedOrbit_blue_01",
+      "mesh_data_name": "tide_gyroscope__EvolvedOrbit_blue_01",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 384,
+      "vertices": 192,
+      "motion_group": "EvolvedOrbit",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.38
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.38
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.38
+      ],
+      "size_blender_studs": [
+        0.1125833,
+        1.51,
+        1.51
+      ],
+      "bounds_min": [
+        -0.0562917,
+        -0.755,
+        0.625
+      ],
+      "bounds_max": [
+        0.0562917,
+        0.755,
+        2.135
+      ],
+      "geometry_sha256": "2f5812cf96265e3ab93d98917ca66bfdc7c8b163590702cc2a127291e84ab9a5",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "tide_gyroscope__Fixed_dark_02",
+      "mesh_data_name": "tide_gyroscope__Fixed_dark_02",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 392,
+      "vertices": 200,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.864
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.864
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.864
+      ],
+      "size_blender_studs": [
+        1.48,
+        1.05,
+        1.7279999
+      ],
+      "bounds_min": [
+        -0.74,
+        -0.525,
+        0.0
+      ],
+      "bounds_max": [
+        0.74,
+        0.525,
+        1.7279999
+      ],
+      "geometry_sha256": "9cfe72e59a1bfc35606ea9a0a0c6ebfa3687b6d5b212ce4670b4cac012abac69",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "tide_gyroscope__EvolvedFastHand_gold_03",
+      "mesh_data_name": "tide_gyroscope__EvolvedFastHand_gold_03",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "EvolvedFastHand",
+      "motion_pivot": [
+        0.0,
+        -0.23,
+        1.4
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.23,
+        1.512
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.23,
+        1.512
+      ],
+      "size_blender_studs": [
+        0.055,
+        0.045,
+        0.2479999
+      ],
+      "bounds_min": [
+        -0.0275,
+        -0.2525,
+        1.388
+      ],
+      "bounds_max": [
+        0.0275,
+        -0.2075,
+        1.6359999
+      ],
+      "geometry_sha256": "577d65ef05dfbd42527e5e2f74e32365bbd5c0adb0d2b1a49f40df6fa1164630",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "tide_gyroscope__EvolvedGyro_gold_04",
+      "mesh_data_name": "tide_gyroscope__EvolvedGyro_gold_04",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 384,
+      "vertices": 192,
+      "motion_group": "EvolvedGyro",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.38
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.3800001
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.3800001
+      ],
+      "size_blender_studs": [
+        1.75,
+        0.0952628,
+        1.7500001
+      ],
+      "bounds_min": [
+        -0.875,
+        -0.0476314,
+        0.505
+      ],
+      "bounds_max": [
+        0.875,
+        0.0476314,
+        2.2550001
+      ],
+      "geometry_sha256": "3d97a5bed90f3dc7b91e5a7b723948ba0f1b1fd3bbe4950e870cbf0f537cdfff",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "tide_gyroscope__Fixed_gold_05",
+      "mesh_data_name": "tide_gyroscope__Fixed_gold_05",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 120,
+      "vertices": 62,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.29,
+        1.4
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.29,
+        1.4
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.29,
+        1.4
+      ],
+      "size_blender_studs": [
+        0.17,
+        0.07,
+        0.1700001
+      ],
+      "bounds_min": [
+        -0.085,
+        -0.325,
+        1.3149999
+      ],
+      "bounds_max": [
+        0.085,
+        -0.255,
+        1.485
+      ],
+      "geometry_sha256": "c9219812bff170bf0c025ab61770d89c1c825ac205caaac666873fb182bf85fb",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "tide_gyroscope__Fixed_pearl_06",
+      "mesh_data_name": "tide_gyroscope__Fixed_pearl_06",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 1756,
+      "vertices": 906,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        -0.2403109,
+        -0.077,
+        0.9819249
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.2403109,
+        -0.077,
+        0.9819249
+      ],
+      "center_blender_studs": [
+        -0.2403109,
+        -0.077,
+        0.9819249
+      ],
+      "size_blender_studs": [
+        1.2806218,
+        0.294,
+        1.6361501
+      ],
+      "bounds_min": [
+        -0.8806218,
+        -0.224,
+        0.1638498
+      ],
+      "bounds_max": [
+        0.4,
+        0.07,
+        1.8
+      ],
+      "geometry_sha256": "472ea5358df84ab9af21e847351f11079e945134b207efb23a8093276cea8b55",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "tide_gyroscope__EvolvedSlowHand_teal_07",
+      "mesh_data_name": "tide_gyroscope__EvolvedSlowHand_teal_07",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "EvolvedSlowHand",
+      "motion_pivot": [
+        0.0,
+        -0.23,
+        1.4
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.068,
+        -0.265,
+        1.4
+      ],
+      "center_blender_studs": [
+        0.068,
+        -0.265,
+        1.4
+      ],
+      "size_blender_studs": [
+        0.168,
+        0.035,
+        0.075
+      ],
+      "bounds_min": [
+        -0.016,
+        -0.2825,
+        1.3625
+      ],
+      "bounds_max": [
+        0.152,
+        -0.2475,
+        1.4375
+      ],
+      "geometry_sha256": "0b41126783162bc1c66bcb357d950122e55ab6b6641317bda1b21c73f76f8501",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "tide_gyroscope__EvolvedSpring_teal_08",
+      "mesh_data_name": "tide_gyroscope__EvolvedSpring_teal_08",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 584,
+      "vertices": 294,
+      "motion_group": "EvolvedSpring",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.22
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        9.8e-05,
+        -0.000963,
+        0.442057
+      ],
+      "center_blender_studs": [
+        9.8e-05,
+        -0.000963,
+        0.442057
+      ],
+      "size_blender_studs": [
+        0.4710169,
+        0.470074,
+        0.5224615
+      ],
+      "bounds_min": [
+        -0.2354104,
+        -0.236,
+        0.1808262
+      ],
+      "bounds_max": [
+        0.2356065,
+        0.234074,
+        0.7032877
+      ],
+      "geometry_sha256": "7e1d7ff71f381965a4360d7d06e030ebc88edfe9a78003defd821eb3d4b54723",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/tide_gyroscope/tide_gyroscope.blend",
+  "source_preserved": false,
+  "blend_sha256": "9e669a3dda1b50055a773d44e5475f3c74f9d2f00816417691c6af4a26126a70"
+}

@@ -1,0 +1,335 @@
+{
+  "schema": 2,
+  "id": "eden_greenhouse",
+  "display_name": "Eden Greenhouse",
+  "category": "evolved",
+  "generator": "scripts/models/catalog_nature.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 1084,
+  "pieces": 6,
+  "budget": {
+    "triangles": 6000,
+    "pieces": 12
+  },
+  "center_blender_studs": [
+    0.0,
+    0.0,
+    1.2253108
+  ],
+  "bounds_min": [
+    -0.95,
+    -0.65,
+    0.04
+  ],
+  "bounds_max": [
+    0.95,
+    0.65,
+    2.4106216
+  ],
+  "size_blender_studs": [
+    1.9,
+    1.3,
+    2.3706217
+  ],
+  "objects": [
+    {
+      "name": "eden_greenhouse__Fixed_dark_01",
+      "mesh_data_name": "eden_greenhouse__Fixed_dark_01",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.4
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.4
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.4
+      ],
+      "size_blender_studs": [
+        1.5700001,
+        1.03,
+        0.12
+      ],
+      "bounds_min": [
+        -0.785,
+        -0.515,
+        0.34
+      ],
+      "bounds_max": [
+        0.785,
+        0.515,
+        0.46
+      ],
+      "geometry_sha256": "70e98e3e437767537f11e401b778b82a66aabc95659a40f6924467978e76dc9b",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "eden_greenhouse__Fixed_glass_02",
+      "mesh_data_name": "eden_greenhouse__Fixed_glass_02",
+      "material": "glass",
+      "color_srgb": [
+        145,
+        244,
+        255
+      ],
+      "alpha": 0.25,
+      "transparency": 0.75,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.5,
+        1.2
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.5,
+        1.2
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.5,
+        1.2
+      ],
+      "size_blender_studs": [
+        1.52,
+        0.035,
+        1.3499999
+      ],
+      "bounds_min": [
+        -0.76,
+        0.4825,
+        0.525
+      ],
+      "bounds_max": [
+        0.76,
+        0.5175,
+        1.875
+      ],
+      "geometry_sha256": "86cd6347dd6d5dbfa99440581d7139c1c6d4b679c2c3b68b12e151c090141d8b",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "eden_greenhouse__EvolvedCore_gold_03",
+      "mesh_data_name": "eden_greenhouse__EvolvedCore_gold_03",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 360,
+      "vertices": 186,
+      "motion_group": "EvolvedCore",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.59
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.59
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.59
+      ],
+      "size_blender_studs": [
+        1.3599999,
+        0.26,
+        0.38
+      ],
+      "bounds_min": [
+        -0.6799999,
+        -0.13,
+        0.4
+      ],
+      "bounds_max": [
+        0.6799999,
+        0.13,
+        0.78
+      ],
+      "geometry_sha256": "d402d89bae87a34866466a3b86f492616ee393dc096fe5bfbd93384724e83432",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "eden_greenhouse__EvolvedSprout_green_04",
+      "mesh_data_name": "eden_greenhouse__EvolvedSprout_green_04",
+      "material": "green",
+      "color_srgb": [
+        142,
+        220,
+        103
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 144,
+      "vertices": 90,
+      "motion_group": "EvolvedSprout",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.42
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.01,
+        1.1497462
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.01,
+        1.1497462
+      ],
+      "size_blender_studs": [
+        1.705705,
+        0.09,
+        0.9641486
+      ],
+      "bounds_min": [
+        -0.8528525,
+        -0.055,
+        0.6676719
+      ],
+      "bounds_max": [
+        0.8528525,
+        0.035,
+        1.6318204
+      ],
+      "geometry_sha256": "deb4de005c556f1c409916dca6c524e7430afad2f5b99ab72a49b4d2170c4362",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "eden_greenhouse__Fixed_pearl_05",
+      "mesh_data_name": "eden_greenhouse__Fixed_pearl_05",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 256,
+      "vertices": 140,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.2253108
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.2253108
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.2253108
+      ],
+      "size_blender_studs": [
+        1.9,
+        1.3,
+        2.3706217
+      ],
+      "bounds_min": [
+        -0.95,
+        -0.65,
+        0.04
+      ],
+      "bounds_max": [
+        0.95,
+        0.65,
+        2.4106216
+      ],
+      "geometry_sha256": "7781f72677826135af233892202c3d5bc3835159af4ca3c9d0afc7882083505f",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "eden_greenhouse__Fixed_teal_06",
+      "mesh_data_name": "eden_greenhouse__Fixed_teal_06",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.52,
+        0.45
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.52,
+        0.45
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.52,
+        0.45
+      ],
+      "size_blender_studs": [
+        1.38,
+        0.16,
+        0.12
+      ],
+      "bounds_min": [
+        -0.69,
+        -0.6,
+        0.39
+      ],
+      "bounds_max": [
+        0.69,
+        -0.44,
+        0.51
+      ],
+      "geometry_sha256": "681accadfdd7705fe991d31cbd87703d59379c3f2974acedcf75050f678a0245",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/eden_greenhouse/eden_greenhouse.blend",
+  "source_preserved": false,
+  "blend_sha256": "b6107d960d5e3c97b23787c742073002a4a9a61b67d1fc9c15f970099ffabebd"
+}

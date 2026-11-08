@@ -1,0 +1,335 @@
+{
+  "schema": 2,
+  "id": "spectrum_reef",
+  "display_name": "Spectrum Reef",
+  "category": "evolved",
+  "generator": "scripts/models/catalog_nature.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 796,
+  "pieces": 6,
+  "budget": {
+    "triangles": 6000,
+    "pieces": 12
+  },
+  "center_blender_studs": [
+    0.0,
+    0.0,
+    1.0799999
+  ],
+  "bounds_min": [
+    -0.8748223,
+    -0.5,
+    0.04
+  ],
+  "bounds_max": [
+    0.8748223,
+    0.5,
+    2.1199999
+  ],
+  "size_blender_studs": [
+    1.7496446,
+    1.0,
+    2.0799999
+  ],
+  "objects": [
+    {
+      "name": "spectrum_reef__EvolvedCrystal_blue_01",
+      "mesh_data_name": "spectrum_reef__EvolvedCrystal_blue_01",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 132,
+      "vertices": 72,
+      "motion_group": "EvolvedCrystal",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.47
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.295
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.295
+      ],
+      "size_blender_studs": [
+        1.26,
+        0.3637307,
+        1.6499999
+      ],
+      "bounds_min": [
+        -0.63,
+        -0.1818653,
+        0.47
+      ],
+      "bounds_max": [
+        0.63,
+        0.1818653,
+        2.1199999
+      ],
+      "geometry_sha256": "31c8c176824b90b9580fecc3e5ba7cded495dbb4887ccf1e12daa75237b3ac9e",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "spectrum_reef__Fixed_dark_02",
+      "mesh_data_name": "spectrum_reef__Fixed_dark_02",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.42
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.42
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.42
+      ],
+      "size_blender_studs": [
+        1.3,
+        0.73,
+        0.12
+      ],
+      "bounds_min": [
+        -0.65,
+        -0.365,
+        0.36
+      ],
+      "bounds_max": [
+        0.65,
+        0.365,
+        0.48
+      ],
+      "geometry_sha256": "9a1cbbd67872917312ccfde53e6d4480f3c8f872ac2a7b46e6f8099e90a1b7bc",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "spectrum_reef__EvolvedOrbit_gold_03",
+      "mesh_data_name": "spectrum_reef__EvolvedOrbit_gold_03",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 384,
+      "vertices": 192,
+      "motion_group": "EvolvedOrbit",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.32
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.3199999
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.3199999
+      ],
+      "size_blender_studs": [
+        1.54,
+        0.069282,
+        1.54
+      ],
+      "bounds_min": [
+        -0.77,
+        -0.034641,
+        0.55
+      ],
+      "bounds_max": [
+        0.77,
+        0.034641,
+        2.0899999
+      ],
+      "geometry_sha256": "bfc7c3b4cceb35431a143a9598bc82e73db66f9338cd1c3a55844a26f69d858f",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "spectrum_reef__Fixed_pearl_04",
+      "mesh_data_name": "spectrum_reef__Fixed_pearl_04",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.2
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.2
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.2
+      ],
+      "size_blender_studs": [
+        1.6,
+        1.0,
+        0.32
+      ],
+      "bounds_min": [
+        -0.8,
+        -0.5,
+        0.04
+      ],
+      "bounds_max": [
+        0.8,
+        0.5,
+        0.36
+      ],
+      "geometry_sha256": "edd6a5dec53454274da77802fcfd68b7b261f805a42498927fcb799869f08aba",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "spectrum_reef__EvolvedFork_teal_05",
+      "mesh_data_name": "spectrum_reef__EvolvedFork_teal_05",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 32,
+      "vertices": 18,
+      "motion_group": "EvolvedFork",
+      "motion_pivot": [
+        -0.62,
+        0.1,
+        0.45
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.7109467,
+        0.1,
+        1.1705065
+      ],
+      "center_blender_studs": [
+        -0.7109467,
+        0.1,
+        1.1705065
+      ],
+      "size_blender_studs": [
+        0.3277513,
+        0.1299038,
+        1.4760189
+      ],
+      "bounds_min": [
+        -0.8748223,
+        0.0350481,
+        0.432497
+      ],
+      "bounds_max": [
+        -0.547071,
+        0.1649519,
+        1.9085159
+      ],
+      "geometry_sha256": "7641eed4042952e16ea85f0af21ee6114799f98c96eeb292ce2c2c3a2a80928a",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "spectrum_reef__EvolvedFork_teal_06",
+      "mesh_data_name": "spectrum_reef__EvolvedFork_teal_06",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 32,
+      "vertices": 18,
+      "motion_group": "EvolvedFork",
+      "motion_pivot": [
+        0.62,
+        0.1,
+        0.45
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.7109467,
+        0.1,
+        1.1705065
+      ],
+      "center_blender_studs": [
+        0.7109467,
+        0.1,
+        1.1705065
+      ],
+      "size_blender_studs": [
+        0.3277513,
+        0.1299038,
+        1.4760189
+      ],
+      "bounds_min": [
+        0.547071,
+        0.0350481,
+        0.432497
+      ],
+      "bounds_max": [
+        0.8748223,
+        0.1649519,
+        1.9085159
+      ],
+      "geometry_sha256": "bf12518987475bfa0392ddf96b9c85c978899548c10595a11198b441aa626f8a",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/spectrum_reef/spectrum_reef.blend",
+  "source_preserved": false,
+  "blend_sha256": "7d3e5971c96f432544b7698eae9d7f581d97b1e350b92731bdfa31b670cc4413"
+}

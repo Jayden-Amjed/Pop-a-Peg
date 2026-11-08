@@ -1,0 +1,384 @@
+{
+  "schema": 2,
+  "id": "wall_meter",
+  "display_name": "Shore Meter",
+  "category": "equipment",
+  "generator": "scripts/models/catalog_mechanical.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 1316,
+  "pieces": 7,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    -0.03,
+    0.0,
+    1.1125001
+  ],
+  "bounds_min": [
+    -1.01,
+    -0.5,
+    0.0
+  ],
+  "bounds_max": [
+    0.95,
+    0.5,
+    2.2250001
+  ],
+  "size_blender_studs": [
+    1.96,
+    1.0,
+    2.2250001
+  ],
+  "objects": [
+    {
+      "name": "wall_meter__Fixed_dark_01",
+      "mesh_data_name": "wall_meter__Fixed_dark_01",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 432,
+      "vertices": 224,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        -0.01,
+        -0.00625,
+        1.0600001
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.01,
+        -0.00625,
+        1.0600001
+      ],
+      "center_blender_studs": [
+        -0.01,
+        -0.00625,
+        1.0600001
+      ],
+      "size_blender_studs": [
+        1.46,
+        0.8325,
+        2.1200001
+      ],
+      "bounds_min": [
+        -0.74,
+        -0.4225,
+        0.0
+      ],
+      "bounds_max": [
+        0.72,
+        0.41,
+        2.1200001
+      ],
+      "geometry_sha256": "43a911aebb1533045a54e6fb2552d722e13d7f66a74e80c4c89f784e106fcb42",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "wall_meter__Gauge_gold_02",
+      "mesh_data_name": "wall_meter__Gauge_gold_02",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Gauge",
+      "motion_pivot": [
+        -0.02,
+        -0.46,
+        0.95
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.02,
+        -0.46,
+        0.95
+      ],
+      "center_blender_studs": [
+        -0.02,
+        -0.46,
+        0.95
+      ],
+      "size_blender_studs": [
+        0.16,
+        0.06,
+        0.4
+      ],
+      "bounds_min": [
+        -0.1,
+        -0.49,
+        0.75
+      ],
+      "bounds_max": [
+        0.06,
+        -0.43,
+        1.15
+      ],
+      "geometry_sha256": "530ac5f3a74718a85629c43fef844138af86b55cc41b0b62ae887954e0ab3862",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "wall_meter__Gauge_gold_03",
+      "mesh_data_name": "wall_meter__Gauge_gold_03",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Gauge",
+      "motion_pivot": [
+        0.28,
+        -0.46,
+        1.06
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.28,
+        -0.46,
+        1.0599999
+      ],
+      "center_blender_studs": [
+        0.28,
+        -0.46,
+        1.0599999
+      ],
+      "size_blender_studs": [
+        0.16,
+        0.06,
+        0.6199999
+      ],
+      "bounds_min": [
+        0.2,
+        -0.49,
+        0.7499999
+      ],
+      "bounds_max": [
+        0.36,
+        -0.43,
+        1.3699999
+      ],
+      "geometry_sha256": "41603ac27b793bde72fc8c3084e3154bf846ddbd1b11f66dca9465519313957b",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "wall_meter__Gauge_gold_04",
+      "mesh_data_name": "wall_meter__Gauge_gold_04",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Gauge",
+      "motion_pivot": [
+        0.58,
+        -0.46,
+        1.17
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.58,
+        -0.46,
+        1.17
+      ],
+      "center_blender_studs": [
+        0.58,
+        -0.46,
+        1.17
+      ],
+      "size_blender_studs": [
+        0.16,
+        0.06,
+        0.8399999
+      ],
+      "bounds_min": [
+        0.5,
+        -0.49,
+        0.75
+      ],
+      "bounds_max": [
+        0.66,
+        -0.43,
+        1.5899999
+      ],
+      "geometry_sha256": "4e81bd97960e001a24fb0c5a55a6cb88ed76562c2cf94354aa3124478989f798",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "wall_meter__Fixed_pearl_05",
+      "mesh_data_name": "wall_meter__Fixed_pearl_05",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 216,
+      "vertices": 112,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.1125001
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.1125001
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.1125001
+      ],
+      "size_blender_studs": [
+        1.9,
+        1.0,
+        2.2250001
+      ],
+      "bounds_min": [
+        -0.95,
+        -0.5,
+        0.0
+      ],
+      "bounds_max": [
+        0.95,
+        0.5,
+        2.2250001
+      ],
+      "geometry_sha256": "f3ff4dd613c78dcd6c133ae28aeeb21f6b67071efe7cfa243eac6d7d465e4032",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "wall_meter__Bumper_teal_06",
+      "mesh_data_name": "wall_meter__Bumper_teal_06",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Bumper",
+      "motion_pivot": [
+        -0.86,
+        0.03,
+        1.24
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.86,
+        0.03,
+        1.24
+      ],
+      "center_blender_studs": [
+        -0.86,
+        0.03,
+        1.24
+      ],
+      "size_blender_studs": [
+        0.3,
+        0.9,
+        1.8699999
+      ],
+      "bounds_min": [
+        -1.01,
+        -0.42,
+        0.305
+      ],
+      "bounds_max": [
+        -0.71,
+        0.48,
+        2.175
+      ],
+      "geometry_sha256": "bef4d66e205f59233a3a87c52fd2c9b0f3da8fccd2693f4885bada42c7e5e1be",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "wall_meter__Fixed_teal_07",
+      "mesh_data_name": "wall_meter__Fixed_teal_07",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 236,
+      "vertices": 120,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.28,
+        -0.43,
+        0.48
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.28,
+        -0.43,
+        0.48
+      ],
+      "center_blender_studs": [
+        0.28,
+        -0.43,
+        0.48
+      ],
+      "size_blender_studs": [
+        0.26,
+        0.08,
+        0.26
+      ],
+      "bounds_min": [
+        0.15,
+        -0.47,
+        0.35
+      ],
+      "bounds_max": [
+        0.41,
+        -0.39,
+        0.61
+      ],
+      "geometry_sha256": "7ac2be42b71e09e60f5854b8233a7a1099f20d5f82f321c3832a1e5398588e63",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/wall_meter/wall_meter.blend",
+  "source_preserved": false,
+  "blend_sha256": "ca21572744e82a97a7d2dc70cea4ea96e74159860f7c377fe1d8314c6bf4f6af"
+}

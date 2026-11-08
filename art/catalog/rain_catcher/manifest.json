@@ -1,0 +1,335 @@
+{
+  "schema": 2,
+  "id": "rain_catcher",
+  "display_name": "Rain Catcher",
+  "category": "equipment",
+  "generator": "scripts/models/catalog_nature.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 1400,
+  "pieces": 6,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    0.0,
+    1.3100001
+  ],
+  "bounds_min": [
+    -0.82,
+    -0.82,
+    0.0
+  ],
+  "bounds_max": [
+    0.82,
+    0.82,
+    2.6200001
+  ],
+  "size_blender_studs": [
+    1.64,
+    1.64,
+    2.6200001
+  ],
+  "objects": [
+    {
+      "name": "rain_catcher__RainWater_blue_01",
+      "mesh_data_name": "rain_catcher__RainWater_blue_01",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "RainWater",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.46
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.46
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.46
+      ],
+      "size_blender_studs": [
+        1.0700001,
+        0.73,
+        0.38
+      ],
+      "bounds_min": [
+        -0.535,
+        -0.365,
+        0.27
+      ],
+      "bounds_max": [
+        0.535,
+        0.365,
+        0.65
+      ],
+      "geometry_sha256": "67c793fd5040358b737fb0f28a1a1f5d2d103e18bc24c1714cc3fda68fdeaec6",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "rain_catcher__Fixed_dark_02",
+      "mesh_data_name": "rain_catcher__Fixed_dark_02",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.12
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.12
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.12
+      ],
+      "size_blender_studs": [
+        1.35,
+        1.0,
+        0.24
+      ],
+      "bounds_min": [
+        -0.675,
+        -0.5,
+        0.0
+      ],
+      "bounds_max": [
+        0.675,
+        0.5,
+        0.24
+      ],
+      "geometry_sha256": "09c358012e90e446343b519cd562fe3d180dff14fe84de903a4fe93768d11020",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "rain_catcher__Fixed_glass_03",
+      "mesh_data_name": "rain_catcher__Fixed_glass_03",
+      "material": "glass",
+      "color_srgb": [
+        145,
+        244,
+        255
+      ],
+      "alpha": 0.25,
+      "transparency": 0.75,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.63
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.63
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.63
+      ],
+      "size_blender_studs": [
+        1.2,
+        0.85,
+        0.8799999
+      ],
+      "bounds_min": [
+        -0.6,
+        -0.425,
+        0.19
+      ],
+      "bounds_max": [
+        0.6,
+        0.425,
+        1.0699999
+      ],
+      "geometry_sha256": "f9e39d7b0d93666cccd51f8bdaf1690ee117910493cad8bd5d4d6312616784c5",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "rain_catcher__Fixed_pearl_04",
+      "mesh_data_name": "rain_catcher__Fixed_pearl_04",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 428,
+      "vertices": 216,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.4875
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.4875
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.4875
+      ],
+      "size_blender_studs": [
+        1.64,
+        1.64,
+        0.885
+      ],
+      "bounds_min": [
+        -0.82,
+        -0.82,
+        1.045
+      ],
+      "bounds_max": [
+        0.82,
+        0.82,
+        1.9299999
+      ],
+      "geometry_sha256": "ac2d96961ecfc1446869ebd6ebb8329b6951e041f1c512e370287d6bc0967b2a",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "rain_catcher__Fixed_teal_05",
+      "mesh_data_name": "rain_catcher__Fixed_teal_05",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 288,
+      "vertices": 144,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.9300001
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.9300001
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.9300001
+      ],
+      "size_blender_studs": [
+        1.64,
+        1.64,
+        0.0692819
+      ],
+      "bounds_min": [
+        -0.82,
+        -0.82,
+        1.895359
+      ],
+      "bounds_max": [
+        0.82,
+        0.82,
+        1.964641
+      ],
+      "geometry_sha256": "85a08516284f0e737d80702c015e12480e9ce190c102a5a0c60eacf338207b4f",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "rain_catcher__RainDrop_teal_06",
+      "mesh_data_name": "rain_catcher__RainDrop_teal_06",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 360,
+      "vertices": 186,
+      "motion_group": "RainDrop",
+      "motion_pivot": [
+        0.0,
+        -0.05,
+        2.4099998
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.05,
+        2.4099998
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.05,
+        2.4099998
+      ],
+      "size_blender_studs": [
+        0.97,
+        0.13,
+        0.4200003
+      ],
+      "bounds_min": [
+        -0.485,
+        -0.115,
+        2.1999998
+      ],
+      "bounds_max": [
+        0.485,
+        0.015,
+        2.6200001
+      ],
+      "geometry_sha256": "114dc3980de49f4c668fb55f3e198675ff2990d25f9fcbc022a63f0c27a8fa7f",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/rain_catcher/rain_catcher.blend",
+  "source_preserved": false,
+  "blend_sha256": "c31f0fb5a62e1980b28edde97fd0df9d688552801934891898b6cf3e7f96e69f"
+}

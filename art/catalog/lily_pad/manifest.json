@@ -1,0 +1,335 @@
+{
+  "schema": 2,
+  "id": "lily_pad",
+  "display_name": "Lily Pad",
+  "category": "equipment",
+  "generator": "scripts/models/catalog_nature.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 364,
+  "pieces": 6,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    -0.0421615,
+    0.0,
+    0.5606177
+  ],
+  "bounds_min": [
+    -0.9,
+    -0.6999815,
+    0.12
+  ],
+  "bounds_max": [
+    0.815677,
+    0.6999815,
+    1.0012355
+  ],
+  "size_blender_studs": [
+    1.715677,
+    1.399963,
+    0.8812355
+  ],
+  "objects": [
+    {
+      "name": "lily_pad__LilyDew_glass_01",
+      "mesh_data_name": "lily_pad__LilyDew_glass_01",
+      "material": "glass",
+      "color_srgb": [
+        145,
+        244,
+        255
+      ],
+      "alpha": 0.25,
+      "transparency": 0.75,
+      "triangles": 120,
+      "vertices": 62,
+      "motion_group": "LilyDew",
+      "motion_pivot": [
+        0.53,
+        -0.35,
+        0.31
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.53,
+        -0.35,
+        0.31
+      ],
+      "center_blender_studs": [
+        0.53,
+        -0.35,
+        0.31
+      ],
+      "size_blender_studs": [
+        0.22,
+        0.22,
+        0.26
+      ],
+      "bounds_min": [
+        0.42,
+        -0.46,
+        0.18
+      ],
+      "bounds_max": [
+        0.64,
+        -0.24,
+        0.44
+      ],
+      "geometry_sha256": "0be513ffd412f2e82ffa94eb5e10c95736b466155c686f7362c6032c2161d12f",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "lily_pad__LilyHeart_gold_02",
+      "mesh_data_name": "lily_pad__LilyHeart_gold_02",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 120,
+      "vertices": 62,
+      "motion_group": "LilyHeart",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.45
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.45
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.45
+      ],
+      "size_blender_studs": [
+        0.48,
+        0.48,
+        0.36
+      ],
+      "bounds_min": [
+        -0.24,
+        -0.24,
+        0.27
+      ],
+      "bounds_max": [
+        0.24,
+        0.24,
+        0.63
+      ],
+      "geometry_sha256": "5e82914e0d8c089066e2a45a88646b2a4fca061a5d55d242e6dae35479ba7725",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "lily_pad__LilyPad_green_03",
+      "mesh_data_name": "lily_pad__LilyPad_green_03",
+      "material": "green",
+      "color_srgb": [
+        142,
+        220,
+        103
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 100,
+      "vertices": 52,
+      "motion_group": "LilyPad",
+      "motion_pivot": [
+        -0.0421615,
+        0.0,
+        0.17
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.0421615,
+        0.0,
+        0.17
+      ],
+      "center_blender_studs": [
+        -0.0421615,
+        0.0,
+        0.17
+      ],
+      "size_blender_studs": [
+        1.715677,
+        1.399963,
+        0.1
+      ],
+      "bounds_min": [
+        -0.9,
+        -0.6999815,
+        0.12
+      ],
+      "bounds_max": [
+        0.815677,
+        0.6999815,
+        0.22
+      ],
+      "geometry_sha256": "7aa43676876b5ae1522fbff2238a4f07208c0adaa5563be60396cfeb9897b9c9",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "lily_pad__LilyPetal_pearl_04",
+      "mesh_data_name": "lily_pad__LilyPetal_pearl_04",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 8,
+      "vertices": 6,
+      "motion_group": "LilyPetal",
+      "motion_pivot": [
+        -0.085,
+        -0.1472243,
+        0.27
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0772043,
+        -0.1507422,
+        0.6356177
+      ],
+      "center_blender_studs": [
+        0.0772043,
+        -0.1507422,
+        0.6356177
+      ],
+      "size_blender_studs": [
+        0.3244087,
+        0.4065599,
+        0.7312355
+      ],
+      "bounds_min": [
+        -0.085,
+        -0.3540221,
+        0.27
+      ],
+      "bounds_max": [
+        0.2394087,
+        0.0525377,
+        1.0012355
+      ],
+      "geometry_sha256": "eaae9ceb492238f1394981a87c44f44877560288600c4616e37eee3fdfa4e0cb",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "lily_pad__LilyPetal_pearl_05",
+      "mesh_data_name": "lily_pad__LilyPetal_pearl_05",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 8,
+      "vertices": 6,
+      "motion_group": "LilyPetal",
+      "motion_pivot": [
+        -0.085,
+        0.1472243,
+        0.27
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0772043,
+        0.1507422,
+        0.6356177
+      ],
+      "center_blender_studs": [
+        0.0772043,
+        0.1507422,
+        0.6356177
+      ],
+      "size_blender_studs": [
+        0.3244087,
+        0.4065598,
+        0.7312355
+      ],
+      "bounds_min": [
+        -0.085,
+        -0.0525377,
+        0.27
+      ],
+      "bounds_max": [
+        0.2394087,
+        0.3540221,
+        1.0012355
+      ],
+      "geometry_sha256": "a161c8bb1fb0d5926c744e75fe0efa56ed833102306c78b1e38d22b7a9930fde",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "lily_pad__LilyPetal_pearl_06",
+      "mesh_data_name": "lily_pad__LilyPetal_pearl_06",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 8,
+      "vertices": 6,
+      "motion_group": "LilyPetal",
+      "motion_pivot": [
+        0.17,
+        0.0,
+        0.27
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.32658,
+        -0.01,
+        0.6352355
+      ],
+      "center_blender_studs": [
+        0.32658,
+        -0.01,
+        0.6352355
+      ],
+      "size_blender_studs": [
+        0.4382827,
+        0.09,
+        0.7304711
+      ],
+      "bounds_min": [
+        0.1074387,
+        -0.055,
+        0.27
+      ],
+      "bounds_max": [
+        0.5457214,
+        0.035,
+        1.0004711
+      ],
+      "geometry_sha256": "6eaecde14f3b9de1b6b6bedb6d7b35e3ebf40177f79ef3cc09796659365f6754",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/lily_pad/lily_pad.blend",
+  "source_preserved": false,
+  "blend_sha256": "838368e8bb879e191c738f8a69f5e54bbbe0b0431f52ab2d22c1143cc8bc9154"
+}

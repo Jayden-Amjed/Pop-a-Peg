@@ -1,0 +1,580 @@
+{
+  "schema": 2,
+  "id": "chest_uncommon",
+  "display_name": "Lagoon Chest",
+  "category": "utility",
+  "generator": "scripts/models/catalog_rewards.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 2984,
+  "pieces": 11,
+  "budget": {
+    "triangles": 6000,
+    "pieces": 12
+  },
+  "center_blender_studs": [
+    0.0,
+    0.0225,
+    1.1400779
+  ],
+  "bounds_min": [
+    -1.16,
+    -0.96,
+    0.0
+  ],
+  "bounds_max": [
+    1.16,
+    1.005,
+    2.2801559
+  ],
+  "size_blender_studs": [
+    2.3199999,
+    1.9649999,
+    2.2801559
+  ],
+  "objects": [
+    {
+      "name": "chest_uncommon__Fixed_blue_01",
+      "mesh_data_name": "chest_uncommon__Fixed_blue_01",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 284,
+      "vertices": 144,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.92,
+        0.6
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.92,
+        0.6
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.92,
+        0.6
+      ],
+      "size_blender_studs": [
+        0.44,
+        0.0600001,
+        0.44
+      ],
+      "bounds_min": [
+        -0.22,
+        -0.95,
+        0.38
+      ],
+      "bounds_max": [
+        0.22,
+        -0.89,
+        0.8200001
+      ],
+      "geometry_sha256": "cc311da22f0259488c65b767239d755cfd47a5f595c27573806734574ac91f1f",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "chest_uncommon__Fixed_dark_02",
+      "mesh_data_name": "chest_uncommon__Fixed_dark_02",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 216,
+      "vertices": 112,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.13
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.13
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.13
+      ],
+      "size_blender_studs": [
+        1.6799999,
+        1.08,
+        0.26
+      ],
+      "bounds_min": [
+        -0.84,
+        -0.54,
+        0.0
+      ],
+      "bounds_max": [
+        0.84,
+        0.54,
+        0.26
+      ],
+      "geometry_sha256": "593823bd23f3ee738c1ede908111a08207214d8a62e762312512bd185e15ff8f",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "chest_uncommon__ChestClasp_gold_03",
+      "mesh_data_name": "chest_uncommon__ChestClasp_gold_03",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "ChestClasp",
+      "motion_pivot": [
+        0.0,
+        -0.9,
+        1.14
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.9,
+        1.14
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.9,
+        1.14
+      ],
+      "size_blender_studs": [
+        0.2822116,
+        0.12,
+        0.3386539
+      ],
+      "bounds_min": [
+        -0.1411058,
+        -0.96,
+        0.970673
+      ],
+      "bounds_max": [
+        0.1411058,
+        -0.84,
+        1.3093269
+      ],
+      "geometry_sha256": "ca336cdf59ffbabadc22cb02be247d9608ea57aa8cfad618fcc866d0c78a5c75",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "chest_uncommon__ChestTreasure_gold_04",
+      "mesh_data_name": "chest_uncommon__ChestTreasure_gold_04",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 120,
+      "vertices": 62,
+      "motion_group": "ChestTreasure",
+      "motion_pivot": [
+        -0.25,
+        0.0,
+        0.72
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.25,
+        0.0,
+        0.72
+      ],
+      "center_blender_studs": [
+        -0.25,
+        0.0,
+        0.72
+      ],
+      "size_blender_studs": [
+        0.26,
+        0.26,
+        0.42
+      ],
+      "bounds_min": [
+        -0.38,
+        -0.13,
+        0.5100001
+      ],
+      "bounds_max": [
+        -0.12,
+        0.13,
+        0.93
+      ],
+      "geometry_sha256": "28fb1055ea42608e0188e407102ee55e889820bb41215ddf35a6e3a4f43558dc",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "chest_uncommon__ChestTreasure_gold_05",
+      "mesh_data_name": "chest_uncommon__ChestTreasure_gold_05",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 120,
+      "vertices": 62,
+      "motion_group": "ChestTreasure",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.9
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.9
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.9
+      ],
+      "size_blender_studs": [
+        0.26,
+        0.26,
+        0.42
+      ],
+      "bounds_min": [
+        -0.13,
+        -0.13,
+        0.69
+      ],
+      "bounds_max": [
+        0.13,
+        0.13,
+        1.11
+      ],
+      "geometry_sha256": "79e57cfb27c1632e68e0d9272330687f4664874138c3c6c04f5212f43f9e91a4",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "chest_uncommon__ChestTreasure_gold_06",
+      "mesh_data_name": "chest_uncommon__ChestTreasure_gold_06",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 120,
+      "vertices": 62,
+      "motion_group": "ChestTreasure",
+      "motion_pivot": [
+        0.25,
+        0.0,
+        0.72
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.25,
+        0.0,
+        0.72
+      ],
+      "center_blender_studs": [
+        0.25,
+        0.0,
+        0.72
+      ],
+      "size_blender_studs": [
+        0.26,
+        0.26,
+        0.42
+      ],
+      "bounds_min": [
+        0.12,
+        -0.13,
+        0.5100001
+      ],
+      "bounds_max": [
+        0.38,
+        0.13,
+        0.93
+      ],
+      "geometry_sha256": "a44ca497efd047297d8b9dd544e1c4490e863b00873bfa0df6bf0ca23ac52f54",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "chest_uncommon__Fixed_gold_07",
+      "mesh_data_name": "chest_uncommon__Fixed_gold_07",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 376,
+      "vertices": 192,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.915,
+        1.37
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.915,
+        1.37
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.915,
+        1.37
+      ],
+      "size_blender_studs": [
+        1.52,
+        0.1799999,
+        0.1800001
+      ],
+      "bounds_min": [
+        -0.76,
+        0.825,
+        1.28
+      ],
+      "bounds_max": [
+        0.76,
+        1.005,
+        1.46
+      ],
+      "geometry_sha256": "608f0e125d5da7997a9186e431ba538af193dbac547b4a8d35c3482bb12e69de",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "chest_uncommon__ChestLid_pearl_08",
+      "mesh_data_name": "chest_uncommon__ChestLid_pearl_08",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 284,
+      "vertices": 150,
+      "motion_group": "ChestLid",
+      "motion_pivot": [
+        0.0,
+        0.915,
+        1.37
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.6849999
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.6849999
+      ],
+      "size_blender_studs": [
+        2.3199999,
+        1.84,
+        0.7099999
+      ],
+      "bounds_min": [
+        -1.16,
+        -0.92,
+        1.33
+      ],
+      "bounds_max": [
+        1.16,
+        0.92,
+        2.04
+      ],
+      "geometry_sha256": "812ba0a11edb8b3fdb18efecabfae2f7607c49973b8381d89b938d3784526fce",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "chest_uncommon__Fixed_pearl_09",
+      "mesh_data_name": "chest_uncommon__Fixed_pearl_09",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 640,
+      "vertices": 320,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.03,
+        0.7925
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.03,
+        0.7925
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.03,
+        0.7925
+      ],
+      "size_blender_studs": [
+        2.27,
+        1.8499999,
+        1.0349998
+      ],
+      "bounds_min": [
+        -1.135,
+        -0.9549999,
+        0.275
+      ],
+      "bounds_max": [
+        1.135,
+        0.895,
+        1.3099999
+      ],
+      "geometry_sha256": "82b9bb86a1a89acb68bf65abe7c884ce6f77c345f80ec834d82b7d901ef9d1e2",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "chest_uncommon__ChestLid_teal_10",
+      "mesh_data_name": "chest_uncommon__ChestLid_teal_10",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 400,
+      "vertices": 202,
+      "motion_group": "ChestLid",
+      "motion_pivot": [
+        0.0,
+        0.915,
+        1.37
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.02,
+        1.9000779
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.02,
+        1.9000779
+      ],
+      "size_blender_studs": [
+        1.1142392,
+        0.2,
+        0.7601559
+      ],
+      "bounds_min": [
+        -0.5571196,
+        -0.08,
+        1.52
+      ],
+      "bounds_max": [
+        0.5571196,
+        0.12,
+        2.2801559
+      ],
+      "geometry_sha256": "f0a7f6db2b62888c87112e2ea43e4afbe9b17d8e13158297fded0efa6865fada",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "chest_uncommon__Fixed_teal_11",
+      "mesh_data_name": "chest_uncommon__Fixed_teal_11",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 316,
+      "vertices": 160,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.72
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.72
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.72
+      ],
+      "size_blender_studs": [
+        2.2,
+        1.72,
+        1.0999999
+      ],
+      "bounds_min": [
+        -1.1,
+        -0.86,
+        0.17
+      ],
+      "bounds_max": [
+        1.1,
+        0.86,
+        1.27
+      ],
+      "geometry_sha256": "a00e5ea03c2a3cedece9f6d3e1c7cad1686ebcfc553c60e37a69d0e9dd01ed06",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/chest_uncommon/chest_uncommon.blend",
+  "source_preserved": false,
+  "blend_sha256": "5479f5b31430d5f3aeb92876d80713ddb631e1406e980667a908c3233148888b"
+}

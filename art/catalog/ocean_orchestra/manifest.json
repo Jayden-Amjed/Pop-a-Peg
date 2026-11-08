@@ -1,0 +1,629 @@
+{
+  "schema": 2,
+  "id": "ocean_orchestra",
+  "display_name": "Ocean Orchestra",
+  "category": "evolved",
+  "generator": "scripts/models/catalog_nature.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 2400,
+  "pieces": 12,
+  "budget": {
+    "triangles": 6000,
+    "pieces": 12
+  },
+  "center_blender_studs": [
+    0.0,
+    -0.0284786,
+    0.975
+  ],
+  "bounds_min": [
+    -0.97,
+    -0.5719571,
+    0.0
+  ],
+  "bounds_max": [
+    0.97,
+    0.515,
+    1.95
+  ],
+  "size_blender_studs": [
+    1.9400001,
+    1.0869571,
+    1.95
+  ],
+  "objects": [
+    {
+      "name": "ocean_orchestra__EvolvedHorn_blue_01",
+      "mesh_data_name": "ocean_orchestra__EvolvedHorn_blue_01",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 360,
+      "vertices": 180,
+      "motion_group": "EvolvedHorn",
+      "motion_pivot": [
+        -0.58,
+        0.0,
+        0.8
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.58,
+        0.0,
+        1.125
+      ],
+      "center_blender_studs": [
+        -0.58,
+        0.0,
+        1.125
+      ],
+      "size_blender_studs": [
+        0.76,
+        0.76,
+        0.65
+      ],
+      "bounds_min": [
+        -0.96,
+        -0.38,
+        0.8
+      ],
+      "bounds_max": [
+        -0.2,
+        0.38,
+        1.45
+      ],
+      "geometry_sha256": "aea3bf9e2bb6cacf80c10f820b9ee1624e0f654446b3ea1ce13bcff1f44c28cd",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "ocean_orchestra__EvolvedHorn_blue_02",
+      "mesh_data_name": "ocean_orchestra__EvolvedHorn_blue_02",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 360,
+      "vertices": 180,
+      "motion_group": "EvolvedHorn",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.05
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.375
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.375
+      ],
+      "size_blender_studs": [
+        0.76,
+        0.76,
+        0.6500001
+      ],
+      "bounds_min": [
+        -0.38,
+        -0.38,
+        1.05
+      ],
+      "bounds_max": [
+        0.38,
+        0.38,
+        1.7
+      ],
+      "geometry_sha256": "2f99ce34a198335e1255dab9bc2d5a3a21b5eb8157f8efba7bd8c0807dd9151f",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "ocean_orchestra__EvolvedHorn_blue_03",
+      "mesh_data_name": "ocean_orchestra__EvolvedHorn_blue_03",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 360,
+      "vertices": 180,
+      "motion_group": "EvolvedHorn",
+      "motion_pivot": [
+        0.58,
+        0.0,
+        0.8
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.58,
+        0.0,
+        1.125
+      ],
+      "center_blender_studs": [
+        0.58,
+        0.0,
+        1.125
+      ],
+      "size_blender_studs": [
+        0.76,
+        0.76,
+        0.65
+      ],
+      "bounds_min": [
+        0.2,
+        -0.38,
+        0.8
+      ],
+      "bounds_max": [
+        0.96,
+        0.38,
+        1.45
+      ],
+      "geometry_sha256": "3055b15a3cacb795db82d9be3286cd500fe9225d01d3ba3343fa9d59cb9ac672",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "ocean_orchestra__Fixed_dark_04",
+      "mesh_data_name": "ocean_orchestra__Fixed_dark_04",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.12
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.12
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.12
+      ],
+      "size_blender_studs": [
+        1.92,
+        1.03,
+        0.24
+      ],
+      "bounds_min": [
+        -0.96,
+        -0.515,
+        0.0
+      ],
+      "bounds_max": [
+        0.96,
+        0.515,
+        0.24
+      ],
+      "geometry_sha256": "cf02144842a584e01b4c09955b91d2a144cced71005d22178a81ddaf9e1ee3d5",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "ocean_orchestra__EvolvedHorn_gold_05",
+      "mesh_data_name": "ocean_orchestra__EvolvedHorn_gold_05",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 240,
+      "vertices": 120,
+      "motion_group": "EvolvedHorn",
+      "motion_pivot": [
+        -0.58,
+        0.0,
+        0.8
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.58,
+        0.0,
+        1.45
+      ],
+      "center_blender_studs": [
+        -0.58,
+        0.0,
+        1.45
+      ],
+      "size_blender_studs": [
+        0.78,
+        0.78,
+        0.0692821
+      ],
+      "bounds_min": [
+        -0.97,
+        -0.39,
+        1.415359
+      ],
+      "bounds_max": [
+        -0.19,
+        0.39,
+        1.4846411
+      ],
+      "geometry_sha256": "9cc5b7a365a84ee36f0a73b393631d24438af5068ed7c49ce9e8cf333e9fbe59",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "ocean_orchestra__EvolvedHorn_gold_06",
+      "mesh_data_name": "ocean_orchestra__EvolvedHorn_gold_06",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 240,
+      "vertices": 120,
+      "motion_group": "EvolvedHorn",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.05
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.7
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.7
+      ],
+      "size_blender_studs": [
+        0.78,
+        0.78,
+        0.0692821
+      ],
+      "bounds_min": [
+        -0.39,
+        -0.39,
+        1.665359
+      ],
+      "bounds_max": [
+        0.39,
+        0.39,
+        1.7346411
+      ],
+      "geometry_sha256": "aabfc09d23a93e438cd38e99d56cf11066ffc09f666e38459b43a1e6c4449d40",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "ocean_orchestra__EvolvedHorn_gold_07",
+      "mesh_data_name": "ocean_orchestra__EvolvedHorn_gold_07",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 240,
+      "vertices": 120,
+      "motion_group": "EvolvedHorn",
+      "motion_pivot": [
+        0.58,
+        0.0,
+        0.8
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.58,
+        0.0,
+        1.45
+      ],
+      "center_blender_studs": [
+        0.58,
+        0.0,
+        1.45
+      ],
+      "size_blender_studs": [
+        0.78,
+        0.78,
+        0.0692821
+      ],
+      "bounds_min": [
+        0.19,
+        -0.39,
+        1.415359
+      ],
+      "bounds_max": [
+        0.97,
+        0.39,
+        1.4846411
+      ],
+      "geometry_sha256": "489a83be95a18aeedb3ff83ccde0d1179cf1522e5789cb9e55860c93aeb4a86c",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "ocean_orchestra__EvolvedShell_gold_08",
+      "mesh_data_name": "ocean_orchestra__EvolvedShell_gold_08",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 224,
+      "vertices": 126,
+      "motion_group": "EvolvedShell",
+      "motion_pivot": [
+        0.0,
+        -0.41,
+        0.56
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.5301662,
+        0.5709908
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.5301662,
+        0.5709908
+      ],
+      "size_blender_studs": [
+        0.9276273,
+        0.0835818,
+        0.4458992
+      ],
+      "bounds_min": [
+        -0.4638137,
+        -0.5719571,
+        0.3480412
+      ],
+      "bounds_max": [
+        0.4638137,
+        -0.4883753,
+        0.7939404
+      ],
+      "geometry_sha256": "7afe5ea153b25b160962dc256c006ea3996a24e0db3d3dea027d9400ce1506ca",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "ocean_orchestra__EvolvedFork_pearl_09",
+      "mesh_data_name": "ocean_orchestra__EvolvedFork_pearl_09",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 20,
+      "vertices": 12,
+      "motion_group": "EvolvedFork",
+      "motion_pivot": [
+        -0.56,
+        0.3,
+        0.65
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.56,
+        0.3,
+        1.3
+      ],
+      "center_blender_studs": [
+        -0.56,
+        0.3,
+        1.3
+      ],
+      "size_blender_studs": [
+        0.09,
+        0.0779423,
+        1.3000001
+      ],
+      "bounds_min": [
+        -0.605,
+        0.2610289,
+        0.65
+      ],
+      "bounds_max": [
+        -0.515,
+        0.3389712,
+        1.95
+      ],
+      "geometry_sha256": "bd6d1768a09a4410ef2d47b181e8a49f839f330933f58b97cad360c3a05629ca",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "ocean_orchestra__EvolvedFork_pearl_10",
+      "mesh_data_name": "ocean_orchestra__EvolvedFork_pearl_10",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 20,
+      "vertices": 12,
+      "motion_group": "EvolvedFork",
+      "motion_pivot": [
+        0.56,
+        0.3,
+        0.65
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.56,
+        0.3,
+        1.3
+      ],
+      "center_blender_studs": [
+        0.56,
+        0.3,
+        1.3
+      ],
+      "size_blender_studs": [
+        0.09,
+        0.0779423,
+        1.3000001
+      ],
+      "bounds_min": [
+        0.515,
+        0.2610289,
+        0.65
+      ],
+      "bounds_max": [
+        0.605,
+        0.3389712,
+        1.95
+      ],
+      "geometry_sha256": "bd6d1768a09a4410ef2d47b181e8a49f839f330933f58b97cad360c3a05629ca",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "ocean_orchestra__Fixed_pearl_11",
+      "mesh_data_name": "ocean_orchestra__Fixed_pearl_11",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.5
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.5
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.5
+      ],
+      "size_blender_studs": [
+        1.7,
+        0.9,
+        0.5799999
+      ],
+      "bounds_min": [
+        -0.85,
+        -0.45,
+        0.21
+      ],
+      "bounds_max": [
+        0.85,
+        0.45,
+        0.79
+      ],
+      "geometry_sha256": "9dea10e42e25589d685592fc28fcc9876da7f1167bbd0ea90703449ada186960",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "ocean_orchestra__EvolvedShell_teal_12",
+      "mesh_data_name": "ocean_orchestra__EvolvedShell_teal_12",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 120,
+      "vertices": 62,
+      "motion_group": "EvolvedShell",
+      "motion_pivot": [
+        0.0,
+        -0.41,
+        0.56
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.41,
+        0.56
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.41,
+        0.56
+      ],
+      "size_blender_studs": [
+        1.14,
+        0.26,
+        0.6
+      ],
+      "bounds_min": [
+        -0.57,
+        -0.54,
+        0.26
+      ],
+      "bounds_max": [
+        0.57,
+        -0.28,
+        0.86
+      ],
+      "geometry_sha256": "9b3f58aefe5c2d26659ffe69116dde0a4f192ba1b6bb81c95c08ab14c2bdf710",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/ocean_orchestra/ocean_orchestra.blend",
+  "source_preserved": false,
+  "blend_sha256": "1824cea01769e8f554ffda00875f80fa84b30231ca44b4ea975a32afd721e1a8"
+}

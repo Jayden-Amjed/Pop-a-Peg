@@ -2,7 +2,42 @@
 
 Production board, equipment, perk, consumable, and currency models are original
 native Roblox geometry generated from source. They require no private visual asset
-IDs. The isolated Blender pilot gallery has the separate dependencies below.
+IDs. The isolated Blender galleries have the separate dependencies below.
+
+## Complete Blender catalog (RBX-021)
+
+The [catalog inspector](CATALOG_GALLERY.md) adds 75 original Blender models and
+reuses the three accepted pilots. Its 78 models contain 477 MeshParts and 124,332
+triangles in total; only the selected preview and optional native comparison are
+mounted for rendering. No downloaded models, third-party textures or AI images
+were used. Sources, individual audit manifests and exact uploaded bytes are in
+`art/catalog/`; the original three sources remain under `art/models/`.
+
+Ten Model assets, revision 1, were uploaded to user **583716264** on 2026-11-08:
+
+| Batch | Model asset ID |
+| --- | --- |
+| 001 | 121823491792990 |
+| 002 | 82869341823394 |
+| 003 | 76963303869520 |
+| 004 | 93776112267831 |
+| 005 | 134876655398379 |
+| 006 | 120222779256970 |
+| 007 | 80156916896305 |
+| 008 | 136647282144366 |
+| 009 | 127932056297541 |
+| 010 | 134841234052716 |
+
+[Observed upload responses](../art/catalog/uploaded/receipts.json) record Approved
+for every batch. Each batch retains its GLB, manifest, raw Studio observation and
+bound receipt. Three calibration cubes measure scale/orientation; normalized local
+clones restore colors, transparency, explicit pivots and nonphysical flags. The raw
+packages stay unchanged. The aggregate
+[runtime folder](../art/catalog/CatalogAssets.rbxm) is engine-serialized and mapped
+only by the gallery project. `validate_catalog.py` verifies the archived chain;
+these receipts do not independently download and rehash Roblox's mesh bytes.
+Owner-account Studio loading passed for all 477 meshes. Another account's access
+remains unverified. Asset upload did not publish or update the game experience.
 
 ## Blender pilot assets (RBX-019)
 

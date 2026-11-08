@@ -21,6 +21,10 @@ and playtests; Git records reviewed implementation and verification evidence.
 See [PROJECT_STATUS](PROJECT_STATUS.md) for the **only current dashboard**, including
 what has actually passed, active ownership, and the next task.
 
+To review the Blender replacements, open the [78-model animation inspector](docs/CATALOG_GALLERY.md).
+It includes search, camera views, slow motion, pose scrubbing, detail zoom and
+copyable feedback. The normal game keeps its native geometry during this review.
+
 ## Quick start (Windows)
 
 Install Git, Windows PowerShell 5.1 or PowerShell 7, and Roblox Studio. A Roblox

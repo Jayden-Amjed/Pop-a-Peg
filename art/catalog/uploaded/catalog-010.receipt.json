@@ -1,0 +1,1153 @@
+{
+  "schema": 1,
+  "asset_id": "134841234052716",
+  "operation": "f76f5d52-c30e-4a42-8a40-c591c6cdcb5c",
+  "owner_user_id": 583716264,
+  "moderation": "Approved",
+  "glb_sha256": "36e4106b5e8007572f41ce774445422d71785a34f98e895ee1b00f2be4a55928",
+  "batch_sha256": "99bb5f6b492cdbb7679f20ab6fc6b1ef2fa0def5e635844c53b63daac0fcc745",
+  "raw_sha256": "f94bae6c385608a1b5d10c65d975b5989c0f6ebffb2942d8550d25bb888e075b",
+  "manifest_sha256": {
+    "art/catalog/tide_valve/manifest.json": "27769e90023be4a3e9740a66d00ea7354b1e99c94c41e1b6efba59f084571ed7",
+    "art/catalog/tuning_oil/manifest.json": "3b646183e0b1deb7087eac4810916f86b4159feef4457f5e489013e4ba42820f",
+    "art/catalog/wall_meter/manifest.json": "b1cbf8cde338c0819dbd9c70581f8dc45a436cd3953e995a10953558e75e5f47"
+  },
+  "calibration": [
+    {
+      "name": "catalog_010__calibration_origin",
+      "center_blender_studs": [
+        -4,
+        -4,
+        0
+      ],
+      "size_blender_studs": [
+        1,
+        1,
+        1
+      ],
+      "size_meters": [
+        0.28,
+        0.28,
+        0.28
+      ],
+      "mesh_id": "rbxassetid://135390511251862"
+    },
+    {
+      "name": "catalog_010__calibration_right",
+      "center_blender_studs": [
+        -1,
+        -4,
+        0
+      ],
+      "size_blender_studs": [
+        1,
+        1,
+        1
+      ],
+      "size_meters": [
+        0.28,
+        0.28,
+        0.28
+      ],
+      "mesh_id": "rbxassetid://72980839430847"
+    },
+    {
+      "name": "catalog_010__calibration_front",
+      "center_blender_studs": [
+        -4,
+        -7,
+        0
+      ],
+      "size_blender_studs": [
+        1,
+        1,
+        1
+      ],
+      "size_meters": [
+        0.28,
+        0.28,
+        0.28
+      ],
+      "mesh_id": "rbxassetid://135390511251862"
+    }
+  ],
+  "models": [
+    {
+      "schema": 2,
+      "id": "tide_valve",
+      "display_name": "Tide Valve",
+      "category": "equipment",
+      "generator": "scripts/models/catalog_nature.py",
+      "blender": "4.5.9 LTS",
+      "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+      "units": "studs in blend; 0.28 meters per stud in GLB",
+      "triangles": 1164,
+      "pieces": 5,
+      "budget": {
+        "triangles": 4000,
+        "pieces": 8
+      },
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.7518061
+      ],
+      "bounds_min": [
+        -0.85,
+        -0.665,
+        0.0
+      ],
+      "bounds_max": [
+        0.85,
+        0.665,
+        1.5036122
+      ],
+      "size_blender_studs": [
+        1.7,
+        1.33,
+        1.5036122
+      ],
+      "objects": [
+        {
+          "name": "tide_valve__Fixed_blue_01",
+          "mesh_data_name": "tide_valve__Fixed_blue_01",
+          "material": "blue",
+          "color_srgb": [
+            48,
+            153,
+            239
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 44,
+          "vertices": 24,
+          "motion_group": "Fixed",
+          "motion_pivot": [
+            0.0,
+            0.0,
+            0.55
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            0.0,
+            0.55
+          ],
+          "center_blender_studs": [
+            0.0,
+            0.0,
+            0.55
+          ],
+          "size_blender_studs": [
+            1.7,
+            0.48,
+            0.4156922
+          ],
+          "bounds_min": [
+            -0.85,
+            -0.24,
+            0.3421539
+          ],
+          "bounds_max": [
+            0.85,
+            0.24,
+            0.7578461
+          ],
+          "geometry_sha256": "735a962f7c499394d84b59de82c0247e50fa9b1df6b5dc93d4a56a1a399a44a7",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "tide_valve__Fixed_blue_01",
+          "mesh_id": "rbxassetid://105369296998776",
+          "imported_size": [
+            0.47600001096725464,
+            0.11639381945133209,
+            0.13440003991127014
+          ]
+        },
+        {
+          "name": "tide_valve__Fixed_dark_02",
+          "mesh_data_name": "tide_valve__Fixed_dark_02",
+          "material": "dark",
+          "color_srgb": [
+            44,
+            88,
+            126
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 296,
+          "vertices": 152,
+          "motion_group": "Fixed",
+          "motion_pivot": [
+            0.0,
+            0.0,
+            0.6825
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            0.0,
+            0.6825
+          ],
+          "center_blender_studs": [
+            0.0,
+            0.0,
+            0.6825
+          ],
+          "size_blender_studs": [
+            1.55,
+            0.85,
+            1.365
+          ],
+          "bounds_min": [
+            -0.775,
+            -0.425,
+            0.0
+          ],
+          "bounds_max": [
+            0.775,
+            0.425,
+            1.365
+          ],
+          "geometry_sha256": "996346d62e4de77eb957f530399f42bae72b0e391948c1db0c9fc4619fd63e9a",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "tide_valve__Fixed_dark_02",
+          "mesh_id": "rbxassetid://83157278088131",
+          "imported_size": [
+            0.43400001525878906,
+            0.3822000026702881,
+            0.2380000352859497
+          ]
+        },
+        {
+          "name": "tide_valve__ValveFlow_gold_03",
+          "mesh_data_name": "tide_valve__ValveFlow_gold_03",
+          "material": "gold",
+          "color_srgb": [
+            249,
+            189,
+            63
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 120,
+          "vertices": 62,
+          "motion_group": "ValveFlow",
+          "motion_pivot": [
+            0.0,
+            -0.27,
+            0.55
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            -0.27,
+            0.55
+          ],
+          "center_blender_studs": [
+            0.0,
+            -0.27,
+            0.55
+          ],
+          "size_blender_studs": [
+            0.54,
+            0.12,
+            0.26
+          ],
+          "bounds_min": [
+            -0.27,
+            -0.33,
+            0.42
+          ],
+          "bounds_max": [
+            0.27,
+            -0.21,
+            0.68
+          ],
+          "geometry_sha256": "5c745f3992601c1671e3c1f5aa591ce8f89713b8dcc54a61a30a094ca03e9117",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "tide_valve__ValveFlow_gold_03",
+          "mesh_id": "rbxassetid://83825484329547",
+          "imported_size": [
+            0.15120001137256622,
+            0.07279999554157257,
+            0.03360000252723694
+          ]
+        },
+        {
+          "name": "tide_valve__Fixed_pearl_04",
+          "mesh_data_name": "tide_valve__Fixed_pearl_04",
+          "material": "pearl",
+          "color_srgb": [
+            249,
+            253,
+            255
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 376,
+          "vertices": 192,
+          "motion_group": "Fixed",
+          "motion_pivot": [
+            0.0,
+            0.0,
+            0.55
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            0.0,
+            0.55
+          ],
+          "center_blender_studs": [
+            0.0,
+            0.0,
+            0.55
+          ],
+          "size_blender_studs": [
+            1.6900001,
+            0.62,
+            0.62
+          ],
+          "bounds_min": [
+            -0.845,
+            -0.31,
+            0.24
+          ],
+          "bounds_max": [
+            0.845,
+            0.31,
+            0.86
+          ],
+          "geometry_sha256": "861ec0e2e6fe84163a5be40d22d4774180bff17dd608728218bb156d36ae9b39",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "tide_valve__Fixed_pearl_04",
+          "mesh_id": "rbxassetid://117640586362998",
+          "imported_size": [
+            0.4732000231742859,
+            0.17360001802444458,
+            0.17360004782676697
+          ]
+        },
+        {
+          "name": "tide_valve__ValveWheel_teal_05",
+          "mesh_data_name": "tide_valve__ValveWheel_teal_05",
+          "material": "teal",
+          "color_srgb": [
+            39,
+            189,
+            220
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 328,
+          "vertices": 168,
+          "motion_group": "ValveWheel",
+          "motion_pivot": [
+            0.0,
+            0.0,
+            1.43
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            0.0,
+            1.4300001
+          ],
+          "center_blender_studs": [
+            0.0,
+            0.0,
+            1.4300001
+          ],
+          "size_blender_studs": [
+            1.33,
+            1.33,
+            0.1472243
+          ],
+          "bounds_min": [
+            -0.665,
+            -0.665,
+            1.3563879
+          ],
+          "bounds_max": [
+            0.665,
+            0.665,
+            1.5036122
+          ],
+          "geometry_sha256": "4b81dba9369428e49110a426d23120029076fa2f6f3377198fa1b6016df484c7",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "tide_valve__ValveWheel_teal_05",
+          "mesh_id": "rbxassetid://118308142333499",
+          "imported_size": [
+            0.3724000155925751,
+            0.04122281074523926,
+            0.3724000155925751
+          ]
+        }
+      ],
+      "source": "art/catalog/tide_valve/tide_valve.blend",
+      "source_preserved": false,
+      "blend_sha256": "05f59ec8a25f5b08f02fd6f475638f72be9a136cdaf312ff107d380d57f605cb"
+    },
+    {
+      "schema": 2,
+      "id": "tuning_oil",
+      "display_name": "Tuning Oil",
+      "category": "consumable",
+      "generator": "scripts/models/catalog_mechanical.py",
+      "blender": "4.5.9 LTS",
+      "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+      "units": "studs in blend; 0.28 meters per stud in GLB",
+      "triangles": 1376,
+      "pieces": 5,
+      "budget": {
+        "triangles": 4000,
+        "pieces": 8
+      },
+      "center_blender_studs": [
+        0.2087614,
+        0.0,
+        0.755
+      ],
+      "bounds_min": [
+        -1.0574772,
+        -0.4836,
+        0.1
+      ],
+      "bounds_max": [
+        1.475,
+        0.4836,
+        1.41
+      ],
+      "size_blender_studs": [
+        2.5324774,
+        0.9672,
+        1.3099999
+      ],
+      "objects": [
+        {
+          "name": "tuning_oil__Drop_gold_01",
+          "mesh_data_name": "tuning_oil__Drop_gold_01",
+          "material": "gold",
+          "color_srgb": [
+            249,
+            189,
+            63
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 120,
+          "vertices": 62,
+          "motion_group": "Drop",
+          "motion_pivot": [
+            1.38,
+            0.0,
+            1.05
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            1.38,
+            0.0,
+            1.05
+          ],
+          "center_blender_studs": [
+            1.38,
+            0.0,
+            1.05
+          ],
+          "size_blender_studs": [
+            0.1900001,
+            0.19,
+            0.3199999
+          ],
+          "bounds_min": [
+            1.285,
+            -0.095,
+            0.89
+          ],
+          "bounds_max": [
+            1.475,
+            0.095,
+            1.2099999
+          ],
+          "geometry_sha256": "f19ff216110491514ed8d63780a577d2ce72d26466bf025566be264a3c6f9c4e",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "tuning_oil__Drop_gold_01",
+          "mesh_id": "rbxassetid://80275813201629",
+          "imported_size": [
+            0.05320000648498535,
+            0.08959998190402985,
+            0.053199999034404755
+          ]
+        },
+        {
+          "name": "tuning_oil__Fixed_gold_02",
+          "mesh_data_name": "tuning_oil__Fixed_gold_02",
+          "material": "gold",
+          "color_srgb": [
+            249,
+            189,
+            63
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 236,
+          "vertices": 120,
+          "motion_group": "Fixed",
+          "motion_pivot": [
+            0.0,
+            0.0,
+            1.35
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            0.0,
+            1.35
+          ],
+          "center_blender_studs": [
+            0.0,
+            0.0,
+            1.35
+          ],
+          "size_blender_studs": [
+            0.54,
+            0.54,
+            0.1199999
+          ],
+          "bounds_min": [
+            -0.27,
+            -0.27,
+            1.2900001
+          ],
+          "bounds_max": [
+            0.27,
+            0.27,
+            1.41
+          ],
+          "geometry_sha256": "42e78093c551f8ab4b909e34bb5f90d4d4e82d8243b0cb3d06f72c9f9f677085",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "tuning_oil__Fixed_gold_02",
+          "mesh_id": "rbxassetid://127961855114676",
+          "imported_size": [
+            0.1512000560760498,
+            0.03359997272491455,
+            0.15120001137256622
+          ]
+        },
+        {
+          "name": "tuning_oil__Fixed_pearl_03",
+          "mesh_data_name": "tuning_oil__Fixed_pearl_03",
+          "material": "pearl",
+          "color_srgb": [
+            249,
+            253,
+            255
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 192,
+          "vertices": 98,
+          "motion_group": "Fixed",
+          "motion_pivot": [
+            0.0,
+            0.0,
+            0.62
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            0.0,
+            0.62
+          ],
+          "center_blender_studs": [
+            0.0,
+            0.0,
+            0.62
+          ],
+          "size_blender_studs": [
+            1.1799999,
+            0.9204,
+            1.04
+          ],
+          "bounds_min": [
+            -0.59,
+            -0.4602,
+            0.1
+          ],
+          "bounds_max": [
+            0.59,
+            0.4602,
+            1.14
+          ],
+          "geometry_sha256": "d989003e6bc84273382b2691e1ba07c971c3b4715ec1d2cec3cf40c69e9e5ad7",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "tuning_oil__Fixed_pearl_03",
+          "mesh_id": "rbxassetid://122611713573670",
+          "imported_size": [
+            0.3303999900817871,
+            0.2911999821662903,
+            0.2577120065689087
+          ]
+        },
+        {
+          "name": "tuning_oil__Fixed_teal_04",
+          "mesh_data_name": "tuning_oil__Fixed_teal_04",
+          "material": "teal",
+          "color_srgb": [
+            39,
+            189,
+            220
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 628,
+          "vertices": 318,
+          "motion_group": "Fixed",
+          "motion_pivot": [
+            -0.2187386,
+            0.0,
+            0.7948446
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            -0.2187386,
+            0.0,
+            0.7948446
+          ],
+          "center_blender_studs": [
+            -0.2187386,
+            0.0,
+            0.7948446
+          ],
+          "size_blender_studs": [
+            1.6774772,
+            0.9672,
+            1.0503109
+          ],
+          "bounds_min": [
+            -1.0574772,
+            -0.4836,
+            0.2696891
+          ],
+          "bounds_max": [
+            0.62,
+            0.4836,
+            1.3200001
+          ],
+          "geometry_sha256": "017f96c509ed343b6d8c3f6c50aea51f795e2d6398c68c1ace5d707ba83a2132",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "tuning_oil__Fixed_teal_04",
+          "mesh_id": "rbxassetid://113536854944423",
+          "imported_size": [
+            0.469693660736084,
+            0.2940870523452759,
+            0.27081599831581116
+          ]
+        },
+        {
+          "name": "tuning_oil__Spout_teal_05",
+          "mesh_data_name": "tuning_oil__Spout_teal_05",
+          "material": "teal",
+          "color_srgb": [
+            39,
+            189,
+            220
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 200,
+          "vertices": 102,
+          "motion_group": "Spout",
+          "motion_pivot": [
+            0.42,
+            0.0,
+            0.78
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.8224396,
+            0.0,
+            1.0102588
+          ],
+          "center_blender_studs": [
+            0.8224396,
+            0.0,
+            1.0102588
+          ],
+          "size_blender_studs": [
+            0.9413114,
+            0.13,
+            0.5718953
+          ],
+          "bounds_min": [
+            0.3517839,
+            -0.065,
+            0.7243112
+          ],
+          "bounds_max": [
+            1.2930952,
+            0.065,
+            1.2962065
+          ],
+          "geometry_sha256": "822c46e95ae19e496525fcc369c54db66b73113ac44b96c408e519b2c10b9f87",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "tuning_oil__Spout_teal_05",
+          "mesh_id": "rbxassetid://97928705877102",
+          "imported_size": [
+            0.2635672092437744,
+            0.16013067960739136,
+            0.036400020122528076
+          ]
+        }
+      ],
+      "source": "art/catalog/tuning_oil/tuning_oil.blend",
+      "source_preserved": false,
+      "blend_sha256": "2ef87d4aa31bbe4d034e3efef66a98034afcda43ca1f74ab3ebd9753eadde093"
+    },
+    {
+      "schema": 2,
+      "id": "wall_meter",
+      "display_name": "Shore Meter",
+      "category": "equipment",
+      "generator": "scripts/models/catalog_mechanical.py",
+      "blender": "4.5.9 LTS",
+      "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+      "units": "studs in blend; 0.28 meters per stud in GLB",
+      "triangles": 1316,
+      "pieces": 7,
+      "budget": {
+        "triangles": 4000,
+        "pieces": 8
+      },
+      "center_blender_studs": [
+        -0.03,
+        0.0,
+        1.1125001
+      ],
+      "bounds_min": [
+        -1.01,
+        -0.5,
+        0.0
+      ],
+      "bounds_max": [
+        0.95,
+        0.5,
+        2.2250001
+      ],
+      "size_blender_studs": [
+        1.96,
+        1.0,
+        2.2250001
+      ],
+      "objects": [
+        {
+          "name": "wall_meter__Fixed_dark_01",
+          "mesh_data_name": "wall_meter__Fixed_dark_01",
+          "material": "dark",
+          "color_srgb": [
+            44,
+            88,
+            126
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 432,
+          "vertices": 224,
+          "motion_group": "Fixed",
+          "motion_pivot": [
+            -0.01,
+            -0.00625,
+            1.0600001
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            -0.01,
+            -0.00625,
+            1.0600001
+          ],
+          "center_blender_studs": [
+            -0.01,
+            -0.00625,
+            1.0600001
+          ],
+          "size_blender_studs": [
+            1.46,
+            0.8325,
+            2.1200001
+          ],
+          "bounds_min": [
+            -0.74,
+            -0.4225,
+            0.0
+          ],
+          "bounds_max": [
+            0.72,
+            0.41,
+            2.1200001
+          ],
+          "geometry_sha256": "43a911aebb1533045a54e6fb2552d722e13d7f66a74e80c4c89f784e106fcb42",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "wall_meter__Fixed_dark_01",
+          "mesh_id": "rbxassetid://78926256967989",
+          "imported_size": [
+            0.4088001251220703,
+            0.5936000347137451,
+            0.23309998214244843
+          ]
+        },
+        {
+          "name": "wall_meter__Gauge_gold_02",
+          "mesh_data_name": "wall_meter__Gauge_gold_02",
+          "material": "gold",
+          "color_srgb": [
+            249,
+            189,
+            63
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 108,
+          "vertices": 56,
+          "motion_group": "Gauge",
+          "motion_pivot": [
+            -0.02,
+            -0.46,
+            0.95
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            -0.02,
+            -0.46,
+            0.95
+          ],
+          "center_blender_studs": [
+            -0.02,
+            -0.46,
+            0.95
+          ],
+          "size_blender_studs": [
+            0.16,
+            0.06,
+            0.4
+          ],
+          "bounds_min": [
+            -0.1,
+            -0.49,
+            0.75
+          ],
+          "bounds_max": [
+            0.06,
+            -0.43,
+            1.15
+          ],
+          "geometry_sha256": "530ac5f3a74718a85629c43fef844138af86b55cc41b0b62ae887954e0ab3862",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "wall_meter__Gauge_gold_02",
+          "mesh_id": "rbxassetid://103937889158830",
+          "imported_size": [
+            0.0447998046875,
+            0.1119999885559082,
+            0.016800008714199066
+          ]
+        },
+        {
+          "name": "wall_meter__Gauge_gold_03",
+          "mesh_data_name": "wall_meter__Gauge_gold_03",
+          "material": "gold",
+          "color_srgb": [
+            249,
+            189,
+            63
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 108,
+          "vertices": 56,
+          "motion_group": "Gauge",
+          "motion_pivot": [
+            0.28,
+            -0.46,
+            1.06
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.28,
+            -0.46,
+            1.0599999
+          ],
+          "center_blender_studs": [
+            0.28,
+            -0.46,
+            1.0599999
+          ],
+          "size_blender_studs": [
+            0.16,
+            0.06,
+            0.6199999
+          ],
+          "bounds_min": [
+            0.2,
+            -0.49,
+            0.7499999
+          ],
+          "bounds_max": [
+            0.36,
+            -0.43,
+            1.3699999
+          ],
+          "geometry_sha256": "41603ac27b793bde72fc8c3084e3154bf846ddbd1b11f66dca9465519313957b",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "wall_meter__Gauge_gold_03",
+          "mesh_id": "rbxassetid://77272546739962",
+          "imported_size": [
+            0.0447998046875,
+            0.1735999882221222,
+            0.016800008714199066
+          ]
+        },
+        {
+          "name": "wall_meter__Gauge_gold_04",
+          "mesh_data_name": "wall_meter__Gauge_gold_04",
+          "material": "gold",
+          "color_srgb": [
+            249,
+            189,
+            63
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 108,
+          "vertices": 56,
+          "motion_group": "Gauge",
+          "motion_pivot": [
+            0.58,
+            -0.46,
+            1.17
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.58,
+            -0.46,
+            1.17
+          ],
+          "center_blender_studs": [
+            0.58,
+            -0.46,
+            1.17
+          ],
+          "size_blender_studs": [
+            0.16,
+            0.06,
+            0.8399999
+          ],
+          "bounds_min": [
+            0.5,
+            -0.49,
+            0.75
+          ],
+          "bounds_max": [
+            0.66,
+            -0.43,
+            1.5899999
+          ],
+          "geometry_sha256": "4e81bd97960e001a24fb0c5a55a6cb88ed76562c2cf94354aa3124478989f798",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "wall_meter__Gauge_gold_04",
+          "mesh_id": "rbxassetid://115812982897263",
+          "imported_size": [
+            0.0447998046875,
+            0.235199972987175,
+            0.016800008714199066
+          ]
+        },
+        {
+          "name": "wall_meter__Fixed_pearl_05",
+          "mesh_data_name": "wall_meter__Fixed_pearl_05",
+          "material": "pearl",
+          "color_srgb": [
+            249,
+            253,
+            255
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 216,
+          "vertices": 112,
+          "motion_group": "Fixed",
+          "motion_pivot": [
+            0.0,
+            0.0,
+            1.1125001
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            0.0,
+            1.1125001
+          ],
+          "center_blender_studs": [
+            0.0,
+            0.0,
+            1.1125001
+          ],
+          "size_blender_studs": [
+            1.9,
+            1.0,
+            2.2250001
+          ],
+          "bounds_min": [
+            -0.95,
+            -0.5,
+            0.0
+          ],
+          "bounds_max": [
+            0.95,
+            0.5,
+            2.2250001
+          ],
+          "geometry_sha256": "f3ff4dd613c78dcd6c133ae28aeeb21f6b67071efe7cfa243eac6d7d465e4032",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "wall_meter__Fixed_pearl_05",
+          "mesh_id": "rbxassetid://134118279363707",
+          "imported_size": [
+            0.5320000648498535,
+            0.6230000257492065,
+            0.2800000309944153
+          ]
+        },
+        {
+          "name": "wall_meter__Bumper_teal_06",
+          "mesh_data_name": "wall_meter__Bumper_teal_06",
+          "material": "teal",
+          "color_srgb": [
+            39,
+            189,
+            220
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 108,
+          "vertices": 56,
+          "motion_group": "Bumper",
+          "motion_pivot": [
+            -0.86,
+            0.03,
+            1.24
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            -0.86,
+            0.03,
+            1.24
+          ],
+          "center_blender_studs": [
+            -0.86,
+            0.03,
+            1.24
+          ],
+          "size_blender_studs": [
+            0.3,
+            0.9,
+            1.8699999
+          ],
+          "bounds_min": [
+            -1.01,
+            -0.42,
+            0.305
+          ],
+          "bounds_max": [
+            -0.71,
+            0.48,
+            2.175
+          ],
+          "geometry_sha256": "bef4d66e205f59233a3a87c52fd2c9b0f3da8fccd2693f4885bada42c7e5e1be",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "wall_meter__Bumper_teal_06",
+          "mesh_id": "rbxassetid://85125871538053",
+          "imported_size": [
+            0.0840001106262207,
+            0.5235999822616577,
+            0.25200000405311584
+          ]
+        },
+        {
+          "name": "wall_meter__Fixed_teal_07",
+          "mesh_data_name": "wall_meter__Fixed_teal_07",
+          "material": "teal",
+          "color_srgb": [
+            39,
+            189,
+            220
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 236,
+          "vertices": 120,
+          "motion_group": "Fixed",
+          "motion_pivot": [
+            0.28,
+            -0.43,
+            0.48
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.28,
+            -0.43,
+            0.48
+          ],
+          "center_blender_studs": [
+            0.28,
+            -0.43,
+            0.48
+          ],
+          "size_blender_studs": [
+            0.26,
+            0.08,
+            0.26
+          ],
+          "bounds_min": [
+            0.15,
+            -0.47,
+            0.35
+          ],
+          "bounds_max": [
+            0.41,
+            -0.39,
+            0.61
+          ],
+          "geometry_sha256": "7ac2be42b71e09e60f5854b8233a7a1099f20d5f82f321c3832a1e5398588e63",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "wall_meter__Fixed_teal_07",
+          "mesh_id": "rbxassetid://71697535869208",
+          "imported_size": [
+            0.0728001594543457,
+            0.07280001044273376,
+            0.022400006651878357
+          ]
+        }
+      ],
+      "source": "art/catalog/wall_meter/wall_meter.blend",
+      "source_preserved": false,
+      "blend_sha256": "ca21572744e82a97a7d2dc70cea4ea96e74159860f7c377fe1d8314c6bf4f6af"
+    }
+  ],
+  "scope": "Observed mesh IDs bound to exact source/export bytes; remote mesh bytes are not independently rehashed.",
+  "policy": "Normalize local clones only; preserve raw imported package and upload."
+}

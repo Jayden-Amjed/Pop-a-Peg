@@ -1,0 +1,286 @@
+{
+  "schema": 2,
+  "id": "ricochet",
+  "display_name": "Ricochet",
+  "category": "perk",
+  "generator": "scripts/models/catalog_rewards.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 1820,
+  "pieces": 5,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    0.0,
+    0.865
+  ],
+  "bounds_min": [
+    -0.79,
+    -0.79,
+    0.0
+  ],
+  "bounds_max": [
+    0.79,
+    0.79,
+    1.73
+  ],
+  "size_blender_studs": [
+    1.58,
+    1.58,
+    1.73
+  ],
+  "objects": [
+    {
+      "name": "ricochet__Fixed_blue_01",
+      "mesh_data_name": "ricochet__Fixed_blue_01",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 44,
+      "vertices": 24,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.3,
+        0.6843827
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.3,
+        0.6843827
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.3,
+        0.6843827
+      ],
+      "size_blender_studs": [
+        0.6499757,
+        0.08,
+        0.3112348
+      ],
+      "bounds_min": [
+        -0.3249878,
+        -0.34,
+        0.5287653
+      ],
+      "bounds_max": [
+        0.3249878,
+        -0.26,
+        0.84
+      ],
+      "geometry_sha256": "0642cfa75218170e8697af59da95f99fd64eead05e93c2da5b9934964fa631ad",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "ricochet__Fixed_dark_02",
+      "mesh_data_name": "ricochet__Fixed_dark_02",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 332,
+      "vertices": 168,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.175
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.175
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.175
+      ],
+      "size_blender_studs": [
+        1.3200001,
+        1.3200001,
+        0.055
+      ],
+      "bounds_min": [
+        -0.66,
+        -0.66,
+        0.1475
+      ],
+      "bounds_max": [
+        0.66,
+        0.66,
+        0.2025
+      ],
+      "geometry_sha256": "82e258a57036b2e860ddb147f8ea32acefe429543972caefb796f255d14ebe94",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "ricochet__ReboundBall_gold_03",
+      "mesh_data_name": "ricochet__ReboundBall_gold_03",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 528,
+      "vertices": 266,
+      "motion_group": "ReboundBall",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.95
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        1e-07,
+        1e-07,
+        0.95
+      ],
+      "center_blender_studs": [
+        1e-07,
+        1e-07,
+        0.95
+      ],
+      "size_blender_studs": [
+        0.5799998,
+        0.5799999,
+        0.58
+      ],
+      "bounds_min": [
+        -0.2899998,
+        -0.2899999,
+        0.66
+      ],
+      "bounds_max": [
+        0.29,
+        0.29,
+        1.24
+      ],
+      "geometry_sha256": "749ddf3dddc1f4c81650bbdd14a9cc7f39b74fa941ff686c207d14e008816f61",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "ricochet__Fixed_pearl_04",
+      "mesh_data_name": "ricochet__Fixed_pearl_04",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 808,
+      "vertices": 408,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.865
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.865
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.865
+      ],
+      "size_blender_studs": [
+        1.58,
+        1.58,
+        1.73
+      ],
+      "bounds_min": [
+        -0.79,
+        -0.79,
+        0.0
+      ],
+      "bounds_max": [
+        0.79,
+        0.79,
+        1.73
+      ],
+      "geometry_sha256": "0ddff11cd8aad8496fb4d295f9cc880ce29ad61d2109b4ca90bf74c37fcb85d3",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "ricochet__Fixed_teal_05",
+      "mesh_data_name": "ricochet__Fixed_teal_05",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.3
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.3
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.3
+      ],
+      "size_blender_studs": [
+        1.15,
+        0.56,
+        0.18
+      ],
+      "bounds_min": [
+        -0.575,
+        -0.28,
+        0.21
+      ],
+      "bounds_max": [
+        0.575,
+        0.28,
+        0.39
+      ],
+      "geometry_sha256": "0383475abc7b6cba842d1eb3672a6acd742621d15e123363b4f0b95304d62a5d",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/ricochet/ricochet.blend",
+  "source_preserved": false,
+  "blend_sha256": "71bbb569faa082ef1f9ca69e9c60d1953fbd1dae6ecf51462d2f752c91c28f9c"
+}

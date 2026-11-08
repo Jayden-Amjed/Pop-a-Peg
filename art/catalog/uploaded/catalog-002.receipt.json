@@ -1,0 +1,3547 @@
+{
+  "schema": 1,
+  "asset_id": "82869341823394",
+  "operation": "012c6ad4-58a6-41c1-9f74-0888920bd66f",
+  "owner_user_id": 583716264,
+  "moderation": "Approved",
+  "glb_sha256": "8938fdb35125e1e0b9eae04be47b7840073688611e1314fa518d52d48bbfb580",
+  "batch_sha256": "63bb3da6ad89a7490a36677eea0af2139f2ac60e0f23f4606245d9db1f7b6679",
+  "raw_sha256": "2c3a3df3ac82861f17fad232aa8ebb8df65a35f36292d225da2ba2e37c6ace0b",
+  "manifest_sha256": {
+    "art/catalog/chest_rare/manifest.json": "2739b710f2c1d59dc30427e6d93bc17be8b4ff58a340eb4362445f84eda56299",
+    "art/catalog/chest_uncommon/manifest.json": "5772b435217a81e32e2ff49fa1866b5ccd7454b1257469e4ecce8c9b9d2f81f4",
+    "art/catalog/clockwork/manifest.json": "dd2c37cc05d8ee270a3289a2246ec29e1142080e0fb76a748f7a1205c31ca686",
+    "art/catalog/cloud_mirror/manifest.json": "5a7fea6257df14c90e99d26977fe12548eb41c316effa5b1fa643b75dbfaf31e",
+    "art/catalog/coin/manifest.json": "f47fff21e0b426174ddc7f173853002986da751b6c226768218aa6376ce2be4e",
+    "art/catalog/coin_press/manifest.json": "8adc435f38f509818ff28944db4dd1c88da486f1b11ef0b6f8805b7a853c8a0a",
+    "art/catalog/compass/manifest.json": "686caedb7f066d3580f533c3ddc53fbdaf90e0c320f3fb96ce5539c239df029e",
+    "art/catalog/coral_fork/manifest.json": "5535200b071458abc4a8a9dce7c1635ee9a96d121a3e47658f7450fb7dd323bd"
+  },
+  "calibration": [
+    {
+      "name": "catalog_002__calibration_origin",
+      "center_blender_studs": [
+        -4,
+        -4,
+        0
+      ],
+      "size_blender_studs": [
+        1,
+        1,
+        1
+      ],
+      "size_meters": [
+        0.28,
+        0.28,
+        0.28
+      ],
+      "mesh_id": "rbxassetid://135390511251862"
+    },
+    {
+      "name": "catalog_002__calibration_right",
+      "center_blender_studs": [
+        -1,
+        -4,
+        0
+      ],
+      "size_blender_studs": [
+        1,
+        1,
+        1
+      ],
+      "size_meters": [
+        0.28,
+        0.28,
+        0.28
+      ],
+      "mesh_id": "rbxassetid://72980839430847"
+    },
+    {
+      "name": "catalog_002__calibration_front",
+      "center_blender_studs": [
+        -4,
+        -7,
+        0
+      ],
+      "size_blender_studs": [
+        1,
+        1,
+        1
+      ],
+      "size_meters": [
+        0.28,
+        0.28,
+        0.28
+      ],
+      "mesh_id": "rbxassetid://135390511251862"
+    }
+  ],
+  "models": [
+    {
+      "schema": 2,
+      "id": "chest_rare",
+      "display_name": "Aurora Chest",
+      "category": "utility",
+      "generator": "scripts/models/catalog_rewards.py",
+      "blender": "4.5.9 LTS",
+      "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+      "units": "studs in blend; 0.28 meters per stud in GLB",
+      "triangles": 2592,
+      "pieces": 11,
+      "budget": {
+        "triangles": 6000,
+        "pieces": 12
+      },
+      "center_blender_studs": [
+        0.0,
+        0.0225,
+        1.3096085
+      ],
+      "bounds_min": [
+        -1.2518433,
+        -0.9313844,
+        0.0
+      ],
+      "bounds_max": [
+        1.2518433,
+        0.9763844,
+        2.6192169
+      ],
+      "size_blender_studs": [
+        2.5036867,
+        1.9077687,
+        2.6192169
+      ],
+      "objects": [
+        {
+          "name": "chest_rare__ChestLid_blue_01",
+          "mesh_data_name": "chest_rare__ChestLid_blue_01",
+          "material": "blue",
+          "color_srgb": [
+            48,
+            153,
+            239
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 104,
+          "vertices": 54,
+          "motion_group": "ChestLid",
+          "motion_pivot": [
+            0.0,
+            0.8863844,
+            1.75
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            0.0,
+            2.2746084
+          ],
+          "center_blender_studs": [
+            0.0,
+            0.0,
+            2.2746084
+          ],
+          "size_blender_studs": [
+            0.34,
+            0.28,
+            0.689217
+          ],
+          "bounds_min": [
+            -0.17,
+            -0.14,
+            1.9299999
+          ],
+          "bounds_max": [
+            0.17,
+            0.14,
+            2.6192169
+          ],
+          "geometry_sha256": "df5935340e248de49eb00fda539d12f7afbeb1c4a4c0ad96192c7ee2a3d9db49",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "chest_rare__ChestLid_blue_01",
+          "mesh_id": "rbxassetid://116777764825106",
+          "imported_size": [
+            0.09520000964403152,
+            0.19298073649406433,
+            0.07840000838041306
+          ]
+        },
+        {
+          "name": "chest_rare__Fixed_blue_02",
+          "mesh_data_name": "chest_rare__Fixed_blue_02",
+          "material": "blue",
+          "color_srgb": [
+            48,
+            153,
+            239
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 108,
+          "vertices": 56,
+          "motion_group": "Fixed",
+          "motion_pivot": [
+            0.0,
+            -0.8563844,
+            0.895
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            -0.8563844,
+            0.895
+          ],
+          "center_blender_studs": [
+            0.0,
+            -0.8563844,
+            0.895
+          ],
+          "size_blender_studs": [
+            0.9922656,
+            0.0599999,
+            0.47
+          ],
+          "bounds_min": [
+            -0.4961328,
+            -0.8863844,
+            0.66
+          ],
+          "bounds_max": [
+            0.4961328,
+            -0.8263844,
+            1.13
+          ],
+          "geometry_sha256": "eeab86aa87c39adda362262e041acf6a59870035a14fae82f63092da436070ad",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "chest_rare__Fixed_blue_02",
+          "mesh_id": "rbxassetid://130065464165156",
+          "imported_size": [
+            0.27783438563346863,
+            0.13159999251365662,
+            0.016800016164779663
+          ]
+        },
+        {
+          "name": "chest_rare__Fixed_dark_03",
+          "mesh_data_name": "chest_rare__Fixed_dark_03",
+          "material": "dark",
+          "color_srgb": [
+            44,
+            88,
+            126
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 656,
+          "vertices": 334,
+          "motion_group": "Fixed",
+          "motion_pivot": [
+            0.0,
+            0.0,
+            0.825
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            0.0,
+            0.825
+          ],
+          "center_blender_studs": [
+            0.0,
+            0.0,
+            0.825
+          ],
+          "size_blender_studs": [
+            2.3828597,
+            1.6627687,
+            1.65
+          ],
+          "bounds_min": [
+            -1.1914299,
+            -0.8313844,
+            0.0
+          ],
+          "bounds_max": [
+            1.1914299,
+            0.8313844,
+            1.65
+          ],
+          "geometry_sha256": "e70f8ddebbefc15e71298646270c18a1cc85e5f79a501210d0f09a0c3c5423a4",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "chest_rare__Fixed_dark_03",
+          "mesh_id": "rbxassetid://110462273789787",
+          "imported_size": [
+            0.6672007441520691,
+            0.4619999825954437,
+            0.46557527780532837
+          ]
+        },
+        {
+          "name": "chest_rare__ChestClasp_gold_04",
+          "mesh_data_name": "chest_rare__ChestClasp_gold_04",
+          "material": "gold",
+          "color_srgb": [
+            249,
+            189,
+            63
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 108,
+          "vertices": 56,
+          "motion_group": "ChestClasp",
+          "motion_pivot": [
+            0.0,
+            -0.8713844,
+            1.52
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            -0.8713844,
+            1.52
+          ],
+          "center_blender_studs": [
+            0.0,
+            -0.8713844,
+            1.52
+          ],
+          "size_blender_studs": [
+            0.2822116,
+            0.12,
+            0.338654
+          ],
+          "bounds_min": [
+            -0.1411058,
+            -0.9313844,
+            1.350673
+          ],
+          "bounds_max": [
+            0.1411058,
+            -0.8113844,
+            1.689327
+          ],
+          "geometry_sha256": "fcaca105cf5856934e248fe632bf54af891a3167070298f2e29af1ccd1c0fbec",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "chest_rare__ChestClasp_gold_04",
+          "mesh_id": "rbxassetid://125934657426375",
+          "imported_size": [
+            0.07901924848556519,
+            0.09482312202453613,
+            0.03360001742839813
+          ]
+        },
+        {
+          "name": "chest_rare__ChestTreasure_gold_05",
+          "mesh_data_name": "chest_rare__ChestTreasure_gold_05",
+          "material": "gold",
+          "color_srgb": [
+            249,
+            189,
+            63
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 120,
+          "vertices": 62,
+          "motion_group": "ChestTreasure",
+          "motion_pivot": [
+            -0.25,
+            0.0,
+            1.1000001
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            -0.25,
+            0.0,
+            1.1
+          ],
+          "center_blender_studs": [
+            -0.25,
+            0.0,
+            1.1
+          ],
+          "size_blender_studs": [
+            0.26,
+            0.26,
+            0.42
+          ],
+          "bounds_min": [
+            -0.38,
+            -0.13,
+            0.89
+          ],
+          "bounds_max": [
+            -0.12,
+            0.13,
+            1.3100001
+          ],
+          "geometry_sha256": "258de4885254f7ef5722241c826541136f9e8ce40d947839a97509ef245b1fef",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "chest_rare__ChestTreasure_gold_05",
+          "mesh_id": "rbxassetid://112928819652103",
+          "imported_size": [
+            0.07279999554157257,
+            0.11760000139474869,
+            0.07279999554157257
+          ]
+        },
+        {
+          "name": "chest_rare__ChestTreasure_gold_06",
+          "mesh_data_name": "chest_rare__ChestTreasure_gold_06",
+          "material": "gold",
+          "color_srgb": [
+            249,
+            189,
+            63
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 120,
+          "vertices": 62,
+          "motion_group": "ChestTreasure",
+          "motion_pivot": [
+            0.0,
+            0.0,
+            1.28
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            0.0,
+            1.28
+          ],
+          "center_blender_studs": [
+            0.0,
+            0.0,
+            1.28
+          ],
+          "size_blender_studs": [
+            0.26,
+            0.26,
+            0.4200001
+          ],
+          "bounds_min": [
+            -0.13,
+            -0.13,
+            1.0699999
+          ],
+          "bounds_max": [
+            0.13,
+            0.13,
+            1.49
+          ],
+          "geometry_sha256": "623e1e2368b4953855ff651e42468b3a5d92ccaf9b0d9f40d884d2facf584958",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "chest_rare__ChestTreasure_gold_06",
+          "mesh_id": "rbxassetid://79304319087508",
+          "imported_size": [
+            0.07279999554157257,
+            0.11760002374649048,
+            0.07279999554157257
+          ]
+        },
+        {
+          "name": "chest_rare__ChestTreasure_gold_07",
+          "mesh_data_name": "chest_rare__ChestTreasure_gold_07",
+          "material": "gold",
+          "color_srgb": [
+            249,
+            189,
+            63
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 120,
+          "vertices": 62,
+          "motion_group": "ChestTreasure",
+          "motion_pivot": [
+            0.25,
+            0.0,
+            1.1000001
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.25,
+            0.0,
+            1.1
+          ],
+          "center_blender_studs": [
+            0.25,
+            0.0,
+            1.1
+          ],
+          "size_blender_studs": [
+            0.26,
+            0.26,
+            0.42
+          ],
+          "bounds_min": [
+            0.12,
+            -0.13,
+            0.89
+          ],
+          "bounds_max": [
+            0.38,
+            0.13,
+            1.3100001
+          ],
+          "geometry_sha256": "65032a4f281659da5e4d3f23974cfedd0c55df39d10dd9008956f08c46485a9a",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "chest_rare__ChestTreasure_gold_07",
+          "mesh_id": "rbxassetid://90964516838098",
+          "imported_size": [
+            0.07279999554157257,
+            0.11760000139474869,
+            0.07279999554157257
+          ]
+        },
+        {
+          "name": "chest_rare__Fixed_gold_08",
+          "mesh_data_name": "chest_rare__Fixed_gold_08",
+          "material": "gold",
+          "color_srgb": [
+            249,
+            189,
+            63
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 376,
+          "vertices": 192,
+          "motion_group": "Fixed",
+          "motion_pivot": [
+            0.0,
+            0.8863844,
+            1.75
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            0.8863844,
+            1.75
+          ],
+          "center_blender_studs": [
+            0.0,
+            0.8863844,
+            1.75
+          ],
+          "size_blender_studs": [
+            1.52,
+            0.1800001,
+            0.1800001
+          ],
+          "bounds_min": [
+            -0.76,
+            0.7963843,
+            1.66
+          ],
+          "bounds_max": [
+            0.76,
+            0.9763844,
+            1.84
+          ],
+          "geometry_sha256": "494600ee95dbbcaeb6b8ef079b5f0b88809cff1fab6367d8bc495896da1bb384",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "chest_rare__Fixed_gold_08",
+          "mesh_id": "rbxassetid://78294440994874",
+          "imported_size": [
+            0.42559999227523804,
+            0.0504000261425972,
+            0.05040006339550018
+          ]
+        },
+        {
+          "name": "chest_rare__ChestLid_pearl_09",
+          "mesh_data_name": "chest_rare__ChestLid_pearl_09",
+          "material": "pearl",
+          "color_srgb": [
+            249,
+            253,
+            255
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 272,
+          "vertices": 138,
+          "motion_group": "ChestLid",
+          "motion_pivot": [
+            0.0,
+            0.8863844,
+            1.75
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            0.0,
+            1.83
+          ],
+          "center_blender_studs": [
+            0.0,
+            0.0,
+            1.83
+          ],
+          "size_blender_studs": [
+            2.5036867,
+            1.7666918,
+            0.24
+          ],
+          "bounds_min": [
+            -1.2518433,
+            -0.8833459,
+            1.71
+          ],
+          "bounds_max": [
+            1.2518433,
+            0.8833459,
+            1.95
+          ],
+          "geometry_sha256": "af79564d472008a1c333d6474a3c5c380a8cf5615508b90b3a1f81e66da6880f",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "chest_rare__ChestLid_pearl_09",
+          "mesh_id": "rbxassetid://129912887890461",
+          "imported_size": [
+            0.701032280921936,
+            0.06720000505447388,
+            0.4946737289428711
+          ]
+        },
+        {
+          "name": "chest_rare__Fixed_pearl_10",
+          "mesh_data_name": "chest_rare__Fixed_pearl_10",
+          "material": "pearl",
+          "color_srgb": [
+            249,
+            253,
+            255
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 336,
+          "vertices": 168,
+          "motion_group": "Fixed",
+          "motion_pivot": [
+            0.0,
+            0.0,
+            1.6525
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            0.0,
+            1.6525
+          ],
+          "center_blender_studs": [
+            0.0,
+            0.0,
+            1.6525
+          ],
+          "size_blender_studs": [
+            2.4529393,
+            1.7233906,
+            0.075
+          ],
+          "bounds_min": [
+            -1.2264696,
+            -0.8616953,
+            1.615
+          ],
+          "bounds_max": [
+            1.2264696,
+            0.8616953,
+            1.6900001
+          ],
+          "geometry_sha256": "836717a561d5b3ac7e467dcc153b7bcdac3d3a38484423c5ae44396e6687e0c7",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "chest_rare__Fixed_pearl_10",
+          "mesh_id": "rbxassetid://112387908067752",
+          "imported_size": [
+            0.6868230104446411,
+            0.021000012755393982,
+            0.48254939913749695
+          ]
+        },
+        {
+          "name": "chest_rare__ChestLid_teal_11",
+          "mesh_data_name": "chest_rare__ChestLid_teal_11",
+          "material": "teal",
+          "color_srgb": [
+            39,
+            189,
+            220
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 272,
+          "vertices": 140,
+          "motion_group": "ChestLid",
+          "motion_pivot": [
+            0.0,
+            0.886384,
+            1.75
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            0.0,
+            2.1898222
+          ],
+          "center_blender_studs": [
+            0.0,
+            0.0,
+            2.1898222
+          ],
+          "size_blender_studs": [
+            1.22,
+            0.28,
+            0.5196446
+          ],
+          "bounds_min": [
+            -0.61,
+            -0.14,
+            1.9299999
+          ],
+          "bounds_max": [
+            0.61,
+            0.14,
+            2.4496446
+          ],
+          "geometry_sha256": "0459e0cbb1be423e2c64494b0c3bb92df54c0db994732383249e38065ec7bf02",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "chest_rare__ChestLid_teal_11",
+          "mesh_id": "rbxassetid://123488784565892",
+          "imported_size": [
+            0.3416000008583069,
+            0.14550051093101501,
+            0.07840003073215485
+          ]
+        }
+      ],
+      "source": "art/catalog/chest_rare/chest_rare.blend",
+      "source_preserved": false,
+      "blend_sha256": "61527ab3bf731b05202fcc2c1ecdd30cacf6b8f947d8234f51214a459dd9fc23"
+    },
+    {
+      "schema": 2,
+      "id": "chest_uncommon",
+      "display_name": "Lagoon Chest",
+      "category": "utility",
+      "generator": "scripts/models/catalog_rewards.py",
+      "blender": "4.5.9 LTS",
+      "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+      "units": "studs in blend; 0.28 meters per stud in GLB",
+      "triangles": 2984,
+      "pieces": 11,
+      "budget": {
+        "triangles": 6000,
+        "pieces": 12
+      },
+      "center_blender_studs": [
+        0.0,
+        0.0225,
+        1.1400779
+      ],
+      "bounds_min": [
+        -1.16,
+        -0.96,
+        0.0
+      ],
+      "bounds_max": [
+        1.16,
+        1.005,
+        2.2801559
+      ],
+      "size_blender_studs": [
+        2.3199999,
+        1.9649999,
+        2.2801559
+      ],
+      "objects": [
+        {
+          "name": "chest_uncommon__Fixed_blue_01",
+          "mesh_data_name": "chest_uncommon__Fixed_blue_01",
+          "material": "blue",
+          "color_srgb": [
+            48,
+            153,
+            239
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 284,
+          "vertices": 144,
+          "motion_group": "Fixed",
+          "motion_pivot": [
+            0.0,
+            -0.92,
+            0.6
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            -0.92,
+            0.6
+          ],
+          "center_blender_studs": [
+            0.0,
+            -0.92,
+            0.6
+          ],
+          "size_blender_studs": [
+            0.44,
+            0.0600001,
+            0.44
+          ],
+          "bounds_min": [
+            -0.22,
+            -0.95,
+            0.38
+          ],
+          "bounds_max": [
+            0.22,
+            -0.89,
+            0.8200001
+          ],
+          "geometry_sha256": "cc311da22f0259488c65b767239d755cfd47a5f595c27573806734574ac91f1f",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "chest_uncommon__Fixed_blue_01",
+          "mesh_id": "rbxassetid://108571320750142",
+          "imported_size": [
+            0.1231999397277832,
+            0.12320000678300858,
+            0.01680004596710205
+          ]
+        },
+        {
+          "name": "chest_uncommon__Fixed_dark_02",
+          "mesh_data_name": "chest_uncommon__Fixed_dark_02",
+          "material": "dark",
+          "color_srgb": [
+            44,
+            88,
+            126
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 216,
+          "vertices": 112,
+          "motion_group": "Fixed",
+          "motion_pivot": [
+            0.0,
+            0.0,
+            0.13
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            0.0,
+            0.13
+          ],
+          "center_blender_studs": [
+            0.0,
+            0.0,
+            0.13
+          ],
+          "size_blender_studs": [
+            1.6799999,
+            1.08,
+            0.26
+          ],
+          "bounds_min": [
+            -0.84,
+            -0.54,
+            0.0
+          ],
+          "bounds_max": [
+            0.84,
+            0.54,
+            0.26
+          ],
+          "geometry_sha256": "593823bd23f3ee738c1ede908111a08207214d8a62e762312512bd185e15ff8f",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "chest_uncommon__Fixed_dark_02",
+          "mesh_id": "rbxassetid://134513567218644",
+          "imported_size": [
+            0.4704000949859619,
+            0.07279998064041138,
+            0.30240005254745483
+          ]
+        },
+        {
+          "name": "chest_uncommon__ChestClasp_gold_03",
+          "mesh_data_name": "chest_uncommon__ChestClasp_gold_03",
+          "material": "gold",
+          "color_srgb": [
+            249,
+            189,
+            63
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 108,
+          "vertices": 56,
+          "motion_group": "ChestClasp",
+          "motion_pivot": [
+            0.0,
+            -0.9,
+            1.14
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            -0.9,
+            1.14
+          ],
+          "center_blender_studs": [
+            0.0,
+            -0.9,
+            1.14
+          ],
+          "size_blender_studs": [
+            0.2822116,
+            0.12,
+            0.3386539
+          ],
+          "bounds_min": [
+            -0.1411058,
+            -0.96,
+            0.970673
+          ],
+          "bounds_max": [
+            0.1411058,
+            -0.84,
+            1.3093269
+          ],
+          "geometry_sha256": "ca336cdf59ffbabadc22cb02be247d9608ea57aa8cfad618fcc866d0c78a5c75",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "chest_uncommon__ChestClasp_gold_03",
+          "mesh_id": "rbxassetid://112729627221537",
+          "imported_size": [
+            0.07901930809020996,
+            0.09482307732105255,
+            0.03360001742839813
+          ]
+        },
+        {
+          "name": "chest_uncommon__ChestTreasure_gold_04",
+          "mesh_data_name": "chest_uncommon__ChestTreasure_gold_04",
+          "material": "gold",
+          "color_srgb": [
+            249,
+            189,
+            63
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 120,
+          "vertices": 62,
+          "motion_group": "ChestTreasure",
+          "motion_pivot": [
+            -0.25,
+            0.0,
+            0.72
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            -0.25,
+            0.0,
+            0.72
+          ],
+          "center_blender_studs": [
+            -0.25,
+            0.0,
+            0.72
+          ],
+          "size_blender_studs": [
+            0.26,
+            0.26,
+            0.42
+          ],
+          "bounds_min": [
+            -0.38,
+            -0.13,
+            0.5100001
+          ],
+          "bounds_max": [
+            -0.12,
+            0.13,
+            0.93
+          ],
+          "geometry_sha256": "28fb1055ea42608e0188e407102ee55e889820bb41215ddf35a6e3a4f43558dc",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "chest_uncommon__ChestTreasure_gold_04",
+          "mesh_id": "rbxassetid://74132422842229",
+          "imported_size": [
+            0.0727999210357666,
+            0.1175999790430069,
+            0.07279999554157257
+          ]
+        },
+        {
+          "name": "chest_uncommon__ChestTreasure_gold_05",
+          "mesh_data_name": "chest_uncommon__ChestTreasure_gold_05",
+          "material": "gold",
+          "color_srgb": [
+            249,
+            189,
+            63
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 120,
+          "vertices": 62,
+          "motion_group": "ChestTreasure",
+          "motion_pivot": [
+            0.0,
+            0.0,
+            0.9
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            0.0,
+            0.9
+          ],
+          "center_blender_studs": [
+            0.0,
+            0.0,
+            0.9
+          ],
+          "size_blender_studs": [
+            0.26,
+            0.26,
+            0.42
+          ],
+          "bounds_min": [
+            -0.13,
+            -0.13,
+            0.69
+          ],
+          "bounds_max": [
+            0.13,
+            0.13,
+            1.11
+          ],
+          "geometry_sha256": "79e57cfb27c1632e68e0d9272330687f4664874138c3c6c04f5212f43f9e91a4",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "chest_uncommon__ChestTreasure_gold_05",
+          "mesh_id": "rbxassetid://134989365338140",
+          "imported_size": [
+            0.0727999210357666,
+            0.11760000884532928,
+            0.07279999554157257
+          ]
+        },
+        {
+          "name": "chest_uncommon__ChestTreasure_gold_06",
+          "mesh_data_name": "chest_uncommon__ChestTreasure_gold_06",
+          "material": "gold",
+          "color_srgb": [
+            249,
+            189,
+            63
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 120,
+          "vertices": 62,
+          "motion_group": "ChestTreasure",
+          "motion_pivot": [
+            0.25,
+            0.0,
+            0.72
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.25,
+            0.0,
+            0.72
+          ],
+          "center_blender_studs": [
+            0.25,
+            0.0,
+            0.72
+          ],
+          "size_blender_studs": [
+            0.26,
+            0.26,
+            0.42
+          ],
+          "bounds_min": [
+            0.12,
+            -0.13,
+            0.5100001
+          ],
+          "bounds_max": [
+            0.38,
+            0.13,
+            0.93
+          ],
+          "geometry_sha256": "a44ca497efd047297d8b9dd544e1c4490e863b00873bfa0df6bf0ca23ac52f54",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "chest_uncommon__ChestTreasure_gold_06",
+          "mesh_id": "rbxassetid://111909392251702",
+          "imported_size": [
+            0.0727999210357666,
+            0.1175999790430069,
+            0.07279999554157257
+          ]
+        },
+        {
+          "name": "chest_uncommon__Fixed_gold_07",
+          "mesh_data_name": "chest_uncommon__Fixed_gold_07",
+          "material": "gold",
+          "color_srgb": [
+            249,
+            189,
+            63
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 376,
+          "vertices": 192,
+          "motion_group": "Fixed",
+          "motion_pivot": [
+            0.0,
+            0.915,
+            1.37
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            0.915,
+            1.37
+          ],
+          "center_blender_studs": [
+            0.0,
+            0.915,
+            1.37
+          ],
+          "size_blender_studs": [
+            1.52,
+            0.1799999,
+            0.1800001
+          ],
+          "bounds_min": [
+            -0.76,
+            0.825,
+            1.28
+          ],
+          "bounds_max": [
+            0.76,
+            1.005,
+            1.46
+          ],
+          "geometry_sha256": "608f0e125d5da7997a9186e431ba538af193dbac547b4a8d35c3482bb12e69de",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "chest_uncommon__Fixed_gold_07",
+          "mesh_id": "rbxassetid://99668608896382",
+          "imported_size": [
+            0.4256000518798828,
+            0.0504000186920166,
+            0.0504000186920166
+          ]
+        },
+        {
+          "name": "chest_uncommon__ChestLid_pearl_08",
+          "mesh_data_name": "chest_uncommon__ChestLid_pearl_08",
+          "material": "pearl",
+          "color_srgb": [
+            249,
+            253,
+            255
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 284,
+          "vertices": 150,
+          "motion_group": "ChestLid",
+          "motion_pivot": [
+            0.0,
+            0.915,
+            1.37
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            0.0,
+            1.6849999
+          ],
+          "center_blender_studs": [
+            0.0,
+            0.0,
+            1.6849999
+          ],
+          "size_blender_studs": [
+            2.3199999,
+            1.84,
+            0.7099999
+          ],
+          "bounds_min": [
+            -1.16,
+            -0.92,
+            1.33
+          ],
+          "bounds_max": [
+            1.16,
+            0.92,
+            2.04
+          ],
+          "geometry_sha256": "812ba0a11edb8b3fdb18efecabfae2f7607c49973b8381d89b938d3784526fce",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "chest_uncommon__ChestLid_pearl_08",
+          "mesh_id": "rbxassetid://108052471493124",
+          "imported_size": [
+            0.6496000289916992,
+            0.1987999677658081,
+            0.5152000188827515
+          ]
+        },
+        {
+          "name": "chest_uncommon__Fixed_pearl_09",
+          "mesh_data_name": "chest_uncommon__Fixed_pearl_09",
+          "material": "pearl",
+          "color_srgb": [
+            249,
+            253,
+            255
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 640,
+          "vertices": 320,
+          "motion_group": "Fixed",
+          "motion_pivot": [
+            0.0,
+            -0.03,
+            0.7925
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            -0.03,
+            0.7925
+          ],
+          "center_blender_studs": [
+            0.0,
+            -0.03,
+            0.7925
+          ],
+          "size_blender_studs": [
+            2.27,
+            1.8499999,
+            1.0349998
+          ],
+          "bounds_min": [
+            -1.135,
+            -0.9549999,
+            0.275
+          ],
+          "bounds_max": [
+            1.135,
+            0.895,
+            1.3099999
+          ],
+          "geometry_sha256": "82b9bb86a1a89acb68bf65abe7c884ce6f77c345f80ec834d82b7d901ef9d1e2",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "chest_uncommon__Fixed_pearl_09",
+          "mesh_id": "rbxassetid://137309918210312",
+          "imported_size": [
+            0.6355998516082764,
+            0.2897999882698059,
+            0.5179999470710754
+          ]
+        },
+        {
+          "name": "chest_uncommon__ChestLid_teal_10",
+          "mesh_data_name": "chest_uncommon__ChestLid_teal_10",
+          "material": "teal",
+          "color_srgb": [
+            39,
+            189,
+            220
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 400,
+          "vertices": 202,
+          "motion_group": "ChestLid",
+          "motion_pivot": [
+            0.0,
+            0.915,
+            1.37
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            0.02,
+            1.9000779
+          ],
+          "center_blender_studs": [
+            0.0,
+            0.02,
+            1.9000779
+          ],
+          "size_blender_studs": [
+            1.1142392,
+            0.2,
+            0.7601559
+          ],
+          "bounds_min": [
+            -0.5571196,
+            -0.08,
+            1.52
+          ],
+          "bounds_max": [
+            0.5571196,
+            0.12,
+            2.2801559
+          ],
+          "geometry_sha256": "f0a7f6db2b62888c87112e2ea43e4afbe9b17d8e13158297fded0efa6865fada",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "chest_uncommon__ChestLid_teal_10",
+          "mesh_id": "rbxassetid://98588586530755",
+          "imported_size": [
+            0.31198692321777344,
+            0.212843656539917,
+            0.05600002780556679
+          ]
+        },
+        {
+          "name": "chest_uncommon__Fixed_teal_11",
+          "mesh_data_name": "chest_uncommon__Fixed_teal_11",
+          "material": "teal",
+          "color_srgb": [
+            39,
+            189,
+            220
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 316,
+          "vertices": 160,
+          "motion_group": "Fixed",
+          "motion_pivot": [
+            0.0,
+            0.0,
+            0.72
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            0.0,
+            0.72
+          ],
+          "center_blender_studs": [
+            0.0,
+            0.0,
+            0.72
+          ],
+          "size_blender_studs": [
+            2.2,
+            1.72,
+            1.0999999
+          ],
+          "bounds_min": [
+            -1.1,
+            -0.86,
+            0.17
+          ],
+          "bounds_max": [
+            1.1,
+            0.86,
+            1.27
+          ],
+          "geometry_sha256": "a00e5ea03c2a3cedece9f6d3e1c7cad1686ebcfc553c60e37a69d0e9dd01ed06",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "chest_uncommon__Fixed_teal_11",
+          "mesh_id": "rbxassetid://126630632279644",
+          "imported_size": [
+            0.6159999370574951,
+            0.30799996852874756,
+            0.4816000163555145
+          ]
+        }
+      ],
+      "source": "art/catalog/chest_uncommon/chest_uncommon.blend",
+      "source_preserved": false,
+      "blend_sha256": "5479f5b31430d5f3aeb92876d80713ddb631e1406e980667a908c3233148888b"
+    },
+    {
+      "schema": 2,
+      "id": "clockwork",
+      "display_name": "Tide Clock",
+      "category": "equipment",
+      "generator": "scripts/models/catalog_mechanical.py",
+      "blender": "4.5.9 LTS",
+      "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+      "units": "studs in blend; 0.28 meters per stud in GLB",
+      "triangles": 3100,
+      "pieces": 7,
+      "budget": {
+        "triangles": 4000,
+        "pieces": 8
+      },
+      "center_blender_studs": [
+        0.0,
+        -0.0975,
+        1.15
+      ],
+      "bounds_min": [
+        -1.03,
+        -0.5100001,
+        0.03
+      ],
+      "bounds_max": [
+        1.03,
+        0.315,
+        2.27
+      ],
+      "size_blender_studs": [
+        2.0599999,
+        0.825,
+        2.24
+      ],
+      "objects": [
+        {
+          "name": "clockwork__Fixed_dark_01",
+          "mesh_data_name": "clockwork__Fixed_dark_01",
+          "material": "dark",
+          "color_srgb": [
+            44,
+            88,
+            126
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 332,
+          "vertices": 168,
+          "motion_group": "Fixed",
+          "motion_pivot": [
+            0.0,
+            -0.25,
+            1.24
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            -0.25,
+            1.24
+          ],
+          "center_blender_studs": [
+            0.0,
+            -0.25,
+            1.24
+          ],
+          "size_blender_studs": [
+            1.8,
+            0.0550001,
+            1.7999998
+          ],
+          "bounds_min": [
+            -0.9,
+            -0.2775,
+            0.34
+          ],
+          "bounds_max": [
+            0.9,
+            -0.2225,
+            2.1399999
+          ],
+          "geometry_sha256": "552879c3a17241534fa309d61f446051f93536930235a5b62d3bb470b6b5d31b",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "clockwork__Fixed_dark_01",
+          "mesh_id": "rbxassetid://136876362377052",
+          "imported_size": [
+            0.504000186920166,
+            0.5039999485015869,
+            0.015400052070617676
+          ]
+        },
+        {
+          "name": "clockwork__HourHand_gold_02",
+          "mesh_data_name": "clockwork__HourHand_gold_02",
+          "material": "gold",
+          "color_srgb": [
+            249,
+            189,
+            63
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 20,
+          "vertices": 12,
+          "motion_group": "HourHand",
+          "motion_pivot": [
+            0.0,
+            -0.34,
+            1.24
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.205,
+            -0.43,
+            1.39
+          ],
+          "center_blender_studs": [
+            0.205,
+            -0.43,
+            1.39
+          ],
+          "size_blender_studs": [
+            0.4662536,
+            0.11,
+            0.3768799
+          ],
+          "bounds_min": [
+            -0.0281268,
+            -0.485,
+            1.20156
+          ],
+          "bounds_max": [
+            0.4381268,
+            -0.375,
+            1.57844
+          ],
+          "geometry_sha256": "ebc6edd21195e2770de23901603804346050f7003fa41b547832e1dd19d66260",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "clockwork__HourHand_gold_02",
+          "mesh_id": "rbxassetid://114820957593341",
+          "imported_size": [
+            0.13055086135864258,
+            0.1055263876914978,
+            0.03080001473426819
+          ]
+        },
+        {
+          "name": "clockwork__LeftGear_gold_03",
+          "mesh_data_name": "clockwork__LeftGear_gold_03",
+          "material": "gold",
+          "color_srgb": [
+            249,
+            189,
+            63
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 156,
+          "vertices": 80,
+          "motion_group": "LeftGear",
+          "motion_pivot": [
+            -0.3,
+            -0.32,
+            1.2
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            -0.3,
+            -0.32,
+            1.2
+          ],
+          "center_blender_studs": [
+            -0.3,
+            -0.32,
+            1.2
+          ],
+          "size_blender_studs": [
+            0.7,
+            0.055,
+            0.6913818
+          ],
+          "bounds_min": [
+            -0.65,
+            -0.3475,
+            0.8543091
+          ],
+          "bounds_max": [
+            0.05,
+            -0.2925,
+            1.5456909
+          ],
+          "geometry_sha256": "eb164d6f034bcbe48588be268a90f4b458c674f777f32df8196bf33162ed72d2",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "clockwork__LeftGear_gold_03",
+          "mesh_id": "rbxassetid://129317160017224",
+          "imported_size": [
+            0.1960000991821289,
+            0.19358691573143005,
+            0.015400014817714691
+          ]
+        },
+        {
+          "name": "clockwork__Fixed_pearl_04",
+          "mesh_data_name": "clockwork__Fixed_pearl_04",
+          "material": "pearl",
+          "color_srgb": [
+            249,
+            253,
+            255
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 2032,
+          "vertices": 1048,
+          "motion_group": "Fixed",
+          "motion_pivot": [
+            0.0,
+            -0.0975,
+            1.15
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            -0.0975,
+            1.15
+          ],
+          "center_blender_studs": [
+            0.0,
+            -0.0975,
+            1.15
+          ],
+          "size_blender_studs": [
+            2.0599999,
+            0.825,
+            2.24
+          ],
+          "bounds_min": [
+            -1.03,
+            -0.5100001,
+            0.03
+          ],
+          "bounds_max": [
+            1.03,
+            0.315,
+            2.27
+          ],
+          "geometry_sha256": "2c708265e9418a8849f9469e27465849c7f556a8b69d807dba03282e9ca555e5",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "clockwork__Fixed_pearl_04",
+          "mesh_id": "rbxassetid://78033900879783",
+          "imported_size": [
+            0.5767998695373535,
+            0.6272000074386597,
+            0.23100003600120544
+          ]
+        },
+        {
+          "name": "clockwork__Fixed_teal_05",
+          "mesh_data_name": "clockwork__Fixed_teal_05",
+          "material": "teal",
+          "color_srgb": [
+            39,
+            189,
+            220
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 384,
+          "vertices": 192,
+          "motion_group": "Fixed",
+          "motion_pivot": [
+            0.0,
+            -0.29,
+            1.2399999
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            -0.29,
+            1.24
+          ],
+          "center_blender_studs": [
+            0.0,
+            -0.29,
+            1.24
+          ],
+          "size_blender_studs": [
+            2.01,
+            0.0779423,
+            2.0099998
+          ],
+          "bounds_min": [
+            -1.005,
+            -0.3289711,
+            0.235
+          ],
+          "bounds_max": [
+            1.005,
+            -0.2510289,
+            2.2449999
+          ],
+          "geometry_sha256": "f12f183cc0410b5cc85ef0fb57662e91cb4f7d71976dd6d93f397b575a5d222d",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "clockwork__Fixed_teal_05",
+          "mesh_id": "rbxassetid://88088685203900",
+          "imported_size": [
+            0.5627999305725098,
+            0.5627999305725098,
+            0.021823886781930923
+          ]
+        },
+        {
+          "name": "clockwork__MinuteHand_teal_06",
+          "mesh_data_name": "clockwork__MinuteHand_teal_06",
+          "material": "teal",
+          "color_srgb": [
+            39,
+            189,
+            220
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 20,
+          "vertices": 12,
+          "motion_group": "MinuteHand",
+          "motion_pivot": [
+            0.0,
+            -0.34,
+            1.24
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            -0.4,
+            1.6
+          ],
+          "center_blender_studs": [
+            0.0,
+            -0.4,
+            1.6
+          ],
+          "size_blender_studs": [
+            0.09,
+            0.0779423,
+            0.72
+          ],
+          "bounds_min": [
+            -0.045,
+            -0.4389712,
+            1.24
+          ],
+          "bounds_max": [
+            0.045,
+            -0.3610289,
+            1.96
+          ],
+          "geometry_sha256": "6baf48f4cd1cc2b0d51262ff4f37fa9f57f14d6ef39889da9e16fa2785c1a4da",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "clockwork__MinuteHand_teal_06",
+          "mesh_id": "rbxassetid://135062210973760",
+          "imported_size": [
+            0.02519989013671875,
+            0.20160001516342163,
+            0.021823853254318237
+          ]
+        },
+        {
+          "name": "clockwork__RightGear_teal_07",
+          "mesh_data_name": "clockwork__RightGear_teal_07",
+          "material": "teal",
+          "color_srgb": [
+            39,
+            189,
+            220
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 156,
+          "vertices": 80,
+          "motion_group": "RightGear",
+          "motion_pivot": [
+            0.36,
+            -0.32,
+            1.52
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.36,
+            -0.32,
+            1.52
+          ],
+          "center_blender_studs": [
+            0.36,
+            -0.32,
+            1.52
+          ],
+          "size_blender_studs": [
+            0.54,
+            0.055,
+            0.5333517
+          ],
+          "bounds_min": [
+            0.09,
+            -0.3475,
+            1.2533242
+          ],
+          "bounds_max": [
+            0.63,
+            -0.2925,
+            1.7866758
+          ],
+          "geometry_sha256": "59d526bb21a71707eb4547d34a32ce47895beee042cef21d2184fbdaddd7149a",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "clockwork__RightGear_teal_07",
+          "mesh_id": "rbxassetid://77785079081135",
+          "imported_size": [
+            0.1511998176574707,
+            0.1493384689092636,
+            0.015400014817714691
+          ]
+        }
+      ],
+      "source": "art/catalog/clockwork/clockwork.blend",
+      "source_preserved": false,
+      "blend_sha256": "7624ec3bbaf81a5344dac75af7c0e1f3af8e64e09c3a9d7819a165d7042acfca"
+    },
+    {
+      "schema": 2,
+      "id": "cloud_mirror",
+      "display_name": "Cloud Mirror",
+      "category": "equipment",
+      "generator": "scripts/models/catalog_nature.py",
+      "blender": "4.5.9 LTS",
+      "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+      "units": "studs in blend; 0.28 meters per stud in GLB",
+      "triangles": 1568,
+      "pieces": 5,
+      "budget": {
+        "triangles": 4000,
+        "pieces": 8
+      },
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.13775
+      ],
+      "bounds_min": [
+        -0.88,
+        -0.325,
+        0.0
+      ],
+      "bounds_max": [
+        0.88,
+        0.325,
+        2.2755001
+      ],
+      "size_blender_studs": [
+        1.76,
+        0.65,
+        2.2755001
+      ],
+      "objects": [
+        {
+          "name": "cloud_mirror__CloudGlass_blue_01",
+          "mesh_data_name": "cloud_mirror__CloudGlass_blue_01",
+          "material": "blue",
+          "color_srgb": [
+            48,
+            153,
+            239
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 480,
+          "vertices": 248,
+          "motion_group": "CloudGlass",
+          "motion_pivot": [
+            0.0,
+            0.0,
+            1.65
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0022,
+            -0.13,
+            1.7874999
+          ],
+          "center_blender_studs": [
+            0.0022,
+            -0.13,
+            1.7874999
+          ],
+          "size_blender_studs": [
+            1.6192,
+            0.09,
+            0.8039998
+          ],
+          "bounds_min": [
+            -0.8074,
+            -0.175,
+            1.3855001
+          ],
+          "bounds_max": [
+            0.8118,
+            -0.085,
+            2.1894999
+          ],
+          "geometry_sha256": "9767044e564802deec4cd89338e4b1eab9937312d28596edab4d3a1d446e2fff",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "cloud_mirror__CloudGlass_blue_01",
+          "mesh_id": "rbxassetid://98153679467778",
+          "imported_size": [
+            0.45337581634521484,
+            0.225119948387146,
+            0.02520003169775009
+          ]
+        },
+        {
+          "name": "cloud_mirror__Fixed_dark_02",
+          "mesh_data_name": "cloud_mirror__Fixed_dark_02",
+          "material": "dark",
+          "color_srgb": [
+            44,
+            88,
+            126
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 216,
+          "vertices": 112,
+          "motion_group": "Fixed",
+          "motion_pivot": [
+            0.0,
+            0.0,
+            0.6625
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            0.0,
+            0.6625
+          ],
+          "center_blender_studs": [
+            0.0,
+            0.0,
+            0.6625
+          ],
+          "size_blender_studs": [
+            0.9,
+            0.65,
+            1.325
+          ],
+          "bounds_min": [
+            -0.45,
+            -0.325,
+            0.0
+          ],
+          "bounds_max": [
+            0.45,
+            0.325,
+            1.325
+          ],
+          "geometry_sha256": "00762edbe20efe8d40ba2e16a8a35b7d87614db76f7ac8a9ce46b0a3aa11b68c",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "cloud_mirror__Fixed_dark_02",
+          "mesh_id": "rbxassetid://76613685729661",
+          "imported_size": [
+            0.2519998550415039,
+            0.3710000216960907,
+            0.18200001120567322
+          ]
+        },
+        {
+          "name": "cloud_mirror__CloudFrame_pearl_03",
+          "mesh_data_name": "cloud_mirror__CloudFrame_pearl_03",
+          "material": "pearl",
+          "color_srgb": [
+            249,
+            253,
+            255
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 480,
+          "vertices": 248,
+          "motion_group": "CloudFrame",
+          "motion_pivot": [
+            0.0,
+            0.0,
+            1.65
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            0.0,
+            1.7975
+          ],
+          "center_blender_studs": [
+            0.0,
+            0.0,
+            1.7975
+          ],
+          "size_blender_studs": [
+            1.76,
+            0.26,
+            0.9560001
+          ],
+          "bounds_min": [
+            -0.88,
+            -0.13,
+            1.3195
+          ],
+          "bounds_max": [
+            0.88,
+            0.13,
+            2.2755001
+          ],
+          "geometry_sha256": "50e843ea7e7fe607e639d895ac1c0e012e8bcb6ab0d5132940f22c4237f5c558",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "cloud_mirror__CloudFrame_pearl_03",
+          "mesh_id": "rbxassetid://77719265373254",
+          "imported_size": [
+            0.4927997589111328,
+            0.2676800489425659,
+            0.07280002534389496
+          ]
+        },
+        {
+          "name": "cloud_mirror__CloudGlint_pearl_04",
+          "mesh_data_name": "cloud_mirror__CloudGlint_pearl_04",
+          "material": "pearl",
+          "color_srgb": [
+            249,
+            253,
+            255
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 32,
+          "vertices": 18,
+          "motion_group": "CloudGlint",
+          "motion_pivot": [
+            0.0,
+            0.0,
+            1.65
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            -0.197574,
+            -0.19,
+            1.9626567
+          ],
+          "center_blender_studs": [
+            -0.197574,
+            -0.19,
+            1.9626567
+          ],
+          "size_blender_studs": [
+            0.2951481,
+            0.056,
+            0.1631837
+          ],
+          "bounds_min": [
+            -0.3451481,
+            -0.218,
+            1.8810649
+          ],
+          "bounds_max": [
+            -0.05,
+            -0.162,
+            2.0442486
+          ],
+          "geometry_sha256": "5fa2a6f390293e0451d516a94527283fa4ec88ec4b46c0b3d1eec1f6d21d8f79",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "cloud_mirror__CloudGlint_pearl_04",
+          "mesh_id": "rbxassetid://110339997744830",
+          "imported_size": [
+            0.0826416015625,
+            0.04569144546985626,
+            0.01568000763654709
+          ]
+        },
+        {
+          "name": "cloud_mirror__CloudRain_teal_05",
+          "mesh_data_name": "cloud_mirror__CloudRain_teal_05",
+          "material": "teal",
+          "color_srgb": [
+            39,
+            189,
+            220
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 360,
+          "vertices": 186,
+          "motion_group": "CloudRain",
+          "motion_pivot": [
+            0.035,
+            0.0,
+            1.1799999
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.035,
+            0.0,
+            1.1799999
+          ],
+          "center_blender_studs": [
+            0.035,
+            0.0,
+            1.1799999
+          ],
+          "size_blender_studs": [
+            0.89,
+            0.12,
+            0.26
+          ],
+          "bounds_min": [
+            -0.41,
+            -0.06,
+            1.05
+          ],
+          "bounds_max": [
+            0.48,
+            0.06,
+            1.3099999
+          ],
+          "geometry_sha256": "7c8931d8db74c431ee970841c5a1951cc62bca5b7e5a1dc9aa2106163f6e19e0",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "cloud_mirror__CloudRain_teal_05",
+          "mesh_id": "rbxassetid://81908670711382",
+          "imported_size": [
+            0.24919986724853516,
+            0.07279999554157257,
+            0.03360001742839813
+          ]
+        }
+      ],
+      "source": "art/catalog/cloud_mirror/cloud_mirror.blend",
+      "source_preserved": false,
+      "blend_sha256": "943b2e11831c916c1bf86d4ad7365d6be049f2c3cc78113c9e537ecba1ec4309"
+    },
+    {
+      "schema": 2,
+      "id": "coin",
+      "display_name": "Coin",
+      "category": "utility",
+      "generator": "scripts/models/catalog_mechanical.py",
+      "blender": "4.5.9 LTS",
+      "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+      "units": "studs in blend; 0.28 meters per stud in GLB",
+      "triangles": 1296,
+      "pieces": 3,
+      "budget": {
+        "triangles": 4000,
+        "pieces": 8
+      },
+      "center_blender_studs": [
+        0.0,
+        -0.03375,
+        0.8399999
+      ],
+      "bounds_min": [
+        -0.76,
+        -0.1575,
+        0.08
+      ],
+      "bounds_max": [
+        0.76,
+        0.09,
+        1.5999999
+      ],
+      "size_blender_studs": [
+        1.52,
+        0.2475,
+        1.52
+      ],
+      "objects": [
+        {
+          "name": "coin__Coin_dark_01",
+          "mesh_data_name": "coin__Coin_dark_01",
+          "material": "dark",
+          "color_srgb": [
+            44,
+            88,
+            126
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 284,
+          "vertices": 144,
+          "motion_group": "Coin",
+          "motion_pivot": [
+            0.0,
+            0.0,
+            0.84
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            -0.102,
+            0.84
+          ],
+          "center_blender_studs": [
+            0.0,
+            -0.102,
+            0.84
+          ],
+          "size_blender_studs": [
+            1.2,
+            0.0250001,
+            1.2
+          ],
+          "bounds_min": [
+            -0.6,
+            -0.1145,
+            0.2399999
+          ],
+          "bounds_max": [
+            0.6,
+            -0.0895,
+            1.4400001
+          ],
+          "geometry_sha256": "1367a493ab46ca363e16565b1b59f091ecd2bd2b56135119d0f2c6a65dd2ea9e",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "coin__Coin_dark_01",
+          "mesh_id": "rbxassetid://71832089296031",
+          "imported_size": [
+            0.3360000252723694,
+            0.3360000252723694,
+            0.006999969482421875
+          ]
+        },
+        {
+          "name": "coin__Coin_gold_02",
+          "mesh_data_name": "coin__Coin_gold_02",
+          "material": "gold",
+          "color_srgb": [
+            249,
+            189,
+            63
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 716,
+          "vertices": 360,
+          "motion_group": "Coin",
+          "motion_pivot": [
+            0.0,
+            0.0,
+            0.84
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            -0.0301554,
+            0.8399999
+          ],
+          "center_blender_studs": [
+            0.0,
+            -0.0301554,
+            0.8399999
+          ],
+          "size_blender_studs": [
+            1.52,
+            0.2403109,
+            1.52
+          ],
+          "bounds_min": [
+            -0.76,
+            -0.1503109,
+            0.08
+          ],
+          "bounds_max": [
+            0.76,
+            0.09,
+            1.5999999
+          ],
+          "geometry_sha256": "9030948f30790c49adf96d669660c24e03551f016a18b2d9ea6db21515cdf6ec",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "coin__Coin_gold_02",
+          "mesh_id": "rbxassetid://110773001437167",
+          "imported_size": [
+            0.42559999227523804,
+            0.42559999227523804,
+            0.06728708744049072
+          ]
+        },
+        {
+          "name": "coin__Coin_pearl_03",
+          "mesh_data_name": "coin__Coin_pearl_03",
+          "material": "pearl",
+          "color_srgb": [
+            249,
+            253,
+            255
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 296,
+          "vertices": 152,
+          "motion_group": "Coin",
+          "motion_pivot": [
+            0.0,
+            0.0,
+            0.84
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            -0.135,
+            0.7875
+          ],
+          "center_blender_studs": [
+            0.0,
+            -0.135,
+            0.7875
+          ],
+          "size_blender_studs": [
+            0.26,
+            0.045,
+            0.6049999
+          ],
+          "bounds_min": [
+            -0.13,
+            -0.1575,
+            0.485
+          ],
+          "bounds_max": [
+            0.13,
+            -0.1125,
+            1.0899999
+          ],
+          "geometry_sha256": "8d1f36bbcb495afae39d181f0c79523a5da1766f415b2beebc57d3fb2982aaa1",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "coin__Coin_pearl_03",
+          "mesh_id": "rbxassetid://108945546774493",
+          "imported_size": [
+            0.07279999554157257,
+            0.16939997673034668,
+            0.012599945068359375
+          ]
+        }
+      ],
+      "source": "art/catalog/coin/coin.blend",
+      "source_preserved": false,
+      "blend_sha256": "9a579c0d9c8a98aacc46ec9ab963c3d7f792c8c79b81f4b1ad12177c4ccfb05a"
+    },
+    {
+      "schema": 2,
+      "id": "coin_press",
+      "display_name": "Coin Press",
+      "category": "consumable",
+      "generator": "scripts/models/catalog_mechanical.py",
+      "blender": "4.5.9 LTS",
+      "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+      "units": "studs in blend; 0.28 meters per stud in GLB",
+      "triangles": 2580,
+      "pieces": 7,
+      "budget": {
+        "triangles": 4000,
+        "pieces": 8
+      },
+      "center_blender_studs": [
+        0.0,
+        -0.00125,
+        1.1500001
+      ],
+      "bounds_min": [
+        -0.875,
+        -0.6175,
+        0.0
+      ],
+      "bounds_max": [
+        0.875,
+        0.615,
+        2.3000002
+      ],
+      "size_blender_studs": [
+        1.75,
+        1.2325001,
+        2.3000002
+      ],
+      "objects": [
+        {
+          "name": "coin_press__Fixed_dark_01",
+          "mesh_data_name": "coin_press__Fixed_dark_01",
+          "material": "dark",
+          "color_srgb": [
+            44,
+            88,
+            126
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 216,
+          "vertices": 112,
+          "motion_group": "Fixed",
+          "motion_pivot": [
+            0.0,
+            0.0,
+            0.045
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            0.0,
+            0.045
+          ],
+          "center_blender_studs": [
+            0.0,
+            0.0,
+            0.045
+          ],
+          "size_blender_studs": [
+            1.3200001,
+            0.9225,
+            0.09
+          ],
+          "bounds_min": [
+            -0.66,
+            -0.46125,
+            0.0
+          ],
+          "bounds_max": [
+            0.66,
+            0.46125,
+            0.09
+          ],
+          "geometry_sha256": "bf5de2eaf92ce4ff0ec1c65776dc81586e592dfa1d7bbff4111b67e6bbe3a94b",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "coin_press__Fixed_dark_01",
+          "mesh_id": "rbxassetid://121013339745375",
+          "imported_size": [
+            0.3696000576019287,
+            0.0252000093460083,
+            0.2583000659942627
+          ]
+        },
+        {
+          "name": "coin_press__PressScrew_dark_02",
+          "mesh_data_name": "coin_press__PressScrew_dark_02",
+          "material": "dark",
+          "color_srgb": [
+            44,
+            88,
+            126
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 472,
+          "vertices": 240,
+          "motion_group": "PressScrew",
+          "motion_pivot": [
+            0.0,
+            0.0,
+            1.5
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            0.0,
+            1.5600001
+          ],
+          "center_blender_studs": [
+            0.0,
+            0.0,
+            1.5600001
+          ],
+          "size_blender_studs": [
+            0.7,
+            0.7,
+            1.05
+          ],
+          "bounds_min": [
+            -0.35,
+            -0.35,
+            1.0350001
+          ],
+          "bounds_max": [
+            0.35,
+            0.35,
+            2.085
+          ],
+          "geometry_sha256": "1219d225b63aef16d983c9ded0f3b594d04e4161f9c216648a2acc168cf1da67",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "coin_press__PressScrew_dark_02",
+          "mesh_id": "rbxassetid://76920939952485",
+          "imported_size": [
+            0.1960000991821289,
+            0.2939999997615814,
+            0.1960000991821289
+          ]
+        },
+        {
+          "name": "coin_press__MintCoin_gold_03",
+          "mesh_data_name": "coin_press__MintCoin_gold_03",
+          "material": "gold",
+          "color_srgb": [
+            249,
+            189,
+            63
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 236,
+          "vertices": 120,
+          "motion_group": "MintCoin",
+          "motion_pivot": [
+            0.35,
+            -0.54,
+            0.75
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.35,
+            -0.54,
+            0.75
+          ],
+          "center_blender_studs": [
+            0.35,
+            -0.54,
+            0.75
+          ],
+          "size_blender_studs": [
+            0.56,
+            0.11,
+            0.5599999
+          ],
+          "bounds_min": [
+            0.07,
+            -0.595,
+            0.47
+          ],
+          "bounds_max": [
+            0.63,
+            -0.485,
+            1.03
+          ],
+          "geometry_sha256": "2dc6bc6f48959af610667ea04b733b1bc59f207b5087f8a63dc5fdfbe0758017",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "coin_press__MintCoin_gold_03",
+          "mesh_id": "rbxassetid://140298980317214",
+          "imported_size": [
+            0.1568000316619873,
+            0.15680000185966492,
+            0.03080010414123535
+          ]
+        },
+        {
+          "name": "coin_press__PressScrew_gold_04",
+          "mesh_data_name": "coin_press__PressScrew_gold_04",
+          "material": "gold",
+          "color_srgb": [
+            249,
+            189,
+            63
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 800,
+          "vertices": 400,
+          "motion_group": "PressScrew",
+          "motion_pivot": [
+            0.0,
+            0.0,
+            1.5
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            0.0,
+            1.605
+          ],
+          "center_blender_studs": [
+            0.0,
+            0.0,
+            1.605
+          ],
+          "size_blender_studs": [
+            0.45,
+            0.45,
+            0.636574
+          ],
+          "bounds_min": [
+            -0.225,
+            -0.225,
+            1.286713
+          ],
+          "bounds_max": [
+            0.225,
+            0.225,
+            1.923287
+          ],
+          "geometry_sha256": "6928cc5fb3d6addfd2421c2400d75927a398d5fc18db524b4f310032fa1bc50f",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "coin_press__PressScrew_gold_04",
+          "mesh_id": "rbxassetid://107410585746890",
+          "imported_size": [
+            0.12599992752075195,
+            0.17824071645736694,
+            0.12599992752075195
+          ]
+        },
+        {
+          "name": "coin_press__Fixed_pearl_05",
+          "mesh_data_name": "coin_press__Fixed_pearl_05",
+          "material": "pearl",
+          "color_srgb": [
+            249,
+            253,
+            255
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 324,
+          "vertices": 168,
+          "motion_group": "Fixed",
+          "motion_pivot": [
+            0.0,
+            0.0,
+            1.0550001
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            0.0,
+            1.0550001
+          ],
+          "center_blender_studs": [
+            0.0,
+            0.0,
+            1.0550001
+          ],
+          "size_blender_studs": [
+            1.75,
+            1.23,
+            2.1100001
+          ],
+          "bounds_min": [
+            -0.875,
+            -0.615,
+            0.0
+          ],
+          "bounds_max": [
+            0.875,
+            0.615,
+            2.1100001
+          ],
+          "geometry_sha256": "804ecffc4218d76230ae276323db4b950821fe258240140cb589b869ae493d3c",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "coin_press__Fixed_pearl_05",
+          "mesh_id": "rbxassetid://140631682298077",
+          "imported_size": [
+            0.49000000953674316,
+            0.5908000469207764,
+            0.34439992904663086
+          ]
+        },
+        {
+          "name": "coin_press__MintCoin_pearl_06",
+          "mesh_data_name": "coin_press__MintCoin_pearl_06",
+          "material": "pearl",
+          "color_srgb": [
+            249,
+            253,
+            255
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 188,
+          "vertices": 96,
+          "motion_group": "MintCoin",
+          "motion_pivot": [
+            0.35,
+            -0.54,
+            0.75
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.35,
+            -0.605,
+            0.75
+          ],
+          "center_blender_studs": [
+            0.35,
+            -0.605,
+            0.75
+          ],
+          "size_blender_studs": [
+            0.3,
+            0.025,
+            0.3
+          ],
+          "bounds_min": [
+            0.2,
+            -0.6175,
+            0.6
+          ],
+          "bounds_max": [
+            0.5,
+            -0.5925,
+            0.9
+          ],
+          "geometry_sha256": "b7cc1d665d85c3cef1ed5ded80302e2f122f887a1d9e7554f6e03b8aa965c221",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "coin_press__MintCoin_pearl_06",
+          "mesh_id": "rbxassetid://121795189898901",
+          "imported_size": [
+            0.0840001106262207,
+            0.08399997651576996,
+            0.006999969482421875
+          ]
+        },
+        {
+          "name": "coin_press__Fixed_teal_07",
+          "mesh_data_name": "coin_press__Fixed_teal_07",
+          "material": "teal",
+          "color_srgb": [
+            39,
+            189,
+            220
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 344,
+          "vertices": 176,
+          "motion_group": "Fixed",
+          "motion_pivot": [
+            0.0,
+            0.025,
+            1.335
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            0.025,
+            1.335
+          ],
+          "center_blender_studs": [
+            0.0,
+            0.025,
+            1.335
+          ],
+          "size_blender_studs": [
+            1.63,
+            0.83,
+            1.9300002
+          ],
+          "bounds_min": [
+            -0.815,
+            -0.39,
+            0.37
+          ],
+          "bounds_max": [
+            0.815,
+            0.44,
+            2.3000002
+          ],
+          "geometry_sha256": "552906d0a037ae4337effcba80a2d2a24077b5354cfcb7b401c8b60dd2356f2d",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "coin_press__Fixed_teal_07",
+          "mesh_id": "rbxassetid://139171042181474",
+          "imported_size": [
+            0.45639991760253906,
+            0.5404000282287598,
+            0.23239994049072266
+          ]
+        }
+      ],
+      "source": "art/catalog/coin_press/coin_press.blend",
+      "source_preserved": false,
+      "blend_sha256": "c6da331ea10428a5016470550cedd9d1dd8b946168291a0dafd238288f1d351f"
+    },
+    {
+      "schema": 2,
+      "id": "compass",
+      "display_name": "Compass",
+      "category": "equipment",
+      "generator": "scripts/models/catalog_mechanical.py",
+      "blender": "4.5.9 LTS",
+      "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+      "units": "studs in blend; 0.28 meters per stud in GLB",
+      "triangles": 2308,
+      "pieces": 5,
+      "budget": {
+        "triangles": 4000,
+        "pieces": 8
+      },
+      "center_blender_studs": [
+        0.0,
+        -0.095,
+        1.2275
+      ],
+      "bounds_min": [
+        -0.86,
+        -0.34,
+        0.21
+      ],
+      "bounds_max": [
+        0.86,
+        0.15,
+        2.2449999
+      ],
+      "size_blender_studs": [
+        1.72,
+        0.49,
+        2.0349998
+      ],
+      "objects": [
+        {
+          "name": "compass__Fixed_dark_01",
+          "mesh_data_name": "compass__Fixed_dark_01",
+          "material": "dark",
+          "color_srgb": [
+            44,
+            88,
+            126
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 332,
+          "vertices": 168,
+          "motion_group": "Fixed",
+          "motion_pivot": [
+            0.0,
+            -0.17,
+            1.0700001
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            -0.17,
+            1.0700001
+          ],
+          "center_blender_studs": [
+            0.0,
+            -0.17,
+            1.0700001
+          ],
+          "size_blender_studs": [
+            1.4,
+            0.0400001,
+            1.3999999
+          ],
+          "bounds_min": [
+            -0.7,
+            -0.19,
+            0.3700001
+          ],
+          "bounds_max": [
+            0.7,
+            -0.15,
+            1.77
+          ],
+          "geometry_sha256": "daaf667e62befd4043e45b698f6d77a48ec264d92106e61cafbe733855bae0e4",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "compass__Fixed_dark_01",
+          "mesh_id": "rbxassetid://94338012855287",
+          "imported_size": [
+            0.3920001983642578,
+            0.3919999599456787,
+            0.011199951171875
+          ]
+        },
+        {
+          "name": "compass__Needle_gold_02",
+          "mesh_data_name": "compass__Needle_gold_02",
+          "material": "gold",
+          "color_srgb": [
+            249,
+            189,
+            63
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 8,
+          "vertices": 6,
+          "motion_group": "Needle",
+          "motion_pivot": [
+            0.0,
+            -0.27,
+            1.07
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            -0.27,
+            1.345
+          ],
+          "center_blender_studs": [
+            0.0,
+            -0.27,
+            1.345
+          ],
+          "size_blender_studs": [
+            0.26,
+            0.045,
+            0.61
+          ],
+          "bounds_min": [
+            -0.13,
+            -0.2925,
+            1.04
+          ],
+          "bounds_max": [
+            0.13,
+            -0.2475,
+            1.65
+          ],
+          "geometry_sha256": "84595b561c3a381e332d4723b86a7df903f7463668773e2bff658131cabf3586",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "compass__Needle_gold_02",
+          "mesh_id": "rbxassetid://106959140638390",
+          "imported_size": [
+            0.0728001594543457,
+            0.17080000042915344,
+            0.012599945068359375
+          ]
+        },
+        {
+          "name": "compass__Fixed_pearl_03",
+          "mesh_data_name": "compass__Fixed_pearl_03",
+          "material": "pearl",
+          "color_srgb": [
+            249,
+            253,
+            255
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 1384,
+          "vertices": 712,
+          "motion_group": "Fixed",
+          "motion_pivot": [
+            0.0,
+            -0.095,
+            1.0700001
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            -0.095,
+            1.0700001
+          ],
+          "center_blender_studs": [
+            0.0,
+            -0.095,
+            1.0700001
+          ],
+          "size_blender_studs": [
+            1.72,
+            0.49,
+            1.72
+          ],
+          "bounds_min": [
+            -0.86,
+            -0.34,
+            0.21
+          ],
+          "bounds_max": [
+            0.86,
+            0.15,
+            1.9300001
+          ],
+          "geometry_sha256": "b490986b42963a201ce9135ed7a5e8dbfc09ef990b7a6f302549650e7a526263",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "compass__Fixed_pearl_03",
+          "mesh_id": "rbxassetid://93098249778196",
+          "imported_size": [
+            0.4815998077392578,
+            0.4816000163555145,
+            0.13720011711120605
+          ]
+        },
+        {
+          "name": "compass__Fixed_teal_04",
+          "mesh_data_name": "compass__Fixed_teal_04",
+          "material": "teal",
+          "color_srgb": [
+            39,
+            189,
+            220
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 576,
+          "vertices": 288,
+          "motion_group": "Fixed",
+          "motion_pivot": [
+            0.0,
+            -0.08,
+            1.2549999
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            -0.08,
+            1.2549999
+          ],
+          "center_blender_studs": [
+            0.0,
+            -0.08,
+            1.2549999
+          ],
+          "size_blender_studs": [
+            1.61,
+            0.2779423,
+            1.9799999
+          ],
+          "bounds_min": [
+            -0.805,
+            -0.2189711,
+            0.265
+          ],
+          "bounds_max": [
+            0.805,
+            0.0589712,
+            2.2449999
+          ],
+          "geometry_sha256": "dd6aad840e09149966be751bba98c29ad511536c043e1e8b700067891ae1d1a5",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "compass__Fixed_teal_04",
+          "mesh_id": "rbxassetid://131219639335334",
+          "imported_size": [
+            0.45079994201660156,
+            0.5543999671936035,
+            0.07782387733459473
+          ]
+        },
+        {
+          "name": "compass__Needle_teal_05",
+          "mesh_data_name": "compass__Needle_teal_05",
+          "material": "teal",
+          "color_srgb": [
+            39,
+            189,
+            220
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 8,
+          "vertices": 6,
+          "motion_group": "Needle",
+          "motion_pivot": [
+            0.0,
+            -0.27,
+            1.07
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            -0.27,
+            0.795
+          ],
+          "center_blender_studs": [
+            0.0,
+            -0.27,
+            0.795
+          ],
+          "size_blender_studs": [
+            0.26,
+            0.045,
+            0.61
+          ],
+          "bounds_min": [
+            -0.13,
+            -0.2925,
+            0.49
+          ],
+          "bounds_max": [
+            0.13,
+            -0.2475,
+            1.1
+          ],
+          "geometry_sha256": "2e8fa0c8c9691428cc689bd09c2f2f396d002f7f0d9513070b0e5a12a1d67dd4",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "compass__Needle_teal_05",
+          "mesh_id": "rbxassetid://136462538280347",
+          "imported_size": [
+            0.0728001594543457,
+            0.17080000042915344,
+            0.012599945068359375
+          ]
+        }
+      ],
+      "source": "art/catalog/compass/compass.blend",
+      "source_preserved": false,
+      "blend_sha256": "b79d84ece7573a64087bd9da4d93afd7b2afef70eff8bb0c92b248b8c17d352d"
+    },
+    {
+      "schema": 2,
+      "id": "coral_fork",
+      "display_name": "Coral Fork",
+      "category": "equipment",
+      "generator": "scripts/models/catalog_nature.py",
+      "blender": "4.5.9 LTS",
+      "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+      "units": "studs in blend; 0.28 meters per stud in GLB",
+      "triangles": 844,
+      "pieces": 7,
+      "budget": {
+        "triangles": 4000,
+        "pieces": 8
+      },
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.0350001
+      ],
+      "bounds_min": [
+        -0.81,
+        -0.34,
+        0.0
+      ],
+      "bounds_max": [
+        0.81,
+        0.34,
+        2.0700002
+      ],
+      "size_blender_studs": [
+        1.62,
+        0.68,
+        2.0700002
+      ],
+      "objects": [
+        {
+          "name": "coral_fork__Fixed_dark_01",
+          "mesh_data_name": "coral_fork__Fixed_dark_01",
+          "material": "dark",
+          "color_srgb": [
+            44,
+            88,
+            126
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 108,
+          "vertices": 56,
+          "motion_group": "Fixed",
+          "motion_pivot": [
+            0.0,
+            0.0,
+            0.12
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            0.0,
+            0.12
+          ],
+          "center_blender_studs": [
+            0.0,
+            0.0,
+            0.12
+          ],
+          "size_blender_studs": [
+            1.05,
+            0.68,
+            0.24
+          ],
+          "bounds_min": [
+            -0.525,
+            -0.34,
+            0.0
+          ],
+          "bounds_max": [
+            0.525,
+            0.34,
+            0.24
+          ],
+          "geometry_sha256": "dea90b3da21c8f19d4a76d0e4089f9e4c6efe1f7c2f3f804ab36ba29b0a94f3d",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "coral_fork__Fixed_dark_01",
+          "mesh_id": "rbxassetid://109688769947834",
+          "imported_size": [
+            0.29399967193603516,
+            0.06720000505447388,
+            0.1904001235961914
+          ]
+        },
+        {
+          "name": "coral_fork__CoralTip_gold_02",
+          "mesh_data_name": "coral_fork__CoralTip_gold_02",
+          "material": "gold",
+          "color_srgb": [
+            249,
+            189,
+            63
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 120,
+          "vertices": 62,
+          "motion_group": "CoralTip",
+          "motion_pivot": [
+            -0.25,
+            0.0,
+            0.48
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            -0.68,
+            0.0,
+            1.9400001
+          ],
+          "center_blender_studs": [
+            -0.68,
+            0.0,
+            1.9400001
+          ],
+          "size_blender_studs": [
+            0.26,
+            0.26,
+            0.2600001
+          ],
+          "bounds_min": [
+            -0.81,
+            -0.13,
+            1.8100001
+          ],
+          "bounds_max": [
+            -0.55,
+            0.13,
+            2.0700002
+          ],
+          "geometry_sha256": "1da3eda649500e7b20e4f805fdb74e253238ea93741fc9da11d396669221c5b6",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "coral_fork__CoralTip_gold_02",
+          "mesh_id": "rbxassetid://98952256986618",
+          "imported_size": [
+            0.0727999210357666,
+            0.07280001044273376,
+            0.0727999210357666
+          ]
+        },
+        {
+          "name": "coral_fork__CoralTip_gold_03",
+          "mesh_data_name": "coral_fork__CoralTip_gold_03",
+          "material": "gold",
+          "color_srgb": [
+            249,
+            189,
+            63
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 120,
+          "vertices": 62,
+          "motion_group": "CoralTip",
+          "motion_pivot": [
+            0.25,
+            0.0,
+            0.48
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.68,
+            0.0,
+            1.9400001
+          ],
+          "center_blender_studs": [
+            0.68,
+            0.0,
+            1.9400001
+          ],
+          "size_blender_studs": [
+            0.26,
+            0.26,
+            0.2600001
+          ],
+          "bounds_min": [
+            0.55,
+            -0.13,
+            1.8100001
+          ],
+          "bounds_max": [
+            0.81,
+            0.13,
+            2.0700002
+          ],
+          "geometry_sha256": "2363e025c47ccd9ec97b276d80c5e31eb4942f036d23736db6d44b4ce2dd0734",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "coral_fork__CoralTip_gold_03",
+          "mesh_id": "rbxassetid://110746203897953",
+          "imported_size": [
+            0.0727996826171875,
+            0.07280001044273376,
+            0.0727999210357666
+          ]
+        },
+        {
+          "name": "coral_fork__CoralCrown_pearl_04",
+          "mesh_data_name": "coral_fork__CoralCrown_pearl_04",
+          "material": "pearl",
+          "color_srgb": [
+            249,
+            253,
+            255
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 288,
+          "vertices": 144,
+          "motion_group": "CoralCrown",
+          "motion_pivot": [
+            0.0,
+            0.0,
+            1.12
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            0.0,
+            1.12
+          ],
+          "center_blender_studs": [
+            0.0,
+            0.0,
+            1.12
+          ],
+          "size_blender_studs": [
+            0.62,
+            0.0866025,
+            0.6199999
+          ],
+          "bounds_min": [
+            -0.31,
+            -0.0433013,
+            0.81
+          ],
+          "bounds_max": [
+            0.31,
+            0.0433013,
+            1.4299999
+          ],
+          "geometry_sha256": "44d2da0e018aadd65d708d540a1d57d787402c6e2e0a74b43b1f28f986254c1e",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "coral_fork__CoralCrown_pearl_04",
+          "mesh_id": "rbxassetid://98155149394276",
+          "imported_size": [
+            0.1736001968383789,
+            0.1735999882221222,
+            0.024248838424682617
+          ]
+        },
+        {
+          "name": "coral_fork__Fixed_pearl_05",
+          "mesh_data_name": "coral_fork__Fixed_pearl_05",
+          "material": "pearl",
+          "color_srgb": [
+            249,
+            253,
+            255
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 120,
+          "vertices": 62,
+          "motion_group": "Fixed",
+          "motion_pivot": [
+            0.0,
+            0.0,
+            0.35
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.0,
+            0.0,
+            0.35
+          ],
+          "center_blender_studs": [
+            0.0,
+            0.0,
+            0.35
+          ],
+          "size_blender_studs": [
+            1.0,
+            0.56,
+            0.44
+          ],
+          "bounds_min": [
+            -0.5,
+            -0.28,
+            0.13
+          ],
+          "bounds_max": [
+            0.5,
+            0.28,
+            0.57
+          ],
+          "geometry_sha256": "69532ce53642de413ebbe8d543fc480e8d9fec49a91283782ea66888ffd45789",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "coral_fork__Fixed_pearl_05",
+          "mesh_id": "rbxassetid://98531455930451",
+          "imported_size": [
+            0.2799997329711914,
+            0.12320001423358917,
+            0.1568000316619873
+          ]
+        },
+        {
+          "name": "coral_fork__CoralTine_teal_06",
+          "mesh_data_name": "coral_fork__CoralTine_teal_06",
+          "material": "teal",
+          "color_srgb": [
+            39,
+            189,
+            220
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 44,
+          "vertices": 24,
+          "motion_group": "CoralTine",
+          "motion_pivot": [
+            -0.25,
+            0.0,
+            0.48
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            -0.4151385,
+            0.0,
+            1.1724272
+          ],
+          "center_blender_studs": [
+            -0.4151385,
+            0.0,
+            1.1724272
+          ],
+          "size_blender_studs": [
+            0.6568711,
+            0.19,
+            1.6195886
+          ],
+          "bounds_min": [
+            -0.7435741,
+            -0.095,
+            0.3626329
+          ],
+          "bounds_max": [
+            -0.086703,
+            0.095,
+            1.9822215
+          ],
+          "geometry_sha256": "f70f6d2adc356777e83f1e9019ac749135725c6bdf57f94184394ea0cd6f7c04",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "coral_fork__CoralTine_teal_06",
+          "mesh_id": "rbxassetid://124335850748770",
+          "imported_size": [
+            0.18392372131347656,
+            0.45348480343818665,
+            0.05320000648498535
+          ]
+        },
+        {
+          "name": "coral_fork__CoralTine_teal_07",
+          "mesh_data_name": "coral_fork__CoralTine_teal_07",
+          "material": "teal",
+          "color_srgb": [
+            39,
+            189,
+            220
+          ],
+          "alpha": 1.0,
+          "transparency": 0.0,
+          "triangles": 44,
+          "vertices": 24,
+          "motion_group": "CoralTine",
+          "motion_pivot": [
+            0.25,
+            0.0,
+            0.48
+          ],
+          "compression_span": null,
+          "original_center_blender_studs": [
+            0.4151385,
+            0.0,
+            1.1724272
+          ],
+          "center_blender_studs": [
+            0.4151385,
+            0.0,
+            1.1724272
+          ],
+          "size_blender_studs": [
+            0.6568711,
+            0.19,
+            1.6195886
+          ],
+          "bounds_min": [
+            0.086703,
+            -0.095,
+            0.3626329
+          ],
+          "bounds_max": [
+            0.7435741,
+            0.095,
+            1.9822215
+          ],
+          "geometry_sha256": "25bba343d5c6c8565be32a509036c8ce0c00c08cf0aaffda00674a58375dc47f",
+          "nonmanifold_edges": 0,
+          "degenerate_faces": 0,
+          "imported_name": "coral_fork__CoralTine_teal_07",
+          "mesh_id": "rbxassetid://127719384456541",
+          "imported_size": [
+            0.18392372131347656,
+            0.45348480343818665,
+            0.05320000648498535
+          ]
+        }
+      ],
+      "source": "art/catalog/coral_fork/coral_fork.blend",
+      "source_preserved": false,
+      "blend_sha256": "037b9a1cb1298a2b446a02bc930cce985030f444ef9aed0b4dfc5c62460b677c"
+    }
+  ],
+  "scope": "Observed mesh IDs bound to exact source/export bytes; remote mesh bytes are not independently rehashed.",
+  "policy": "Normalize local clones only; preserve raw imported package and upload."
+}

@@ -1,0 +1,335 @@
+{
+  "schema": 2,
+  "id": "relay",
+  "display_name": "Current Relay",
+  "category": "equipment",
+  "generator": "scripts/models/catalog_mechanical.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 2792,
+  "pieces": 6,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    0.0,
+    1.02
+  ],
+  "bounds_min": [
+    -0.975,
+    -0.575,
+    0.0
+  ],
+  "bounds_max": [
+    0.975,
+    0.575,
+    2.04
+  ],
+  "size_blender_studs": [
+    1.95,
+    1.15,
+    2.04
+  ],
+  "objects": [
+    {
+      "name": "relay__Fixed_dark_01",
+      "mesh_data_name": "relay__Fixed_dark_01",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 452,
+      "vertices": 232,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.665
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.665
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.665
+      ],
+      "size_blender_studs": [
+        1.4480001,
+        0.8625,
+        1.3299999
+      ],
+      "bounds_min": [
+        -0.724,
+        -0.43125,
+        0.0
+      ],
+      "bounds_max": [
+        0.724,
+        0.43125,
+        1.3299999
+      ],
+      "geometry_sha256": "c75222edd7d53ad464239462dbc224ab443bd9e8e59cc19a742fdc9004af1117",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "relay__Contact_gold_02",
+      "mesh_data_name": "relay__Contact_gold_02",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Contact",
+      "motion_pivot": [
+        0.0,
+        -0.35,
+        1.72
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.35,
+        1.72
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.35,
+        1.72
+      ],
+      "size_blender_studs": [
+        1.16,
+        0.18,
+        0.0999999
+      ],
+      "bounds_min": [
+        -0.58,
+        -0.44,
+        1.6700001
+      ],
+      "bounds_max": [
+        0.58,
+        -0.26,
+        1.77
+      ],
+      "geometry_sha256": "f88263356f85e06f3b1d18f90b427971ceada9c37880f3e153a17857273ad4fa",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "relay__Fixed_gold_03",
+      "mesh_data_name": "relay__Fixed_gold_03",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 328,
+      "vertices": 168,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.41,
+        0.52
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.41,
+        0.52
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.41,
+        0.52
+      ],
+      "size_blender_studs": [
+        1.5139828,
+        0.24,
+        0.25
+      ],
+      "bounds_min": [
+        -0.7569914,
+        -0.53,
+        0.395
+      ],
+      "bounds_max": [
+        0.7569914,
+        -0.29,
+        0.645
+      ],
+      "geometry_sha256": "aac729577135cb3fce035529442cd24571b1e8c22a5f0f105f50403bf93061ae",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "relay__Fixed_pearl_04",
+      "mesh_data_name": "relay__Fixed_pearl_04",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 432,
+      "vertices": 224,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.02
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.02
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.02
+      ],
+      "size_blender_studs": [
+        1.95,
+        1.15,
+        2.04
+      ],
+      "bounds_min": [
+        -0.975,
+        -0.575,
+        0.0
+      ],
+      "bounds_max": [
+        0.975,
+        0.575,
+        2.04
+      ],
+      "geometry_sha256": "49f1dc525a12ac75a1315a78c7dc780cf1fc6ca4e66511e86293d073ef4211f3",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "relay__Contact_teal_05",
+      "mesh_data_name": "relay__Contact_teal_05",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 120,
+      "vertices": 62,
+      "motion_group": "Contact",
+      "motion_pivot": [
+        0.0,
+        -0.35,
+        1.72
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.5,
+        -0.35,
+        1.79
+      ],
+      "center_blender_studs": [
+        0.5,
+        -0.35,
+        1.79
+      ],
+      "size_blender_studs": [
+        0.16,
+        0.16,
+        0.1199999
+      ],
+      "bounds_min": [
+        0.42,
+        -0.43,
+        1.73
+      ],
+      "bounds_max": [
+        0.58,
+        -0.27,
+        1.8499999
+      ],
+      "geometry_sha256": "b413313aa068d32e67c777ade6adf724270246fdd4baaeb82c20bc0f44bb6f5c",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "relay__Winding_teal_06",
+      "mesh_data_name": "relay__Winding_teal_06",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 1352,
+      "vertices": 678,
+      "motion_group": "Winding",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.04
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.0021743,
+        -1.3e-06,
+        1.0399983
+      ],
+      "center_blender_studs": [
+        -0.0021743,
+        -1.3e-06,
+        1.0399983
+      ],
+      "size_blender_studs": [
+        1.3093889,
+        0.8535582,
+        0.8535551
+      ],
+      "bounds_min": [
+        -0.6568687,
+        -0.4267804,
+        0.6132208
+      ],
+      "bounds_max": [
+        0.6525202,
+        0.4267778,
+        1.4667759
+      ],
+      "geometry_sha256": "c8995a2b223babf99644f42b5f2c4b3c270af76ed5b26e9b79d96960d5a1755e",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/relay/relay.blend",
+  "source_preserved": false,
+  "blend_sha256": "926104d3ec8424bc1fe7b046af1ba5df96bf986a74dfc97bfd4bc27228b98007"
+}

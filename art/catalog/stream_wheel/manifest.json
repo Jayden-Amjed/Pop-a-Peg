@@ -1,0 +1,237 @@
+{
+  "schema": 2,
+  "id": "stream_wheel",
+  "display_name": "Stream Wheel",
+  "category": "equipment",
+  "generator": "scripts/models/catalog_nature.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 2112,
+  "pieces": 4,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    0.0,
+    1.0575
+  ],
+  "bounds_min": [
+    -0.625,
+    -0.765,
+    0.0
+  ],
+  "bounds_max": [
+    0.625,
+    0.765,
+    2.115
+  ],
+  "size_blender_studs": [
+    1.25,
+    1.53,
+    2.115
+  ],
+  "objects": [
+    {
+      "name": "stream_wheel__Fixed_dark_01",
+      "mesh_data_name": "stream_wheel__Fixed_dark_01",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 324,
+      "vertices": 168,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.6125
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.6125
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.6125
+      ],
+      "size_blender_studs": [
+        1.25,
+        1.15,
+        1.2249999
+      ],
+      "bounds_min": [
+        -0.625,
+        -0.575,
+        0.0
+      ],
+      "bounds_max": [
+        0.625,
+        0.575,
+        1.2249999
+      ],
+      "geometry_sha256": "940d4b6522e552beca8a9e3ee3a87621d8b6c9218b5e7f901fcb1d3676c5a38a",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "stream_wheel__StreamSpoke_gold_02",
+      "mesh_data_name": "stream_wheel__StreamSpoke_gold_02",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 188,
+      "vertices": 96,
+      "motion_group": "StreamSpoke",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.35
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.35
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.35
+      ],
+      "size_blender_studs": [
+        1.2,
+        0.22,
+        0.22
+      ],
+      "bounds_min": [
+        -0.6,
+        -0.11,
+        1.24
+      ],
+      "bounds_max": [
+        0.6,
+        0.11,
+        1.46
+      ],
+      "geometry_sha256": "1973e5baba9f593e3b3f3b5f9c48ab35d4758b8cca92115a63552256725590fa",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "stream_wheel__StreamSpoke_pearl_03",
+      "mesh_data_name": "stream_wheel__StreamSpoke_pearl_03",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 736,
+      "vertices": 384,
+      "motion_group": "StreamSpoke",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.35
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.35
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.35
+      ],
+      "size_blender_studs": [
+        0.8125833,
+        1.53,
+        1.53
+      ],
+      "bounds_min": [
+        -0.4062917,
+        -0.765,
+        0.585
+      ],
+      "bounds_max": [
+        0.4062917,
+        0.765,
+        2.115
+      ],
+      "geometry_sha256": "3799d1c892ac98a2f4364f4ca2cf0fc4669d737e9028936dd2ba69562b12cf65",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "stream_wheel__StreamPaddle_teal_04",
+      "mesh_data_name": "stream_wheel__StreamPaddle_teal_04",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 864,
+      "vertices": 448,
+      "motion_group": "StreamPaddle",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.35
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.3499999
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.3499999
+      ],
+      "size_blender_studs": [
+        0.74,
+        1.52,
+        1.5199999
+      ],
+      "bounds_min": [
+        -0.37,
+        -0.76,
+        0.59
+      ],
+      "bounds_max": [
+        0.37,
+        0.76,
+        2.1099999
+      ],
+      "geometry_sha256": "33698fcf24b31d94934b2cc4af1b5cdd8261c2c1e206ee00d0df2a7f14be6789",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/stream_wheel/stream_wheel.blend",
+  "source_preserved": false,
+  "blend_sha256": "adb1f7d50545ab558f4d7acb9da8e586f36aa872871ecd20fbe16fb6cd50670d"
+}

@@ -1,0 +1,433 @@
+{
+  "schema": 2,
+  "id": "fishbowl",
+  "display_name": "Fishbowl",
+  "category": "equipment",
+  "generator": "scripts/models/catalog_nature.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 1916,
+  "pieces": 8,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    0.0,
+    1.0194856
+  ],
+  "bounds_min": [
+    -1.02,
+    -1.02,
+    0.1
+  ],
+  "bounds_max": [
+    1.02,
+    1.02,
+    1.9389712
+  ],
+  "size_blender_studs": [
+    2.04,
+    2.04,
+    1.8389711
+  ],
+  "objects": [
+    {
+      "name": "fishbowl__FishBody_dark_01",
+      "mesh_data_name": "fishbowl__FishBody_dark_01",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 240,
+      "vertices": 124,
+      "motion_group": "FishBody",
+      "motion_pivot": [
+        0.12,
+        -0.14,
+        0.92
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.38,
+        -0.14,
+        0.9915
+      ],
+      "center_blender_studs": [
+        0.38,
+        -0.14,
+        0.9915
+      ],
+      "size_blender_studs": [
+        0.0949,
+        0.351,
+        0.0949
+      ],
+      "bounds_min": [
+        0.33255,
+        -0.3155,
+        0.94405
+      ],
+      "bounds_max": [
+        0.42745,
+        0.0355,
+        1.03895
+      ],
+      "geometry_sha256": "d910362b65624b8b7a356b53cd9702b270e29c8d217c0c50665ff366b63d2e04",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "fishbowl__Water_glass_02",
+      "mesh_data_name": "fishbowl__Water_glass_02",
+      "material": "glass",
+      "color_srgb": [
+        145,
+        244,
+        255
+      ],
+      "alpha": 0.25,
+      "transparency": 0.75,
+      "triangles": 480,
+      "vertices": 240,
+      "motion_group": "Water",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "size_blender_studs": [
+        2.04,
+        2.04,
+        1.8
+      ],
+      "bounds_min": [
+        -1.02,
+        -1.02,
+        0.1
+      ],
+      "bounds_max": [
+        1.02,
+        1.02,
+        1.9
+      ],
+      "geometry_sha256": "761dd40cf93c7460cf0ae1f1b932327399bc4f16192476d98760297b4afc4836",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "fishbowl__Waterline_glass_03",
+      "mesh_data_name": "fishbowl__Waterline_glass_03",
+      "material": "glass",
+      "color_srgb": [
+        145,
+        244,
+        255
+      ],
+      "alpha": 0.25,
+      "transparency": 0.75,
+      "triangles": 284,
+      "vertices": 144,
+      "motion_group": "Waterline",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.38
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.38
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.38
+      ],
+      "size_blender_studs": [
+        1.74,
+        1.74,
+        0.0250001
+      ],
+      "bounds_min": [
+        -0.87,
+        -0.87,
+        1.3674999
+      ],
+      "bounds_max": [
+        0.87,
+        0.87,
+        1.3925
+      ],
+      "geometry_sha256": "660c914be0b69f72bab50c9064cc979a5692d7b93f01475a877c83043dff74e4",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "fishbowl__FishBody_gold_04",
+      "mesh_data_name": "fishbowl__FishBody_gold_04",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 344,
+      "vertices": 176,
+      "motion_group": "FishBody",
+      "motion_pivot": [
+        0.12,
+        -0.14,
+        0.92
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.1395,
+        -0.14,
+        0.9200001
+      ],
+      "center_blender_studs": [
+        0.1395,
+        -0.14,
+        0.9200001
+      ],
+      "size_blender_studs": [
+        0.8839999,
+        0.351,
+        0.52
+      ],
+      "bounds_min": [
+        -0.3024999,
+        -0.3155,
+        0.66
+      ],
+      "bounds_max": [
+        0.5815,
+        0.0355,
+        1.1800001
+      ],
+      "geometry_sha256": "c86919986fdd2240c4db45b3df24244ffba04d025665d6a3aae1737a68bb1b40",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "fishbowl__FishTail_gold_05",
+      "mesh_data_name": "fishbowl__FishTail_gold_05",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 16,
+      "vertices": 10,
+      "motion_group": "FishTail",
+      "motion_pivot": [
+        -0.2375,
+        -0.14,
+        0.92
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.3935,
+        -0.14,
+        0.92
+      ],
+      "center_blender_studs": [
+        -0.3935,
+        -0.14,
+        0.92
+      ],
+      "size_blender_studs": [
+        0.312,
+        0.0845,
+        0.4680001
+      ],
+      "bounds_min": [
+        -0.5495,
+        -0.18225,
+        0.686
+      ],
+      "bounds_max": [
+        -0.2375,
+        -0.09775,
+        1.154
+      ],
+      "geometry_sha256": "96c2fb9eec422a3f8ce8f02a5a1a3a644f75d6e5a777951546503083ead5a0af",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "fishbowl__Reeds_green_06",
+      "mesh_data_name": "fishbowl__Reeds_green_06",
+      "material": "green",
+      "color_srgb": [
+        142,
+        220,
+        103
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 16,
+      "vertices": 12,
+      "motion_group": "Reeds",
+      "motion_pivot": [
+        0.0,
+        0.32,
+        0.24
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.5192659,
+        0.2725958,
+        0.5959372
+      ],
+      "center_blender_studs": [
+        -0.5192659,
+        0.2725958,
+        0.5959372
+      ],
+      "size_blender_studs": [
+        0.3666114,
+        0.0948083,
+        0.7118744
+      ],
+      "bounds_min": [
+        -0.7025716,
+        0.2251917,
+        0.24
+      ],
+      "bounds_max": [
+        -0.3359603,
+        0.32,
+        0.9518744
+      ],
+      "geometry_sha256": "9104a8306bb5fc844574ba5fdd02fbaa7f0ac49ad55f75a21d74027e3800250b",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "fishbowl__FishFin_pearl_07",
+      "mesh_data_name": "fishbowl__FishFin_pearl_07",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 248,
+      "vertices": 130,
+      "motion_group": "FishFin",
+      "motion_pivot": [
+        0.12,
+        -0.14,
+        0.92
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.11675,
+        -0.14,
+        1.0434999
+      ],
+      "center_blender_studs": [
+        0.11675,
+        -0.14,
+        1.0434999
+      ],
+      "size_blender_studs": [
+        0.4095,
+        0.4225,
+        0.572
+      ],
+      "bounds_min": [
+        -0.088,
+        -0.35125,
+        0.7575
+      ],
+      "bounds_max": [
+        0.3215,
+        0.07125,
+        1.3295
+      ],
+      "geometry_sha256": "756804545e028b48ba7e6ce918e36d543483781a4891cc73efb9855bce006291",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "fishbowl__Fixed_pearl_08",
+      "mesh_data_name": "fishbowl__Fixed_pearl_08",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 288,
+      "vertices": 144,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.9000001
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.9000001
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.9000001
+      ],
+      "size_blender_studs": [
+        1.35,
+        1.35,
+        0.0779423
+      ],
+      "bounds_min": [
+        -0.675,
+        -0.675,
+        1.8610289
+      ],
+      "bounds_max": [
+        0.675,
+        0.675,
+        1.9389712
+      ],
+      "geometry_sha256": "130abdbad9208738ed80129adebe8d977113863dadc39b45af5f8150a091804c",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/fishbowl/fishbowl.blend",
+  "source_preserved": false,
+  "blend_sha256": "3b28ab18af369a23c9d81d89c3391312da4cbaa5f9b4ada021f6391833d5ef66"
+}

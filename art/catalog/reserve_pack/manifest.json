@@ -1,0 +1,384 @@
+{
+  "schema": 2,
+  "id": "reserve_pack",
+  "display_name": "Reserve Pack",
+  "category": "consumable",
+  "generator": "scripts/models/catalog_mechanical.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 1380,
+  "pieces": 7,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    -0.0400001,
+    0.9074759
+  ],
+  "bounds_min": [
+    -0.9,
+    -0.67,
+    0.03
+  ],
+  "bounds_max": [
+    0.9,
+    0.5899999,
+    1.7849519
+  ],
+  "size_blender_studs": [
+    1.8,
+    1.26,
+    1.754952
+  ],
+  "objects": [
+    {
+      "name": "reserve_pack__ReserveBall_blue_01",
+      "mesh_data_name": "reserve_pack__ReserveBall_blue_01",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 224,
+      "vertices": 114,
+      "motion_group": "ReserveBall",
+      "motion_pivot": [
+        -0.51,
+        -0.04,
+        0.91
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.51,
+        -0.04,
+        0.9100001
+      ],
+      "center_blender_studs": [
+        -0.51,
+        -0.04,
+        0.9100001
+      ],
+      "size_blender_studs": [
+        0.5,
+        0.5,
+        0.5000001
+      ],
+      "bounds_min": [
+        -0.76,
+        -0.29,
+        0.66
+      ],
+      "bounds_max": [
+        -0.26,
+        0.21,
+        1.1600001
+      ],
+      "geometry_sha256": "94de47e2041e5eb1ca4798e96353c9f5e48a7a8789b76e01416aeee777e9cfd4",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "reserve_pack__ReserveBall_blue_02",
+      "mesh_data_name": "reserve_pack__ReserveBall_blue_02",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 224,
+      "vertices": 114,
+      "motion_group": "ReserveBall",
+      "motion_pivot": [
+        0.0,
+        -0.09,
+        0.98
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.09,
+        0.98
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.09,
+        0.98
+      ],
+      "size_blender_studs": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "bounds_min": [
+        -0.25,
+        -0.34,
+        0.73
+      ],
+      "bounds_max": [
+        0.25,
+        0.16,
+        1.23
+      ],
+      "geometry_sha256": "4a33f0f898ad0ca045550600cd7f4c77585aaff4b37e8f202bb4d391534b24a2",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "reserve_pack__ReserveBall_blue_03",
+      "mesh_data_name": "reserve_pack__ReserveBall_blue_03",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 224,
+      "vertices": 114,
+      "motion_group": "ReserveBall",
+      "motion_pivot": [
+        0.51,
+        -0.04,
+        0.91
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.51,
+        -0.04,
+        0.9100001
+      ],
+      "center_blender_studs": [
+        0.51,
+        -0.04,
+        0.9100001
+      ],
+      "size_blender_studs": [
+        0.5,
+        0.5,
+        0.5000001
+      ],
+      "bounds_min": [
+        0.26,
+        -0.29,
+        0.66
+      ],
+      "bounds_max": [
+        0.76,
+        0.21,
+        1.1600001
+      ],
+      "geometry_sha256": "c5382a793b8b772649a70133c0cbd37822d30ded018ff5cf326a6e250c1e19f3",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "reserve_pack__Fixed_dark_04",
+      "mesh_data_name": "reserve_pack__Fixed_dark_04",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 60,
+      "vertices": 36,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.25,
+        1.2824759
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.25,
+        1.2824759
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.25,
+        1.2824759
+      ],
+      "size_blender_studs": [
+        1.11,
+        0.15,
+        1.004952
+      ],
+      "bounds_min": [
+        -0.555,
+        0.175,
+        0.78
+      ],
+      "bounds_max": [
+        0.555,
+        0.325,
+        1.7849519
+      ],
+      "geometry_sha256": "3aa17257674f36d5815ce7bf0eb1550d27941bd442851e319e01f533964a91fa",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "reserve_pack__Fixed_gold_05",
+      "mesh_data_name": "reserve_pack__Fixed_gold_05",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.62,
+        0.54
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.62,
+        0.54
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.62,
+        0.54
+      ],
+      "size_blender_studs": [
+        0.26,
+        0.1,
+        0.28
+      ],
+      "bounds_min": [
+        -0.13,
+        -0.67,
+        0.4
+      ],
+      "bounds_max": [
+        0.13,
+        -0.57,
+        0.68
+      ],
+      "geometry_sha256": "c3702068b8a7b69d8c82f76d6f3170a3124fbfae65ca6f0b24cdd4d8af2dc365",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "reserve_pack__Fixed_pearl_06",
+      "mesh_data_name": "reserve_pack__Fixed_pearl_06",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 324,
+      "vertices": 168,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.425
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.425
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.425
+      ],
+      "size_blender_studs": [
+        1.8,
+        1.16,
+        0.79
+      ],
+      "bounds_min": [
+        -0.9,
+        -0.58,
+        0.03
+      ],
+      "bounds_max": [
+        0.9,
+        0.58,
+        0.82
+      ],
+      "geometry_sha256": "dbe1afc2b5855a6565646d45852820af851a17a8a0aa5de4224cbffed04e38df",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "reserve_pack__Fixed_teal_07",
+      "mesh_data_name": "reserve_pack__Fixed_teal_07",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 216,
+      "vertices": 112,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.0,
+        0.5
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.5
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.5
+      ],
+      "size_blender_studs": [
+        1.8,
+        1.1799998,
+        0.64
+      ],
+      "bounds_min": [
+        -0.9,
+        -0.5899999,
+        0.18
+      ],
+      "bounds_max": [
+        0.9,
+        0.5899999,
+        0.82
+      ],
+      "geometry_sha256": "abec1fbc5cff41e2e9e9fed50ae4f6ab6f3810b8e5aa708cd20bdaa1ca34d73a",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/reserve_pack/reserve_pack.blend",
+  "source_preserved": false,
+  "blend_sha256": "93f0683d589dcfded72e66486def97bc0df0cba0f836fe6c866336809bae28fc"
+}

@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "source": "Roblox Studio SerializationService; RBX-021 catalog gallery",
+  "models": 78,
+  "mesh_parts": 477,
+  "artifacts": [
+    {
+      "path": "art/catalog/CatalogAssets.rbxm",
+      "sha256": "f56fdf27a0efa6b4bf13067b543ca3cb449b50ae39787811ad42f02420f28a7a"
+    }
+  ]
+}

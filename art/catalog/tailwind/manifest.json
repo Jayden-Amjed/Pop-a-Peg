@@ -1,0 +1,237 @@
+{
+  "schema": 2,
+  "id": "tailwind",
+  "display_name": "Tailwind",
+  "category": "perk",
+  "generator": "scripts/models/catalog_rewards.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 2268,
+  "pieces": 4,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    0.0,
+    1.035
+  ],
+  "bounds_min": [
+    -0.82,
+    -0.79,
+    0.0
+  ],
+  "bounds_max": [
+    0.82,
+    0.79,
+    2.0699999
+  ],
+  "size_blender_studs": [
+    1.64,
+    1.58,
+    2.0699999
+  ],
+  "objects": [
+    {
+      "name": "tailwind__Fixed_dark_01",
+      "mesh_data_name": "tailwind__Fixed_dark_01",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 440,
+      "vertices": 224,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.46375
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.46375
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.46375
+      ],
+      "size_blender_studs": [
+        1.3200001,
+        1.3200001,
+        0.6325001
+      ],
+      "bounds_min": [
+        -0.66,
+        -0.66,
+        0.1475
+      ],
+      "bounds_max": [
+        0.66,
+        0.66,
+        0.78
+      ],
+      "geometry_sha256": "f0185dc64b7062524befec20b0326de0c07b094d240558160fc8407144136898",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "tailwind__Turbine_gold_02",
+      "mesh_data_name": "tailwind__Turbine_gold_02",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 528,
+      "vertices": 266,
+      "motion_group": "Turbine",
+      "motion_pivot": [
+        0.0,
+        -0.02,
+        1.25
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.12,
+        1.25
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.12,
+        1.25
+      ],
+      "size_blender_studs": [
+        0.3999999,
+        0.3,
+        0.4000001
+      ],
+      "bounds_min": [
+        -0.1999999,
+        -0.27,
+        1.05
+      ],
+      "bounds_max": [
+        0.2,
+        0.03,
+        1.45
+      ],
+      "geometry_sha256": "bfdbcda5000120dff139118d4815265b0ca349da9fe6649d469c4f0d7b6dd6de",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "tailwind__Fixed_pearl_03",
+      "mesh_data_name": "tailwind__Fixed_pearl_03",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 892,
+      "vertices": 448,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.035
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.035
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.035
+      ],
+      "size_blender_studs": [
+        1.64,
+        1.58,
+        2.0699999
+      ],
+      "bounds_min": [
+        -0.82,
+        -0.79,
+        0.0
+      ],
+      "bounds_max": [
+        0.82,
+        0.79,
+        2.0699999
+      ],
+      "geometry_sha256": "f05af4586c29cd42a888c22782715e49b41aad42e22fc517c45a78185585f1d1",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "tailwind__Turbine_teal_04",
+      "mesh_data_name": "tailwind__Turbine_teal_04",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 408,
+      "vertices": 210,
+      "motion_group": "Turbine",
+      "motion_pivot": [
+        0.0,
+        -0.02,
+        1.25
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.120361,
+        -0.02,
+        1.2627507
+      ],
+      "center_blender_studs": [
+        0.120361,
+        -0.02,
+        1.2627507
+      ],
+      "size_blender_studs": [
+        0.9787112,
+        0.12,
+        1.0595405
+      ],
+      "bounds_min": [
+        -0.3689946,
+        -0.08,
+        0.7329804
+      ],
+      "bounds_max": [
+        0.6097166,
+        0.04,
+        1.792521
+      ],
+      "geometry_sha256": "a2359144aa104ce9e83bfd75ebdc17ed9afb4546510ffa54f29f611911235f6e",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/tailwind/tailwind.blend",
+  "source_preserved": false,
+  "blend_sha256": "be487fc33fff46e2ceff44716b75cd32de72a27d53c97177a0dd8ccc16fbdacc"
+}

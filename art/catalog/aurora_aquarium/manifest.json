@@ -1,0 +1,531 @@
+{
+  "schema": 2,
+  "id": "aurora_aquarium",
+  "display_name": "Aurora Aquarium",
+  "category": "evolved",
+  "generator": "scripts/models/catalog_nature.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 2100,
+  "pieces": 10,
+  "budget": {
+    "triangles": 6000,
+    "pieces": 12
+  },
+  "center_blender_studs": [
+    0.0,
+    0.0,
+    1.1138157
+  ],
+  "bounds_min": [
+    -1.05,
+    -1.02,
+    0.05
+  ],
+  "bounds_max": [
+    1.05,
+    1.02,
+    2.1776314
+  ],
+  "size_blender_studs": [
+    2.0999999,
+    2.04,
+    2.1276314
+  ],
+  "objects": [
+    {
+      "name": "aurora_aquarium__FishBody_dark_01",
+      "mesh_data_name": "aurora_aquarium__FishBody_dark_01",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 240,
+      "vertices": 124,
+      "motion_group": "FishBody",
+      "motion_pivot": [
+        0.08,
+        -0.13,
+        1.06
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.368,
+        -0.13,
+        1.1392
+      ],
+      "center_blender_studs": [
+        0.368,
+        -0.13,
+        1.1392
+      ],
+      "size_blender_studs": [
+        0.10512,
+        0.3888,
+        0.1051199
+      ],
+      "bounds_min": [
+        0.31544,
+        -0.3244,
+        1.08664
+      ],
+      "bounds_max": [
+        0.42056,
+        0.0644,
+        1.1917599
+      ],
+      "geometry_sha256": "116d67353e110eb2e444a8924a903b9e1063249f8e20e48f9d5f79e816d773f8",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "aurora_aquarium__Bubbles_glass_02",
+      "mesh_data_name": "aurora_aquarium__Bubbles_glass_02",
+      "material": "glass",
+      "color_srgb": [
+        145,
+        244,
+        255
+      ],
+      "alpha": 0.25,
+      "transparency": 0.75,
+      "triangles": 360,
+      "vertices": 186,
+      "motion_group": "Bubbles",
+      "motion_pivot": [
+        0.62,
+        -0.04,
+        1.63
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.62,
+        -0.04,
+        1.63
+      ],
+      "center_blender_studs": [
+        0.62,
+        -0.04,
+        1.63
+      ],
+      "size_blender_studs": [
+        0.3200001,
+        0.12,
+        0.5799999
+      ],
+      "bounds_min": [
+        0.46,
+        -0.1,
+        1.34
+      ],
+      "bounds_max": [
+        0.78,
+        0.02,
+        1.92
+      ],
+      "geometry_sha256": "0c72e27b01071dbe79d8641b55a65155f3fbcf592b8d0336361ded5eac7e31ad",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "aurora_aquarium__Fixed_glass_03",
+      "mesh_data_name": "aurora_aquarium__Fixed_glass_03",
+      "material": "glass",
+      "color_srgb": [
+        145,
+        244,
+        255
+      ],
+      "alpha": 0.25,
+      "transparency": 0.75,
+      "triangles": 384,
+      "vertices": 192,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.1
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.1
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.1
+      ],
+      "size_blender_studs": [
+        2.04,
+        2.04,
+        1.5999999
+      ],
+      "bounds_min": [
+        -1.02,
+        -1.02,
+        0.3
+      ],
+      "bounds_max": [
+        1.02,
+        1.02,
+        1.9
+      ],
+      "geometry_sha256": "07eb8084d8a66a735863fb87c5089fe79757518ab35b11a3be7d8cf9036dca25",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "aurora_aquarium__EvolvedOrbit_gold_04",
+      "mesh_data_name": "aurora_aquarium__EvolvedOrbit_gold_04",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 384,
+      "vertices": 192,
+      "motion_group": "EvolvedOrbit",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.65
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        2.1300001
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        2.1300001
+      ],
+      "size_blender_studs": [
+        1.89,
+        1.89,
+        0.0952628
+      ],
+      "bounds_min": [
+        -0.945,
+        -0.945,
+        2.0823686
+      ],
+      "bounds_max": [
+        0.945,
+        0.945,
+        2.1776314
+      ],
+      "geometry_sha256": "1979edb91608f527e6961508022dc45adc5771d2ad52fff0f527d80fbb806539",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "aurora_aquarium__FishBody_gold_05",
+      "mesh_data_name": "aurora_aquarium__FishBody_gold_05",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 344,
+      "vertices": 176,
+      "motion_group": "FishBody",
+      "motion_pivot": [
+        0.08,
+        -0.13,
+        1.06
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.1016,
+        -0.13,
+        1.0599999
+      ],
+      "center_blender_studs": [
+        0.1016,
+        -0.13,
+        1.0599999
+      ],
+      "size_blender_studs": [
+        0.9791999,
+        0.3888,
+        0.576
+      ],
+      "bounds_min": [
+        -0.388,
+        -0.3244,
+        0.772
+      ],
+      "bounds_max": [
+        0.5912,
+        0.0644,
+        1.3479999
+      ],
+      "geometry_sha256": "06ad17c22d900f4c3eab1273cf6b5f27a01c5484814405a7c7e89bc0e62ca6d8",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "aurora_aquarium__FishTail_gold_06",
+      "mesh_data_name": "aurora_aquarium__FishTail_gold_06",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 16,
+      "vertices": 10,
+      "motion_group": "FishTail",
+      "motion_pivot": [
+        -0.316,
+        -0.13,
+        1.06
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.4888,
+        -0.13,
+        1.0600001
+      ],
+      "center_blender_studs": [
+        -0.4888,
+        -0.13,
+        1.0600001
+      ],
+      "size_blender_studs": [
+        0.3456,
+        0.0936,
+        0.5184
+      ],
+      "bounds_min": [
+        -0.6616,
+        -0.1768,
+        0.8008
+      ],
+      "bounds_max": [
+        -0.316,
+        -0.0832,
+        1.3192
+      ],
+      "geometry_sha256": "058fb844865dacfc93476542f62cbc32cd8cfcba94e117c568c52a8c08db4b64",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "aurora_aquarium__Reeds_green_07",
+      "mesh_data_name": "aurora_aquarium__Reeds_green_07",
+      "material": "green",
+      "color_srgb": [
+        142,
+        220,
+        103
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 8,
+      "vertices": 6,
+      "motion_group": "Reeds",
+      "motion_pivot": [
+        -0.4,
+        0.28,
+        0.34
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.4860764,
+        0.27,
+        0.9332627
+      ],
+      "center_blender_studs": [
+        -0.4860764,
+        0.27,
+        0.9332627
+      ],
+      "size_blender_studs": [
+        0.2471928,
+        0.09,
+        1.1865253
+      ],
+      "bounds_min": [
+        -0.6096728,
+        0.225,
+        0.34
+      ],
+      "bounds_max": [
+        -0.36248,
+        0.315,
+        1.5265254
+      ],
+      "geometry_sha256": "808f401acf773bcc08b95dd3e499241369a5c1e7b5c5d0b41a20a48e396f3a0e",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "aurora_aquarium__Reeds_green_08",
+      "mesh_data_name": "aurora_aquarium__Reeds_green_08",
+      "material": "green",
+      "color_srgb": [
+        142,
+        220,
+        103
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 8,
+      "vertices": 6,
+      "motion_group": "Reeds",
+      "motion_pivot": [
+        -0.65,
+        0.28,
+        0.34
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.7360764,
+        0.27,
+        0.9332627
+      ],
+      "center_blender_studs": [
+        -0.7360764,
+        0.27,
+        0.9332627
+      ],
+      "size_blender_studs": [
+        0.2471928,
+        0.09,
+        1.1865253
+      ],
+      "bounds_min": [
+        -0.8596727,
+        0.225,
+        0.34
+      ],
+      "bounds_max": [
+        -0.6124799,
+        0.315,
+        1.5265254
+      ],
+      "geometry_sha256": "808f401acf773bcc08b95dd3e499241369a5c1e7b5c5d0b41a20a48e396f3a0e",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "aurora_aquarium__FishFin_pearl_09",
+      "mesh_data_name": "aurora_aquarium__FishFin_pearl_09",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 248,
+      "vertices": 130,
+      "motion_group": "FishFin",
+      "motion_pivot": [
+        0.08,
+        -0.13,
+        1.06
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0764,
+        -0.13,
+        1.1968
+      ],
+      "center_blender_studs": [
+        0.0764,
+        -0.13,
+        1.1968
+      ],
+      "size_blender_studs": [
+        0.4536,
+        0.468,
+        0.6335999
+      ],
+      "bounds_min": [
+        -0.1504,
+        -0.364,
+        0.8800001
+      ],
+      "bounds_max": [
+        0.3032,
+        0.104,
+        1.5136
+      ],
+      "geometry_sha256": "b60e02ee7476c30fd4edc8f57c47a8220cc797cec853377b5292e04e25f09929",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "aurora_aquarium__Fixed_pearl_10",
+      "mesh_data_name": "aurora_aquarium__Fixed_pearl_10",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.2
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.2
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.2
+      ],
+      "size_blender_studs": [
+        2.0999999,
+        1.35,
+        0.3
+      ],
+      "bounds_min": [
+        -1.05,
+        -0.675,
+        0.05
+      ],
+      "bounds_max": [
+        1.05,
+        0.675,
+        0.35
+      ],
+      "geometry_sha256": "40e54197789cafed0c0fb58eb7b4434cc6c2d16b5052195e19e5cbe2fcca18a7",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/aurora_aquarium/aurora_aquarium.blend",
+  "source_preserved": false,
+  "blend_sha256": "c6a4c08c760aa9b65f06972df09eae55b88f436dd7ffa7620efabb7a5bd4b608"
+}

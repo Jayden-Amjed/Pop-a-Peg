@@ -1,0 +1,384 @@
+{
+  "schema": 2,
+  "id": "growth_array",
+  "display_name": "Coral Garden",
+  "category": "equipment",
+  "generator": "scripts/models/catalog_mechanical.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 1680,
+  "pieces": 7,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    0.0,
+    1.0125
+  ],
+  "bounds_min": [
+    -1.025,
+    -0.565,
+    0.0
+  ],
+  "bounds_max": [
+    1.025,
+    0.565,
+    2.0250001
+  ],
+  "size_blender_studs": [
+    2.05,
+    1.13,
+    2.0250001
+  ],
+  "objects": [
+    {
+      "name": "growth_array__Coral_blue_01",
+      "mesh_data_name": "growth_array__Coral_blue_01",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 312,
+      "vertices": 168,
+      "motion_group": "Coral",
+      "motion_pivot": [
+        -0.66,
+        0.0,
+        0.46
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.66,
+        -0.0004894,
+        0.9775001
+      ],
+      "center_blender_studs": [
+        -0.66,
+        -0.0004894,
+        0.9775001
+      ],
+      "size_blender_studs": [
+        0.3994959,
+        0.1436373,
+        1.095
+      ],
+      "bounds_min": [
+        -0.8597479,
+        -0.0723081,
+        0.43
+      ],
+      "bounds_max": [
+        -0.460252,
+        0.0713292,
+        1.5250001
+      ],
+      "geometry_sha256": "bd4c25b9479ed36dbf6a0f963bcfa83563b9b6b3d189227e73eeb5180b4aeab8",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "growth_array__Coral_blue_02",
+      "mesh_data_name": "growth_array__Coral_blue_02",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 312,
+      "vertices": 168,
+      "motion_group": "Coral",
+      "motion_pivot": [
+        0.22,
+        0.0,
+        0.46
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.22,
+        -0.0004894,
+        1.1125001
+      ],
+      "center_blender_studs": [
+        0.22,
+        -0.0004894,
+        1.1125001
+      ],
+      "size_blender_studs": [
+        0.399496,
+        0.1436373,
+        1.365
+      ],
+      "bounds_min": [
+        0.020252,
+        -0.0723081,
+        0.43
+      ],
+      "bounds_max": [
+        0.419748,
+        0.0713292,
+        1.7950001
+      ],
+      "geometry_sha256": "bb6d7a01ef26c27327cda0b6d95ee0250f4e495979f943fd76d785c1f5ea71ef",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "growth_array__Fixed_dark_03",
+      "mesh_data_name": "growth_array__Fixed_dark_03",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 216,
+      "vertices": 112,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.045
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.045
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.045
+      ],
+      "size_blender_studs": [
+        1.5120001,
+        0.8475,
+        0.09
+      ],
+      "bounds_min": [
+        -0.756,
+        -0.42375,
+        0.0
+      ],
+      "bounds_max": [
+        0.756,
+        0.42375,
+        0.09
+      ],
+      "geometry_sha256": "af904bdce69425bfcc60615ad8287eff0c45b2bcd3808a88300dc45e4b309393",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "growth_array__Coral_green_04",
+      "mesh_data_name": "growth_array__Coral_green_04",
+      "material": "green",
+      "color_srgb": [
+        142,
+        220,
+        103
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 312,
+      "vertices": 168,
+      "motion_group": "Coral",
+      "motion_pivot": [
+        -0.22,
+        0.0,
+        0.46
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.22,
+        -0.0004894,
+        1.2275001
+      ],
+      "center_blender_studs": [
+        -0.22,
+        -0.0004894,
+        1.2275001
+      ],
+      "size_blender_studs": [
+        0.399496,
+        0.1436373,
+        1.595
+      ],
+      "bounds_min": [
+        -0.419748,
+        -0.0723081,
+        0.43
+      ],
+      "bounds_max": [
+        -0.020252,
+        0.0713292,
+        2.0250001
+      ],
+      "geometry_sha256": "95c042d1ce6fb52686579d010f37350204200e6367053d83f518bdbd2d907e0c",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "growth_array__Coral_green_05",
+      "mesh_data_name": "growth_array__Coral_green_05",
+      "material": "green",
+      "color_srgb": [
+        142,
+        220,
+        103
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 312,
+      "vertices": 168,
+      "motion_group": "Coral",
+      "motion_pivot": [
+        0.66,
+        0.0,
+        0.46
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.66,
+        -0.0004894,
+        1.0125
+      ],
+      "center_blender_studs": [
+        0.66,
+        -0.0004894,
+        1.0125
+      ],
+      "size_blender_studs": [
+        0.3994959,
+        0.1436373,
+        1.165
+      ],
+      "bounds_min": [
+        0.460252,
+        -0.0723081,
+        0.43
+      ],
+      "bounds_max": [
+        0.8597479,
+        0.0713292,
+        1.595
+      ],
+      "geometry_sha256": "8855e9a30b0eba8465f308c890614527dc44257008a94dc8c09c9ce9f002217b",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "growth_array__Fixed_pearl_06",
+      "mesh_data_name": "growth_array__Fixed_pearl_06",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.16
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.16
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.16
+      ],
+      "size_blender_studs": [
+        2.05,
+        1.13,
+        0.32
+      ],
+      "bounds_min": [
+        -1.025,
+        -0.565,
+        0.0
+      ],
+      "bounds_max": [
+        1.025,
+        0.565,
+        0.32
+      ],
+      "geometry_sha256": "ffc667c4184c9c385c2192714e83355f92f7a5e9e2345457ef4a54169751ed56",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "growth_array__Fixed_teal_07",
+      "mesh_data_name": "growth_array__Fixed_teal_07",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.35
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.35
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.35
+      ],
+      "size_blender_studs": [
+        1.8200001,
+        0.95,
+        0.2
+      ],
+      "bounds_min": [
+        -0.91,
+        -0.475,
+        0.25
+      ],
+      "bounds_max": [
+        0.91,
+        0.475,
+        0.45
+      ],
+      "geometry_sha256": "35914fb42f5bc5cc2dd024f43a116fe677282d37db984f3a297b6cf728c532d4",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/growth_array/growth_array.blend",
+  "source_preserved": false,
+  "blend_sha256": "ca8672f33b83826f3191699c747c252510e8fee3ff74759898b313ef9a8d27bf"
+}

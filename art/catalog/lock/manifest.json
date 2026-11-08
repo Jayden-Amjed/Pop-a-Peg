@@ -1,0 +1,237 @@
+{
+  "schema": 2,
+  "id": "lock",
+  "display_name": "Held Offer",
+  "category": "utility",
+  "generator": "scripts/models/catalog_mechanical.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 812,
+  "pieces": 4,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    -0.03825,
+    1.1199999
+  ],
+  "bounds_min": [
+    -0.675,
+    -0.4265,
+    0.1
+  ],
+  "bounds_max": [
+    0.675,
+    0.35,
+    2.1399999
+  ],
+  "size_blender_studs": [
+    1.35,
+    0.7765,
+    2.04
+  ],
+  "objects": [
+    {
+      "name": "lock__Fixed_dark_01",
+      "mesh_data_name": "lock__Fixed_dark_01",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 296,
+      "vertices": 152,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.414,
+        0.6525
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.414,
+        0.6525
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.414,
+        0.6525
+      ],
+      "size_blender_studs": [
+        0.26,
+        0.025,
+        0.5149999
+      ],
+      "bounds_min": [
+        -0.13,
+        -0.4265,
+        0.395
+      ],
+      "bounds_max": [
+        0.13,
+        -0.4015,
+        0.91
+      ],
+      "geometry_sha256": "cec5fc645a2134716bd5d4b027830b184f57379090c29a473761720cc71a0937",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "lock__Shackle_gold_02",
+      "mesh_data_name": "lock__Shackle_gold_02",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 300,
+      "vertices": 152,
+      "motion_group": "Shackle",
+      "motion_pivot": [
+        -0.43,
+        0.0,
+        1.13
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.635
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.635
+      ],
+      "size_blender_studs": [
+        1.0600001,
+        0.2,
+        1.0099999
+      ],
+      "bounds_min": [
+        -0.53,
+        -0.1,
+        1.13
+      ],
+      "bounds_max": [
+        0.53,
+        0.1,
+        2.1399999
+      ],
+      "geometry_sha256": "96b364c9592c3668f813e73e259c1fc469d847b7b8dff4cd2ea6be2b61ebcd16",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "lock__Fixed_pearl_03",
+      "mesh_data_name": "lock__Fixed_pearl_03",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.37,
+        0.67
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.37,
+        0.67
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.37,
+        0.67
+      ],
+      "size_blender_studs": [
+        0.95,
+        0.06,
+        0.8000001
+      ],
+      "bounds_min": [
+        -0.475,
+        -0.4,
+        0.27
+      ],
+      "bounds_max": [
+        0.475,
+        -0.34,
+        1.0700001
+      ],
+      "geometry_sha256": "9b30fb161065e0a56073789051d32fbbfe59b1b1092fabf1ac8073bbb583f921",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "lock__Fixed_teal_04",
+      "mesh_data_name": "lock__Fixed_teal_04",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.67
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.67
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.67
+      ],
+      "size_blender_studs": [
+        1.35,
+        0.7,
+        1.14
+      ],
+      "bounds_min": [
+        -0.675,
+        -0.35,
+        0.1
+      ],
+      "bounds_max": [
+        0.675,
+        0.35,
+        1.24
+      ],
+      "geometry_sha256": "b15cfd6e932ede0d58912ec7de81bd9d9cdf0e63e2242ef8cf7e124edd88b7ca",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/lock/lock.blend",
+  "source_preserved": false,
+  "blend_sha256": "fbf42e8293c8f23338febfd198f186d3c056f38787e7854deef1e7aba2d93390"
+}

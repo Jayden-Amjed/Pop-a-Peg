@@ -1,0 +1,384 @@
+{
+  "schema": 2,
+  "id": "survey_lens",
+  "display_name": "Survey Lens",
+  "category": "equipment",
+  "generator": "scripts/models/catalog_mechanical.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 1656,
+  "pieces": 7,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    0.1375,
+    1.16
+  ],
+  "bounds_min": [
+    -0.88,
+    -0.6149999,
+    0.02
+  ],
+  "bounds_max": [
+    0.88,
+    0.89,
+    2.3
+  ],
+  "size_blender_studs": [
+    1.76,
+    1.5049999,
+    2.28
+  ],
+  "objects": [
+    {
+      "name": "survey_lens__Lens_blue_01",
+      "mesh_data_name": "survey_lens__Lens_blue_01",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 236,
+      "vertices": 120,
+      "motion_group": "Lens",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.79
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.568,
+        1.79
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.568,
+        1.79
+      ],
+      "size_blender_studs": [
+        0.7,
+        0.026,
+        0.6999999
+      ],
+      "bounds_min": [
+        -0.35,
+        -0.581,
+        1.4399999
+      ],
+      "bounds_max": [
+        0.35,
+        -0.555,
+        2.1399999
+      ],
+      "geometry_sha256": "80fa47927eab6e0ceec992cab95e888b21a6f3700c96fdd4f487853761bd3f4a",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "survey_lens__Fixed_dark_02",
+      "mesh_data_name": "survey_lens__Fixed_dark_02",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 96,
+      "vertices": 54,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.1862663,
+        0.5373515
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.1862663,
+        0.5373515
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.1862663,
+        0.5373515
+      ],
+      "size_blender_studs": [
+        1.5598229,
+        1.18817,
+        0.9010032
+      ],
+      "bounds_min": [
+        -0.7799115,
+        -0.4078187,
+        0.08685
+      ],
+      "bounds_max": [
+        0.7799115,
+        0.7803513,
+        0.9878532
+      ],
+      "geometry_sha256": "90992f09726d61026b454d173d7c0c853cc2e22e02ed24ecfcfbee377e29cc36",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "survey_lens__Lens_dark_03",
+      "mesh_data_name": "survey_lens__Lens_dark_03",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 236,
+      "vertices": 120,
+      "motion_group": "Lens",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.79
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.535,
+        1.79
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.535,
+        1.79
+      ],
+      "size_blender_studs": [
+        0.8,
+        0.0500001,
+        0.8000001
+      ],
+      "bounds_min": [
+        -0.4,
+        -0.5600001,
+        1.39
+      ],
+      "bounds_max": [
+        0.4,
+        -0.51,
+        2.1900001
+      ],
+      "geometry_sha256": "ae6ac07b6ecb5dec4d56ababcbcbd8ca6d69bb4e21794ae4f1add801b7fdc3e9",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "survey_lens__Fixed_gold_04",
+      "mesh_data_name": "survey_lens__Fixed_gold_04",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 236,
+      "vertices": 120,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.03
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.03
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.03
+      ],
+      "size_blender_studs": [
+        0.36,
+        0.36,
+        0.3199999
+      ],
+      "bounds_min": [
+        -0.18,
+        -0.18,
+        0.87
+      ],
+      "bounds_max": [
+        0.18,
+        0.18,
+        1.1899999
+      ],
+      "geometry_sha256": "a50df1acd470008d84b7023307db50dba0b462e4765edf73c05b80982442ee7c",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "survey_lens__Fixed_pearl_05",
+      "mesh_data_name": "survey_lens__Fixed_pearl_05",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 360,
+      "vertices": 186,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.195,
+        0.1
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.195,
+        0.1
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.195,
+        0.1
+      ],
+      "size_blender_studs": [
+        1.76,
+        1.39,
+        0.16
+      ],
+      "bounds_min": [
+        -0.88,
+        -0.5,
+        0.02
+      ],
+      "bounds_max": [
+        0.88,
+        0.89,
+        0.18
+      ],
+      "geometry_sha256": "e5e68425c9631be9883ca7431840865ee358d12e492ce9408488ec3478234a02",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "survey_lens__Lens_pearl_06",
+      "mesh_data_name": "survey_lens__Lens_pearl_06",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 256,
+      "vertices": 132,
+      "motion_group": "Lens",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.79
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0025001,
+        1.79
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0025001,
+        1.79
+      ],
+      "size_blender_studs": [
+        0.96,
+        1.2349999,
+        0.96
+      ],
+      "bounds_min": [
+        -0.48,
+        -0.6149999,
+        1.3099999
+      ],
+      "bounds_max": [
+        0.48,
+        0.62,
+        2.27
+      ],
+      "geometry_sha256": "f88033dee5f83d3aef1d14a1914a96f125f17d06eef2ee86ba90f9d96812d521",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "survey_lens__Lens_teal_07",
+      "mesh_data_name": "survey_lens__Lens_teal_07",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 236,
+      "vertices": 120,
+      "motion_group": "Lens",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.79
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.38,
+        1.79
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.38,
+        1.79
+      ],
+      "size_blender_studs": [
+        1.02,
+        0.27,
+        1.02
+      ],
+      "bounds_min": [
+        -0.51,
+        -0.515,
+        1.28
+      ],
+      "bounds_max": [
+        0.51,
+        -0.245,
+        2.3
+      ],
+      "geometry_sha256": "afa4484235664a1cd4a2ac09785f509ca7a4ba8e2a11221643c33fbbb5fe60de",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/survey_lens/survey_lens.blend",
+  "source_preserved": false,
+  "blend_sha256": "0c95d94dd011a422463532d817536b79e95c2d55177c00cf3b7ecd2d3ec6f940"
+}

@@ -1,0 +1,384 @@
+{
+  "schema": 2,
+  "id": "clockwork",
+  "display_name": "Tide Clock",
+  "category": "equipment",
+  "generator": "scripts/models/catalog_mechanical.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 3100,
+  "pieces": 7,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    -0.0975,
+    1.15
+  ],
+  "bounds_min": [
+    -1.03,
+    -0.5100001,
+    0.03
+  ],
+  "bounds_max": [
+    1.03,
+    0.315,
+    2.27
+  ],
+  "size_blender_studs": [
+    2.0599999,
+    0.825,
+    2.24
+  ],
+  "objects": [
+    {
+      "name": "clockwork__Fixed_dark_01",
+      "mesh_data_name": "clockwork__Fixed_dark_01",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 332,
+      "vertices": 168,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.25,
+        1.24
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.25,
+        1.24
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.25,
+        1.24
+      ],
+      "size_blender_studs": [
+        1.8,
+        0.0550001,
+        1.7999998
+      ],
+      "bounds_min": [
+        -0.9,
+        -0.2775,
+        0.34
+      ],
+      "bounds_max": [
+        0.9,
+        -0.2225,
+        2.1399999
+      ],
+      "geometry_sha256": "552879c3a17241534fa309d61f446051f93536930235a5b62d3bb470b6b5d31b",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "clockwork__HourHand_gold_02",
+      "mesh_data_name": "clockwork__HourHand_gold_02",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 20,
+      "vertices": 12,
+      "motion_group": "HourHand",
+      "motion_pivot": [
+        0.0,
+        -0.34,
+        1.24
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.205,
+        -0.43,
+        1.39
+      ],
+      "center_blender_studs": [
+        0.205,
+        -0.43,
+        1.39
+      ],
+      "size_blender_studs": [
+        0.4662536,
+        0.11,
+        0.3768799
+      ],
+      "bounds_min": [
+        -0.0281268,
+        -0.485,
+        1.20156
+      ],
+      "bounds_max": [
+        0.4381268,
+        -0.375,
+        1.57844
+      ],
+      "geometry_sha256": "ebc6edd21195e2770de23901603804346050f7003fa41b547832e1dd19d66260",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "clockwork__LeftGear_gold_03",
+      "mesh_data_name": "clockwork__LeftGear_gold_03",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 156,
+      "vertices": 80,
+      "motion_group": "LeftGear",
+      "motion_pivot": [
+        -0.3,
+        -0.32,
+        1.2
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.3,
+        -0.32,
+        1.2
+      ],
+      "center_blender_studs": [
+        -0.3,
+        -0.32,
+        1.2
+      ],
+      "size_blender_studs": [
+        0.7,
+        0.055,
+        0.6913818
+      ],
+      "bounds_min": [
+        -0.65,
+        -0.3475,
+        0.8543091
+      ],
+      "bounds_max": [
+        0.05,
+        -0.2925,
+        1.5456909
+      ],
+      "geometry_sha256": "eb164d6f034bcbe48588be268a90f4b458c674f777f32df8196bf33162ed72d2",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "clockwork__Fixed_pearl_04",
+      "mesh_data_name": "clockwork__Fixed_pearl_04",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 2032,
+      "vertices": 1048,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.0975,
+        1.15
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.0975,
+        1.15
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.0975,
+        1.15
+      ],
+      "size_blender_studs": [
+        2.0599999,
+        0.825,
+        2.24
+      ],
+      "bounds_min": [
+        -1.03,
+        -0.5100001,
+        0.03
+      ],
+      "bounds_max": [
+        1.03,
+        0.315,
+        2.27
+      ],
+      "geometry_sha256": "2c708265e9418a8849f9469e27465849c7f556a8b69d807dba03282e9ca555e5",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "clockwork__Fixed_teal_05",
+      "mesh_data_name": "clockwork__Fixed_teal_05",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 384,
+      "vertices": 192,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.29,
+        1.2399999
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.29,
+        1.24
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.29,
+        1.24
+      ],
+      "size_blender_studs": [
+        2.01,
+        0.0779423,
+        2.0099998
+      ],
+      "bounds_min": [
+        -1.005,
+        -0.3289711,
+        0.235
+      ],
+      "bounds_max": [
+        1.005,
+        -0.2510289,
+        2.2449999
+      ],
+      "geometry_sha256": "f12f183cc0410b5cc85ef0fb57662e91cb4f7d71976dd6d93f397b575a5d222d",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "clockwork__MinuteHand_teal_06",
+      "mesh_data_name": "clockwork__MinuteHand_teal_06",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 20,
+      "vertices": 12,
+      "motion_group": "MinuteHand",
+      "motion_pivot": [
+        0.0,
+        -0.34,
+        1.24
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.4,
+        1.6
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.4,
+        1.6
+      ],
+      "size_blender_studs": [
+        0.09,
+        0.0779423,
+        0.72
+      ],
+      "bounds_min": [
+        -0.045,
+        -0.4389712,
+        1.24
+      ],
+      "bounds_max": [
+        0.045,
+        -0.3610289,
+        1.96
+      ],
+      "geometry_sha256": "6baf48f4cd1cc2b0d51262ff4f37fa9f57f14d6ef39889da9e16fa2785c1a4da",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "clockwork__RightGear_teal_07",
+      "mesh_data_name": "clockwork__RightGear_teal_07",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 156,
+      "vertices": 80,
+      "motion_group": "RightGear",
+      "motion_pivot": [
+        0.36,
+        -0.32,
+        1.52
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.36,
+        -0.32,
+        1.52
+      ],
+      "center_blender_studs": [
+        0.36,
+        -0.32,
+        1.52
+      ],
+      "size_blender_studs": [
+        0.54,
+        0.055,
+        0.5333517
+      ],
+      "bounds_min": [
+        0.09,
+        -0.3475,
+        1.2533242
+      ],
+      "bounds_max": [
+        0.63,
+        -0.2925,
+        1.7866758
+      ],
+      "geometry_sha256": "59d526bb21a71707eb4547d34a32ce47895beee042cef21d2184fbdaddd7149a",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/clockwork/clockwork.blend",
+  "source_preserved": false,
+  "blend_sha256": "7624ec3bbaf81a5344dac75af7c0e1f3af8e64e09c3a9d7819a165d7042acfca"
+}

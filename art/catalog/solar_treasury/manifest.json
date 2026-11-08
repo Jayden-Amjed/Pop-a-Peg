@@ -1,0 +1,384 @@
+{
+  "schema": 2,
+  "id": "solar_treasury",
+  "display_name": "Solar Treasury",
+  "category": "evolved",
+  "generator": "scripts/models/catalog_nature.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 1552,
+  "pieces": 7,
+  "budget": {
+    "triangles": 6000,
+    "pieces": 12
+  },
+  "center_blender_studs": [
+    0.0,
+    -0.09875,
+    1.1274999
+  ],
+  "bounds_min": [
+    -0.825,
+    -0.7225,
+    0.06
+  ],
+  "bounds_max": [
+    0.825,
+    0.525,
+    2.1949999
+  ],
+  "size_blender_studs": [
+    1.65,
+    1.2474999,
+    2.135
+  ],
+  "objects": [
+    {
+      "name": "solar_treasury__Fixed_blue_01",
+      "mesh_data_name": "solar_treasury__Fixed_blue_01",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.5
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.5
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.5
+      ],
+      "size_blender_studs": [
+        1.65,
+        1.05,
+        0.88
+      ],
+      "bounds_min": [
+        -0.825,
+        -0.525,
+        0.06
+      ],
+      "bounds_max": [
+        0.825,
+        0.525,
+        0.94
+      ],
+      "geometry_sha256": "5a0187b43f6c3aea99a9f05fa161f51c65d52c9ef98ef80f4270be9d5f9839f9",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "solar_treasury__Fixed_dark_02",
+      "mesh_data_name": "solar_treasury__Fixed_dark_02",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 188,
+      "vertices": 96,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        -0.34,
+        -0.66,
+        0.54
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.34,
+        -0.66,
+        0.54
+      ],
+      "center_blender_studs": [
+        -0.34,
+        -0.66,
+        0.54
+      ],
+      "size_blender_studs": [
+        0.46,
+        0.0600001,
+        0.46
+      ],
+      "bounds_min": [
+        -0.57,
+        -0.6900001,
+        0.31
+      ],
+      "bounds_max": [
+        -0.11,
+        -0.63,
+        0.77
+      ],
+      "geometry_sha256": "9c8a904adb1192bbd5ad3c198755a852ba8f791adce4d02b037e3cb0890f1233",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "solar_treasury__EvolvedCoin_gold_03",
+      "mesh_data_name": "solar_treasury__EvolvedCoin_gold_03",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 564,
+      "vertices": 288,
+      "motion_group": "EvolvedCoin",
+      "motion_pivot": [
+        -0.08,
+        -0.02,
+        1.47
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.08,
+        -0.02,
+        1.47
+      ],
+      "center_blender_studs": [
+        -0.08,
+        -0.02,
+        1.47
+      ],
+      "size_blender_studs": [
+        1.12,
+        0.065,
+        0.8
+      ],
+      "bounds_min": [
+        -0.64,
+        -0.0525,
+        1.0700001
+      ],
+      "bounds_max": [
+        0.48,
+        0.0125,
+        1.87
+      ],
+      "geometry_sha256": "924903ddc5cbc4a2b01752c08050043758f697425d15bf9f42064de32d8e49be",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "solar_treasury__EvolvedCore_gold_04",
+      "mesh_data_name": "solar_treasury__EvolvedCore_gold_04",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 336,
+      "vertices": 168,
+      "motion_group": "EvolvedCore",
+      "motion_pivot": [
+        0.0,
+        0.16,
+        1.55
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.16,
+        1.55
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.16,
+        1.55
+      ],
+      "size_blender_studs": [
+        1.29,
+        0.0779423,
+        1.29
+      ],
+      "bounds_min": [
+        -0.645,
+        0.1210289,
+        0.905
+      ],
+      "bounds_max": [
+        0.645,
+        0.1989711,
+        2.1949999
+      ],
+      "geometry_sha256": "9139ef4f4e62510fad3192f9b75b61b371eb46aab35a0a0fff70a3c019995a5a",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "solar_treasury__EvolvedNeedle_gold_05",
+      "mesh_data_name": "solar_treasury__EvolvedNeedle_gold_05",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "EvolvedNeedle",
+      "motion_pivot": [
+        -0.34,
+        -0.71,
+        0.54
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.34,
+        -0.71,
+        0.62
+      ],
+      "center_blender_studs": [
+        -0.34,
+        -0.71,
+        0.62
+      ],
+      "size_blender_studs": [
+        0.035,
+        0.025,
+        0.2
+      ],
+      "bounds_min": [
+        -0.3575,
+        -0.7225,
+        0.52
+      ],
+      "bounds_max": [
+        -0.3225,
+        -0.6975,
+        0.72
+      ],
+      "geometry_sha256": "1097078ea566368f0c7934ce32fbb57c6db37ea0b55fbc828fccd4468d7873d2",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "solar_treasury__Fixed_pearl_06",
+      "mesh_data_name": "solar_treasury__Fixed_pearl_06",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 140,
+      "vertices": 74,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.1675241,
+        0.9375
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.167524,
+        0.9375
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.167524,
+        0.9375
+      ],
+      "size_blender_studs": [
+        1.29,
+        0.9049519,
+        1.4350002
+      ],
+      "bounds_min": [
+        -0.645,
+        -0.62,
+        0.22
+      ],
+      "bounds_max": [
+        0.645,
+        0.2849519,
+        1.6550001
+      ],
+      "geometry_sha256": "5dba9127f8aee521f6a7ca5b3032460203d4a6ff660f291b91c9b949638ebed0",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "solar_treasury__EvolvedWeight_teal_07",
+      "mesh_data_name": "solar_treasury__EvolvedWeight_teal_07",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "EvolvedWeight",
+      "motion_pivot": [
+        0.13,
+        -0.04,
+        1.4
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.13,
+        -0.04,
+        1.4
+      ],
+      "center_blender_studs": [
+        0.13,
+        -0.04,
+        1.4
+      ],
+      "size_blender_studs": [
+        0.42,
+        0.5,
+        0.2
+      ],
+      "bounds_min": [
+        -0.08,
+        -0.29,
+        1.3
+      ],
+      "bounds_max": [
+        0.34,
+        0.21,
+        1.5
+      ],
+      "geometry_sha256": "099989cf6a3bef6b5e140c683e6ac5090688b137da6ce27f300d879864ab584e",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/solar_treasury/solar_treasury.blend",
+  "source_preserved": false,
+  "blend_sha256": "ebd5a883846dcaa3b577787de834a6d44aeea73c6c0bd96b8782f441ca0a0af7"
+}

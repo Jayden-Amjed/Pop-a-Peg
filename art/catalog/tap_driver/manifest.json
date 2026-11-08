@@ -1,0 +1,286 @@
+{
+  "schema": 2,
+  "id": "tap_driver",
+  "display_name": "Tap Driver",
+  "category": "equipment",
+  "generator": "scripts/models/catalog_mechanical.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 1584,
+  "pieces": 5,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.265,
+    -0.0425,
+    0.9924999
+  ],
+  "bounds_min": [
+    -0.93,
+    -0.525,
+    0.02
+  ],
+  "bounds_max": [
+    1.46,
+    0.44,
+    1.9649999
+  ],
+  "size_blender_studs": [
+    2.3900001,
+    0.965,
+    1.9449999
+  ],
+  "objects": [
+    {
+      "name": "tap_driver__Fixed_dark_01",
+      "mesh_data_name": "tap_driver__Fixed_dark_01",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 432,
+      "vertices": 224,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        -0.23,
+        -0.39125,
+        1.05125
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.23,
+        -0.39125,
+        1.05125
+      ],
+      "center_blender_studs": [
+        -0.23,
+        -0.39125,
+        1.05125
+      ],
+      "size_blender_studs": [
+        1.02,
+        0.1725,
+        1.3975
+      ],
+      "bounds_min": [
+        -0.74,
+        -0.4775,
+        0.3525
+      ],
+      "bounds_max": [
+        0.28,
+        -0.305,
+        1.75
+      ],
+      "geometry_sha256": "b9a7eb374dbfbb4f853ca27ca07ec8ae65c8523756ac0ead2c52315ebfa4454e",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "tap_driver__Piston_dark_02",
+      "mesh_data_name": "tap_driver__Piston_dark_02",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 236,
+      "vertices": 120,
+      "motion_group": "Piston",
+      "motion_pivot": [
+        0.78,
+        0.0,
+        1.55
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.97,
+        0.0,
+        1.55
+      ],
+      "center_blender_studs": [
+        0.97,
+        0.0,
+        1.55
+      ],
+      "size_blender_studs": [
+        0.65,
+        0.46,
+        0.46
+      ],
+      "bounds_min": [
+        0.645,
+        -0.23,
+        1.3199999
+      ],
+      "bounds_max": [
+        1.2950001,
+        0.23,
+        1.78
+      ],
+      "geometry_sha256": "f0c129d69fd4fabbfccbf293e5d7231a5c6b3b0e8e791ac7d41cb79e2537607d",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "tap_driver__Piston_gold_03",
+      "mesh_data_name": "tap_driver__Piston_gold_03",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 236,
+      "vertices": 120,
+      "motion_group": "Piston",
+      "motion_pivot": [
+        0.78,
+        0.0,
+        1.55
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        1.33,
+        0.0,
+        1.55
+      ],
+      "center_blender_studs": [
+        1.33,
+        0.0,
+        1.55
+      ],
+      "size_blender_studs": [
+        0.26,
+        0.24,
+        0.24
+      ],
+      "bounds_min": [
+        1.2,
+        -0.12,
+        1.4299999
+      ],
+      "bounds_max": [
+        1.46,
+        0.12,
+        1.67
+      ],
+      "geometry_sha256": "9f8d79a25fd170f7280a3de78efefb2c597297fbb6cb61f3474e8419c94a164b",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "tap_driver__Fixed_pearl_04",
+      "mesh_data_name": "tap_driver__Fixed_pearl_04",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 216,
+      "vertices": 112,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        -0.18,
+        0.0,
+        0.9924999
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.18,
+        0.0,
+        0.9924999
+      ],
+      "center_blender_studs": [
+        -0.18,
+        0.0,
+        0.9924999
+      ],
+      "size_blender_studs": [
+        1.5,
+        0.88,
+        1.9449999
+      ],
+      "bounds_min": [
+        -0.93,
+        -0.44,
+        0.02
+      ],
+      "bounds_max": [
+        0.57,
+        0.44,
+        1.9649999
+      ],
+      "geometry_sha256": "e16696125949cf87ca1d41b86c0b065d7e24826b70b7017bae69f7f4172d0a36",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "tap_driver__Fixed_teal_05",
+      "mesh_data_name": "tap_driver__Fixed_teal_05",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 464,
+      "vertices": 238,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0570445,
+        -0.095,
+        0.9733344
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0570445,
+        -0.095,
+        0.9733344
+      ],
+      "center_blender_studs": [
+        0.0570445,
+        -0.095,
+        0.9733344
+      ],
+      "size_blender_studs": [
+        1.4859109,
+        0.86,
+        1.773331
+      ],
+      "bounds_min": [
+        -0.6859109,
+        -0.525,
+        0.0866688
+      ],
+      "bounds_max": [
+        0.8,
+        0.335,
+        1.8599999
+      ],
+      "geometry_sha256": "e541977158c9a9e57427025c7ae59be0be49a59af4a2fb6245fd5e2fe8fcb838",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/tap_driver/tap_driver.blend",
+  "source_preserved": false,
+  "blend_sha256": "d4fb825672bf5abafe4583a7bfa7f3d7b7c27e40efaf4e9ca72f172486ee4092"
+}

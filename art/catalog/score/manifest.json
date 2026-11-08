@@ -1,0 +1,237 @@
+{
+  "schema": 2,
+  "id": "score",
+  "display_name": "Shot Score",
+  "category": "utility",
+  "generator": "scripts/models/catalog_mechanical.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 432,
+  "pieces": 4,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    0.0,
+    0.915
+  ],
+  "bounds_min": [
+    -0.78,
+    -0.275,
+    0.0
+  ],
+  "bounds_max": [
+    0.78,
+    0.275,
+    1.8299999
+  ],
+  "size_blender_studs": [
+    1.5599999,
+    0.55,
+    1.8299999
+  ],
+  "objects": [
+    {
+      "name": "score__ScoreBar_blue_01",
+      "mesh_data_name": "score__ScoreBar_blue_01",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "ScoreBar",
+      "motion_pivot": [
+        -0.48,
+        0.0,
+        0.52
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.48,
+        0.0,
+        0.52
+      ],
+      "center_blender_studs": [
+        -0.48,
+        0.0,
+        0.52
+      ],
+      "size_blender_studs": [
+        0.31,
+        0.42,
+        0.64
+      ],
+      "bounds_min": [
+        -0.635,
+        -0.21,
+        0.2
+      ],
+      "bounds_max": [
+        -0.325,
+        0.21,
+        0.84
+      ],
+      "geometry_sha256": "90e3b5684cd6bec9e82ebc75c22c7b02f13b661d29e0ac7f6fd6a187b9ed39a0",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "score__ScoreBar_blue_02",
+      "mesh_data_name": "score__ScoreBar_blue_02",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "ScoreBar",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.74
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.74
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.74
+      ],
+      "size_blender_studs": [
+        0.31,
+        0.42,
+        1.0799999
+      ],
+      "bounds_min": [
+        -0.155,
+        -0.21,
+        0.2
+      ],
+      "bounds_max": [
+        0.155,
+        0.21,
+        1.28
+      ],
+      "geometry_sha256": "6a4500c98bb881337770f113ea5b585f876cdbb4c5c0ddb939c7810a4522ea08",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "score__ScoreBar_blue_03",
+      "mesh_data_name": "score__ScoreBar_blue_03",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "ScoreBar",
+      "motion_pivot": [
+        0.48,
+        0.0,
+        1.015
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.48,
+        0.0,
+        1.015
+      ],
+      "center_blender_studs": [
+        0.48,
+        0.0,
+        1.015
+      ],
+      "size_blender_studs": [
+        0.31,
+        0.42,
+        1.6299999
+      ],
+      "bounds_min": [
+        0.325,
+        -0.21,
+        0.2
+      ],
+      "bounds_max": [
+        0.635,
+        0.21,
+        1.8299999
+      ],
+      "geometry_sha256": "fd6f15fa38ddedd05056524cea2d760fd68471bb79e89e5dcb834c5693c23ea8",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "score__Fixed_pearl_04",
+      "mesh_data_name": "score__Fixed_pearl_04",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.1
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.1
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.1
+      ],
+      "size_blender_studs": [
+        1.5599999,
+        0.55,
+        0.2
+      ],
+      "bounds_min": [
+        -0.78,
+        -0.275,
+        0.0
+      ],
+      "bounds_max": [
+        0.78,
+        0.275,
+        0.2
+      ],
+      "geometry_sha256": "a953333ef65e2d4a2cf2977d2a61a3de534a8e88d26d3c67efb3ee8f205c7925",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/score/score.blend",
+  "source_preserved": false,
+  "blend_sha256": "0a32b4772170ecc3da2f8db3f713e158ade3ad523db7b1bb96e5bf33a44592bd"
+}

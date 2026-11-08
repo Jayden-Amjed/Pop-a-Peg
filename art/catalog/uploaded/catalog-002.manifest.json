@@ -1,0 +1,2084 @@
+{
+  "schema": 1,
+  "name": "catalog-002",
+  "file": "catalog-002.glb",
+  "glb_sha256": "8938fdb35125e1e0b9eae04be47b7840073688611e1314fa518d52d48bbfb580",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "models": [
+    {
+      "id": "chest_rare",
+      "blend_sha256": "61527ab3bf731b05202fcc2c1ecdd30cacf6b8f947d8234f51214a459dd9fc23",
+      "source_center_blender_studs": [
+        0.0,
+        0.0225,
+        1.3096085
+      ],
+      "layout_center_blender_studs": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "export_translation_blender_studs": [
+        0.0,
+        -0.0225,
+        -1.3096085
+      ],
+      "objects": [
+        "chest_rare__ChestLid_blue_01",
+        "chest_rare__Fixed_blue_02",
+        "chest_rare__Fixed_dark_03",
+        "chest_rare__ChestClasp_gold_04",
+        "chest_rare__ChestTreasure_gold_05",
+        "chest_rare__ChestTreasure_gold_06",
+        "chest_rare__ChestTreasure_gold_07",
+        "chest_rare__Fixed_gold_08",
+        "chest_rare__ChestLid_pearl_09",
+        "chest_rare__Fixed_pearl_10",
+        "chest_rare__ChestLid_teal_11"
+      ]
+    },
+    {
+      "id": "chest_uncommon",
+      "blend_sha256": "5479f5b31430d5f3aeb92876d80713ddb631e1406e980667a908c3233148888b",
+      "source_center_blender_studs": [
+        0.0,
+        0.0225,
+        1.1400779
+      ],
+      "layout_center_blender_studs": [
+        5.0,
+        0.0,
+        0.0
+      ],
+      "export_translation_blender_studs": [
+        5.0,
+        -0.0225,
+        -1.1400779
+      ],
+      "objects": [
+        "chest_uncommon__Fixed_blue_01",
+        "chest_uncommon__Fixed_dark_02",
+        "chest_uncommon__ChestClasp_gold_03",
+        "chest_uncommon__ChestTreasure_gold_04",
+        "chest_uncommon__ChestTreasure_gold_05",
+        "chest_uncommon__ChestTreasure_gold_06",
+        "chest_uncommon__Fixed_gold_07",
+        "chest_uncommon__ChestLid_pearl_08",
+        "chest_uncommon__Fixed_pearl_09",
+        "chest_uncommon__ChestLid_teal_10",
+        "chest_uncommon__Fixed_teal_11"
+      ]
+    },
+    {
+      "id": "clockwork",
+      "blend_sha256": "7624ec3bbaf81a5344dac75af7c0e1f3af8e64e09c3a9d7819a165d7042acfca",
+      "source_center_blender_studs": [
+        0.0,
+        -0.0975,
+        1.15
+      ],
+      "layout_center_blender_studs": [
+        10.0,
+        0.0,
+        0.0
+      ],
+      "export_translation_blender_studs": [
+        10.0,
+        0.0975,
+        -1.15
+      ],
+      "objects": [
+        "clockwork__Fixed_dark_01",
+        "clockwork__HourHand_gold_02",
+        "clockwork__LeftGear_gold_03",
+        "clockwork__Fixed_pearl_04",
+        "clockwork__Fixed_teal_05",
+        "clockwork__MinuteHand_teal_06",
+        "clockwork__RightGear_teal_07"
+      ]
+    },
+    {
+      "id": "cloud_mirror",
+      "blend_sha256": "943b2e11831c916c1bf86d4ad7365d6be049f2c3cc78113c9e537ecba1ec4309",
+      "source_center_blender_studs": [
+        0.0,
+        0.0,
+        1.13775
+      ],
+      "layout_center_blender_studs": [
+        15.0,
+        0.0,
+        0.0
+      ],
+      "export_translation_blender_studs": [
+        15.0,
+        0.0,
+        -1.13775
+      ],
+      "objects": [
+        "cloud_mirror__CloudGlass_blue_01",
+        "cloud_mirror__Fixed_dark_02",
+        "cloud_mirror__CloudFrame_pearl_03",
+        "cloud_mirror__CloudGlint_pearl_04",
+        "cloud_mirror__CloudRain_teal_05"
+      ]
+    },
+    {
+      "id": "coin",
+      "blend_sha256": "9a579c0d9c8a98aacc46ec9ab963c3d7f792c8c79b81f4b1ad12177c4ccfb05a",
+      "source_center_blender_studs": [
+        0.0,
+        -0.03375,
+        0.8399999
+      ],
+      "layout_center_blender_studs": [
+        0.0,
+        5.0,
+        0.0
+      ],
+      "export_translation_blender_studs": [
+        0.0,
+        5.0337501,
+        -0.8399999
+      ],
+      "objects": [
+        "coin__Coin_dark_01",
+        "coin__Coin_gold_02",
+        "coin__Coin_pearl_03"
+      ]
+    },
+    {
+      "id": "coin_press",
+      "blend_sha256": "c6da331ea10428a5016470550cedd9d1dd8b946168291a0dafd238288f1d351f",
+      "source_center_blender_studs": [
+        0.0,
+        -0.00125,
+        1.1500001
+      ],
+      "layout_center_blender_studs": [
+        5.0,
+        5.0,
+        0.0
+      ],
+      "export_translation_blender_studs": [
+        5.0,
+        5.0012498,
+        -1.1500001
+      ],
+      "objects": [
+        "coin_press__Fixed_dark_01",
+        "coin_press__PressScrew_dark_02",
+        "coin_press__MintCoin_gold_03",
+        "coin_press__PressScrew_gold_04",
+        "coin_press__Fixed_pearl_05",
+        "coin_press__MintCoin_pearl_06",
+        "coin_press__Fixed_teal_07"
+      ]
+    },
+    {
+      "id": "compass",
+      "blend_sha256": "b79d84ece7573a64087bd9da4d93afd7b2afef70eff8bb0c92b248b8c17d352d",
+      "source_center_blender_studs": [
+        0.0,
+        -0.095,
+        1.2275
+      ],
+      "layout_center_blender_studs": [
+        10.0,
+        5.0,
+        0.0
+      ],
+      "export_translation_blender_studs": [
+        10.0,
+        5.0949998,
+        -1.2275
+      ],
+      "objects": [
+        "compass__Fixed_dark_01",
+        "compass__Needle_gold_02",
+        "compass__Fixed_pearl_03",
+        "compass__Fixed_teal_04",
+        "compass__Needle_teal_05"
+      ]
+    },
+    {
+      "id": "coral_fork",
+      "blend_sha256": "037b9a1cb1298a2b446a02bc930cce985030f444ef9aed0b4dfc5c62460b677c",
+      "source_center_blender_studs": [
+        0.0,
+        0.0,
+        1.0350001
+      ],
+      "layout_center_blender_studs": [
+        15.0,
+        5.0,
+        0.0
+      ],
+      "export_translation_blender_studs": [
+        15.0,
+        5.0,
+        -1.0350001
+      ],
+      "objects": [
+        "coral_fork__Fixed_dark_01",
+        "coral_fork__CoralTip_gold_02",
+        "coral_fork__CoralTip_gold_03",
+        "coral_fork__CoralCrown_pearl_04",
+        "coral_fork__Fixed_pearl_05",
+        "coral_fork__CoralTine_teal_06",
+        "coral_fork__CoralTine_teal_07"
+      ]
+    }
+  ],
+  "objects": [
+    {
+      "name": "chest_rare__ChestLid_blue_01",
+      "mesh_data_name": "chest_rare__ChestLid_blue_01",
+      "id": "chest_rare",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        2.2746084
+      ],
+      "batch_center_blender_studs": [
+        0.0,
+        -0.0225,
+        0.9649999
+      ],
+      "motion_group": "ChestLid",
+      "motion_pivot": [
+        0.0,
+        0.8863844,
+        1.75
+      ],
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.34,
+        0.28,
+        0.689217
+      ]
+    },
+    {
+      "name": "chest_rare__Fixed_blue_02",
+      "mesh_data_name": "chest_rare__Fixed_blue_02",
+      "id": "chest_rare",
+      "center_blender_studs": [
+        0.0,
+        -0.8563844,
+        0.895
+      ],
+      "batch_center_blender_studs": [
+        0.0,
+        -0.8788844,
+        -0.4146085
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.8563844,
+        0.895
+      ],
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.9922656,
+        0.0599999,
+        0.47
+      ]
+    },
+    {
+      "name": "chest_rare__Fixed_dark_03",
+      "mesh_data_name": "chest_rare__Fixed_dark_03",
+      "id": "chest_rare",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.825
+      ],
+      "batch_center_blender_studs": [
+        0.0,
+        -0.0225,
+        -0.4846085
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.825
+      ],
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        2.3828597,
+        1.6627687,
+        1.65
+      ]
+    },
+    {
+      "name": "chest_rare__ChestClasp_gold_04",
+      "mesh_data_name": "chest_rare__ChestClasp_gold_04",
+      "id": "chest_rare",
+      "center_blender_studs": [
+        0.0,
+        -0.8713844,
+        1.52
+      ],
+      "batch_center_blender_studs": [
+        0.0,
+        -0.8938844,
+        0.2103915
+      ],
+      "motion_group": "ChestClasp",
+      "motion_pivot": [
+        0.0,
+        -0.8713844,
+        1.52
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.2822116,
+        0.12,
+        0.338654
+      ]
+    },
+    {
+      "name": "chest_rare__ChestTreasure_gold_05",
+      "mesh_data_name": "chest_rare__ChestTreasure_gold_05",
+      "id": "chest_rare",
+      "center_blender_studs": [
+        -0.25,
+        0.0,
+        1.1
+      ],
+      "batch_center_blender_studs": [
+        -0.25,
+        -0.0225,
+        -0.2096084
+      ],
+      "motion_group": "ChestTreasure",
+      "motion_pivot": [
+        -0.25,
+        0.0,
+        1.1000001
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.26,
+        0.26,
+        0.42
+      ]
+    },
+    {
+      "name": "chest_rare__ChestTreasure_gold_06",
+      "mesh_data_name": "chest_rare__ChestTreasure_gold_06",
+      "id": "chest_rare",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.28
+      ],
+      "batch_center_blender_studs": [
+        0.0,
+        -0.0225,
+        -0.0296085
+      ],
+      "motion_group": "ChestTreasure",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.28
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.26,
+        0.26,
+        0.4200001
+      ]
+    },
+    {
+      "name": "chest_rare__ChestTreasure_gold_07",
+      "mesh_data_name": "chest_rare__ChestTreasure_gold_07",
+      "id": "chest_rare",
+      "center_blender_studs": [
+        0.25,
+        0.0,
+        1.1
+      ],
+      "batch_center_blender_studs": [
+        0.25,
+        -0.0225,
+        -0.2096084
+      ],
+      "motion_group": "ChestTreasure",
+      "motion_pivot": [
+        0.25,
+        0.0,
+        1.1000001
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.26,
+        0.26,
+        0.42
+      ]
+    },
+    {
+      "name": "chest_rare__Fixed_gold_08",
+      "mesh_data_name": "chest_rare__Fixed_gold_08",
+      "id": "chest_rare",
+      "center_blender_studs": [
+        0.0,
+        0.8863844,
+        1.75
+      ],
+      "batch_center_blender_studs": [
+        0.0,
+        0.8638844,
+        0.4403915
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.8863844,
+        1.75
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.52,
+        0.1800001,
+        0.1800001
+      ]
+    },
+    {
+      "name": "chest_rare__ChestLid_pearl_09",
+      "mesh_data_name": "chest_rare__ChestLid_pearl_09",
+      "id": "chest_rare",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.83
+      ],
+      "batch_center_blender_studs": [
+        0.0,
+        -0.0225,
+        0.5203916
+      ],
+      "motion_group": "ChestLid",
+      "motion_pivot": [
+        0.0,
+        0.8863844,
+        1.75
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        2.5036867,
+        1.7666918,
+        0.24
+      ]
+    },
+    {
+      "name": "chest_rare__Fixed_pearl_10",
+      "mesh_data_name": "chest_rare__Fixed_pearl_10",
+      "id": "chest_rare",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.6525
+      ],
+      "batch_center_blender_studs": [
+        0.0,
+        -0.0225,
+        0.3428916
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.6525
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        2.4529393,
+        1.7233906,
+        0.075
+      ]
+    },
+    {
+      "name": "chest_rare__ChestLid_teal_11",
+      "mesh_data_name": "chest_rare__ChestLid_teal_11",
+      "id": "chest_rare",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        2.1898222
+      ],
+      "batch_center_blender_studs": [
+        0.0,
+        -0.0225,
+        0.8802137
+      ],
+      "motion_group": "ChestLid",
+      "motion_pivot": [
+        0.0,
+        0.886384,
+        1.75
+      ],
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.22,
+        0.28,
+        0.5196446
+      ]
+    },
+    {
+      "name": "chest_uncommon__Fixed_blue_01",
+      "mesh_data_name": "chest_uncommon__Fixed_blue_01",
+      "id": "chest_uncommon",
+      "center_blender_studs": [
+        0.0,
+        -0.92,
+        0.6
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        -0.9425,
+        -0.5400779
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.92,
+        0.6
+      ],
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.44,
+        0.0600001,
+        0.44
+      ]
+    },
+    {
+      "name": "chest_uncommon__Fixed_dark_02",
+      "mesh_data_name": "chest_uncommon__Fixed_dark_02",
+      "id": "chest_uncommon",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.13
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        -0.0225,
+        -1.010078
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.13
+      ],
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.6799999,
+        1.08,
+        0.26
+      ]
+    },
+    {
+      "name": "chest_uncommon__ChestClasp_gold_03",
+      "mesh_data_name": "chest_uncommon__ChestClasp_gold_03",
+      "id": "chest_uncommon",
+      "center_blender_studs": [
+        0.0,
+        -0.9,
+        1.14
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        -0.9225,
+        -7.8e-05
+      ],
+      "motion_group": "ChestClasp",
+      "motion_pivot": [
+        0.0,
+        -0.9,
+        1.14
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.2822116,
+        0.12,
+        0.3386539
+      ]
+    },
+    {
+      "name": "chest_uncommon__ChestTreasure_gold_04",
+      "mesh_data_name": "chest_uncommon__ChestTreasure_gold_04",
+      "id": "chest_uncommon",
+      "center_blender_studs": [
+        -0.25,
+        0.0,
+        0.72
+      ],
+      "batch_center_blender_studs": [
+        4.75,
+        -0.0225,
+        -0.4200779
+      ],
+      "motion_group": "ChestTreasure",
+      "motion_pivot": [
+        -0.25,
+        0.0,
+        0.72
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.26,
+        0.26,
+        0.42
+      ]
+    },
+    {
+      "name": "chest_uncommon__ChestTreasure_gold_05",
+      "mesh_data_name": "chest_uncommon__ChestTreasure_gold_05",
+      "id": "chest_uncommon",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.9
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        -0.0225,
+        -0.240078
+      ],
+      "motion_group": "ChestTreasure",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.9
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.26,
+        0.26,
+        0.42
+      ]
+    },
+    {
+      "name": "chest_uncommon__ChestTreasure_gold_06",
+      "mesh_data_name": "chest_uncommon__ChestTreasure_gold_06",
+      "id": "chest_uncommon",
+      "center_blender_studs": [
+        0.25,
+        0.0,
+        0.72
+      ],
+      "batch_center_blender_studs": [
+        5.25,
+        -0.0225,
+        -0.4200779
+      ],
+      "motion_group": "ChestTreasure",
+      "motion_pivot": [
+        0.25,
+        0.0,
+        0.72
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.26,
+        0.26,
+        0.42
+      ]
+    },
+    {
+      "name": "chest_uncommon__Fixed_gold_07",
+      "mesh_data_name": "chest_uncommon__Fixed_gold_07",
+      "id": "chest_uncommon",
+      "center_blender_studs": [
+        0.0,
+        0.915,
+        1.37
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        0.8925,
+        0.2299221
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.915,
+        1.37
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.52,
+        0.1799999,
+        0.1800001
+      ]
+    },
+    {
+      "name": "chest_uncommon__ChestLid_pearl_08",
+      "mesh_data_name": "chest_uncommon__ChestLid_pearl_08",
+      "id": "chest_uncommon",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.6849999
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        -0.0225,
+        0.544922
+      ],
+      "motion_group": "ChestLid",
+      "motion_pivot": [
+        0.0,
+        0.915,
+        1.37
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        2.3199999,
+        1.84,
+        0.7099999
+      ]
+    },
+    {
+      "name": "chest_uncommon__Fixed_pearl_09",
+      "mesh_data_name": "chest_uncommon__Fixed_pearl_09",
+      "id": "chest_uncommon",
+      "center_blender_studs": [
+        0.0,
+        -0.03,
+        0.7925
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        -0.0525,
+        -0.3475779
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.03,
+        0.7925
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        2.27,
+        1.8499999,
+        1.0349998
+      ]
+    },
+    {
+      "name": "chest_uncommon__ChestLid_teal_10",
+      "mesh_data_name": "chest_uncommon__ChestLid_teal_10",
+      "id": "chest_uncommon",
+      "center_blender_studs": [
+        0.0,
+        0.02,
+        1.9000779
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        -0.0025,
+        0.76
+      ],
+      "motion_group": "ChestLid",
+      "motion_pivot": [
+        0.0,
+        0.915,
+        1.37
+      ],
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.1142392,
+        0.2,
+        0.7601559
+      ]
+    },
+    {
+      "name": "chest_uncommon__Fixed_teal_11",
+      "mesh_data_name": "chest_uncommon__Fixed_teal_11",
+      "id": "chest_uncommon",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.72
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        -0.0225,
+        -0.4200779
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.72
+      ],
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        2.2,
+        1.72,
+        1.0999999
+      ]
+    },
+    {
+      "name": "clockwork__Fixed_dark_01",
+      "mesh_data_name": "clockwork__Fixed_dark_01",
+      "id": "clockwork",
+      "center_blender_studs": [
+        0.0,
+        -0.25,
+        1.24
+      ],
+      "batch_center_blender_studs": [
+        10.0,
+        -0.1525,
+        0.09
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.25,
+        1.24
+      ],
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.8,
+        0.0550001,
+        1.7999998
+      ]
+    },
+    {
+      "name": "clockwork__HourHand_gold_02",
+      "mesh_data_name": "clockwork__HourHand_gold_02",
+      "id": "clockwork",
+      "center_blender_studs": [
+        0.205,
+        -0.43,
+        1.39
+      ],
+      "batch_center_blender_studs": [
+        10.2049999,
+        -0.3325,
+        0.24
+      ],
+      "motion_group": "HourHand",
+      "motion_pivot": [
+        0.0,
+        -0.34,
+        1.24
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.4662536,
+        0.11,
+        0.3768799
+      ]
+    },
+    {
+      "name": "clockwork__LeftGear_gold_03",
+      "mesh_data_name": "clockwork__LeftGear_gold_03",
+      "id": "clockwork",
+      "center_blender_studs": [
+        -0.3,
+        -0.32,
+        1.2
+      ],
+      "batch_center_blender_studs": [
+        9.6999998,
+        -0.2225,
+        0.0500001
+      ],
+      "motion_group": "LeftGear",
+      "motion_pivot": [
+        -0.3,
+        -0.32,
+        1.2
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.7,
+        0.055,
+        0.6913818
+      ]
+    },
+    {
+      "name": "clockwork__Fixed_pearl_04",
+      "mesh_data_name": "clockwork__Fixed_pearl_04",
+      "id": "clockwork",
+      "center_blender_studs": [
+        0.0,
+        -0.0975,
+        1.15
+      ],
+      "batch_center_blender_studs": [
+        10.0,
+        0.0,
+        0.0
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.0975,
+        1.15
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        2.0599999,
+        0.825,
+        2.24
+      ]
+    },
+    {
+      "name": "clockwork__Fixed_teal_05",
+      "mesh_data_name": "clockwork__Fixed_teal_05",
+      "id": "clockwork",
+      "center_blender_studs": [
+        0.0,
+        -0.29,
+        1.24
+      ],
+      "batch_center_blender_studs": [
+        10.0,
+        -0.1925,
+        0.09
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.29,
+        1.2399999
+      ],
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        2.01,
+        0.0779423,
+        2.0099998
+      ]
+    },
+    {
+      "name": "clockwork__MinuteHand_teal_06",
+      "mesh_data_name": "clockwork__MinuteHand_teal_06",
+      "id": "clockwork",
+      "center_blender_studs": [
+        0.0,
+        -0.4,
+        1.6
+      ],
+      "batch_center_blender_studs": [
+        10.0,
+        -0.3025,
+        0.45
+      ],
+      "motion_group": "MinuteHand",
+      "motion_pivot": [
+        0.0,
+        -0.34,
+        1.24
+      ],
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.09,
+        0.0779423,
+        0.72
+      ]
+    },
+    {
+      "name": "clockwork__RightGear_teal_07",
+      "mesh_data_name": "clockwork__RightGear_teal_07",
+      "id": "clockwork",
+      "center_blender_studs": [
+        0.36,
+        -0.32,
+        1.52
+      ],
+      "batch_center_blender_studs": [
+        10.3599997,
+        -0.2225,
+        0.37
+      ],
+      "motion_group": "RightGear",
+      "motion_pivot": [
+        0.36,
+        -0.32,
+        1.52
+      ],
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.54,
+        0.055,
+        0.5333517
+      ]
+    },
+    {
+      "name": "cloud_mirror__CloudGlass_blue_01",
+      "mesh_data_name": "cloud_mirror__CloudGlass_blue_01",
+      "id": "cloud_mirror",
+      "center_blender_studs": [
+        0.0022,
+        -0.13,
+        1.7874999
+      ],
+      "batch_center_blender_studs": [
+        15.0022001,
+        -0.13,
+        0.6497499
+      ],
+      "motion_group": "CloudGlass",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.65
+      ],
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.6192,
+        0.09,
+        0.8039998
+      ]
+    },
+    {
+      "name": "cloud_mirror__Fixed_dark_02",
+      "mesh_data_name": "cloud_mirror__Fixed_dark_02",
+      "id": "cloud_mirror",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.6625
+      ],
+      "batch_center_blender_studs": [
+        15.0,
+        0.0,
+        -0.47525
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.6625
+      ],
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.9,
+        0.65,
+        1.325
+      ]
+    },
+    {
+      "name": "cloud_mirror__CloudFrame_pearl_03",
+      "mesh_data_name": "cloud_mirror__CloudFrame_pearl_03",
+      "id": "cloud_mirror",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.7975
+      ],
+      "batch_center_blender_studs": [
+        15.0,
+        0.0,
+        0.65975
+      ],
+      "motion_group": "CloudFrame",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.65
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.76,
+        0.26,
+        0.9560001
+      ]
+    },
+    {
+      "name": "cloud_mirror__CloudGlint_pearl_04",
+      "mesh_data_name": "cloud_mirror__CloudGlint_pearl_04",
+      "id": "cloud_mirror",
+      "center_blender_studs": [
+        -0.197574,
+        -0.19,
+        1.9626567
+      ],
+      "batch_center_blender_studs": [
+        14.8024263,
+        -0.19,
+        0.8249067
+      ],
+      "motion_group": "CloudGlint",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.65
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.2951481,
+        0.056,
+        0.1631837
+      ]
+    },
+    {
+      "name": "cloud_mirror__CloudRain_teal_05",
+      "mesh_data_name": "cloud_mirror__CloudRain_teal_05",
+      "id": "cloud_mirror",
+      "center_blender_studs": [
+        0.035,
+        0.0,
+        1.1799999
+      ],
+      "batch_center_blender_studs": [
+        15.0349998,
+        0.0,
+        0.0422499
+      ],
+      "motion_group": "CloudRain",
+      "motion_pivot": [
+        0.035,
+        0.0,
+        1.1799999
+      ],
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.89,
+        0.12,
+        0.26
+      ]
+    },
+    {
+      "name": "coin__Coin_dark_01",
+      "mesh_data_name": "coin__Coin_dark_01",
+      "id": "coin",
+      "center_blender_studs": [
+        0.0,
+        -0.102,
+        0.84
+      ],
+      "batch_center_blender_studs": [
+        0.0,
+        4.9317503,
+        1e-07
+      ],
+      "motion_group": "Coin",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.84
+      ],
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.2,
+        0.0250001,
+        1.2
+      ]
+    },
+    {
+      "name": "coin__Coin_gold_02",
+      "mesh_data_name": "coin__Coin_gold_02",
+      "id": "coin",
+      "center_blender_studs": [
+        0.0,
+        -0.0301554,
+        0.8399999
+      ],
+      "batch_center_blender_studs": [
+        0.0,
+        5.0035949,
+        0.0
+      ],
+      "motion_group": "Coin",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.84
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.52,
+        0.2403109,
+        1.52
+      ]
+    },
+    {
+      "name": "coin__Coin_pearl_03",
+      "mesh_data_name": "coin__Coin_pearl_03",
+      "id": "coin",
+      "center_blender_studs": [
+        0.0,
+        -0.135,
+        0.7875
+      ],
+      "batch_center_blender_studs": [
+        0.0,
+        4.8987498,
+        -0.0524999
+      ],
+      "motion_group": "Coin",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.84
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.26,
+        0.045,
+        0.6049999
+      ]
+    },
+    {
+      "name": "coin_press__Fixed_dark_01",
+      "mesh_data_name": "coin_press__Fixed_dark_01",
+      "id": "coin_press",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.045
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        5.0012498,
+        -1.1050001
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.045
+      ],
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.3200001,
+        0.9225,
+        0.09
+      ]
+    },
+    {
+      "name": "coin_press__PressScrew_dark_02",
+      "mesh_data_name": "coin_press__PressScrew_dark_02",
+      "id": "coin_press",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.5600001
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        5.0012498,
+        0.41
+      ],
+      "motion_group": "PressScrew",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.5
+      ],
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.7,
+        0.7,
+        1.05
+      ]
+    },
+    {
+      "name": "coin_press__MintCoin_gold_03",
+      "mesh_data_name": "coin_press__MintCoin_gold_03",
+      "id": "coin_press",
+      "center_blender_studs": [
+        0.35,
+        -0.54,
+        0.75
+      ],
+      "batch_center_blender_studs": [
+        5.3499999,
+        4.4612498,
+        -0.4000001
+      ],
+      "motion_group": "MintCoin",
+      "motion_pivot": [
+        0.35,
+        -0.54,
+        0.75
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.56,
+        0.11,
+        0.5599999
+      ]
+    },
+    {
+      "name": "coin_press__PressScrew_gold_04",
+      "mesh_data_name": "coin_press__PressScrew_gold_04",
+      "id": "coin_press",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.605
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        5.0012498,
+        0.4549999
+      ],
+      "motion_group": "PressScrew",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.5
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.45,
+        0.45,
+        0.636574
+      ]
+    },
+    {
+      "name": "coin_press__Fixed_pearl_05",
+      "mesh_data_name": "coin_press__Fixed_pearl_05",
+      "id": "coin_press",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.0550001
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        5.0012498,
+        -0.095
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.0550001
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.75,
+        1.23,
+        2.1100001
+      ]
+    },
+    {
+      "name": "coin_press__MintCoin_pearl_06",
+      "mesh_data_name": "coin_press__MintCoin_pearl_06",
+      "id": "coin_press",
+      "center_blender_studs": [
+        0.35,
+        -0.605,
+        0.75
+      ],
+      "batch_center_blender_studs": [
+        5.3499999,
+        4.3962498,
+        -0.4000001
+      ],
+      "motion_group": "MintCoin",
+      "motion_pivot": [
+        0.35,
+        -0.54,
+        0.75
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.3,
+        0.025,
+        0.3
+      ]
+    },
+    {
+      "name": "coin_press__Fixed_teal_07",
+      "mesh_data_name": "coin_press__Fixed_teal_07",
+      "id": "coin_press",
+      "center_blender_studs": [
+        0.0,
+        0.025,
+        1.335
+      ],
+      "batch_center_blender_studs": [
+        5.0,
+        5.0262499,
+        0.1849999
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.025,
+        1.335
+      ],
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.63,
+        0.83,
+        1.9300002
+      ]
+    },
+    {
+      "name": "compass__Fixed_dark_01",
+      "mesh_data_name": "compass__Fixed_dark_01",
+      "id": "compass",
+      "center_blender_studs": [
+        0.0,
+        -0.17,
+        1.0700001
+      ],
+      "batch_center_blender_studs": [
+        10.0,
+        4.9249997,
+        -0.1574999
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.17,
+        1.0700001
+      ],
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.4,
+        0.0400001,
+        1.3999999
+      ]
+    },
+    {
+      "name": "compass__Needle_gold_02",
+      "mesh_data_name": "compass__Needle_gold_02",
+      "id": "compass",
+      "center_blender_studs": [
+        0.0,
+        -0.27,
+        1.345
+      ],
+      "batch_center_blender_studs": [
+        10.0,
+        4.8249998,
+        0.1175001
+      ],
+      "motion_group": "Needle",
+      "motion_pivot": [
+        0.0,
+        -0.27,
+        1.07
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.26,
+        0.045,
+        0.61
+      ]
+    },
+    {
+      "name": "compass__Fixed_pearl_03",
+      "mesh_data_name": "compass__Fixed_pearl_03",
+      "id": "compass",
+      "center_blender_studs": [
+        0.0,
+        -0.095,
+        1.0700001
+      ],
+      "batch_center_blender_studs": [
+        10.0,
+        5.0,
+        -0.1574999
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.095,
+        1.0700001
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.72,
+        0.49,
+        1.72
+      ]
+    },
+    {
+      "name": "compass__Fixed_teal_04",
+      "mesh_data_name": "compass__Fixed_teal_04",
+      "id": "compass",
+      "center_blender_studs": [
+        0.0,
+        -0.08,
+        1.2549999
+      ],
+      "batch_center_blender_studs": [
+        10.0,
+        5.0149999,
+        0.0274999
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.08,
+        1.2549999
+      ],
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.61,
+        0.2779423,
+        1.9799999
+      ]
+    },
+    {
+      "name": "compass__Needle_teal_05",
+      "mesh_data_name": "compass__Needle_teal_05",
+      "id": "compass",
+      "center_blender_studs": [
+        0.0,
+        -0.27,
+        0.795
+      ],
+      "batch_center_blender_studs": [
+        10.0,
+        4.8249998,
+        -0.4324999
+      ],
+      "motion_group": "Needle",
+      "motion_pivot": [
+        0.0,
+        -0.27,
+        1.07
+      ],
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.26,
+        0.045,
+        0.61
+      ]
+    },
+    {
+      "name": "coral_fork__Fixed_dark_01",
+      "mesh_data_name": "coral_fork__Fixed_dark_01",
+      "id": "coral_fork",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.12
+      ],
+      "batch_center_blender_studs": [
+        15.0,
+        5.0,
+        -0.9150001
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.12
+      ],
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.05,
+        0.68,
+        0.24
+      ]
+    },
+    {
+      "name": "coral_fork__CoralTip_gold_02",
+      "mesh_data_name": "coral_fork__CoralTip_gold_02",
+      "id": "coral_fork",
+      "center_blender_studs": [
+        -0.68,
+        0.0,
+        1.9400001
+      ],
+      "batch_center_blender_studs": [
+        14.3199997,
+        5.0,
+        0.905
+      ],
+      "motion_group": "CoralTip",
+      "motion_pivot": [
+        -0.25,
+        0.0,
+        0.48
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.26,
+        0.26,
+        0.2600001
+      ]
+    },
+    {
+      "name": "coral_fork__CoralTip_gold_03",
+      "mesh_data_name": "coral_fork__CoralTip_gold_03",
+      "id": "coral_fork",
+      "center_blender_studs": [
+        0.68,
+        0.0,
+        1.9400001
+      ],
+      "batch_center_blender_studs": [
+        15.6800003,
+        5.0,
+        0.905
+      ],
+      "motion_group": "CoralTip",
+      "motion_pivot": [
+        0.25,
+        0.0,
+        0.48
+      ],
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.26,
+        0.26,
+        0.2600001
+      ]
+    },
+    {
+      "name": "coral_fork__CoralCrown_pearl_04",
+      "mesh_data_name": "coral_fork__CoralCrown_pearl_04",
+      "id": "coral_fork",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.12
+      ],
+      "batch_center_blender_studs": [
+        15.0,
+        5.0,
+        0.0849999
+      ],
+      "motion_group": "CoralCrown",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        1.12
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.62,
+        0.0866025,
+        0.6199999
+      ]
+    },
+    {
+      "name": "coral_fork__Fixed_pearl_05",
+      "mesh_data_name": "coral_fork__Fixed_pearl_05",
+      "id": "coral_fork",
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.35
+      ],
+      "batch_center_blender_studs": [
+        15.0,
+        5.0,
+        -0.6850001
+      ],
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.35
+      ],
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        1.0,
+        0.56,
+        0.44
+      ]
+    },
+    {
+      "name": "coral_fork__CoralTine_teal_06",
+      "mesh_data_name": "coral_fork__CoralTine_teal_06",
+      "id": "coral_fork",
+      "center_blender_studs": [
+        -0.4151385,
+        0.0,
+        1.1724272
+      ],
+      "batch_center_blender_studs": [
+        14.5848618,
+        5.0,
+        0.1374271
+      ],
+      "motion_group": "CoralTine",
+      "motion_pivot": [
+        -0.25,
+        0.0,
+        0.48
+      ],
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.6568711,
+        0.19,
+        1.6195886
+      ]
+    },
+    {
+      "name": "coral_fork__CoralTine_teal_07",
+      "mesh_data_name": "coral_fork__CoralTine_teal_07",
+      "id": "coral_fork",
+      "center_blender_studs": [
+        0.4151385,
+        0.0,
+        1.1724272
+      ],
+      "batch_center_blender_studs": [
+        15.4151382,
+        5.0,
+        0.1374271
+      ],
+      "motion_group": "CoralTine",
+      "motion_pivot": [
+        0.25,
+        0.0,
+        0.48
+      ],
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "size_blender_studs": [
+        0.6568711,
+        0.19,
+        1.6195886
+      ]
+    }
+  ],
+  "calibration": [
+    {
+      "name": "catalog_002__calibration_origin",
+      "center_blender_studs": [
+        -4,
+        -4,
+        0
+      ],
+      "size_blender_studs": [
+        1,
+        1,
+        1
+      ],
+      "size_meters": [
+        0.28,
+        0.28,
+        0.28
+      ]
+    },
+    {
+      "name": "catalog_002__calibration_right",
+      "center_blender_studs": [
+        -1,
+        -4,
+        0
+      ],
+      "size_blender_studs": [
+        1,
+        1,
+        1
+      ],
+      "size_meters": [
+        0.28,
+        0.28,
+        0.28
+      ]
+    },
+    {
+      "name": "catalog_002__calibration_front",
+      "center_blender_studs": [
+        -4,
+        -7,
+        0
+      ],
+      "size_blender_studs": [
+        1,
+        1,
+        1
+      ],
+      "size_meters": [
+        0.28,
+        0.28,
+        0.28
+      ]
+    }
+  ]
+}

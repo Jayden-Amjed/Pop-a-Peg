@@ -1,0 +1,335 @@
+{
+  "schema": 2,
+  "id": "pearl_turbine",
+  "display_name": "Pearl Turbine",
+  "category": "evolved",
+  "generator": "scripts/models/catalog_nature.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 1008,
+  "pieces": 6,
+  "budget": {
+    "triangles": 6000,
+    "pieces": 12
+  },
+  "center_blender_studs": [
+    0.0,
+    0.0,
+    1.0881457
+  ],
+  "bounds_min": [
+    -1.09,
+    -0.45,
+    0.0
+  ],
+  "bounds_max": [
+    1.09,
+    0.45,
+    2.1762915
+  ],
+  "size_blender_studs": [
+    2.1800001,
+    0.9,
+    2.1762915
+  ],
+  "objects": [
+    {
+      "name": "pearl_turbine__EvolvedRotor_blue_01",
+      "mesh_data_name": "pearl_turbine__EvolvedRotor_blue_01",
+      "material": "blue",
+      "color_srgb": [
+        48,
+        153,
+        239
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 432,
+      "vertices": 228,
+      "motion_group": "EvolvedRotor",
+      "motion_pivot": [
+        0.0,
+        -0.06,
+        1.17
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.06,
+        1.17
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.06,
+        1.17
+      ],
+      "size_blender_studs": [
+        1.47,
+        0.1472243,
+        1.47
+      ],
+      "bounds_min": [
+        -0.735,
+        -0.1336122,
+        0.435
+      ],
+      "bounds_max": [
+        0.735,
+        0.0136122,
+        1.905
+      ],
+      "geometry_sha256": "3ea3ed7ea4c88e727261d3171e850329e3129370fc7ba2420e7cdb14e9ffccc2",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "pearl_turbine__Fixed_dark_02",
+      "mesh_data_name": "pearl_turbine__Fixed_dark_02",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.12
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.12
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.12
+      ],
+      "size_blender_studs": [
+        1.65,
+        0.9,
+        0.24
+      ],
+      "bounds_min": [
+        -0.825,
+        -0.45,
+        0.0
+      ],
+      "bounds_max": [
+        0.825,
+        0.45,
+        0.24
+      ],
+      "geometry_sha256": "f20da147babf619a41550df092bcf394350825e32f2f33884c89bcbab4b43d6d",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "pearl_turbine__EvolvedBalance_gold_03",
+      "mesh_data_name": "pearl_turbine__EvolvedBalance_gold_03",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 296,
+      "vertices": 152,
+      "motion_group": "EvolvedBalance",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        2.0
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        1.71
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        1.71
+      ],
+      "size_blender_studs": [
+        2.1800001,
+        0.58,
+        0.58
+      ],
+      "bounds_min": [
+        -1.09,
+        -0.29,
+        1.42
+      ],
+      "bounds_max": [
+        1.09,
+        0.29,
+        2.0
+      ],
+      "geometry_sha256": "75bb22b885921c48030d935c3eb8f1d41d680327e94268cbe75ed9b12e095eb3",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "pearl_turbine__EvolvedRotor_gold_04",
+      "mesh_data_name": "pearl_turbine__EvolvedRotor_gold_04",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 120,
+      "vertices": 62,
+      "motion_group": "EvolvedRotor",
+      "motion_pivot": [
+        0.0,
+        -0.06,
+        1.17
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.15,
+        1.17
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.15,
+        1.17
+      ],
+      "size_blender_studs": [
+        0.36,
+        0.18,
+        0.36
+      ],
+      "bounds_min": [
+        -0.18,
+        -0.24,
+        0.9899999
+      ],
+      "bounds_max": [
+        0.18,
+        -0.06,
+        1.3499999
+      ],
+      "geometry_sha256": "e9669462975c456dea0e3accd03f2d2520bb606489858851408822ea2d9e91c0",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "pearl_turbine__EvolvedBalance_pearl_05",
+      "mesh_data_name": "pearl_turbine__EvolvedBalance_pearl_05",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 32,
+      "vertices": 18,
+      "motion_group": "EvolvedBalance",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        2.0
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        2.0602763
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        2.0602763
+      ],
+      "size_blender_studs": [
+        1.7157381,
+        0.13,
+        0.2320304
+      ],
+      "bounds_min": [
+        -0.857869,
+        -0.065,
+        1.9442611
+      ],
+      "bounds_max": [
+        0.857869,
+        0.065,
+        2.1762915
+      ],
+      "geometry_sha256": "5ff9d3c615b4bc28b7e7b737500dbdc1204416266f4588301e7a727d334c70c9",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "pearl_turbine__Fixed_pearl_06",
+      "mesh_data_name": "pearl_turbine__Fixed_pearl_06",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 20,
+      "vertices": 12,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.12,
+        0.975
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.12,
+        0.975
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.12,
+        0.975
+      ],
+      "size_blender_studs": [
+        0.22,
+        0.1905256,
+        1.45
+      ],
+      "bounds_min": [
+        -0.11,
+        0.0247372,
+        0.25
+      ],
+      "bounds_max": [
+        0.11,
+        0.2152628,
+        1.7
+      ],
+      "geometry_sha256": "a9f2858a7ae01026fc2d9db4013ab060ead83a71a0f3932a7dd3991cd7c26020",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/pearl_turbine/pearl_turbine.blend",
+  "source_preserved": false,
+  "blend_sha256": "cb9037f5789f187ff3a6b99dc52e427756edb0d088fa75ad2014cf6da00c16b0"
+}

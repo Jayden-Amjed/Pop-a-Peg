@@ -1,0 +1,335 @@
+{
+  "schema": 2,
+  "id": "pearl_diver",
+  "display_name": "Pearl Diver",
+  "category": "equipment",
+  "generator": "scripts/models/catalog_nature.py",
+  "blender": "4.5.9 LTS",
+  "axes": "Blender (X,Y,Z) maps to Roblox (X,Z,-Y); front Blender -Y",
+  "units": "studs in blend; 0.28 meters per stud in GLB",
+  "triangles": 588,
+  "pieces": 6,
+  "budget": {
+    "triangles": 4000,
+    "pieces": 8
+  },
+  "center_blender_studs": [
+    0.0,
+    0.0,
+    0.7925
+  ],
+  "bounds_min": [
+    -0.6597382,
+    -0.4,
+    0.0
+  ],
+  "bounds_max": [
+    0.6597382,
+    0.4,
+    1.585
+  ],
+  "size_blender_studs": [
+    1.3194764,
+    0.8,
+    1.585
+  ],
+  "objects": [
+    {
+      "name": "pearl_diver__Fixed_dark_01",
+      "mesh_data_name": "pearl_diver__Fixed_dark_01",
+      "material": "dark",
+      "color_srgb": [
+        44,
+        88,
+        126
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 108,
+      "vertices": 56,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.0,
+        0.12
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.0,
+        0.12
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.0,
+        0.12
+      ],
+      "size_blender_studs": [
+        1.15,
+        0.8,
+        0.24
+      ],
+      "bounds_min": [
+        -0.575,
+        -0.4,
+        0.0
+      ],
+      "bounds_max": [
+        0.575,
+        0.4,
+        0.24
+      ],
+      "geometry_sha256": "c06d235fedd33c832c2b19d6539da6e7f86ffe0216def273ab7969701a923bad",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "pearl_diver__Fixed_gold_02",
+      "mesh_data_name": "pearl_diver__Fixed_gold_02",
+      "material": "gold",
+      "color_srgb": [
+        249,
+        189,
+        63
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 240,
+      "vertices": 124,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        -0.05,
+        1.15
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.05,
+        1.15
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.05,
+        1.15
+      ],
+      "size_blender_studs": [
+        1.14,
+        0.28,
+        0.28
+      ],
+      "bounds_min": [
+        -0.57,
+        -0.19,
+        1.01
+      ],
+      "bounds_max": [
+        0.57,
+        0.09,
+        1.29
+      ],
+      "geometry_sha256": "947a9a18855e0944b65cbf302c70f0264114156abbc934da961d20b8731ca103",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "pearl_diver__DiverPearl_pearl_03",
+      "mesh_data_name": "pearl_diver__DiverPearl_pearl_03",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 120,
+      "vertices": 62,
+      "motion_group": "DiverPearl",
+      "motion_pivot": [
+        0.0,
+        -0.04,
+        0.75
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        -0.04,
+        0.75
+      ],
+      "center_blender_studs": [
+        0.0,
+        -0.04,
+        0.75
+      ],
+      "size_blender_studs": [
+        0.64,
+        0.64,
+        0.6399999
+      ],
+      "bounds_min": [
+        -0.32,
+        -0.36,
+        0.43
+      ],
+      "bounds_max": [
+        0.32,
+        0.28,
+        1.0699999
+      ],
+      "geometry_sha256": "f505560f2b65fcc0c158272d36f94eb152f2848e90d951bd51c0a60d6862f450",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "pearl_diver__Fixed_pearl_04",
+      "mesh_data_name": "pearl_diver__Fixed_pearl_04",
+      "material": "pearl",
+      "color_srgb": [
+        249,
+        253,
+        255
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 56,
+      "vertices": 30,
+      "motion_group": "Fixed",
+      "motion_pivot": [
+        0.0,
+        0.15,
+        0.8868831
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.0,
+        0.15,
+        0.886883
+      ],
+      "center_blender_studs": [
+        0.0,
+        0.15,
+        0.886883
+      ],
+      "size_blender_studs": [
+        1.3194764,
+        0.1472243,
+        1.396234
+      ],
+      "bounds_min": [
+        -0.6597382,
+        0.0763878,
+        0.1887661
+      ],
+      "bounds_max": [
+        0.6597382,
+        0.2236122,
+        1.585
+      ],
+      "geometry_sha256": "99fca09aca89d655b7d0439b697bc6c4baa289ad000996e1e9106f84d6ab41ed",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "pearl_diver__DiverClaw_teal_05",
+      "mesh_data_name": "pearl_diver__DiverClaw_teal_05",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 32,
+      "vertices": 18,
+      "motion_group": "DiverClaw",
+      "motion_pivot": [
+        -0.43,
+        -0.05,
+        1.15
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        -0.3906074,
+        -0.108913,
+        0.7659486
+      ],
+      "center_blender_studs": [
+        -0.3906074,
+        -0.108913,
+        0.7659486
+      ],
+      "size_blender_studs": [
+        0.5092793,
+        0.2889403,
+        0.8218626
+      ],
+      "bounds_min": [
+        -0.645247,
+        -0.2533831,
+        0.3550173
+      ],
+      "bounds_max": [
+        -0.1359678,
+        0.0355572,
+        1.1768799
+      ],
+      "geometry_sha256": "21fb48bbe943bde4cdf2a23c8bacf84a09d1562ae76fed03b46f2b493392d5f2",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "pearl_diver__DiverClaw_teal_06",
+      "mesh_data_name": "pearl_diver__DiverClaw_teal_06",
+      "material": "teal",
+      "color_srgb": [
+        39,
+        189,
+        220
+      ],
+      "alpha": 1.0,
+      "transparency": 0.0,
+      "triangles": 32,
+      "vertices": 18,
+      "motion_group": "DiverClaw",
+      "motion_pivot": [
+        0.43,
+        -0.05,
+        1.15
+      ],
+      "compression_span": null,
+      "original_center_blender_studs": [
+        0.3906074,
+        -0.108913,
+        0.7659486
+      ],
+      "center_blender_studs": [
+        0.3906074,
+        -0.108913,
+        0.7659486
+      ],
+      "size_blender_studs": [
+        0.5092793,
+        0.2889403,
+        0.8218626
+      ],
+      "bounds_min": [
+        0.1359678,
+        -0.2533831,
+        0.3550173
+      ],
+      "bounds_max": [
+        0.645247,
+        0.0355572,
+        1.1768799
+      ],
+      "geometry_sha256": "34892cdd91aa72557e076520ea913ac7ae1321f67f3919eec95f24e5231f803b",
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "source": "art/catalog/pearl_diver/pearl_diver.blend",
+  "source_preserved": false,
+  "blend_sha256": "f64ba9f6c050bc0a3cdf214363c030589f6cbc8677c6d1709e463968d60cf24a"
+}

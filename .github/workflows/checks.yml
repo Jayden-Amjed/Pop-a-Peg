@@ -20,3 +20,6 @@ jobs:
       - name: Format, lint, test, build, and verify contracts
         shell: pwsh
         run: ./scripts/check.ps1
+      - name: Verify model source and import archive
+        shell: pwsh
+        run: python scripts/models/validate_catalog.py --expected-owner 583716264 --runtime-manifest art/catalog/runtime-artifacts.json

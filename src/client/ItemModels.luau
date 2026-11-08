@@ -1,5 +1,6 @@
 local ItemModels = {}
 local ItemMotion = require(script.Parent.ItemMotion)
+local PreviewLighting = require(script.Parent.PreviewLighting)
 
 local P = {
     steel = Color3.fromRGB(139, 189, 219),
@@ -2385,9 +2386,7 @@ function ItemModels.mount(viewport, id, level, options)
     camera.FieldOfView = 30
     camera.Parent = container
     viewport.CurrentCamera = camera
-    viewport.Ambient = Color3.fromRGB(185, 214, 232)
-    viewport.LightColor = Color3.fromRGB(255, 252, 244)
-    viewport.LightDirection = V(-0.7, -1, -0.6)
+    PreviewLighting.apply(viewport, options and options.lightingPreset)
     local _, size = model:GetBoundingBox()
     local radius = size.Magnitude / 2
     local canonical = aliases[id] or id
