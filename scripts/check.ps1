@@ -30,6 +30,8 @@ try {
         @{ Path = 'ReplicatedStorage/Shared/Board'; Class = 'ModuleScript'; Source = 'src/shared/Board.luau' },
         @{ Path = 'ReplicatedStorage/Shared/Simulation'; Class = 'ModuleScript'; Source = 'src/shared/Simulation.luau' },
         @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/Presentation'; Class = 'ModuleScript'; Source = 'src/client/Presentation.luau' },
+        @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/HoverInspector'; Class = 'ModuleScript'; Source = 'src/client/HoverInspector.luau' },
+        @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/BoardArt'; Class = 'ModuleScript'; Source = 'src/client/BoardArt.luau' },
         @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/Feedback'; Class = 'ModuleScript'; Source = 'src/client/Feedback.luau' },
         @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/ItemModels'; Class = 'ModuleScript'; Source = 'src/client/ItemModels.luau' },
         @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/ItemMotion'; Class = 'ModuleScript'; Source = 'src/client/ItemMotion.luau' },

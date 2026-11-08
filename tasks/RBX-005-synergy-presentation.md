@@ -5,7 +5,7 @@ Status: IN PROGRESS
 Objective: Make upgrades readable at a glance, show modeled synergy ownership, and give the board a cohesive aquatic presentation.
 Starting main: `60b579aa2fba2b2ca4d3bdf0e421f8db6ed51fa2`.
 Branch: `task/RBX-005-synergy-presentation`
-PR: pending draft
+PR: [#6](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/6), draft against main.
 Reservation: [issue #5](https://github.com/Jayden-Amjed/Pop-a-Peg/issues/5).
 
 ## Scope and ownership
