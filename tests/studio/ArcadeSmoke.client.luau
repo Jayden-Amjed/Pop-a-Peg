@@ -8,6 +8,7 @@ end
 local actions = game.ReplicatedStorage:WaitForChild("PegRemotes", 60)
 assert(actions, "Fixture must enable the normal server after seeding session profiles")
 local state
+local lastNoticeSequence = 0
 local seenFlight = false
 local firstReceipt, startingTime
 local expectedChests, expectedResearch
@@ -23,6 +24,9 @@ local starterIds = {
 }
 actions.State.OnClientEvent:Connect(function(s)
     state = s
+    if s.notice then
+        lastNoticeSequence = s.sequence
+    end
     if s.phase == "flight" then
         seenFlight = true
     end
@@ -140,7 +144,7 @@ local function rejection(kind, payload)
     local before = state.sequence
     actions.Action:FireServer(kind, payload)
     waitFor(function()
-        return state.sequence > before and state.notice ~= nil
+        return lastNoticeSequence > before
     end)
 end
 remote.OnClientEvent:Connect(function(command)
