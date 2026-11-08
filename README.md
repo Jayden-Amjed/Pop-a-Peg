@@ -109,6 +109,12 @@ large item models and text. Cards stay mounted while selection and purchase stat
 change. Supplies use an **On purchase** trigger and a single **Use** purchase label.
 Selling, reordering, rerolls, held offers, and extra slots shape the build.
 
+With a full rack, shop openings and rerolls reserve the first two equipment cards
+for owned items that can still upgrade. They prefer different items; the other
+two cards roll normally. Ready evolutions use unreserved cards. If fewer than two
+upgrade levels remain in the rack, only those useful upgrades are guaranteed.
+Held cards keep their price and may move to preserve these reserved positions.
+
 Equipment upgrades one level at a time, up to **level 5**, including when the rack
 is full. Supplies and upgrade events also add one level. An owned capped item
 cannot be bought again as another copy. Moving equal-level uncapped copies together merges

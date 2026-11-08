@@ -864,7 +864,11 @@ function Run:_refreshEvolutions()
                 local offer = self.shopOffers[index]
                 if
                     not offer
-                    or (not offer.frozen and (offer.sold or not Catalog.Items[offer.id].evolved))
+                    or (
+                        not offer.frozen
+                        and not offer.guaranteedUpgrade
+                        and (offer.sold or not Catalog.Items[offer.id].evolved)
+                    )
                 then
                     destination = index
                     if not offer or offer.sold then
@@ -891,20 +895,96 @@ function Run:_evolutionChoices()
     return choices
 end
 
+function Run:_newEquipmentOffer(id)
+    return {
+        id = id,
+        price = math.max(
+            1,
+            Catalog.Items[id].price - (if self.shopKind == "surplus" then 1 else 0)
+        ),
+        frozen = false,
+        sold = false,
+    }
+end
+
+function Run:_reserveFullRackUpgrades()
+    local ids, remaining, selected, used = {}, {}, {}, {}
+    for _, entry in ipairs(self.inventory) do
+        local definition = Catalog.Items[entry.id]
+        if definition and not definition.evolved and entry.level < Catalog.MaxLevel then
+            if not remaining[entry.id] then
+                table.insert(ids, entry.id)
+            end
+            remaining[entry.id] = (remaining[entry.id] or 0) + Catalog.MaxLevel - entry.level
+        end
+    end
+    self.rng:shuffle(ids)
+    local heldIndex = self.frozenOffer and self.frozenOffer.index
+    local held = heldIndex and copy(self.shopOffers[heldIndex])
+    local heldUpgrade = held and (remaining[held.id] or 0) > 0
+    if heldUpgrade then
+        table.insert(selected, held.id)
+        remaining[held.id] -= 1
+        used[held.id] = true
+    end
+    while #selected < 2 do
+        local nextId
+        for _, id in ipairs(ids) do
+            if remaining[id] > 0 and not used[id] then
+                nextId = id
+                break
+            end
+        end
+        if not nextId then
+            for _, id in ipairs(ids) do
+                if remaining[id] > 0 then
+                    nextId = id
+                    break
+                end
+            end
+        end
+        if not nextId then
+            break
+        end
+        table.insert(selected, nextId)
+        remaining[nextId] -= 1
+        used[nextId] = true
+    end
+    if #selected == 0 then
+        return
+    end
+    local heldDestination = if heldUpgrade
+        then 1
+        elseif held then math.max(heldIndex, #selected + 1)
+        else nil
+    if held and heldIndex ~= heldDestination and heldIndex > #selected then
+        self.shopOffers[heldIndex] = self:_newEquipmentOffer(self:_drawItem())
+    end
+    for index, id in ipairs(selected) do
+        local offer = if heldUpgrade and index == 1 then held else self:_newEquipmentOffer(id)
+        offer.guaranteedUpgrade = true
+        self.shopOffers[index] = offer
+    end
+    if held then
+        self.shopOffers[heldDestination] = held
+        self.frozenOffer = { index = heldDestination, offer = copy(held) }
+    end
+end
+
 function Run:_rollShop()
     for index = 1, 4 do
         if self.frozenOffer and self.frozenOffer.index == index then
             self.shopOffers[index] = copy(self.frozenOffer.offer)
+            self.shopOffers[index].guaranteedUpgrade = nil
         else
-            local id = self:_drawItem()
-            local discount = if self.shopKind == "surplus" then 1 else 0
-            self.shopOffers[index] = {
-                id = id,
-                price = math.max(1, Catalog.Items[id].price - discount),
-                frozen = false,
-                sold = false,
-            }
+            self.shopOffers[index] = self:_newEquipmentOffer(self:_drawItem())
         end
+    end
+    if #self:_occupied() == self.slots then
+        self:_reserveFullRackUpgrades()
+        self:_rollConsumables()
+        self:_refreshEvolutions()
+        return
     end
     local upgradeIds, alreadyOffered = {}, false
     for _, entry in ipairs(self.inventory) do
