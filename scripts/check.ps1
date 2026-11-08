@@ -15,13 +15,19 @@ try {
             throw "Incorrect tool version: $actual; run scripts/setup.ps1"
         }
     }
-    & .\.tools\stylua.exe --check src tests
+    & .\.tools\stylua.exe --check src tests scripts/models
     if ($LASTEXITCODE -ne 0) { throw 'Formatting failed' }
-    & .\.tools\selene.exe src tests
+    & .\.tools\selene.exe src tests scripts/models
     if ($LASTEXITCODE -ne 0) { throw 'Lint failed' }
     & .\.tools\luau.exe tests/run.luau
     if ($LASTEXITCODE -ne 0) { throw 'Gameplay tests failed' }
+    & .\.tools\luau.exe scripts/models/test_catalog_motion.luau
+    if ($LASTEXITCODE -ne 0) { throw 'Catalog motion contracts failed' }
     & "$PSScriptRoot/build.ps1"
+    & .\.tools\rojo.exe build catalog-gallery.project.json --output build\peg-catalog-gallery.rbxlx
+    if ($LASTEXITCODE -ne 0) { throw 'Catalog gallery build failed' }
+    & .\.tools\rojo.exe build blender-pilots.project.json --output build\peg-blender-pilots.rbxlx
+    if ($LASTEXITCODE -ne 0) { throw 'Original pilot gallery build failed' }
     [xml]$place = Get-Content build/dev.rbxlx -Raw
     $mappings = @(
         @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/RunLayout'; Class = 'ModuleScript'; Source = 'src/client/RunLayout.luau' },
@@ -55,6 +61,7 @@ try {
         @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/Feedback'; Class = 'ModuleScript'; Source = 'src/client/Feedback.luau' },
         @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/ItemModels'; Class = 'ModuleScript'; Source = 'src/client/ItemModels.luau' },
         @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/ItemMotion'; Class = 'ModuleScript'; Source = 'src/client/ItemMotion.luau' },
+        @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/PreviewLighting'; Class = 'ModuleScript'; Source = 'src/client/PreviewLighting.luau' },
         @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/InventorySelection'; Class = 'ModuleScript'; Source = 'src/client/InventorySelection.luau' },
         @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/ShopLayout'; Class = 'ModuleScript'; Source = 'src/client/ShopLayout.luau' },
         @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/ChoiceLayout'; Class = 'ModuleScript'; Source = 'src/client/ChoiceLayout.luau' },

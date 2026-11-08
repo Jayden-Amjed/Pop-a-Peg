@@ -498,6 +498,16 @@ exports preserve them. The Python builders are explicit regeneration recipes.
 Committed manifests and uploaded artifacts identify the tested import revision;
 candidate exports stay in ignored `build/model-exports/` until reviewed/imported.
 
+The [full catalog inspector](CATALOG_GALLERY.md) builds with
+`catalog-gallery.project.json`. `art/catalog/CatalogAssets.rbxm` restores 78 models
+with 477 MeshParts; 75 editable sources live under `art/catalog/` and the original
+three stay under `art/models/`. Ten recorded uploads cover the new meshes.
+`CatalogMotion` applies shared pivot transforms, and only the selected model plus
+an optional native comparison mounts in viewports. `PreviewLighting` is shared
+with normal item cards; `UiTheme` adds restrained contrast. Gameplay still uses
+native geometry. Source files, upload receipts, runtime copies, tests and publication
+remain distinct; see the task and dashboard for current verification.
+
 ## Development and publication
 
 A local generated place is the default development target. Independent operators

@@ -93,6 +93,12 @@ system clipboard, save to a DataStore or send feedback anywhere.
 
 ## Sources, generated files and runtime models
 
+The viewer supports mouse-wheel zoom from 60% to 250%; click **ZOOM / FIT** to
+restore the full-animation framing. Zoom applies only over the model viewer,
+so scrolling the library does not resize the model. Pose tags record the precise
+zoom along with item, pose, speed, strength, camera and lighting. High zoom can
+intentionally crop a moving part; use Fit before checking the full activation.
+
 These are original project models built from the project's
 [model style guide](MODEL_STYLE_GUIDE.md). No third-party mesh or texture pack is
 required by these builders. See [asset provenance](ASSETS.md) for the project's
@@ -137,6 +143,17 @@ and budgets, writes the catalog index and gallery metadata, and optionally expor
 GLB batches of at most eight new models. Exports, their object/calibration
 manifests and `batches.json` go under ignored `build/catalog-exports/` by default.
 This command does not upload assets or refresh the `.rbxm` runtime copies.
+
+Validate the archived, uploaded revision without rebuilding geometry:
+
+```powershell
+& .\.tools\blender-4.5.9-windows-x64\4.5\python\bin\python.exe scripts\models\validate_catalog.py --expected-owner 583716264 --runtime-manifest art\catalog\runtime-artifacts.json
+```
+
+This verifies sources, manifests, exported bytes, observed mesh identities and
+the engine-exported runtime artifact. Changed source geometry intentionally fails
+until its new import evidence is recorded. CI runs the same pure-Python archive
+check, alongside Luau motion contracts and both gallery builds.
 
 An ordinary build loads and preserves each existing `.blend` source, including
 manual Blender edits. It refreshes the source manifest and export from that file.

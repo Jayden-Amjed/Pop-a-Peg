@@ -10,6 +10,10 @@ Their editable sources and Studio images illustrate the palette, continuous coil
 clear seed display and hollow hinged chest. They are evaluation assets; adopting
 them into the production catalog is a separate integration decision.
 
+The [full catalog inspector](CATALOG_GALLERY.md) extends this to all 78 renderables.
+Use its front/side/rear views, pose slider and zoom to review clean silhouettes,
+attachments and deliberate articulation. Tag feedback with the model ID and pose.
+
 ## Visual direction
 
 Build friendly Frutiger Aero objects: pearl housings, aqua glass or water cues,
@@ -35,6 +39,15 @@ as smooth ceramic/plastic, selective metal and glass. Keep neon to small active
 elements. Avoid covering a whole model in reflective or transparent layers.
 Prefer one glass shell with deliberate contents and a simple reflection shape;
 test that its contents remain readable under actual ViewportFrame lighting.
+
+Use the shared `PreviewLighting` Balanced preset for review and game cards:
+cool ambient RGB 105/132/151, key RGB 231/241/246, direction (-0.8,-0.7,-0.5).
+Keep dark inset faces under pearl rims so shape reads without extra outline shells.
+UI panels use restrained navy depth and a pearl-to-aqua gradient. ViewportFrames
+support directional shading, not cast shadows; do not add duplicate geometry to
+fake an outline or a generic shadow pedestal. Original lighting remains available
+in the inspector for direct comparison. Activation glow is capped at 0.22 in the
+Blender adapter so surface details remain visible during procs.
 
 Each catalog ID needs its own geometry. Sharing a housing, hinge or material is
 fine; a recolor or extra bolt does not create a new item. Evolutions should visibly

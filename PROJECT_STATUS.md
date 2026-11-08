@@ -1,44 +1,48 @@
 # Current project state
 
-State Version: 10 (accepted Blender pilot workflow; predecessor accepted version 9)
+State Version: 11 (PROPOSED; predecessor accepted version 10)
 Reviewed: 2026-11-08, America/Los_Angeles
-Objective: Evaluate three original Blender models in a separate Studio gallery.
+Objective: Review every item in an individual Blender animation inspector with clearer shading.
 
-Accepted source: 3fd22c83dbda10240dd6f12642610e14cfb73a7a (PR20 merge confirmed by GitHub).
-Production gameplay implementation remains 21ac14748710be87635fb7e0d40ec9f65d6bc683.
-Completed task: [RBX-019](tasks/RBX-019-blender-pilots.md), Codex coordinator.
-Branch: task/RBX-019-blender-pilots; [PR20](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/20).
-Studio-tested source: 0a0e40c9861b10ef35ee07226f8e2abe453f0e93 (pilot implementation).
-Merge: MERGED. State advanced once from accepted version 9; fetched main matches.
+Accepted source: dfe5c4a8c8d82185a640cd7a029f6bb90d1014fd (fetched main; version 10).
+Active task: [RBX-021](tasks/RBX-021-catalog-lab.md), Codex coordinator.
+Branch: task/RBX-021-catalog-lab; [PR22](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/22).
+Studio-tested source: 23f4615c4231114af6cf72e271739a8858459e3c (final inspector);
+92c4578d72548a61e0bc810f22b105fb65d1e812 (complete mesh/motion audit).
+Merge: NOT MERGED. Version 11 is a proposal until GitHub confirms acceptance.
 
 | Capability | Verified state |
 | --- | --- |
-| Blender | Portable 4.5.9 LTS installed with official SHA256 verification; repeatable setup/export |
-| Pilot models | Wave Spring 3184 tris/7 meshes; Seed Bank 2040/8; Meadow Chest 3168/10 |
-| Editable source | Three .blend files; normal exports preserve edits; explicit -Regenerate uses Python recipes |
-| Studio gallery | Separate local place, equal-size native toggle, activation controls, 48/96/192-pixel previews |
-| Import / access | Model112890615474684, owner583716264, Approved; 25 meshes restored and loaded under owner account |
-| Native verification | 12 activation cycles per model, full transforms restored; 10800 framing-corner checks; actual GUI and images |
-| Art workflow | [Pilot guide](docs/BLENDER_PILOTS.md), [style guide](docs/MODEL_STYLE_GUIDE.md), [provenance](docs/ASSETS.md) |
-| Production models | All 78 native models remain the default; no catalog replacement in this pilot |
-| Existing game | Eight-player arcade, saved extra-Restocks wallet, hub chest market, bounded five-cycle restocks and 64 sound motifs retained |
-| Chest prices | Common100 / Uncommon250 / Rare500 / Legendary1000; server-authoritative and retry-safe |
-| Checks | Pilot lint/export/audits and final docs checks passed; 23 repository suites, build and 38 mappings; PR CI 42514389825 passed |
+| Blender catalog | 78 unique model signatures: 40 equipment, 13 evolutions, 8 perks, 3 Supplies, 14 utility/chest/event models |
+| Editable sources | 75 new compressed .blend files plus three preserved pilot sources; ordinary builds retain manual edits |
+| Runtime artifact | 477 MeshParts, 124332 triangles total; only selected model plus optional native comparison mounts |
+| Inspector | Search/filter, individual trigger, loop, 0.25/0.5/1/2x speed, pause/pose scrub, four camera views, 60–250% zoom/Fit |
+| Feedback | Per-item session notes, precise pose/view tags and a copyable export; copy before stopping Play |
+| Contrast | Shared Balanced/Original preview lighting, dark recesses and quieter pearl/aqua panel depth; no duplicate outline shells |
+| Import proof | Ten new owner-account uploads Approved; calibrated scale/orientation; exact source/export/raw/runtime hashes |
+| Studio | All 78 mesh loads and 24 activation cycles/model pass; all poses restore; 22896 camera-corner checks pass |
+| Production game | Native geometry remains active; shared lighting/UI contrast applied; hub entry and three completed shot rounds checked |
+| Existing gameplay | Eight-player arcade, chosen-tier chest market and saved extra-Restocks wallet retained; no balance or paid-product changes |
 
-Studio: 0.746.0.7461269; peg-blender-pilots.rbxlx;
-466c063b-5d2e-4435-8c22-ad2394ef1d77. Root sole operator; Rojo disconnected;
-Play stopped in Edit. Normalized models restored from engine-serialized .rbxm.
-Other Studio sessions and the user's saved permission-host experience were preserved.
+Guide: [Catalog inspector](docs/CATALOG_GALLERY.md).
+[Actual Studio preview](docs/evidence/RBX-021/catalog-final-clock.jpg).
+Evidence: [runtime audit](docs/evidence/RBX-021/studio-catalog-audit.json),
+[camera checks](docs/evidence/RBX-021/studio-gallery-fit.json),
+[archive integrity](docs/evidence/RBX-021/catalog-integrity.json).
 
-Playable output: build/peg-blender-pilots.rbxlx in .worktrees/blender-pilots.
-SHA256: 3394E5363B89CB0F4BD36565CC420E32BCA3618DDA0D93DC7D760E7D9C7B628E.
-[Actual Studio preview](docs/evidence/RBX-019/studio-rest.jpg).
+Studio: final gallery peg-catalog-gallery-final.rbxlx,
+9f7afcd3-3f7d-45ea-8f2d-9769db7f8564. Root sole operator; Rojo disconnected;
+Play stopped in Edit. User's saved experience and earlier places preserved.
+Playable output: build/peg-catalog-gallery-final.rbxlx in .worktrees/catalog-lab.
+SHA256: 0EB94AA776AEA48CB71C4138406367EF79C523191E8BE8D3F2312CF678548DF3.
 
-Blockers: none. Final local checks and PR CI passed at e5bb12d0e7dd52c8a62527fa9ca1d651fa6bda67.
-Limitations: rigid coil compression changes wire thickness; another account's mesh
-access, production adoption and physical-device performance are unverified.
-Existing unrelated avatar asset203785492 warning persists. No pilot runtime errors.
-Yellow monitor border remains resolved; this task used Studio capture only.
-Published: model asset uploaded; no experience update published by this task.
-Next action: open the gallery and press Play; evaluate the three pilots before production adoption.
+Checks: formatting/lint, 23 existing suites, catalog motion contracts, main build,
+39 source mappings, both gallery builds and archive validator passed. PR CI pending.
+Blockers: none. Limitations: rigid coil compression changes wire thickness;
+ViewportFrames shade directionally but do not cast shadows; high manual zoom can
+crop intentionally; notes last only this Play session. Other-account mesh access
+and narrow/mobile inspector layouts are unverified. Existing unrelated avatar
+asset203785492 warning persists; no catalog runtime errors.
+Published: ten model assets uploaded; no game experience update published.
+Next action: finish final checks/PR integration, then inspect models and export feedback.
 Repository administration: main unprotected; temporary default remains starter branch.

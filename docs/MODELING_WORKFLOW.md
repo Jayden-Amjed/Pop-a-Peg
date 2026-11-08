@@ -1,8 +1,8 @@
-# Modeling workflow: native builders and Blender pilots
+# Modeling workflow: native builders and Blender catalog
 
 The game currently builds its models in `src/client/ItemModels.luau`; it does not
-load a Blender asset library. Keep that reproducible path while testing a small
-Blender pipeline for cleaner curved surfaces and more deliberate silhouettes.
+load a Blender asset library. Keep that reproducible path while reviewing the
+complete [Blender catalog](CATALOG_GALLERY.md) for cleaner surfaces and silhouettes.
 Follow the [style guide](MODEL_STYLE_GUIDE.md), [ownership policy](SYSTEM_OVERVIEW.md#ownership-and-restoration)
 and [Studio workflow](WORKFLOW.md#agent-workflow-through-mcp).
 
@@ -11,11 +11,13 @@ and [Studio workflow](WORKFLOW.md#agent-workflow-through-mcp).
 RBX-019 installed checksum-verified portable Blender **4.5.9 LTS** in the task's
 ignored `.tools` directory and implemented the three pilots below. It uses the
 Blender CLI/Python API and Roblox Studio MCP; no Blender MCP is required.
-Follow the executable [pilot guide](BLENDER_PILOTS.md) for setup and build commands.
+Follow the [catalog guide](CATALOG_GALLERY.md) for all 78 models, preserved-source
+exports, import receipts and individual animation feedback. The earlier
+[pilot guide](BLENDER_PILOTS.md) retains the three-model comparison workflow.
 The normal game still uses native builders; the separate gallery uses the imported
 meshes and has actual Studio evidence. Model upload did not publish an experience.
 
-## Three pilots before a catalog conversion
+## Original pipeline pilots
 
 | Pilot | What it must demonstrate |
 | --- | --- |
@@ -26,7 +28,7 @@ meshes and has actual Studio evidence. Model upload did not publish an experienc
 Compare each with its native model in the same UI lighting, camera, size and
 animation. Adopt a mesh only when it improves that comparison and stays inside
 the agreed runtime budget. A failed pilot stays on the native builder. Expand
-to other items after the import, restoration and animation steps are repeatable.
+to production only after reviewing the individual catalog model and its animation.
 
 ## Author, export and inspect
 
