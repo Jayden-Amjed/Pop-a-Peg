@@ -1149,6 +1149,9 @@ function Presentation:_renderCounters()
         viewport.Visible = not self.compact and not self.lowDesktop and index <= restocks
     end
     local stage = state.stage
+    if stage and state.stageCleared and state.stageCleared.index == stage.index then
+        stage = state.stageCleared
+    end
     if stage then
         self.roundLabel.Text = (self.compact and ("LV " .. stage.index .. " • ") or "ROUND ")
             .. tostring(state.round)

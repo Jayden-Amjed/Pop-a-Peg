@@ -130,7 +130,7 @@ raises the score but halves the strongest peg, feeding Pearl Scale's halve trigg
 Soft Current trims pegs before popping the weakest, while Burst Capsule doubles
 a center peg, pops its neighbors, then halves the center. Direct item-to-item relay
 chains have a depth limit. A shared limit of 4,096 item/perk activations per shot
-ends runaway cascades with **OVERDRIVE COMPLETE**, allowing the shot to settle.
+ends runaway cascades, allowing the shot to settle.
 
 Shot statistics include pops, walls, doubles, halves, quotas, time, first hit,
 drain, clear, and item/perk activations. They remain visible after automatic round
