@@ -667,7 +667,7 @@ end
 
 function Presentation:_layout()
     local camera = workspace.CurrentCamera
-    if not camera or camera.ViewportSize.X < 1 then
+    if not camera or camera.ViewportSize.X < 32 or camera.ViewportSize.Y < 48 then
         return
     end
     local size = camera.ViewportSize
