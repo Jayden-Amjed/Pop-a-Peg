@@ -3,10 +3,10 @@
 Board, equipment, perk, consumable, and currency models are original native Roblox
 geometry generated from source. They require no private mesh, image, or texture IDs.
 
-`HubWorld` builds an original 978-part aquarium arcade: eight detailed cabinets,
+`HubWorld` builds an original aquarium arcade: eight detailed cabinets,
 walkable pearl/aqua atrium, safety glazing, paths, plants, seating, arches, gallery,
-records kiosk and a central tank with seven modeled fish. `HubAmbience` animates
-10 fish/bubble groups (65 parts) locally while the hub is visible, restores their
+records kiosk, chest pavilion, leaderboard gallery and a central modeled fish tank.
+`HubAmbience` animates fish/bubble groups locally while the hub is visible, restores their
 rest poses on exit, and respects reduced motion. No external hub model, texture,
 mesh, music or paid asset is required. Player avatars use Roblox's normal character
 loading rather than an imported character asset.
@@ -17,7 +17,7 @@ positions, collision geometry or the existing ambient animation groups.
 The local cabinet guide uses native BillboardGui and Highlight objects, not
 uploaded textures or a replicated effect.
 
-`BoardArt` builds the pearl/aqua enclosure and attached status monitor from 235
+`BoardArt` builds the pearl/aqua enclosure and attached status monitor from original
 native parts. Rounded shell layers, water-depth bands, curved side channels, leaf
 accents and bubble glints are original geometry. The monitor adds a pearl crown,
 layered aqua seal, cheek vents, leaves, cable collars and hinge, bubble antenna,
@@ -26,12 +26,22 @@ by the interface; the decorative structure and lights are physical parts. All
 board decorations are opaque, anchored, noncolliding and shadowless, and do not
 participate in simulated collisions.
 
-`ItemModels` registers 52 original native models, including 13 evolved items:
+`ItemModels` registers **78 distinct original native models**: 40 base equipment,
+13 evolutions, eight perks, three Supplies and 14 utility/reward objects. Evolved items include
 Aurora Aquarium, Spectrum Reef, Tidal Engine, Storm Clock, Horizon Observatory,
 Eden Greenhouse, Pearl Turbine, Current Nexus, Ocean Orchestra, Bubble Reactor,
 Solar Treasury, Sun Koi and Tide Gyroscope. Equipment has accents for five upgrade
 tiers; evolved items use the maximum tier. Recipes compose existing source models
 inside square ViewportFrames and require no separate image assets.
+
+The expanded equipment set adds 18 original silhouettes and moving mechanisms.
+Perk builders have their own geometry rather than reusing equipment. Meadow,
+Lagoon, Aurora and Celestial chest models each have a different body/lid design and
+hinged opening animation. Growth, repair, upgrade and overtime event prompts use
+their own emblems. The model audit checks geometry independent of colors, names
+and motion tags, so a recolor cannot pass as a distinct model. It also checks
+noncolliding preview parts, bounded geometry, required moving groups and restoration
+after activation; exact observed audit results are recorded with task evidence.
 
 `ItemModels` removes the generic white display circle from equipment, currencies
 and Supplies while retaining it on perks. Primary previews can place a black
@@ -41,7 +51,10 @@ activation poses. It is an approximate outline rather than a per-pixel contour;
 width and transparency vary with the projected shape, and miniature recipe
 previews omit the extra layer. It adds rendered geometry and is cleaned up with
 the owning preview. The colored foreground uses ZIndex 2 or higher, with its mask
-one layer behind. The 4.2-second figure-eight cycle is defined in `ItemMotion`.
+one layer behind. The 4.2-second figure-eight cycle is defined in `ItemMotion` and
+is shared by equipment, perk-choice, event and hub previews. A trigger or chest
+opening pauses that idle pose, runs the appropriate activation and resumes idle
+motion; reduced-motion/static mounts can disable the idle cycle.
 
 Dense trigger bursts, swirls, beams, impact rings, ribbons and the evolution
 celebration use native GUI geometry. Decorative effects are capped at 184 entries
@@ -72,7 +85,7 @@ pitch, volume, short playback windows, bounded voice pools, and per-cue rate
 limits keep large trigger chains from overwhelming the mix. A visible sound
 toggle mutes the group. Missing audio never blocks gameplay.
 
-`ItemFeedback` defines 46 distinct short pitch/rhythm signatures for catalog
+`ItemFeedback` defines distinct short pitch/rhythm signatures for catalog
 entries, including four-note motifs for all 13 evolutions. They reuse the existing
 C4 sample; evolutions introduce no new audio IDs. That sample is a public Creator
 Store sine wave described by its creator

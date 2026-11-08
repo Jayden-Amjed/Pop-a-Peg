@@ -14,7 +14,7 @@ and playtests; Git records reviewed implementation and verification evidence.
 | --- | --- |
 | Vision | Turn one carefully aimed shot into satisfying chains of rising numbers. |
 | Intended player experience | Read the board, choose an angle, watch the bounce, then shape the next run upgrade. |
-| Milestone | Walk the eight-player arcade, start or resume an independent run, and complete the shop, perk, loss, restart, and endless loop. |
+| Milestone | Play an independent run, earn tiered chests, open them in the arcade, and expand the equipment available in later runs. |
 | Success criteria | Playable 3D board with meaningful upgrade combinations, readable counters, reliable collisions, and isolated player state. |
 | Non-goals | Monetization, cooperative boards, production publishing, and permanent power purchases. |
 
@@ -60,9 +60,9 @@ output, runtime checks, and deliberate Studio-to-file return path.
 
 | Path | Responsibility |
 | --- | --- |
-| `src/server/` | Station ownership, hub world, player lifecycle, authoritative runs, and record storage. |
+| `src/server/` | Station ownership, hub world, authoritative runs, leased profile storage, and global leaderboards. |
 | `src/client/` | Sculpted board and attached status screen, responsive interface and hover cards, generated models, reward animation, and sound. |
-| `src/shared/` | Board, simulation, run rules, stages, catalog and evolution rules, feedback signatures, reward timeline, number formatting, and profiles. |
+| `src/shared/` | Board, simulation, run rules, stages, tiered catalog, chest/research progression, evolution rules, feedback, and profiles. |
 | `tests/` | Numerical, progression, purchase/evolution, stage, selection/layout, reward-sequencing, and profile contracts. |
 | `default.project.json` | Rojo service mapping and development lighting. |
 | `assets/` | Intentional source assets mapped to `ReplicatedStorage.Assets`. |
@@ -78,7 +78,8 @@ output, runtime checks, and deliberate Studio-to-file return path.
 ## Play loop
 
 Enter the aquarium arcade first. Walk among eight personal cabinets, the animated
-fish tank, gardens, benches, collection gallery and records kiosk. Press **PLAY**
+fish tank, gardens, benches, collection gallery, chest pavilion and leaderboard
+displays. Press **PLAY**
 or use your cabinet's prompt to start. The roster shows occupied stations and run
 progress. Collection cards show discovered evolutions and their modeled recipes;
 records show personal bests and completed level goals.
@@ -95,6 +96,41 @@ leaving the server retains records, not the unfinished run.
 A connection card covers initial loading, and Play/Arcade show request progress
 instead of accepting repeated transition clicks. The Arcade button respects the
 screen's safe inset.
+
+### Chests, equipment discoveries and records
+
+New profiles start with eight equipment blueprints: Tap Driver, Sun Prism, Shore
+Meter, Landing Shell, Survey Lens, Reef Chime, Compass and Seed Bank. The catalog
+contains 40 base equipment types, including 18 new designs. Equipment is Common,
+Uncommon, Rare or Legendary. Shops can roll only the blueprints owned when that
+run began; opening a chest while a run is paused expands the pool for the next
+new run, without changing the parked run's offers. Old equipment discoveries and
+earned workshop/growth/relay access migrate into ownership.
+
+Earned chests open at the hub pavilion or through **CHESTS**. Each opening unlocks
+an unowned item of the chest's exact tier while any remain. The reward schedule is:
+
+| Earned condition | Chest |
+| --- | --- |
+| Defeat after successfully clearing at least 3 rounds | Meadow/Common below 15 clears; Lagoon/Uncommon at 15–39; Aurora/Rare at 40–99; Celestial/Legendary at 100+ |
+| Clear round 15 | Lagoon/Uncommon |
+| Clear round 40 or 65 | Aurora/Rare |
+| Clear round 100 | Celestial/Legendary |
+| Clear each additional 50-round Endless milestone | Celestial/Legendary |
+
+Milestones award once each per run; the qualifying defeat reward awards once at
+the end of that run. Returning to the hub or resuming never awards another chest.
+When a tier is fully discovered, its chest gives **1 / 3 / 6 / 10 research** from
+Common through Legendary. In the workshop, select a locked blueprint and spend
+**6 / 12 / 24 / 40 research** for its tier to unlock that specific item. These are
+earned rewards; there are no paid chests, purchase prompts or active Robux products.
+
+The hub leaderboards show total time in this experience, the highest round reached
+after entering **Endless**, and recorded Robux spent **in this experience**. Time
+includes both hub and run play. Campaign progress is separate from the Endless
+record. Published servers use global rankings; Studio clearly labels its local
+session rankings. The Robux board shows an empty state while purchases are disabled,
+and unavailable cloud rankings are not presented as confirmed global results.
 
 Start with five total balls; launching spends one. Every pop scores the peg's
 current value, then halves it. The ball passes through one-point pegs, removing
@@ -147,8 +183,9 @@ When both recipe ingredients reach level 5, their evolution appears among the
 shop's four equipment offers. **EVOLVE** costs no coins: it consumes both ingredients,
 places one level-5 evolved item in the first ingredient's slot, and frees the other
 slot. The evolved item keeps both ingredients' max-level abilities and triggers.
-Thirteen recipes cover all 22 base equipment types, with alternatives for some
-builds. If more evolutions are ready than fit, cycle the evolution offers for free.
+Thirteen recipes connect the original equipment set, with alternatives for some
+builds; the new equipment adds distinct trigger combinations without placeholder
+evolution recipes. If more evolutions are ready than fit, cycle the offers for free.
 Evolved items never appear as random drops and cannot evolve or upgrade further.
 Perk choices can instead be declined for five coins. Run upgrades reset after
 defeat; records and earned catalog and level unlocks remain.
@@ -189,11 +226,22 @@ choices and their action buttons fit without scrolling, including short windows.
 Score and restock panels retain their white base as the counters update and bounce;
 blue wallet, ball and trigger panels remain part of the palette.
 
-Equipment, currencies, and rewards appear as 52 source-generated 3D models, including
-13 distinct evolved models. Equipment gains visible accents through five levels. Perks
+Small screens use a core-safe layout that accounts for Roblox controls and device
+insets. **STATS** opens shot statistics and owned perks; short landscape layouts
+switch between those views. During compact shops and choices, **RACK / SELL**
+opens the equipment rack without permanently squeezing the cards. Compact evolution
+summaries open the full recipe inspector. Chest, workshop and leaderboard panels
+adapt their model, text and pagination regions to the available safe area.
+
+Equipment, perks, currencies and rewards appear as **78 distinct source-generated
+3D models**: 40 base equipment, 13 evolutions, eight perks, three Supplies and 14
+utility/reward models. Perks have their own geometry; chest tiers have distinct
+hinged lids and opening motions, and event prompts use dedicated emblems instead
+of borrowed equipment. Equipment gains visible accents through five levels. Perks
 keep their white display circles; equipment, coins and Supplies stand without
 those circles. Primary previews use a black silhouette layer. Idle models cycle
-through a gentle figure eight every 4.2 seconds, pause for their activation, then
+through a gentle figure eight every 4.2 seconds across shops, perk choices and hub
+previews, pause for their activation, then
 smoothly resume after the last queued activation. Dense item bursts, swirling particles,
 beams, impact rings, and ribbons connect activations to their targets. Evolving gets
 its own celebration. Visual work is bounded, with capacity reserved for score and
@@ -204,9 +252,12 @@ Launching updates the remaining balls directly; replenished balls fly to their
 counter during rewards. Each catalog item and perk has a short musical signature;
 sound remains optional.
 
-Studio uses **session records** so local testing does not touch live player data.
-Published sessions use a versioned DataStore for records/unlocks. The interface
-reports unavailable saving instead of claiming a cloud save succeeded.
+Studio uses **session progress** so local testing does not touch live player data.
+Published sessions save records, ownership, earned chests and research together
+under an exclusive profile lease. The newest 64 chest/research request receipts
+survive reconnects, preventing retries from spending again or changing the original
+request's target. A failed profile load refuses entry instead of overwriting real
+progress with defaults. The interface reports unavailable saving honestly.
 The server allocates eight stations and rejects overflow. When a production place
 is selected, set its **Max Players to 8** in Creator Dashboard before publishing;
 the local source does not change that account-level place setting.
