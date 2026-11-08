@@ -15,7 +15,7 @@ end
 
 function GalleryAudio.new(sounds)
     if not sounds then
-        sounds = require(script.Parent.SoundEffects).new()
+        sounds = require(script.Parent.GallerySoundEngine).new()
     end
     return setmetatable({
         sounds = sounds,

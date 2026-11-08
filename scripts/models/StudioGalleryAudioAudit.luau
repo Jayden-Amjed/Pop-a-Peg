@@ -172,6 +172,7 @@ return function(first, last)
                 continue
             end
             local entry = { id = id, ok = false, scheduled = 0, fired = 0, observed = 0, cues = {} }
+            entry.instrument = backend.galleryBank and backend.galleryBank.describe(id)
             table.insert(report.items, entry)
             report.checked += 1
             local passed, reason = pcall(function()
@@ -205,9 +206,18 @@ return function(first, last)
                         cursor += 1
                     end
                     audio:step(phase)
-                    -- Let the complete short motif run, including later notes.
-                    local observeUntil =
-                        math.min(deadline, os.clock() + (if hasMotif then 0.40 else 0.16))
+                    -- Observe the complete authored phrase, including its last
+                    -- additive partial; the new gallery bank has longer tails.
+                    local observeFor = if hasMotif then 0.40 else 0.16
+                    if hasMotif and backend.galleryBank then
+                        for _, sample in observations do
+                            if sample.result.kind == "item" then
+                                local description = backend.galleryBank.describe(sample.result.id)
+                                observeFor = math.max(observeFor, description.duration + 0.05)
+                            end
+                        end
+                    end
+                    local observeUntil = math.min(deadline, os.clock() + observeFor)
                     repeat
                         inspectMix()
                         for _, sample in observations do

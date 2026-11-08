@@ -1,7 +1,7 @@
 local Catalog = require("./CatalogInfo")
 local Timeline = require("./GallerySoundTimeline")
 local GalleryAudio = require("./GalleryAudio")
-local Signatures = require("../../src/shared/ItemFeedback")
+local Signatures = require("./GallerySoundBank")
 
 local cueNames = {
     click = true,
