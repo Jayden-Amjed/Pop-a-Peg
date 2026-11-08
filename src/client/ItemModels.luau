@@ -1140,6 +1140,10 @@ function ItemModels.mount(viewport, id, level, options)
         if destroyed then
             return
         end
+        fit()
+        if not animate and energy == 0 and previousScale == 1 then
+            return
+        end
         local delta = if type(dt) == "number" and dt == dt then math.clamp(dt, 0, 0.1) else 0
         elapsed += delta
         energy *= math.exp(-7 * delta)
@@ -1147,7 +1151,7 @@ function ItemModels.mount(viewport, id, level, options)
             energy = 0
         end
         local scale = 1 + energy * 0.055
-        if math.abs(scale - previousScale) > 0.0001 then
+        if scale ~= previousScale and (scale == 1 or math.abs(scale - previousScale) > 0.0001) then
             model:ScaleTo(scale)
             previousScale = scale
         end
@@ -1159,7 +1163,6 @@ function ItemModels.mount(viewport, id, level, options)
         for _, glow in ipairs(glows) do
             glow.part.Color = glow.color:Lerp(Color3.new(1, 1, 1), math.min(energy * 0.25, 1))
         end
-        fit()
     end
     function handle:pulse(strength)
         if destroyed then
