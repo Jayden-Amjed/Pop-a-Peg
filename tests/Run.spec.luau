@@ -292,7 +292,7 @@ return function()
 
     test(function()
         local run = Run.new(52)
-        run.round = 80
+        run.round = 100
         run:_resetShot()
         finishRound(run)
         expect(run:action("continue"))
@@ -300,14 +300,14 @@ return function()
         expect(run.unlocks.endless)
         expect(run.unlocks.relay_kit)
         local profile = run:profile()
-        equal(profile.bestRound, 80)
+        equal(profile.bestRound, 100)
         expect(type(profile.unlocks[1]) == "string")
         expect(run:action("endless"))
         equal(run.phase, "aim")
-        equal(run.round, 81)
+        equal(run.round, 101)
         expect(not run:action("endless"))
         local restored = Run.new(53, profile)
-        equal(restored.bestRound, 80)
+        equal(restored.bestRound, 100)
         expect(restored.unlocks.relay_kit)
         equal(restored.coins, 3)
         equal(restored.inventory[1].id, "")
@@ -576,7 +576,7 @@ return function()
         for slot = 1, 7 do
             run.inventory[slot] = { id = Catalog.ItemIds[slot], level = 1 }
         end
-        run.inventory[3] = { id = "seed_bank", level = 1 }
+        run.inventory[3] = { id = "seed_bank", level = Catalog.MaxLevel - 1 }
         run:_openShop(false)
         local function offer()
             run.shopOffers[1] = { id = "seed_bank", price = 5, sold = false }
@@ -605,7 +605,7 @@ return function()
         equal(intent.action, "upgrade")
         equal(intent.slot, 6, "A basic copy takes precedence over a capped copy")
         expect(run:action("buy", { offer = 1 }))
-        equal(run.inventory[6].level, Catalog.MaxLevel)
+        equal(run.inventory[6].level, 2)
         equal(run.inventory[7].id, "")
         equal(
             Catalog.purchaseState(run.inventory, run.slots, run.shopOffers[1], run.coins).action,
@@ -713,10 +713,7 @@ return function()
         )
         for _, id in ipairs(Catalog.ItemIds) do
             local definition = Catalog.Items[id]
-            expect(type(definition.family) == "string" and #definition.synergyPartners > 0)
-            for _, partner in ipairs(definition.synergyPartners) do
-                expect(Catalog.Items[partner] and partner ~= id)
-            end
+            expect(type(definition.family) == "string" and #Catalog.evolutionsFor(id) > 0)
         end
         equal(Catalog.Items.fishbowl.unlock, "growth_kit")
         expect(Catalog.Items.fishbowl.price > Catalog.Items.resonator.price)

@@ -41,6 +41,24 @@ local profiles = {
     lock = { duration = 0.65, name = "shackle-open" },
     jumble = { duration = 0.8, name = "peg-shuffle" },
 }
+local evolvedProfiles = {
+    aurora_aquarium = { 1.25, "aquarium-aurora", 1.1 },
+    spectrum_reef = { 1.0, "reef-refraction", 2.2 },
+    tidal_engine = { 0.9, "tidal-compression", -1.6 },
+    storm_clock = { 1.2, "storm-clock-charge", 3.5 },
+    horizon_observatory = { 1.25, "horizon-focus", -1.1 },
+    eden_greenhouse = { 1.3, "eden-flourish", 0.8 },
+    pearl_turbine = { 1.1, "pearl-turbine-balance", -2.5 },
+    current_nexus = { 0.85, "nexus-transmission", 2.8 },
+    ocean_orchestra = { 1.2, "orchestra-crescendo", 1.5 },
+    bubble_reactor = { 0.95, "reactor-ignition", -2.1 },
+    solar_treasury = { 1.05, "treasury-sunrise", 1.8 },
+    sun_koi = { 1.2, "koi-solar-swim", -0.9 },
+    tide_gyroscope = { 1.35, "gyroscope-precession", 3.2 },
+}
+for id, entry in pairs(evolvedProfiles) do
+    profiles[id] = { duration = entry[1], name = entry[2], evolved = true, turns = entry[3] }
+end
 ItemMotion.Profiles = table.freeze(profiles)
 
 ItemMotion.Idle = table.freeze({
@@ -240,7 +258,68 @@ function ItemMotion.sample(id, group, t, strength, x, y, z)
     local wobble = math.sin(t * math.pi * 6) * damp
     local turn = t * t * (3 - 2 * t) * math.pi * 2
     v.glow = envelope * 0.25 * a
-    if id == "tap_driver" then
+    if profiles[id] and profiles[id].evolved then
+        local turns = profiles[id].turns
+        if group == "EvolvedOrbit" or group == "EvolvedRotor" or group == "EvolvedGyro" then
+            -- Finish on whole revolutions so returning to the rest pose never
+            -- snaps an asymmetric ring or rotor through a fractional turn.
+            local revolutions = math.ceil(math.abs(turns)) * (turns < 0 and -1 or 1)
+            local spin = turn * revolutions + envelope * turns * 0.35
+            if group == "EvolvedGyro" then
+                v.rx, v.ry = spin, -spin
+            elseif group == "EvolvedRotor" then
+                v.rz = -spin
+                v.ry = envelope * 0.35
+            else
+                v.ry = spin
+                v.rx = envelope * 0.4
+            end
+        elseif group == "EvolvedFastHand" or group == "EvolvedSlowHand" then
+            v.rz = -turn * (group == "EvolvedFastHand" and 6 or 2)
+        elseif group == "EvolvedSpring" or group == "EvolvedWeight" then
+            v.y = -(y + 0.65) * wobble * 0.34 * a
+            v.scale = 1 + wobble * 0.08
+        elseif group == "EvolvedCrystal" or group == "EvolvedSprout" then
+            v.y = envelope * (0.15 + math.max(y, 0) * 0.1) * a
+            v.rz = math.sin(t * math.pi * 4 + x * 2) * envelope * 0.11
+            v.scale = 1 + envelope * 0.1
+        elseif group == "EvolvedLens" then
+            v.z = envelope * 0.3 * a
+            v.ry = wobble * 0.14
+        elseif group == "EvolvedNeedle" then
+            v.rz = math.sin(t * math.pi * 7) * damp * 1.8
+        elseif group == "EvolvedBalance" then
+            v.rz = wobble * 0.18
+            v.y = x * wobble * 0.15
+        elseif group == "EvolvedHorn" or group == "EvolvedShell" then
+            v.z = math.max(0, math.sin(t * math.pi * 10 + x * 2)) * envelope * 0.22 * a
+        elseif group == "EvolvedPiston" then
+            v.x = -x * math.abs(math.sin(t * math.pi * 4)) * damp * 0.32 * a
+        elseif group == "EvolvedCoin" then
+            v.y = math.sin(t * math.pi + x) * envelope * 0.4
+            v.ry = turn * 2
+        elseif group == "FishBody" or group == "FishFin" or group == "FishTail" then
+            v.x = math.sin(t * math.pi * 2) * envelope * 0.24 * a
+            v.y = envelope * 0.1
+            if group == "FishTail" then
+                v.ry = math.sin(t * math.pi * 16) * envelope * 0.65
+            end
+            if group == "FishFin" then
+                v.rx = math.sin(t * math.pi * 12) * envelope * 0.42
+            end
+        elseif group == "Bubbles" then
+            v.y = envelope * (0.4 + y * 0.12)
+            v.scale = 1 + envelope * 0.18
+        elseif group == "Reeds" then
+            v.rz = wobble * 0.2
+        elseif group == "EvolvedFork" then
+            v.x = (x < 0 and -1 or 1) * math.sin(t * math.pi * 24) * damp * 0.11 * a
+        else
+            v.scale = 1 + envelope * 0.14 * a
+            v.y = envelope * 0.055
+        end
+        v.glow = envelope * (group == "EvolvedCore" and 0.85 or 0.35)
+    elseif id == "tap_driver" then
         v.x = -0.35 * math.sin(math.pi * math.min(1, t * 2)) * a
     elseif id == "split_prism" then
         v.z = envelope * 0.1 * a

@@ -2,6 +2,7 @@ local Board = if script then require(script.Parent.Board) else require("./Board"
 local Rng = if script then require(script.Parent.Rng) else require("./Rng")
 local Simulation = if script then require(script.Parent.Simulation) else require("./Simulation")
 local Catalog = if script then require(script.Parent.Catalog) else require("./Catalog")
+local Stages = if script then require(script.Parent.Stages) else require("./Stages")
 
 local Run = {}
 Run.__index = Run
@@ -14,6 +15,7 @@ Run.Config = {
     maxPeg = 2 ^ 996,
     maxRestocks = 10000,
     effectsPerStep = 32,
+    maxActivationsPerShot = 4096,
     restocksPerStep = 32,
     slotPrice = 5,
     rerollPrice = 1,
@@ -172,16 +174,25 @@ function Run:_shotStats()
     }
 end
 
-function Run:_queue(kind, index, amount, relayDepth)
+function Run:_queue(kind, index, amount, relayDepth, channel)
+    if self.activationCount >= Run.Config.maxActivationsPerShot then
+        return
+    end
     local depth = relayDepth or 0
     -- Keep each direct relay depth separate so coalescing cannot renew its budget.
-    local key = kind .. ":" .. index .. ":" .. depth
+    local key = kind .. ":" .. index .. ":" .. depth .. ":" .. (channel or 0)
     local existing = self.pending[key]
     if existing then
         existing.count += amount or 1
     else
-        local entry =
-            { kind = kind, index = index, count = amount or 1, key = key, relayDepth = depth }
+        local entry = {
+            kind = kind,
+            index = index,
+            count = amount or 1,
+            key = key,
+            relayDepth = depth,
+            channel = channel,
+        }
         self.pending[key] = entry
         table.insert(self.queue, entry)
     end
@@ -197,12 +208,19 @@ function Run:_signal(event, amount)
     end
     for index, item in ipairs(self.inventory) do
         local definition = Catalog.Items[item.id]
-        if definition and definition.trigger.event == event then
-            local count = (self.itemCounts[index] or 0) + delta
-            local times = math.floor((count + 1e-8) / definition.trigger.every)
-            self.itemCounts[index] = count - times * definition.trigger.every
-            if times > 0 then
-                self:_queue("item", index, times)
+        if definition then
+            for channelIndex, channel in ipairs(definition.channels or { definition }) do
+                if channel.trigger and channel.trigger.event == event then
+                    local counter = if definition.channels
+                        then index .. ":" .. channelIndex
+                        else index
+                    local count = (self.itemCounts[counter] or 0) + delta
+                    local times = math.floor((count + 1e-8) / channel.trigger.every)
+                    self.itemCounts[counter] = count - times * channel.trigger.every
+                    if times > 0 then
+                        self:_queue("item", index, times, nil, definition.channels and channelIndex)
+                    end
+                end
             end
         end
     end
@@ -316,7 +334,22 @@ function Run:_halve(id, slot)
     self:_signal("halve")
 end
 
-function Run:_activateItem(index, relayDepth)
+function Run:_allowActivation()
+    if self.activationCount >= Run.Config.maxActivationsPerShot then
+        if not self.activationCapped then
+            self.activationCapped = true
+            self:_event(
+                "chainLimit",
+                { limit = Run.Config.maxActivationsPerShot, text = "OVERDRIVE COMPLETE" }
+            )
+        end
+        return false
+    end
+    self.activationCount += 1
+    return true
+end
+
+function Run:_activateItem(index, relayDepth, selectedChannel)
     local item = self.inventory[index]
     local definition = item and Catalog.Items[item.id]
     if
@@ -326,21 +359,30 @@ function Run:_activateItem(index, relayDepth)
     then
         return
     end
+    if not self:_allowActivation() then
+        return
+    end
     self.itemTriggers += 1
     self:_itemEvent(index, "activate", nil, { text = definition.name })
-    local context = {}
-    local operations = definition.operations or { { effect = definition.effect } }
-    for _, operation in ipairs(operations) do
-        if self.ending then
-            break
+    for channelIndex, channel in ipairs(definition.channels or { definition }) do
+        if not selectedChannel or selectedChannel == channelIndex then
+            local context = {}
+            for _, operation in ipairs(channel.operations or { { effect = channel.effect } }) do
+                if self.ending then
+                    break
+                end
+                self:_applyEffect(
+                    operation.effect,
+                    index,
+                    if operation.fixed
+                        then 1
+                        elseif definition.evolved then Catalog.MaxLevel
+                        else item.level,
+                    relayDepth,
+                    context
+                )
+            end
         end
-        self:_applyEffect(
-            operation.effect,
-            index,
-            if operation.fixed then 1 else item.level,
-            relayDepth,
-            context
-        )
     end
 end
 
@@ -456,6 +498,9 @@ function Run:_activatePerk(index)
     if not definition then
         return
     end
+    if not self:_allowActivation() then
+        return
+    end
     local occupied = self:_occupied()
     local target
     if definition.effect == "first" then
@@ -481,6 +526,11 @@ end
 
 function Run:_processQueue()
     for _ = 1, Run.Config.effectsPerStep do
+        if self.activationCount >= Run.Config.maxActivationsPerShot then
+            self:_allowActivation()
+            self.queue, self.pending = {}, {}
+            break
+        end
         if self.ending or #self.queue == 0 then
             break
         end
@@ -492,7 +542,7 @@ function Run:_processQueue()
             table.insert(self.queue, entry)
         end
         if entry.kind == "item" then
-            self:_activateItem(entry.index, entry.relayDepth)
+            self:_activateItem(entry.index, entry.relayDepth, entry.channel)
         else
             self:_activatePerk(entry.index)
         end
@@ -521,17 +571,21 @@ function Run:_resetShot()
     self.queue = {}
     self.pending = {}
     self.itemCounts = {}
+    self.activationCount, self.activationCapped = 0, false
+    self.stageCleared = nil
     self.perkCounts = {}
-    self.boss = if self.round <= 80 and self.round % 20 == 0
-        then Catalog.Bosses[self.round / 20]
+    self.boss = if self.round <= Stages.CampaignEnd and Stages.completed(self.round) ~= nil
+        then Catalog.Bosses[Stages.forRound(self.round).index]
         else nil
     self.quota = math.max(1, Board.quota(self.baseline, self.shopsVisited))
     if self.boss and self.boss.multiplier then
-        self.quota = math.ceil(self.quota * self.boss.multiplier)
+        self.quota = math.min(Run.Config.maxScore, math.ceil(self.quota * self.boss.multiplier))
     end
-    if self.round > 80 then
-        self.quota =
-            math.min(Run.Config.maxScore, self.quota * 1.3 ^ math.min(self.round - 80, 500))
+    if self.round > Stages.CampaignEnd then
+        self.quota = math.min(
+            Run.Config.maxScore,
+            self.quota * 1.3 ^ math.min(self.round - Stages.CampaignEnd, 500)
+        )
     end
     self:_phase("aim")
 end
@@ -649,7 +703,15 @@ function Run:_endShot(reason)
     if restocks > 0 and self.round % 20 == 0 then
         self.unlocks["zone_" .. math.floor(self.round / 20 + 1)] = true
     end
-    if restocks > 0 and self.round == 80 then
+    if restocks > 0 then
+        self.stageCleared = Stages.completed(self.round)
+        if self.stageCleared then
+            self:_event("stage", copy(self.stageCleared))
+            self.unlocks["level_" .. self.stageCleared.index] = true
+            self.settlement.receipt.stageCleared = copy(self.stageCleared)
+        end
+    end
+    if restocks > 0 and self.round == Stages.CampaignEnd then
         self.unlocks.endless = true
         self.unlocks.challenge = true
     end
@@ -771,6 +833,64 @@ function Run:_rollConsumables()
     end
 end
 
+function Run:_refreshEvolutions()
+    if #self.shopOffers == 0 then
+        return
+    end
+    local present = {}
+    for index = 1, 4 do
+        local offer = self.shopOffers[index]
+        local definition = offer and Catalog.Items[offer.id]
+        if definition and definition.evolved and not offer.sold then
+            if Catalog.evolutionState(self.inventory, self.slots, offer.id).ready then
+                present[offer.id] = true
+            else
+                if self.frozenOffer and self.frozenOffer.index == index then
+                    self.frozenOffer = nil
+                end
+                local id = self:_drawItem()
+                self.shopOffers[index] =
+                    { id = id, price = Catalog.Items[id].price, sold = false, frozen = false }
+            end
+        end
+    end
+    for _, recipe in ipairs(Catalog.Evolutions) do
+        if
+            not present[recipe.id]
+            and Catalog.evolutionState(self.inventory, self.slots, recipe.id).ready
+        then
+            local destination
+            for index = 4, 1, -1 do
+                local offer = self.shopOffers[index]
+                if
+                    not offer
+                    or (not offer.frozen and (offer.sold or not Catalog.Items[offer.id].evolved))
+                then
+                    destination = index
+                    if not offer or offer.sold then
+                        break
+                    end
+                end
+            end
+            if destination then
+                self.shopOffers[destination] =
+                    { id = recipe.id, price = 0, evolution = true, sold = false, frozen = false }
+                present[recipe.id] = true
+            end
+        end
+    end
+end
+
+function Run:_evolutionChoices()
+    local choices = {}
+    for _, recipe in ipairs(Catalog.Evolutions) do
+        if Catalog.evolutionState(self.inventory, self.slots, recipe.id).ready then
+            table.insert(choices, recipe.id)
+        end
+    end
+    return choices
+end
+
 function Run:_rollShop()
     for index = 1, 4 do
         if self.frozenOffer and self.frozenOffer.index == index then
@@ -786,7 +906,36 @@ function Run:_rollShop()
             }
         end
     end
+    local upgradeIds, alreadyOffered = {}, false
+    for _, entry in ipairs(self.inventory) do
+        if entry.id ~= "" and entry.level < Catalog.MaxLevel then
+            table.insert(upgradeIds, entry.id)
+            for index = 1, 4 do
+                if self.shopOffers[index].id == entry.id then
+                    alreadyOffered = true
+                end
+            end
+        end
+    end
+    if not alreadyOffered and #upgradeIds > 0 then
+        for index = 4, 1, -1 do
+            if not self.shopOffers[index].frozen then
+                local id = upgradeIds[self.rng:integer(1, #upgradeIds)]
+                self.shopOffers[index] = {
+                    id = id,
+                    price = math.max(
+                        1,
+                        Catalog.Items[id].price - (if self.shopKind == "surplus" then 1 else 0)
+                    ),
+                    frozen = false,
+                    sold = false,
+                }
+                break
+            end
+        end
+    end
     self:_rollConsumables()
+    self:_refreshEvolutions()
 end
 
 function Run:_openShop(alternate)
@@ -832,7 +981,7 @@ function Run:_afterResult()
     end
     if
         completed == 9
-        or (completed > 20 and completed < 80 and (within == 1 or within == 9))
+        or (completed > 20 and completed < Stages.CampaignEnd and (within == 1 or within == 9))
         or (completed >= 161 and completed % 80 == 1)
     then
         table.insert(self.routes, { kind = "perk" })
@@ -843,7 +992,7 @@ function Run:_afterResult()
             { kind = "event", index = if within == 7 then 1 elseif within == 12 then 2 else 3 }
         )
     end
-    if completed == 80 then
+    if completed == Stages.CampaignEnd then
         table.insert(self.routes, { kind = "victory" })
     end
     self:_nextRoute()
@@ -867,9 +1016,15 @@ function Run:_purchase(index)
         offer.sold = true
         self:_consume(Catalog.Items[offer.id].effect)
         self:_event("purchase", { itemId = offer.id, action = "use" })
+        self:_refreshEvolutions()
         return true
     end
     self:_coins(-offer.price)
+    if intent.action == "evolve" then
+        for _, slot in ipairs(intent.removeSlots) do
+            self.inventory[slot] = emptySlot()
+        end
+    end
     self.inventory[intent.slot] = { id = offer.id, level = intent.level }
     offer.sold = true
     offer.frozen = false
@@ -878,9 +1033,11 @@ function Run:_purchase(index)
     end
     self:_event("purchase", {
         itemId = offer.id,
-        action = if intent.action == "upgrade" then "upgrade" else "buy",
+        action = if intent.action == "purchase" then "buy" else intent.action,
+        level = intent.level,
         slot = intent.slot,
     })
+    self:_refreshEvolutions()
     return true
 end
 
@@ -899,7 +1056,7 @@ function Run:_consume(effect)
         if #candidates == 0 then
             self:_coins(4)
         else
-            self.inventory[candidates[self.rng:integer(1, #candidates)]].level = Catalog.MaxLevel
+            self.inventory[candidates[self.rng:integer(1, #candidates)]].level += 1
         end
     end
 end
@@ -937,7 +1094,7 @@ function Run:_chooseEvent(index)
         if #candidates == 0 then
             self:_coins(4)
         else
-            self.inventory[candidates[self.rng:integer(1, #candidates)]].level = Catalog.MaxLevel
+            self.inventory[candidates[self.rng:integer(1, #candidates)]].level += 1
         end
     end
     self:_nextRoute()
@@ -971,6 +1128,43 @@ function Run:action(kind, payload)
         self.canJumble = false
         self:_phase("flight")
         return true
+    elseif kind == "cycleEvolution" then
+        if self.phase ~= "shop" or not integer(input.offer, 1, 4) then
+            return false, "Choose an evolution offer in the shop."
+        end
+        local offer = self.shopOffers[input.offer]
+        if not offer or offer.sold or not Catalog.Items[offer.id].evolved then
+            return false, "Choose an evolution offer in the shop."
+        end
+        if input.itemId ~= nil and input.itemId ~= offer.id then
+            return false, "That offer changed. Review the current card."
+        end
+        local shown = {}
+        for index = 1, 4 do
+            local current = self.shopOffers[index]
+            if current and not current.sold then
+                shown[current.id] = true
+            end
+        end
+        local choices, currentIndex = self:_evolutionChoices(), 0
+        for index, id in ipairs(choices) do
+            if id == offer.id then
+                currentIndex = index
+                break
+            end
+        end
+        for offset = 1, #choices do
+            local id = choices[(currentIndex + offset - 1) % #choices + 1]
+            if not shown[id] then
+                if self.frozenOffer and self.frozenOffer.index == input.offer then
+                    self.frozenOffer = nil
+                end
+                self.shopOffers[input.offer] =
+                    { id = id, price = 0, evolution = true, sold = false, frozen = false }
+                return true
+            end
+        end
+        return false, "All available evolutions are already shown."
     elseif kind == "jumble" then
         if self.phase ~= "aim" or not self.canJumble then
             return false, "One jumble is available before each shot."
@@ -996,6 +1190,9 @@ function Run:action(kind, payload)
     elseif kind == "buy" then
         if self.phase ~= "shop" or not integer(input.offer, 1, #self.shopOffers) then
             return false, "Select a shop offer."
+        end
+        if input.itemId ~= nil and input.itemId ~= self.shopOffers[input.offer].id then
+            return false, "That offer changed. Review the current card."
         end
         return self:_purchase(input.offer)
     elseif kind == "reroll" then
@@ -1050,6 +1247,7 @@ function Run:action(kind, payload)
             )
         )
         self.inventory[input.slot] = emptySlot()
+        self:_refreshEvolutions()
         return true
     elseif kind == "move" then
         if
@@ -1065,13 +1263,16 @@ function Run:action(kind, payload)
         end
         if
             source.id == target.id
+            and source.level == target.level
             and source.level < Catalog.MaxLevel
-            and target.level < Catalog.MaxLevel
         then
-            target.level = Catalog.MaxLevel
+            target.level += 1
             self.inventory[input.from] = emptySlot()
         else
             self.inventory[input.from], self.inventory[input.to] = target, source
+        end
+        if self.phase == "shop" then
+            self:_refreshEvolutions()
         end
         return true
     elseif kind == "skipPerk" then
@@ -1143,6 +1344,8 @@ function Run:snapshot()
         speed = self.speed,
         round = self.round,
         zone = self.zone,
+        stage = Stages.forRound(self.round),
+        stageCleared = self.stageCleared,
         score = self.score,
         quota = self.quota,
         coins = self.coins,
@@ -1156,6 +1359,7 @@ function Run:snapshot()
         inventory = self.inventory,
         slots = self.slots,
         shopOffers = self.shopOffers,
+        evolutionChoices = self:_evolutionChoices(),
         shopKind = self.shopKind,
         perkOffers = self.perkOffers,
         perkSkipCoins = if self.phase == "perk" then Run.Config.perkSkipCoins else 0,

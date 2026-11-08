@@ -16,7 +16,9 @@ local Feedback = require(script.Parent.Feedback)
 local Selection = require(script.Parent.InventorySelection)
 local ShopLayout = require(script.Parent.ShopLayout)
 local ChoiceLayout = require(script.Parent.ChoiceLayout)
+local CounterProgress = require(script.Parent.CounterProgress)
 local HoverInspector = require(script.Parent.HoverInspector)
+local EvolutionDisplay = require(script.Parent.EvolutionDisplay)
 local BoardArt = require(script.Parent.BoardArt)
 
 local Presentation = {}
@@ -387,6 +389,14 @@ function Presentation:_buildHud()
     blockAim(self.roundPlate)
     self.roundLabel = label(self.roundPlate, "Round", "ROUND 1", 30, C.ink, 5)
     self.phaseLabel = label(self.roundPlate, "Phase", "READY TO LAUNCH", 17, C.board, 5)
+    self.stageLabel = label(self.roundPlate, "Stage", "LEVEL 1", 20, C.board, 5)
+    self.stageLabel.Font = Enum.Font.SourceSansBold
+    self.stageLabel.TextScaled = true
+    make("UITextSizeConstraint", { MinTextSize = 13, MaxTextSize = 20 }, self.stageLabel)
+    self.stageProgress = frame(self.roundPlate, "StageProgress", C.edge, 5)
+    corner(self.stageProgress, 3)
+    self.stageFill = frame(self.stageProgress, "Fill", C.mint, 6)
+    corner(self.stageFill, 3)
 
     self.inventory = plate(self.root, "EquipmentRack", C.paper, 30)
     blockAim(self.inventory)
@@ -692,6 +702,7 @@ function Presentation:_layout()
     self.brand.Visible, self.tag.Visible = not compact, not compact
     self.roundPlate.Visible = not (shop and self.shortWide)
     self.phaseLabel.Visible = not compact
+    self.stageLabel.Visible, self.stageProgress.Visible = not compact, not compact
     self.coinCaption.Visible = not compact
     self.progressCaption.Visible = not compact
     self.restockCaption.Text = compact and "RESTOCKS" or "RESTOCKS EARNED"
@@ -821,11 +832,13 @@ function Presentation:_layout()
             invHeight
         )
         setRect(self.swapHelp, self.inventory.Position.X.Offset, top, invWidth, 20)
-        setRect(self.roundPlate, w - rightW - 22, top + 20, rightW, 82)
-        setRect(self.roundLabel, 14, 6, rightW - 28, 38)
+        setRect(self.roundPlate, w - rightW - 22, top + 20, rightW, 98)
+        setRect(self.stageLabel, 14, 6, rightW - 28, 20)
+        setRect(self.stageProgress, 14, 86, rightW - 28, 5)
+        setRect(self.roundLabel, 14, 26, rightW - 28, 34)
         self.roundLabel.TextSize = 30
         self.roundLabel.TextXAlignment = Enum.TextXAlignment.Left
-        setRect(self.phaseLabel, 14, 45, rightW - 28, 27)
+        setRect(self.phaseLabel, 14, 61, rightW - 28, 22)
         local resourceTop = top + 148
         setRect(self.left, 22, resourceTop, leftW, 600)
         setRect(self.wallet, 0, 0, leftW, 82)
@@ -1089,7 +1102,9 @@ function Presentation:_updateInventory()
         )
         cell.viewport.ImageTransparency = not definition and not locked and 0.65 or 0
         cell.name.Text = locked and "5 COINS" or (definition and definition.name or "EMPTY")
-        cell.level.Text = definition and ("L" .. tostring(item.level or 1)) or ""
+        cell.level.Text = definition
+                and (definition.evolved and "EVO" or ("L" .. tostring(item.level or 1)))
+            or ""
     end
     self.inspector:refresh()
 end
@@ -1102,7 +1117,10 @@ function Presentation:_renderCounters()
     local overrides = self.counterOverrides
     local score = overrides.score or state.score or 0
     local quota = math.max(1, state.quota or 1)
-    local completed = math.floor(score / quota)
+    local layers =
+        { C.mint, C.gold, C.blue, Color3.fromRGB(215, 132, 255), Color3.fromRGB(255, 141, 65) }
+    local progress = CounterProgress.compute(score, quota, state.maxRestocks, #layers)
+    local completed = progress.completed
     local restocks = overrides.restocks or state.restocks or completed
     local coins = overrides.coins or state.coins or 0
     local reserves = overrides.reserves or state.reserves or 0
@@ -1114,14 +1132,12 @@ function Presentation:_renderCounters()
     self.restockCount.Text = "×"
         .. (restocks >= 1000 and Format.number(restocks) or Format.integer(restocks))
     self.quota.Text = "TARGET " .. Format.number(quota)
-    local remainder = score % quota
-    self.fraction.Text = Format.number(math.floor(remainder + 0.5)) .. " / " .. Format.number(quota)
-    local layers =
-        { C.mint, C.gold, C.blue, Color3.fromRGB(215, 132, 255), Color3.fromRGB(255, 141, 65) }
-    self.progress.BackgroundColor3 = completed > 0 and layers[((completed - 1) % #layers) + 1]
-        or C.ink
-    self.progressFill.BackgroundColor3 = layers[(completed % #layers) + 1]
-    self.progressFill.Size = UDim2.fromScale(math.clamp(remainder / quota, 0, 1), 1)
+    self.progressCaption.Text = progress.capped and "RESTOCK LIMIT" or "NEXT RESTOCK"
+    self.fraction.Text = progress.capped and "FULL"
+        or (Format.number(math.floor(progress.remainder + 0.5)) .. " / " .. Format.number(quota))
+    self.progress.BackgroundColor3 = completed > 0 and layers[progress.previousLayer] or C.ink
+    self.progressFill.BackgroundColor3 = layers[progress.nextLayer]
+    self.progressFill.Size = UDim2.fromScale(progress.fraction, 1)
     self.scorePlate.BackgroundColor3 = C.paper
     self.restockPlate.BackgroundColor3 = C.paper
     self.restockHint.Text = restocks > 0 and "Ready to refill + merge your board!"
@@ -1132,7 +1148,28 @@ function Presentation:_renderCounters()
     for index, viewport in self.stackIcons do
         viewport.Visible = not self.compact and not self.lowDesktop and index <= restocks
     end
-    self.roundLabel.Text = "ROUND " .. tostring(state.round) .. "  •  Z" .. tostring(state.zone)
+    local stage = state.stage
+    if stage and state.stageCleared and state.stageCleared.index == stage.index then
+        stage = state.stageCleared
+    end
+    if stage then
+        self.roundLabel.Text = (self.compact and ("LV " .. stage.index .. " • ") or "ROUND ")
+            .. tostring(state.round)
+            .. " / "
+            .. tostring(stage.targetRound)
+        self.stageLabel.Text = "LEVEL "
+            .. tostring(stage.index)
+            .. " • "
+            .. string.upper(stage.name)
+        self.stageFill.Size = UDim2.fromScale(math.clamp(stage.progress or 0, 0, 1), 1)
+        if self.boardArt and self.boardArt.setStage then
+            self.boardArt:setStage(stage)
+        end
+    else
+        self.roundLabel.Text = "ROUND " .. tostring(state.round)
+        self.stageLabel.Text = "YOUR RUN"
+        self.stageFill.Size = UDim2.fromScale(0, 1)
+    end
     self.best.Text = "BEST ROUND " .. tostring(state.bestRound or 0)
     self.profile.Text = ({
         session = "RECORDS: STUDIO SESSION",
@@ -1192,6 +1229,9 @@ function Presentation:_renderControls()
         gameover = "RUN COMPLETE",
         victory = "VICTORY!",
     })[phase] or ""
+    if state.stageCleared and (phase == "result" or phase == "victory") then
+        self.phaseLabel.Text = "LEVEL " .. tostring(state.stageCleared.index) .. " COMPLETE!"
+    end
     self.help.Text = phase == "flight" and "LET THE COMBO PLAY • [E] END SHOT"
         or "AIM • CLICK THE BOARD OR PRESS SPACE"
     self.help.Visible = not self.compact and playable
@@ -1272,26 +1312,20 @@ function Presentation:_buildShop(state)
             self:_refreshShop(self.snapshot)
             local offer = self.snapshot.shopOffers[index]
             if self.selectedOffer and offer then
-                self.inspector:show(offer.id, 1, inspect, true)
+                self.inspector:show(offer.id, self:_offerLevel(offer), inspect, true)
             else
                 self.inspector:hide()
             end
         end)
         self.inspector:bind(inspect, function()
             local offer = self.snapshot and self.snapshot.shopOffers[index]
-            return offer and offer.id, 1
+            return offer and offer.id, offer and self:_offerLevel(offer) or 1
         end)
         local model = make(
             "ViewportFrame",
             { Name = "Item", BackgroundTransparency = 1, BorderSizePixel = 0, ZIndex = 29 },
             inspect
         )
-        local bandH = positions.inspect.h
-        local nameH = short and 26 or 42
-        local triggerH = index <= 4 and (short and 0 or 34) or 0
-        local modelH = math.max(20, bandH - nameH - triggerH - 8)
-        local modelSize = math.min(rect.w - 12, modelH)
-        setRect(model, (rect.w - modelSize) / 2 - 3, 1, modelSize, modelH)
         local name = label(inspect, "Name", "", short and 17 or 26, C.paper, 30)
         name.Font = Enum.Font.SourceSansBold
         name.TextWrapped, name.TextScaled = true, true
@@ -1300,46 +1334,19 @@ function Presentation:_buildShop(state)
             { MinTextSize = short and 13 or 18, MaxTextSize = short and 18 or 28 },
             name
         )
-        setRect(name, 5, modelH + 2, rect.w - 16, nameH)
         local trigger = label(inspect, "Trigger", "", 20, C.gold, 30)
         trigger.TextWrapped, trigger.TextScaled = true, true
-        make("UITextSizeConstraint", { MinTextSize = 16, MaxTextSize = 22 }, trigger)
+        make("UITextSizeConstraint", { MinTextSize = 14, MaxTextSize = 22 }, trigger)
         trigger.TextXAlignment = Enum.TextXAlignment.Center
-        trigger.Visible = triggerH > 0
-        setRect(trigger, 5, modelH + nameH + 4, rect.w - 16, triggerH)
-        if short and bandH < 70 then
-            local side = math.max(20, math.min(36, bandH - 2))
-            setRect(model, 1, (bandH - side) / 2, side, side)
-            setRect(name, side + 5, 0, rect.w - side - 14, bandH)
-        end
-        local synergy = frame(card, "Synergy", nil, 28)
-        synergy.BackgroundTransparency = 1
-        place(synergy, positions.synergy)
-        local synergyTitle = label(synergy, "Title", "SYNERGY", short and 12 or 17, C.paper, 30)
-        synergyTitle.Font = Enum.Font.SourceSansBold
-        setRect(synergyTitle, 0, 0, positions.synergy.w, short and 14 or 20)
-        local partners = {}
-        for partnerIndex = 1, 3 do
-            local tile = Theme.tile(synergy, "Pair" .. partnerIndex, C.paper, 29)
-            local status =
-                label(synergy, "Owned" .. partnerIndex, "", short and 10 or 13, C.paper, 31)
-            status.Font = Enum.Font.SourceSansBold
-            status.TextXAlignment = Enum.TextXAlignment.Center
-            local preview = make(
-                "ViewportFrame",
-                { Name = "Item", BackgroundTransparency = 1, BorderSizePixel = 0, ZIndex = 31 },
-                tile
-            )
-            preview:SetAttribute("NoOutline", true)
-            partners[partnerIndex] = { tile = tile, status = status, viewport = preview }
-            self.inspector:bind(tile, function()
-                local offer = self.snapshot and self.snapshot.shopOffers[index]
-                local detail = offer and Catalog.detail(offer.id, 1)
-                return detail and detail.partners[partnerIndex], 1
-            end)
-        end
+        local level = label(inspect, "Level", "", short and 12 or 15, C.gold, 31)
+        level.Font = Enum.Font.SourceSansBold
+        level.TextXAlignment = Enum.TextXAlignment.Right
+        local evolutions = EvolutionDisplay.new(card, self, 28, true)
         local buy = button(card, "Buy", "", C.mint, function()
-            self:_send("buy", { offer = index })
+            local offer = self.snapshot and self.snapshot.shopOffers[index]
+            if offer then
+                self:_send("buy", { offer = index, itemId = offer.id })
+            end
         end, 29)
         place(buy, positions.purchase)
         buy.TextSize = short and 18 or 23
@@ -1355,10 +1362,23 @@ function Presentation:_buildShop(state)
         local hold
         if index <= 4 then
             hold = button(card, "Hold", "HOLD", C.panel, function()
-                self:_send("freeze", { offer = index })
+                local offer = self.snapshot and self.snapshot.shopOffers[index]
+                local definition = offer and Catalog.Items[offer.id]
+                if offer then
+                    self:_send(
+                        definition and definition.evolved and "cycleEvolution" or "freeze",
+                        { offer = index, itemId = offer.id }
+                    )
+                end
             end, 29)
             place(hold, positions.hold)
             hold.TextSize = short and 16 or 19
+            hold.TextScaled = true
+            make(
+                "UITextSizeConstraint",
+                { MinTextSize = 10, MaxTextSize = short and 16 or 19 },
+                hold
+            )
         end
         shop.cards[index] = {
             card = card,
@@ -1372,9 +1392,10 @@ function Presentation:_buildShop(state)
             hold = hold,
             short = short,
             positions = positions,
-            synergy = synergy,
-            synergyTitle = synergyTitle,
-            partners = partners,
+            inspect = inspect,
+            level = level,
+            rect = rect,
+            evolutions = evolutions,
         }
     end
     local footer, fw = layout.footer, (layout.footer.w - 16) / 3
@@ -1407,6 +1428,68 @@ function Presentation:_buildShop(state)
     self:_refreshShop(state)
 end
 
+function Presentation:_offerLevel(offer)
+    local state = self.snapshot
+    if not state or not offer then
+        return 1
+    end
+    local definition = Catalog.Items[offer.id]
+    if definition and definition.evolved then
+        return Catalog.MaxLevel
+    end
+    local intent = Catalog.purchaseState(state.inventory, state.slots, offer, state.coins)
+    if intent.action == "upgrade" then
+        return math.max(1, intent.level - 1)
+    end
+    if intent.action == "maxLevel" then
+        return Catalog.MaxLevel
+    end
+    if intent.action == "sold" then
+        for slot = 1, state.slots do
+            local item = state.inventory[slot]
+            if item and item.id == offer.id then
+                return item.level
+            end
+        end
+    end
+    return 1
+end
+
+function Presentation:_layoutShopCard(cell, data, recipeCount, canCycle)
+    local rect = cell.rect
+    local positions = ShopLayout.card(
+        rect.w,
+        rect.h,
+        data.consumable or (data.evolved and not canCycle),
+        recipeCount
+    )
+    cell.positions = positions
+    local function place(object, area)
+        setRect(object, area.x, area.y, area.w, area.h)
+    end
+    place(cell.inspect, positions.inspect)
+    place(cell.buy, positions.purchase)
+    if cell.hold then
+        place(cell.hold, positions.hold)
+    end
+    local short, bandH = positions.short, positions.inspect.h
+    local nameH = short and 26 or 48
+    local triggerH = not data.consumable and (short and 0 or 36) or 0
+    local modelH = math.max(20, bandH - nameH - triggerH - 10)
+    local modelSize = math.min(rect.w - 12, modelH)
+    setRect(cell.viewport, (rect.w - modelSize) / 2 - 3, 3, modelSize, modelH)
+    setRect(cell.name, 5, modelH + 2, rect.w - 16, nameH)
+    setRect(cell.trigger, 5, modelH + nameH + 5, rect.w - 16, triggerH)
+    setRect(cell.level, 3, 0, rect.w - 16, short and 13 or 18)
+    cell.trigger.Visible = triggerH > 0
+    cell.level.Visible = bandH >= 70
+    if short and bandH < 70 then
+        local side = math.max(20, math.min(36, bandH - 2))
+        setRect(cell.viewport, 1, (bandH - side) / 2, side, side)
+        setRect(cell.name, side + 5, 0, rect.w - side - 14, bandH)
+    end
+end
+
 function Presentation:_refreshShop(state)
     local shop = self.shop
     if not shop or not state then
@@ -1416,46 +1499,35 @@ function Presentation:_refreshShop(state)
     shop.sections.items.Text = shop.height < 300
             and ("ITEMS   •   " .. Format.integer(state.coins) .. " COINS")
         or "ITEMS"
+    local displayed = {}
+    for _, offer in state.shopOffers or {} do
+        displayed[offer.id] = true
+    end
+    local hiddenEvolution = false
+    for _, id in state.evolutionChoices or {} do
+        if not displayed[id] then
+            hiddenEvolution = true
+            break
+        end
+    end
     for index, cell in shop.cards do
         local offer = state.shopOffers[index]
         local data = offer and Catalog.Items[offer.id]
         if data then
             local selected = self.selectedOffer == index
             Theme.select(cell.card, selected, C.board)
-            cell.name.Text, cell.trigger.Text = data.name, data.triggerText or "USE IMMEDIATELY"
+            local level = self:_offerLevel(offer)
+            local detail = Catalog.detail(offer.id, level)
+            local recipes = detail.evolutions or {}
+            self:_layoutShopCard(cell, data, #recipes, hiddenEvolution)
+            cell.name.Text, cell.trigger.Text = data.name, detail.trigger
             cell.name.TextColor3 = selected and C.ink or C.paper
             cell.trigger.TextColor3 = selected and C.board or C.gold
-            self:_mount(cell.viewport, offer.id, 1)
-            local detail = Catalog.detail(offer.id, 1)
-            local partnerCount = math.min(3, #detail.partners)
-            cell.synergyTitle.Text = partnerCount > 0 and "SYNERGY" or "ONE SHOT"
-            cell.synergyTitle.TextColor3 = selected and C.ink or C.paper
-            local region = cell.positions.synergy
-            local titleH = cell.short and 14 or 20
-            local statusH = cell.short and 13 or 18
-            local tileSize = math.min(
-                cell.short and 28 or 60,
-                region.h - titleH - statusH - 2,
-                (region.w - 8) / math.max(1, partnerCount)
-            )
-            local rowW = partnerCount * tileSize + math.max(0, partnerCount - 1) * 4
-            local left = (region.w - rowW) / 2
-            for partnerIndex, pair in cell.partners do
-                local id = detail.partners[partnerIndex]
-                pair.tile.Visible, pair.status.Visible, pair.viewport.Visible =
-                    id ~= nil, id ~= nil, id ~= nil
-                if id then
-                    local owned = Catalog.owns(state.inventory, id)
-                    pair.status.Text = owned and "OWNED" or "NEED"
-                    pair.status.TextColor3 = selected and (owned and C.positive or C.ink)
-                        or (owned and C.gold or C.paper)
-                    local x = left + (partnerIndex - 1) * (tileSize + 4)
-                    setRect(pair.status, x - 4, titleH, tileSize + 8, statusH)
-                    setRect(pair.tile, x, titleH + statusH, tileSize, tileSize)
-                    setRect(pair.viewport, 1, 1, tileSize - 2, tileSize - 2)
-                    self:_mount(pair.viewport, id, 1)
-                end
-            end
+            cell.level.TextColor3 = selected and C.board or C.gold
+            cell.level.Text = data.evolved and "EVOLVED"
+                or (data.consumable and "SUPPLY" or ("L" .. level .. "/5"))
+            self:_mount(cell.viewport, offer.id, level)
+            cell.evolutions:update(offer.id, cell.positions.evolutions, selected)
             local intent = Catalog.purchaseState(state.inventory, state.slots, offer, state.coins)
             local verb = ({ purchase = "", upgrade = "Upgrade ", use = "Use " })[intent.action]
             cell.buy.Text = ({
@@ -1463,6 +1535,8 @@ function Presentation:_refreshShop(state)
                 full = "RACK FULL",
                 sold = "SOLD",
                 unavailable = "UNAVAILABLE",
+                ingredients = "NEED TWO L5",
+                evolve = "EVOLVE",
             })[intent.action] or ""
             Theme.setEnabled(cell.buy, intent.allowed, C.mint)
             cell.priceGroup.Visible = verb ~= nil
@@ -1501,9 +1575,15 @@ function Presentation:_refreshShop(state)
                 cell.price.TextTransparency = intent.allowed and 0 or 0.2
             end
             if cell.hold then
-                cell.hold.Text = offer.frozen and "HELD" or "HOLD"
+                cell.hold.Visible = not data.evolved or hiddenEvolution
+                cell.hold.Text = data.evolved and "OTHER EVOLUTION"
+                    or (offer.frozen and "HELD" or "HOLD")
                 Theme.setEnabled(cell.hold, not offer.sold, C.panel)
-                Theme.select(cell.hold, offer.frozen and not offer.sold, cell.hold.BackgroundColor3)
+                Theme.select(
+                    cell.hold,
+                    not data.evolved and offer.frozen and not offer.sold,
+                    cell.hold.BackgroundColor3
+                )
             end
         end
     end

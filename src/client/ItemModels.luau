@@ -215,7 +215,7 @@ register("tap_driver", "equipment", function(m, level)
     rod(m, P.dark, V(-0.95, 0.4, 0), V(-1.2, -0.35, 0), 0.09)
     rod(m, P.dark, V(-1.2, -0.35, 0), V(-0.4, -1.08, 0), 0.09)
     light(disc(m, P.cyan, 0.13, 0.05, 0.1, 0.47, 0.5))
-    if level == 2 then
+    if level >= 2 then
         rod(m, P.gold, V(0.9, 0.95, 0), V(1.6, 0.95, 0), 0.18)
     end
 end)
@@ -242,7 +242,7 @@ register("split_prism", "equipment", function(m, level)
         )
         bolt(m, side * 0.68, -0.75, 0.65)
     end
-    if level == 2 then
+    if level >= 2 then
         light(sphere(m, P.gold, 0.4, 0.4, 0.4, 0, 1.3, 0))
     end
 end)
@@ -305,7 +305,7 @@ register("clockwork", "equipment", function(m, level)
     feet(m, 1.35, -0.98, 0.4)
     rod(m, P.steel, V(1, 0.25, 0), V(1.38, 0.25, 0), 0.1)
     disc(m, P.gold, 0.23, 0.1, 1.4, 0.25, 0)
-    if level == 2 then
+    if level >= 2 then
         gear(m, 0.3, -0.46, 0.38, 0.25, P.silver, "LowerGear")
     end
 end)
@@ -331,7 +331,7 @@ register("burst_capsule", "equipment", function(m, level)
         block(m, P.dark, 0.08, 0.4, 0.055, side * 0.35, 0.6, 0.61, 0, 0, -side * 25)
         bolt(m, side * 0.4, -0.58, 0.6)
     end
-    if level == 2 then
+    if level >= 2 then
         light(drum(m, P.gold, 0.74, 0.1, 0, 0.31, 0))
     end
 end)
@@ -358,7 +358,7 @@ register("relay", "equipment", function(m, level)
     end
     block(m, P.silver, 1.2, 0.12, 0.16, 0, 0.5, 0.4, 0, 0, -10)
     light(sphere(m, P.cyan, 0.18, 0.18, 0.18, 0.57, 0.44, 0.43))
-    if level == 2 then
+    if level >= 2 then
         block(m, P.gold, 1.18, 0.1, 0.14, 0, 0.31, 0.5, 0, 0, 8)
     end
 end)
@@ -449,7 +449,7 @@ register("survey_lens", "equipment", function(m, level)
     for _, x in ipairs({ -0.52, 0.52 }) do
         bolt(m, x, 0.62, 0.97)
     end
-    if level == 2 then
+    if level >= 2 then
         disc(m, P.gold, 0.7, 0.13, 0, 0.62, 0.69)
     end
 end)
@@ -559,7 +559,7 @@ register("resonator", "equipment", function(m, level)
     end
     rod(m, P.dark, V(0, 0.9, 0), V(0, 0.35, 0), 0.035)
     light(sphere(m, P.cyan, 0.38, 0.38, 0.38, 0, 0.32, 0))
-    if level == 2 then
+    if level >= 2 then
         block(m, P.gold, 0.2, 1.2, 0.2, 0, 0.7, -0.28)
     end
 end)
@@ -591,7 +591,7 @@ register("growth_array", "equipment", function(m, level)
         named(sphere(m, P.ceramic, 0.22, 0.25, 0.22, x, height, 0), "Coral")
         sphere(m, P.ceramic, 0.2, 0.14, 0.23, x, -0.48, 0.32)
     end
-    if level == 2 then
+    if level >= 2 then
         glass(sphere(m, P.gold, 0.3, 0.3, 0.3, 0, 1.08, 0), 0.1)
     end
 end)
@@ -623,7 +623,7 @@ register("spring_coil", "equipment", function(m, level)
         local a, b = index * math.pi / 6, (index + 1) * math.pi / 6
         local startPoint = V(math.cos(a) * 0.56, -0.85 + index * 0.05, math.sin(a) * 0.56)
         local endPoint = V(math.cos(b) * 0.56, -0.85 + (index + 1) * 0.05, math.sin(b) * 0.56)
-        local segment = rod(m, if level == 2 then P.gold else P.copper, startPoint, endPoint, 0.075)
+        local segment = rod(m, if level >= 2 then P.gold else P.copper, startPoint, endPoint, 0.075)
         named(segment, "Coil")
         segment:SetAttribute("SpringA", startPoint)
         segment:SetAttribute("SpringB", endPoint)
@@ -662,7 +662,7 @@ register("pulse_cell", "equipment", function(m, level)
     for _, x in ipairs({ -0.61, 0.61 }) do
         bolt(m, x, 0.73, 0.58)
     end
-    if level == 2 then
+    if level >= 2 then
         rod(m, P.gold, V(-0.45, 1.18, 0), V(0.45, 1.18, 0), 0.07)
     end
 end)
@@ -732,7 +732,7 @@ register("encore", "equipment", function(m, level)
         disc(m, P.gold, 0.4, 0.22, x, 0.57, 0.22)
         disc(m, P.copper, 0.62, 0.15, x, 0.57, 0.43)
         disc(m, P.dark, 0.51, 0.035, x, 0.57, 0.52)
-        light(disc(m, if level == 2 then P.gold else P.purple, 0.22, 0.05, x, 0.57, 0.55))
+        light(disc(m, if level >= 2 then P.gold else P.purple, 0.22, 0.05, x, 0.57, 0.55))
         bolt(m, x, -0.83, 0.49)
     end
     bezel(m, 0.65, -0.43, 0.51, 0.14, P.cyan)
@@ -829,7 +829,7 @@ register("goldfish", "equipment", function(m, level)
             "Bubbles"
         )
     end
-    if level == 2 then
+    if level >= 2 then
         glass(named(sphere(m, P.cyan, 0.29, 0.29, 0.29, -0.86, 0.83, 0), "Bubbles"), 0.4)
     end
 end)
@@ -837,7 +837,7 @@ end)
 register("fishbowl", "equipment", function(m, level)
     glass(named(sphere(m, P.cyan, 2.08, 1.64, 2.08, 0, -0.15, 0), "Water"), 0.69)
     named(glass(drum(m, P.blue, 0.94, 0.035, 0, 0.5, 0), 0.4), "Waterline")
-    fish(m, V(0.06, -0.08, 0.22), if level == 2 then 0.6 else 0.52)
+    fish(m, V(0.06, -0.08, 0.22), if level >= 2 then 0.6 else 0.52)
     for index = 0, 6 do
         local a = index * math.pi * 2 / 7
         sphere(
@@ -876,6 +876,370 @@ register("fishbowl", "equipment", function(m, level)
     glass(drum(m, P.cyan, 0.74, 0.025, 0, 0.97, 0), 0.88)
     sphere(m, P.ceramic, 0.1, 0.52, 0.045, -0.68, 0.31, 0.88)
     sphere(m, P.ceramic, 0.09, 0.22, 0.045, -0.69, -0.12, 0.94)
+end)
+
+-- Evolution devices are authored as complete objects, with moving subassemblies
+-- and recognisable parts from both ingredients rather than two overlapping icons.
+local function evolvedRing(m, color, radius, transform, group)
+    local first = #m:GetChildren()
+    ring(m, color, radius, 0.055, transform, 20)
+    for index, object in ipairs(m:GetChildren()) do
+        if index > first then
+            named(object, group or "EvolvedOrbit")
+            object:SetAttribute("MotionPivot", transform.Position)
+        end
+    end
+end
+
+local function evolvedBase(m, width, depth)
+    feet(m, width * 0.7, -1.12, depth * 0.65)
+    block(m, P.silver, width, 0.23, depth, 0, -0.98, 0)
+    block(m, P.teal, width * 0.86, 0.12, depth * 0.89, 0, -0.8, 0)
+    for index = 1, 5 do
+        light(block(m, P.gold, 0.12, 0.05, 0.04, (index - 3) * 0.23, -0.96, depth / 2 + 0.025))
+    end
+end
+
+local function evolvedCore(m, color, radius, x, y, z)
+    return named(
+        light(sphere(m, color, radius * 2, radius * 2, radius * 2, x, y, z)),
+        "EvolvedCore"
+    )
+end
+
+register("aurora_aquarium", "evolved", function(m)
+    evolvedBase(m, 2.8, 1.5)
+    glass(block(m, P.cyan, 2.56, 1.76, 1.34, 0, 0.13, 0), 0.68)
+    glass(block(m, P.blue, 2.4, 1.2, 1.15, 0, -0.12, 0), 0.72)
+    for _, side in ipairs({ -1, 1 }) do
+        block(m, P.ceramic, 0.12, 1.92, 1.5, side * 1.3, 0.12, 0)
+        rod(m, P.green, V(side * 0.9, -0.7, -0.36), V(side * 0.83, 0.56, -0.3), 0.06)
+        named(sphere(m, P.green, 0.42, 0.17, 0.1, side * 0.86, 0.31, -0.28), "Reeds")
+    end
+    block(m, P.ceramic, 2.8, 0.15, 1.5, 0, 1.1, 0)
+    fish(m, V(-0.3, 0.15, 0.25), 0.59)
+    fish(m, V(0.55, -0.29, -0.13), 0.36)
+    for index = 1, 5 do
+        named(
+            glass(sphere(m, P.cyan, 0.13, 0.13, 0.13, 0.76, -0.55 + index * 0.27, 0.5), 0.35),
+            "Bubbles"
+        )
+    end
+    evolvedRing(m, P.gold, 0.49, frame(0, 1.35, -0.08), "EvolvedOrbit")
+    evolvedCore(m, P.cyan, 0.13, 0, 1.35, 0)
+end)
+
+register("spectrum_reef", "evolved", function(m)
+    evolvedBase(m, 2.45, 1.5)
+    for index = 1, 3 do
+        local x = (index - 2) * 0.78
+        local h = index == 2 and 2.1 or 1.45
+        named(
+            glass(
+                wedge(
+                    m,
+                    ({ P.blue, P.cyan, P.purple })[index],
+                    V(0.7, h, 0.55),
+                    frame(x, h / 2 - 0.7, 0, 0, 0, index == 1 and -12 or 12)
+                ),
+                0.18
+            ),
+            "EvolvedCrystal"
+        )
+        named(light(sphere(m, P.ceramic, 0.18, 0.18, 0.18, x, h - 0.58, 0.05)), "EvolvedCore")
+    end
+    for _, side in ipairs({ -1, 1 }) do
+        named(
+            rod(m, P.silver, V(side * 0.9, -0.7, 0.5), V(side * 0.9, 0.85, 0.5), 0.09),
+            "EvolvedFork"
+        )
+    end
+    evolvedCore(m, P.gold, 0.24, 0, 0.4, 0.55)
+    evolvedRing(m, P.gold, 0.67, frame(0, 0.4, 0.4), "EvolvedOrbit")
+end)
+
+register("tidal_engine", "evolved", function(m)
+    evolvedBase(m, 2.5, 1.6)
+    for _, side in ipairs({ -1, 1 }) do
+        block(m, P.ceramic, 0.44, 1.5, 1.15, side * 0.93, 0.05, 0)
+        bezel(m, side * 0.93, 0.34, 0.62, 0.32, P.cyan)
+        named(
+            block(m, P.gold, 0.05, 0.29, 0.06, side * 0.93, 0.41, 0.81, 0, 0, side * 32),
+            "EvolvedNeedle"
+        )
+    end
+    for index = 0, 5 do
+        evolvedRing(
+            m,
+            index % 2 == 0 and P.teal or P.silver,
+            0.62,
+            frame(0, -0.45 + index * 0.25, 0, 90),
+            "EvolvedSpring"
+        )
+    end
+    named(drum(m, P.gold, 0.64, 0.18, 0, 1.02, 0), "EvolvedWeight")
+    evolvedCore(m, P.cyan, 0.31, 0, 0.32, 0)
+end)
+
+register("storm_clock", "evolved", function(m)
+    evolvedBase(m, 2.35, 1.4)
+    bezel(m, 0, 0.25, 0, 1.02, P.ceramic)
+    for index = 0, 11 do
+        local a = index * math.pi / 6
+        block(
+            m,
+            P.blue,
+            0.055,
+            0.14,
+            0.055,
+            math.sin(a) * 0.75,
+            0.25 + math.cos(a) * 0.75,
+            0.2,
+            0,
+            0,
+            -index * 30
+        )
+    end
+    local hand = named(block(m, P.gold, 0.07, 0.61, 0.06, 0, 0.52, 0.25), "EvolvedFastHand")
+    hand:SetAttribute("MotionPivot", V(0, 0.25, 0.25))
+    hand = named(block(m, P.teal, 0.48, 0.08, 0.06, 0.22, 0.25, 0.3), "EvolvedSlowHand")
+    hand:SetAttribute("MotionPivot", V(0, 0.25, 0.3))
+    evolvedCore(m, P.gold, 0.13, 0, 0.25, 0.38)
+    for _, side in ipairs({ -1, 1 }) do
+        named(glass(drum(m, P.cyan, 0.23, 1.05, side * 1.06, 0.1, -0.03), 0.38), "EvolvedCell")
+        evolvedCore(m, P.cyan, 0.19, side * 1.06, 0.7, -0.03)
+        named(
+            wedge(m, P.gold, V(0.3, 0.6, 0.13), frame(side * 0.79, 1.1, 0.13, 0, 0, side * 25)),
+            "EvolvedLightning"
+        )
+    end
+end)
+
+register("horizon_observatory", "evolved", function(m)
+    evolvedBase(m, 2.5, 1.65)
+    glass(sphere(m, P.cyan, 2.1, 1.64, 1.5, 0, 0.05, 0), 0.45)
+    block(m, P.ceramic, 0.27, 1.35, 0.32, 0, 0.14, 0.1, 0, 0, -22)
+    local barrel =
+        named(rod(m, P.ceramic, V(-0.5, 0.6, 0), V(0.7, 1.08, 0.48), 0.29), "EvolvedLens")
+    barrel:SetAttribute("MotionPivot", V(0, 0.7, 0.2))
+    named(light(sphere(m, P.blue, 0.42, 0.42, 0.3, 0.78, 1.12, 0.52)), "EvolvedLens")
+    bezel(m, -0.55, -0.35, 0.82, 0.39, P.ceramic)
+    local needle = named(
+        wedge(m, P.orange, V(0.12, 0.46, 0.05), frame(-0.55, -0.28, 0.99, 0, 0, -30)),
+        "EvolvedNeedle"
+    )
+    needle:SetAttribute("MotionPivot", V(-0.55, -0.35, 0.99))
+    evolvedRing(m, P.gold, 1.11, frame(0, 0.05, 0, 0, 28), "EvolvedOrbit")
+end)
+
+register("eden_greenhouse", "evolved", function(m)
+    evolvedBase(m, 2.8, 1.6)
+    for _, x in ipairs({ -1.18, 1.18 }) do
+        for _, z in ipairs({ -0.62, 0.62 }) do
+            rod(m, P.ceramic, V(x, -0.8, z), V(x, 0.88, z), 0.055)
+            rod(m, P.ceramic, V(x, 0.88, z), V(0, 1.65, z), 0.055)
+        end
+    end
+    rod(m, P.gold, V(0, 1.65, -0.7), V(0, 1.65, 0.7), 0.065)
+    glass(block(m, P.cyan, 2.3, 1.6, 1.18, 0, 0.03, 0), 0.8)
+    for index = 1, 3 do
+        local x = (index - 2) * 0.7
+        drum(m, P.blue, 0.25, 0.24, x, -0.58, 0)
+        named(rod(m, P.green, V(x, -0.48, 0), V(x, 0.72, 0), 0.07), "EvolvedSprout")
+        named(sphere(m, P.green, 0.65, 0.25, 0.28, x - 0.1, 0.12, 0), "EvolvedSprout")
+        named(sphere(m, P.green, 0.65, 0.25, 0.28, x + 0.1, 0.4, 0), "EvolvedSprout")
+        evolvedCore(m, index == 2 and P.gold or P.cyan, 0.21, x, 0.78, 0)
+    end
+end)
+
+register("pearl_turbine", "evolved", function(m)
+    evolvedBase(m, 2.55, 1.4)
+    evolvedRing(m, P.teal, 0.94, frame(0, 0.2, 0), "EvolvedOrbit")
+    for index = 0, 5 do
+        local a = index * math.pi / 3
+        local blade = named(
+            wedge(
+                m,
+                index % 2 == 0 and P.cyan or P.silver,
+                V(0.37, 0.68, 0.25),
+                frame(math.cos(a) * 0.67, 0.2 + math.sin(a) * 0.67, 0, 0, 0, index * 60 + 35)
+            ),
+            "EvolvedRotor"
+        )
+        blade:SetAttribute("MotionPivot", V(0, 0.2, 0))
+    end
+    evolvedCore(m, P.ceramic, 0.35, 0, 0.2, 0.15)
+    named(rod(m, P.gold, V(-1.1, 1.04, 0.25), V(1.1, 1.04, 0.25), 0.045), "EvolvedBalance")
+    for _, side in ipairs({ -1, 1 }) do
+        named(
+            rod(m, P.gold, V(side * 0.9, 1.04, 0.25), V(side * 0.9, 0.58, 0.25), 0.025),
+            "EvolvedBalance"
+        )
+        named(drum(m, P.ceramic, 0.25, 0.07, side * 0.9, 0.53, 0.25), "EvolvedBalance")
+        named(sphere(m, P.gold, 0.18, 0.18, 0.18, side * 0.9, 0.65, 0.25), "EvolvedBalance")
+    end
+end)
+
+register("current_nexus", "evolved", function(m)
+    evolvedBase(m, 2.6, 1.6)
+    for index = 0, 2 do
+        local a = index * math.pi * 2 / 3 - math.pi / 2
+        local x, y = math.cos(a) * 0.97, 0.25 + math.sin(a) * 0.87
+        local nextA = a + math.pi * 2 / 3
+        named(
+            rod(
+                m,
+                P.gold,
+                V(x, y, 0),
+                V(math.cos(nextA) * 0.97, 0.25 + math.sin(nextA) * 0.87, 0),
+                0.07
+            ),
+            "EvolvedCircuit"
+        )
+        disc(m, P.ceramic, 0.36, 0.23, x, y, 0)
+        evolvedRing(m, P.teal, 0.26, frame(x, y, 0.2), "EvolvedRotor")
+        evolvedCore(m, P.cyan, 0.16, x, y, 0.23)
+    end
+    evolvedCore(m, P.purple, 0.36, 0, 0.24, 0.16)
+    evolvedRing(m, P.silver, 0.54, frame(0, 0.24, 0.16, 30, 15), "EvolvedOrbit")
+end)
+
+register("ocean_orchestra", "evolved", function(m)
+    evolvedBase(m, 2.9, 1.55)
+    for index = 1, 5 do
+        local x, h = (index - 3) * 0.48, 0.9 + math.abs(index - 3) * 0.32
+        named(rod(m, P.silver, V(x, -0.7, -0.28), V(x, h, -0.28), 0.13), "EvolvedHorn")
+        named(disc(m, P.gold, 0.22, 0.09, x, h, -0.12), "EvolvedHorn")
+        named(light(disc(m, P.cyan, 0.14, 0.1, x, h, -0.06)), "EvolvedHorn")
+    end
+    for index = -3, 3 do
+        named(
+            sphere(
+                m,
+                index % 2 == 0 and P.ceramic or P.cyan,
+                0.35,
+                0.94,
+                0.3,
+                index * 0.17,
+                -0.12,
+                0.35
+            ),
+            "EvolvedShell"
+        )
+    end
+    evolvedCore(m, P.gold, 0.26, 0, -0.27, 0.66)
+    for index = -2, 2 do
+        block(m, P.ceramic, 0.35, 0.09, 0.45, index * 0.37, -0.65, 0.75)
+    end
+end)
+
+register("bubble_reactor", "evolved", function(m)
+    evolvedBase(m, 2.8, 1.6)
+    glass(sphere(m, P.cyan, 1.75, 1.92, 1.45, 0, 0.15, 0), 0.62)
+    evolvedCore(m, P.orange, 0.42, 0, 0.15, 0.12)
+    evolvedRing(m, P.gold, 0.95, frame(0, 0.15, 0, 15, 25), "EvolvedOrbit")
+    for _, side in ipairs({ -1, 1 }) do
+        block(m, P.ceramic, 0.39, 1.34, 0.72, side * 1.1, -0.05, 0)
+        named(
+            rod(m, P.teal, V(side * 1.1, 0.42, 0), V(side * 0.65, 0.42, 0), 0.16),
+            "EvolvedPiston"
+        )
+        evolvedCore(m, P.cyan, 0.14, side * 1.1, 0.76, 0)
+    end
+    for index = 1, 4 do
+        local a = index * 1.8
+        named(
+            glass(
+                sphere(
+                    m,
+                    P.ceramic,
+                    0.15,
+                    0.15,
+                    0.15,
+                    math.cos(a) * 0.52,
+                    0.15 + math.sin(a) * 0.6,
+                    0.43
+                ),
+                0.28
+            ),
+            "Bubbles"
+        )
+    end
+    named(block(m, P.gold, 0.6, 0.22, 0.6, 0, 1.25, 0), "EvolvedWeight")
+end)
+
+register("solar_treasury", "evolved", function(m)
+    evolvedBase(m, 2.4, 1.6)
+    block(m, P.blue, 2.1, 1.88, 1.25, 0, 0.12, 0)
+    block(m, P.ceramic, 1.85, 1.6, 0.16, 0, 0.15, 0.71)
+    bezel(m, 0, 0.25, 0.85, 0.68, P.gold)
+    for index = 0, 7 do
+        local a = index * math.pi / 4
+        local ray = named(
+            block(
+                m,
+                P.gold,
+                0.13,
+                0.32,
+                0.1,
+                math.sin(a) * 0.76,
+                0.25 + math.cos(a) * 0.76,
+                1.02,
+                0,
+                0,
+                -index * 45
+            ),
+            "EvolvedRotor"
+        )
+        ray:SetAttribute("MotionPivot", V(0, 0.25, 1.02))
+    end
+    evolvedCore(m, P.cyan, 0.21, 0, 0.25, 1.08)
+    block(m, P.dark, 0.9, 0.08, 0.1, 0, -0.46, 0.83)
+    for index = 1, 3 do
+        local before = #m:GetChildren()
+        coin(m, (index - 2) * 0.52, 1.08 + (index % 2) * 0.32, 0.1, 0.27)
+        for order, object in ipairs(m:GetChildren()) do
+            if order > before then
+                named(object, "EvolvedCoin")
+            end
+        end
+    end
+end)
+
+register("sun_koi", "evolved", function(m)
+    fish(m, V(0, 0, 0), 1.05)
+    evolvedRing(m, P.gold, 1.02, frame(0.05, 0.08, -0.27, 0, 20), "EvolvedOrbit")
+    for index = -2, 2 do
+        named(
+            glass(
+                wedge(
+                    m,
+                    index % 2 == 0 and P.cyan or P.gold,
+                    V(0.27, 0.62 - math.abs(index) * 0.08, 0.2),
+                    frame(index * 0.3, 0.64, -0.02, 0, 0, index * -14)
+                ),
+                0.15
+            ),
+            "EvolvedCrystal"
+        )
+    end
+    for _, side in ipairs({ -1, 1 }) do
+        evolvedCore(m, P.cyan, 0.09, side * 0.76, 0.67, 0.18)
+    end
+end)
+
+register("tide_gyroscope", "evolved", function(m)
+    evolvedBase(m, 2.45, 1.55)
+    for _, side in ipairs({ -1, 1 }) do
+        rod(m, P.ceramic, V(side * 0.9, -0.8, 0), V(side * 1.13, 0.3, 0), 0.09)
+        bolt(m, side * 1.13, 0.3, 0.13, 0.15)
+    end
+    evolvedRing(m, P.gold, 1.1, frame(0, 0.3, 0), "EvolvedOrbit")
+    evolvedRing(m, P.teal, 0.87, frame(0, 0.3, 0, 42, 25), "EvolvedRotor")
+    evolvedRing(m, P.silver, 0.62, frame(0, 0.3, 0, -30, -40), "EvolvedGyro")
+    evolvedCore(m, P.cyan, 0.27, 0, 0.3, 0)
+    local hand = named(block(m, P.ceramic, 0.07, 0.52, 0.06, 0, 0.51, 0.32), "EvolvedFastHand")
+    hand:SetAttribute("MotionPivot", V(0, 0.3, 0.32))
 end)
 
 local function badgeBase(m)
@@ -1260,10 +1624,15 @@ local function silhouette(viewport, model, camera, options)
         end
     end
     local function layout()
+        -- Roblox's minimum GUI ZIndex is one. Reserve that layer for the mask
+        -- when a caller mounts an otherwise-default ViewportFrame.
+        if viewport.ZIndex < 2 then
+            viewport.ZIndex = 2
+        end
         mask.AnchorPoint, mask.Position, mask.Size =
             viewport.AnchorPoint, viewport.Position, viewport.Size
         mask.Rotation = viewport.Rotation
-        mask.ZIndex = math.max(1, viewport.ZIndex - 1)
+        mask.ZIndex = viewport.ZIndex - 1
         mask.Visible = viewport.Visible
         mask.ImageTransparency = viewport.ImageTransparency
         mask.Parent = viewport.Parent
@@ -1315,7 +1684,9 @@ function ItemModels.create(id, level)
     local canonical = aliases[id] or id
     local builder = builders[canonical]
     assert(builder, "Unknown item model: " .. tostring(id))
-    local itemLevel = if level == 2 then 2 else 1
+    local itemLevel = if categories[canonical] == "evolved"
+        then 5
+        else math.clamp(math.floor(tonumber(level) or 1), 1, 5)
     local model = Instance.new("Model")
     -- The first primitive may be rotated; keep builder and bounds axes fixed.
     model.WorldPivot = CFrame.new()
@@ -1324,7 +1695,7 @@ function ItemModels.create(id, level)
     model:SetAttribute("ItemLevel", itemLevel)
     model:SetAttribute("Category", categories[canonical])
     builder(model, itemLevel)
-    if itemLevel == 2 and categories[canonical] == "equipment" then
+    if itemLevel >= 2 and categories[canonical] == "equipment" then
         local bounds, size = model:GetBoundingBox()
         local bottom = bounds.Position.Y - size.Y / 2
         for _, side in ipairs({ -1, 1 }) do
@@ -1351,6 +1722,35 @@ function ItemModels.create(id, level)
                     bounds.Position.Z + size.Z / 2 + 0.03
                 )
             )
+        end
+    end
+    if itemLevel >= 3 and categories[canonical] == "equipment" then
+        local bounds, size = model:GetBoundingBox()
+        local y = bounds.Position.Y - size.Y * 0.4
+        local z = bounds.Position.Z + size.Z / 2 + 0.06
+        -- L3/L4/L5 add lit nodes without changing the device's silhouette.
+        for tier = 3, 5 do
+            local x = bounds.Position.X + (tier - 4) * math.min(0.25, size.X * 0.15)
+            local node = sphere(
+                model,
+                if tier <= itemLevel then P.gold else P.steel,
+                0.15,
+                0.15,
+                0.08,
+                x,
+                y,
+                z
+            )
+            node.Name = "Tier" .. tier
+            if tier <= itemLevel then
+                light(node)
+            end
+        end
+        if itemLevel == 5 then
+            for _, side in ipairs({ -1, 1 }) do
+                local x = bounds.Position.X + side * size.X * 0.4
+                block(model, P.gold, 0.055, size.Y * 0.15, 0.05, x, y + size.Y * 0.06, z)
+            end
         end
     end
     local bounds = model:GetBoundingBox()

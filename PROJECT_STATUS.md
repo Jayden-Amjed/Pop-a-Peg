@@ -1,42 +1,39 @@
 # Current project state
 
-State Version: 3 (accepted presentation revision)
+State Version: 4 (proposed evolution revision; acceptance pending)
 Reviewed: 2026-11-07, America/Los_Angeles
-Objective: Readable modeled synergies and hover stats, consistent UI, and a sculpted aquatic board.
+Objective: Five-level equipment, unique shop evolutions, continuous round goals and richer activation feedback.
 
-Accepted source: `8da614aac58de218ff1d403ad17f5a8364e24d7b` (PR #6 merged into main).
-Implementation: `de334ecdb6f393bb904a6de6698769b44fb0dacb`.
-Completed task: [RBX-005](tasks/RBX-005-synergy-presentation.md), Codex coordinator.
-Branch: `task/RBX-005-synergy-presentation`; [PR #6](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/6).
+Accepted source: fef03bb55a07b1cf4a5e0d68a6ac4635f9805acc (previous accepted main).
+Implementation: 5047ee70100b7e2b154f795d024cf25726222584.
+Active task: [RBX-007](tasks/RBX-007-evolution-stages.md), Codex coordinator.
+Branch: task/RBX-007-evolution-stages; [PR #8](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/8).
 
 | Capability | Verified state |
 | --- | --- |
-| Core gameplay and economy | Unchanged; all 28 progression cases and other core contracts pass |
-| Structured inspection | All 33 entries have ordered typed effects, level-aware amounts and modeled partners |
-| Hover and ownership | Actual pointer hover opens without clicking; OWNED/NEED refreshes; upgrades and rerolls refresh stats |
-| Stable shop | Actual selection/purchase keeps all 30 previews; reroll preserves viewport objects and charges one coin |
-| Responsive UI | PASS 36 shop inspections, six rack/HUD layouts, 24 choice screens across six sizes |
-| Perk/event choices | Both choices and action buttons visible without scrolling, including short landscape |
-| Score/restock color | Exact same pearl-white RGB before and after rewards; bounce and quota fill retained |
-| Item rendering | 4.2-second idle loop; 39-model activation/resume checks pass; primary silhouette geometry/mesh/cleanup tests pass |
-| Board | 166 original native parts; attached monitor stage/progress/cleanup checks pass |
-| Local / Studio suites | Ten suites pass, including new inspection and choice-layout contracts |
-| Production play | All 23 normal sources restored exactly; 120-second ordinary-action playtest across three runs reached round 20 and five shops without project errors |
+| Equipment upgrades | Levels 1–5, one level per purchase/Supply/event; full racks supported |
+| Evolutions | 13 distinct recipes covering all 22 base items; two L5 ingredients combine atomically for no additional coins |
+| Evolved abilities | Both original L5 trigger channels and ordered operations preserved in one slot |
+| Shop | Four equipment + at most two Supplies; eligible offers refresh; hidden recipes cycle without spending; expected-ID stale guard |
+| UI | Modeled equations and readiness labels; evolved/perk/Supply cards omit recipes; six responsive layouts, stable preview objects |
+| Stages | Clear 15, 40, 65, 100, then every 50; bosses at campaign goals; success-only completion and full goal indicators |
+| Models and motion | 52 native models, 13 unique evolved devices, five tiers; 260 variants tested with exact rest restoration |
+| Board | 235 original native parts; decorated attached monitor, unchanged collision/projection anchors |
+| Feedback | 46 motifs; dense bursts/beams/ribbons; 184 decorative / 240 total FX cap; reward delivery preserved |
+| Extreme builds | 4,096 activations per shot; huge-score meter and boss quota bounds; stress run advanced 41→42 at 5.46e107 score |
+| Local / Studio checks | Thirteen suites pass; 20 evolution cases + 28 progression cases; 21 exact mapping/source checks |
+| Production play | 167 seconds, round 41, 47 shots, eight shops, seven upgrades, four Supplies, three perks; no notices/project errors |
 
-Studio-tested source: `de334ecdb6f393bb904a6de6698769b44fb0dacb`.
-Detailed results, corrected fixtures, and limitations are in the active task.
+Studio-tested source: 5047ee70100b7e2b154f795d024cf25726222584.
 Published: NOT PUBLISHED; no production experience/place selected.
+Playable output: build/peg-evolutions.rbxlx in the evolution worktree.
+Studio target: isolated peg-aero-qa.rbxlx stopped in Edit; all 26 normal sources
+restored exactly, Rojo disconnected. User-owned Studio windows are untouched.
 
-Playable output: generated `build/peg-synergy.rbxlx` in the gallery worktree.
-Studio target: isolated peg-aero-qa.rbxlx stopped in Edit with normal sources; Rojo disconnected.
-The user-owned peg-polished.rbxlx session and other places are untouched.
-Blockers: none. Push and PR CI passed at 8d9d7738a3ae21841a6ed739065572e0c87d5433;
-GitHub returned the merge receipt above and fetched main confirms it.
-Unrun: physical touch/gamepad, two clients in one server, cloud persistence, live plugin sync, publication.
-Limits: result summaries may scroll on compact displays; tiny synergy previews omit
-the silhouette pass for clarity. Transparent glass outlines follow its transparency.
-MCP captures can omit peg BillboardGui text and a newly mounted viewport's first frame.
-Unrelated Studio asset-type warning for 203785492 remains; no project source reference.
-Next action: human playtest build/peg-synergy.rbxlx; reserve a new task for further
-design changes or development-experience multiplayer/mobile/cloud-save verification.
+Blockers: none; push/PR CI and merge receipt pending.
+Unrun: physical touch/gamepad, two clients, cloud persistence, live plugin sync, publication.
+Limits: device-specific FX performance and long-run balance need human playtesting.
+MCP captures can omit peg numbers; the unrelated 203785492 asset-type warning remains.
+Detailed tests, corrected QA observations and resolved failures are in the task.
+Next action: verify CI, merge under existing authorization, then record the actual receipt.
 Repository administration: main unprotected; temporary default remains starter branch.

@@ -63,26 +63,64 @@ return function()
                     card.w >= 119 and card.h >= 90,
                     "Offer too small for its model/name and buttons"
                 )
-                local controls = Layout.card(card.w, card.h, index > 4)
-                assert(
-                    controls.purchase.h >= 36 and controls.inspect.h >= 27,
-                    "Purchase or model inspection area became too small"
-                )
-                local parts =
-                    { controls.inspect, controls.synergy, controls.purchase, controls.hold }
-                for a, item in parts do
+                for recipeCount = 0, (index <= 4 and 2 or 0) do
+                    local controls = Layout.card(card.w, card.h, index > 4, recipeCount)
                     assert(
-                        inside(item, { x = 0, y = 0, w = card.w, h = card.h }),
-                        "Offer control escaped card"
+                        controls.purchase.h >= 36 and controls.inspect.h >= 27,
+                        "Purchase or model inspection area became too small"
                     )
-                    for b = a + 1, #parts do
-                        assert(not overlap(item, parts[b]), "Offer controls overlap")
+                    assert(
+                        (controls.evolutions.h > 0) == (recipeCount > 0),
+                        "Evolved items and supplies must reclaim all recipe space"
+                    )
+                    local parts =
+                        { controls.inspect, controls.evolutions, controls.purchase, controls.hold }
+                    for a, item in parts do
+                        assert(
+                            inside(item, { x = 0, y = 0, w = card.w, h = card.h }),
+                            "Offer control escaped card"
+                        )
+                        for b = a + 1, #parts do
+                            assert(not overlap(item, parts[b]), "Offer controls overlap")
+                        end
+                    end
+                    local equations =
+                        Layout.equations(controls.evolutions.w, controls.evolutions.h, recipeCount)
+                    assert(#equations.rows == recipeCount, "Every recipe needs a complete equation")
+                    local equationParts = { equations.title }
+                    for _, row in equations.rows do
+                        assert(
+                            #row.boxes == 3 and #row.symbols == 2,
+                            "Equation must be item + item = result"
+                        )
+                        for _, collection in { row.boxes, row.statuses, row.symbols } do
+                            for _, area in collection do
+                                table.insert(equationParts, area)
+                            end
+                        end
+                    end
+                    for a, area in equationParts do
+                        assert(
+                            inside(area, {
+                                x = 0,
+                                y = 0,
+                                w = controls.evolutions.w,
+                                h = controls.evolutions.h,
+                            }),
+                            "Recipe escaped its region"
+                        )
+                        for b = a + 1, #equationParts do
+                            assert(
+                                not overlap(area, equationParts[b]),
+                                "Equation tiles or requirement labels overlap"
+                            )
+                        end
                     end
                 end
             end
         end
     end
     print(
-        "PASS shop layout: 4+2 offers, modeled synergy rows, no detail bar, controls within separate enclosures"
+        "PASS shop layout: 4+2 offers, zero/one/two complete evolution equations, no detail bar, bounded controls"
     )
 end

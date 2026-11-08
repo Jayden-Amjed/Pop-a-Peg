@@ -7,6 +7,7 @@ local Signatures = require(Shared.ItemFeedback)
 local ItemModels = require(script.Parent.ItemModels)
 local SoundEffects = require(script.Parent.SoundEffects)
 local Theme = require(script.Parent.UiTheme)
+local GuiService = game:GetService("GuiService")
 
 local Feedback = {}
 Feedback.__index = Feedback
@@ -14,7 +15,8 @@ local GREEN = Color3.fromRGB(155, 225, 96)
 local GOLD = Color3.fromRGB(255, 205, 92)
 local WHITE = Color3.fromRGB(249, 254, 255)
 local INK = Color3.fromRGB(24, 72, 106)
-local MAX_FX = 100
+local MAX_FX = Signatures.Limits.total
+local MAX_DECORATION = Signatures.Limits.decoration
 
 local function smooth(t)
     return t * t * (3 - 2 * t)
@@ -90,7 +92,7 @@ function Feedback:_clearFx()
 end
 
 function Feedback:_ring(point, color, size)
-    if #self.fx >= MAX_FX then
+    if #self.fx >= MAX_DECORATION then
         return
     end
     local ring = Instance.new("Frame")
@@ -119,7 +121,7 @@ function Feedback:_ring(point, color, size)
 end
 
 function Feedback:_label(value, point, color, size)
-    if #self.fx >= MAX_FX then
+    if #self.fx >= MAX_DECORATION then
         return
     end
     table.insert(self.fx, {
@@ -133,7 +135,7 @@ function Feedback:_label(value, point, color, size)
 end
 
 function Feedback:_line(startPoint, endPoint, color)
-    if #self.fx >= MAX_FX then
+    if #self.fx >= MAX_DECORATION then
         return
     end
     local line = Instance.new("Frame")
@@ -162,18 +164,24 @@ function Feedback:_beam(slot, pegId, color, style, action)
     local startPoint = self:_anchor("inventory", slot)
     local target = self:_anchor("peg", pegId)
     self.host:pulseItem(slot, 0.7, { effect = style, direction = target - startPoint })
-    local rays = style == "prism" and 3 or 1
+    local reduced = GuiService.ReducedMotionEnabled
+    local rays = if reduced
+        then 1
+        elseif style == "prism" or style == "spectrum" then 4
+        elseif style == "nexus" or style == "storm" then 3
+        else 2
     for ray = 1, rays do
-        if #self.fx >= MAX_FX then
+        if #self.fx >= MAX_DECORATION then
             break
         end
         local beam = Instance.new("Frame")
         beam.Name = "ItemBeam"
         beam.AnchorPoint = Vector2.new(0.5, 0.5)
         beam.BorderSizePixel = 0
-        beam.BackgroundColor3 = if rays == 3
-            then ({ Color3.fromRGB(113, 229, 255), WHITE, Color3.fromRGB(205, 177, 255) })[ray]
-            else color
+        beam.BackgroundColor3 = if ray == 1
+            then color
+            elseif ray == 2 then WHITE
+            else color:Lerp(Color3.fromRGB(113, 229, 255), (ray - 2) / 2)
         beam.ZIndex = 203
         local rounding = Instance.new("UICorner")
         rounding.CornerRadius = UDim.new(1, 0)
@@ -183,45 +191,118 @@ function Feedback:_beam(slot, pegId, color, style, action)
             kind = "beam",
             gui = beam,
             age = 0,
-            duration = 0.32,
+            duration = if reduced then 0.18 else 0.4,
             slot = slot,
             pegId = pegId,
-            offset = (ray - (rays + 1) / 2) * 4,
-            width = if style == "trim" then 3 else 5,
+            offset = (ray - (rays + 1) / 2) * 5,
+            width = if ray == 1 then 8 else 3,
             generation = self.generation,
         })
     end
 end
 
-function Feedback:_itemSpark(slot, profile)
-    local source = self:_anchor("inventory", slot)
+function Feedback:_signatureBurst(id, source, impact)
+    local profile = Signatures.Profiles[id]
+    local plan = Signatures.burst(id, GuiService.ReducedMotionEnabled, impact)
+    if not profile or not plan then
+        return
+    end
     local color = Color3.fromRGB(table.unpack(profile.color))
-    local style = profile.style
-    local count = if style == "burst" or style == "chorus" then 7 else 4
-    for index = 1, count do
-        if #self.fx >= MAX_FX then
+    for index = 1, plan.count do
+        if #self.fx >= MAX_DECORATION then
             break
         end
-        local spark = Instance.new("Frame")
-        spark.Name = "ItemSpark"
+        local glyph = plan.shape == "note" or plan.shape == "spark"
+        local spark = Instance.new(if glyph then "TextLabel" else "Frame")
+        spark.Name = "Signature_" .. profile.style
         spark.AnchorPoint = Vector2.new(0.5, 0.5)
         spark.BorderSizePixel = 0
-        spark.BackgroundColor3 = color
-        spark.ZIndex = 208
-        local round = Instance.new("UICorner")
-        round.CornerRadius = UDim.new(style == "clock" and 0 or 1, 0)
-        round.Parent = spark
+        local accent = if index % 3 == 0
+            then WHITE
+            elseif index % 3 == 1 then color
+            else color:Lerp(GOLD, profile.evolved and 0.45 or 0.17)
+        spark.BackgroundColor3 = accent
+        spark.ZIndex = 207 + index % 3
+        local border
+        if glyph then
+            spark.BackgroundTransparency = 1
+            spark.Font = Theme.font or Enum.Font.SourceSansBold
+            spark.Text = plan.shape == "note" and "♪" or "✦"
+            spark.TextColor3 = accent
+            spark.TextStrokeColor3 = INK
+            spark.TextStrokeTransparency = 0.35
+            spark.TextScaled = true
+        else
+            local round = Instance.new("UICorner")
+            round.CornerRadius = UDim.new(if plan.shape == "diamond" then 0 else 1, 0)
+            round.Parent = spark
+            if plan.shape == "bubble" then
+                spark.BackgroundTransparency = 0.75
+                border = Instance.new("UIStroke")
+                border.Thickness = 2
+                border.Color = accent
+                border.Parent = spark
+            end
+        end
         spark.Parent = self.host.fxLayer
-        local angle = index * math.pi * 2 / count
-        local distance = style == "bubbles" and 37 or 23
+        local angle = index * math.pi * 2 / plan.count + self.elapsed * 1.7
         table.insert(self.fx, {
-            kind = "spark",
+            kind = "signature",
             gui = spark,
+            glyph = glyph,
+            border = border,
             age = 0,
-            duration = 0.34,
+            duration = plan.duration + (index % 3) * 0.035,
             start = source,
-            delta = Vector2.new(math.cos(angle), math.sin(angle)) * distance,
-            size = style == "seed" and 9 or 6,
+            angle = angle,
+            reach = plan.reach * (0.65 + index % 3 * 0.17),
+            spin = plan.spin,
+            orbit = plan.orbit and index % 3 == 0,
+            size = if glyph then 25 elseif plan.shape == "bubble" then 17 else 11,
+            aspect = if plan.shape == "leaf" then 1.7 elseif plan.shape == "streak" then 3.4 else 1,
+            hollow = plan.shape == "bubble",
+            generation = self.generation,
+        })
+    end
+    self:_ring(source, color, if impact then 35 elseif profile.evolved then 90 else 62)
+    if not GuiService.ReducedMotionEnabled then
+        self:_ring(source, WHITE, if impact then 21 else 38)
+    end
+end
+
+function Feedback:_payoutTrail(slot, id)
+    local profile = Signatures.Profiles[id]
+    local key = "payout:" .. slot
+    if
+        not profile
+        or GuiService.ReducedMotionEnabled
+        or self.elapsed - (self.itemFxTimes[key] or -10) < 0.12
+    then
+        return
+    end
+    self.itemFxTimes[key] = self.elapsed
+    local color = Color3.fromRGB(table.unpack(profile.color))
+    local from, target = self:_anchor("inventory", slot), self:_anchor("score")
+    self:_line(from, target, color)
+    for index = 1, 5 do
+        if #self.fx >= MAX_DECORATION then
+            break
+        end
+        local orb = Instance.new("Frame")
+        orb.Name, orb.BorderSizePixel = "ScoreRibbon", 0
+        orb.AnchorPoint = Vector2.new(0.5, 0.5)
+        orb.BackgroundColor3 = if index % 2 == 0 then WHITE else color
+        orb.ZIndex = 210
+        local round = Instance.new("UICorner")
+        round.CornerRadius, round.Parent = UDim.new(1, 0), orb
+        orb.Parent = self.host.fxLayer
+        table.insert(self.fx, {
+            kind = "ribbon",
+            gui = orb,
+            age = -index * 0.015,
+            duration = 0.4,
+            start = from,
+            lane = (index - 3) * 8,
             generation = self.generation,
         })
     end
@@ -238,7 +319,7 @@ function Feedback:_activateVisual(id, slot)
         local key = "slot:" .. slot
         if self.elapsed - (self.itemFxTimes[key] or -10) >= 0.12 then
             self.itemFxTimes[key] = self.elapsed
-            self:_itemSpark(slot, profile)
+            self:_signatureBurst(id, self:_anchor("inventory", slot), false)
         end
     end
 end
@@ -371,6 +452,9 @@ function Feedback:_event(event)
             elseif event.slot then self:_anchor("inventory", event.slot)
             else self:_anchor("ball")
         self:_score(event.toScore or self.snapshot.score, source)
+        if event.slot and not event.pegId and event.itemId then
+            self:_payoutTrail(event.slot, event.itemId)
+        end
     elseif event.kind == "pop" then
         local source = self:_anchor("peg", event.pegId)
         self:_ring(source, if (event.oldValue or 1) <= 1 then WHITE else GREEN, 28)
@@ -396,7 +480,13 @@ function Feedback:_event(event)
             if slot then
                 self:_beam(slot, pegId, color, profile and profile.style or "tap", event.action)
             end
-            self:_ring(point, color, 38)
+            local impactKey = tostring(id) .. ":impact:" .. pegId
+            if profile and self.elapsed - (self.itemFxTimes[impactKey] or -10) >= 0.11 then
+                self.itemFxTimes[impactKey] = self.elapsed
+                self:_signatureBurst(id, point, true)
+            else
+                self:_ring(point, color, 38)
+            end
             if event.action == "double" or event.action == "halve" then
                 self:_label(
                     event.action == "double" and "×2" or "÷2",
@@ -411,6 +501,13 @@ function Feedback:_event(event)
         self:_activateVisual(event.perkId, event.targetSlot)
     elseif event.kind == "purchase" then
         self:_activateVisual(event.itemId, event.slot)
+        if event.action == "evolve" and event.slot then
+            local point = self:_anchor("inventory", event.slot)
+            self:_label("EVOLVED!", point + Vector2.new(0, 44), GOLD, 34)
+            self:_ring(point, GOLD, 130)
+            self:_ring(point, WHITE, 95)
+            self.sounds:play("clear", 1.18)
+        end
     elseif event.kind == "perkChoice" then
         if event.perkId then
             self:_pulsePerk(event.perkId)
@@ -779,6 +876,40 @@ function Feedback:step(dt)
             effect.gui.Size =
                 UDim2.fromOffset(effect.size * (1 - t * 0.8), effect.size * (1 - t * 0.8))
             effect.gui.BackgroundTransparency = t
+        elseif effect.kind == "signature" then
+            local angle = effect.angle + effect.spin * t * (effect.orbit and 2.4 or 0.55)
+            local distance = effect.reach * (effect.orbit and (0.45 + t * 0.55) or smooth(t))
+            local point = effect.start + Vector2.new(math.cos(angle), math.sin(angle)) * distance
+            if not effect.orbit then
+                point += Vector2.new(0, -t * t * 24)
+            end
+            effect.gui.Position = UDim2.fromOffset(point.X, point.Y)
+            local size = effect.size * (1 - t * 0.75)
+            effect.gui.Size = UDim2.fromOffset(size * effect.aspect, size)
+            effect.gui.Rotation = math.deg(angle) + 45
+            local fade = math.max(0, (t - 0.25) / 0.75)
+            if effect.glyph then
+                effect.gui.TextTransparency = fade
+                effect.gui.TextStrokeTransparency = math.max(0.35, fade)
+            else
+                effect.gui.BackgroundTransparency = if effect.hollow
+                    then 0.75 + fade * 0.25
+                    else fade
+                if effect.border then
+                    effect.border.Transparency = fade
+                end
+            end
+        elseif effect.kind == "ribbon" then
+            local target = self:_anchor("score")
+            local delta = target - effect.start
+            local direction = delta.Magnitude > 0 and delta.Unit or Vector2.new(1, 0)
+            local normal = Vector2.new(-direction.Y, direction.X)
+            local point = effect.start:Lerp(target, smooth(t))
+                + normal * math.sin(t * math.pi) * effect.lane
+            effect.gui.Position = UDim2.fromOffset(point.X, point.Y)
+            effect.gui.Size = UDim2.fromOffset(18 * (1 - t * 0.65), 6)
+            effect.gui.Rotation = math.deg(math.atan2(direction.Y, direction.X))
+            effect.gui.BackgroundTransparency = math.max(0, (t - 0.7) / 0.3)
         end
         if t >= 1 then
             self:_remove(index, true)

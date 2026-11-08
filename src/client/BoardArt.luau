@@ -303,7 +303,34 @@ function BoardArt.new(parent)
         Vector3.new(9.4, 26.35, 0.19),
     }, 0.17, C.pearl)
     oval(model, "MonitorHinge", Vector3.new(0.62, 0.62, 0.38), Vector3.new(10.8, 25.4, 0.3), C.aqua)
+    oval(model, "HingeHub", Vector3.new(0.31, 0.31, 0.12), Vector3.new(10.8, 25.4, 0.53), C.pearl)
+    -- A visible braided data line and sealed port connect the little appliance
+    -- to the board. All decoration is opaque so the fixed camera stays stable.
+    path(model, "MonitorDataLine", {
+        Vector3.new(10.56, 24.5, 0.53),
+        Vector3.new(11.36, 24.85, 0.53),
+        Vector3.new(11.48, 25.42, 0.53),
+        Vector3.new(10.54, 26.12, 0.53),
+    }, 0.065, C.aqua)
+    for index = 1, 3 do
+        tube(
+            model,
+            "CableCollar",
+            Vector3.new(10.66 + index * 0.18, 24.63 + index * 0.08, 0.53),
+            Vector3.new(10.72 + index * 0.18, 24.65 + index * 0.08, 0.53),
+            0.09,
+            C.pearl
+        )
+    end
     local screenCenter = Vector3.new(6.6, 26.5, 0.8)
+    roundedPanel(
+        model,
+        "MonitorWaterSeal",
+        Vector3.new(8.65, 3.95, 0.56),
+        screenCenter + Vector3.new(0, 0, -0.35),
+        0.7,
+        C.aqua
+    )
     roundedPanel(
         model,
         "MonitorShadow",
@@ -313,6 +340,14 @@ function BoardArt.new(parent)
         C.shadow
     )
     roundedPanel(model, "MonitorShell", Vector3.new(8.1, 3.55, 0.55), screenCenter, 0.48, C.pearl)
+    roundedPanel(
+        model,
+        "MonitorInnerPearl",
+        Vector3.new(7.92, 3.36, 0.08),
+        screenCenter + Vector3.new(0, 0.035, 0.24),
+        0.4,
+        C.pale
+    )
     roundedPanel(
         model,
         "MonitorBezel",
@@ -339,6 +374,95 @@ function BoardArt.new(parent)
         screenCenter + Vector3.new(0, 1.33, 0.48),
         C.pale
     )
+    -- Curved cheek fins, vents and botanical details frame the screen without
+    -- crossing its usable rectangle or its projected GUI corners.
+    for _, side in { -1, 1 } do
+        local x = screenCenter.X + side * 4.31
+        oval(
+            model,
+            "MonitorCheek",
+            Vector3.new(0.76, 2.5, 0.75),
+            Vector3.new(x, 26.63, 0.66),
+            C.pearl
+        )
+        oval(
+            model,
+            "CheekInset",
+            Vector3.new(0.42, 1.86, 0.15),
+            Vector3.new(x, 26.66, 1.06),
+            C.pale
+        )
+        for index = 1, 4 do
+            local vent = part(
+                model,
+                "MonitorVent",
+                Vector3.new(0.3, 0.055, 0.05),
+                Vector3.new(x, 26.1 + index * 0.22, 1.17),
+                C.shadow
+            )
+            vent.CFrame *= CFrame.Angles(0, 0, side * -0.2)
+        end
+        bubble(model, "MonitorFastener", Vector3.new(x, 25.73, 1.12), 0.12)
+        leaf(
+            model,
+            Vector3.new(screenCenter.X + side * 3.58, 28.23, 0.79),
+            Vector3.new(0.38, 0.83, 0.14),
+            side * -0.92,
+            C.lime
+        )
+        leaf(
+            model,
+            Vector3.new(screenCenter.X + side * 3.93, 28.36, 0.77),
+            Vector3.new(0.29, 0.65, 0.13),
+            side * 0.6,
+            C.leaf
+        )
+    end
+    path(model, "PearlCrown", {
+        Vector3.new(3.0, 28.17, 1.01),
+        Vector3.new(3.54, 28.51, 1.01),
+        Vector3.new(5.0, 28.66, 1.01),
+        Vector3.new(8.2, 28.66, 1.01),
+        Vector3.new(9.66, 28.51, 1.01),
+        Vector3.new(10.2, 28.17, 1.01),
+    }, 0.085, C.pearl)
+    roundedPanel(
+        model,
+        "LevelBadge",
+        Vector3.new(2.65, 0.53, 0.26),
+        Vector3.new(6.6, 28.48, 1.03),
+        0.22,
+        C.deep
+    )
+    self.stagePips = {}
+    for index = 1, 4 do
+        self.stagePips[index] = oval(
+            model,
+            "LevelPip" .. index,
+            Vector3.new(0.26, 0.26, 0.10),
+            Vector3.new(5.7 + (index - 1) * 0.6, 28.48, 1.23),
+            C.pale
+        )
+    end
+    tube(
+        model,
+        "SignalStem",
+        Vector3.new(10.94, 27.72, 0.55),
+        Vector3.new(11.48, 28.16, 0.55),
+        0.07,
+        C.shadow
+    )
+    bubble(model, "SignalBubble", Vector3.new(11.53, 28.31, 0.57), 0.24)
+    bubble(model, "SignalSatellite", Vector3.new(11.96, 28.62, 0.57), 0.1)
+    -- The lower lip has an inset progress channel rather than floating LEDs.
+    roundedPanel(
+        model,
+        "ProgressChannel",
+        Vector3.new(6.25, 0.25, 0.04),
+        screenCenter + Vector3.new(-0.04, -1.5, 0.355),
+        0.1,
+        C.deep
+    )
     self.lamp = oval(
         model,
         "StatusLamp",
@@ -356,8 +480,22 @@ function BoardArt.new(parent)
             C.pale
         )
     end
+    self:setStage({ index = 1 })
     self:setStatus(nil, 0, false, false)
     return self
+end
+
+function BoardArt:setStage(stage)
+    local index = type(stage) == "table" and stage.index or 1
+    local finished = type(stage) == "table" and stage.cleared == true
+    if type(index) ~= "number" or index ~= index or math.abs(index) == math.huge then
+        index = 1
+    end
+    index = math.max(1, math.floor(index))
+    for number, pip in self.stagePips do
+        local cleared = number < index or (number == index and finished)
+        pip.Color = if cleared then C.lime elseif number == index then C.gold else C.pale
+    end
 end
 
 function BoardArt:setStatus(text, progress, visible, canSkip)
