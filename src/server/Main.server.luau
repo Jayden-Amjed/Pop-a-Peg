@@ -27,6 +27,7 @@ local allowed = {
     endShot = true,
     continue = true,
     buy = true,
+    cycleEvolution = true,
     reroll = true,
     freeze = true,
     buySlot = true,

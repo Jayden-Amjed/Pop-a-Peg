@@ -1,5 +1,13 @@
 -- Original run equipment. Trigger thresholds and prices are tuning data.
-local Catalog = { Items = {}, Perks = {}, ItemIds = {}, PerkIds = {}, MaxLevel = 2 }
+local Catalog = {
+    Items = {},
+    Perks = {},
+    ItemIds = {},
+    PerkIds = {},
+    MaxLevel = 5,
+    Evolutions = {},
+    EvolvedIds = {},
+}
 
 local function item(id, name, price, event, every, effect, description, triggerText, rarity)
     Catalog.Items[id] = {
@@ -276,12 +284,6 @@ for _, family in ipairs(families) do
     for _, id in ipairs(family.ids) do
         local definition = Catalog.Items[id]
         definition.family = family.name
-        definition.synergyPartners = {}
-        for _, partner in ipairs(family.ids) do
-            if partner ~= id then
-                table.insert(definition.synergyPartners, partner)
-            end
-        end
     end
 end
 
@@ -290,13 +292,11 @@ local hybrids = {
         operations = { { effect = "multiply" }, { effect = "halveHighest", fixed = true } },
         effectLines = { "Gain 15% score (30% upgraded).", "Halve the highest peg once." },
         tradeoff = "Immediate points cost future value on your strongest peg.",
-        synergyPartners = { "balance_scale", "resonator", "tap_driver" },
     },
     soft_saw = {
         operations = { { effect = "halve" }, { effect = "lowestPop", fixed = true } },
         effectLines = { "Halve 2 pegs (4 upgraded).", "Pop the lowest peg once." },
         tradeoff = "Trimming reduces future hit values, but starts halve and pop combos.",
-        synergyPartners = { "balance_scale", "tap_driver", "goldfish" },
     },
     burst_capsule = {
         operations = {
@@ -310,7 +310,6 @@ local hybrids = {
             "Halve the center peg.",
         },
         tradeoff = "The center scores no points and its growth is temporary; neighbors pay out.",
-        synergyPartners = { "resonator", "fishbowl", "balance_scale" },
     },
 }
 for id, hybrid in pairs(hybrids) do
@@ -377,7 +376,6 @@ for _, definition in ipairs(consumables) do
     definition.triggerText = "Use immediately"
     definition.color = { 255, 172, 100 }
     definition.family = "Supplies"
-    definition.synergyPartners = {}
     definition.effectLines = { definition.description }
     Catalog.Items[definition.id] = definition
 end
@@ -509,11 +507,15 @@ Catalog.Bosses = {
 
 -- Inspection rows follow the same ordered effect IDs used by Run. These are
 -- presentation values, not a second execution path or extra gameplay effects.
-local function amount(base, upgraded, level)
+local function amount(base, _oldUpgrade, level)
+    local percent = type(base) == "string"
+    local unit = if percent then tonumber(string.match(base, "%d+")) else base
+    local suffix = if percent then "%" else ""
+    local current = tostring(unit * level) .. suffix
     if level >= Catalog.MaxLevel then
-        return tostring(upgraded)
+        return current
     end
-    return tostring(base) .. " (↑ " .. tostring(upgraded) .. ")"
+    return current .. " (↑ " .. tostring(unit * (level + 1)) .. suffix .. ")"
 end
 
 local detailEffects = {
@@ -588,7 +590,7 @@ local detailEffects = {
         return "Gain 1 coin per ball remaining", "positive"
     end,
     upgrade = function()
-        return "Upgrade one random level-1 item", "positive"
+        return "Add 1 level to a random item below level 5", "positive"
     end,
     first = function()
         return "Activate slot 1", "positive"
@@ -604,36 +606,88 @@ local detailEffects = {
     end,
 }
 
-local suggestedPairs = {
-    tap_driver = { "split_prism", "relay", "gain_dial" },
-    split_prism = { "resonator", "fishbowl", "tap_driver" },
-    wall_meter = { "quota_bonus", "gain_dial", "spring_coil" },
-    clockwork = { "tap_driver", "relay", "gain_dial" },
-    relay = { "encore", "burst_capsule", "gain_dial" },
-    landing_fund = { "quota_bonus", "gain_dial", "seed_bank" },
-    survey_lens = { "goldfish", "growth_array", "quota_bonus" },
-    balance_scale = { "soft_saw", "gain_dial", "burst_capsule" },
-    resonator = { "split_prism", "spring_coil", "goldfish" },
-    echo_plate = { "relay", "encore", "burst_capsule" },
-    growth_array = { "resonator", "fishbowl", "goldfish" },
-    quota_bonus = { "gain_dial", "pulse_cell", "wall_meter" },
-    spring_coil = { "resonator", "fishbowl", "wall_meter" },
-    pulse_cell = { "gain_dial", "quota_bonus", "relay" },
-    compass = { "goldfish", "growth_array", "tap_driver" },
-    seed_bank = { "resonator", "fishbowl", "landing_fund" },
-    encore = { "relay", "echo_plate", "burst_capsule" },
-    goldfish = { "fishbowl", "resonator", "survey_lens" },
-    fishbowl = { "goldfish", "split_prism", "growth_array" },
-    reserve_pack = { "seed_bank", "landing_fund", "clockwork" },
-    coin_press = { "quota_bonus", "gain_dial", "landing_fund" },
-    tuning_oil = { "growth_array", "gain_dial", "encore" },
-}
-for id, partners in pairs(suggestedPairs) do
-    Catalog.Items[id].synergyPartners = partners
+-- Evolved items retain both ingredient triggers and ordered effects at level 5.
+-- They enter the shop only through eligible recipes, never the random item pool.
+local function evolve(id, name, left, right)
+    local channels = {}
+    for _, ingredient in ipairs({ left, right }) do
+        local source = Catalog.Items[ingredient]
+        table.insert(channels, {
+            sourceId = ingredient,
+            trigger = source.trigger,
+            triggerText = source.triggerText,
+            operations = source.operations or { { effect = source.effect } },
+        })
+    end
+    Catalog.Items[id] = {
+        id = id,
+        name = name,
+        evolved = true,
+        price = 0,
+        rarity = "evolved",
+        family = "Evolutions",
+        channels = channels,
+        triggerText = "Two level-5 abilities",
+        color = { 255, 215, 100 },
+        effect = "evolution",
+    }
+    table.insert(Catalog.EvolvedIds, id)
+    table.insert(Catalog.Evolutions, { id = id, ingredients = { left, right } })
 end
-for _, definition in pairs(Catalog.Perks) do
-    definition.synergyPartners = { "burst_capsule", "growth_array", "gain_dial" }
+
+evolve("aurora_aquarium", "Aurora Aquarium", "goldfish", "fishbowl")
+evolve("spectrum_reef", "Spectrum Reef", "split_prism", "resonator")
+evolve("tidal_engine", "Tidal Engine", "wall_meter", "spring_coil")
+evolve("storm_clock", "Storm Clock", "clockwork", "pulse_cell")
+evolve("horizon_observatory", "Horizon Observatory", "survey_lens", "compass")
+evolve("eden_greenhouse", "Eden Greenhouse", "seed_bank", "growth_array")
+evolve("pearl_turbine", "Pearl Turbine", "soft_saw", "balance_scale")
+evolve("current_nexus", "Current Nexus", "relay", "echo_plate")
+evolve("ocean_orchestra", "Ocean Orchestra", "landing_fund", "encore")
+evolve("bubble_reactor", "Bubble Reactor", "tap_driver", "burst_capsule")
+evolve("solar_treasury", "Solar Treasury", "gain_dial", "quota_bonus")
+evolve("sun_koi", "Sun Koi", "split_prism", "goldfish")
+evolve("tide_gyroscope", "Tide Gyroscope", "clockwork", "spring_coil")
+
+function Catalog.evolutionsFor(id)
+    local recipes = {}
+    for _, recipe in ipairs(Catalog.Evolutions) do
+        if recipe.ingredients[1] == id or recipe.ingredients[2] == id then
+            table.insert(
+                recipes,
+                { id = recipe.id, ingredients = { recipe.ingredients[1], recipe.ingredients[2] } }
+            )
+        end
+    end
+    return recipes
 end
+
+function Catalog.evolutionState(inventory, slots, recipeId)
+    local result = { ready = false, slots = {}, levels = { 0, 0 }, owned = { false, false } }
+    for _, recipe in ipairs(Catalog.Evolutions) do
+        if recipe.id == recipeId then
+            for ingredientIndex, ingredient in ipairs(recipe.ingredients) do
+                for slot = 1, slots do
+                    local entry = inventory[slot]
+                    if entry and entry.id == ingredient then
+                        result.owned[ingredientIndex] = true
+                        result.levels[ingredientIndex] =
+                            math.max(result.levels[ingredientIndex], entry.level)
+                        if
+                            entry.level == Catalog.MaxLevel and not result.slots[ingredientIndex]
+                        then
+                            result.slots[ingredientIndex] = slot
+                        end
+                    end
+                end
+            end
+            result.ready = result.slots[1] ~= nil and result.slots[2] ~= nil
+            return result
+        end
+    end
+    return result
+end
+
 for _, id in ipairs(Catalog.ConsumableIds) do
     Catalog.Items[id].triggerText = "On purchase"
 end
@@ -652,28 +706,44 @@ function Catalog.detail(id, level)
     if not definition then
         return nil
     end
-    level = level == Catalog.MaxLevel and Catalog.MaxLevel or 1
-    local effects, partners = {}, {}
-    for _, operation in ipairs(definition.operations or { { effect = definition.effect } }) do
-        local render = detailEffects[operation.effect]
-        assert(render, "Missing inspection effect: " .. operation.effect)
-        local text, tone = render(operation.fixed and 1 or level)
-        table.insert(effects, { text = text, tone = tone })
+    level = if type(level) == "number" and level == level
+        then math.clamp(math.floor(level), 1, Catalog.MaxLevel)
+        else 1
+    if definition.evolved then
+        level = Catalog.MaxLevel
+    end
+    local effects = {}
+    local function addOperations(operations, power)
+        for _, operation in ipairs(operations) do
+            local render = detailEffects[operation.effect]
+            assert(render, "Missing inspection effect: " .. operation.effect)
+            local text, tone = render(operation.fixed and 1 or power)
+            table.insert(effects, { text = text, tone = tone })
+        end
+    end
+    if definition.channels then
+        for _, channel in ipairs(definition.channels) do
+            table.insert(effects, { text = channel.triggerText, tone = "trigger" })
+            addOperations(channel.operations, Catalog.MaxLevel)
+        end
+    else
+        addOperations(definition.operations or { { effect = definition.effect } }, level)
     end
     if definition.effect == "upgrade" then
         table.insert(effects, { text = "If none qualify: gain 4 coins", tone = "positive" })
-    end
-    for _, partner in ipairs(definition.synergyPartners or {}) do
-        table.insert(partners, partner)
     end
     return {
         id = id,
         name = definition.name,
         trigger = definition.triggerText,
-        kind = Catalog.Perks[id] and "perk" or (definition.consumable and "supply" or "item"),
+        kind = if definition.evolved
+            then "evolved"
+            elseif Catalog.Perks[id] then "perk"
+            elseif definition.consumable then "supply"
+            else "item",
         level = level,
         effects = effects,
-        partners = partners,
+        evolutions = Catalog.evolutionsFor(id),
     }
 end
 
@@ -695,7 +765,14 @@ function Catalog.purchaseState(inventory, slots, offer, coins)
         return blocked("sold", "That offer was already purchased.")
     end
     local intent = { action = "use", allowed = true, price = offer.price }
-    if not definition.consumable then
+    if definition.evolved then
+        local state = Catalog.evolutionState(inventory, slots, definition.id)
+        if not state.ready then
+            return blocked("ingredients", "Both evolution ingredients must be level 5.")
+        end
+        intent.action, intent.slot, intent.level = "evolve", state.slots[1], Catalog.MaxLevel
+        intent.removeSlots = state.slots
+    elseif not definition.consumable then
         local upgradeSlot, emptySlot, capped
         for slot = 1, slots do
             local entry = inventory[slot]
@@ -710,7 +787,8 @@ function Catalog.purchaseState(inventory, slots, offer, coins)
             end
         end
         if upgradeSlot then
-            intent.action, intent.slot, intent.level = "upgrade", upgradeSlot, Catalog.MaxLevel
+            intent.action, intent.slot, intent.level =
+                "upgrade", upgradeSlot, inventory[upgradeSlot].level + 1
         elseif capped then
             return blocked("maxLevel", "That item is already at max level.")
         elseif emptySlot then
@@ -723,6 +801,17 @@ function Catalog.purchaseState(inventory, slots, offer, coins)
         intent.allowed, intent.reason, intent.message = false, "coins", "Not enough coins."
     end
     return intent
+end
+
+-- Legacy summary consumers use the same current inspection text.
+for id, definition in pairs(Catalog.Items) do
+    local detail = Catalog.detail(id, 1)
+    local lines = {}
+    for _, row in ipairs(detail.effects) do
+        table.insert(lines, row.text)
+    end
+    definition.effectLines = lines
+    definition.description = table.concat(lines, ". ")
 end
 
 return Catalog
