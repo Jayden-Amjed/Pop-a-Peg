@@ -1,7 +1,7 @@
 # RBX-021 — Full Blender catalog and animation inspector
 
 - Owner: Codex coordinator; sole Studio operator.
-- Status: READY FOR REVIEW
+- Status: MERGED
 - Reservation: [issue 21](https://github.com/Jayden-Amjed/Pop-a-Peg/issues/21)
 - Reviewed: 2026-11-08 (America/Los_Angeles)
 - Starting main: dfe5c4a8c8d82185a640cd7a029f6bb90d1014fd; accepted State Version 10.
@@ -10,7 +10,7 @@
 - PR: [22](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/22)
 - Implementation evidence SHA: 23f4615c4231114af6cf72e271739a8858459e3c (final inspector);
   92c4578d72548a61e0bc810f22b105fb65d1e812 (uploaded catalog and motion).
-- Confirmed merge SHA: NOT MERGED
+- Confirmed merge SHA: ae61001077cb054c6717d53f3dceed463873f894 (GitHub confirmed; fetched main matches)
 
 ## Objective and outcome
 
@@ -46,7 +46,7 @@ nature and inspector contributors used separate worktrees from accepted main.
 Their bounded commits were cherry-picked; no contributor touched Studio.
 Original root checkout and unrelated prior places were preserved. No open PR
 overlap existed at reservation. Main was fetched again and remained dfe5c4a.
-Version 11 is proposed from accepted 10 until merge; no earlier failure is hidden.
+Version 11 was accepted from version 10 through PR22; no earlier failure is hidden.
 
 ## Checks actually run
 
@@ -62,7 +62,9 @@ Version 11 is proposed from accepted 10 until merge; no earlier failure is hidde
 | Actual controls | Studio mouse/keyboard actions in final gallery | Search spring→Wave Spring, trigger, loop, slow speed, native comparison, wheel156%, Fit100%, library-wheel isolation, pose tag/export |
 | Normal game | UI implementation769403d; isolated db4acb6d target | Hub→run; three completed shot rounds, populated viewports use Balanced; UI readable |
 | Local contracts | check.ps1; adapter test; source/archive validator | Formatting/lint, 23 gameplay suites, motion contracts, main build/39 source mappings passed |
-| Final expanded checks | Both gallery builds, 39 source mappings, scripts lint/motion, archive validator | PASS; PR CI pending |
+| Final expanded checks | Both gallery builds, 39 source mappings, scripts lint/motion, archive validator | PASS |
+| PR CI | Run42519553571 at4ac5a7e77a6f2b8cd99a4452d6587785db7a64b7 | PASS, including hosted Python archive validation |
+| Merge | GitHub PR22 result + fetched origin/main | ae61001077cb054c6717d53f3dceed463873f894 confirmed |
 
 Runtime audit checks sampled transforms, dimensions and mesh status; it does not
 prove exhaustive swept-volume clearance. Visual sheets cover all 78 models;
@@ -113,6 +115,6 @@ Studio version: 0.746.0.7461269. Final target: peg-catalog-gallery-final.rbxlx,
 Import workbench c719dd9a and prior gallery97fe17b2 are isolated Edit sessions.
 User's saved permission-host place105048204331261 and earlier sessions preserved.
 Build SHA256: `0EB94AA776AEA48CB71C4138406367EF79C523191E8BE8D3F2312CF678548DF3`.
-Next action: final checks and PR CI, merge under existing user authorization,
-then open gallery and press Play to collect item-by-item modeling feedback.
+Next action: press Play in the open final gallery, inspect models and copy tagged
+feedback before stopping. No required implementation work remains in this task.
 Published: model assets uploaded; no experience update published.

@@ -1,15 +1,15 @@
 # Current project state
 
-State Version: 11 (PROPOSED; predecessor accepted version 10)
+State Version: 11 (accepted catalog inspector; predecessor accepted version 10)
 Reviewed: 2026-11-08, America/Los_Angeles
 Objective: Review every item in an individual Blender animation inspector with clearer shading.
 
-Accepted source: dfe5c4a8c8d82185a640cd7a029f6bb90d1014fd (fetched main; version 10).
-Active task: [RBX-021](tasks/RBX-021-catalog-lab.md), Codex coordinator.
+Accepted source: ae61001077cb054c6717d53f3dceed463873f894 (PR22 merge confirmed by GitHub).
+Completed task: [RBX-021](tasks/RBX-021-catalog-lab.md), Codex coordinator.
 Branch: task/RBX-021-catalog-lab; [PR22](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/22).
 Studio-tested source: 23f4615c4231114af6cf72e271739a8858459e3c (final inspector);
 92c4578d72548a61e0bc810f22b105fb65d1e812 (complete mesh/motion audit).
-Merge: NOT MERGED. Version 11 is a proposal until GitHub confirms acceptance.
+Merge: MERGED. Version advanced once from accepted 10; fetched main matches the merge.
 
 | Capability | Verified state |
 | --- | --- |
@@ -37,12 +37,13 @@ Playable output: build/peg-catalog-gallery-final.rbxlx in .worktrees/catalog-lab
 SHA256: 0EB94AA776AEA48CB71C4138406367EF79C523191E8BE8D3F2312CF678548DF3.
 
 Checks: formatting/lint, 23 existing suites, catalog motion contracts, main build,
-39 source mappings, both gallery builds and archive validator passed. PR CI pending.
+39 source mappings, both gallery builds and archive validator passed. PR CI
+42519553571 passed at 4ac5a7e77a6f2b8cd99a4452d6587785db7a64b7.
 Blockers: none. Limitations: rigid coil compression changes wire thickness;
 ViewportFrames shade directionally but do not cast shadows; high manual zoom can
 crop intentionally; notes last only this Play session. Other-account mesh access
 and narrow/mobile inspector layouts are unverified. Existing unrelated avatar
 asset203785492 warning persists; no catalog runtime errors.
 Published: ten model assets uploaded; no game experience update published.
-Next action: finish final checks/PR integration, then inspect models and export feedback.
+Next action: press Play in the catalog gallery, inspect individual models and copy feedback before stopping.
 Repository administration: main unprotected; temporary default remains starter branch.
