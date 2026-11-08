@@ -1,14 +1,14 @@
 # RBX-013 — Arcade presentation and interaction polish
 
 - Owner: Codex coordinator; separate world/UI contributors and read-only audit.
-- Status: READY FOR REVIEW
+- Status: MERGED
 - Reviewed: 2026-11-08 (America/Los_Angeles)
 - Starting main: 3f54f7a1b04c813831a1d6d1394bead5d7e24d62
 - Branch: task/RBX-013-arcade-polish
 - Reservation: [#13](https://github.com/Jayden-Amjed/Pop-a-Peg/issues/13)
 - PR: [#14](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/14)
 - Implementation evidence SHA: 2d4f8fb4eab23dc8b1f62f31ea886d10cadb6fe5
-- Confirmed merge SHA: NOT MERGED
+- Confirmed merge SHA: 61109c58bd9aff2e4abdf2f021999cd5a0e71cc9
 
 ## Objective and Acceptance
 
@@ -20,7 +20,7 @@ authorization to deliver tested changes to main continues.
 - [x] Clear controls, collection/records hierarchy and responsive feedback.
 - [x] Fix concrete input/transition issues found in native playtesting.
 - [x] Full local checks, isolated Studio playtest and updated documentation.
-- [ ] Verified main delivery; CI/merge pending.
+- [x] Verified main delivery; GitHub confirmed PR #14 merged and fetched main matches.
 
 ## Implementation and ownership
 
@@ -85,6 +85,14 @@ Final checks apply to the source tree committed as
   30-campaign balance samples are historical; this pass tested targeted interactions
   and eight multiplayer shots.
 
+## Acceptance receipt
+
+PR CI 42499950047 passed at 14c4ab4d639606320e5f945b071e462e5b4457a3.
+GitHub confirmed merge 61109c58bd9aff2e4abdf2f021999cd5a0e71cc9; fetched main and
+the isolated checkout match. State Version advanced once from 6 to accepted 7.
+This bounded documentation receipt records that observed result; it does not
+change gameplay or imply Roblox publication.
+
 ## Resolved check issues
 
 Restricted-network Selene could not fetch Roblox API definitions. The full check
@@ -97,11 +105,11 @@ No unresolved implementation failures.
 
 - Owner: Codex coordinator.
 - Checkout: C:/Users/Amjedd/Documents/ChatGPT/Pop a Peg/.worktrees/arcade-polish.
-- Accepted State Version: 6; proposed version: 7; fetched main reconciled.
+- Accepted State Version: 7; fetched main and merge receipt reconciled.
 - Studio: 47b8ff46-9f49-43de-9f9e-8fb2198ecb09, peg-polish-qa.rbxlx.
 - Sync: root sole operator; Rojo disconnected/no serve port; Play stopped.
 - Source evidence: 2d4f8fb4eab23dc8b1f62f31ea886d10cadb6fe5.
-- Blockers: none; remote CI/merge pending.
+- Blockers: none.
 - Published: NOT PUBLISHED.
-- Next action: push PR #14, verify CI, merge under existing authorization and
-  record the observed merge receipt with State Version 7 acceptance.
+- Next action: human playtest build/peg-polished.rbxlx; choose a production target
+  separately when publication is desired.
