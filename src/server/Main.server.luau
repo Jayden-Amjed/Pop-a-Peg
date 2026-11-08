@@ -33,6 +33,7 @@ local allowed = {
     sell = true,
     move = true,
     choosePerk = true,
+    skipPerk = true,
     chooseEvent = true,
     restart = true,
     endless = true,

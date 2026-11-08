@@ -18,6 +18,9 @@ Run.Config = {
     slotPrice = 5,
     rerollPrice = 1,
     eventHistory = 128,
+    suppliesRound = 11,
+    suppliesOffers = 2,
+    perkSkipCoins = 5,
 }
 
 local function finite(value)
@@ -120,13 +123,65 @@ function Run:_randomPeg()
     return if #ids > 0 then ids[self.rng:integer(1, #ids)] else nil
 end
 
-function Run:_queue(kind, index, amount)
-    local key = kind .. ":" .. index
+function Run:_extremePeg(highest)
+    local target, best = nil, if highest then 0 else math.huge
+    for id, value in ipairs(self.values) do
+        if value > 0 and (if highest then value > best else value < best) then
+            target, best = id, value
+        end
+    end
+    return target
+end
+
+function Run:_itemOrigin(slot)
+    local item = slot and self.inventory[slot]
+    local definition = item and Catalog.Items[item.id]
+    return {
+        slot = slot,
+        sourceSlot = slot,
+        itemId = definition and definition.id,
+        effect = definition and definition.effect,
+    }
+end
+
+function Run:_itemEvent(slot, action, pegId, data)
+    local event = self:_itemOrigin(slot)
+    event.action = action
+    event.pegId, event.targetPegId = pegId, pegId
+    for key, value in pairs(data or {}) do
+        event[key] = value
+    end
+    self:_event("trigger", event)
+end
+
+function Run:_shotStats()
+    return {
+        shotId = self.shotSerial,
+        round = self.round,
+        pops = self.pops,
+        walls = self.wallHits,
+        doubles = self.doubles,
+        halves = self.halves,
+        quotas = self.goalCrossings,
+        time = self.elapsed,
+        first = if self.pops > 0 then 1 else 0,
+        drain = self.drainCount,
+        clear = if self.clearBonus then 1 else 0,
+        itemTriggers = self.itemTriggers,
+        perkTriggers = self.perkTriggers,
+    }
+end
+
+function Run:_queue(kind, index, amount, relayDepth)
+    local depth = relayDepth or 0
+    -- Keep each direct relay depth separate so coalescing cannot renew its budget.
+    local key = kind .. ":" .. index .. ":" .. depth
     local existing = self.pending[key]
     if existing then
         existing.count += amount or 1
     else
-        local entry = { kind = kind, index = index, count = amount or 1, key = key }
+        local entry =
+            { kind = kind, index = index, count = amount or 1, key = key, relayDepth = depth }
         self.pending[key] = entry
         table.insert(self.queue, entry)
     end
@@ -137,6 +192,9 @@ function Run:_signal(event, amount)
         return
     end
     local delta = amount or 1
+    if event == "drain" then
+        self.drainCount += delta
+    end
     for index, item in ipairs(self.inventory) do
         local definition = Catalog.Items[item.id]
         if definition and definition.trigger.event == event then
@@ -168,13 +226,12 @@ function Run:_addScore(amount, origin)
     local before = self.score
     self.score = math.min(Run.Config.maxScore, self.score + amount)
     if self.score > before then
-        self:_event("score", {
-            value = self.score - before,
-            fromScore = before,
-            toScore = self.score,
-            pegId = origin and origin.pegId,
-            slot = origin and origin.slot,
-        })
+        local event = self:_itemOrigin(origin and origin.slot)
+        event.value, event.fromScore, event.toScore = self.score - before, before, self.score
+        event.pegId = origin and origin.pegId
+        event.targetPegId = event.pegId
+        event.action = "score"
+        self:_event("score", event)
     end
     local crossings = math.min(Run.Config.maxRestocks, math.floor(self.score / self.quota))
     if crossings > self.goalCrossings then
@@ -204,10 +261,18 @@ function Run:_pop(id, slot)
     local points, old, new = Board.pop(self.values, id)
     self.pops += 1
     self:_addScore(points, { pegId = id, slot = slot })
-    self:_event(
-        "pop",
-        { pegId = id, value = points, old = old, new = new, oldValue = old, newValue = new }
-    )
+    self:_event("pop", {
+        pegId = id,
+        value = points,
+        old = old,
+        new = new,
+        oldValue = old,
+        newValue = new,
+        slot = slot,
+    })
+    if slot then
+        self:_itemEvent(slot, "pop", id, { value = points, old = old, new = new })
+    end
     if self.pops == 1 then
         self:_signal("first")
     end
@@ -217,7 +282,7 @@ function Run:_pop(id, slot)
     end
 end
 
-function Run:_double(id)
+function Run:_double(id, slot)
     if self.ending or not id or self.values[id] <= 0 then
         return
     end
@@ -225,8 +290,7 @@ function Run:_double(id)
     self.values[id] = math.min(Run.Config.maxPeg, before * 2)
     if self.values[id] > before then
         self.doubles += 1
-        self:_event("trigger", {
-            pegId = id,
+        self:_itemEvent(slot, "double", id, {
             value = self.values[id],
             old = before,
             new = self.values[id],
@@ -236,21 +300,23 @@ function Run:_double(id)
     end
 end
 
-function Run:_halve(id)
+function Run:_halve(id, slot)
     if self.ending or not id or self.values[id] <= 1 then
         return
     end
     local before = self.values[id]
     self.values[id] = math.max(1, self.values[id] / 2)
     self.halves += 1
-    self:_event(
-        "trigger",
-        { pegId = id, value = self.values[id], old = before, new = self.values[id], text = "Halve" }
+    self:_itemEvent(
+        slot,
+        "halve",
+        id,
+        { value = self.values[id], old = before, new = self.values[id], text = "Halve" }
     )
     self:_signal("halve")
 end
 
-function Run:_activateItem(index)
+function Run:_activateItem(index, relayDepth)
     local item = self.inventory[index]
     local definition = item and Catalog.Items[item.id]
     if
@@ -260,33 +326,68 @@ function Run:_activateItem(index)
     then
         return
     end
-    self:_event("trigger", { slot = index, text = definition.name })
-    local level = item.level
-    local effect = definition.effect
+    self.itemTriggers += 1
+    self:_itemEvent(index, "activate", nil, { text = definition.name })
+    local context = {}
+    local operations = definition.operations or { { effect = definition.effect } }
+    for _, operation in ipairs(operations) do
+        if self.ending then
+            break
+        end
+        self:_applyEffect(
+            operation.effect,
+            index,
+            if operation.fixed then 1 else item.level,
+            relayDepth,
+            context
+        )
+    end
+end
+
+function Run:_applyEffect(effect, index, level, relayDepth, context)
     if effect == "pop" then
         for _ = 1, level do
             self:_pop(self:_randomPeg(), index)
         end
     elseif effect == "double" or effect == "doubleMany" then
         for _ = 1, level * (if effect == "doubleMany" then 4 else 1) do
-            self:_double(self:_randomPeg())
+            self:_double(self:_randomPeg(), index)
+        end
+    elseif effect == "lowestDouble" then
+        for _ = 1, level do
+            self:_double(self:_extremePeg(false), index)
         end
     elseif effect == "halve" then
         for _ = 1, level * 2 do
-            self:_halve(self:_randomPeg())
+            self:_halve(self:_randomPeg(), index)
         end
-    elseif effect == "burst" then
-        local origin = self:_randomPeg()
-        if origin then
+    elseif effect == "halveHighest" then
+        self:_halve(self:_extremePeg(true), index)
+    elseif effect == "lowestPop" then
+        self:_pop(self:_extremePeg(false), index)
+    elseif effect == "primeBurst" then
+        context.center = self:_randomPeg()
+        self:_double(context.center, index)
+    elseif effect == "halveCenter" then
+        self:_halve(context.center, index)
+    elseif effect == "popNeighbors" then
+        if context.center then
             local ids = self:_livePegs()
-            local center = Board.Slots[origin]
+            local center = Board.Slots[context.center]
             table.sort(ids, function(a, b)
                 local pa, pb = Board.Slots[a], Board.Slots[b]
                 return (pa.x - center.x) ^ 2 + (pa.y - center.y) ^ 2
                     < (pb.x - center.x) ^ 2 + (pb.y - center.y) ^ 2
             end)
-            for order = 1, math.min(#ids, 1 + level * 2) do
-                self:_pop(ids[order], index)
+            local popped = 0
+            for _, id in ipairs(ids) do
+                if id ~= context.center then
+                    self:_pop(id, index)
+                    popped += 1
+                    if popped >= level * 2 then
+                        break
+                    end
+                end
             end
         end
     elseif effect == "highestPop" or effect == "firstScore" then
@@ -324,19 +425,27 @@ function Run:_activateItem(index)
     elseif effect == "goalScore" then
         self:_addScore(40 * level, { slot = index })
     elseif effect == "left" or effect == "right" then
+        if (relayDepth or 0) >= self.slots - 1 then
+            return
+        end
         local direction = if effect == "left" then -1 else 1
         local target = index + direction
         while target >= 1 and target <= self.slots do
             if self.inventory[target].id ~= "" then
-                self:_queue("item", target, level)
+                self:_itemEvent(index, "relay", nil, { targetSlot = target })
+                self:_queue("item", target, level, (relayDepth or 0) + 1)
                 break
             end
             target += direction
         end
     elseif effect == "all" then
+        if (relayDepth or 0) >= self.slots - 1 then
+            return
+        end
         for _, target in ipairs(self:_occupied()) do
             if target ~= index then
-                self:_queue("item", target, level)
+                self:_itemEvent(index, "relay", nil, { targetSlot = target })
+                self:_queue("item", target, level, (relayDepth or 0) + 1)
             end
         end
     end
@@ -358,8 +467,14 @@ function Run:_activatePerk(index)
             then occupied[#occupied]
             else occupied[self.rng:integer(1, #occupied)]
     end
-    if target then
-        self:_event("trigger", { slot = target, text = definition.name })
+    if target and self.inventory[target] and self.inventory[target].id ~= "" then
+        self.perkTriggers += 1
+        self:_itemEvent(
+            target,
+            "perk",
+            nil,
+            { perkId = definition.id, targetSlot = target, text = definition.name }
+        )
         self:_queue("item", target, if definition.effect == "third" then 2 else 1)
     end
 end
@@ -377,7 +492,7 @@ function Run:_processQueue()
             table.insert(self.queue, entry)
         end
         if entry.kind == "item" then
-            self:_activateItem(entry.index)
+            self:_activateItem(entry.index, entry.relayDepth)
         else
             self:_activatePerk(entry.index)
         end
@@ -394,6 +509,9 @@ function Run:_resetShot()
     self.wallHits = 0
     self.doubles = 0
     self.halves = 0
+    self.drainCount = 0
+    self.itemTriggers = 0
+    self.perkTriggers = 0
     self.clearBonus = false
     self.canJumble = true
     self.ball = nil
@@ -445,6 +563,7 @@ function Run.new(seed, profile)
     self.events = {}
     self.eventSerial = 0
     self.settlementSerial = 0
+    self.shotSerial = 0
     self.bestScore = 0
     self.bestRound = 0
     self.unlocks = {}
@@ -497,6 +616,7 @@ function Run:_endShot(reason)
     }
     self.bestScore = math.max(self.bestScore, self.score)
     self.bestRound = math.max(self.bestRound, self.round)
+    self.lastShotStats = self:_shotStats()
     self.settlementSerial += 1
     self.settlement = {
         remaining = restocks,
@@ -516,6 +636,7 @@ function Run:_endShot(reason)
             shotValues = Board.copy(self.values),
             restoredValues = Board.copy(self.baseline),
             cycles = {},
+            stats = copy(self.lastShotStats),
         },
     }
     if restocks > 0 then
@@ -633,8 +754,11 @@ function Run:_drawItem()
 end
 
 function Run:_rollConsumables()
-    if self.slots == 7 then
-        for index = 5, 7 do
+    for index = #self.shopOffers, 5, -1 do
+        self.shopOffers[index] = nil
+    end
+    if self.round >= Run.Config.suppliesRound then
+        for index = 5, 4 + Run.Config.suppliesOffers do
             local id = Catalog.ConsumableIds[self.rng:integer(1, #Catalog.ConsumableIds)]
             self.shopOffers[index] = {
                 id = id,
@@ -727,43 +851,36 @@ end
 
 function Run:_purchase(index)
     local offer = self.shopOffers[index]
-    if not offer or offer.sold then
-        return false, "That offer is unavailable."
+    local intent = Catalog.purchaseState(self.inventory, self.slots, offer, self.coins)
+    if not intent.allowed then
+        return false, intent.message
     end
-    if self.coins < offer.price then
-        return false, "Not enough coins."
-    end
-    if Catalog.Items[offer.id].consumable then
+    if intent.action == "use" then
+        if
+            self.round < Run.Config.suppliesRound
+            or index < 5
+            or index > 4 + Run.Config.suppliesOffers
+        then
+            return false, "Supplies unlock at round " .. Run.Config.suppliesRound .. "."
+        end
         self:_coins(-offer.price)
         offer.sold = true
         self:_consume(Catalog.Items[offer.id].effect)
+        self:_event("purchase", { itemId = offer.id, action = "use" })
         return true
     end
-    local target, upgrade
-    for slot, item in ipairs(self.inventory) do
-        if item.id == offer.id and item.level == 1 then
-            target, upgrade = slot, true
-            break
-        end
-    end
-    if not target then
-        for slot, item in ipairs(self.inventory) do
-            if item.id == "" then
-                target = slot
-                break
-            end
-        end
-    end
-    if not target then
-        return false, "Inventory full. Sell an item or buy a slot."
-    end
     self:_coins(-offer.price)
-    self.inventory[target] = { id = offer.id, level = if upgrade then 2 else 1 }
+    self.inventory[intent.slot] = { id = offer.id, level = intent.level }
     offer.sold = true
     offer.frozen = false
     if self.frozenOffer and self.frozenOffer.index == index then
         self.frozenOffer = nil
     end
+    self:_event("purchase", {
+        itemId = offer.id,
+        action = if intent.action == "upgrade" then "upgrade" else "buy",
+        slot = intent.slot,
+    })
     return true
 end
 
@@ -775,14 +892,14 @@ function Run:_consume(effect)
     elseif effect == "upgrade" then
         local candidates = {}
         for slot, item in ipairs(self.inventory) do
-            if item.id ~= "" and item.level == 1 then
+            if item.id ~= "" and item.level < Catalog.MaxLevel then
                 table.insert(candidates, slot)
             end
         end
         if #candidates == 0 then
             self:_coins(4)
         else
-            self.inventory[candidates[self.rng:integer(1, #candidates)]].level = 2
+            self.inventory[candidates[self.rng:integer(1, #candidates)]].level = Catalog.MaxLevel
         end
     end
 end
@@ -813,14 +930,14 @@ function Run:_chooseEvent(index)
     elseif choice.id == "upgrade" then
         local candidates = {}
         for slot, item in ipairs(self.inventory) do
-            if item.id ~= "" and item.level == 1 then
+            if item.id ~= "" and item.level < Catalog.MaxLevel then
                 table.insert(candidates, slot)
             end
         end
         if #candidates == 0 then
             self:_coins(4)
         else
-            self.inventory[candidates[self.rng:integer(1, #candidates)]].level = 2
+            self.inventory[candidates[self.rng:integer(1, #candidates)]].level = Catalog.MaxLevel
         end
     end
     self:_nextRoute()
@@ -848,6 +965,8 @@ function Run:action(kind, payload)
             return false, "Aim within the board before launching."
         end
         self.ball = Simulation.new(input.angle)
+        self.shotSerial += 1
+        self.lastShotStats = nil
         self:_life(-1, "launch")
         self.canJumble = false
         self:_phase("flight")
@@ -912,9 +1031,6 @@ function Run:action(kind, payload)
         self:_coins(-Run.Config.slotPrice)
         self.slots += 1
         table.insert(self.inventory, emptySlot())
-        if self.slots == 7 then
-            self:_rollConsumables()
-        end
         return true
     elseif kind == "sell" then
         if self.phase ~= "shop" or not integer(input.slot, 1, self.slots) then
@@ -927,7 +1043,10 @@ function Run:action(kind, payload)
         self:_coins(
             math.max(
                 1,
-                math.floor(Catalog.Items[item.id].price * (if item.level == 2 then 0.8 else 0.5))
+                math.floor(
+                    Catalog.Items[item.id].price
+                        * (if item.level == Catalog.MaxLevel then 0.8 else 0.5)
+                )
             )
         )
         self.inventory[input.slot] = emptySlot()
@@ -944,18 +1063,32 @@ function Run:action(kind, payload)
         if source.id == "" or input.from == input.to then
             return false, "Choose a different destination."
         end
-        if source.id == target.id and source.level == 1 and target.level == 1 then
-            target.level = 2
+        if
+            source.id == target.id
+            and source.level < Catalog.MaxLevel
+            and target.level < Catalog.MaxLevel
+        then
+            target.level = Catalog.MaxLevel
             self.inventory[input.from] = emptySlot()
         else
             self.inventory[input.from], self.inventory[input.to] = target, source
         end
+        return true
+    elseif kind == "skipPerk" then
+        if self.phase ~= "perk" or #self.perkOffers == 0 then
+            return false, "Finish a perk choice to take coins."
+        end
+        self.perkOffers = {}
+        self:_coins(Run.Config.perkSkipCoins, "perkSkip")
+        self:_event("perkChoice", { action = "coins", amount = Run.Config.perkSkipCoins })
+        self:_nextRoute()
         return true
     elseif kind == "choosePerk" then
         if self.phase ~= "perk" or not integer(input.index, 1, #self.perkOffers) then
             return false, "Select one perk."
         end
         table.insert(self.perks, self.perkOffers[input.index])
+        self:_event("perkChoice", { action = "choose", perkId = self.perkOffers[input.index] })
         self.perkOffers = {}
         self:_nextRoute()
         return true
@@ -978,6 +1111,7 @@ function Run:action(kind, payload)
         restarted.speed = self.speed
         local serial = self.eventSerial
         local receiptSerial = self.settlementSerial
+        local shotSerial = self.shotSerial
         for key in pairs(self) do
             self[key] = nil
         end
@@ -986,6 +1120,7 @@ function Run:action(kind, payload)
         end
         self.eventSerial = serial
         self.settlementSerial = receiptSerial
+        self.shotSerial = shotSerial
         self.events = {}
         self:_event("phase", { text = "aim" })
         return true
@@ -1023,6 +1158,7 @@ function Run:snapshot()
         shopOffers = self.shopOffers,
         shopKind = self.shopKind,
         perkOffers = self.perkOffers,
+        perkSkipCoins = if self.phase == "perk" then Run.Config.perkSkipCoins else 0,
         perks = self.perks,
         eventChoices = self.eventChoices,
         eventTitle = self.eventTitle,
@@ -1033,6 +1169,8 @@ function Run:snapshot()
         doubles = self.doubles,
         halves = self.halves,
         clearBonus = self.clearBonus,
+        shotStats = self:_shotStats(),
+        lastShotStats = self.lastShotStats,
         lastResult = self.lastResult,
         bestScore = self.bestScore,
         bestRound = self.bestRound,

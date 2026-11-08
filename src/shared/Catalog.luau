@@ -1,5 +1,5 @@
 -- Original run equipment. Trigger thresholds and prices are tuning data.
-local Catalog = { Items = {}, Perks = {}, ItemIds = {}, PerkIds = {} }
+local Catalog = { Items = {}, Perks = {}, ItemIds = {}, PerkIds = {}, MaxLevel = 2 }
 
 local function item(id, name, price, event, every, effect, description, triggerText, rarity)
     Catalog.Items[id] = {
@@ -221,8 +221,113 @@ item(
     "rare"
 )
 
+item(
+    "goldfish",
+    "Goldfish",
+    6,
+    "pop",
+    6,
+    "lowestDouble",
+    "Double the lowest live peg. Upgrade: double two lowest pegs in sequence.",
+    "Every 6 pops"
+)
+item(
+    "fishbowl",
+    "Fishbowl",
+    8,
+    "double",
+    3,
+    "highestPop",
+    "Pop the highest peg. Upgrade: pop it twice. Pair with Goldfish to turn growth into points.",
+    "Every 3 doubles"
+)
+
+local displayNames = {
+    split_prism = "Sun Prism",
+    resonator = "Reef Chime",
+    soft_saw = "Soft Current",
+    balance_scale = "Pearl Scale",
+    relay = "Current Relay",
+    echo_plate = "Echo Shell",
+    spring_coil = "Wave Spring",
+    wall_meter = "Shore Meter",
+    growth_array = "Coral Garden",
+    clockwork = "Tide Clock",
+    pulse_cell = "Dew Cell",
+    encore = "Ocean Chorus",
+    landing_fund = "Landing Shell",
+}
+for id, name in pairs(displayNames) do
+    Catalog.Items[id].name = name
+end
+
+local families = {
+    { name = "Living Water", ids = { "goldfish", "fishbowl" } },
+    { name = "Sunlit Reef", ids = { "split_prism", "resonator", "growth_array" } },
+    { name = "Tidepool", ids = { "soft_saw", "balance_scale" } },
+    { name = "Ocean Currents", ids = { "relay", "echo_plate", "encore" } },
+    { name = "Shoreline", ids = { "spring_coil", "wall_meter" } },
+    { name = "Morning Dew", ids = { "clockwork", "pulse_cell" } },
+    { name = "First Light", ids = { "survey_lens", "compass" } },
+    { name = "Homecoming", ids = { "landing_fund", "seed_bank" } },
+    { name = "Bubble Chain", ids = { "tap_driver", "burst_capsule", "gain_dial", "quota_bonus" } },
+}
+for _, family in ipairs(families) do
+    for _, id in ipairs(family.ids) do
+        local definition = Catalog.Items[id]
+        definition.family = family.name
+        definition.synergyPartners = {}
+        for _, partner in ipairs(family.ids) do
+            if partner ~= id then
+                table.insert(definition.synergyPartners, partner)
+            end
+        end
+    end
+end
+
+local hybrids = {
+    gain_dial = {
+        operations = { { effect = "multiply" }, { effect = "halveHighest", fixed = true } },
+        effectLines = { "Gain 15% score (30% upgraded).", "Halve the highest peg once." },
+        tradeoff = "Immediate points cost future value on your strongest peg.",
+        synergyPartners = { "balance_scale", "resonator", "tap_driver" },
+    },
+    soft_saw = {
+        operations = { { effect = "halve" }, { effect = "lowestPop", fixed = true } },
+        effectLines = { "Halve 2 pegs (4 upgraded).", "Pop the lowest peg once." },
+        tradeoff = "Trimming reduces future hit values, but starts halve and pop combos.",
+        synergyPartners = { "balance_scale", "tap_driver", "goldfish" },
+    },
+    burst_capsule = {
+        operations = {
+            { effect = "primeBurst", fixed = true },
+            { effect = "popNeighbors" },
+            { effect = "halveCenter", fixed = true },
+        },
+        effectLines = {
+            "Double one random center peg.",
+            "Pop 2 nearest other pegs (4 upgraded).",
+            "Halve the center peg.",
+        },
+        tradeoff = "The center scores no points and its growth is temporary; neighbors pay out.",
+        synergyPartners = { "resonator", "fishbowl", "balance_scale" },
+    },
+}
+for id, hybrid in pairs(hybrids) do
+    local definition = Catalog.Items[id]
+    for key, value in pairs(hybrid) do
+        definition[key] = value
+    end
+    definition.description = table.concat(hybrid.effectLines, " ") .. " " .. hybrid.tradeoff
+end
+for _, id in ipairs(Catalog.ItemIds) do
+    local definition = Catalog.Items[id]
+    definition.effectLines = definition.effectLines or { definition.description }
+end
+
 Catalog.Items.gain_dial.unlock = "workshop_access"
 Catalog.Items.growth_array.unlock = "growth_kit"
+Catalog.Items.fishbowl.unlock = "growth_kit"
 Catalog.Items.echo_plate.unlock = "relay_kit"
 Catalog.Items.encore.unlock = "relay_kit"
 Catalog.Unlocks = {
@@ -233,12 +338,12 @@ Catalog.Unlocks = {
     },
     growth_kit = {
         name = "Growth kit",
-        description = "Growth Array can appear in future shops.",
+        description = "Coral Garden and Fishbowl can appear in future shops.",
         round = 10,
     },
     relay_kit = {
         name = "Relay kit",
-        description = "Echo Plate and Encore can appear in future shops.",
+        description = "Echo Shell and Ocean Chorus can appear in future shops.",
         round = 20,
     },
 }
@@ -271,6 +376,9 @@ for _, definition in ipairs(consumables) do
     definition.rarity = "common"
     definition.triggerText = "Use immediately"
     definition.color = { 255, 172, 100 }
+    definition.family = "Supplies"
+    definition.synergyPartners = {}
+    definition.effectLines = { definition.description }
     Catalog.Items[definition.id] = definition
 end
 
@@ -398,5 +506,53 @@ Catalog.Bosses = {
     },
     { name = "Final Audit", description = "The quota is 40% higher.", multiplier = 1.4 },
 }
+
+function Catalog.purchaseState(inventory, slots, offer, coins)
+    local function blocked(action, message)
+        return { action = action, allowed = false, reason = action, price = 0, message = message }
+    end
+    local definition = type(offer) == "table" and Catalog.Items[offer.id]
+    if
+        not definition
+        or type(offer.price) ~= "number"
+        or offer.price < 0
+        or offer.price >= math.huge
+        or offer.price ~= offer.price
+    then
+        return blocked("unavailable", "That offer is unavailable.")
+    end
+    if offer.sold then
+        return blocked("sold", "That offer was already purchased.")
+    end
+    local intent = { action = "use", allowed = true, price = offer.price }
+    if not definition.consumable then
+        local upgradeSlot, emptySlot, capped
+        for slot = 1, slots do
+            local entry = inventory[slot]
+            if entry and entry.id == definition.id then
+                if entry.level < Catalog.MaxLevel then
+                    upgradeSlot = upgradeSlot or slot
+                else
+                    capped = true
+                end
+            elseif entry and entry.id == "" then
+                emptySlot = emptySlot or slot
+            end
+        end
+        if upgradeSlot then
+            intent.action, intent.slot, intent.level = "upgrade", upgradeSlot, Catalog.MaxLevel
+        elseif capped then
+            return blocked("maxLevel", "That item is already at max level.")
+        elseif emptySlot then
+            intent.action, intent.slot, intent.level = "purchase", emptySlot, 1
+        else
+            return blocked("full", "Inventory full. Sell an item or buy a slot.")
+        end
+    end
+    if coins < offer.price then
+        intent.allowed, intent.reason, intent.message = false, "coins", "Not enough coins."
+    end
+    return intent
+end
 
 return Catalog
