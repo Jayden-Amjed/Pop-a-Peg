@@ -124,6 +124,19 @@ function Theme.setEnabled(object, enabled, color)
     object.TextTransparency = enabled and 0 or 0.2
 end
 
+function Theme.select(object, selected, color)
+    object.BackgroundColor3 = selected and Theme.colors.paper or color
+    local border = object:FindFirstChildWhichIsA("UIStroke")
+    if border then
+        border.Color = selected and Theme.colors.gold or Theme.colors.edge
+        border.Thickness = selected and 5 or 2
+    end
+    if object:IsA("TextButton") then
+        object.TextColor3 = selected and Theme.colors.ink or Theme.colors.paper
+        object.TextStrokeTransparency = selected and 1 or 0.7
+    end
+end
+
 function Theme.rect(object, x, y, width, height)
     object.Position = UDim2.fromOffset(x, y)
     object.Size = UDim2.fromOffset(width, height)
