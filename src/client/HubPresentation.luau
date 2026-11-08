@@ -11,6 +11,7 @@ local Theme = require(script.Parent.UiTheme)
 local ItemModels = require(script.Parent.ItemModels)
 local Layout = require(script.Parent.HubLayout)
 local HubAmbience = require(script.Parent.HubAmbience)
+local HubProgressionPanel = require(script.Parent.HubProgressionPanel)
 local C = Theme.colors
 local Hub = {}
 Hub.__index = Hub
@@ -101,7 +102,7 @@ function Hub:_model(parent, id, area, discovered)
         end
     end
     table.insert(self.models, { viewport = viewport, handle = handle })
-    return viewport
+    return viewport, handle
 end
 
 function Hub:_discovered(id)
@@ -359,7 +360,7 @@ function Hub:_help()
             lines = {
                 "Use coins in the shop. Read each item's trigger and effects.",
                 "Raise two recipe ingredients to level 5, then evolve them in a shop.",
-                "Run out of balls and start fresh. Your records and discoveries stay.",
+                "Finish runs or clear milestones for chests. Open them in the hub to unlock new items.",
             },
         },
     }
@@ -457,6 +458,8 @@ function Hub:_renderPanel()
         self:_records()
     elseif self.openPanel == "help" then
         self:_help()
+    elseif self.openPanel == "chests" or self.openPanel == "leaderboards" then
+        self.progression:render()
     else
         self:_roster()
     end
@@ -500,7 +503,10 @@ function Hub:isModalOpen()
 end
 
 function Hub:_page(delta)
-    if self.openPanel == "help" then
+    if self.openPanel == "chests" or self.openPanel == "leaderboards" then
+        self.progression:pageBy(delta)
+        return
+    elseif self.openPanel == "help" then
         self.helpPage = math.clamp((self.helpPage or 1) + delta, 1, 3)
     elseif self.openPanel == "records" then
         self.recordsPage = self.recordsPage == 2 and 1 or 2
@@ -526,18 +532,20 @@ function Hub:_layout()
     Theme.rect(self.title, 18, 10, w - 84, 32)
     Theme.rect(self.subtitle, 18, 44, w - 36, 25)
     Theme.rect(self.progressTrack, 18, 71, w - 36, 4)
-    Theme.rect(self.closeButton, w - 52, 11, 36, 36)
-    Theme.rect(self.previous, 16, h - 49, 84, 34)
-    Theme.rect(self.nextPage, w - 100, h - 49, 84, 34)
-    Theme.rect(self.back, 16, h - 49, 100, 34)
-    Theme.rect(self.footer, 120, h - 49, w - 240, 34)
+    Theme.rect(self.closeButton, w - 60, 8, 44, 44)
+    Theme.rect(self.previous, 16, h - 59, 84, 44)
+    Theme.rect(self.nextPage, w - 100, h - 59, 84, 44)
+    Theme.rect(self.back, 16, h - 59, 100, 44)
+    Theme.rect(self.footer, 120, h - 59, w - 240, 44)
     if w < 500 then
-        Theme.rect(self.footer, 106, h - 49, w - 212, 34)
+        Theme.rect(self.footer, 106, h - 59, w - 212, 44)
     end
     setRect(self.dock, geometry.dock)
     setRect(self.collectionButton, geometry.controls.collection)
     setRect(self.recordsButton, geometry.controls.records)
     setRect(self.helpButton, geometry.controls.help)
+    setRect(self.chestsButton, geometry.controls.chests)
+    setRect(self.leadersButton, geometry.controls.leaderboards)
     setRect(self.play, geometry.controls.play)
     setRect(self.hint, geometry.hint)
     setRect(self.brand, geometry.brand)
@@ -559,6 +567,7 @@ function Hub.new(onAction)
         discoveries = 0,
         unlocks = {},
     }, Hub)
+    self.progression = HubProgressionPanel.new(self)
     self.gui = Theme.make("ScreenGui", {
         Name = "PopAPegHub",
         ResetOnSpawn = false,
@@ -585,7 +594,7 @@ function Hub.new(onAction)
     self.stationLabel.TextXAlignment = Enum.TextXAlignment.Center
     fitText(self.stationLabel, 16, 10)
     self.dock = Theme.plate(self.root, "PlayDock", C.paper, 4)
-    self.collectionButton = button(self.dock, "Collection", "COLLECTION", C.muted, function()
+    self.collectionButton = button(self.dock, "Collection", "EVOLUTIONS", C.muted, function()
         self:open("collection")
     end)
     self.recordsButton = button(self.dock, "Records", "RECORDS", C.muted, function()
@@ -593,6 +602,13 @@ function Hub.new(onAction)
     end)
     self.helpButton = button(self.dock, "Help", "HOW TO PLAY", C.muted, function()
         self:open("help")
+    end)
+    self.chestsButton = button(self.dock, "Chests", "CHESTS", C.gold, function()
+        self.progression.mode = "chests"
+        self:open("chests")
+    end)
+    self.leadersButton = button(self.dock, "Leaderboards", "RANKINGS", C.muted, function()
+        self:open("leaderboards")
     end)
     self.play = button(self.dock, "Play", "PLAY", C.mint, function()
         if self.startPending or self.transitionPending then
@@ -669,6 +685,11 @@ function Hub.new(onAction)
                 self:open("collection")
             elseif prompt.Name == "RecordsPrompt" then
                 self:open("records")
+            elseif prompt.Name == "OpenChests" then
+                self.progression.mode = "chests"
+                self:open("chests")
+            elseif prompt.Name == "OpenLeaderboards" then
+                self:open("leaderboards")
             end
         end)
     )
@@ -740,6 +761,12 @@ function Hub:update(snapshot)
             or "Explore the arcade, or press Play to begin"
         )
     self:_refreshRoster()
+    local chestCount = 0
+    for _, tier in (hub.chests and hub.chests.tiers) or {} do
+        chestCount += tier.count
+    end
+    self.chestsButton.Text = chestCount > 0 and ("CHESTS · " .. chestCount) or "CHESTS"
+    self.progression:update(snapshot)
     if snapshot.notice then
         self:setNotice(snapshot.notice)
     end
@@ -773,6 +800,7 @@ function Hub:step(dt)
     if self.destroyed then
         return
     end
+    self.progression:step()
     if
         not GuiService.ReducedMotionEnabled
         and Players.LocalPlayer:GetAttribute("ReducedMotionEnabled") ~= true

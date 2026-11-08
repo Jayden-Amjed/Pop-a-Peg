@@ -850,6 +850,222 @@ function HubWorld:_buildGallery()
     sign(info, "8 FRIENDS · 8 INDEPENDENT RUNS", C.blue)
 end
 
+function HubWorld:_buildProgression()
+    local pavilion = make("Model", { Name = "ChestPavilion" }, self.model)
+    local basis = CFrame.lookAt(
+        HubWorld.Origin + Vector3.new(22, 0, 27),
+        HubWorld.Origin + Vector3.new(0, 0, 42)
+    )
+    disc(pavilion, "PearlDais", 7.3, 0.45, basis * CFrame.new(0, 0.3, 0), C.pearl, true)
+    disc(pavilion, "AquaDais", 6.7, 0.15, basis * CFrame.new(0, 0.6, 0), C.aqua)
+    part(
+        pavilion,
+        "Cabinet",
+        Vector3.new(9, 2.7, 3.8),
+        basis * CFrame.new(0, 2, 0),
+        C.deep,
+        nil,
+        true
+    )
+    part(
+        pavilion,
+        "PearlCounter",
+        Vector3.new(9.6, 0.35, 4.3),
+        basis * CFrame.new(0, 3.5, 0),
+        C.pearl
+    )
+    local tierColors = { C.lime, C.aqua, C.blue, C.gold }
+    for i, color in tierColors do
+        local x = (i - 2.5) * 2.15
+        part(
+            pavilion,
+            "TierChest" .. i,
+            Vector3.new(1.7, 1.1, 1.25),
+            basis * CFrame.new(x, 4.2, 0),
+            color
+        )
+        local lid = oval(
+            pavilion,
+            "TierLid" .. i,
+            Vector3.new(1.78, 0.75, 1.3),
+            basis * CFrame.new(x, 4.86, 0),
+            color
+        )
+        lid.Material = Enum.Material.Glass
+        lid.Transparency = 0.15
+        for _, side in { -1, 1 } do
+            part(
+                pavilion,
+                "ChestTrim",
+                Vector3.new(0.12, 1.15, 1.33),
+                basis * CFrame.new(x + side * 0.57, 4.23, 0),
+                C.pearl
+            )
+        end
+        oval(
+            pavilion,
+            "ChestSeal",
+            Vector3.new(0.36, 0.45, 0.15),
+            basis * CFrame.new(x, 4.3, -0.7),
+            C.gold
+        )
+    end
+    local screen = part(
+        pavilion,
+        "ChestConsole",
+        Vector3.new(8, 1.7, 0.25),
+        basis * CFrame.new(0, 2.3, -2.02),
+        C.pearl
+    )
+    sign(screen, "EARN · OPEN · DISCOVER", C.deep)
+    prompt(screen, "OpenChests", "Open chests", "Lagoon Chest Pavilion")
+    for _, side in { -1, 1 } do
+        part(
+            pavilion,
+            "CanopyPost",
+            Vector3.new(0.45, 8, 0.45),
+            basis * CFrame.new(side * 5, 4.7, 1),
+            C.aqua
+        )
+        plant(pavilion, (basis * CFrame.new(side * 5.4, 0.5, -1.2)).Position, 0.8, C.lime)
+    end
+    oval(pavilion, "GlassCanopy", Vector3.new(12, 1.2, 6), basis * CFrame.new(0, 9, 0), C.ice).Transparency =
+        0.25
+    local pavilionName = part(
+        pavilion,
+        "PavilionSign",
+        Vector3.new(9.5, 1.7, 0.35),
+        basis * CFrame.new(0, 7.2, -0.8),
+        C.pearl
+    )
+    sign(pavilionName, "LAGOON CHESTS", C.blue)
+    local path = part(
+        pavilion,
+        "ChestPath",
+        Vector3.new(11, 0.12, 6),
+        basis * CFrame.new(0, 0.16, -6),
+        C.ice
+    )
+    path:SetAttribute("Wayfinding", "Chests")
+
+    local gallery = make("Model", { Name = "LeaderboardGallery" }, self.model)
+    self.leaderboards = {}
+    local titles = { time = "MOST TIME PLAYED", endless = "ENDLESS RECORD", robux = "ROBUX SPENT" }
+    for index, kind in { "time", "endless", "robux" } do
+        local frame = CFrame.new(HubWorld.Origin + Vector3.new((index - 2) * 18, 0, -58))
+            * CFrame.Angles(0, math.pi, 0)
+        local color = ({ C.aqua, C.lime, C.gold })[index]
+        for _, side in { -1, 1 } do
+            part(
+                gallery,
+                "BoardPillar",
+                Vector3.new(0.8, 17.5, 0.8),
+                frame * CFrame.new(side * 6.5, 9, 0),
+                C.aqua
+            )
+        end
+        part(
+            gallery,
+            "BoardFrame_" .. kind,
+            Vector3.new(16, 11.8, 1),
+            frame * CFrame.new(0, 21, 0),
+            C.pearl
+        )
+        local display = part(
+            gallery,
+            "Leaderboard_" .. kind,
+            Vector3.new(14.9, 10.6, 0.2),
+            frame * CFrame.new(0, 21, -0.56),
+            C.deep
+        )
+        local gui = make("SurfaceGui", {
+            Name = "Rankings",
+            Face = Enum.NormalId.Front,
+            CanvasSize = Vector2.new(600, 480),
+            SizingMode = Enum.SurfaceGuiSizingMode.FixedSize,
+            LightInfluence = 0,
+        }, display)
+        local function line(name, value, y, height, tint, size)
+            return make("TextLabel", {
+                Name = name,
+                Text = value,
+                TextColor3 = tint,
+                Font = Enum.Font.GothamBold,
+                TextSize = size,
+                TextScaled = true,
+                TextWrapped = true,
+                BackgroundTransparency = 1,
+                Position = UDim2.fromOffset(18, y),
+                Size = UDim2.fromOffset(564, height),
+                TextXAlignment = Enum.TextXAlignment.Left,
+            }, gui)
+        end
+        line("Title", titles[kind], 14, 44, color, 28)
+        local mode = line("Scope", "LOADING RECORDS", 64, 27, C.ice, 18)
+        local rows = {}
+        for rank = 1, 5 do
+            rows[rank] = line("Rank" .. rank, "", 105 + (rank - 1) * 57, 48, C.pearl, 24)
+        end
+        local empty = line("Empty", "No records yet", 155, 150, C.ice, 24)
+        line("Footer", "Visit the console below for the full top 10", 421, 38, color, 18)
+        self.leaderboards[kind] = { mode = mode, rows = rows, empty = empty }
+        local console = part(
+            gallery,
+            "RankingConsole_" .. kind,
+            Vector3.new(7, 2.2, 0.4),
+            frame * CFrame.new(0, 3, -0.8),
+            C.pearl
+        )
+        sign(console, titles[kind], C.deep)
+        prompt(console, "OpenLeaderboards", "View rankings", "Arcade Leaderboards")
+        disc(gallery, "RankingBase", 4, 0.4, frame * CFrame.new(0, 0.4, 0), color)
+    end
+end
+
+function HubWorld:setLeaderboards(snapshot)
+    if not self.leaderboards then
+        return
+    end
+    local scope = snapshot.mode == "global"
+            and (snapshot.stale and "GLOBAL · LAST SAVED" or "GLOBAL TOP 5")
+        or snapshot.mode == "session" and "THIS SERVER · SESSION RECORDS"
+        or "RECORDS TEMPORARILY OFFLINE"
+    for kind, board in self.leaderboards do
+        board.mode.Text = scope
+        local category = snapshot.categories and snapshot.categories[kind] or {}
+        local entries = category.entries or {}
+        board.empty.Visible = #entries == 0
+        board.empty.Text = snapshot.mode == "unavailable"
+                and "Records will return when saving reconnects."
+            or kind == "robux" and "No recorded purchases.\nPurchases are not enabled."
+            or kind == "endless" and "Clear round 100 and enter Endless\nto set the first record!"
+            or "Your time in the arcade counts.\nThe first record is on its way."
+        for rank, row in board.rows do
+            local entry = entries[rank]
+            row.Visible = entry ~= nil
+            if entry then
+                local value = math.max(0, math.floor(entry.value or 0))
+                local formatted = kind == "time"
+                        and value < 3600
+                        and string.format("%dm %02ds", math.floor(value / 60), value % 60)
+                    or kind == "time" and string.format(
+                        "%dh %02dm",
+                        math.floor(value / 3600),
+                        math.floor(value / 60) % 60
+                    )
+                    or kind == "endless" and ("R" .. value)
+                    or (value .. " R$")
+                row.Text = string.format(
+                    "%d   %s   ·   %s",
+                    rank,
+                    string.sub(entry.name or "Player", 1, 20),
+                    formatted
+                )
+            end
+        end
+    end
+end
+
 function HubWorld:spawnCFrame(station)
     local pod = self.stations[station]
     if pod then
@@ -898,6 +1114,7 @@ function HubWorld.new(onPlayRequested)
         self:_buildPod(index, config)
     end
     self:_buildGallery()
+    self:_buildProgression()
     return self
 end
 

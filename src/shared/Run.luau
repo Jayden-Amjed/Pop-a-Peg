@@ -687,6 +687,11 @@ function Run.new(seed, profile)
     self.shotSerial = 0
     self.bestScore = 0
     self.bestRound = 0
+    self.bestEndlessRound = 0
+    self.highestClearedRound = 0
+    self.endlessMode = false
+    self.itemUnlocks =
+        Catalog.itemUnlockSet(type(profile) == "table" and profile.itemUnlocks or nil)
     self.unlocks = {}
     if type(profile) == "table" then
         if finite(profile.bestScore) then
@@ -694,6 +699,9 @@ function Run.new(seed, profile)
         end
         if finite(profile.bestRound) then
             self.bestRound = math.clamp(math.floor(profile.bestRound), 0, 1000000)
+        end
+        if finite(profile.bestEndlessRound) then
+            self.bestEndlessRound = math.clamp(math.floor(profile.bestEndlessRound), 0, 1000000)
         end
         if type(profile.unlocks) == "table" then
             for key, value in pairs(profile.unlocks) do
@@ -737,6 +745,9 @@ function Run:_endShot(reason)
     }
     self.bestScore = math.max(self.bestScore, self.score)
     self.bestRound = math.max(self.bestRound, self.round)
+    if self.endlessMode and self.round > Stages.CampaignEnd then
+        self.bestEndlessRound = math.max(self.bestEndlessRound, self.round)
+    end
     self.lastShotStats = self:_shotStats()
     self.settlementSerial += 1
     self.settlement = {
@@ -761,6 +772,7 @@ function Run:_endShot(reason)
         },
     }
     if restocks > 0 then
+        self.highestClearedRound = math.max(self.highestClearedRound, self.round)
         for id, definition in pairs(Catalog.Unlocks) do
             if self.round >= definition.round then
                 self.unlocks[id] = true
@@ -861,25 +873,32 @@ function Run:step(dt)
 end
 
 function Run:_drawItem()
-    local pool = {}
-    local rare = self.rng:number() < 0.12
+    local pools, weight = {}, 0
     for _, id in ipairs(Catalog.ItemIds) do
         local definition = Catalog.Items[id]
-        if
-            (definition.rarity == "rare") == rare
-            and (not definition.unlock or self.unlocks[definition.unlock])
-        then
-            table.insert(pool, id)
+        if self.itemUnlocks[id] then
+            local tier = definition.tier
+            pools[tier] = pools[tier] or {}
+            table.insert(pools[tier], id)
         end
     end
-    if #pool == 0 then
-        for _, id in ipairs(Catalog.ItemIds) do
-            if Catalog.Items[id].rarity ~= "rare" then
-                table.insert(pool, id)
+    for _, tier in ipairs(Catalog.TierOrder) do
+        if pools[tier] then
+            weight += Catalog.Tiers[tier].weight
+        end
+    end
+    assert(weight > 0, "Starter equipment must keep the shop pool nonempty")
+    local roll = self.rng:number() * weight
+    for _, tier in ipairs(Catalog.TierOrder) do
+        local pool = pools[tier]
+        if pool then
+            roll -= Catalog.Tiers[tier].weight
+            if roll <= 0 then
+                return pool[self.rng:integer(1, #pool)]
             end
         end
     end
-    return pool[self.rng:integer(1, #pool)]
+    return Catalog.StarterIds[1]
 end
 
 function Run:_rollConsumables()
@@ -1039,6 +1058,20 @@ function Run:_reserveFullRackUpgrades()
 end
 
 function Run:_rollShop()
+    if self.frozenOffer then
+        local held = self.frozenOffer.offer
+        local definition = held and Catalog.Items[held.id]
+        if
+            not definition
+            or (
+                not definition.evolved
+                and not self.itemUnlocks[held.id]
+                and not Catalog.owns(self.inventory, held.id)
+            )
+        then
+            self.frozenOffer = nil
+        end
+    end
     for index = 1, 4 do
         if self.frozenOffer and self.frozenOffer.index == index then
             self.shopOffers[index] = copy(self.frozenOffer.offer)
@@ -1121,6 +1154,9 @@ function Run:_afterResult()
     end
     local completed = self.round
     self.round += 1
+    if self.endlessMode and self.round > Stages.CampaignEnd then
+        self.bestEndlessRound = math.max(self.bestEndlessRound, self.round)
+    end
     self.zone = math.floor((self.round - 1) / 20) + 1
     local within = completed % 20
     if within == 5 or within == 10 or within == 15 or within == 19 then
@@ -1150,6 +1186,9 @@ function Run:_purchase(index)
     local intent = Catalog.purchaseState(self.inventory, self.slots, offer, self.coins)
     if not intent.allowed then
         return false, intent.message
+    end
+    if intent.action == "purchase" and not self.itemUnlocks[offer.id] then
+        return false, "Unlock this item from a chest in the arcade first."
     end
     if intent.action == "use" then
         if
@@ -1450,6 +1489,10 @@ function Run:action(kind, payload)
         if self.phase ~= "victory" then
             return false, "Complete the run first."
         end
+        self.endlessMode = true
+        if self.round > Stages.CampaignEnd then
+            self.bestEndlessRound = math.max(self.bestEndlessRound, self.round)
+        end
         self:_nextRoute()
         return true
     elseif kind == "restart" then
@@ -1479,8 +1522,11 @@ end
 
 function Run:profile()
     return {
+        version = 2,
         bestScore = self.bestScore,
         bestRound = self.bestRound,
+        bestEndlessRound = self.bestEndlessRound,
+        itemUnlocks = unlockList(self.itemUnlocks),
         unlocks = unlockList(self.unlocks),
     }
 end
@@ -1491,6 +1537,8 @@ function Run:snapshot()
         seed = self.seed,
         speed = self.speed,
         round = self.round,
+        highestClearedRound = self.highestClearedRound,
+        endlessMode = self.endlessMode,
         zone = self.zone,
         stage = Stages.forRound(self.round),
         stageCleared = self.stageCleared,
@@ -1526,6 +1574,8 @@ function Run:snapshot()
         lastResult = self.lastResult,
         bestScore = self.bestScore,
         bestRound = self.bestRound,
+        bestEndlessRound = self.bestEndlessRound,
+        itemUnlocks = unlockList(self.itemUnlocks),
         unlocks = unlockList(self.unlocks),
         boss = self.boss,
         settling = self.settlement ~= nil,

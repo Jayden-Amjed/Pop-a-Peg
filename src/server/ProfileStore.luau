@@ -1,49 +1,26 @@
---!strict
 local DataStoreService = game:GetService("DataStoreService")
 local RunService = game:GetService("RunService")
-local Profile = require(game:GetService("ReplicatedStorage").Shared.Profile)
+local HttpService = game:GetService("HttpService")
+local Repository = require(script.Parent.ProfileRepository)
+local enabled = game.GameId > 0 and not RunService:IsStudio()
+-- Keep the existing keyspace so v1 records migrate in place atomically.
+local repository = Repository.new({
+    store = if enabled then DataStoreService:GetDataStore("PopAPeg_Records_v1") else nil,
+    clock = os.time,
+    wait = task.wait,
+    newToken = function()
+        return game.JobId .. ":" .. HttpService:GenerateGUID(false)
+    end,
+})
 
 local ProfileStore = {}
-local enabled = game.GameId > 0 and not RunService:IsStudio()
-local store = if enabled then DataStoreService:GetDataStore("PopAPeg_Records_v1") else nil
 
-function ProfileStore.load(userId: number)
-    if not store then
-        return Profile.clean(nil), "session"
-    end
-    for attempt = 1, 3 do
-        local ok, data = pcall(function()
-            return store:GetAsync("player_" .. userId)
-        end)
-        if ok then
-            return Profile.clean(data), "saved"
-        end
-        if attempt < 3 then
-            task.wait(attempt)
-        end
-    end
-    return Profile.clean(nil), "unavailable"
+function ProfileStore.load(userId)
+    return repository:load(userId)
 end
 
-function ProfileStore.save(userId: number, profile: any)
-    if not store then
-        return true, "session"
-    end
-    local clean = Profile.clean(profile)
-    for attempt = 1, 3 do
-        local ok = pcall(function()
-            store:UpdateAsync("player_" .. userId, function(previous)
-                return Profile.merge(previous, clean)
-            end)
-        end)
-        if ok then
-            return true, "saved"
-        end
-        if attempt < 3 then
-            task.wait(attempt)
-        end
-    end
-    return false, "unavailable"
+function ProfileStore.save(userId, profile, release)
+    return repository:save(userId, profile, release)
 end
 
 return ProfileStore

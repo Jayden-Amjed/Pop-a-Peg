@@ -20,6 +20,7 @@ local CounterProgress = require(script.Parent.CounterProgress)
 local HoverInspector = require(script.Parent.HoverInspector)
 local EvolutionDisplay = require(script.Parent.EvolutionDisplay)
 local BoardArt = require(script.Parent.BoardArt)
+local RunLayout = require(script.Parent.RunLayout)
 
 local Presentation = {}
 Presentation.__index = Presentation
@@ -331,7 +332,10 @@ function Presentation:_viewport(parent, name, id, level, z)
 end
 
 function Presentation:_mount(viewport, id, level)
-    local animate = Catalog.Items[id] ~= nil or Catalog.Perks[id] ~= nil
+    local animate = Catalog.Items[id] ~= nil
+        or Catalog.Perks[id] ~= nil
+        or ({ coins = true, grow = true, repair = true, upgrade = true, overtime = true })[id]
+            == true
     local reduced = game:GetService("GuiService").ReducedMotionEnabled
     local outline = viewport:GetAttribute("NoOutline") ~= true
     local key = tostring(id)
@@ -383,6 +387,30 @@ function Presentation:_buildHud()
     self.root.Size = UDim2.fromScale(1, 1)
     self.root.BackgroundTransparency = 1
     self.inspector = HoverInspector.new(self)
+    self.detailsPanel = plate(self.root, "RunDetails", C.paper, 65)
+    blockAim(self.detailsPanel)
+    self.detailsPanel.Visible = false
+    self.detailsTitle = label(self.detailsPanel, "Title", "SHOT STATS & PERKS", 21, C.ink, 67)
+    self.detailsClose = button(self.detailsPanel, "Close", "×", C.panel, function()
+        self.detailsOpen = false
+        self:_layout()
+    end, 69)
+    self.detailsTab = button(self.detailsPanel, "Tab", "PERKS", C.muted, function()
+        self.detailsTabMode = self.detailsTabMode == "perks" and "stats" or "perks"
+        self:_layout()
+    end, 69)
+    self.detailsButton = button(self.root, "Details", "STATS", C.paper, function()
+        self.detailsOpen = not self.detailsOpen
+        self:_layout()
+    end, 9)
+    self.rackToggle = button(self.root, "RackToggle", "RACK", C.paper, function()
+        self.shopRackOpen = not self.shopRackOpen
+        self:_layout()
+        self:_updateModal()
+    end, 40)
+    self.rackToggle.TextColor3 = C.ink
+    self.rackToggle.TextStrokeTransparency = 1
+    self.rackToggle.Visible = false
     self.brand = label(self.root, "Brand", "POP A PEG", 37, C.paper, 5)
     self.tag = label(self.root, "Tag", "BUILD A BIGGER BOUNCE!", 18, C.gold, 5)
     self.roundPlate = plate(self.root, "RoundPlate", C.paper, 3)
@@ -681,15 +709,24 @@ function Presentation:_layout()
     if not camera or camera.ViewportSize.X < 32 or camera.ViewportSize.Y < 48 then
         return
     end
-    local size = camera.ViewportSize
-    self.viewport = size
+    local screen = camera.ViewportSize
+    local guiService = game:GetService("GuiService")
+    local full = guiService:GetInsetArea(Enum.ScreenInsets.None)
+    local safe = guiService:GetInsetArea(Enum.ScreenInsets.CoreUISafeInsets)
+    local origin = safe.Min - full.Min
+    local size = safe.Max - safe.Min
+    self.screenViewport, self.viewport, self.safeOrigin = screen, size, origin
+    self.safeArea = safe
+    self.fullArea = full
+    self.root.Position, self.root.Size =
+        UDim2.fromOffset(origin.X, origin.Y), UDim2.fromOffset(size.X, size.Y)
     local w, h = size.X, size.Y
-    local inset = game:GetService("GuiService"):GetGuiInset()
-    local top = math.max(12, inset.Y + 8)
+    local top = 8
     self.safeTop = top
     self.mobile = w < 850 and h > w * 0.8
     self.shortWide = (h < 620 or w < 1100) and not self.mobile
     self.compact = self.mobile or self.shortWide
+    self.foldHud = self.mobile or (self.shortWide and h < 450)
     self.lowDesktop = not self.compact and h < 960
     local phase = self.snapshot and self.snapshot.phase
     local compact, shop = self.compact, phase == "shop"
@@ -706,10 +743,19 @@ function Presentation:_layout()
     self.coinCaption.Visible = not compact
     self.progressCaption.Visible = not compact
     self.restockCaption.Text = compact and "RESTOCKS" or "RESTOCKS EARNED"
+    self.restockCaption.Visible = true
     self.restockHint.Visible, self.restockModel.Visible = not compact, not compact
     self.best.Visible, self.profile.Visible = not compact and h >= 1040, not compact and h >= 1040
     self.stats.Visible, self.timer.Visible = false, false
     self.statsPanel.Visible = true
+    self.perksPanel.Visible = true
+    if choosing then
+        self.detailsOpen = false
+    end
+    self.statsPanel.Parent, self.perksPanel.Parent = self.root, self.root
+    self.detailsPanel.Visible, self.detailsButton.Visible, self.rackToggle.Visible =
+        false, false, false
+    self.inventory.Visible, self.swapHelp.Visible = true, true
     self.help.Visible = not compact
     self.soundButton.TextSize = compact and 15 or 18
     self.quota.TextScaled = true
@@ -927,6 +973,114 @@ function Presentation:_layout()
         h = 20,
     }
     self.swapHelp.Size = UDim2.fromOffset(invWidth - navigationWidth - 8, 20)
+    if self.foldHud then
+        local layout = self.mobile and RunLayout.portrait(w, h) or RunLayout.landscape(w, h)
+        self.phoneLayout = layout
+        local function place(object, area)
+            setRect(object, area.x, area.y, area.w, area.h)
+        end
+        place(self.roundPlate, layout.round)
+        setRect(self.roundLabel, 4, 0, layout.round.w - 8, 44)
+        self.roundLabel.TextSize = 19
+        invWidth, invHeight = layout.rack.w, layout.rack.h
+        place(self.inventory, layout.rack)
+        self.swapHelp.Visible = false
+        self.sessionNavigation = layout.navigation
+        place(self.left, layout.resources)
+        local half = (layout.resources.w - 6) / 2
+        local resourceH = layout.resources.h
+        setRect(self.wallet, 0, 0, half, resourceH)
+        setRect(self.coinModel, 0, -1, resourceH + 2, resourceH + 2)
+        setRect(self.coins, 34, 0, half - 38, resourceH)
+        self.coins.TextSize = 24
+        setRect(self.reservePlate, half + 6, 0, half, resourceH)
+        setRect(self.reserveCaption, 6, 0, 54, resourceH)
+        self.reserveCaption.TextSize = 15
+        setRect(self.reserves, 62, 0, half - 68, resourceH)
+        self.reserves.TextSize = 21
+        place(self.right, layout.score)
+        local scoreH = layout.score.h
+        local tightScore = scoreH < 50
+        local numberH, progressY = tightScore and 20 or 26, tightScore and 22 or 29
+        setRect(self.scorePlate, 0, 0, layout.score.w, scoreH)
+        setRect(self.scoreCaption, 7, 0, 45, numberH)
+        self.scoreCaption.TextSize = 15
+        setRect(self.score, 54, 0, layout.score.w - 178, numberH)
+        setRect(self.quota, layout.score.w - 119, 0, 112, numberH)
+        setRect(self.progress, 7, progressY, layout.score.w - 94, scoreH - progressY - 3)
+        setRect(self.restockPlate, layout.score.w - 81, progressY - 2, 75, scoreH - progressY)
+        setRect(self.restockCaption, 1, 0, 73, 12)
+        self.restockCaption.TextSize = 11
+        self.restockCaption.Visible = not tightScore
+        setRect(self.restockCount, 1, tightScore and 0 or 11, 73, 18)
+        self.restockCount.TextSize = 18
+        boardRect = layout.board
+        place(self.controls, layout.controls)
+        setRect(self.jumbleButton, 0, 0, layout.controls.w * 0.34 - 3, 44)
+        setRect(self.primary, layout.controls.w * 0.34 + 3, 0, layout.controls.w * 0.66 - 3, 44)
+        for index, speedButton in self.speedButtons do
+            place(speedButton, layout.extras[index])
+        end
+        place(self.soundButton, layout.extras[4])
+        place(self.detailsButton, layout.extras[5])
+        self.detailsButton.TextSize = 15
+        self.detailsButton.TextColor3 = C.ink
+        self.detailsButton.Visible = not choosing
+        self.detailsButton.Text = self.detailsOpen and "CLOSE" or "STATS"
+        self.detailsPanel.Visible = self.detailsOpen and not choosing
+        place(self.detailsPanel, layout.details)
+        setRect(self.detailsTitle, 10, 0, layout.details.w - 60, 44)
+        setRect(self.detailsClose, layout.details.w - 50, 0, 44, 44)
+        self.statsPanel.Parent, self.perksPanel.Parent = self.detailsPanel, self.detailsPanel
+        setRect(self.statsPanel, 6, 48, layout.details.w - 12, 100)
+        setRect(self.perksPanel, 6, 154, layout.details.w - 12, layout.details.h - 160)
+        self.detailsTab.Visible = not self.mobile
+        if not self.mobile then
+            self.detailsTitle.Text = self.detailsTabMode == "perks" and "OWNED PERKS"
+                or "SHOT STATISTICS"
+            setRect(self.detailsTitle, 10, 0, layout.details.w - 160, 44)
+            setRect(self.detailsTab, layout.details.w - 142, 0, 86, 44)
+            self.detailsTab.Text = self.detailsTabMode == "perks" and "STATS" or "PERKS"
+            self.detailsTab.TextColor3 = C.ink
+            self.detailsTab.TextSize = 18
+            self.statsPanel.Visible = self.detailsTabMode ~= "perks"
+            self.perksPanel.Visible = self.detailsTabMode == "perks"
+            setRect(self.perksPanel, 6, 48, layout.details.w - 12, layout.details.h - 54)
+        else
+            self.detailsTitle.Text = "SHOT STATS & PERKS"
+            self.perksPanel.Visible = true
+        end
+        if choosing then
+            self.left.Visible, self.right.Visible, self.roundPlate.Visible = false, false, false
+            self.rackToggle.Visible = true
+            self.rackToggle.Text = self.shopRackOpen and "CLOSE RACK" or "RACK / SELL"
+            place(self.rackToggle, layout.round)
+            self.inventory.Visible = self.shopRackOpen == true
+            if self.shopRackOpen then
+                invWidth = layout.rackOverlay.w
+                invHeight = layout.rackOverlay.h
+                place(self.inventory, layout.rackOverlay)
+            end
+        else
+            self.left.Visible, self.right.Visible = true, true
+        end
+    else
+        self.left.Visible, self.right.Visible = true, true
+    end
+    -- Main's return button uses physical viewport coordinates.
+    self.sessionNavigation.x += origin.X
+    self.sessionNavigation.y += origin.Y
+    for _, panel in { self.statsPanel, self.perksPanel } do
+        local descendants = panel:GetDescendants()
+        table.insert(descendants, panel)
+        for _, object in descendants do
+            if object:IsA("GuiObject") and not object:GetAttribute("ItemSilhouette") then
+                local baseZ = object:GetAttribute("RunBaseZ") or object.ZIndex
+                object:SetAttribute("RunBaseZ", baseZ)
+                object.ZIndex = baseZ + (self.foldHud and 64 or 0)
+            end
+        end
+    end
     local columns = compact and 3 or 2
     local statW = (self.statsPanel.Size.X.Offset - 20) / columns
     local rowH = compact and 18 or 22
@@ -957,9 +1111,15 @@ function Presentation:_layout()
         )
         text.TextSize = compact and 16 or 18
     end
-    local cellW = (invWidth - 12) / 7
+    local cellW = (invWidth - (self.foldHud and 8 or 12)) / 7
     for index, slot in self.itemSlots do
-        setRect(slot.button, 6 + (index - 1) * cellW + 2, 5, cellW - 4, invHeight - 10)
+        setRect(
+            slot.button,
+            (self.foldHud and 4 or 6) + (index - 1) * cellW + 1,
+            5,
+            cellW - (self.foldHud and 2 or 4),
+            invHeight - 10
+        )
         local showName = not compact or invHeight >= 74 or (shop and self.shortWide)
         setRect(slot.viewport, 2, 3, cellW - 8, showName and invHeight - 35 or invHeight - 17)
         setRect(slot.number, 4, 0, 17, 19)
@@ -981,13 +1141,15 @@ function Presentation:_layout()
     )
     self.notice.TextSize = compact and 20 or 24
     self.modalKey = nil
-    local vh =
-        math.max(34.5 * h / math.max(120, boardRect.h), 26.8 * h / math.max(170, boardRect.w))
-    local distance = vh / (2 * math.tan(math.rad(17.5)))
-    local cameraX = (w / 2 - boardRect.x - boardRect.w / 2) * vh / h
-    local cameraY = 11.7 + (boardRect.y + boardRect.h / 2 - h / 2) * vh / h
-    self.cameraCFrame =
-        CFrame.lookAt(Vector3.new(cameraX, cameraY, distance), Vector3.new(cameraX, cameraY, 0))
+    local cameraFrame = RunLayout.cameraFrame(
+        { x = full.Min.X, y = full.Min.Y, w = full.Width, h = full.Height },
+        { x = safe.Min.X, y = safe.Min.Y },
+        boardRect
+    )
+    self.cameraCFrame = CFrame.lookAt(
+        Vector3.new(cameraFrame.x, cameraFrame.y, cameraFrame.z),
+        Vector3.new(cameraFrame.x, cameraFrame.y, 0)
+    )
     camera.CameraType, camera.FieldOfView, camera.CFrame =
         Enum.CameraType.Scriptable, 35, self.cameraCFrame
     self:_layoutSettlement()
@@ -1027,8 +1189,8 @@ function Presentation:_updatePerks()
     end
     self.perksEmpty.Visible = #order == 0
     local w, h = self.perksPanel.Size.X.Offset, self.perksPanel.Size.Y.Offset
-    local columns = self.compact and 8 or 4
-    local rows = self.compact and 1 or 2
+    local columns = self.foldHud and 4 or (self.compact and 8 or 4)
+    local rows = self.foldHud and 2 or (self.compact and 1 or 2)
     local headerH = h < 70 and 18 or 23
     local cw = (w - 12 - (columns - 1) * 4) / columns
     local ch = (h - headerH - 8 - (rows - 1) * 4) / rows
@@ -1268,6 +1430,10 @@ end
 
 function Presentation:_shopGeometry()
     local size = self.viewport or Vector2.new(1440, 900)
+    if self.foldHud and self.phoneLayout then
+        local area = self.phoneLayout.shop
+        return area.w, area.h, area.y
+    end
     local width = math.min(1380, size.X - 24)
     local top = self.inventory.Position.Y.Offset + self.inventory.Size.Y.Offset + 4
     return width, math.min(790, size.Y - top - 12), top
@@ -1361,6 +1527,14 @@ function Presentation:_buildShop(state)
         level.Font = Enum.Font.SourceSansBold
         level.TextXAlignment = Enum.TextXAlignment.Right
         local evolutions = EvolutionDisplay.new(card, self, 28, true)
+        local recipeHint = button(card, "InspectEvolutions", "EVOLUTIONS  ›", C.muted, function()
+            local offer = self.snapshot and self.snapshot.shopOffers[index]
+            if offer then
+                self.inspector:show(offer.id, self:_offerLevel(offer), inspect, true)
+            end
+        end, 29)
+        recipeHint.TextSize, recipeHint.TextColor3 = 14, C.ink
+        recipeHint.Visible = false
         local buy = button(card, "Buy", "", C.mint, function()
             local offer = self.snapshot and self.snapshot.shopOffers[index]
             if offer then
@@ -1369,6 +1543,11 @@ function Presentation:_buildShop(state)
         end, 29)
         place(buy, positions.purchase)
         buy.TextSize = short and 18 or 23
+        buy.TextWrapped, buy.TextScaled = true, true
+        make("UITextSizeConstraint", { MinTextSize = 12, MaxTextSize = short and 18 or 23 }, buy)
+        local actionLabel = label(buy, "Action", "", 14, C.paper, 32)
+        actionLabel.TextXAlignment = Enum.TextXAlignment.Center
+        actionLabel.Visible = false
         local priceGroup = frame(buy, "CenteredPrice", nil, 31)
         priceGroup.BackgroundTransparency = 1
         priceGroup.AnchorPoint = Vector2.new(0.5, 0)
@@ -1407,6 +1586,7 @@ function Presentation:_buildShop(state)
             buy = buy,
             priceGroup = priceGroup,
             price = price,
+            actionLabel = actionLabel,
             coin = coin,
             hold = hold,
             short = short,
@@ -1415,6 +1595,7 @@ function Presentation:_buildShop(state)
             level = level,
             rect = rect,
             evolutions = evolutions,
+            recipeHint = recipeHint,
         }
     end
     local footer, fw = layout.footer, (layout.footer.w - 16) / 3
@@ -1488,6 +1669,8 @@ function Presentation:_layoutShopCard(cell, data, recipeCount, canCycle)
     end
     place(cell.inspect, positions.inspect)
     place(cell.buy, positions.purchase)
+    place(cell.recipeHint, positions.evolutions)
+    cell.recipeHint.Visible = positions.compactRecipes
     if cell.hold then
         place(cell.hold, positions.hold)
     end
@@ -1501,11 +1684,18 @@ function Presentation:_layoutShopCard(cell, data, recipeCount, canCycle)
     setRect(cell.trigger, 5, modelH + nameH + 5, rect.w - 16, triggerH)
     setRect(cell.level, 3, 0, rect.w - 16, short and 13 or 18)
     cell.trigger.Visible = triggerH > 0
-    cell.level.Visible = bandH >= 70
-    if short and bandH < 70 then
-        local side = math.max(20, math.min(36, bandH - 2))
-        setRect(cell.viewport, 1, (bandH - side) / 2, side, side)
-        setRect(cell.name, side + 5, 0, rect.w - side - 14, bandH)
+    cell.level.Visible = bandH >= 70 and rect.w >= 110
+    if short and bandH < 110 then
+        local contentY = cell.level.Visible and 14 or 0
+        local contentH = bandH - contentY
+        local side = math.max(20, math.min(rect.w < 110 and 20 or 64, contentH - 4))
+        setRect(cell.viewport, 1, contentY + (contentH - side) / 2, side, side)
+        setRect(cell.name, side + 5, contentY, rect.w - side - 14, contentH)
+    end
+    if rect.w < 110 then
+        cell.recipeHint.Text = "EVOLVE ›"
+        cell.recipeHint.TextSize = 12
+        cell.name:FindFirstChildWhichIsA("UITextSizeConstraint").MinTextSize = 11
     end
 end
 
@@ -1515,7 +1705,7 @@ function Presentation:_refreshShop(state)
         return
     end
     shop.title.Text = "UPGRADE SHOP   •   " .. Format.integer(state.coins) .. " COINS"
-    shop.sections.items.Text = shop.height < 300
+    shop.sections.items.Text = shop.layout.title.h == 0
             and ("ITEMS   •   " .. Format.integer(state.coins) .. " COINS")
         or "ITEMS"
     local displayed = {}
@@ -1544,9 +1734,16 @@ function Presentation:_refreshShop(state)
             cell.trigger.TextColor3 = selected and C.board or C.gold
             cell.level.TextColor3 = selected and C.board or C.gold
             cell.level.Text = data.evolved and "EVOLVED"
-                or (data.consumable and "SUPPLY" or ("L" .. level .. "/5"))
+                or (
+                    data.consumable and "SUPPLY"
+                    or (string.upper(data.tier or "common") .. " · L" .. level)
+                )
             self:_mount(cell.viewport, offer.id, level)
-            cell.evolutions:update(offer.id, cell.positions.evolutions, selected)
+            if cell.positions.compactRecipes then
+                cell.evolutions.frame.Visible = false
+            else
+                cell.evolutions:update(offer.id, cell.positions.evolutions, selected)
+            end
             local intent = Catalog.purchaseState(state.inventory, state.slots, offer, state.coins)
             local verb = ({ purchase = "", upgrade = "Upgrade ", use = "Use " })[intent.action]
             cell.buy.Text = ({
@@ -1559,10 +1756,18 @@ function Presentation:_refreshShop(state)
             })[intent.action] or ""
             Theme.setEnabled(cell.buy, intent.allowed, C.mint)
             cell.priceGroup.Visible = verb ~= nil
+            cell.actionLabel.Visible = false
             if verb then
-                local text = verb .. tostring(intent.price)
+                local splitPrice = cell.positions.purchase.w < 110 and verb ~= ""
+                local text = (splitPrice and "" or verb) .. tostring(intent.price)
                 local fontSize = cell.short and 22 or 30
-                local coinSize = math.min(48, cell.positions.purchase.h - 4)
+                local priceH = cell.positions.purchase.h - (splitPrice and 15 or 0)
+                local coinSize =
+                    math.min(splitPrice and 22 or (cell.short and 28 or 48), priceH - 4)
+                cell.actionLabel.Visible = splitPrice
+                cell.actionLabel.Text = verb
+                setRect(cell.actionLabel, 2, 0, cell.positions.purchase.w - 4, 16)
+                cell.priceGroup.Position = UDim2.new(0.5, 0, 0, splitPrice and 15 or 0)
                 local gap = cell.short and 1 or 3
                 local available = cell.positions.purchase.w - 8
                 local measured = TextService:GetTextSize(
@@ -1581,16 +1786,9 @@ function Presentation:_refreshShop(state)
                     )
                 end
                 cell.price.Text, cell.price.TextSize = text, fontSize
-                cell.priceGroup.Size =
-                    UDim2.fromOffset(measured.X + gap + coinSize, cell.positions.purchase.h)
-                setRect(cell.price, 0, 0, measured.X + 1, cell.positions.purchase.h)
-                setRect(
-                    cell.coin,
-                    measured.X + gap,
-                    (cell.positions.purchase.h - coinSize) / 2,
-                    coinSize,
-                    coinSize
-                )
+                cell.priceGroup.Size = UDim2.fromOffset(measured.X + gap + coinSize, priceH)
+                setRect(cell.price, 0, 0, measured.X + 1, priceH)
+                setRect(cell.coin, measured.X + gap, (priceH - coinSize) / 2, coinSize, coinSize)
                 cell.price.TextTransparency = intent.allowed and 0 or 0.2
             end
             if cell.hold then
@@ -1682,6 +1880,9 @@ function Presentation:_updateModal()
         + self.inventory.AbsoluteSize.Y
         - self.overlay.AbsolutePosition.Y
         + 14
+    if self.foldHud then
+        top = 50
+    end
     local height = math.min(680, size.Y - top - 18)
     local modal = plate(self.overlay, "Choices", C.paper, 22)
     self.modal = modal
@@ -1721,7 +1922,7 @@ function Presentation:_updateModal()
     )
     local function action(name, text, x, buttonWidth, color, callback)
         local result = button(modal, name, text, color, callback, 27)
-        setRect(result, x, footerY, buttonWidth, tinyChoice and 36 or (self.shortWide and 42 or 51))
+        setRect(result, x, footerY, buttonWidth, tinyChoice and 44 or (self.shortWide and 44 or 51))
         result.TextSize = width < 650 and 18 or 24
         result.TextWrapped = true
         return result
@@ -1918,8 +2119,8 @@ function Presentation:getAnchor(kind, index)
         local object = kind == "ball" and self.ball or (self.pegs[index] and self.pegs[index].part)
         local camera = workspace.CurrentCamera
         if object and camera then
-            local point = camera:WorldToViewportPoint(object.Position)
-            return Vector2.new(point.X, point.Y)
+            local point = camera:WorldToScreenPoint(object.Position)
+            return Vector2.new(point.X, point.Y) - layerOrigin
         end
     end
     local object = ({
@@ -1958,8 +2159,11 @@ function Presentation:_layoutSettlement()
         camera.FieldOfView = 35
         camera.CFrame = self.cameraCFrame
     end
-    local first = camera:WorldToViewportPoint(self.boardArt.screenCorners.topLeft)
-    local last = camera:WorldToViewportPoint(self.boardArt.screenCorners.bottomRight)
+    local first = camera:WorldToScreenPoint(self.boardArt.screenCorners.topLeft)
+    local last = camera:WorldToScreenPoint(self.boardArt.screenCorners.bottomRight)
+    local origin = self.root.AbsolutePosition
+    first, last =
+        first - Vector3.new(origin.X, origin.Y, 0), last - Vector3.new(origin.X, origin.Y, 0)
     local width, height = math.abs(last.X - first.X), math.abs(last.Y - first.Y)
     local compact = width < 118
     local safeTop = math.clamp(self.safeTop or 8, 8, math.max(8, size.Y - 40))
@@ -2033,7 +2237,8 @@ function Presentation:_aimAt(point)
     if self.busy or not camera or not self.snapshot or self.snapshot.phase ~= "aim" then
         return
     end
-    local ray = camera:ViewportPointToRay(point.X, point.Y)
+    -- InputObject.Position and GUI AbsolutePosition both use core-UI space.
+    local ray = camera:ScreenPointToRay(point.X, point.Y)
     if math.abs(ray.Direction.Z) < 0.0001 then
         return
     end
@@ -2183,7 +2388,13 @@ function Presentation:step(dt)
     if not camera then
         return
     end
-    if not self.viewport or self.viewport ~= camera.ViewportSize then
+    if
+        not self.viewport
+        or self.screenViewport ~= camera.ViewportSize
+        or self.safeArea ~= game:GetService("GuiService")
+            :GetInsetArea(Enum.ScreenInsets.CoreUISafeInsets)
+        or self.fullArea ~= game:GetService("GuiService"):GetInsetArea(Enum.ScreenInsets.None)
+    then
         self:_layout()
         self:_updateModal()
     end

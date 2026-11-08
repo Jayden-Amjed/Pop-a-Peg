@@ -264,7 +264,8 @@ RunService.RenderStepped:Connect(function(dt)
         if mode == "run" then
             local navigation = view.sessionNavigation
             if navigation then
-                local inset = GuiService:GetGuiInset()
+                local inset = GuiService:GetInsetArea(Enum.ScreenInsets.CoreUISafeInsets).Min
+                    - GuiService:GetInsetArea(Enum.ScreenInsets.None).Min
                 Theme.rect(
                     returnButton,
                     navigation.x - inset.X,

@@ -15,15 +15,22 @@ sound cues use public Roblox audio IDs documented in [Asset sources](ASSETS.md).
 | `src/server/Main.server.luau` | `ServerScriptService.Server.Main` | `Script`; authoritative server work. |
 | `src/server/ArcadeSessions.luau` | `ServerScriptService.Server.ArcadeSessions` | Pure eight-station allocation, private runs, pause/resume, roster and record capture. |
 | `src/server/HubWorld.luau` | `ServerScriptService.Server.HubWorld` | Original walkable aquarium arcade, cabinets, prompts and occupancy screens. |
+| `src/server/LeaderboardService.luau` | `ServerScriptService.Server.LeaderboardService` | Global ordered rankings, cached refresh and explicit session/unavailable modes. |
 | `src/client/Main.client.luau` | `StarterPlayer.StarterPlayerScripts.Client.Main` | `LocalScript`; copied into each player's `PlayerScripts`. |
 | `src/client/HubPresentation.luau` | `StarterPlayer.StarterPlayerScripts.Client.HubPresentation` | Hub navigation, collection, records, roster and preview cleanup. |
 | `src/client/HubLayout.luau` | `StarterPlayer.StarterPlayerScripts.Client.HubLayout` | Responsive hub panel and gallery geometry. |
+| `src/client/HubProgressionPanel.luau` | `StarterPlayer.StarterPlayerScripts.Client.HubProgressionPanel` | Chest opening, blueprint research, reward acknowledgement and leaderboard views. |
+| `src/client/HubProgressionLayout.luau` | `StarterPlayer.StarterPlayerScripts.Client.HubProgressionLayout` | Safe-area chest, workshop, blueprint and ranking panel geometry. |
 | `src/client/HubAmbience.luau` | `StarterPlayer.StarterPlayerScripts.Client.HubAmbience` | Local fish and bubble motion with rest-pose restoration. |
 | `src/client/HubGuide.luau` | `StarterPlayer.StarterPlayerScripts.Client.HubGuide` | Local assigned-cabinet beacon, outline and prompt filtering, restored on disposal. |
 | `src/shared/` | `ReplicatedStorage.Shared` | Modules for board rules, deterministic physics, progression, catalog, profiles, number formatting, and reward timelines. |
 | `src/shared/RestockCurve.luau` | `ReplicatedStorage.Shared.RestockCurve` | Shared successive restock costs, stage limits and meter progress. |
 | `src/shared/Stages.luau` | `ReplicatedStorage.Shared.Stages` | Pure consecutive level goals and successful-clear descriptors. |
+| `src/shared/ChestProgression.luau` | `ReplicatedStorage.Shared.ChestProgression` | Earned chest tiers, duplicate-protected unlocks, research and bounded request receipts. |
+| `src/shared/Leaderboards.luau` | `ReplicatedStorage.Shared.Leaderboards` | Ranking categories, bounded values and deterministic top-ten session sorting. |
+| `src/shared/ProfileLease.luau` | `ReplicatedStorage.Shared.ProfileLease` | Pure atomic acquire/write transforms with owner checks and retry identities. |
 | `src/client/Presentation.luau` | `StarterPlayer.StarterPlayerScripts.Client.Presentation` | Local camera, board, responsive controls, counters, and menus. |
+| `src/client/RunLayout.luau` | `StarterPlayer.StarterPlayerScripts.Client.RunLayout` | Pure core-safe portrait/landscape geometry for the board, controls, rack and details. |
 | `src/client/BoardArt.luau` | `StarterPlayer.StarterPlayerScripts.Client.BoardArt` | Original pearl/aqua enclosure and attached settlement monitor, separate from collision rules. |
 | `src/client/HoverInspector.luau` | `StarterPlayer.StarterPlayerScripts.Client.HoverInspector` | Reusable hover, focus, and touch inspection with ordered effect rows and modeled evolution recipes. |
 | `src/client/EvolutionDisplay.luau` | `StarterPlayer.StarterPlayerScripts.Client.EvolutionDisplay` | Shared ingredient + ingredient = result model rows with live level/readiness labels. |
@@ -37,7 +44,9 @@ sound cues use public Roblox audio IDs documented in [Asset sources](ASSETS.md).
 | `src/client/SoundEffects.luau` | `StarterPlayer.StarterPlayerScripts.Client.SoundEffects` | Bounded sound pools, cue timing, preload, and mute control. |
 | `src/shared/ItemFeedback.luau` | `ReplicatedStorage.Shared.ItemFeedback` | Per-item/perk note motifs, timing, visual accents, and effect styles. |
 | `src/shared/RewardTimeline.luau` | `ReplicatedStorage.Shared.RewardTimeline` | Pure visual planning for restore, refill, merge, and batched reward steps. |
-| `src/server/ProfileStore.luau` | `ServerScriptService.Server.ProfileStore` | Versioned records/unlocks persistence. |
+| `src/shared/Profile.luau` | `ReplicatedStorage.Shared.Profile` | Profile v2 cleaning, old ownership migration and record-only run merges. |
+| `src/server/ProfileStore.luau` | `ServerScriptService.Server.ProfileStore` | Roblox service wrapper for persistent profiles or Studio session fallback. |
+| `src/server/ProfileRepository.luau` | `ServerScriptService.Server.ProfileRepository` | Injectable DataStore adapter, lease acquisition, bounded retries and safe release. |
 | `assets/` | `ReplicatedStorage.Assets` | Folder of intentional source assets, initially empty. |
 | `default.project.json` | `Workspace` and service roots | Explicit scene properties and filesystem mapping. |
 
@@ -60,7 +69,7 @@ yields. A join starts in the hub with no run. `startRun` creates a private `Run`
 or resumes the same instance; `enterHub` captures records and pauses it. Flight
 and settlement cannot be parked. Victory remains resumable so Endless is available;
 a lost run starts fresh. `runId` changes only when the session replaces a Run.
-Departure frees the station and saves records, not the unfinished run. Roster
+Departure frees the station and saves records and hub progression, not the unfinished run. Roster
 snapshots expose station/name/mode/round/record, never another player's inventory.
 
 `Main.server` loads walking avatars, disables avatar-to-avatar collisions, anchors
@@ -70,10 +79,10 @@ validate ownership and distance. The Play button is also available from anywhere
 in the hub. Overflow joins are rejected; a published place should also configure
 Max Players = 8 through Creator Dashboard. That setting is not changed by source.
 
-`HubWorld` places 978 original parts around a separate world center at Z=1000,
+`HubWorld` places original native geometry around a separate world center at Z=1000,
 away from local board geometry. Eight cabinets surround a central aquarium, with
-seating, plants, gallery and record stations. `HubAmbience` moves 65 parts in ten
-fish/bubble groups on the client, only while the hub is mounted; reduced motion
+seating, plants, gallery, chest pavilion and leaderboard stations. `HubAmbience`
+moves fish/bubble groups on the client only while the hub is mounted; reduced motion
 disables it, and destruction restores all poses and transparency.
 Seafoam fields and pearl paths add floor contrast; cabinet numbers, lagoon reef,
 canopy and layered bases add depth while preserving station coordinates and collision
@@ -96,6 +105,50 @@ Play panel introduces controls, upgrades and evolutions. Compact panels switch
 between models/stats or bests/levels so their contents remain available. Hub motion
 honors GuiService.ReducedMotionEnabled as well as the explicit player override.
 No payment flow exists.
+
+`HubProgressionPanel` shares the hub modal lifecycle for chest opening, the blueprint
+workshop and paged leaderboards. `OpenChests` and `OpenLeaderboards` world prompts
+open the same views as their navigation controls. Layout regions come from
+`HubProgressionLayout`; model previews use the common animation/cleanup handles.
+The client sends a stable UUID for each request and reuses it for a retry. The
+server owns the chest count, result, research balance and receipt serial; animations
+cannot grant an item. `lastOpened.requestId` acknowledges the matching request.
+
+## Hub rewards and ranking data
+
+`Catalog.ItemIds` contains 40 base equipment types, 18 added for the chest loop.
+`Catalog.StarterIds` defines the initial eight: Tap Driver, Sun Prism, Shore Meter,
+Landing Shell, Survey Lens, Reef Chime, Compass and Seed Bank. Each equipment entry
+has a Common, Uncommon, Rare or Legendary tier. `Profile.itemUnlocks` is ownership;
+legacy `unlocks` remains discovery/achievement history. `Run.new` freezes the owned
+equipment set for that run, and shop draws and purchases reject locked items.
+Unlocking equipment in the hub changes future new runs, not a currently parked run.
+
+`Run.highestClearedRound` advances only on a successful quota result.
+`ChestProgression.observe` awards a Lagoon/Uncommon chest for clear 15, Aurora/Rare
+for clears 40 and 65, Celestial/Legendary for clear 100 and each subsequent completed
+50-round Endless milestone. A defeat after at least three successful clears grants
+one additional chest: Common below 15, Uncommon at 15–39, Rare at 40–99, Legendary
+at 100 or more. Per-run markers prevent repeat capture, hub visits or resumes from
+duplicating rewards. New runs reset those markers and receive a new run identity.
+
+`openChest` and `researchItem` are hub-only authoritative actions. A chest chooses
+an unowned base item of its exact tier. Exhausted tiers instead give research
+1/3/6/10; targeted unlocks cost 6/12/24/40 from Common to Legendary. The profile's
+newest 64 receipts bind each request ID to its operation and tier/item. A retry
+re-acknowledges the original result without another charge or serial increment;
+changed-target reuse is rejected. The full ledger stays server-side. This is a
+bounded retry guarantee, not permanent retention of every historical request ID.
+
+`ArcadeSessions` accrues actual server elapsed seconds, including the hub, rather
+than simulation-speed-adjusted time. `bestEndlessRound` changes only after entering
+Endless; campaign best round remains a separate record. `LeaderboardService` writes
+monotonic values to separate ordered stores for time, Endless round and experience
+Robux spent, refreshes cached global top tens, and labels Studio results as session
+rankings. Cloud errors expose unavailable/stale state. `HubWorld:setLeaderboards`
+updates the physical displays from that same server snapshot. No purchase products
+or receipt handler are enabled, so Robux spending is not fabricated from coins or
+client input and its board starts empty.
 
 ## Run rules
 
@@ -136,7 +189,7 @@ feedback. Failed attempts stay on the same round without awarding a level clear.
 The front camera follows the viewport layout; pointer movement changes aim only.
 Background clouds use opaque parts and sky bands meet without coplanar overlap.
 Aim guides do not cast shadows, keeping moving controls from changing the scenery.
-`BoardArt` constructs the decorative enclosure from 235 original native parts:
+`BoardArt` constructs the decorative enclosure from original native parts:
 rounded pearl layers, opaque water-depth bands, curved aqua channels, leaf accents,
 and a decorated monitor attached above the board's right corner. The monitor adds
 layered seals, cheek vents, pearl crown, leaves, visible data cable and hinge,
@@ -170,7 +223,9 @@ two triggers followed by that channel's effects.
 
 Goldfish doubles the lowest live peg every six pops; Fishbowl pops the highest peg
 every three doubles. Their upgrades increase output. Fishbowl enters the catalog
-pool through the round-10 growth unlock. Other families connect doubles to Reef
+pool through persistent blueprint ownership. Old round-based growth access migrates
+when loading an earlier profile; new runs earn additional ownership through chests
+or research. Other families connect doubles to Reef
 Chime, halves to Pearl Scale, and neighboring slots through Current Relay and Echo
 Shell. The queue processes up to 32 activations per slice. Queued signals retain
 their causal ancestry: an item/perk cannot activate again through descendants of
@@ -199,7 +254,8 @@ level to an eligible item, or award four coins when none qualify. Moving two
 equal-level copies together merges them one level higher if uncapped; other moves
 swap the entries. Rejected purchases neither spend coins nor consume offers.
 
-All 22 base equipment types have an evolution path:
+The original equipment set retains these evolution paths; newly discoverable
+equipment expands trigger combinations without inventing unfinished recipes:
 
 | Level-5 ingredients | Evolved item |
 | --- | --- |
@@ -270,7 +326,8 @@ deltas and their peg/item source, goal crossings, triggers, coin changes, and ba
 changes. Counter totals reconcile feedback even if an older event leaves the
 history. Trigger events carry item identity, operation, source slot, and target peg
 or slot; purchases and perk choices have separate events. Event and receipt IDs
-increase across restarts to prevent replay.
+are scoped to a run identity. Hub resume preserves that identity, while a restart
+creates a new identity so the client discards prior run receipts safely.
 
 `shotStats` exposes the live trigger counters. `lastShotStats` and receipt `stats`
 preserve final pops, walls, doubles, halves, quotas, elapsed time, first hit, drain,
@@ -307,12 +364,24 @@ rack actions until acknowledgment or timeout, and rejects selection changes outs
 aim/shop phases. An owned-perk strip stays available between choices and highlights
 the perk identified by an activation event.
 
-`ItemModels` registers 52 original models, including 13 evolved designs. Equipment
+`RunLayout` uses coordinates relative to the core-safe root for portrait and short
+landscape screens. The board projection, counters, launch controls and session
+navigation use that same area. Compact details expose shot statistics and owned
+perks, while a rack toggle preserves selling/reordering during shops without
+permanently shrinking every offer. Compact evolution summaries open the complete
+inspector. Layout contracts and native viewport checks are complementary; neither
+alone establishes physical touch-device behavior.
+
+`ItemModels` registers 78 distinct original models: 40 equipment, 13 evolved,
+eight perk, three Supply and 14 utility/reward designs. Perks do not reuse equipment
+geometry. Four chest builders have tier-specific bodies, lids and hinge activation
+profiles; four dedicated event emblems replace equipment aliases. Equipment
 gains visible level accents across five tiers, while evolved models render at their
 fixed maximum tier. Idle motion follows a bounded 4.2-second figure-eight path with gentle tilt. Activations
 freeze the current idle pose, apply the item's moving-group animation relative to
 that pose, then resume idle velocity smoothly after the last queued activation.
-The idle controller has no effect on run mechanics. Static/reduced-motion mounts
+The same idle controller animates perk choices, event prompts and hub reward
+previews as well as equipment. It has no effect on run mechanics. Static/reduced-motion mounts
 disable idle movement while retaining activation feedback.
 
 Only perk models retain the generic white display circle; equipment, currency and
@@ -335,7 +404,7 @@ The score and restock panels retain their white base through count changes and
 scale pulses. Wallet, reserve and trigger panels can remain blue; numerical state
 does not recolor the white counter surfaces.
 
-`ItemFeedback` defines 46 distinct motifs and visual signatures by stable ID,
+`ItemFeedback` defines distinct catalog motifs and visual signatures by stable ID,
 including four-note motifs for the 13 evolutions. Item activations produce dense
 native GUI bursts, swirls, multiple beams, impact rings and ribbons with per-item
 shapes, colors and motion. Evolved activations use larger bursts and an evolution
@@ -349,17 +418,45 @@ Targeted beams use explicit source/target IDs; restarts clear pending visual and
 item-audio work. Asset IDs, creators, and restoration requirements live in
 [Asset sources](ASSETS.md).
 
-## Records across runs
+## Persistent progress and save ownership
 
-Only best score, best round, and a set of catalog/level unlocks cross the run boundary.
-Evolving records the result's catalog ID as a discovery for the hub collection.
-Existing record data is retained; no currency or permanent scoring power is added.
-`Profile` validates these fields and combines concurrent saves monotonically.
-Coins, board values, items, perks, and scoring power are deliberately excluded.
-`ProfileStore` uses `PopAPeg_Records_v1` only in a published non-Studio session;
-Studio remains session-only. Failed loads/saves are reported as unavailable, and
-updates combine stored records instead of replacing them with fallback data.
-No external HTTP service or production credentials are required.
+Profile version 2 retains best score, campaign/best round, Endless record, elapsed
+play seconds, recorded experience Robux spending, legacy discoveries, equipment
+ownership, earned chest balances, research and a bounded retry ledger. Evolving
+still records the evolved ID as a collection discovery. An old v1 profile migrates
+recognized base-equipment discoveries and workshop/growth/relay access into
+ownership, in addition to the starter set. New run achievements do not repeat that
+one-time migration. Run coins, board values, rack levels and perks are not saved.
+
+`ProfileStore` retains the existing `PopAPeg_Records_v1` keyspace so profiles migrate
+in place, but delegates persistence to `ProfileRepository`. Published non-Studio
+sessions acquire an exclusive 180-second lease through `UpdateAsync`; autosaves
+renew it. Every write rechecks the owner token and replaces the complete cleaned
+profile atomically. Consumable counts are never max-merged, which would resurrect
+spent chests or research. `Profile.merge` is only for capturing monotonic records
+and ownership from the current run, not for merging competing persisted balances.
+
+Failed or locked loads return no playable default profile and cannot write over
+real data. Losing lease ownership stops the old session from saving. Save attempts
+retain one write identity across retries; a committed write or release whose reply
+was lost can be acknowledged without applying another revision. Progression actions
+serialize against saves. A failed save retains coherent session state, reports the
+failure and blocks further chest/research spending while periodic saves retry.
+Departure waits for outstanding writes before its final save/release.
+
+Studio uses an in-memory session repository and explicitly labels it. Injectable
+adapter tests simulate service failures, repeated `UpdateAsync` callbacks, ambiguous
+commit responses, stale owners and release retries. Those tests do not establish
+production DataStore availability. No external HTTP service or credentials are
+required by this source; observed runtime and publication evidence belongs in
+[PROJECT_STATUS](../PROJECT_STATUS.md) and the current task.
+
+The persistence boundaries follow Roblox's guidance on
+[player data, session locking and atomic writes](https://create.roblox.com/docs/cloud-services/data-stores/player-data-purchasing)
+and [ordered data stores](https://create.roblox.com/docs/cloud-services/data-stores).
+Any future spending integration must use verified server-side purchase receipts;
+see [MarketplaceService.ProcessReceipt](https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#ProcessReceipt).
+No purchase receipt handler is enabled in this task.
 
 ## Ownership and restoration
 

@@ -715,7 +715,10 @@ return function()
         )
         for _, id in ipairs(Catalog.ItemIds) do
             local definition = Catalog.Items[id]
-            expect(type(definition.family) == "string" and #Catalog.evolutionsFor(id) > 0)
+            expect(type(definition.family) == "string")
+            if not table.find(Catalog.NewItemIds, id) then
+                expect(#Catalog.evolutionsFor(id) > 0)
+            end
         end
         equal(Catalog.Items.fishbowl.unlock, "growth_kit")
         expect(Catalog.Items.fishbowl.price > Catalog.Items.resonator.price)

@@ -880,6 +880,556 @@ end)
 
 -- Evolution devices are authored as complete objects, with moving subassemblies
 -- and recognisable parts from both ingredients rather than two overlapping icons.
+-- Unlock collection: each device has its own silhouette and articulated parts.
+local function moving(object, group, pivot)
+    named(object, group)
+    if pivot then
+        object:SetAttribute("MotionPivot", pivot)
+    end
+    return object
+end
+
+register("rain_catcher", "equipment", function(m)
+    feet(m, 1.1, -1.02, 0.68)
+    glass(block(m, P.cyan, 1.18, 0.96, 0.82, 0, -0.48, 0), 0.28)
+    block(m, P.ceramic, 1.25, 0.13, 0.89, 0, -0.97, 0)
+    moving(block(m, P.blue, 1.04, 0.31, 0.71, 0, -0.73, 0), "RainWater")
+    rod(m, P.silver, V(0, 0.03, 0), V(0, 0.53, 0), 0.12)
+    for _, side in { -1, 1 } do
+        wedge(
+            m,
+            P.ceramic,
+            V(0.86, 0.56, 0.95),
+            frame(side * 0.43, 0.62, 0, 0, side == 1 and 0 or 180)
+        )
+        rod(m, P.teal, V(side * 0.89, 0.91, -0.46), V(side * 0.89, 0.91, 0.46), 0.055)
+    end
+    for i = 1, 3 do
+        moving(
+            glass(
+                sphere(m, P.blue, 0.16, 0.28, 0.16, (i - 2) * 0.52, 1.27 + (i % 2) * 0.15, 0),
+                0.08
+            ),
+            "RainDrop"
+        )
+    end
+    for i = 0, 3 do
+        block(m, P.gold, 0.18, 0.035, 0.03, 0.43, -0.7 + i * 0.19, 0.43)
+    end
+end)
+
+register("bubble_wand", "equipment", function(m)
+    drum(m, P.ceramic, 0.4, 0.65, -0.49, -0.69, 0)
+    drum(m, P.teal, 0.44, 0.12, -0.49, -0.33, 0)
+    moving(
+        rod(m, P.gold, V(-0.49, -0.35, 0), V(0.24, 0.61, 0), 0.085),
+        "WandStem",
+        V(-0.49, -0.35, 0)
+    )
+    local before = #m:GetChildren()
+    ring(m, P.gold, 0.47, 0.085, frame(0.53, 0.97, 0, 0, 0, -28), 14)
+    glass(disc(m, P.cyan, 0.39, 0.025, 0.53, 0.97, 0), 0.6)
+    for i = before + 1, #m:GetChildren() do
+        moving(m:GetChildren()[i], "WandLoop", V(-0.49, -0.35, 0))
+    end
+    for i = 1, 3 do
+        local r = 0.16 + i * 0.055
+        moving(
+            glass(
+                sphere(m, P.cyan, r * 2, r * 2, r * 2, 0.9 + i * 0.12, 0.32 - i * 0.31, 0.25),
+                0.54
+            ),
+            "WandBubble"
+        )
+    end
+    disc(m, P.cyan, 0.19, 0.03, -0.49, -0.66, 0.4)
+end)
+
+register("lily_pad", "equipment", function(m)
+    glass(drum(m, P.blue, 1.03, 0.1, 0, -0.73, 0), 0.28)
+    local pad = moving(sphere(m, P.green, 1.82, 0.16, 1.51, 0, -0.57, 0), "LilyPad")
+    pad.CFrame *= CFrame.Angles(0, 0, math.rad(-5))
+    for i = 0, 4 do
+        local a = i * math.pi * 0.4
+        rod(m, P.ceramic, V(0, -0.47, 0), V(math.cos(a) * 0.75, -0.47, math.sin(a) * 0.6), 0.018)
+    end
+    for i = 0, 5 do
+        local a = i * math.pi / 3
+        local petal = moving(
+            sphere(m, P.ceramic, 0.32, 0.9, 0.2, math.sin(a) * 0.24, -0.03, math.cos(a) * 0.24),
+            "LilyPetal",
+            V(0, -0.4, 0)
+        )
+        petal.CFrame *= CFrame.Angles(math.cos(a) * 0.55, 0, -math.sin(a) * 0.55)
+    end
+    moving(light(sphere(m, P.gold, 0.36, 0.33, 0.36, 0, 0.11, 0)), "LilyHeart")
+    moving(glass(sphere(m, P.cyan, 0.23, 0.3, 0.23, -0.66, -0.32, 0.29), 0.12), "LilyDew")
+end)
+
+register("solar_leaf", "equipment", function(m)
+    block(m, P.ceramic, 0.75, 0.43, 0.75, 0, -0.83, 0)
+    rod(m, P.gold, V(0, -0.62, 0), V(0, 0.47, 0), 0.065)
+    for _, side in { -1, 1 } do
+        local pivot = V(0, -0.05, 0)
+        local leaf =
+            moving(sphere(m, P.green, 0.62, 1.29, 0.16, side * 0.4, 0.42, 0), "SolarLeaf", pivot)
+        leaf.CFrame *= CFrame.Angles(0, 0, -side * 0.47)
+        for i = 0, 3 do
+            moving(
+                block(
+                    m,
+                    P.blue,
+                    0.39,
+                    0.13,
+                    0.05,
+                    side * (0.27 + i * 0.07),
+                    0.1 + i * 0.22,
+                    0.1,
+                    0,
+                    0,
+                    -side * 27
+                ),
+                "SolarCell",
+                pivot
+            )
+        end
+        moving(
+            rod(m, P.gold, V(0, -0.05, 0.12), V(side * 0.65, 0.97, 0.12), 0.025),
+            "SolarVein",
+            pivot
+        )
+    end
+    moving(light(sphere(m, P.gold, 0.36, 0.36, 0.36, 0, 1.28, 0)), "SolarSun")
+end)
+
+register("mist_fan", "equipment", function(m)
+    feet(m, 1.1, -1.05, 0.65)
+    block(m, P.ceramic, 1.75, 1.71, 0.58, 0, 0, 0)
+    disc(m, P.dark, 0.72, 0.13, 0, 0.09, 0.33)
+    for i = 0, 3 do
+        local a = i * math.pi / 2
+        moving(
+            wedge(
+                m,
+                P.teal,
+                V(0.36, 0.68, 0.1),
+                frame(0, 0.09, 0.43) * CFrame.Angles(0, 0, a) * frame(0.18, 0.3, 0)
+            ),
+            "MistRotor",
+            V(0, 0.09, 0.43)
+        )
+    end
+    disc(m, P.silver, 0.17, 0.1, 0, 0.09, 0.51)
+    for _, x in { -0.54, -0.27, 0, 0.27, 0.54 } do
+        rod(m, P.silver, V(x, -0.49, 0.58), V(x, 0.67, 0.58), 0.025)
+    end
+    for i = 0, 2 do
+        moving(
+            glass(
+                sphere(
+                    m,
+                    P.cyan,
+                    0.22 + i * 0.08,
+                    0.16,
+                    0.28,
+                    -0.36 + i * 0.36,
+                    0.04,
+                    0.85 + i * 0.12
+                ),
+                0.55
+            ),
+            "MistPuff"
+        )
+    end
+    block(m, P.blue, 1.3, 0.13, 0.08, 0, -0.69, 0.37)
+end)
+
+register("coral_fork", "equipment", function(m)
+    block(m, P.dark, 1.15, 0.22, 0.95, 0, -0.89, 0)
+    rod(m, P.ceramic, V(0, -0.76, 0), V(0, 0.85, 0), 0.13)
+    for _, side in { -1, 1 } do
+        for i = 0, 2 do
+            local y = -0.31 + i * 0.43
+            moving(
+                rod(
+                    m,
+                    i % 2 == 0 and P.orange or P.cyan,
+                    V(0, y, 0),
+                    V(side * (0.57 + i * 0.13), y + 0.3, 0),
+                    0.085
+                ),
+                "CoralTine"
+            )
+            moving(
+                sphere(m, P.ceramic, 0.2, 0.2, 0.2, side * (0.57 + i * 0.13), y + 0.3, 0),
+                "CoralTip"
+            )
+        end
+    end
+    moving(sphere(m, P.teal, 0.3, 0.5, 0.3, 0, 1.03, 0), "CoralCrown")
+    for _, x in { -0.4, 0.4 } do
+        sphere(m, P.gold, 0.21, 0.2, 0.23, x, -0.7, 0.2)
+    end
+end)
+
+register("tide_valve", "equipment", function(m)
+    rod(m, P.ceramic, V(-1.16, -0.4, 0), V(1.16, -0.4, 0), 0.32)
+    for _, x in { -1, 1 } do
+        part(
+            m,
+            Enum.PartType.Cylinder,
+            P.teal,
+            V(0.18, 0.91, 0.91),
+            frame(x, -0.4, 0),
+            Enum.Material.Metal
+        )
+    end
+    block(m, P.silver, 0.85, 0.63, 0.72, 0, -0.31, 0)
+    rod(m, P.gold, V(0, -0.04, 0), V(0, 0.55, 0), 0.1)
+    local before = #m:GetChildren()
+    ring(m, P.blue, 0.57, 0.09, frame(0, 0.61, 0, 64, 0, 0), 14)
+    for a = 0, 3 do
+        local transform = frame(0, 0.61, 0, 64, 0, 0)
+        local v = transform:PointToWorldSpace(
+            V(math.cos(a * math.pi / 2) * 0.53, math.sin(a * math.pi / 2) * 0.53, 0)
+        )
+        rod(m, P.ceramic, V(0, 0.61, 0), v, 0.045)
+    end
+    for i = before + 1, #m:GetChildren() do
+        moving(m:GetChildren()[i], "ValveWheel", V(0, 0.61, 0))
+    end
+    moving(glass(sphere(m, P.cyan, 0.37, 0.37, 0.37, 0, -0.4, 0.42), 0.2), "ValveFlow")
+end)
+
+register("dew_lantern", "equipment", function(m)
+    block(m, P.dark, 0.9, 0.18, 0.75, 0, -0.89, 0)
+    for _, x in { -0.43, 0.43 } do
+        for _, z in { -0.32, 0.32 } do
+            rod(m, P.gold, V(x, -0.8, z), V(x, 0.73, z), 0.04)
+        end
+    end
+    glass(block(m, P.cyan, 0.81, 1.32, 0.61, 0, -0.06, 0), 0.68)
+    moving(light(sphere(m, P.cyan, 0.38, 0.73, 0.38, 0, 0.03, 0)), "LanternDrop")
+    for _, side in { -1, 1 } do
+        wedge(
+            m,
+            P.ceramic,
+            V(0.55, 0.35, 0.93),
+            frame(side * 0.275, 0.86, 0, 0, side == 1 and 0 or 180)
+        )
+    end
+    ring(m, P.gold, 0.28, 0.045, frame(0, 1.28, 0), 12, math.pi)
+    for i = 0, 2 do
+        moving(
+            light(sphere(m, P.gold, 0.09, 0.09, 0.09, (i - 1) * 0.16, -0.41 + i * 0.19, 0.26)),
+            "LanternMote"
+        )
+    end
+end)
+
+register("moss_capacitor", "equipment", function(m)
+    feet(m, 1.2, -0.99, 0.75)
+    block(m, P.ceramic, 1.75, 0.23, 1.09, 0, -0.82, 0)
+    for _, x in { -0.47, 0.47 } do
+        glass(drum(m, P.green, 0.37, 1.3, x, -0.04, 0), 0.35)
+        drum(m, P.silver, 0.4, 0.12, x, 0.66, 0)
+        for i = 0, 3 do
+            moving(
+                sphere(
+                    m,
+                    P.green,
+                    0.35,
+                    0.18,
+                    0.32,
+                    x + ((i % 2) * 2 - 1) * 0.09,
+                    -0.46 + i * 0.27,
+                    0.18
+                ),
+                "MossCharge"
+            )
+        end
+        rod(m, P.gold, V(x, 0.73, 0), V(x, 1, 0), 0.055)
+    end
+    moving(light(rod(m, P.cyan, V(-0.47, 1, 0), V(0.47, 1, 0), 0.055)), "MossBridge")
+    bezel(m, 0, -0.62, 0.56, 0.17, P.green)
+end)
+
+register("pearl_diver", "equipment", function(m)
+    -- A diving bell, rather than the shell/pearl silhouettes used elsewhere.
+    drum(m, P.dark, 0.72, 0.18, 0, -0.9, 0)
+    sphere(m, P.ceramic, 1.5, 1.69, 1.12, 0, -0.03, 0)
+    drum(m, P.gold, 0.65, 0.12, 0, -0.71, 0)
+    disc(m, P.gold, 0.48, 0.14, 0, 0.11, 0.56)
+    glass(disc(m, P.blue, 0.37, 0.14, 0, 0.11, 0.67), 0.35)
+    moving(sphere(m, P.ceramic, 0.32, 0.32, 0.32, 0, 0.1, 0.73), "DiverPearl")
+    for _, side in { -1, 1 } do
+        rod(m, P.gold, V(side * 0.68, 0.1, 0), V(side * 1, -0.31, 0.07), 0.1)
+        moving(
+            wedge(m, P.teal, V(0.32, 0.31, 0.42), frame(side * 0.96, -0.48, 0.2, 0, 0, -side * 25)),
+            "DiverClaw",
+            V(side * 0.68, 0.1, 0)
+        )
+    end
+    ring(m, P.gold, 0.18, 0.055, frame(0, 0.98, 0), 10)
+    for i = 0, 3 do
+        local a = i * math.pi / 2
+        bolt(m, math.cos(a) * 0.43, 0.11 + math.sin(a) * 0.43, 0.69, 0.05)
+    end
+end)
+
+register("stream_wheel", "equipment", function(m)
+    for _, side in { -1, 1 } do
+        wedge(
+            m,
+            P.ceramic,
+            V(0.48, 1.24, 0.85),
+            frame(side * 0.73, -0.41, -0.04, 0, side == 1 and 0 or 180)
+        )
+    end
+    rod(m, P.gold, V(-0.85, 0.05, 0), V(0.85, 0.05, 0), 0.09)
+    local pivot = V(0, 0.05, 0)
+    for i = 0, 7 do
+        local a = i * math.pi / 4
+        local y, z = 0.05 + math.cos(a) * 0.75, math.sin(a) * 0.75
+        moving(
+            block(m, i % 2 == 0 and P.teal or P.cyan, 1.12, 0.24, 0.32, 0, y, z, -i * 45),
+            "StreamPaddle",
+            pivot
+        )
+        for _, x in { -0.48, 0.48 } do
+            moving(rod(m, P.silver, V(x, 0.05, 0), V(x, y, z), 0.035), "StreamSpoke", pivot)
+        end
+    end
+    glass(block(m, P.blue, 1.3, 0.1, 1.6, 0, -1, 0), 0.3)
+end)
+
+register("cloud_mirror", "equipment", function(m)
+    block(m, P.ceramic, 1.04, 0.22, 0.67, 0, -0.99, 0)
+    rod(m, P.gold, V(0, -0.89, 0), V(0, 0.21, 0), 0.09)
+    for _, p in { { -0.57, 0.43, 0.72 }, { 0, 0.65, 1 }, { 0.59, 0.44, 0.76 } } do
+        moving(sphere(m, P.ceramic, p[3], p[3], 0.27, p[1], p[2], 0), "CloudFrame", V(0, 0.25, 0))
+        moving(
+            glass(sphere(m, P.blue, p[3] * 0.8, p[3] * 0.8, 0.08, p[1], p[2], 0.16), 0.22),
+            "CloudGlass",
+            V(0, 0.25, 0)
+        )
+    end
+    moving(
+        rod(m, P.cyan, V(-0.41, 0.45, 0.23), V(0.21, 0.88, 0.23), 0.035),
+        "CloudGlint",
+        V(0, 0.25, 0)
+    )
+    for i = 1, 2 do
+        moving(sphere(m, P.cyan, 0.12, 0.25, 0.12, (i - 1.5) * 0.55, -0.22, 0.12), "CloudRain")
+    end
+end)
+
+register("nectar_pump", "equipment", function(m)
+    block(m, P.ceramic, 1.37, 0.24, 0.9, 0, -0.91, 0)
+    glass(drum(m, P.gold, 0.48, 1.18, -0.22, -0.2, 0), 0.4)
+    moving(drum(m, P.orange, 0.4, 0.44, -0.22, -0.56, 0), "NectarLiquid")
+    drum(m, P.silver, 0.5, 0.12, -0.22, 0.43, 0)
+    moving(rod(m, P.gold, V(-0.22, 0.45, 0), V(-0.22, 0.94, 0), 0.07), "PumpStem")
+    moving(block(m, P.teal, 0.72, 0.17, 0.32, -0.22, 0.97, 0), "PumpHandle")
+    rod(m, P.silver, V(0.2, 0.29, 0), V(0.78, 0.29, 0), 0.1)
+    rod(m, P.silver, V(0.78, 0.29, 0), V(0.78, 0.02, 0), 0.1)
+    moving(sphere(m, P.gold, 0.2, 0.27, 0.2, 0.78, -0.22, 0), "NectarDrop")
+    for i = 0, 4 do
+        local a = i * math.pi * 2 / 5
+        sphere(
+            m,
+            P.ceramic,
+            0.2,
+            0.26,
+            0.08,
+            -0.22 + math.sin(a) * 0.19,
+            -0.2 + math.cos(a) * 0.19,
+            0.49
+        )
+    end
+    disc(m, P.gold, 0.11, 0.08, -0.22, -0.2, 0.51)
+end)
+
+register("lagoon_synth", "equipment", function(m)
+    feet(m, 1.6, -0.88, 0.82)
+    block(m, P.blue, 2.13, 0.62, 1.21, 0, -0.44, 0)
+    block(m, P.ceramic, 2.19, 0.12, 1.28, 0, -0.09, 0)
+    for i = 0, 6 do
+        moving(block(m, P.ceramic, 0.23, 0.1, 0.59, -0.78 + i * 0.26, 0.04, 0.37), "SynthKey")
+        if i % 3 ~= 0 then
+            moving(block(m, P.dark, 0.11, 0.12, 0.3, -0.65 + i * 0.26, 0.13, 0.18), "SynthKey")
+        end
+    end
+    for i = 0, 4 do
+        moving(
+            light(
+                block(
+                    m,
+                    i % 2 == 0 and P.cyan or P.green,
+                    0.14,
+                    0.25 + i * 0.11,
+                    0.11,
+                    -0.56 + i * 0.28,
+                    0.31 + i * 0.055,
+                    -0.35
+                )
+            ),
+            "SynthWave"
+        )
+    end
+    for _, x in { -0.9, 0.9 } do
+        drum(m, P.gold, 0.12, 0.15, x, 0.06, -0.32)
+    end
+end)
+
+register("aurora_kite", "equipment", function(m)
+    -- A translucent asymmetric diamond with a streaming ribbon tail.
+    local pivot = V(0, 0.36, 0)
+    for _, side in { -1, 1 } do
+        moving(
+            glass(
+                wedge(
+                    m,
+                    side == 1 and P.cyan or P.green,
+                    V(0.8, 1.06, 0.13),
+                    frame(side * 0.4, 0.71, 0, 0, side == 1 and 180 or 0)
+                ),
+                0.22
+            ),
+            "KiteSail",
+            pivot
+        )
+        moving(
+            glass(
+                wedge(
+                    m,
+                    side == 1 and P.blue or P.purple,
+                    V(0.8, 0.73, 0.13),
+                    frame(side * 0.4, -0.18, 0, 0, side == 1 and 0 or 180, 180)
+                ),
+                0.18
+            ),
+            "KiteSail",
+            pivot
+        )
+    end
+    moving(rod(m, P.gold, V(0, -0.56, 0.1), V(0, 1.23, 0.1), 0.035), "KiteSpar", pivot)
+    moving(rod(m, P.silver, V(-0.8, 0.2, 0.1), V(0.8, 0.2, 0.1), 0.03), "KiteSpar", pivot)
+    for i = 0, 3 do
+        local x = math.sin(i * 1.7) * 0.28
+        moving(
+            rod(
+                m,
+                P.ceramic,
+                V(x, -0.57 - i * 0.25, 0),
+                V(math.sin((i + 1) * 1.7) * 0.28, -0.82 - i * 0.25, 0),
+                0.025
+            ),
+            "KiteRibbon"
+        )
+        moving(
+            block(
+                m,
+                i % 2 == 0 and P.gold or P.teal,
+                0.35,
+                0.12,
+                0.06,
+                x,
+                -0.76 - i * 0.25,
+                0,
+                0,
+                0,
+                25 - i * 12
+            ),
+            "KiteRibbon"
+        )
+    end
+end)
+
+register("biolume_jar", "equipment", function(m)
+    drum(m, P.dark, 0.65, 0.15, 0, -0.93, 0)
+    glass(drum(m, P.cyan, 0.63, 1.6, 0, -0.05, 0), 0.7)
+    drum(m, P.ceramic, 0.71, 0.17, 0, 0.84, 0)
+    for i = 0, 7 do
+        local a = i * math.pi / 4
+        disc(m, P.teal, 0.04, 0.06, math.sin(a) * 0.49, 0.84, math.cos(a) * 0.49)
+    end
+    for i = 0, 4 do
+        local x, z, h = math.cos(i * 2.3) * 0.35, math.sin(i * 2.3) * 0.3, 0.35 + (i % 3) * 0.22
+        moving(rod(m, P.green, V(x, -0.83, z), V(x, -0.83 + h, z), 0.035), "LumeStem")
+        moving(
+            light(sphere(m, i % 2 == 0 and P.cyan or P.green, 0.3, 0.18, 0.3, x, -0.83 + h, z)),
+            "LumeCap"
+        )
+    end
+    for _, p in { V(-0.25, 0.39, 0.1), V(0.32, 0.28, 0.14), V(0, 0.61, 0) } do
+        moving(light(sphere(m, P.gold, 0.1, 0.1, 0.1, p.X, p.Y, p.Z)), "LumeFirefly")
+    end
+end)
+
+register("ozone_orb", "equipment", function(m)
+    for i = 0, 2 do
+        local a = i * math.pi * 2 / 3
+        rod(
+            m,
+            P.silver,
+            V(math.cos(a) * 0.7, -0.9, math.sin(a) * 0.7),
+            V(math.cos(a) * 0.35, -0.28, math.sin(a) * 0.35),
+            0.09
+        )
+    end
+    moving(glass(sphere(m, P.blue, 1.2, 1.2, 1.2, 0, 0.24, 0), 0.44), "OzoneShell")
+    moving(light(sphere(m, P.cyan, 0.35, 0.35, 0.35, 0, 0.24, 0)), "OzoneCore")
+    for i = 0, 1 do
+        local before = #m:GetChildren()
+        ring(
+            m,
+            i == 0 and P.ceramic or P.gold,
+            0.86 + i * 0.13,
+            0.045,
+            frame(0, 0.24, 0, 35 + i * 70, 0, i * 55),
+            20
+        )
+        for n = before + 1, #m:GetChildren() do
+            moving(m:GetChildren()[n], i == 0 and "OzoneOrbitA" or "OzoneOrbitB", V(0, 0.24, 0))
+        end
+    end
+    moving(sphere(m, P.gold, 0.2, 0.2, 0.2, 0.86, 0.24, 0), "OzoneSatellite", V(0, 0.24, 0))
+end)
+
+register("monsoon_loom", "equipment", function(m)
+    feet(m, 1.4, -1.02, 0.75)
+    for _, x in { -0.84, 0.84 } do
+        block(m, P.ceramic, 0.2, 2.1, 0.46, x, 0.03, 0)
+        sphere(m, P.gold, 0.27, 0.27, 0.27, x, 1.16, 0)
+    end
+    for _, y in { -0.73, 0.97 } do
+        rod(m, P.silver, V(-0.83, y, 0), V(0.83, y, 0), 0.11)
+    end
+    for i = 0, 6 do
+        moving(
+            rod(
+                m,
+                i % 2 == 0 and P.cyan or P.green,
+                V(-0.63 + i * 0.21, -0.68, 0),
+                V(-0.63 + i * 0.21, 0.92, 0),
+                0.025
+            ),
+            "LoomThread"
+        )
+    end
+    for i = 0, 3 do
+        moving(
+            rod(m, P.blue, V(-0.65, -0.5 + i * 0.28, 0.06), V(0.65, -0.5 + i * 0.28, 0.06), 0.04),
+            "LoomWeave"
+        )
+    end
+    moving(wedge(m, P.gold, V(0.7, 0.22, 0.25), frame(0, 0.52, 0.22, 0, 0, 90)), "LoomShuttle")
+    for _, x in { -0.58, 0, 0.58 } do
+        moving(glass(sphere(m, P.cyan, 0.15, 0.25, 0.15, x, 1.4, 0), 0.15), "LoomRain")
+    end
+end)
+
 local function evolvedRing(m, color, radius, transform, group)
     local first = #m:GetChildren()
     ring(m, color, radius, 0.055, transform, 20)
@@ -1573,13 +2123,216 @@ register("jumble", "utility", function(m)
     arrowArc(m, P.gold, 1.05, 190, 0, 0.12)
 end)
 
+local function chestLid(m, width, depth, y, color)
+    local pivot = V(0, y, -depth / 2)
+    moving(block(m, color, width, 0.22, depth, 0, y + 0.11, 0), "ChestLid", pivot)
+    for _, x in { -width * 0.34, width * 0.34 } do
+        moving(block(m, P.gold, 0.13, 0.045, depth * 1.02, x, y + 0.24, 0), "ChestLid", pivot)
+    end
+    return pivot
+end
+
+register("chest_common", "utility", function(m)
+    -- Meadow picnic coffer: slatted sides, a leaf clasp and a low handle.
+    block(m, P.ceramic, 1.92, 0.18, 1.3, 0, -0.67, 0)
+    for i = 0, 4 do
+        block(m, i % 2 == 0 and P.green or P.teal, 0.33, 0.81, 1.2, -0.72 + i * 0.36, -0.19, 0)
+    end
+    for _, z in { -0.62, 0.62 } do
+        block(m, P.ceramic, 1.88, 0.1, 0.09, 0, 0.12, z)
+    end
+    local pivot = chestLid(m, 2.02, 1.38, 0.3, P.ceramic)
+    moving(rod(m, P.gold, V(-0.35, 0.64, 0), V(0.35, 0.64, 0), 0.07), "ChestLid", pivot)
+    for _, x in { -0.35, 0.35 } do
+        moving(rod(m, P.gold, V(x, 0.51, 0), V(x, 0.64, 0), 0.05), "ChestLid", pivot)
+    end
+    moving(sphere(m, P.green, 0.24, 0.43, 0.11, 0, 0.13, 0.75), "ChestClasp")
+    moving(light(sphere(m, P.cyan, 0.32, 0.32, 0.32, 0, -0.09, 0)), "ChestTreasure")
+end)
+
+register("chest_uncommon", "utility", function(m)
+    -- Tide coffer: a rounded tank, exterior portholes and a scalloped shell lid.
+    glass(sphere(m, P.blue, 2.16, 1.13, 1.4, 0, -0.15, 0), 0.18)
+    for _, x in { -0.79, 0.79 } do
+        block(m, P.silver, 0.22, 0.22, 1.03, x, -0.69, 0)
+    end
+    block(m, P.ceramic, 2.03, 0.13, 1.3, 0, 0.29, 0)
+    local pivot = V(0, 0.35, -0.67)
+    moving(sphere(m, P.ceramic, 2.11, 0.78, 1.39, 0, 0.49, 0), "ChestLid", pivot)
+    for i = -3, 3 do
+        local x = i * 0.28
+        moving(rod(m, P.teal, V(x * 0.55, 0.75, -0.4), V(x, 0.49, 0.62), 0.055), "ChestLid", pivot)
+    end
+    for _, x in { -0.59, 0.59 } do
+        disc(m, P.gold, 0.22, 0.08, x, -0.12, 0.7)
+        glass(disc(m, P.cyan, 0.15, 0.1, x, -0.12, 0.76), 0.22)
+    end
+    moving(sphere(m, P.ceramic, 0.32, 0.32, 0.2, 0, 0.3, 0.77), "ChestClasp")
+    moving(light(sphere(m, P.cyan, 0.4, 0.4, 0.4, 0, -0.05, 0)), "ChestTreasure")
+end)
+
+register("chest_rare", "utility", function(m)
+    -- Aurora vault: upright faceted octagonal case with crystal window and fins.
+    block(m, P.dark, 1.5, 0.85, 1.04, 0, -0.18, 0)
+    for _, side in { -1, 1 } do
+        wedge(
+            m,
+            P.blue,
+            V(0.51, 0.89, 1.09),
+            frame(side * 0.88, -0.17, 0, 0, side == 1 and 180 or 0)
+        )
+        rod(m, P.gold, V(side * 0.63, -0.67, 0.47), V(side * 0.63, 0.3, 0.47), 0.065)
+        wedge(m, P.ceramic, V(0.46, 0.7, 0.2), frame(side * 1.16, -0.13, 0, 0, 0, side * 25))
+    end
+    local pivot = chestLid(m, 1.63, 1.14, 0.3, P.blue)
+    moving(wedge(m, P.cyan, V(0.58, 0.52, 0.4), frame(0, 0.74, 0, 0, 0, 90)), "ChestLid", pivot)
+    moving(
+        wedge(m, P.ceramic, V(0.58, 0.52, 0.4), frame(0, 0.74, 0, 0, 180, -90)),
+        "ChestLid",
+        pivot
+    )
+    moving(glass(disc(m, P.cyan, 0.29, 0.13, 0, 0.01, 0.6), 0.23), "ChestClasp")
+    moving(light(sphere(m, P.purple, 0.39, 0.53, 0.39, 0, -0.05, 0)), "ChestTreasure")
+    for _, x in { -0.7, 0.7 } do
+        block(m, P.silver, 0.4, 0.17, 0.9, x, -0.72, 0)
+    end
+end)
+
+register("chest_legendary", "utility", function(m)
+    -- Celestial reliquary: floating pearl globe inside an open gold armillary.
+    drum(m, P.dark, 0.86, 0.17, 0, -0.79, 0)
+    drum(m, P.ceramic, 0.76, 0.2, 0, -0.64, 0)
+    glass(sphere(m, P.blue, 1.48, 1.23, 1.3, 0, -0.08, 0), 0.38)
+    for i = 0, 3 do
+        local a = i * math.pi / 2 + math.pi / 4
+        rod(
+            m,
+            P.gold,
+            V(math.cos(a) * 0.73, -0.57, math.sin(a) * 0.73),
+            V(math.cos(a) * 0.94, 0.56, math.sin(a) * 0.94),
+            0.065
+        )
+        sphere(m, P.ceramic, 0.2, 0.2, 0.2, math.cos(a) * 0.94, 0.56, math.sin(a) * 0.94)
+    end
+    local pivot = V(0, 0.48, -0.67)
+    moving(drum(m, P.gold, 0.86, 0.13, 0, 0.48, 0), "ChestLid", pivot)
+    moving(glass(sphere(m, P.ceramic, 1.44, 0.59, 1.44, 0, 0.65, 0), 0.22), "ChestLid", pivot)
+    for _, side in { -1, 1 } do
+        moving(
+            wedge(
+                m,
+                P.gold,
+                V(0.34, 0.49, 0.21),
+                frame(side * 0.17, 1.03, 0, 0, side == 1 and 0 or 180)
+            ),
+            "ChestLid",
+            pivot
+        )
+    end
+    moving(light(sphere(m, P.gold, 0.25, 0.25, 0.25, 0, 1.32, 0)), "ChestLid", pivot)
+    moving(light(sphere(m, P.cyan, 0.48, 0.48, 0.48, 0, -0.01, 0)), "ChestTreasure")
+    local before = #m:GetChildren()
+    ring(m, P.gold, 1.16, 0.04, frame(0, 0.08, 0, 63, 0, 22), 24)
+    for i = before + 1, #m:GetChildren() do
+        moving(m:GetChildren()[i], "ChestOrbit", V(0, 0.08, 0))
+    end
+    moving(disc(m, P.gold, 0.23, 0.12, 0, 0.18, 0.78), "ChestClasp")
+end)
+
+-- Event previews are independent reward emblems, never equipment aliases.
+register("event_growth", "utility", function(m)
+    glass(sphere(m, P.blue, 1.18, 1.18, 1.18, 0, -0.28, 0), 0.4)
+    for _, side in { -1, 1 } do
+        moving(
+            sphere(m, P.green, 0.47, 0.94, 0.17, side * 0.27, 0.56, 0),
+            "EventSprout",
+            V(0, 0.09, 0)
+        ).CFrame *= CFrame.Angles(
+            0,
+            0,
+            -side * 0.5
+        )
+    end
+    moving(rod(m, P.ceramic, V(0, -0.1, 0), V(0, 0.82, 0), 0.045), "EventSprout")
+    for i = 0, 3 do
+        light(
+            sphere(
+                m,
+                P.gold,
+                0.12,
+                0.12,
+                0.12,
+                math.cos(i * math.pi / 2) * 0.73,
+                -0.28 + math.sin(i * math.pi / 2) * 0.73,
+                0
+            )
+        )
+    end
+end)
+
+register("event_repair", "utility", function(m)
+    block(m, P.ceramic, 1.63, 1.21, 0.59, 0, -0.07, 0)
+    for _, x in { -0.35, 0.35 } do
+        rod(m, P.teal, V(x, 0.54, 0), V(x, 0.83, 0), 0.07)
+    end
+    rod(m, P.teal, V(-0.35, 0.83, 0), V(0.35, 0.83, 0), 0.07)
+    moving(block(m, P.green, 0.79, 0.24, 0.08, 0, -0.07, 0.34), "EventCross")
+    moving(block(m, P.green, 0.24, 0.79, 0.08, 0, -0.07, 0.35), "EventCross")
+    for _, x in { -0.6, 0.6 } do
+        block(m, P.gold, 0.12, 0.2, 0.08, x, 0.33, 0.34)
+    end
+end)
+
+register("event_upgrade", "utility", function(m)
+    -- Ascending three-prong crystal arrow, unlike any upgrade item.
+    for i = -1, 1 do
+        local height = i == 0 and 1.65 or 1.05
+        moving(
+            block(
+                m,
+                i == 0 and P.gold or P.teal,
+                0.25,
+                height,
+                0.28,
+                i * 0.51,
+                -0.6 + height / 2,
+                0
+            ),
+            "EventArrow"
+        )
+        moving(
+            wedge(m, P.ceramic, V(0.49, 0.39, 0.31), frame(i * 0.51 - 0.12, -0.4 + height, 0)),
+            "EventArrow"
+        )
+        moving(
+            wedge(m, P.cyan, V(0.49, 0.39, 0.31), frame(i * 0.51 + 0.12, -0.4 + height, 0, 0, 180)),
+            "EventArrow"
+        )
+    end
+end)
+
+register("event_overtime", "utility", function(m)
+    -- Sand clock; the Clockwork equipment remains a separate mechanical face.
+    for _, y in { -0.92, 0.92 } do
+        block(m, P.ceramic, 1.45, 0.16, 0.88, 0, y, 0)
+    end
+    for _, x in { -0.62, 0.62 } do
+        rod(m, P.gold, V(x, -0.84, 0), V(x, 0.84, 0), 0.06)
+    end
+    for _, side in { -1, 1 } do
+        glass(sphere(m, P.cyan, 0.9, 0.77, 0.7, 0, side * 0.44, 0), 0.63)
+        moving(sphere(m, P.gold, 0.68, 0.32, 0.51, 0, side * 0.58, 0), "EventSand")
+    end
+    moving(light(rod(m, P.gold, V(0, -0.43, 0), V(0, 0.4, 0), 0.028)), "EventStream")
+end)
+
 local aliases = {
     ball = "life",
     coins = "coin",
-    grow = "growth_array",
-    repair = "reserve_pack",
-    upgrade = "tuning_oil",
-    overtime = "clockwork",
+    grow = "event_growth",
+    repair = "event_repair",
+    upgrade = "event_upgrade",
+    overtime = "event_overtime",
 }
 
 ItemModels.Ids = table.freeze(ids)

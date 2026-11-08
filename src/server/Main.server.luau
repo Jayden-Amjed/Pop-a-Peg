@@ -6,6 +6,7 @@ local PhysicsService = game:GetService("PhysicsService")
 local ArcadeSessions = require(script.Parent.ArcadeSessions)
 local HubWorld = require(script.Parent.HubWorld)
 local ProfileStore = require(script.Parent.ProfileStore)
+local LeaderboardService = require(script.Parent.LeaderboardService)
 
 Players.CharacterAutoLoads = false
 pcall(function()
@@ -22,6 +23,7 @@ stateRemote.Name, stateRemote.Parent = "State", remotes
 remotes.Parent = ReplicatedStorage
 
 local arcade = ArcadeSessions.new()
+local leaderboards = LeaderboardService.new()
 local sessions, leaving = {}, {}
 local world, requestAction, loadCharacter
 local allowed = {
@@ -44,20 +46,32 @@ local allowed = {
     restart = true,
     endless = true,
     speed = true,
+    openChest = true,
+    researchItem = true,
 }
 
 local function seedFor(player)
     return (os.time() + player.UserId * 31 + math.floor(os.clock() * 1000)) % 2147483647
 end
 
-local function save(player, session)
+local function save(player, session, release)
     if session.saving or session.loading then
         return
     end
     session.saving = true
-    local _, status = ProfileStore.save(player.UserId, arcade:capture(session))
+    local profile = arcade:capture(session)
+    local saved, status = ProfileStore.save(player.UserId, profile, release)
     session.profileStatus = status
     session.lastSave, session.saving = os.clock(), false
+    if saved then
+        task.spawn(function()
+            leaderboards:publish(player.UserId, session.name, profile)
+        end)
+    end
+    if status == "locked" and player.Parent == Players then
+        player:Kick("Your profile opened in another server. Rejoin to continue safely.")
+    end
+    return saved
 end
 
 local function setCharacterMode(player, session, reposition)
@@ -101,6 +115,10 @@ local function sendState(player, session, notice)
         snapshot.events = events
     end
     snapshot.profileStatus, snapshot.notice = session.profileStatus, notice
+    if snapshot.hub then
+        snapshot.hub.leaderboards = leaderboards:snapshot(arcade.players)
+        snapshot.hub.progressionPending = session.progressionBusy == true
+    end
     session.sequence += 1
     snapshot.sequence = session.sequence
     session.phase = if session.run then session.run.phase else "hub"
@@ -125,11 +143,20 @@ local function updateStations()
             world:setStation(station, nil)
         end
     end
+    if world.setLeaderboards then
+        world:setLeaderboards(leaderboards:snapshot(arcade.players))
+    end
 end
 
 requestAction = function(player, kind, payload)
     local session = sessions[player]
-    if not session or session.loading or type(kind) ~= "string" or #kind > 24 then
+    if
+        not session
+        or session.loading
+        or session.progressionBusy
+        or type(kind) ~= "string"
+        or #kind > 24
+    then
         return
     end
     local now = os.clock()
@@ -147,6 +174,11 @@ requestAction = function(player, kind, payload)
         return
     end
     local before = session.view
+    local progression = kind == "openChest" or kind == "researchItem"
+    if progression and session.saving then
+        sendState(player, session, "Finishing your save. Try again in a moment.")
+        return
+    end
     local ok, accepted, message = pcall(function()
         return arcade:action(player.UserId, kind, payload or {}, seedFor(player))
     end)
@@ -163,6 +195,19 @@ requestAction = function(player, kind, payload)
             if not player.Character or not player.Character:FindFirstChild("HumanoidRootPart") then
                 task.spawn(loadCharacter, player, session)
             end
+        end
+    end
+    if accepted and progression then
+        session.progressionBusy = true
+        local saved = save(player, session)
+        session.progressionBusy = false
+        if not saved then
+            sendState(
+                player,
+                session,
+                "Unlock received here; saving is retrying. Stay connected to keep progress."
+            )
+            return
         end
     end
     sendState(player, session, if accepted then nil else message)
@@ -250,9 +295,23 @@ local function added(player)
     end)
     local profile, status = ProfileStore.load(player.UserId)
     if player.Parent ~= Players or sessions[player] ~= session then
+        if profile then
+            ProfileStore.save(player.UserId, profile, true)
+        end
+        return
+    end
+    if not profile then
+        player:Kick(
+            if status == "locked"
+                then "Your profile is still open in another server. Please rejoin shortly."
+                else "Your progress could not be loaded safely. Please rejoin shortly."
+        )
         return
     end
     session.profile, session.profileStatus, session.loading = profile, status, false
+    task.spawn(function()
+        leaderboards:publish(player.UserId, session.name, profile)
+    end)
     updateStations()
     sendState(player, session)
     task.spawn(loadCharacter, player, session)
@@ -267,7 +326,7 @@ actionRemote.OnServerEvent:Connect(requestAction)
 local hubElapsed = 0
 RunService.Heartbeat:Connect(function(dt)
     local elapsed = math.min(dt, 0.25)
-    arcade:step(elapsed)
+    arcade:step(elapsed, dt)
     hubElapsed += elapsed
     if hubElapsed >= 1 then
         hubElapsed = 0
@@ -310,7 +369,7 @@ Players.PlayerRemoving:Connect(function(player)
         while session.saving do
             task.wait(0.05)
         end
-        save(player, session)
+        save(player, session, true)
         leaving[player] = nil
     end
 end)
@@ -323,7 +382,7 @@ game:BindToClose(function()
             while session.saving do
                 task.wait(0.05)
             end
-            save(player, session)
+            save(player, session, true)
             remaining -= 1
         end)
     end
