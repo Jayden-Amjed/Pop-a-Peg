@@ -75,6 +75,36 @@ return function()
         Selection.reconcileMove(pending, heartbeat, 10.4) == nil,
         "Phase transition left rack locked"
     )
+    local duplicates = {
+        phase = "shop",
+        sequence = 20,
+        inventory = { { id = "a", level = 1 }, { id = "a", level = 1 } },
+    }
+    local merge = Selection.beginMove({ from = 1, to = 2 }, duplicates, 20, 2)
+    local merged = {
+        phase = "shop",
+        sequence = 21,
+        inventory = { { id = "", level = 0 }, { id = "a", level = 2 } },
+    }
+    assert(
+        Selection.reconcileMove(merge, merged, 20.1) == nil,
+        "Confirmed duplicate merge did not unlock rack immediately"
+    )
+    assert(
+        duplicates.inventory[1].id == "a" and duplicates.inventory[2].level == 1,
+        "Merge expectation mutated the authoritative snapshot"
+    )
+    duplicates.inventory[1].level = 2
+    local capped = Selection.beginMove({ from = 1, to = 2 }, duplicates, 20, 2)
+    local swapped = {
+        phase = "shop",
+        sequence = 21,
+        inventory = { { id = "a", level = 1 }, { id = "a", level = 2 } },
+    }
+    assert(
+        Selection.reconcileMove(capped, swapped, 20.1) == nil,
+        "Capped copy must swap instead of merging"
+    )
     print(
         "PASS inventory selection: select, deselect, cleared swap, empty target, invalid phase and busy guards"
     )

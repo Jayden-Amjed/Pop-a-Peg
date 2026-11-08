@@ -520,7 +520,8 @@ function Presentation:_buildHud()
                 self.selectedSlot = selected
                 self.selectedOffer = nil
                 if move then
-                    self.pendingMove = Selection.beginMove(move, state, os.clock())
+                    self.pendingMove =
+                        Selection.beginMove(move, state, os.clock(), Catalog.MaxLevel)
                     self:_send("move", move)
                 end
             end

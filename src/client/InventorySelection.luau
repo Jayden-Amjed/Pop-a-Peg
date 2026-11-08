@@ -38,12 +38,18 @@ local function itemKey(item)
     return (item and item.id or "") .. ":" .. tostring(item and item.level or 0)
 end
 
-function Selection.beginMove(move, snapshot, now)
+function Selection.beginMove(move, snapshot, now, maxLevel)
+    local source, target = snapshot.inventory[move.from], snapshot.inventory[move.to]
+    local cap = maxLevel or 2
+    local merges = source.id ~= ""
+        and source.id == target.id
+        and source.level < cap
+        and target.level < cap
     return {
         from = move.from,
         to = move.to,
-        expectedFrom = itemKey(snapshot.inventory[move.to]),
-        expectedTo = itemKey(snapshot.inventory[move.from]),
+        expectedFrom = if merges then itemKey(nil) else itemKey(target),
+        expectedTo = if merges then itemKey({ id = source.id, level = cap }) else itemKey(source),
         phase = snapshot.phase,
         sequence = snapshot.sequence,
         expiresAt = now + 3,
