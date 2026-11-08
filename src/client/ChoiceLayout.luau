@@ -6,7 +6,7 @@ local function rect(x, y, w, h)
 end
 
 function Layout.compute(width, height, count)
-    local columns = width >= 620 and 2 or 1
+    local columns = (width >= 620 or (width >= 400 and height < 300)) and 2 or 1
     local rows = math.max(1, math.ceil(count / columns))
     local gap, pad = 12, 4
     local cw = (width - pad * 2 - gap * (columns - 1)) / columns

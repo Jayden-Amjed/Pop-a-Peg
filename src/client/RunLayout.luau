@@ -8,6 +8,17 @@ function Layout.safeRect(w, h, left, top, right, bottom)
     return rect(left, top, math.max(1, w - left - right), math.max(1, h - top - bottom))
 end
 
+-- Fullscreen rendering can extend beyond Camera.ViewportSize on cutout devices.
+-- full/safe are in core-UI coordinates; board is local to the safe root.
+function Layout.cameraFrame(full, safe, board)
+    local worldHeight = math.max(34.5 * full.h / board.h, 26.8 * full.h / board.w)
+    return {
+        x = (full.w / 2 - (safe.x - full.x) - board.x - board.w / 2) * worldHeight / full.h,
+        y = 11.7 + ((safe.y - full.y) + board.y + board.h / 2 - full.h / 2) * worldHeight / full.h,
+        z = worldHeight / (2 * math.tan(math.rad(17.5))),
+    }
+end
+
 function Layout.portrait(w, h)
     local pad, gap = 8, 6
     local width = w - pad * 2
@@ -42,6 +53,10 @@ function Layout.landscape(w, h)
     end
     right.round = rect(8, 0, x - 16, 34)
     right.board = rect(8, 42, x - 16, h - 50)
+    if h < 300 then
+        right.resources.h = 26
+        right.score.y, right.score.h = 136, 42
+    end
     right.details = rect(8, 48, w - 16, h - 104)
     right.shop = rect(8, 50, w - 16, h - 56)
     right.rackOverlay = rect(8, 50, w - 16, 122)

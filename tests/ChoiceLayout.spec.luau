@@ -19,7 +19,9 @@ return function()
             and a.y < b.y + b.h
             and b.y < a.y + a.h
     end
-    for _, size in { { 788, 124 }, { 990, 212 }, { 334, 470 }, { 1124, 488 }, { 1124, 610 } } do
+    for _, size in
+        { { 512, 128 }, { 788, 124 }, { 990, 212 }, { 334, 470 }, { 1124, 488 }, { 1124, 610 } }
+    do
         for _, perk in { false, true } do
             local cards = Layout.compute(size[1], size[2], 2)
             assert(#cards == 2 and not overlaps(cards[1], cards[2]), "Choices must remain separate")

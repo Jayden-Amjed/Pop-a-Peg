@@ -19,7 +19,9 @@ return function()
             and inner.x + inner.w <= outer.x + outer.w + 0.01
             and inner.y + inner.h <= outer.y + outer.h + 0.01
     end
-    for _, dimensions in { { 366, 678 }, { 820, 228 }, { 1022, 362 }, { 1100, 502 }, { 1100, 680 } } do
+    for _, dimensions in
+        { { 366, 678 }, { 552, 228 }, { 820, 228 }, { 1022, 362 }, { 1100, 502 }, { 1100, 680 } }
+    do
         for _, supplies in { 0, 1, 2 } do
             local w, h = dimensions[1], dimensions[2]
             local layout = Layout.compute(w, h, supplies)
@@ -60,7 +62,7 @@ return function()
                     "An offer escaped its enclosure or covered the section heading"
                 )
                 assert(
-                    card.w >= 119 and card.h >= 90,
+                    card.w >= (w < 650 and h < 300 and 78 or 119) and card.h >= 90,
                     "Offer too small for its model/name and buttons"
                 )
                 for recipeCount = 0, (index <= 4 and 2 or 0) do

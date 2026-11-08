@@ -28,6 +28,8 @@ return function()
         { 844, 390, 59, 58, 59, 21, false },
         { 852, 393, 59, 54, 59, 21, false },
         { 768, 1024, 0, 24, 0, 20, true },
+        { 568, 320, 0, 36, 0, 0, false },
+        { 667, 375, 0, 36, 0, 0, false },
     }
     for _, case in cases do
         local safe = Layout.safeRect(table.unpack(case, 1, 6))
@@ -55,7 +57,7 @@ return function()
                 )
             end
         end
-        assert(layout.board.h >= 250, "Small-screen board lost usable height")
+        assert(layout.board.h >= math.min(250, h - 50), "Small-screen board lost usable height")
         assert(layout.navigation.h >= 44 and layout.controls.h >= 44, "Primary action too small")
         assert(inside(layout.details, w, h), "Expandable stats/perks escaped safe area")
         assert(inside(layout.shop, w, h), "Shop escaped safe area")
@@ -106,7 +108,55 @@ return function()
             end
         end
     end
+    -- An emulated cutout phone renders 873 px vertically but reports a
+    -- 777 px Camera.ViewportSize. Fit in renderer space and project back to
+    -- core-UI coordinates, where the playable board and touch controls live.
+    for _, case in
+        {
+            {
+                full = { x = 0, y = -120, w = 401, h = 873 },
+                safe = { x = 0, y = 0, w = 401, h = 719 },
+            },
+            {
+                full = { x = -59, y = -58, w = 844, h = 390 },
+                safe = { x = 0, y = 0, w = 726, h = 311 },
+            },
+            {
+                full = { x = 0, y = -36, w = 1920, h = 1080 },
+                safe = { x = 0, y = 0, w = 1920, h = 1044 },
+            },
+        }
+    do
+        local safe, full = case.safe, case.full
+        local board = safe.h > safe.w and Layout.portrait(safe.w, safe.h).board
+            or Layout.landscape(safe.w, safe.h).board
+        local camera = Layout.cameraFrame(full, safe, board)
+        local pixelsPerStud = full.h / (2 * camera.z * math.tan(math.rad(17.5)))
+        local function project(x, y)
+            return full.x + full.w / 2 + (x - camera.x) * pixelsPerStud,
+                full.y + full.h / 2 - (y - camera.y) * pixelsPerStud
+        end
+        local centerX, centerY = project(0, 11.7)
+        assert(
+            math.abs(centerX - (safe.x + board.x + board.w / 2)) < 0.001,
+            "Board center X drifted"
+        )
+        assert(
+            math.abs(centerY - (safe.y + board.y + board.h / 2)) < 0.001,
+            "Board center Y drifted"
+        )
+        local left, top = project(-13.4, 11.7 + 17.25)
+        local right, bottom = project(13.4, 11.7 - 17.25)
+        assert(
+            left >= safe.x + board.x - 0.001 and right <= safe.x + board.x + board.w + 0.001,
+            "Board escaped horizontal safe slot"
+        )
+        assert(
+            top >= safe.y + board.y - 0.001 and bottom <= safe.y + board.y + board.h + 0.001,
+            "Board escaped vertical safe slot"
+        )
+    end
     print(
-        "PASS run layout: five safe-area phone/tablet cases, usable board, touch actions, complete shops and perk choices"
+        "PASS run layout: seven safe-area cases, cutout-camera framing, touch actions, complete shops and perk choices"
     )
 end

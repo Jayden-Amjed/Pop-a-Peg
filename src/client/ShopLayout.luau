@@ -7,7 +7,10 @@ end
 
 function Layout.compute(width, height, supplies)
     supplies = math.clamp(supplies, 0, 2)
-    local portrait, short = width < 650, height < 300
+    -- A short landscape screen needs one row: stacking groups here leaves
+    -- almost no room for equipment once the supply row and footer are reserved.
+    local short = height < 300
+    local portrait = width < 650 and not short
     local condensed = short or (portrait and height < 620)
     local gap, margin = condensed and 6 or 8, condensed and 8 or 10
     local footerH, titleH = condensed and 44 or 52, condensed and 0 or 40
