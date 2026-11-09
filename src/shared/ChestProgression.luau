@@ -75,7 +75,7 @@ function Chests.observe(session)
     if receipt and receipt.id > (session.rewardedRestockReceipt or 0) then
         -- Only finalized authoritative receipts mint currency. Animation, captures,
         -- hub visits and repeated result snapshots cannot mint it a second time.
-        local extra = math.max(0, receipt.earnedRestocks - 1)
+        local extra = if receipt.kind == "event" then 0 else math.max(0, receipt.earnedRestocks - 1)
         session.profile.restockCredits =
             math.min(Profile.RestockCreditLimit, session.profile.restockCredits + extra)
         session.rewardedRestockReceipt = receipt.id

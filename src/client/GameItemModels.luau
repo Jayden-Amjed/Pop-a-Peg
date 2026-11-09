@@ -226,7 +226,7 @@ function GameItemModels.mount(viewport, id, level, options)
     local size = motion.restSize
     local reduced = options.reducedMotion == true
     local envelope = measure(model, motion, canonical, reduced, options.idlePreview == true)
-    local handle = { model = model, backend = "Blender" }
+    local handle = { model = model, backend = "Blender", activationDuration = motion.duration }
     local clock = Playback.new(motion.duration)
     local hover = Idle.newHover(options.animate ~= false and not reduced)
     local idleFrame, rootPose = CFrame.identity, CFrame.identity
@@ -426,6 +426,37 @@ function GameItemModels.mount(viewport, id, level, options)
 
     function handle:isAnimating()
         return not destroyed and (if fallback then fallback:isAnimating() else clock.active)
+    end
+
+    function handle:resetActivation()
+        if destroyed then
+            return
+        end
+        clock:reset()
+        phase, currentAim, aimFrom, aimAngle = 0, 0, 0, 0
+        if fallback then
+            -- Frozen native modules have no reset API. Recreate only this
+            -- adapter-owned mount, retaining the preserved native source.
+            fallback:destroy()
+            fallback = Native.mount(viewport, id, level, options)
+            self.model = fallback.model
+            self.model:SetAttribute("RenderBackend", "NativeFallback")
+            self.model:SetAttribute("RenderLoadState", "Failed")
+            return
+        end
+        if reduced then
+            for _, record in rest do
+                record.part.CFrame = idleFrame * record.frame
+                record.part.Size = record.size
+            end
+        else
+            motion:apply(0, 0, idleFrame)
+        end
+        if effects then
+            effects:destroy()
+            effects = nil
+        end
+        model:PivotTo(idleFrame)
     end
 
     function handle:inspect()
