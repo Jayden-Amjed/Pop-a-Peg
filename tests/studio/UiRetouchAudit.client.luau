@@ -126,6 +126,69 @@ local function passed(name)
     table.insert(report.checks, name)
 end
 
+local function readable(text, parent, expected, tone)
+    assert(text and text:IsA("TextLabel") and visible(text), "Missing visible card text")
+    assert(text.Text == expected, "Card wording differs from the catalog: " .. text:GetFullName())
+    if tone then
+        assert(text.TextColor3 == Theme.colors[tone], "Card lost its " .. tone .. " color")
+    end
+    inside(text, parent)
+    waitFor(function()
+        return text.TextBounds.X > 0 and text.TextBounds.Y > 0
+    end, "Card text measurement", 2)
+    assert(
+        text.TextBounds.X <= text.AbsoluteSize.X + 1
+            and text.TextBounds.Y <= text.AbsoluteSize.Y + 1,
+        "Card text clips: " .. text:GetFullName()
+    )
+end
+
+local function compactCosts(view, state)
+    local count = 0
+    for index, cell in view.shop.cards do
+        if index <= 4 and cell.short then
+            count += 1
+            assert(cell.buyPrice and cell.buyCoin, "Compact equipment cost display is missing")
+            assert(
+                cell.buyPrice.Parent == cell.buy and cell.buyCoin.Parent == cell.buy,
+                "Compact cost is outside its purchase action"
+            )
+            local intent = Catalog.purchaseState(
+                state.inventory,
+                state.slots,
+                state.shopOffers[index],
+                state.coins
+            )
+            local showCost = intent.action == "purchase" or intent.action == "upgrade"
+            assert(
+                cell.buyPrice.Visible == showCost and cell.buyCoin.Visible == showCost,
+                "Compact cost visibility does not match the purchase state"
+            )
+            assert(cell.buy.Active == intent.allowed, "Purchase action ignores affordability")
+            if showCost then
+                local caption = intent.action == "upgrade" and "Upgrade" or "Buy"
+                readable(cell.buy.Caption, cell.buy, caption)
+                readable(cell.buyPrice, cell.buy, tostring(intent.price))
+                inside(cell.buyCoin, cell.buy)
+                below(cell.buyPrice, cell.buy.Caption, "Compact price covers its action caption")
+                below(cell.buyCoin, cell.buy.Caption, "Compact coin covers its action caption")
+                assert(
+                    cell.buyCoin.AbsolutePosition.X
+                        >= cell.buyPrice.AbsolutePosition.X + cell.buyPrice.AbsoluteSize.X - 1,
+                    "Compact purchase coin is not after its number"
+                )
+                assert(
+                    cell.buyPrice.AbsoluteSize.Y >= 19.5
+                        and cell.buyCoin.AbsoluteSize.X >= 19.5
+                        and cell.buyCoin.AbsoluteSize.Y >= 19.5,
+                    "Compact currency row became too small"
+                )
+            end
+        end
+    end
+    return count
+end
+
 local function detailCard(card, id, level, recipes)
     assert(card and card.frame.Visible, "Missing complete inspection card")
     local detail = Catalog.detail(id, level)
@@ -341,14 +404,51 @@ local ok, failure = xpcall(function()
                 local model = assert(card:FindFirstChild("Reward", true))
                 local title = assert(card:FindFirstChild("Name", true))
                 local chooseButton = assert(card:FindFirstChild("Choose", true))
-                local effect = assert(card:FindFirstChild("Effect", true))
+                local index = assert(tonumber(card.Name:match("(%d+)$")))
+                local choice = (
+                    name == "Perks" and view.snapshot.perkOffers or view.snapshot.eventChoices
+                )[index]
+                local id = type(choice) == "table" and choice.id or choice
+                local data = name == "Perks" and Catalog.Perks[id] or choice
                 inside(card, view.modal.Content)
                 inside(chooseButton, card)
+                readable(title, card, data.name, "ink")
                 local well = modelBoxFor(model, card)
                 below(well, title, "Choice name should be above its model")
                 below(chooseButton, well, "Choose action covers the model")
-                separate(effect, well, "Choice effect covers model")
-                separate(effect, chooseButton, "Choice effect covers action")
+                local compartments = { title, well, chooseButton }
+                local detail = name == "Perks" and Catalog.detail(id, 1)
+                if detail then
+                    local triggerBox = assert(card:FindFirstChild("TriggerBox"))
+                    inside(triggerBox, card)
+                    readable(
+                        triggerBox:FindFirstChild("Trigger"),
+                        triggerBox,
+                        detail.trigger,
+                        "trigger"
+                    )
+                    table.insert(compartments, triggerBox)
+                end
+                local effects = detail and detail.effects
+                    or {
+                        {
+                            text = data.description,
+                            tone = id == "overtime" and "negative" or "positive",
+                        },
+                    }
+                for effectIndex, effect in effects do
+                    local box = assert(card:FindFirstChild("EffectBox" .. effectIndex))
+                    local label =
+                        box:FindFirstChild(effectIndex == 1 and "Effect" or "Effect" .. effectIndex)
+                    inside(box, card)
+                    readable(label, box, effect.text, effect.tone)
+                    table.insert(compartments, box)
+                end
+                for first, box in compartments do
+                    for second = first + 1, #compartments do
+                        separate(box, compartments[second], "Choice compartments overlap")
+                    end
+                end
                 assert(chooseButton.AbsoluteSize.Y >= 43.5, "Choice target below44px")
             end
         end
@@ -382,8 +482,31 @@ local ok, failure = xpcall(function()
                 "Supply name is not beside its model"
             )
             below(cell.priceBox, cell.nameBox, "Supply price is not below its name")
-            below(cell.buy, cell.nameBox, "Supply Use is not below its name")
+            if cell.rect.h >= 70 then
+                below(cell.buy, cell.nameBox, "Supply Use is not below its name")
+            else
+                -- The shortest supported landscape card keeps name/price stacked
+                -- beside the model and gives Use its own full-height right column.
+                assert(
+                    cell.buy.AbsolutePosition.X
+                        >= cell.nameBox.AbsolutePosition.X + cell.nameBox.AbsoluteSize.X - 1,
+                    "Short Supply action covers its name column"
+                )
+                assert(
+                    cell.buy.AbsolutePosition.X
+                        >= cell.priceBox.AbsolutePosition.X + cell.priceBox.AbsoluteSize.X - 1,
+                    "Short Supply action covers its price column"
+                )
+            end
+            separate(cell.nameBox, cell.modelBox, "Supply name covers the model")
+            separate(cell.priceBox, cell.modelBox, "Supply price covers the model")
+            separate(cell.nameBox, cell.buy, "Supply name overlaps Use")
             separate(cell.priceBox, cell.buy, "Supply price overlaps Use")
+            readable(
+                cell.name,
+                cell.nameBox,
+                Catalog.Items[view.snapshot.shopOffers[index].id].name
+            )
         end
         if cell.price and cell.price.Visible and cell.priceCoin and cell.priceCoin.Visible then
             assert(
@@ -392,6 +515,64 @@ local ok, failure = xpcall(function()
                 "Item price coin is not after its number"
             )
         end
+    end
+    if compactCosts(view, view.snapshot) > 0 then
+        local original = view.snapshot
+        local owned, upgradeId = {}, nil
+        for _, item in original.inventory do
+            owned[item.id] = true
+            if
+                item.id ~= ""
+                and item.level < Catalog.MaxLevel
+                and not Catalog.Items[item.id].evolved
+            then
+                upgradeId = upgradeId or item.id
+            end
+        end
+        local purchaseId
+        for _, id in Catalog.ItemIds do
+            if
+                not owned[id]
+                and not Catalog.Items[id].consumable
+                and not Catalog.Items[id].evolved
+            then
+                purchaseId = id
+                break
+            end
+        end
+        assert(upgradeId and purchaseId, "Compact cost fixture needs purchase and upgrade items")
+        for _, sample in
+            {
+                { id = purchaseId, action = "purchase" },
+                { id = upgradeId, action = "upgrade" },
+                { id = purchaseId, action = "sold", sold = true },
+            }
+        do
+            local state = table.clone(original)
+            state.shopOffers = table.clone(original.shopOffers)
+            state.shopOffers[1] =
+                { id = sample.id, price = 12, sold = sample.sold == true, frozen = false }
+            state.coins = 0
+            local intent = Catalog.purchaseState(
+                state.inventory,
+                state.slots,
+                state.shopOffers[1],
+                state.coins
+            )
+            assert(
+                intent.action == sample.action and not intent.allowed,
+                "Unexpected compact price fixture"
+            )
+            view.snapshot = state
+            view:_refreshShop(state)
+            task.wait(0.08)
+            compactCosts(view, state)
+        end
+        view.snapshot = original
+        view:_refreshShop(original)
+        task.wait(0.08)
+        compactCosts(view, original)
+        passed("Compact coins remain readable when unaffordable and clear after sale")
     end
     if shop.detailCard then
         local offer = view.snapshot.shopOffers[view.selectedOffer or 1]
