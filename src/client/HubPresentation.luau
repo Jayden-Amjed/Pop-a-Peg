@@ -35,40 +35,25 @@ local function setRect(object, area)
     Theme.rect(object, area.x, area.y, area.w, area.h)
 end
 
-local function button(parent, name, value, color, callback, z)
-    local result = Theme.button(parent, name, value, color, callback, z or 8)
-    result.TextColor3 = C.ink
-    result.TextStrokeTransparency = 1
-    fitText(result, 22, 12)
-    local hovered, focused = false, false
-    local function highlight()
-        local border = result:FindFirstChildWhichIsA("UIStroke")
-        if border then
-            local active = result.Active and (hovered or focused)
-            border.Color = active and C.gold or C.edge
-            border.Thickness = active and 4 or 2
-        end
-    end
-    result.MouseEnter:Connect(function()
-        hovered = true
-        highlight()
-    end)
-    result.MouseLeave:Connect(function()
-        hovered = false
-        highlight()
-    end)
-    result.SelectionGained:Connect(function()
-        focused = true
-        highlight()
-    end)
-    result.SelectionLost:Connect(function()
-        focused = false
-        highlight()
-    end)
-    result:GetPropertyChangedSignal("Active"):Connect(highlight)
+local function heading(parent, name, value, size, color, z)
+    local label = (Theme.heading or Theme.label)(parent, name, value, size, color or C.ink, z or 7)
+    label.Font = Enum.Font.FredokaOne
+    label.TextStrokeTransparency = 1
+    return label
+end
+
+local function band(parent, name, x, y, w, h, color, z)
+    local result = Theme.frame(parent, name, color or C.aqua, z or 31)
+    Theme.corner(result, 10)
+    Theme.rect(result, x, y, w, h)
     return result
 end
 
+local function button(parent, name, value, color, callback, z)
+    local result = Theme.button(parent, name, value, color, callback, z or 8)
+    fitText(result, 22, 12)
+    return result
+end
 function Hub:_clearBody()
     for _, entry in self.models do
         entry.handle:destroy()
@@ -89,6 +74,7 @@ function Hub:_model(parent, id, area, discovered)
     setRect(viewport, area)
     local handle = ItemModels.mount(viewport, id, Catalog.MaxLevel, {
         outline = false,
+        idlePreview = not string.match(id, "^chest_"),
         reducedMotion = GuiService.ReducedMotionEnabled,
     })
     if discovered == false then
@@ -149,8 +135,9 @@ function Hub:_gallery()
             Theme.rect(badge, 8, 6, area.w - 16, 20)
             local modelY, modelH = 27, math.max(22, area.h - 68)
             self:_model(card, recipe.id, { x = 8, y = modelY, w = area.w - 16, h = modelH }, owned)
-            local name = text(card, "Name", Catalog.Items[recipe.id].name, 22, C.ink, 33)
-            name.Font = Enum.Font.SourceSansBold
+            band(card, "NameBand", 6, area.h - 38, area.w - 12, 32, C.aqua, 32)
+            local name = heading(card, "Name", Catalog.Items[recipe.id].name, 22, C.ink, 33)
+            name.Font = Enum.Font.FredokaOne
             name.TextXAlignment = Enum.TextXAlignment.Center
             name.TextWrapped = true
             fitText(name, 22, 12)
@@ -210,8 +197,9 @@ function Hub:_recipe()
                 { x = 6, y = 23, w = tileW - 12, h = math.max(22, recipeH - 60) },
                 index < 3 or owned
             )
-            local name = text(tile, "Name", Catalog.Items[id].name, 20, C.ink, 33)
-            name.Font = Enum.Font.SourceSansBold
+            band(tile, "NameBand", 4, recipeH - 36, tileW - 8, 31, C.aqua, 32)
+            local name = heading(tile, "Name", Catalog.Items[id].name, 20, C.ink, 33)
+            name.Font = Enum.Font.FredokaOne
             name.TextWrapped = true
             name.TextXAlignment = Enum.TextXAlignment.Center
             fitText(name, 20, 11)
@@ -272,13 +260,14 @@ function Hub:_records()
             local card = Theme.plate(self.body, "Record" .. index, C.muted, 30)
             local cardW = (w - 20) / 3
             Theme.rect(card, (index - 1) * (cardW + 10), 0, cardW, topH)
-            local caption = text(card, "Caption", stat.name, 16, C.board, 32)
+            local caption = text(card, "Caption", stat.name, 16, C.ink, 32)
             caption.Font = Enum.Font.SourceSansBold
             caption.TextXAlignment = Enum.TextXAlignment.Center
             fitText(caption, 16, 10)
             Theme.rect(caption, 4, 5, cardW - 8, 22)
-            local value = text(card, "Value", stat.value, compact and 28 or 42, C.ink, 32)
-            value.Font = Enum.Font.SourceSansBold
+            band(card, "CaptionBand", 5, 4, cardW - 10, 23, C.aqua, 31)
+            local value = heading(card, "Value", stat.value, compact and 28 or 42, C.ink, 32)
+            value.Font = Enum.Font.FredokaOne
             value.TextXAlignment = Enum.TextXAlignment.Center
             fitText(value, compact and 28 or 42, 15)
             Theme.rect(value, 4, 26, cardW - 8, topH - 30)
@@ -404,8 +393,9 @@ function Hub:_roster()
         local column, row = math.floor((index - 1) / rows), (index - 1) % rows
         local card = Theme.plate(self.body, "Station" .. index, C.paper, 30)
         Theme.rect(card, column * (rowW + 12), row * (rowH + 6), rowW, rowH)
-        local number = text(card, "Number", string.format("%02d", index), 26, C.board, 32)
-        number.Font = Enum.Font.SourceSansBold
+        band(card, "StationBadge", 5, 4, 39, math.max(12, rowH - 8), C.aqua, 31)
+        local number = heading(card, "Number", string.format("%02d", index), 26, C.ink, 32)
+        number.Font = Enum.Font.FredokaOne
         Theme.rect(number, 10, 0, 35, rowH)
         local name = text(card, "Player", "OPEN STATION", 21, C.ink, 32)
         name.TextTruncate = Enum.TextTruncate.AtEnd
@@ -529,7 +519,8 @@ function Hub:_layout()
     setRect(self.panel, geometry.panel)
     setRect(self.body, geometry.body)
     local w, h = geometry.panel.w, geometry.panel.h
-    Theme.rect(self.title, 18, 10, w - 84, 32)
+    Theme.rect(self.titleBand, 12, 7, w - 80, 36)
+    Theme.rect(self.title, 22, 9, w - 102, 32)
     Theme.rect(self.subtitle, 18, 44, w - 36, 25)
     Theme.rect(self.progressTrack, 18, 71, w - 36, 4)
     Theme.rect(self.closeButton, w - 60, 8, 44, 44)
@@ -581,21 +572,20 @@ function Hub.new(onAction)
     self.root = Theme.frame(self.gui, "Root", C.paper, 1)
     self.root.Size = UDim2.fromScale(1, 1)
     self.root.BackgroundTransparency = 1
-    self.brand = Theme.plate(self.root, "Brand", C.paper, 3)
-    self.brandTitle = text(self.brand, "Title", "AQUARIUM ARCADE", 26, C.ink)
-    self.brandTitle.Font = Enum.Font.SourceSansBold
-    fitText(self.brandTitle, 26, 15)
-    self.brandSubtitle =
-        text(self.brand, "Subtitle", "POP A PEG · BUILD A BIGGER BOUNCE", 13, C.board)
+    self.brand = Theme.plate(self.root, "Brand", C.aqua, 3)
+    self.brandTitle = heading(self.brand, "Title", "POP A PEG", 29, C.paper)
+    self.brandTitle.TextStrokeColor3, self.brandTitle.TextStrokeTransparency = C.ink, 0.35
+    fitText(self.brandTitle, 29, 15)
+    self.brandSubtitle = text(self.brand, "Subtitle", "AQUARIUM ARCADE", 13, C.ink)
     fitText(self.brandSubtitle, 13, 9)
-    self.wallet = button(self.root, "RestockWallet", "", C.paper, function()
+    self.wallet = button(self.root, "RestockWallet", "", C.gold, function()
         self.progression.mode = "chests"
         self:open("chests")
     end, 4)
-    self.walletLabel = text(self.wallet, "Label", "RESTOCKS · CHEST MARKET", 14, C.board)
+    self.walletLabel = text(self.wallet, "Label", "SAVED RESTOCKS", 14, C.ink)
     fitText(self.walletLabel, 14, 9)
-    self.walletValue = text(self.wallet, "Balance", "0", 30, C.ink)
-    self.walletValue.Font = Enum.Font.SourceSansBold
+    self.walletValue = heading(self.wallet, "Balance", "0", 30, C.ink)
+    self.walletValue.Font = Enum.Font.FredokaOne
     fitText(self.walletValue, 30, 15)
     self.crewPlate = Theme.plate(self.root, "CrewPlate", C.paper, 3)
     self.crew = button(self.crewPlate, "Crew", "PLAYERS · 0 / 8", C.muted, function()
@@ -638,7 +628,7 @@ function Hub.new(onAction)
     self.notice.BackgroundTransparency = 0.05
     self.notice.Visible = false
     Theme.corner(self.notice, 8)
-    Theme.stroke(self.notice, C.edge, 2)
+    Theme.stroke(self.notice, C.ink, 2)
     self.notice.TextXAlignment = Enum.TextXAlignment.Center
     fitText(self.notice, 20, 12)
     self.shade = Theme.make("TextButton", {
@@ -659,14 +649,15 @@ function Hub.new(onAction)
     self.panel = Theme.plate(self.root, "Panel", C.paper, 25)
     self.panel.Active = true
     self.panel.Visible = false
-    self.title = text(self.panel, "Title", "", 29, C.ink, 28)
-    self.title.Font = Enum.Font.SourceSansBold
+    self.titleBand = band(self.panel, "TitleBand", 0, 0, 1, 1, C.aqua, 27)
+    self.title = heading(self.panel, "Title", "", 29, C.ink, 28)
+    self.title.Font = Enum.Font.FredokaOne
     fitText(self.title, 29, 16)
     self.subtitle = text(self.panel, "Subtitle", "", 17, C.board, 28)
     fitText(self.subtitle, 17, 10)
     self.progressTrack = Theme.frame(self.panel, "CollectionProgress", C.muted, 29)
     Theme.corner(self.progressTrack, 2)
-    self.progressFill = Theme.frame(self.progressTrack, "Fill", C.gold, 30)
+    self.progressFill = Theme.frame(self.progressTrack, "Fill", C.mint, 30)
     Theme.corner(self.progressFill, 2)
     self.closeButton = button(self.panel, "Close", "×", C.muted, function()
         self:close()
@@ -743,7 +734,7 @@ function Hub:update(snapshot)
     end
     self:_refreshPlay()
     self.crew.Text = "PLAYERS · " .. #(hub.players or {}) .. " / " .. tostring(hub.capacity or 8)
-    self.brandSubtitle.Text = "POP A PEG · "
+    self.brandSubtitle.Text = "ARCADE · "
         .. self.discoveries
         .. " / "
         .. #Catalog.Evolutions
