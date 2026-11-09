@@ -130,21 +130,16 @@ local function measure(model, motion, canonical, reduced)
     local frame, size = model:GetBoundingBox()
     local low, high = frame.Position - size / 2, frame.Position + size / 2
     if not reduced then
-        -- One temporary pool and envelope per ID, not one sweep per coin/card.
-        local effects = Effects.new(model, canonical)
+        -- Fixed gameplay framing follows the complete moving model. Decorative
+        -- burst tips may reach/crop at the card edge; fitting their widest glow
+        -- would make the equipment unreadable. Gallery framing is independent.
         for sample = 0, 40 do
             local t = sample / 40
             motion:apply(t, 2, CFrame.identity)
-            effects:apply(t, 2, CFrame.identity)
             frame, size = model:GetBoundingBox()
             low, high = low:Min(frame.Position - size / 2), high:Max(frame.Position + size / 2)
-            local effectLow, effectHigh = effects:bounds()
-            if effectLow then
-                low, high = low:Min(effectLow), high:Max(effectHigh)
-            end
         end
         motion:apply(0, 1, CFrame.identity)
-        effects:destroy()
     else
         -- Reduced motion retains only its four-percent uniform scale pulse.
         low, high = low * 1.04, high * 1.04
@@ -442,6 +437,7 @@ function GameItemModels.mount(viewport, id, level, options)
             camera = if fallback then viewport.CurrentCamera else camera,
             cameraDistance = self.cameraDistance,
             legacyCameraDistance = self.legacyCameraDistance,
+            framing = "MovingGeometry",
         }
     end
 

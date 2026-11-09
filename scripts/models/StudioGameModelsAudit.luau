@@ -16,6 +16,7 @@ return function(first, last, overrideModels)
         failures = {},
         items = {},
         corners = 0,
+        effectChecks = 0,
         minimumMargin = 1,
         maximumEffects = 0,
     }
@@ -36,6 +37,23 @@ return function(first, last, overrideModels)
             if not part:IsA("BasePart") or part.Transparency >= 0.998 then
                 continue
             end
+            if not part:IsDescendantOf(handle.model) then
+                -- Gameplay deliberately allows decorative burst tips to crop
+                -- at card edges. Their transforms and pool remain bounded;
+                -- the complete articulated model must stay inside the camera.
+                assert(part.Parent:GetAttribute("CatalogEffect"), "Unexpected preview geometry")
+                for _, value in { part.CFrame:GetComponents() } do
+                    assert(
+                        value == value and math.abs(value) < math.huge,
+                        "Invalid effect transform"
+                    )
+                end
+                for _, value in { part.Size.X, part.Size.Y, part.Size.Z } do
+                    assert(value > 0 and value < math.huge, "Invalid effect size")
+                end
+                report.effectChecks += 1
+                continue
+            end
             local half = part.Size / 2
             for _, x in { -1, 1 } do
                 for _, y in { -1, 1 } do
@@ -50,7 +68,7 @@ return function(first, last, overrideModels)
                         local margin = (1 - math.max(dx, dy)) / 2
                         report.minimumMargin = math.min(report.minimumMargin, margin)
                         report.corners += 1
-                        assert(margin >= -0.001, "Activation or effect clipped by camera")
+                        assert(margin >= -0.001, "Moving model clipped by camera")
                     end
                 end
             end
