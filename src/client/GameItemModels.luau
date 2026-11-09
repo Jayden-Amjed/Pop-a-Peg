@@ -122,14 +122,16 @@ function GameItemModels.create(id, level)
     return model
 end
 
-local function measure(model, motion, canonical, reduced)
-    local key = canonical .. (if reduced then ":reduced" else ":full")
+local function measure(model, motion, canonical, reduced, idlePreview)
+    local key = canonical
+        .. (if reduced then ":reduced" else ":full")
+        .. (idlePreview and ":preview" or "")
     if envelopes[key] then
         return envelopes[key]
     end
     local frame, size = model:GetBoundingBox()
     local low, high = frame.Position - size / 2, frame.Position + size / 2
-    if not reduced then
+    if not reduced and not idlePreview then
         -- Fixed gameplay framing follows the complete moving model. Decorative
         -- burst tips may reach/crop at the card edge; fitting their widest glow
         -- would make the equipment unreadable. Gallery framing is independent.
@@ -140,7 +142,7 @@ local function measure(model, motion, canonical, reduced)
             low, high = low:Min(frame.Position - size / 2), high:Max(frame.Position + size / 2)
         end
         motion:apply(0, 1, CFrame.identity)
-    else
+    elseif reduced then
         -- Reduced motion retains only its four-percent uniform scale pulse.
         low, high = low * 1.04, high * 1.04
     end
@@ -223,7 +225,7 @@ function GameItemModels.mount(viewport, id, level, options)
     local motion = Motion.new(model)
     local size = motion.restSize
     local reduced = options.reducedMotion == true
-    local envelope = measure(model, motion, canonical, reduced)
+    local envelope = measure(model, motion, canonical, reduced, options.idlePreview == true)
     local handle = { model = model, backend = "Blender" }
     local clock = Playback.new(motion.duration)
     local hover = Idle.newHover(options.animate ~= false and not reduced)
@@ -408,7 +410,9 @@ function GameItemModels.mount(viewport, id, level, options)
     end
 
     function handle:pulse(amount, params)
-        if destroyed then
+        -- Shop previews fit the idle envelope, so they never play a wider
+        -- activation pose. Gameplay mounts retain the full fixed envelope.
+        if destroyed or options.idlePreview == true then
             return
         end
         if fallback then

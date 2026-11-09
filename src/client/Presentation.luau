@@ -3,7 +3,6 @@
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local UserInputService = game:GetService("UserInputService")
-local TextService = game:GetService("TextService")
 
 local Shared = ReplicatedStorage:WaitForChild("Shared")
 local Board = require(Shared:WaitForChild("Board"))
@@ -15,10 +14,10 @@ local ItemModels = require(script.Parent.GameItemModels)
 local Feedback = require(script.Parent.Feedback)
 local Selection = require(script.Parent.InventorySelection)
 local ShopLayout = require(script.Parent.ShopLayout)
+local ShopView = require(script.Parent.ShopView)
 local ChoiceLayout = require(script.Parent.ChoiceLayout)
 local CounterProgress = require(script.Parent.CounterProgress)
 local HoverInspector = require(script.Parent.HoverInspector)
-local EvolutionDisplay = require(script.Parent.EvolutionDisplay)
 local BoardArt = require(script.Parent.BoardArt)
 local RunLayout = require(script.Parent.RunLayout)
 
@@ -338,6 +337,7 @@ function Presentation:_mount(viewport, id, level)
             == true
     local reduced = game:GetService("GuiService").ReducedMotionEnabled
     local outline = viewport:GetAttribute("NoOutline") ~= true
+    local idlePreview = viewport:GetAttribute("ShopPreview") == true
     local key = tostring(id)
         .. ":"
         .. tostring(level or 1)
@@ -347,6 +347,8 @@ function Presentation:_mount(viewport, id, level)
         .. tostring(reduced)
         .. ":"
         .. tostring(outline)
+        .. ":"
+        .. tostring(idlePreview)
     local current = self.models[viewport]
     if current and current.key == key then
         return
@@ -356,12 +358,12 @@ function Presentation:_mount(viewport, id, level)
     end
     self.models[viewport] = {
         key = key,
-        handle = ItemModels.mount(
-            viewport,
-            id,
-            level or 1,
-            { animate = animate, reducedMotion = reduced, outline = outline }
-        ),
+        handle = ItemModels.mount(viewport, id, level or 1, {
+            animate = animate,
+            reducedMotion = reduced,
+            outline = outline,
+            idlePreview = idlePreview,
+        }),
     }
 end
 
@@ -482,7 +484,7 @@ function Presentation:_buildHud()
             self:_updatePerks()
             self:_updateModal()
             local item = state.inventory[index]
-            if self.selectedSlot == index and item and item.id ~= "" then
+            if self.selectedSlot == index and item and item.id ~= "" and not self.shopRackOpen then
                 self.inspector:show(item.id, item.level, self.itemSlots[index].button, true)
             else
                 self.inspector:hide()
@@ -505,6 +507,9 @@ function Presentation:_buildHud()
             name = name,
         }
         self.inspector:bind(cell, function()
+            if self.snapshot and self.snapshot.phase == "shop" and self.shopRackOpen then
+                return nil, 1
+            end
             local item = self.snapshot and self.snapshot.inventory[index]
             return item and item.id ~= "" and item.id or nil, item and item.level or 1
         end)
@@ -1111,8 +1116,32 @@ function Presentation:_layout()
         )
         text.TextSize = compact and 16 or 18
     end
+    if shop then
+        self.rackToggle.Visible, self.swapHelp.Visible = false, false
+        self.inventory.Visible = self.shopRackOpen == true
+        local window = ShopLayout.window(w, h)
+        local drawerH = math.min(220, window.h - 24)
+        invWidth, invHeight = window.w - 48, drawerH - 100
+        setRect(
+            self.inventory,
+            window.x + 24,
+            window.y + math.max(8, (window.h - drawerH) / 2) + 40,
+            invWidth,
+            invHeight
+        )
+    end
+    local rackObjects = self.inventory:GetDescendants()
+    table.insert(rackObjects, self.inventory)
+    for _, object in rackObjects do
+        if object:IsA("GuiObject") then
+            local baseZ = object:GetAttribute("ShopBaseZ") or object.ZIndex
+            object:SetAttribute("ShopBaseZ", baseZ)
+            object.ZIndex = baseZ + (shop and 34 or 0)
+        end
+    end
     local cellW = (invWidth - (self.foldHud and 8 or 12)) / 7
     for index, slot in self.itemSlots do
+        slot.viewport:SetAttribute("ShopPreview", shop)
         setRect(
             slot.button,
             (self.foldHud and 4 or 6) + (index - 1) * cellW + 1,
@@ -1431,204 +1460,14 @@ end
 
 function Presentation:_shopGeometry()
     local size = self.viewport or Vector2.new(1440, 900)
-    if self.foldHud and self.phoneLayout then
-        local area = self.phoneLayout.shop
-        return area.w, area.h, area.y
-    end
-    local width = math.min(1380, size.X - 24)
-    local top = self.inventory.Position.Y.Offset + self.inventory.Size.Y.Offset + 4
-    return width, math.min(790, size.Y - top - 12), top
+    local area = ShopLayout.window(size.X, size.Y)
+    return area.w, area.h, area.y
 end
 
 function Presentation:_buildShop(state)
     local width, height, top = self:_shopGeometry()
-    local size = self.viewport or Vector2.new(1440, 900)
-    local modal = plate(self.overlay, "Shop", C.panel, 22)
-    self.modal = modal
-    setRect(modal, (size.X - width) / 2, top, width, height)
-    local supplies = math.min(2, math.max(0, #(state.shopOffers or {}) - 4))
-    local layout = ShopLayout.compute(width, height, supplies)
-    local function place(object, rect)
-        setRect(object, rect.x, rect.y, rect.w, rect.h)
-    end
-    local shop = {
-        cards = {},
-        sections = {},
-        layout = layout,
-        width = width,
-        height = height,
-        top = top,
-        count = 4 + supplies,
-    }
-    self.shop = shop
-    shop.title = label(modal, "Title", "", 28, C.paper, 25)
-    place(shop.title, layout.title)
-    shop.title.Visible = layout.title.h > 0
-    for kind, rect in layout.groups do
-        local enclosure = plate(modal, string.upper(kind) .. "Enclosure", C.paper, 23)
-        place(enclosure, rect)
-        local section = label(modal, kind, string.upper(kind), height < 300 and 18 or 21, C.ink, 25)
-        section.Font = Enum.Font.SourceSansBold
-        place(section, layout.sections[kind])
-        shop.sections[kind] = section
-    end
-    if layout.divider then
-        local divider = frame(modal, "SectionDivider", C.paper, 24)
-        place(divider, layout.divider)
-    end
-    for index, rect in layout.cards do
-        local positions = ShopLayout.card(rect.w, rect.h, index > 4)
-        local short = positions.short
-        local card = plate(modal, "Offer" .. index, C.board, 25)
-        place(card, rect)
-        local inspect = make("TextButton", {
-            Name = "Inspect",
-            Text = "",
-            AutoButtonColor = false,
-            BorderSizePixel = 0,
-            BackgroundTransparency = 1,
-            ZIndex = 28,
-        }, card)
-        place(inspect, positions.inspect)
-        inspect.Activated:Connect(function()
-            self.selectedOffer = if self.selectedOffer == index then nil else index
-            self.selectedSlot, self.selectedPerk = nil, nil
-            self:_updateInventory()
-            self:_updatePerks()
-            self:_refreshShop(self.snapshot)
-            local offer = self.snapshot.shopOffers[index]
-            if self.selectedOffer and offer then
-                self.inspector:show(offer.id, self:_offerLevel(offer), inspect, true)
-            else
-                self.inspector:hide()
-            end
-        end)
-        self.inspector:bind(inspect, function()
-            local offer = self.snapshot and self.snapshot.shopOffers[index]
-            return offer and offer.id, offer and self:_offerLevel(offer) or 1
-        end)
-        local model = make(
-            "ViewportFrame",
-            { Name = "Item", BackgroundTransparency = 1, BorderSizePixel = 0, ZIndex = 29 },
-            inspect
-        )
-        local name = label(inspect, "Name", "", short and 17 or 26, C.paper, 30)
-        name.Font = Enum.Font.SourceSansBold
-        name.TextWrapped, name.TextScaled = true, true
-        make(
-            "UITextSizeConstraint",
-            { MinTextSize = short and 13 or 18, MaxTextSize = short and 18 or 28 },
-            name
-        )
-        local trigger = label(inspect, "Trigger", "", 20, C.gold, 30)
-        trigger.TextWrapped, trigger.TextScaled = true, true
-        make("UITextSizeConstraint", { MinTextSize = 14, MaxTextSize = 22 }, trigger)
-        trigger.TextXAlignment = Enum.TextXAlignment.Center
-        local level = label(inspect, "Level", "", short and 12 or 15, C.gold, 31)
-        level.Font = Enum.Font.SourceSansBold
-        level.TextXAlignment = Enum.TextXAlignment.Right
-        local evolutions = EvolutionDisplay.new(card, self, 28, true)
-        local recipeHint = button(card, "InspectEvolutions", "EVOLUTIONS  ›", C.muted, function()
-            local offer = self.snapshot and self.snapshot.shopOffers[index]
-            if offer then
-                self.inspector:show(offer.id, self:_offerLevel(offer), inspect, true)
-            end
-        end, 29)
-        recipeHint.TextSize, recipeHint.TextColor3 = 14, C.ink
-        recipeHint.Visible = false
-        local buy = button(card, "Buy", "", C.mint, function()
-            local offer = self.snapshot and self.snapshot.shopOffers[index]
-            if offer then
-                self:_send("buy", { offer = index, itemId = offer.id })
-            end
-        end, 29)
-        place(buy, positions.purchase)
-        buy.TextSize = short and 18 or 23
-        buy.TextWrapped, buy.TextScaled = true, true
-        make("UITextSizeConstraint", { MinTextSize = 12, MaxTextSize = short and 18 or 23 }, buy)
-        local actionLabel = label(buy, "Action", "", 14, C.paper, 32)
-        actionLabel.TextXAlignment = Enum.TextXAlignment.Center
-        actionLabel.Visible = false
-        local priceGroup = frame(buy, "CenteredPrice", nil, 31)
-        priceGroup.BackgroundTransparency = 1
-        priceGroup.AnchorPoint = Vector2.new(0.5, 0)
-        priceGroup.Position = UDim2.fromScale(0.5, 0)
-        local price = label(priceGroup, "ActionPrice", "", short and 22 or 30, C.paper, 32)
-        price.Font = Enum.Font.SourceSansBold
-        price.TextXAlignment = Enum.TextXAlignment.Left
-        price.TextStrokeTransparency = 0.55
-        local coin = self:_viewport(priceGroup, "Coin", "coin", 1, 32)
-        local hold
-        if index <= 4 then
-            hold = button(card, "Hold", "HOLD", C.panel, function()
-                local offer = self.snapshot and self.snapshot.shopOffers[index]
-                local definition = offer and Catalog.Items[offer.id]
-                if offer then
-                    self:_send(
-                        definition and definition.evolved and "cycleEvolution" or "freeze",
-                        { offer = index, itemId = offer.id }
-                    )
-                end
-            end, 29)
-            place(hold, positions.hold)
-            hold.TextSize = short and 16 or 19
-            hold.TextScaled = true
-            make(
-                "UITextSizeConstraint",
-                { MinTextSize = 10, MaxTextSize = short and 16 or 19 },
-                hold
-            )
-        end
-        shop.cards[index] = {
-            card = card,
-            viewport = model,
-            name = name,
-            trigger = trigger,
-            buy = buy,
-            priceGroup = priceGroup,
-            price = price,
-            actionLabel = actionLabel,
-            coin = coin,
-            hold = hold,
-            short = short,
-            positions = positions,
-            inspect = inspect,
-            level = level,
-            rect = rect,
-            evolutions = evolutions,
-            recipeHint = recipeHint,
-        }
-    end
-    local footer, fw = layout.footer, (layout.footer.w - 16) / 3
-    local function action(name, text, index, color, callback)
-        local control = button(modal, name, text, color, callback, 28)
-        setRect(control, footer.x + (index - 1) * (fw + 8), footer.y, fw, footer.h)
-        control.TextSize = width < 650 and 17 or (height < 300 and 18 or 22)
-        control.TextWrapped = true
-        return control
-    end
-    shop.reroll = action("Reroll", "REROLL • 1 COIN", 1, C.gold, function()
-        self:_send("reroll")
-    end)
-    shop.sell = action("Sell", "", 2, C.coral, function()
-        local current = self.snapshot
-        local selected = current and self.selectedSlot and current.inventory[self.selectedSlot]
-        if selected and selected.id ~= "" then
-            local slot = self.selectedSlot
-            self.selectedSlot = nil
-            self:_send("sell", { slot = slot })
-        elseif current and current.slots < 7 then
-            self:_send("buySlot")
-        end
-    end)
-    action("Continue", "NEXT ROUND", 3, C.blue, function()
-        self.statsCleared = true
-        self.selectedSlot, self.selectedOffer, self.selectedPerk = nil, nil, nil
-        self:_send("continue")
-    end)
-    self:_refreshShop(state)
+    ShopView.build(self, state, width, height, top)
 end
-
 function Presentation:_offerLevel(offer)
     local state = self.snapshot
     if not state or not offer then
@@ -1656,160 +1495,8 @@ function Presentation:_offerLevel(offer)
     return 1
 end
 
-function Presentation:_layoutShopCard(cell, data, recipeCount, canCycle)
-    local rect = cell.rect
-    local positions = ShopLayout.card(
-        rect.w,
-        rect.h,
-        data.consumable or (data.evolved and not canCycle),
-        recipeCount
-    )
-    cell.positions = positions
-    local function place(object, area)
-        setRect(object, area.x, area.y, area.w, area.h)
-    end
-    place(cell.inspect, positions.inspect)
-    place(cell.buy, positions.purchase)
-    place(cell.recipeHint, positions.evolutions)
-    cell.recipeHint.Visible = positions.compactRecipes
-    if cell.hold then
-        place(cell.hold, positions.hold)
-    end
-    local short, bandH = positions.short, positions.inspect.h
-    local nameH = short and 26 or 48
-    local triggerH = not data.consumable and (short and 0 or 36) or 0
-    local modelH = math.max(20, bandH - nameH - triggerH - 10)
-    setRect(cell.viewport, 3, 3, positions.inspect.w - 6, modelH)
-    setRect(cell.name, 5, modelH + 2, rect.w - 16, nameH)
-    setRect(cell.trigger, 5, modelH + nameH + 5, rect.w - 16, triggerH)
-    setRect(cell.level, 3, 0, rect.w - 16, short and 13 or 18)
-    cell.trigger.Visible = triggerH > 0
-    cell.level.Visible = bandH >= 70 and rect.w >= 110
-    if short and bandH < 110 then
-        local contentY = cell.level.Visible and 14 or 0
-        local contentH = bandH - contentY
-        local side = math.max(20, math.min(rect.w < 110 and 20 or 64, contentH - 4))
-        setRect(cell.viewport, 1, contentY + (contentH - side) / 2, side, side)
-        setRect(cell.name, side + 5, contentY, rect.w - side - 14, contentH)
-    end
-    if rect.w < 110 then
-        cell.recipeHint.Text = "EVOLVE ›"
-        cell.recipeHint.TextSize = 12
-        cell.name:FindFirstChildWhichIsA("UITextSizeConstraint").MinTextSize = 11
-    end
-end
-
 function Presentation:_refreshShop(state)
-    local shop = self.shop
-    if not shop or not state then
-        return
-    end
-    shop.title.Text = "UPGRADE SHOP   •   " .. Format.integer(state.coins) .. " COINS"
-    shop.sections.items.Text = shop.layout.title.h == 0
-            and ("ITEMS   •   " .. Format.integer(state.coins) .. " COINS")
-        or "ITEMS"
-    local displayed = {}
-    for _, offer in state.shopOffers or {} do
-        displayed[offer.id] = true
-    end
-    local hiddenEvolution = false
-    for _, id in state.evolutionChoices or {} do
-        if not displayed[id] then
-            hiddenEvolution = true
-            break
-        end
-    end
-    for index, cell in shop.cards do
-        local offer = state.shopOffers[index]
-        local data = offer and Catalog.Items[offer.id]
-        if data then
-            local selected = self.selectedOffer == index
-            Theme.select(cell.card, selected, C.board)
-            local level = self:_offerLevel(offer)
-            local detail = Catalog.detail(offer.id, level)
-            local recipes = detail.evolutions or {}
-            self:_layoutShopCard(cell, data, #recipes, hiddenEvolution)
-            cell.name.Text, cell.trigger.Text = data.name, detail.trigger
-            cell.name.TextColor3 = selected and C.ink or C.paper
-            cell.trigger.TextColor3 = selected and C.board or C.gold
-            cell.level.TextColor3 = selected and C.board or C.gold
-            cell.level.Text = data.evolved and "EVOLVED"
-                or (
-                    data.consumable and "SUPPLY"
-                    or (string.upper(data.tier or "common") .. " · L" .. level)
-                )
-            self:_mount(cell.viewport, offer.id, level)
-            if cell.positions.compactRecipes then
-                cell.evolutions.frame.Visible = false
-            else
-                cell.evolutions:update(offer.id, cell.positions.evolutions, selected)
-            end
-            local intent = Catalog.purchaseState(state.inventory, state.slots, offer, state.coins)
-            local verb = ({ purchase = "", upgrade = "Upgrade ", use = "Use " })[intent.action]
-            cell.buy.Text = ({
-                maxLevel = "MAX LEVEL",
-                full = "RACK FULL",
-                sold = "SOLD",
-                unavailable = "UNAVAILABLE",
-                ingredients = "NEED TWO L5",
-                evolve = "EVOLVE",
-            })[intent.action] or ""
-            Theme.setEnabled(cell.buy, intent.allowed, C.mint)
-            cell.priceGroup.Visible = verb ~= nil
-            cell.actionLabel.Visible = false
-            if verb then
-                local splitPrice = cell.positions.purchase.w < 110 and verb ~= ""
-                local text = (splitPrice and "" or verb) .. tostring(intent.price)
-                local fontSize = cell.short and 22 or 30
-                local priceH = cell.positions.purchase.h - (splitPrice and 15 or 0)
-                local coinSize =
-                    math.min(splitPrice and 22 or (cell.short and 28 or 48), priceH - 4)
-                cell.actionLabel.Visible = splitPrice
-                cell.actionLabel.Text = verb
-                setRect(cell.actionLabel, 2, 0, cell.positions.purchase.w - 4, 16)
-                cell.priceGroup.Position = UDim2.new(0.5, 0, 0, splitPrice and 15 or 0)
-                local gap = cell.short and 1 or 3
-                local available = cell.positions.purchase.w - 8
-                local measured = TextService:GetTextSize(
-                    text,
-                    fontSize,
-                    Enum.Font.SourceSansBold,
-                    Vector2.new(1000, 100)
-                )
-                while fontSize > 16 and measured.X + gap + coinSize > available do
-                    fontSize -= 1
-                    measured = TextService:GetTextSize(
-                        text,
-                        fontSize,
-                        Enum.Font.SourceSansBold,
-                        Vector2.new(1000, 100)
-                    )
-                end
-                cell.price.Text, cell.price.TextSize = text, fontSize
-                cell.priceGroup.Size = UDim2.fromOffset(measured.X + gap + coinSize, priceH)
-                setRect(cell.price, 0, 0, measured.X + 1, priceH)
-                setRect(cell.coin, measured.X + gap, (priceH - coinSize) / 2, coinSize, coinSize)
-                cell.price.TextTransparency = intent.allowed and 0 or 0.2
-            end
-            if cell.hold then
-                cell.hold.Visible = not data.evolved or hiddenEvolution
-                cell.hold.Text = data.evolved and "OTHER EVOLUTION"
-                    or (offer.frozen and "HELD" or "HOLD")
-                Theme.setEnabled(cell.hold, not offer.sold, C.panel)
-                Theme.select(
-                    cell.hold,
-                    not data.evolved and offer.frozen and not offer.sold,
-                    cell.hold.BackgroundColor3
-                )
-            end
-        end
-    end
-    Theme.setEnabled(shop.reroll, (state.rerollsLeft or 0) > 0 and state.coins >= 1, C.gold)
-    local selected = self.selectedSlot and state.inventory[self.selectedSlot]
-    local occupied = selected and selected.id ~= ""
-    shop.sell.Text = occupied and "SELL ITEM"
-        or (state.slots < 7 and "+ SLOT • 5" or "SELECT TO SELL")
-    Theme.setEnabled(shop.sell, occupied or (state.slots < 7 and state.coins >= 5), C.coral)
+    ShopView.refresh(self, state)
 end
 
 function Presentation:_updateModal()
@@ -1835,8 +1522,11 @@ function Presentation:_updateModal()
             and self.shop.top == top
             and self.shop.count == count
         then
+            local size = self.viewport or Vector2.new(1440, 900)
+            setRect(self.modal, (size.X - width) / 2, top, width, height)
             self:_refreshShop(state)
         else
+            self.inspector:hide()
             if self.modal then
                 self:_dropModels(self.modal)
                 self.modal:Destroy()

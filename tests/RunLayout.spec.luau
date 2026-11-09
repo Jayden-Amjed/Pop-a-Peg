@@ -106,10 +106,11 @@ return function()
             "Return-button safe root conversion drifted"
         )
         for supplies = 0, 2 do
-            local shop = Shop.compute(layout.shop.w, layout.shop.h, supplies)
+            local shopWindow = Shop.window(w, h)
+            local shop = Shop.compute(shopWindow.w, shopWindow.h, supplies)
             assert(#shop.cards == 4 + supplies, "Mobile shop hides offers")
             for index, card in shop.cards do
-                assert(inside(card, layout.shop.w, layout.shop.h), "Mobile offer escaped modal")
+                assert(inside(card, shopWindow.w, shopWindow.h), "Mobile offer escaped modal")
                 for recipes = 0, (index <= 4 and 2 or 0) do
                     local fields = Shop.card(card.w, card.h, index > 4, recipes)
                     assert(fields.purchase.h >= 44, "Mobile buy control is not touch sized")
@@ -121,7 +122,10 @@ return function()
                         "Mobile purchase covers item"
                     )
                     if recipes > 0 then
-                        assert(fields.evolutions.h >= 24, "Recipes have no usable inspection route")
+                        assert(
+                            fields.inspect.h >= 27,
+                            "Recipes require a usable tap inspection route"
+                        )
                     end
                 end
             end
