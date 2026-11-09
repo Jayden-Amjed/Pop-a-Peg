@@ -748,6 +748,9 @@ function Hub:update(snapshot)
         .. " / "
         .. #Catalog.Evolutions
         .. " DISCOVERIES"
+    if snapshot.temporaryAccess then
+        self.brandSubtitle.Text = "ALL ITEMS UNLOCKED • PLAYTEST"
+    end
     self.stationLabel.Text = hub.station
             and string.format(
                 "%02d · %s WING",
