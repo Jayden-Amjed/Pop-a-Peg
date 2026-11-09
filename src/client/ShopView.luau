@@ -48,6 +48,8 @@ local function button(parent, name, value, color, callback, z)
     local skin = surface(result, "Skin", color, z, 14)
     skin.Size = UDim2.fromScale(1, 1)
     local caption = text(result, "Caption", value, 25, z + 2)
+    caption.TextColor3 = color == C.green and C.paper or C.ink
+    caption.TextStrokeTransparency = color == C.green and 0.4 or 1
     caption.Position, caption.Size = UDim2.fromOffset(4, 0), UDim2.new(1, -8, 1, 0)
     result.Activated:Connect(function()
         if result.Active then
@@ -56,14 +58,14 @@ local function button(parent, name, value, color, callback, z)
     end)
     return result
 end
-local function enabled(control, active, caption, _color)
+local function enabled(control, active, caption, color)
     control.Active, control.Selectable = active, active
-    Theme.setSurface(control.Skin, active)
+    Theme.setSurface(control.Skin, active, color)
     control.Caption.Text = caption
     control.Caption.TextTransparency = active and 0 or 0.25
-    control.Caption.TextColor3 = C.ink
+    control.Caption.TextColor3 = active and color == C.green and C.paper or C.ink
     control.Caption.TextStrokeColor3 = C.ink
-    control.Caption.TextStrokeTransparency = 1
+    control.Caption.TextStrokeTransparency = active and color == C.green and 0.4 or 1
 end
 local function viewport(parent, name, z)
     local result = Theme.make("ViewportFrame", {
@@ -99,8 +101,8 @@ function Shop.build(host, state, width, height, top)
     local badge = surface(modal, "ShopBanner", C.aqua, 24, 20)
     Theme.rect(badge, (width - titleW) / 2, header.y, titleW, header.h)
     self.title = text(badge, "Title", "SHOP", layout.compact and 30 or 52, 26)
-    self.title.TextColor3, self.title.TextStrokeColor3 = C.ink, C.ink
-    self.title.TextStrokeTransparency = 1
+    self.title.TextColor3, self.title.TextStrokeColor3 = C.paper, C.ink
+    self.title.TextStrokeTransparency = 0.25
     self.title.Size = UDim2.fromScale(1, 1)
     local walletW = math.min(245, header.w * 0.27)
     local wallet = surface(modal, "Wallet", C.ice, 24, 18)
@@ -336,7 +338,7 @@ function Shop.refresh(host, state)
         local data = offer and Catalog.Items[offer.id]
         if data then
             local selected = (host.selectedOffer or (self.preview and 1)) == index
-            Theme.select(cell.card, selected)
+            Theme.select(cell.card, selected, selected and C.ice or C.paper)
             local level = host:_offerLevel(offer)
             host:_mount(cell.viewport, offer.id, level)
             cell.name.Text = data.name

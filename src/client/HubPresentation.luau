@@ -44,7 +44,7 @@ local function heading(parent, name, value, size, color, z)
 end
 
 local function band(parent, name, x, y, w, h, color, z)
-    local result = Theme.inset(parent, name, color, z or 31, 10)
+    local result = Theme.inset(parent, name, color or C.aqua, z or 31, 10)
     Theme.rect(result, x, y, w, h)
     return result
 end
@@ -401,7 +401,8 @@ function Hub:_refreshRoster()
         row.status.Text = player
                 and (player.view == "run" and ("IN RUN · ROUND " .. tostring(player.round or 1)) or "EXPLORING THE ARCADE")
             or "Ready for a player"
-        Theme.select(row.card, index == self.snapshot.hub.station)
+        local ownStation = index == self.snapshot.hub.station
+        Theme.select(row.card, ownStation, ownStation and C.muted or C.paper)
         if index == self.snapshot.hub.station then
             row.name.Text ..= " · YOU"
         end
@@ -549,7 +550,8 @@ function Hub.new(onAction)
     self.root.Size = UDim2.fromScale(1, 1)
     self.root.BackgroundTransparency = 1
     self.brand = Theme.plate(self.root, "Brand", C.aqua, 3)
-    self.brandTitle = heading(self.brand, "Title", "POP A PEG", 29, C.ink)
+    self.brandTitle = heading(self.brand, "Title", "POP A PEG", 29, C.paper)
+    self.brandTitle.TextStrokeColor3, self.brandTitle.TextStrokeTransparency = C.ink, 0.35
     fitText(self.brandTitle, 29, 15)
     self.brandSubtitle = text(self.brand, "Subtitle", "AQUARIUM ARCADE", 13, C.ink)
     fitText(self.brandSubtitle, 13, 9)
@@ -601,7 +603,7 @@ function Hub.new(onAction)
     self.notice = text(self.root, "Notice", "", 20, C.ink, 12)
     self.notice.BackgroundTransparency = 0.05
     self.notice.Visible = false
-    Theme.decorate(self.notice, nil, 12, 8)
+    Theme.decorate(self.notice, C.paper, 12, 8)
     self.notice.TextXAlignment = Enum.TextXAlignment.Center
     fitText(self.notice, 20, 12)
     self.shade = Theme.make("TextButton", {

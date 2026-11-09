@@ -77,20 +77,24 @@ function Theme.ribbon(parent, name, value, size, z)
     local object = Theme.heading(parent, name, value, size, Theme.colors.ink, z)
     object.BackgroundTransparency = 0
     object.TextXAlignment = Enum.TextXAlignment.Center
-    return Theme.decorate(object, nil, z, 10)
+    return Theme.decorate(object, Theme.colors.aqua, z, 10)
 end
 
--- The shop's Hold button is the shared surface reference. Keep its pale base,
--- downward gradient, navy outline and offset depth on nested compartments too.
--- Accent colors belong to content/state indicators rather than recoloring skins.
-function Theme.setSurface(object, enabled)
-    object.BackgroundColor3 = enabled == false and Color3.fromRGB(191, 210, 217) or Theme.colors.ice
+-- Share Hold's finish while retaining each surface's action/category color.
+-- Remember that color so disabled and selected refreshes cannot erase it.
+function Theme.setSurface(object, enabled, color)
+    if color then
+        object:SetAttribute("SurfaceColor", color)
+    end
+    object.BackgroundColor3 = enabled == false and Color3.fromRGB(191, 210, 217)
+        or object:GetAttribute("SurfaceColor")
+        or Theme.colors.ice
 end
 
-function Theme.decorate(object, _color, z, radius)
+function Theme.decorate(object, color, z, radius)
     z = z or object.ZIndex
     radius = radius or 16
-    Theme.setSurface(object, true)
+    Theme.setSurface(object, true, color or Theme.colors.ice)
     object:SetAttribute("PearlSurface", true)
     local corner = object:FindFirstChildWhichIsA("UICorner") or Theme.corner(object, radius)
     corner.CornerRadius = UDim.new(0, radius)
@@ -161,26 +165,36 @@ function Theme.button(parent, name, text, color, callback, z)
     return object
 end
 
-function Theme.setEnabled(object, enabled, _color)
+local function buttonText(object, enabled)
+    local background = object.BackgroundColor3
+    local dark = background == Theme.colors.ink
+        or background == Theme.colors.board
+        or background == Theme.colors.panel
+        or background == Theme.colors.mint
+        or background == Theme.colors.negative
+    object.TextColor3 = enabled and dark and Theme.colors.paper or Theme.colors.ink
+    object.TextStrokeTransparency = enabled and dark and 0.45 or 1
+end
+
+function Theme.setEnabled(object, enabled, color)
     object.Active = enabled
     object.Selectable = enabled
     object.AutoButtonColor = enabled
-    Theme.setSurface(object, enabled)
+    Theme.setSurface(object, enabled, color)
     object.TextTransparency = enabled and 0 or 0.2
-    object.TextColor3 = Theme.colors.ink
-    object.TextStrokeTransparency = 1
+    buttonText(object, enabled)
 end
 
-function Theme.select(object, selected, _color)
-    Theme.setSurface(object, not object:IsA("GuiButton") or object.Active)
+function Theme.select(object, selected, color)
+    local enabled = not object:IsA("GuiButton") or object.Active
+    Theme.setSurface(object, enabled, color)
     local border = object:FindFirstChildWhichIsA("UIStroke")
     if border then
         border.Color = selected and Theme.colors.aqua or Theme.colors.ink
         border.Thickness = selected and 3 or 2
     end
     if object:IsA("TextButton") then
-        object.TextColor3 = Theme.colors.ink
-        object.TextStrokeTransparency = 1
+        buttonText(object, enabled)
     end
 end
 

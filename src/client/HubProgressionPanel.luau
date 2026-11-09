@@ -286,7 +286,7 @@ function Panel:renderWorkshop()
                 C.ink,
                 22
             )
-            local nameBand = Theme.inset(card, "NameBand", nil, 33, 9)
+            local nameBand = Theme.inset(card, "NameBand", C.aqua, 33, 9)
             Theme.rect(nameBand, 4, 4, area.w - 8, 28)
             name.TextXAlignment = Enum.TextXAlignment.Center
             name.Font = Enum.Font.FredokaOne

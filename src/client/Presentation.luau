@@ -442,9 +442,9 @@ function Presentation:_buildHud()
     )
     self.swapHelp.TextXAlignment = Enum.TextXAlignment.Center
     self.swapHelp.TextScaled = true
-    self.swapHelp.TextColor3 = C.ink
+    self.swapHelp.TextColor3 = C.paper
     self.swapHelp.BackgroundTransparency = 0
-    Theme.decorate(self.swapHelp, C.ice, 31)
+    Theme.decorate(self.swapHelp, C.ink, 31)
     make("UITextSizeConstraint", { MinTextSize = 14, MaxTextSize = 18 }, self.swapHelp)
     self.itemSlots = {}
     for index = 1, 7 do
@@ -705,7 +705,7 @@ function Presentation:_buildHud()
     self.help = label(self.root, "Help", "AIM • CLICK THE BOARD OR PRESS SPACE", 18, C.paper, 12)
     self.help.TextColor3 = C.ink
     self.help.BackgroundTransparency = 0
-    Theme.decorate(self.help, C.ice, 12)
+    Theme.decorate(self.help, C.paper, 12)
     self.help.TextXAlignment = Enum.TextXAlignment.Center
     self.notice = label(self.root, "Notice", "", 24, C.gold, 70)
     self.notice.TextXAlignment = Enum.TextXAlignment.Center
@@ -713,8 +713,8 @@ function Presentation:_buildHud()
     self.notice.Visible = false
     self.notice.TextColor3 = C.ink
     self.notice.BackgroundTransparency = 0
-    Theme.decorate(self.notice, C.ice, 70)
-    self.settlement = plate(self.root, "Settlement", C.ice, 55)
+    Theme.decorate(self.notice, C.paper, 70)
+    self.settlement = plate(self.root, "Settlement", C.board, 55)
     self.settlement.BackgroundTransparency = 1
     self.settlementOutline = self.settlement:FindFirstChildWhichIsA("UIStroke")
     self.settlementOutline.Transparency = 1
@@ -1510,7 +1510,7 @@ function Presentation:_renderControls()
             not self.busy,
             (state.speed or 1) == value and C.aqua or C.ice
         )
-        Theme.select(speedButton, (state.speed or 1) == value, speedButton.BackgroundColor3)
+        Theme.select(speedButton, (state.speed or 1) == value)
     end
 end
 
@@ -1960,7 +1960,7 @@ function Presentation:_layoutSettlement()
     self.settlement.BackgroundTransparency = compact and 0 or 1
     self.settlementOutline.Transparency = compact and 0 or 1
     self.settlement.Depth.Visible = compact
-    self.settlementText.TextColor3 = compact and C.ink or C.paper
+    self.settlementText.TextColor3 = C.paper
     self.settlementText.TextScaled = true
     setRect(self.settlementText, 4, 2, w - 8, h - 10)
     self.settlementProgress.Position = UDim2.fromOffset(4, h - 5)
@@ -2262,7 +2262,7 @@ function Presentation:step(dt)
         if cell.button.Visible then
             local border = cell.button:FindFirstChildWhichIsA("UIStroke")
             border.Color = cell.flash > 0 and C.gold
-                or (self.selectedPerk == id and C.aqua or C.ink)
+                or (self.selectedPerk == id and C.gold or C.ink)
             border.Thickness = (cell.flash > 0 or self.selectedPerk == id) and 5 or 2
         end
     end
@@ -2275,7 +2275,7 @@ function Presentation:step(dt)
             cell.border.Color = C.gold
             cell.border.Thickness = 5
         else
-            cell.border.Color = self.selectedSlot == index and C.aqua or C.ink
+            cell.border.Color = self.selectedSlot == index and C.gold or C.ink
             cell.border.Thickness = self.selectedSlot == index and 5 or 3
         end
     end

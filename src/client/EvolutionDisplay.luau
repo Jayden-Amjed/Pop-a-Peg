@@ -122,6 +122,13 @@ function Display:update(id, area, _onWhite, recipeOverride, recipeMode)
                 )
                 local border = box:FindFirstChildWhichIsA("UIStroke")
                 border.Color = C.ink
+                -- Keep the shared navy edge; show recipe readiness through its fill.
+                Theme.setSurface(
+                    box,
+                    true,
+                    column == 3 and C.gold:Lerp(C.paper, 0.7)
+                        or (ready and C.mint:Lerp(C.paper, 0.78) or C.paper)
+                )
                 if column < 3 then
                     place(row.symbols[column], geometry.symbols[column])
                     row.symbols[column].TextColor3 = C.ink
