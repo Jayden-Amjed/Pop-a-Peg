@@ -11,6 +11,7 @@ local Idle = require(script.Parent.ItemMotion)
 local Native = require(script.Parent.ItemModels)
 local Lighting = require(script.Parent.PreviewLighting)
 local Playback = require(script.Parent.GameModelPlayback)
+local Loader = require(script.Parent.GameModelLoader)
 local GameItemModels = {}
 
 local aliases = {
@@ -21,59 +22,61 @@ local aliases = {
     upgrade = "event_upgrade",
     overtime = "event_overtime",
 }
-local metadata, ids, loads, envelopes = {}, {}, {}, {}
+local metadata, ids, envelopes = {}, {}, {}
 for _, entry in Catalog do
     metadata[entry.id] = entry
     table.insert(ids, entry.id)
 end
 GameItemModels.Ids = table.freeze(ids)
 local activeMounts = setmetatable({}, { __mode = "k" })
-local loadQueue, loading = {}, 0
-local pumpLoads
+local loader = Loader.new({
+    limit = 4,
+    timeout = 15,
+    defer = task.defer,
+    delay = task.delay,
+    cancel = function(thread)
+        if coroutine.status(thread) ~= "dead" then
+            pcall(task.cancel, thread)
+        end
+    end,
+    load = function(id, fail)
+        local template = assert(assets:FindFirstChild(id), "Missing catalog template: " .. id)
+        local fetch, expected = {}, {}
+        for _, part in template:GetDescendants() do
+            if part:IsA("MeshPart") then
+                for _, assetId in { part.MeshId, part.TextureID } do
+                    if assetId ~= "" and not expected[assetId] then
+                        expected[assetId] = true
+                        table.insert(fetch, assetId)
+                    end
+                end
+            end
+        end
+        assert(#fetch > 0, "Catalog template has no remote meshes: " .. id)
+        content:PreloadAsync(fetch, function(assetId, status)
+            if status ~= Enum.AssetFetchStatus.Success then
+                fail(tostring(assetId) .. ": " .. tostring(status))
+            end
+        end)
+        -- A returned preload without callbacks is not by itself loading proof.
+        -- Verify every requested identity, including already warm cache entries.
+        for _, assetId in fetch do
+            if content:GetAssetFetchStatus(assetId) ~= Enum.AssetFetchStatus.Success then
+                fail(assetId .. ": fetch status is not Success")
+            end
+        end
+    end,
+    onFailure = function(id)
+        warn("[Blender models] " .. id .. " could not load; using frozen native fallback")
+    end,
+})
 
 local function canonicalId(id)
     return aliases[id] or id
 end
 
 local function requestLoad(id)
-    local current = loads[id]
-    if current then
-        return current
-    end
-    current = { state = "Loading", failures = {} }
-    loads[id] = current
-    table.insert(loadQueue, id)
-    pumpLoads()
-    return current
-end
-
-pumpLoads = function()
-    -- Limit simultaneous remote preload jobs; all instances of an ID share one.
-    while loading < 4 and #loadQueue > 0 do
-        local id = table.remove(loadQueue, 1)
-        local result = loads[id]
-        loading += 1
-        task.spawn(function()
-            local template = assets:FindFirstChild(id)
-            local ok, failure = pcall(function()
-                assert(template, "Missing catalog template: " .. id)
-                content:PreloadAsync({ template }, function(assetId, status)
-                    if status ~= Enum.AssetFetchStatus.Success then
-                        table.insert(result.failures, tostring(assetId) .. ": " .. tostring(status))
-                    end
-                end)
-            end)
-            if not ok then
-                table.insert(result.failures, tostring(failure))
-            end
-            result.state = if ok and #result.failures == 0 then "Ready" else "Failed"
-            if result.state == "Failed" then
-                warn("[Blender models] " .. id .. " could not load; using frozen native fallback")
-            end
-            loading -= 1
-            pumpLoads()
-        end)
-    end
+    return loader:request(id)
 end
 
 function GameItemModels.preload(requested)
@@ -85,7 +88,7 @@ function GameItemModels.preload(requested)
 end
 
 function GameItemModels.loadStatus(id)
-    local result = loads[canonicalId(id)]
+    local result = loader:get(canonicalId(id))
     return if result then result.state else "NotRequested"
 end
 
@@ -151,7 +154,7 @@ function GameItemModels.mount(viewport, id, level, options)
     end
     local canonical = canonicalId(id)
     local model = GameItemModels.create(id, level)
-    local load = loads[canonical]
+    local load = loader:get(canonical)
     local container = Instance.new("Model")
     container.Name, container.Parent = "ItemDisplay", viewport
     model.Parent = container
