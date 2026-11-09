@@ -267,7 +267,7 @@ function Panel:renderWorkshop()
                 card,
                 "Tier",
                 string.upper(entry.tier) .. (entry.owned and " · OWNED" or " · LOCKED"),
-                { x = 5, y = 3, w = area.w - 10, h = badgeH },
+                { x = 5, y = area.h - badgeH - 3, w = area.w - 10, h = badgeH },
                 entry.owned and C.positive or C.board,
                 14
             ).TextXAlignment =
@@ -275,20 +275,20 @@ function Panel:renderWorkshop()
             h:_model(
                 card,
                 entry.id,
-                { x = 6, y = badgeH + 5, w = area.w - 12, h = math.max(16, area.h - badgeH - 40) },
+                { x = 6, y = 35, w = area.w - 12, h = math.max(16, area.h - badgeH - 40) },
                 entry.owned
             )
             local name = label(
                 card,
                 "Name",
                 Catalog.Items[entry.id].name,
-                { x = 4, y = area.h - 31, w = area.w - 8, h = 28 },
+                { x = 4, y = 4, w = area.w - 8, h = 28 },
                 C.ink,
                 22
             )
             local nameBand = Theme.frame(card, "NameBand", C.aqua, 33)
             Theme.corner(nameBand, 9)
-            Theme.rect(nameBand, 4, area.h - 31, area.w - 8, 28)
+            Theme.rect(nameBand, 4, 4, area.w - 8, 28)
             name.TextXAlignment = Enum.TextXAlignment.Center
             name.Font = Enum.Font.FredokaOne
         end

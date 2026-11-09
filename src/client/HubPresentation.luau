@@ -12,6 +12,7 @@ local ItemModels = require(script.Parent.GameItemModels)
 local Layout = require(script.Parent.HubLayout)
 local HubAmbience = require(script.Parent.HubAmbience)
 local HubProgressionPanel = require(script.Parent.HubProgressionPanel)
+local ItemDetailCard = require(script.Parent.ItemDetailCard)
 local C = Theme.colors
 local Hub = {}
 Hub.__index = Hub
@@ -59,6 +60,7 @@ function Hub:_clearBody()
         entry.handle:destroy()
     end
     self.models = {}
+    self.recipeDetail = nil
     self.body:ClearAllChildren()
     self.rosterRows = nil
 end
@@ -89,6 +91,40 @@ function Hub:_model(parent, id, area, discovered)
     end
     table.insert(self.models, { viewport = viewport, handle = handle })
     return viewport, handle
+end
+
+-- Shared detail cards own their ViewportFrames; the hub owns each mounted handle.
+function Hub:_mount(viewport, id, level)
+    for index, entry in self.models do
+        if entry.viewport == viewport then
+            if entry.id == id and entry.level == level then
+                return entry.handle
+            end
+            entry.handle:destroy()
+            table.remove(self.models, index)
+            break
+        end
+    end
+    viewport:SetAttribute("NoOutline", true)
+    viewport:SetAttribute("ShopPreview", true)
+    local handle = ItemModels.mount(viewport, id, level, {
+        outline = false,
+        idlePreview = true,
+        reducedMotion = GuiService.ReducedMotionEnabled,
+    })
+    local definition = Catalog.Items[id]
+    if definition and definition.evolved and not self:_discovered(id) then
+        for _, part in handle.model:GetDescendants() do
+            if part:IsA("BasePart") then
+                part.Color = Color3.fromRGB(48, 94, 116)
+                part.Material = Enum.Material.SmoothPlastic
+                part.Transparency = 0
+                part.Reflectance = 0
+            end
+        end
+    end
+    table.insert(self.models, { viewport = viewport, handle = handle, id = id, level = level })
+    return handle
 end
 
 function Hub:_discovered(id)
@@ -167,77 +203,18 @@ function Hub:_recipe()
         return
     end
     local w, h = self.geometry.body.w, self.geometry.body.h
-    local compact = self.geometry.compact
     local owned = self:_discovered(recipe.id)
-    self.title.Text = string.upper(Catalog.Items[recipe.id].name)
+    self.title.Text = "EVOLUTION RECIPE"
     self.subtitle.Text = owned and "DISCOVERED · This display stays with you between runs"
         or "UNDISCOVERED · Evolve these two items during a run"
-    local showModels = not compact or self.recipePage ~= 2
-    local recipeH = if compact then h else math.min(280, h * 0.6)
-    local tileW = (w - 60) / 3
-    local ids = { recipe.ingredients[1], recipe.ingredients[2], recipe.id }
-    if showModels then
-        for index, id in ids do
-            local x = (index - 1) * (tileW + 30)
-            local tile = Theme.plate(self.body, "RecipePart" .. index, C.muted, 30)
-            Theme.rect(tile, x, 0, tileW, recipeH)
-            local status = text(
-                tile,
-                "Status",
-                index == 3 and "EVOLVED" or "LEVEL 5",
-                16,
-                index == 3 and C.positive or C.board,
-                33
-            )
-            status.TextXAlignment = Enum.TextXAlignment.Center
-            Theme.rect(status, 4, 4, tileW - 8, 18)
-            self:_model(
-                tile,
-                id,
-                { x = 6, y = 23, w = tileW - 12, h = math.max(22, recipeH - 60) },
-                index < 3 or owned
-            )
-            band(tile, "NameBand", 4, recipeH - 36, tileW - 8, 31, C.aqua, 32)
-            local name = heading(tile, "Name", Catalog.Items[id].name, 20, C.ink, 33)
-            name.Font = Enum.Font.FredokaOne
-            name.TextWrapped = true
-            name.TextXAlignment = Enum.TextXAlignment.Center
-            fitText(name, 20, 11)
-            Theme.rect(name, 5, recipeH - 36, tileW - 10, 31)
-            if index < 3 then
-                local symbol =
-                    text(self.body, "Operator" .. index, index == 1 and "+" or "=", 32, C.ink, 33)
-                symbol.TextXAlignment = Enum.TextXAlignment.Center
-                Theme.rect(symbol, x + tileW, recipeH * 0.42, 30, 40)
-            end
-        end
-    end
-    if not compact or not showModels then
-        local details = Catalog.detail(recipe.id, Catalog.MaxLevel)
-        local effects = Theme.plate(self.body, "Abilities", C.paper, 30)
-        local effectsY = compact and 0 or recipeH + 12
-        Theme.rect(effects, 0, effectsY, w, h - effectsY)
-        local availableH = h - effectsY - 16
-        local rowH = math.min(28, availableH / math.max(1, #details.effects))
-        for index, effect in details.effects do
-            local line = text(
-                effects,
-                "Effect" .. index,
-                (effect.tone == "trigger" and "" or "• ") .. effect.text,
-                19,
-                C[effect.tone] or C.ink,
-                33
-            )
-            line.Font = effect.tone == "trigger" and Enum.Font.SourceSansBold
-                or Enum.Font.SourceSansSemibold
-            fitText(line, 19, 11)
-            Theme.rect(line, 12, 8 + (index - 1) * rowH, w - 24, rowH)
-        end
-    end
-    self.previous.Visible, self.nextPage.Visible, self.back.Visible = false, compact, true
-    self.nextPage.Text = showModels and "STATS ›" or "MODELS ›"
-    Theme.setEnabled(self.nextPage, true, C.muted)
-    self.footer.Text = compact and (showModels and "L5 + L5" or "MAX LEVEL")
+    self.recipeDetail = ItemDetailCard.new(self.body, self, 30)
+    self.recipeDetail:update(recipe.id, Catalog.MaxLevel, { x = 0, y = 0, w = w, h = h }, {
+        recipes = { recipe },
+        recipeMode = "reference",
+        kindText = owned and "DISCOVERED · MAX POWER" or "UNDISCOVERED · MAX POWER",
+    })
+    self.previous.Visible, self.nextPage.Visible, self.back.Visible = false, false, true
+    self.footer.Text = self.geometry.compact and "L5 + L5 → EVOLUTION"
         or "Collection is permanent · Equipment power resets each run"
 end
 
@@ -501,7 +478,7 @@ function Hub:_page(delta)
     elseif self.openPanel == "records" then
         self.recordsPage = self.recordsPage == 2 and 1 or 2
     elseif self.selected then
-        self.recipePage = self.recipePage == 2 and 1 or 2
+        return
     else
         self.page += delta
     end
