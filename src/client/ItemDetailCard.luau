@@ -8,8 +8,9 @@ local C = Theme.colors
 local Card = {}
 Card.__index = Card
 
-local function place(object, area)
-    Theme.rect(object, area.x, area.y, area.w, area.h)
+local function place(object, area, inset)
+    inset = inset or 0
+    Theme.rect(object, area.x + inset, area.y + inset, area.w, area.h)
 end
 
 function Card.new(parent, host, z, options)
@@ -88,8 +89,9 @@ function Card:update(id, level, area, options)
     end
     local recipes = options.recipes or Catalog.evolutionsFor(id)
     local layout = Layout.compute(width, area.h, heights, #recipes)
-    place(self.modelBox, layout.model)
-    place(self.nameBox, layout.name)
+    -- Keep compartment outlines inside the clipped scrolling viewport.
+    place(self.modelBox, layout.model, 2)
+    place(self.nameBox, layout.name, 2)
     self.name.Text = detail.name
     self.kind.Text = options.kindText
         or (
@@ -112,7 +114,7 @@ function Card:update(id, level, area, options)
             self.rows[index] = row
         end
         row.box.Visible = true
-        place(row.box, layout.effects[index])
+        place(row.box, layout.effects[index], 2)
         row.text.Text, row.text.TextColor3, row.text.TextSize =
             line.text, C[line.tone] or C.ink, font
         row.text.Position, row.text.Size = UDim2.fromOffset(9, 6), UDim2.new(1, -18, 1, -12)
@@ -121,7 +123,7 @@ function Card:update(id, level, area, options)
         self.rows[index].box.Visible = false
     end
     self.recipeBox.Visible = #recipes > 0
-    place(self.recipeBox, layout.recipes)
+    place(self.recipeBox, layout.recipes, 2)
     self.evolutions:update(
         id,
         { x = 6, y = 6, w = layout.recipes.w - 12, h = math.max(0, layout.recipes.h - 12) },
@@ -134,8 +136,10 @@ function Card:update(id, level, area, options)
         self.frame.CanvasPosition = Vector2.zero
         self.key = key
     end
-    self.frame.CanvasSize = UDim2.fromOffset(0, layout.contentHeight + 2)
-    self.frame.ScrollingEnabled = layout.contentHeight > area.h
+    -- Include the 2px inset plus the last compartment's 4px depth shadow.
+    local canvasHeight = layout.contentHeight + 6
+    self.frame.CanvasSize = UDim2.fromOffset(0, canvasHeight)
+    self.frame.ScrollingEnabled = canvasHeight > area.h
     self.frame.ScrollBarThickness = self.frame.ScrollingEnabled and 4 or 0
     self.layout, self.detail = layout, detail
 end
