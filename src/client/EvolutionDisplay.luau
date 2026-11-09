@@ -68,7 +68,7 @@ function Display:_row(index)
     return row
 end
 
-function Display:update(id, area, onWhite, recipeOverride, recipeMode)
+function Display:update(id, area, _onWhite, recipeOverride, recipeMode)
     local recipes = recipeOverride or Catalog.evolutionsFor(id)
     local count = #recipes
     place(self.frame, area)
@@ -76,7 +76,7 @@ function Display:update(id, area, onWhite, recipeOverride, recipeMode)
     local layout = Layout.equations(area.w, area.h, count, self.options.showTitle ~= false)
     place(self.title, layout.title)
     self.title.Visible = self.options.showTitle ~= false
-    self.title.TextColor3 = onWhite and C.ink or C.paper
+    self.title.TextColor3 = C.ink
     local state = self.host.snapshot or {}
     for index = #self.rows + 1, count do
         self:_row(index)
@@ -110,8 +110,7 @@ function Display:update(id, area, onWhite, recipeOverride, recipeMode)
                     )
                 row.statuses[column].Text = text
                 row.statuses[column].TextSize = geometry.font
-                row.statuses[column].TextColor3 = ready and (onWhite and C.positive or C.gold)
-                    or (onWhite and C.ink or C.paper)
+                row.statuses[column].TextColor3 = ready and C.positive or C.ink
                 place(box, geometry.boxes[column])
                 place(row.statuses[column], geometry.statuses[column])
                 Theme.rect(
@@ -122,10 +121,10 @@ function Display:update(id, area, onWhite, recipeOverride, recipeMode)
                     geometry.boxes[column].h - 2
                 )
                 local border = box:FindFirstChildWhichIsA("UIStroke")
-                border.Color = column == 3 and C.gold or (ready and C.mint or C.edge)
+                border.Color = C.ink
                 if column < 3 then
                     place(row.symbols[column], geometry.symbols[column])
-                    row.symbols[column].TextColor3 = onWhite and C.ink or C.paper
+                    row.symbols[column].TextColor3 = C.ink
                     row.symbols[column].TextSize = math.max(13, geometry.font + 8)
                 end
                 self.host:_mount(row.viewports[column], row.ids[column], Catalog.MaxLevel)

@@ -76,30 +76,44 @@ end
 function Theme.ribbon(parent, name, value, size, z)
     local object = Theme.heading(parent, name, value, size, Theme.colors.ink, z)
     object.BackgroundTransparency = 0
-    object.BackgroundColor3 = Theme.colors.aqua
     object.TextXAlignment = Enum.TextXAlignment.Center
-    Theme.corner(object, 10)
-    return object
+    return Theme.decorate(object, nil, z, 10)
 end
 
-function Theme.decorate(object, color, z)
+-- The shop's Hold button is the shared surface reference. Keep its pale base,
+-- downward gradient, navy outline and offset depth on nested compartments too.
+-- Accent colors belong to content/state indicators rather than recoloring skins.
+function Theme.setSurface(object, enabled)
+    object.BackgroundColor3 = enabled == false and Color3.fromRGB(191, 210, 217) or Theme.colors.ice
+end
+
+function Theme.decorate(object, _color, z, radius)
     z = z or object.ZIndex
-    object.BackgroundColor3 = color or Theme.colors.panel
-    Theme.corner(object, 16)
-    Theme.stroke(object, Theme.colors.ink, 2)
-    local shadow = Theme.frame(object, "Depth", Theme.colors.ink, math.max(1, z - 1))
+    radius = radius or 16
+    Theme.setSurface(object, true)
+    object:SetAttribute("PearlSurface", true)
+    local corner = object:FindFirstChildWhichIsA("UICorner") or Theme.corner(object, radius)
+    corner.CornerRadius = UDim.new(0, radius)
+    local outline = object:FindFirstChildWhichIsA("UIStroke")
+        or Theme.stroke(object, Theme.colors.ink, 2)
+    outline.Color, outline.Thickness = Theme.colors.ink, 2
+    local shadow = object:FindFirstChild("Depth")
+        or Theme.frame(object, "Depth", Theme.colors.ink, math.max(1, z - 1))
+    shadow.BackgroundColor3 = Theme.colors.ink
+    shadow.ZIndex = math.max(1, z - 1)
     shadow.Position = UDim2.fromOffset(0, 4)
     shadow.BackgroundTransparency = 0.55
     shadow.Size = UDim2.fromScale(1, 1)
-    Theme.corner(shadow, 16)
-    Theme.make("UIGradient", {
-        Color = ColorSequence.new({
-            ColorSequenceKeypoint.new(0, Color3.new(1, 1, 1)),
-            ColorSequenceKeypoint.new(0.45, Color3.new(1, 1, 1)),
-            ColorSequenceKeypoint.new(1, Color3.fromRGB(204, 227, 239)),
-        }),
-        Rotation = 90,
-    }, object)
+    local shadowCorner = shadow:FindFirstChildWhichIsA("UICorner") or Theme.corner(shadow, radius)
+    shadowCorner.CornerRadius = UDim.new(0, radius)
+    local gradient = object:FindFirstChildWhichIsA("UIGradient")
+        or Theme.make("UIGradient", {}, object)
+    gradient.Color = ColorSequence.new({
+        ColorSequenceKeypoint.new(0, Color3.new(1, 1, 1)),
+        ColorSequenceKeypoint.new(0.45, Color3.new(1, 1, 1)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(204, 227, 239)),
+    })
+    gradient.Rotation = 90
     return object
 end
 
@@ -107,16 +121,9 @@ function Theme.plate(parent, name, color, z)
     return Theme.decorate(Theme.frame(parent, name, color, z), color, z)
 end
 
--- Recessed compartments share the rounded silhouette; no floating highlight strips.
+-- Compartments use the same skin at a smaller corner radius.
 function Theme.inset(parent, name, color, z, radius)
-    local object = Theme.frame(parent, name, color or Theme.colors.ice, z)
-    Theme.corner(object, radius or 10)
-    Theme.stroke(object, Theme.colors.edge, 1)
-    Theme.make("UIGradient", {
-        Color = ColorSequence.new(Color3.fromRGB(228, 241, 246), Color3.new(1, 1, 1)),
-        Rotation = 90,
-    }, object)
-    return object
+    return Theme.decorate(Theme.frame(parent, name, color, z), color, z, radius or 10)
 end
 
 function Theme.tile(parent, name, color, z)
@@ -154,40 +161,26 @@ function Theme.button(parent, name, text, color, callback, z)
     return object
 end
 
-function Theme.setEnabled(object, enabled, color)
+function Theme.setEnabled(object, enabled, _color)
     object.Active = enabled
     object.Selectable = enabled
     object.AutoButtonColor = enabled
-    object.BackgroundColor3 = enabled and (color or Theme.colors.mint)
-        or Color3.fromRGB(191, 210, 217)
+    Theme.setSurface(object, enabled)
     object.TextTransparency = enabled and 0 or 0.2
-    local background = object.BackgroundColor3
-    local dark = background == Theme.colors.ink
-        or background == Theme.colors.board
-        or background == Theme.colors.panel
-        or background == Theme.colors.mint
-    object.TextColor3 = enabled and dark and Theme.colors.paper or Theme.colors.ink
-    object.TextStrokeTransparency = enabled and dark and 0.45 or 1
+    object.TextColor3 = Theme.colors.ink
+    object.TextStrokeTransparency = 1
 end
 
-function Theme.select(object, selected, color)
-    object.BackgroundColor3 = selected and Theme.colors.ice or color
+function Theme.select(object, selected, _color)
+    Theme.setSurface(object, not object:IsA("GuiButton") or object.Active)
     local border = object:FindFirstChildWhichIsA("UIStroke")
     if border then
         border.Color = selected and Theme.colors.aqua or Theme.colors.ink
         border.Thickness = selected and 3 or 2
     end
     if object:IsA("TextButton") then
-        local background = object.BackgroundColor3
-        local dark = not selected
-            and (
-                background == Theme.colors.ink
-                or background == Theme.colors.board
-                or background == Theme.colors.panel
-                or background == Theme.colors.mint
-            )
-        object.TextColor3 = dark and Theme.colors.paper or Theme.colors.ink
-        object.TextStrokeTransparency = dark and 0.45 or 1
+        object.TextColor3 = Theme.colors.ink
+        object.TextStrokeTransparency = 1
     end
 end
 

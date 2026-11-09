@@ -13,7 +13,6 @@ local C = {
     ice = Theme.colors.ice,
     green = Theme.colors.mint,
     gold = Theme.colors.gold,
-    gray = Color3.fromRGB(191, 210, 217),
 }
 local function place(object, r)
     Theme.rect(object, r.x, r.y, r.w, r.h)
@@ -57,14 +56,14 @@ local function button(parent, name, value, color, callback, z)
     end)
     return result
 end
-local function enabled(control, active, caption, color)
+local function enabled(control, active, caption, _color)
     control.Active, control.Selectable = active, active
-    control.Skin.BackgroundColor3 = active and color or C.gray
+    Theme.setSurface(control.Skin, active)
     control.Caption.Text = caption
     control.Caption.TextTransparency = active and 0 or 0.25
-    control.Caption.TextColor3 = active and color == C.green and C.paper or C.ink
+    control.Caption.TextColor3 = C.ink
     control.Caption.TextStrokeColor3 = C.ink
-    control.Caption.TextStrokeTransparency = active and color == C.green and 0.4 or 1
+    control.Caption.TextStrokeTransparency = 1
 end
 local function viewport(parent, name, z)
     local result = Theme.make("ViewportFrame", {
@@ -100,8 +99,8 @@ function Shop.build(host, state, width, height, top)
     local badge = surface(modal, "ShopBanner", C.aqua, 24, 20)
     Theme.rect(badge, (width - titleW) / 2, header.y, titleW, header.h)
     self.title = text(badge, "Title", "SHOP", layout.compact and 30 or 52, 26)
-    self.title.TextColor3, self.title.TextStrokeColor3 = C.paper, C.ink
-    self.title.TextStrokeTransparency = 0.25
+    self.title.TextColor3, self.title.TextStrokeColor3 = C.ink, C.ink
+    self.title.TextStrokeTransparency = 1
     self.title.Size = UDim2.fromScale(1, 1)
     local walletW = math.min(245, header.w * 0.27)
     local wallet = surface(modal, "Wallet", C.ice, 24, 18)
@@ -337,9 +336,7 @@ function Shop.refresh(host, state)
         local data = offer and Catalog.Items[offer.id]
         if data then
             local selected = (host.selectedOffer or (self.preview and 1)) == index
-            cell.card.BackgroundColor3 = selected and C.ice or C.paper
-            cell.card:FindFirstChildOfClass("UIStroke").Color = selected and C.aqua or C.ink
-            cell.card:FindFirstChildOfClass("UIStroke").Thickness = selected and 4 or 2
+            Theme.select(cell.card, selected)
             local level = host:_offerLevel(offer)
             host:_mount(cell.viewport, offer.id, level)
             cell.name.Text = data.name
@@ -407,6 +404,8 @@ function Shop.refresh(host, state)
                         or (offer.frozen and "Held" or "Hold"),
                     offer.frozen and C.gold or C.ice
                 )
+                Theme.select(cell.hold.Skin, offer.frozen == true and not offer.sold)
+                Theme.setSurface(cell.hold.Skin, cell.hold.Active)
             end
         end
     end
