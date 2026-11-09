@@ -54,6 +54,7 @@ local function beginDrain(speed)
     end, "scenario refresh")
     readyModels(host)
     local cues = {}
+    report.currentCues = cues
     local pulseItem, pulsePerk = host.pulseItem, host.pulsePerk
     host.pulseItem = function(self, slot, strength, params)
         table.insert(cues, {
