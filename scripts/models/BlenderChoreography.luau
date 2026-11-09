@@ -110,7 +110,16 @@ function Blender.sample(id, group, t, strength, x, y, z)
         end
         local force = math.min(strength, 1.5)
         local accent = C.pulse(t, 0.17, 0.38, 0.90) * force
-        if id == "survey_lens" and group == "Lens" then
+        if id == "quota_bonus" and group == "Stamp" then
+            -- Contact is geometric: reducing the expressive strength must not
+            -- leave the die hovering above the tray while its impact fires.
+            -- The source pad bottom is Y=.89 and printed tray surface Y=.457.
+            -- Hold that contact from .25 to .29; body recoil still uses strength.
+            local strike = C.phase(t, 0.18, 0.25) - C.phase(t, 0.29, 0.48)
+            value.y = 0.16 * C.pulse(t, 0, 0.13, 0.23)
+                - 0.433 * strike
+                + 0.07 * C.pulse(t, 0.48, 0.62, 0.86)
+        elseif id == "survey_lens" and group == "Lens" then
             value.scale *= 1 + accent * 0.06 -- iris visibly focuses
         elseif id == "split_prism" and group == "Prism" then
             value.glow += accent * 0.5

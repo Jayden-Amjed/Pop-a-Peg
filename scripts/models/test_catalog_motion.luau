@@ -251,6 +251,30 @@ for strength = 1, 2 do
         end
     end
 end
+-- Quota's visible impact belongs on its paper tray. Even reduced positive
+-- strength completes the mechanical stroke; strength shapes body recoil instead.
+local quotaPivot = V.new(0.35, 1.48, 0)
+local ink = part("Stamp", V.new(0.35, 0.94, 0), quotaPivot, nil, V.new(0.77, 0.10, 0.69))
+local quotaHead = part("Stamp", V.new(0.35, 1.10, 0), quotaPivot, nil, V.new(0.74, 0.26, 0.66))
+local paper = part("Fixed", V.new(0.23, 0.451, 0), V.new(), nil, V.new(0.65, 0.012, 0.035))
+local quota = controller("quota_bonus", { ink, quotaHead, paper })
+for _, strength in { 0.1, 0.25, 1, 2 } do
+    for step = 0, 100 do
+        local phase = step / 100
+        quota:apply(phase, strength, CF.new())
+        local gap = ink.CFrame.Position.Y
+            - ink.Size.Y / 2
+            - (paper.CFrame.Position.Y + paper.Size.Y / 2)
+        assert(gap >= -0.000001, "Quota die penetrated its tray")
+        near(quotaHead.CFrame.Position.Y - ink.CFrame.Position.Y, 0.16, "Quota stamp split")
+        if phase >= 0.25 and phase <= 0.29 then
+            near(gap, 0, "Quota effect beat does not coincide with tray contact")
+        end
+    end
+end
+quota:apply(0.27, 0, CF.new())
+near(ink.CFrame.Position.Y, 0.94, "Zero-strength quota did not stay at rest")
+
 -- Separate materials in the removed cap must travel as one rigid object.
 local capPivot = V.new(0, 1.765, 0)
 local capPearl = part("BurstCap", V.new(0, 1.95, 0), capPivot)
