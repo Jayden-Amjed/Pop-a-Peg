@@ -88,6 +88,25 @@ local function stateOutline(host, object, color)
             end
         end
     end
+    if host.progression and color == C.aqua then
+        local panel = host.progression
+        if host.openPanel == "chests" and panel.mode == "chests" then
+            if object == host.body:FindFirstChild("Tier_" .. panel.tier) then
+                return true
+            end
+        elseif host.openPanel == "leaderboards" then
+            if object == host.body:FindFirstChild("Board_" .. panel.category) then
+                return true
+            end
+        end
+    end
+    for index, row in host.rosterRows or {} do
+        if object == row.card then
+            return color == C.aqua
+                and host.openPanel == "crew"
+                and index == host.snapshot.hub.station
+        end
+    end
     return false
 end
 
