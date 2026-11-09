@@ -1,6 +1,7 @@
 --!nonstrict
 -- Opt-in unpublished UI-PREVIEW audit. Calls presentation APIs, never input or remotes.
 local Http = game:GetService("HttpService")
+local Catalog = require(game:GetService("ReplicatedStorage").Shared.Catalog)
 local Theme = require(game:GetService("Players").LocalPlayer.PlayerScripts.Client.UiTheme)
 local C = Theme.colors
 local started, controller, reference = os.clock(), nil, nil
@@ -12,6 +13,8 @@ local report = {
     blockedAnchors = 0,
     rackCases = {},
     explicitDetails = 0,
+    semanticColors = 0,
+    tones = { positive = 0, negative = 0, trigger = 0 },
 }
 script:SetAttribute("Result", Http:JSONEncode({ running = true }))
 
@@ -69,13 +72,13 @@ local function stateOutline(host, object, color)
     end
     for index, cell in host.itemSlots or {} do
         if object == cell.button then
-            return color == C.gold and (cell.flash or 0) > 0
+            return color == C.gold and ((cell.flash or 0) > 0 or host.selectedSlot == index)
                 or color == C.aqua and host.selectedSlot == index
         end
     end
     for id, cell in host.perkCells or {} do
         if object == cell.button then
-            return color == C.gold and (cell.flash or 0) > 0
+            return color == C.gold and ((cell.flash or 0) > 0 or host.selectedPerk == id)
                 or color == C.aqua and host.selectedPerk == id
         end
     end
@@ -125,10 +128,11 @@ local function surface(host, object, targeted)
     )
     local disabled = object:IsA("GuiButton") and not object.Active
         or object.Parent:IsA("GuiButton") and not object.Parent.Active
+    local base = object:GetAttribute("SurfaceColor")
+    assert(typeof(base) == "Color3", "Surface lost its intended color: " .. object:GetFullName())
     assert(
-        object.BackgroundColor3 == reference.base
-            or disabled and object.BackgroundColor3 == Color3.fromRGB(191, 210, 217),
-        "Surface lost Hold's pale base: " .. object:GetFullName()
+        object.BackgroundColor3 == (disabled and Color3.fromRGB(191, 210, 217) or base),
+        "Surface lost its semantic or disabled color: " .. object:GetFullName()
     )
     matchingGradient(assert(object:FindFirstChildWhichIsA("UIGradient")))
     local outline = assert(object:FindFirstChildWhichIsA("UIStroke"))
@@ -161,6 +165,15 @@ local function surface(host, object, targeted)
     end
 end
 
+local function semanticSurface(host, object, expected)
+    surface(host, object, true)
+    assert(
+        object:GetAttribute("SurfaceColor") == expected,
+        "Wrong semantic surface color: " .. object:GetFullName()
+    )
+    report.semanticColors += 1
+end
+
 local function scan(host)
     for _, object in host.root:GetDescendants() do
         assert(
@@ -173,18 +186,50 @@ local function scan(host)
     end
 end
 
-local function detailSurfaces(host, card)
+local function detailSurfaces(host, card, referenceRecipe)
     assert(card, "Shared inspection card missing")
     for _, object in { card.modelBox, card.nameBox, card.recipeBox } do
         surface(host, object, true)
     end
-    for _, row in card.rows do
+    semanticSurface(host, card.nameBox, C.aqua)
+    local lines = { { text = card.detail.trigger, tone = "trigger" } }
+    for _, line in card.detail.effects do
+        table.insert(lines, line)
+    end
+    assert(#card.rows >= #lines, "Inspection omitted semantic text rows")
+    for index, row in card.rows do
         surface(host, row.box, true)
+        local line = lines[index]
+        if line then
+            assert(
+                row.box.Visible
+                    and row.text.Text == line.text
+                    and row.text.TextColor3 == (C[line.tone] or C.ink),
+                "Inspection lost trigger/benefit/cost text color"
+            )
+            if report.tones[line.tone] then
+                report.tones[line.tone] += 1
+            end
+        end
     end
     local equations = 0
     for _, row in card.evolutions.rows do
-        for _, box in row.boxes do
+        local state = host.snapshot or {}
+        local status = row.ids[3]
+            and Catalog.evolutionState(state.inventory or {}, state.slots or 0, row.ids[3])
+        for column, box in row.boxes do
             surface(host, box, true)
+            if status then
+                local ready = referenceRecipe or (status.levels[column] or 0) >= Catalog.MaxLevel
+                local color = column == 3 and C.gold:Lerp(C.paper, 0.7)
+                    or ready and C.mint:Lerp(C.paper, 0.78)
+                    or C.paper
+                semanticSurface(host, box, color)
+                assert(
+                    box:FindFirstChildWhichIsA("UIStroke").Color == C.ink,
+                    "Evolution state replaced the navy outline"
+                )
+            end
             equations += 1
         end
     end
@@ -295,6 +340,59 @@ local function explicitDetails(view, full)
     view:_layout()
 end
 
+local function gameplayColors(view)
+    semanticSurface(view, view.primary, C.mint)
+    semanticSurface(view, view.jumbleButton, C.aqua)
+    for _, title in { view.statsTitle, view.scoreCaption, view.restockCaption } do
+        semanticSurface(view, title, C.aqua)
+    end
+    -- Render an active flight without sending actions or advancing the run.
+    local original = view.snapshot
+    local flight = table.clone(original)
+    flight.phase, flight.ball = "flight", { active = true }
+    view.snapshot = flight
+    view:_renderControls()
+    assert(view.primary.Text == "END SHOT" and view.primary.Active, "Flight action is unavailable")
+    semanticSurface(view, view.primary, C.gold)
+    view.snapshot = original
+    view:_renderControls()
+    semanticSurface(view, view.primary, C.mint)
+    view.inspector:show("gain_dial", 1, view.itemSlots[1].button, true)
+    detailSurfaces(view, view.inspector.card)
+    view.inspector:hide()
+end
+
+local function shopColors(view)
+    local shop = view.shop
+    semanticSurface(view, shop.title.Parent, C.aqua)
+    semanticSurface(view, shop.continue.Skin, C.mint)
+    assert(shop.continue.Active, "Shop continuation must retain its active color")
+    for index, cell in shop.cards do
+        semanticSurface(view, cell.nameBox, C.aqua)
+        semanticSurface(view, cell.buy.Skin, C.mint)
+        local selected = view.selectedOffer or (shop.preview and 1)
+        semanticSurface(view, cell.card, index == selected and C.ice or C.paper)
+        if cell.hold then
+            semanticSurface(view, cell.hold.Skin, C.ice)
+        end
+    end
+    -- Exercise held and unaffordable rendering with a display-only snapshot.
+    local original = view.snapshot
+    local held = table.clone(original)
+    held.shopOffers = table.clone(original.shopOffers)
+    held.shopOffers[1] = table.clone(original.shopOffers[1])
+    held.shopOffers[1].frozen, held.coins = true, 0
+    view.snapshot = held
+    view:_refreshShop(held)
+    semanticSurface(view, shop.cards[1].hold.Skin, C.gold)
+    assert(shop.cards[1].hold.Active, "Holding an unsold item became disabled")
+    semanticSurface(view, shop.cards[1].buy.Skin, C.mint)
+    assert(not shop.cards[1].buy.Active, "Unaffordable item did not enter disabled state")
+    view.snapshot = original
+    view:_refreshShop(original)
+    semanticSurface(view, shop.cards[1].hold.Skin, C.ice)
+end
+
 local ok, failure = xpcall(function()
     assert(
         game:GetService("RunService"):IsStudio() and game.GameId == 0,
@@ -340,10 +438,15 @@ local ok, failure = xpcall(function()
             if name == "Aim" then
                 local full = rackSizing(host, "Aim")
                 explicitDetails(host, full)
+                gameplayColors(host)
             elseif name == "Shop" then
                 local shop = host.shop
                 surface(host, shop.title.Parent, true)
-                assert(shop.title.TextColor3 == C.ink, "Shop title lacks contrast on Hold surface")
+                assert(
+                    shop.title.TextColor3 == C.paper and shop.title.TextStrokeTransparency < 1,
+                    "Shop title lost its contrasting text/outline"
+                )
+                shopColors(host)
                 for _, cell in shop.cards do
                     for _, object in
                         { cell.card, cell.modelBox, cell.nameBox, cell.priceBox, cell.buy.Skin }
@@ -370,7 +473,7 @@ local ok, failure = xpcall(function()
                 host:_layout()
                 host:_updateModal()
             else
-                surface(host, host.modal.Title, true)
+                semanticSurface(host, host.modal.Title, C.aqua)
                 if name == "Perks" or name == "Event" then
                     local choices = 0
                     for _, card in host.modal.Content:GetChildren() do
@@ -379,6 +482,8 @@ local ok, failure = xpcall(function()
                             for _, key in { "Name", "ModelBox", "EffectBox1", "Choose" } do
                                 surface(host, card:FindFirstChild(key), true)
                             end
+                            semanticSurface(host, card:FindFirstChild("Name"), C.aqua)
+                            semanticSurface(host, card.Choose, C.mint)
                             if name == "Perks" then
                                 surface(host, card.TriggerBox, true)
                             end
@@ -391,9 +496,12 @@ local ok, failure = xpcall(function()
             for _, object in { host.brand, host.wallet, host.dock, host.panel, host.titleBand } do
                 surface(host, object, true)
             end
+            semanticSurface(host, host.play, C.mint)
+            semanticSurface(host, host.wallet, C.gold)
+            semanticSurface(host, host.titleBand, C.aqua)
             if name == "Recipe" then
                 assert(
-                    detailSurfaces(host, host.recipeDetail) >= 3,
+                    detailSurfaces(host, host.recipeDetail, true) >= 3,
                     "Recipe equation styles untested"
                 )
             elseif name == "Collection" or name == "Workshop" then
@@ -401,7 +509,7 @@ local ok, failure = xpcall(function()
                 for _, card in host.body:GetChildren() do
                     if card.Name:match("^Evolution_") or card.Name:match("^Unlock_") then
                         surface(host, card, true)
-                        surface(host, card:FindFirstChild("NameBand"), true)
+                        semanticSurface(host, card:FindFirstChild("NameBand"), C.aqua)
                         cards += 1
                     end
                 end
@@ -412,6 +520,9 @@ local ok, failure = xpcall(function()
         table.insert(report.screens, name)
     end
     assert(#report.screens == 15, "Expected all15 UI screens")
+    for tone, count in report.tones do
+        assert(count > 0, "Missing semantic text coverage: " .. tone)
+    end
 end, debug.traceback)
 report.ok, report.failure = ok, not ok and tostring(failure) or nil
 local restored, restoreFailure = pcall(function()
