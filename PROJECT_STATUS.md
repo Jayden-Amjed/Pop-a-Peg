@@ -1,8 +1,24 @@
 # Current project state
 
-State Version: 15 (accepted RBX-029, advancing from 14 once).
+State Version: 16 (RBX-031 proposal; accepted predecessor remains 15).
 Reviewed: 2026-11-08, America/Los_Angeles
-Objective: Blender gameplay adoption, grounded effects, useful drain growth and readable previews.
+Objective: Original desktop/landscape shop using actual Blender models, ready for user testing.
+
+Active proposal: [RBX-031](tasks/RBX-031-shop-prototype.md), Codex coordinator,
+branch task/RBX-031-shop-prototype, [draft PR32](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/32).
+Main re-fetched at 44762e38b5b4e3ad2f89c789ae6a7a6b6f6d4560; accepted State15 unchanged.
+Shop implementation and Studio-tested source: 67967deb334519bea95fd36df9fbc793bc50b0ab.
+Required checks PASS. Studio audits PASS at1920x1080,844x390 and667x375 presets;
+actual safe areas1919x1022,749x331,666x316. Eight action/layout groups and912 model
+corners pass on each. Real pointer purchase, inspection, rack/sell and continue pass.
+Physical-device and multiplayer testing NOT RUN. Existing203785492 asset warning remains.
+No merge or publication for this task. Source and game rules from accepted RBX-029
+remain the base; its accepted evidence below is retained.
+
+Shop test file: root `build/Pop-a-Peg-SHOP-PROTOTYPE.rbxlx`.
+Studio session3e22698e, no Rojo; simulator reset to default. Press Play for the
+standard shop; toolbar supplies full-rack and evolution scenarios with temporary
+in-memory resources. User testing is the next action; no implementation blocker.
 
 Accepted source: 212c76260a5a6ce44dfd8ba5d10bd3ab77a25c4e.
 Latest completed task: [RBX-029](tasks/RBX-029-blender-game.md), Codex coordinator.
@@ -46,5 +62,5 @@ Checks: required check.ps1 PASS at ce1a647; catalog, eight archive regressions,
 native/mapping/placement and hub-reveal checks PASS. GitHub CI run 42549187354
 PASS for final task head 673a0500a0502dda1c28c5b005c823a0012e88ad.
 [Evidence](docs/evidence/RBX-029/REVIEW.md) and [drain rules](docs/DRAIN_ITEM_AUDIT.md).
-Next action: user playtest the open local build; await feedback. No active blocker.
+Next action: user playtest RBX-031 shop prototype; await feedback. No active blocker.
 Repository administration: main unprotected; temporary default remains starter.

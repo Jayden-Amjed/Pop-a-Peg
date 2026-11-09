@@ -27,6 +27,12 @@ emit `build/dev.rbxlx`. Account 583716264 has temporary all-equipment access unt
 the owner requests ordinary progression again. This is a generated local file,
 not a Roblox experience publication.
 
+Shop prototype (RBX-031): run `scripts/build-shop-prototype.ps1`, open
+`build/Pop-a-Peg-SHOP-PROTOTYPE.rbxlx`, and press Play. Its TEST SHOP toolbar
+offers normal, full-rack and evolution scenarios. All changes stay in the test
+run's memory; ordinary entry scripts and profile saving are disabled in this
+opt-in build. The normal `default.project.json` mapping does not include it.
+
 To review the Blender catalog, open the [78-model animation inspector](docs/CATALOG_GALLERY.md).
 It includes search, camera views, slow motion, silent pose scrubbing, detail zoom,
 per-item sound with mute/volume controls, a temporary-effects toggle, and copyable
@@ -194,15 +200,18 @@ track campaign progress.
 Between shots, use one jumble to change the layout. Shops group four equipment
 offers separately from up to two Supplies, available from round 11, that take
 effect immediately without using an inventory slot. All offers stay visible
-without scrolling. Equipment cards show **EVOLUTIONS** as modeled equations:
+without scrolling. Tap an equipment card to inspect **EVOLUTIONS** as modeled equations:
 ingredient + ingredient = evolved item. Ingredient boxes show **NEED**,
 **L1/5** through **L4/5**, or **READY** against the current rack. Hover, focus, or tap an item
 to inspect its yellow trigger followed by ordered green benefits and red costs;
 levels below 5 show the next upgrade amount, while level 5 shows its current power.
-Recipe models appear beneath the effect list for base equipment. Evolved items,
+Recipe models appear beneath the inspection effect list for base equipment. Evolved items,
 perks, and Supplies have no recipe panel. The shop has no bottom description bar, leaving more room for
-large item models and text. Cards stay mounted while selection and purchase state
-change. Supplies use an **On purchase** trigger and a single **Use** purchase label.
+large item models and text. The pearl/aqua shop keeps Supplies below the four
+equipment cards, with a dedicated inspection sidebar on large desktop screens.
+On small landscape screens, item details open on tap. **Your rack** opens selling,
+reordering and slot controls. Cards stay mounted while selection and purchase
+state change. Supplies use an **On purchase** trigger and a **Use** purchase label.
 Selling, reordering, rerolls, held offers, and extra slots shape the build.
 
 With a full rack, shop openings and rerolls reserve the first two equipment cards

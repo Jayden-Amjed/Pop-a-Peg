@@ -1,0 +1,22 @@
+{
+  "ok": true,
+  "safeArea": {
+    "height": 331,
+    "width": 749
+  },
+  "elapsedSeconds": 1.2366923000008683,
+  "checks": [
+    "Six offers, contained models/text, separate controls, 44px purchase/hold/footer targets",
+    "Blender/Ready and visible model corner containment at three idle samples",
+    "Selection/hold preserve cameras; six-coin Seed Bank upgrade reaches L3 with other cameras stable",
+    "Reserve Pack uses eight coins, restores balls, and consumes no rack slot",
+    "Reroll charges one coin and retains the held offer and price",
+    "Full rack blocks new items and capped items, but permits an owned upgrade",
+    "Free Aurora Aquarium consumes both L5 ingredients and frees their second slot",
+    "Rack drawer contains seven slots and actions; slot purchase and selected-item sale work"
+  ],
+  "fixture": true,
+  "cornerChecks": 912,
+  "restoredStandard": true,
+  "modelChecks": 18
+}

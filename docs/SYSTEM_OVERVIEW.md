@@ -42,7 +42,8 @@ sound cues use public Roblox audio IDs documented in [Asset sources](ASSETS.md).
 | `src/client/ItemChoreography.luau`, `src/client/motion/` | Client modules with matching names | 78 distinct body/mechanism performances and shared smooth timing curves. |
 | `src/client/NativeAssemblies.luau` | `StarterPlayer.StarterPlayerScripts.Client.NativeAssemblies` | Native attachment pivots and groups; no geometry changes. |
 | `src/client/InventorySelection.luau` | `StarterPlayer.StarterPlayerScripts.Client.InventorySelection` | Pure select, deselect, swap-request, and invalid-phase rules. |
-| `src/client/ShopLayout.luau` | `StarterPlayer.StarterPlayerScripts.Client.ShopLayout` | Fixed offer, evolution-equation, and action regions for shops without scrolling. |
+| `src/client/ShopLayout.luau` | `StarterPlayer.StarterPlayerScripts.Client.ShopLayout` | Responsive offer/Supplies/drawer geometry and shared inspector recipe equations. |
+| `src/client/ShopView.luau` | `StarterPlayer.StarterPlayerScripts.Client.ShopView` | Original pearl/aqua shop presentation; existing Catalog and Run rules own decisions. |
 | `src/client/ChoiceLayout.luau` | `StarterPlayer.StarterPlayerScripts.Client.ChoiceLayout` | Two visible perk/event choices with bounded model, effect and button regions. |
 | `src/client/Feedback.luau` | `StarterPlayer.StarterPlayerScripts.Client.Feedback` | Score flights, trigger cues, counter display, and receipt-driven board animation. |
 | `src/client/SoundEffects.luau` | `StarterPlayer.StarterPlayerScripts.Client.SoundEffects` | Bounded sound pools, cue timing, preload, and mute control. |
@@ -322,7 +323,7 @@ it consumes that choice for five coins without granting a perk. Shop and perk
 interfaces display these server-owned rules rather than deriving separate prices
 or upgrade eligibility.
 `EvolutionDisplay` renders up to two square-model equations per base equipment
-card and inspection panel: ingredient + ingredient = result. Ingredient labels are
+inspection panel: ingredient + ingredient = result. Ingredient labels are
 **NEED**, **L1/5** through **L4/5**, or **READY**; result labels use **EVOLVED** or
 compact **EVO**. Readiness refreshes from authoritative inventory snapshots.
 Perks, Supplies and evolved items omit recipe sections. Supplies retain **On purchase**
@@ -368,10 +369,13 @@ summary instead of continuing. There is no ordinary result confirmation modal.
 
 `Presentation` exposes the board, counters, controls, and viewport anchors to
 `Feedback`; `GameItemModels` mounts the reviewed Blender catalog, `CatalogMotion`
-and `BlenderChoreography` animate its groups, and `UiTheme` supplies GUI styling. `ShopLayout` keeps four
-equipment cards and up to two Supplies in distinct groups without a fixed bottom
-inspection panel. Reclaimed space enlarges the main models and labels. The rack
-grows during play and contracts for shops and choices; perk and event choices use
+and `BlenderChoreography` animate its groups, and `UiTheme` supplies GUI styling.
+`ShopView` owns the original pearl/aqua shop skin. `ShopLayout` keeps four equipment
+cards above a horizontal Supplies strip. Large desktops have an inspection sidebar;
+landscape phones open details on tap. A modal rack drawer preserves all seven slots,
+selling and slot purchases, with an input-blocking scrim and safe global Z layers.
+Shop previews fit their idle motion envelope and ignore activation pulses; gameplay
+mounts retain their full activation envelope. The rack grows during play; perk and event choices use
 the same white surfaces and larger text/model treatment. Selection, purchase
 eligibility, and held/sold state update existing cards instead of destroying their
 models. `HoverInspector` opens on pointer entry or UI focus, and pins open on touch;
@@ -384,9 +388,9 @@ the perk identified by an activation event.
 `RunLayout` uses coordinates relative to the core-safe root for portrait and short
 landscape screens. The board projection, counters, launch controls and session
 navigation use that same area. Compact details expose shot statistics and owned
-perks, while a rack toggle preserves selling/reordering during shops without
-permanently shrinking every offer. Compact evolution summaries open the complete
-inspector. Layout contracts and native viewport checks are complementary; neither
+perks, while the shop's rack drawer preserves selling/reordering without permanently
+shrinking every offer. Item inspection opens the complete recipe/effect panel.
+Layout contracts and native viewport checks are complementary; neither
 alone establishes physical touch-device behavior.
 
 The Blender catalog contains 78 distinct original models: 40 equipment, 13 evolved,
