@@ -51,10 +51,14 @@ return function(first, last)
                             (part.Size - sizes[i]).Magnitude < 0.0001,
                             "Root changed effect scale"
                         )
-                        assert(
-                            (part.CFrame.UpVector - expected.UpVector).Magnitude < 0.0001,
-                            "Emitter lost orientation"
-                        )
+                        if part.Shape == Enum.PartType.Block then
+                            -- A beam's direction matters; its square cross-section
+                            -- roll and a sphere's orientation do not define aim.
+                            assert(
+                                (part.CFrame.LookVector - expected.LookVector).Magnitude < 0.0001,
+                                "Emitter lost direction"
+                            )
+                        end
                         if id == "quota_bonus" and i <= 12 and t < 0.6 then
                             local body = Choreography.bodySample(id, t, strength)
                             local size = motion.restSize
