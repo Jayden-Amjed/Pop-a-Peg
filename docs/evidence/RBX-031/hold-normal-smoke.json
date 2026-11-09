@@ -1,0 +1,13 @@
+{
+  "ok": true,
+  "round": "LV 1 • 2 / 15",
+  "phase": "READY TO LAUNCH",
+  "checks": [
+    "normal Play mounts run",
+    "Launch starts flight",
+    "natural shot settles and advances round2",
+    "Arcade/Resume retains round2 and aim"
+  ],
+  "studioId": "3765c183-4057-43e6-89cb-d085ed12b6cb",
+  "source": "8a9b1a723bad80f9ccd23e9517c09bd97aa67e31"
+}

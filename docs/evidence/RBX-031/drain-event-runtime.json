@@ -1,0 +1,54 @@
+{
+  "ok": true,
+  "elapsedSeconds": 16.985842500005674,
+  "checks": [
+    "Natural drain plays all five real model activations before settlement at1x/4x",
+    "Skip clears remaining drain models/FX and applies exact final board",
+    "Growth is visible before physical shuffle, free restock and capped rewards"
+  ],
+  "currentCues": [
+    {
+      "overlapping": false,
+      "time": 312.05548070000077,
+      "slot": 1,
+      "id": "landing_fund",
+      "kind": "item"
+    }
+  ],
+  "eventStages": [
+    "eventChange",
+    "shuffle",
+    "refill",
+    "merge",
+    "finish"
+  ],
+  "restored": true,
+  "drains": [
+    {
+      "speed": 1,
+      "seconds": 4.629256899999746,
+      "groups": 5,
+      "order": [
+        "landing_fund",
+        "seed_bank",
+        "last_word",
+        "tap_driver",
+        "tap_driver"
+      ]
+    },
+    {
+      "speed": 4,
+      "seconds": 2.3206934000045294,
+      "groups": 5,
+      "order": [
+        "landing_fund",
+        "seed_bank",
+        "last_word",
+        "tap_driver",
+        "tap_driver"
+      ]
+    }
+  ],
+  "studioId": "3765c183-4057-43e6-89cb-d085ed12b6cb",
+  "source": "8a9b1a723bad80f9ccd23e9517c09bd97aa67e31"
+}

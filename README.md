@@ -46,6 +46,9 @@ The annotated retouch is supplied locally as `build/Pop-a-Peg-UI-RETOUCH.rbxlx`
 These are generated copies of the same build outputs; check the dashboard for
 their current source and Studio verification state before comparing versions.
 
+The Hold-style and drain/event follow-up uses local `build/Pop-a-Peg-HOLD-UI.rbxlx`
+(screen selector) and `build/Pop-a-Peg-HOLD-GAMEPLAY.rbxlx` (normal game).
+
 To review the Blender catalog, open the [78-model animation inspector](docs/CATALOG_GALLERY.md).
 It includes search, camera views, slow motion, silent pose scrubbing, detail zoom,
 per-item sound with mute/volume controls, a temporary-effects toggle, and copyable
@@ -203,6 +206,14 @@ The reward sequence advances automatically into the next shot or upgrade choice;
 there is no result confirmation button. A failed shot resets the score and board
 for another attempt while balls remain.
 
+On natural ball drain, queued item/perk activations play in order before board
+restoration and rewards. Last Word shows its target activating twice. End Shot
+cannot cancel an already-draining queue; Skip finishes its presentation with the
+same authoritative result. "Pegs halved by items" excludes ordinary scoring hits.
+Growth event choices show their stated peg changes, shuffle the board, then grant
+one free restock: refill/merge, one coin and one ball up to five. This does not
+advance an extra round or award saved restock currency.
+
 Levels are consecutive goals within the same run: clear round **15**, then **40**,
 **65**, and **100**. Each goal round has a boss modifier. Clearing round 100 opens
 the victory screen and an optional endless continuation with goals every 50 rounds.
@@ -215,7 +226,7 @@ offers separately from up to two Supplies, available from round 11, that take
 effect immediately without using an inventory slot. All offers stay visible
 without scrolling. Tap an equipment card to inspect **EVOLUTIONS** as modeled equations:
 ingredient + ingredient = evolved item. Ingredient boxes show **NEED**,
-**L1/5** through **L4/5**, or **READY** against the current rack. Hover, focus, or tap an item
+**L1/5** through **L4/5**, or **READY** against the current rack. Hover a rack item, or select/tap an item
 to inspect its yellow trigger followed by ordered green benefits and red costs;
 levels below 5 show the next upgrade amount, while level 5 shows its current power.
 Recipe models appear beneath the inspection effect list for base equipment. Evolved items,
@@ -272,18 +283,19 @@ transitions until the next launch or a manual **Next Round** click in the shop.
 | Jumble button / Q | Rearrange the board once before each shot. |
 | End Shot button / E | Finish early without waiting for the ball to drain. |
 | Inventory item | Select it; click again to clear, or another unlocked slot to swap and clear the selection. |
-| Item/perk hover or UI focus | Inspect triggers, ordered effect rows, and any modeled evolution recipes. Touch opens a pinned inspection card with a close button. |
+| Rack item hover | Open a compact inspection card; non-rack items do not open on pointer hover. |
+| Item/perk selection, UI focus or touch | Open full-size details with triggers, ordered effects and modeled evolution recipes. |
 | 1×, 2×, 4× buttons | Change simulation speed. |
 | Skip during rewards | Finish the reward animation and advance with the same earned rewards. |
 | Sound toggle | Mute or unmute feedback sounds. |
 
 Shops and perk/event choices use their own buttons. An owned-perk strip keeps
-chosen perks visible and highlights their activations. The rack expands during
-play and shrinks for shops and choices. White panel surfaces, larger choice models
-and text, and gold selection outlines carry through the interface. Both perk/event
+chosen perks visible and highlights their activations. The rack retains larger
+models across play and choices. Hold-style pearl gradients, navy outlines and
+rounded shadows carry through panels, buttons and nested item compartments.
+Trigger/effect colors and selected/disabled states remain distinct. Both perk/event
 choices and their action buttons fit without scrolling, including short windows.
-Score and restock panels retain their white base as the counters update and bounce;
-blue wallet, ball and trigger panels remain part of the palette.
+Score and restock panels retain their pearl surfaces as counters update and bounce.
 
 Small screens use a core-safe layout that accounts for Roblox controls and device
 insets. **STATS** opens shot statistics and owned perks; short landscape layouts

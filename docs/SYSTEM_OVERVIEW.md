@@ -232,6 +232,9 @@ operations remain fixed rather than scaling with the item's level.
 `HoverInspector` renders triggers in yellow, benefits in green and costs in red,
 without a paragraph interpreting the tradeoff. An evolved item lists each of its
 two triggers followed by that channel's effects.
+Only explicitly registered rack anchors open passive pointer inspection, at60%
+of the prior panel dimensions. Explicit selection/touch/focus retains full-size
+details and readable fonts; the content scrolls instead of scaling the text.
 
 | Hybrid | Ordered effects and cost |
 | --- | --- |
@@ -369,6 +372,17 @@ visible through shops and choices until the next aim snapshot. Skip completes th
 presentation with the same authoritative rewards. Terminal results open the run
 summary instead of continuing. There is no ordinary result confirmation modal.
 
+Natural drain adds durable ordered activation groups with sparse peg changes and
+cue events to the receipt. Their model performances and score arrivals finish
+before restoration; rolling event-history limits do not discard the drain replay.
+Target beams do not retrigger an already-playing drain model. Skip clears model,
+FX and audio queues before applying final values. Automatic continue carries its
+receipt ID, preventing a delayed retry from consuming the next shop route.
+Growth events produce a separate receipt: apply four random peg doubles, visibly
+shuffle, then one free refill/merge with a coin and capped ball. Event receipts
+do not add saved restock credits or advance another round; banked seeds remain
+temporary next-shot growth.
+
 `Presentation` exposes the board, counters, controls, and viewport anchors to
 `Feedback`; `GameItemModels` mounts the reviewed Blender catalog, `CatalogMotion`
 and `BlenderChoreography` animate its groups, and `UiTheme` supplies GUI styling.
@@ -377,10 +391,10 @@ cards above a horizontal Supplies strip. Large desktops have an inspection sideb
 landscape phones open details on tap. A modal rack drawer preserves all seven slots,
 selling and slot purchases, with an input-blocking scrim and safe global Z layers.
 Shop previews fit their idle motion envelope and ignore activation pulses; gameplay
-mounts retain their full activation envelope. The rack grows during play; perk and event choices use
-the same white surfaces and larger text/model treatment. Selection, purchase
+mounts retain their full activation envelope. The rack keeps larger previews across play,
+perk and event choices, using the shared Hold-style pearl surfaces. Selection, purchase
 eligibility, and held/sold state update existing cards instead of destroying their
-models. `HoverInspector` opens on pointer entry or UI focus, and pins open on touch;
+models. `HoverInspector` opens on rack pointer entry or UI focus, and pins open on touch;
 it closes when its anchor disappears or an explicit close action occurs.
 `InventorySelection` clears a selection after a swap request, holds further
 rack actions until acknowledgment or timeout, and rejects selection changes outside
@@ -429,9 +443,10 @@ Score, coin, and restock arrivals pulse their counters. Launching spends a ball
 directly in the reserve display; only restored balls use reward flights. Perk
 highlights and counter pulses follow authoritative events and displayed arrivals,
 so they do not change balances or trigger timing.
-The score and restock panels retain their white base through count changes and
-scale pulses. Wallet, reserve and trigger panels can remain blue; numerical state
-does not recolor the white counter surfaces.
+The score, restock, wallet, reserve and trigger panels retain the shared Hold-style
+pearl surface through count changes and scale pulses. Titles, buttons and nested
+item/evolution compartments use the same gradient, navy outline and rounded shadow;
+semantic text, meters and selected/disabled states remain distinct.
 
 `ItemFeedback` defines distinct catalog motifs and visual signatures by stable ID,
 including four-note motifs for the 13 evolutions. Item activations produce dense

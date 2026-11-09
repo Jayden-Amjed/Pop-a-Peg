@@ -1,7 +1,7 @@
 # RBX-031 — Desktop and landscape full-game UI
 
 - Task ID: RBX-031
-- Owner: Codex coordinator (sole Studio operator); read-only shop reviewer
+- Owner: Codex coordinator (sole Studio operator); component and audit agents in separate worktrees
 - Status: READY FOR REVIEW
 - Reservation / issue: https://github.com/Jayden-Amjed/Pop-a-Peg/issues/31
 - Reviewed: 2026-11-08 (America/Los_Angeles)
@@ -9,12 +9,23 @@
 - Branch: task/RBX-031-shop-prototype
 - Worktree / checkout: C:\Users\Amjedd\Documents\ChatGPT\Pop a Peg\.worktrees\shop-prototype
 - PR: https://github.com/Jayden-Amjed/Pop-a-Peg/pull/32 (draft for user playtest)
-- Implementation evidence SHA: 05f1d16deda43a0721a51e318990a9e4503678ae (annotated retouch; Studio verified); historical full UI74f9b0ae0383c34721eda9518b304b2e2162f040
+- Implementation evidence SHA: 8a9b1a723bad80f9ccd23e9517c09bd97aa67e31 (Hold-style/drain/event follow-up; Studio verified)
 - Confirmed merge SHA: NOT MERGED
 
 ## Objective and scope
 
-Active annotated retouch follow-up: shop currency/model margins/complete inspection,
+Latest user follow-up: match the Hold button gradient, outline and shadow across
+applicable containers, titles, evolution cells and purchase controls; passive
+inspection only from UI rack items, about40% smaller; ordered natural-drain
+activation playback before settlement; replace confusing item-halving wording;
+board-changing Spare Parts visibly apply changes before shuffle and award one
+free restock with a ball. Root owns Presentation/HoverInspector/RunLayout,
+integration and Studio; hold_style owns Theme/shop/detail/evolution/hub styling;
+drain_event owns Run/Catalog/Main/Feedback/RewardTimeline and behavior tests.
+Separate worker checkouts start at accepted main plus explicit dependencyffc6dd3.
+This scope supersedes the earlier no-gameplay-change limitation.
+
+Historical annotated retouch: shop currency/model margins/complete inspection,
 structured Supplies and perk/event cards (confirmed name above model), larger stable
 rack, lower side HUD, larger currency/life icons, grouped action/speed controls,
 music mute glyph, common Recipe detail card and workshop name placement. Shared
@@ -49,6 +60,10 @@ No experience publication or merge requested.
 - [x] Shared theme covers gameplay HUD, perks/events, results, inspection and all arcade panels.
 - [x] Desktop and two landscape phone presets pass all 15 screens, chest reveal and research.
 - [x] Normal build and a 15-screen preview build supplied for Studio testing.
+- [x] Hold gradient, outline and shadow applied to eligible nested surfaces/buttons.
+- [x] Rack-only passive inspection40% smaller; explicit full-size details retained.
+- [x] Natural-drain models play in order before settlement; Skip and fast playback verified.
+- [x] Growth events visibly apply changes before shuffle and award a free restock/ball.
 
 ## Dependencies and overlapping paths
 
@@ -284,7 +299,7 @@ those properties. The session is left in Edit for the user to press Play.
 No Studio source edits were promoted, and delivered file hashes remain unchanged.
 Physical touch hardware and multiplayer checks: NOT RUN.
 
-## Latest Handoff
+## Historical annotated-retouch handoff
 
 - Owner / next owner: Codex coordinator → user for playtest feedback.
 - Objective: annotated retouch implemented, checked and Studio verified; ready for review.
@@ -300,3 +315,115 @@ Physical touch hardware and multiplayer checks: NOT RUN.
 - Previous blocker resolved: user opened the fresh file; Studio MCP captures and runtime tests succeeded. No remaining blocker for review.
 - Next executable action: press Play in the open UI-RETOUCH and use UI PREVIEW, or open FULL-UI-RETOUCH for the normal game.
 - Merge / Roblox publication: neither requested nor performed.
+
+## Hold-style and gameplay follow-up — 2026-11-08
+
+Implementation / Studio-tested source: 8a9b1a723bad80f9ccd23e9517c09bd97aa67e31.
+Hold audit: 9ecf135d50ef1661d71caa91de9f57a844bc8c3d.
+Drain audit: cc41eb1c708783d4a94f8cec82be47fb5b3a168d.
+This user-authorized follow-up extends gameplay as well as styling; preceding
+no-gameplay-change statements describe earlier scope only.
+
+The existing Hold base RGB204,237,245, its white-to-blue gradient, ink outline
+RGB16,55,78 and rounded4px depth are shared by applicable panels/buttons,
+name/model/evolution compartments and purchase controls. Trigger/effect text,
+meters, selected outlines and disabled states retain their meaning.
+Only the seven UI rack slots register passive hover; direct show calls reject
+other anchors. Hover dimensions are60% of full details, with readable scrolling
+content. Touch/focus/explicit selection keeps full-size details and44px Close.
+
+Natural drain records durable ordered activation groups with peg deltas; the
+128-event history limit cannot truncate them. Client playback waits for each real
+model performance and score arrivals before the next group or settlement.
+End Shot cannot interrupt an already-draining queue. Skip clears model/FX/audio
+queues and applies the same final values. Last Word plays its perk and then the
+target item twice; target beams do not add extra performances. Playback speeds
+also advance models consistently. Catalog copy now says pegs halved by items,
+distinguishing that counter from ordinary scoring hits.
+
+Both existing grow choices still double four random pegs. Their new event receipt
+shows changes, physical shuffle, then one refill/merge; it awards one coin and
+one ball capped at5. It does not advance an extra round or award profile restock
+currency. Banked seeds remain temporary next-shot growth. Tagged automatic
+continue prevents delayed receipt retries from consuming the following shop.
+
+### Checks and corrections
+
+- scripts/check.ps1 PASS at a831f0d and again at8a9b1a7 after the runtime fix:
+  zero lint warnings/errors, format, gameplay contracts,78-model playback/
+  catalog/loading/framing/audio/effects, three builds, mappings and docs.
+- New contracts cover151 drain groups beyond the rolling history, Last Word,
+  manual/drain-clear guards, both event choices, caps/dedup, pending shop route,
+  saved credits and banked seeds.
+- scripts/build-ui-preview.ps1 PASS at8a9b1a7. Later changes are tests/docs only.
+- Final two audit scripts pass StyLua/Selene; final docs and diff checks PASS.
+- Read-only component review found no remaining concrete implementation concern.
+
+Fresh unpublished Studio0.746.0.7461269, session3765c183-4057-43e6-89cb-d085ed12b6cb,
+opened HOLD-UI with root as sole operator and no Rojo. A first drain runtime run
+exposed11 performances instead of5 because target beams repeated model pulses.
+The fix was authored and committed in files, applied only to Feedback in this
+disposable Edit session, and replayed successfully. Source comparison also caught
+two omitted reset lines in the bounded Studio edit; both were explicitly applied.
+All59 normalized client/shared/server/fixture fingerprints then matched8a9b1a7:
+[source comparison](../docs/evidence/RBX-031/hold-source-fingerprints.json).
+Normalization is UTF8/LF/trimmed outer whitespace with byte count and CRC32, not
+a cryptographic integrity claim. No Studio-authored source was promoted.
+
+Initial style-audit failures were test defects: selected chest-tier aqua outlines
+needed exact state exceptions; compact explicit perk inspection was anchored to
+a closed STATS drawer. Corrected checks retain strict default outlines and open
+the real mobile drawer before testing visible explicit details. One accidentally
+overlapping phone audit batch was discarded; final runs below were sequential.
+
+| Preset / safe area | Hold surfaces / targets / blocked non-rack anchors | Ready model samples (retouch / flow) | Evidence |
+| --- | --- | --- | --- |
+| HD1080 /1919x1022 |645 /224 /62 |242 /192 |[Style](../docs/evidence/RBX-031/hold-style-desktop.json), [Retouch](../docs/evidence/RBX-031/hold-retouch-desktop.json), [Flow](../docs/evidence/RBX-031/hold-flow-desktop.json) |
+| iPhone13 landscape /749x331 |609 /201 /70 |230 /183 |[Style](../docs/evidence/RBX-031/hold-style-landscape-844.json), [Retouch](../docs/evidence/RBX-031/hold-retouch-landscape-844.json), [Flow](../docs/evidence/RBX-031/hold-flow-landscape-844.json) |
+| iPhone7 landscape /666x316 |607 /199 /70 |229 /182 |[Style](../docs/evidence/RBX-031/hold-style-landscape-667.json), [Retouch](../docs/evidence/RBX-031/hold-retouch-landscape-667.json), [Flow](../docs/evidence/RBX-031/hold-flow-landscape-667.json) |
+
+All15 screens PASS each audit. Full flows exercise eight actions including chest
+animation/reveal and research. Each style run checks compact rack inspection in
+Aim and Shop drawer plus full-size explicit non-rack inspection. Desktop size
+changes450x780→270x468; phones640x311→384x186 and640x296→384x177.
+Actual MCP pointer input independently opened the desktop rack card270x468 and
+left inspection hidden over an owned perk.
+
+[Drain/event runtime audit](../docs/evidence/RBX-031/drain-event-runtime.json) PASS:
+five non-overlapping Blender-model performances in order landing_fund, seed_bank,
+last_word, tap_driver, tap_driver. Drain groups took4.63s at1x and2.32s at4x.
+Skip cleared queued models/FX and displayed the exact final board. The event
+changed peg values before physical peg movement through shuffle, followed by
+refill/merge/finish; one coin and reserve3→4, without extra round/profile credit.
+These are actual model/GUI-property/peg-motion observations, not screenshot review.
+
+[Normal-entry smoke](../docs/evidence/RBX-031/hold-normal-smoke.json) PASS after
+temporarily enabling normal client/server Main and character spawning in this
+disposable session: expected client/server startup logs, pointer Play→Launch,
+natural settlement→round2, Arcade→Resume retained round2/aim. No game-script
+errors in final normal console; existing203785492 asset-type warning remains.
+Stopped Play and restored preview flags, disabled normal scripts, disabled
+character spawning and stopped device simulation:
+[restoration](../docs/evidence/RBX-031/hold-restoration.json).
+
+No screen captures or recorders were used during this follow-up. The remaining
+Codex computer-use helper PID16444 was stopped. New screenshot-based visual
+review, physical touch hardware, multiplayer and a separate medium-landscape
+runtime preset: NOT RUN. Local fixture tests do not establish production-remote
+coverage; the normal smoke above covers only its stated path.
+
+## Latest Handoff
+
+- Owner / next owner: Codex coordinator → user for playtest feedback.
+- Objective: Hold-style/rack hover/drain/event follow-up implemented, checked and Studio verified.
+- Checkout: C:\Users\Amjedd\Documents\ChatGPT\Pop a Peg\.worktrees\shop-prototype.
+- Branch / PR: task/RBX-031-shop-prototype / draft PR32.
+- Main re-fetched:44762e38b5b4e3ad2f89c789ae6a7a6b6f6d4560; accepted15/proposed16.
+- Production / Studio-tested source:8a9b1a723bad80f9ccd23e9517c09bd97aa67e31.
+- Checks: source/build PASS; all three presets' style/retouch/flow audits PASS; drain/event and normal/pointer checks PASS as above. Unrun checks remain listed above.
+- Target / sync: root build/Pop-a-Peg-HOLD-UI.rbxlx; session3765c183-4057-43e6-89cb-d085ed12b6cb. Root sole operator, no Rojo/port. Stopped in Edit; preview defaults restored; simulation stopped.
+- Preview SHA256:B17D0B320092DEFA06C0894F2B79E7AA6E39BA58CB624AE6229DA1A1092D6D3A.
+- Normal file:root build/Pop-a-Peg-HOLD-GAMEPLAY.rbxlx; SHA256:F959A0B1B7E62789340296CDF95DE29731621198D771A8AFCAAF44D283D24AD4.
+- Both root files hash-match current generated worktree outputs. Historical builds/sessions and unrelated root outputs preserved.
+- Blockers:none for review. Next executable action: press Play in HOLD-UI and use UI PREVIEW; open HOLD-GAMEPLAY for a normal run.
+- Merge / Roblox publication: neither requested nor performed. Local/Studio evidence is distinct from CI on the pushed branch.
