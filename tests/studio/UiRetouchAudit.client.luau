@@ -216,20 +216,47 @@ local ok, failure = xpcall(function()
     inside(view.controls, root)
     inside(view.speedGroup, root)
     inside(view.soundButton, root)
+    assert(
+        view.soundButton.AbsoluteSize.X >= 43.5 and view.soundButton.AbsoluteSize.Y >= 43.5,
+        "Music toggle is below touch size"
+    )
     assert(view.controls.BackgroundTransparency < 1, "Launch/Jumble lack a containing panel")
     assert(view.speedGroup.BackgroundTransparency < 1, "Speed dials lack a containing panel")
     for _, control in { view.primary, view.jumbleButton } do
         inside(control, view.controls)
-        assert(control.AbsoluteSize.Y >= 43.5, "Primary action is below touch size")
+        assert(
+            control.AbsoluteSize.X >= 43.5 and control.AbsoluteSize.Y >= 43.5,
+            "Primary action is below touch size"
+        )
     end
-    for _, speed in view.speedButtons do
+    for index, speed in view.speedButtons do
         inside(speed, view.speedGroup)
         assert(
             speed.AbsoluteSize.X >= 43.5 and speed.AbsoluteSize.Y >= 43.5,
             "Speed action is below touch size"
         )
+        for other = index + 1, #view.speedButtons do
+            separate(speed, view.speedButtons[other], "Speed targets overlap")
+        end
     end
     separate(view.controls, view.speedGroup, "Primary actions overlap speed dials")
+    separate(view.soundButton, view.controls, "Music toggle overlaps primary actions")
+    separate(view.soundButton, view.speedGroup, "Music toggle overlaps speed dials")
+    inside(view.quota, view.scorePlate)
+    inside(view.progress, view.scorePlate)
+    separate(view.quota, view.progress, "Target quota overlaps score progress meter")
+    passed("Score target and meter remain readable")
+    if view.shortWide and not view.foldHud then
+        for _, panel in
+            { view.inventory, view.wallet, view.reservePlate, view.scorePlate, view.perksPanel }
+        do
+            inside(panel, root)
+            for _, controls in { view.controls, view.speedGroup, view.soundButton } do
+                separate(panel, controls, "Medium landscape HUD overlaps controls")
+            end
+        end
+        passed("Medium landscape controls stay touch-sized and clear of HUD")
+    end
     local rackSizes = {}
     for index, cell in view.itemSlots do
         rackSizes[index] = cell.viewport.AbsoluteSize
