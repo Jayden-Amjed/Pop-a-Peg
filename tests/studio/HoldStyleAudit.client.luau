@@ -4,8 +4,15 @@ local Http = game:GetService("HttpService")
 local Theme = require(game:GetService("Players").LocalPlayer.PlayerScripts.Client.UiTheme)
 local C = Theme.colors
 local started, controller, reference = os.clock(), nil, nil
-local report =
-    { ok = false, screens = {}, surfaces = 0, targets = 0, blockedAnchors = 0, rackCases = {} }
+local report = {
+    ok = false,
+    screens = {},
+    surfaces = 0,
+    targets = 0,
+    blockedAnchors = 0,
+    rackCases = {},
+    explicitDetails = 0,
+}
 script:SetAttribute("Result", Http:JSONEncode({ running = true }))
 
 local function waitFor(predicate, message)
@@ -231,17 +238,6 @@ local function rackSizing(view, label)
         "Pinned close target shrank below44px"
     )
     local full = inspector.panel.AbsoluteSize
-    local perkId = view.snapshot.perks[1]
-    local explicitAnchor = assert(view.perkCells[perkId]).button
-    inspector:show(perkId, 1, explicitAnchor, true)
-    task.wait(0.05)
-    assert(
-        inspector.panel.Visible
-            and inspector.pinned
-            and inspector.close.Visible
-            and (inspector.panel.AbsoluteSize - full).Magnitude <= 1,
-        "Explicit non-rack details lost the full reading area"
-    )
     inspector:show(id, level, slot, false)
     task.wait(0.05)
     assert(inspector.panel.Visible and not inspector.pinned, "Rack passive inspection did not open")
@@ -263,6 +259,40 @@ local function rackSizing(view, label)
         { name = label, full = { full.X, full.Y }, passive = { small.X, small.Y } }
     )
     inspector:hide()
+    return full
+end
+
+local function explicitDetails(view, full)
+    -- Compact layouts put owned perks inside STATS. A hidden anchor correctly
+    -- closes its inspector, so expose the real drawer before testing selection.
+    local wasOpen, previousTab = view.detailsOpen, view.detailsTabMode
+    view.detailsOpen, view.detailsTabMode = true, "perks"
+    view:_layout()
+    task.wait(0.05)
+    local inspector, perkId = view.inspector, view.snapshot.perks[1]
+    local anchor = assert(view.perkCells[perkId]).button
+    local parent = anchor
+    while parent and parent ~= view.root do
+        assert(not parent:IsA("GuiObject") or parent.Visible, "Explicit detail anchor is hidden")
+        parent = parent.Parent
+    end
+    assert(parent == view.root, "Explicit detail anchor is detached")
+    assert(not inspector.rackAnchors[anchor], "Explicit detail case uses a rack anchor")
+    assert(inspector.resolvers[anchor]() == perkId, "Explicit perk binding cannot resolve its item")
+    inspector:show(perkId, 1, anchor, true)
+    task.wait(0.05)
+    assert(
+        inspector.panel.Visible
+            and inspector.pinned
+            and inspector.close.Visible
+            and (inspector.panel.AbsoluteSize - full).Magnitude <= 1,
+        "Explicit non-rack details lost the full reading area"
+    )
+    inside(inspector.panel, view.root)
+    report.explicitDetails += 1
+    inspector:hide()
+    view.detailsOpen, view.detailsTabMode = wasOpen, previousTab
+    view:_layout()
 end
 
 local ok, failure = xpcall(function()
@@ -308,7 +338,8 @@ local ok, failure = xpcall(function()
                 surface(host, object, true)
             end
             if name == "Aim" then
-                rackSizing(host, "Aim")
+                local full = rackSizing(host, "Aim")
+                explicitDetails(host, full)
             elseif name == "Shop" then
                 local shop = host.shop
                 surface(host, shop.title.Parent, true)
