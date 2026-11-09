@@ -9,7 +9,7 @@
 - Branch: task/RBX-031-shop-prototype
 - Worktree / checkout: C:\Users\Amjedd\Documents\ChatGPT\Pop a Peg\.worktrees\shop-prototype
 - PR: https://github.com/Jayden-Amjed/Pop-a-Peg/pull/32 (draft for user playtest)
-- Implementation evidence SHA: b26c0abf66b68e86effa6f038258ee25bf750e2d (annotated retouch; Studio pending); historical full UI74f9b0ae0383c34721eda9518b304b2e2162f040
+- Implementation evidence SHA: 05f1d16deda43a0721a51e318990a9e4503678ae (annotated retouch; Studio pending); historical full UI74f9b0ae0383c34721eda9518b304b2e2162f040
 - Confirmed merge SHA: NOT MERGED
 
 ## Objective and scope
@@ -194,7 +194,7 @@ documentation-only and does not assert a merge or publication.
 
 ## Annotated retouch implementation and checks
 
-Source b26c0abf66b68e86effa6f038258ee25bf750e2d implements the annotated follow-up.
+Source 05f1d16deda43a0721a51e318990a9e4503678ae implements the annotated follow-up.
 The user clarified that Perks and Spare Parts names belong above their models.
 Both choice types now use separate name/model/trigger-effect/action compartments.
 The rack keeps the same larger model region across aim and choices; gameplay
@@ -213,7 +213,7 @@ a fixed return to Gallery. Workshop only moves names above models. Shared
 surfaces use contained gradients and rounded borders instead of white Bevel strips.
 Results/victory and collection gallery layouts are otherwise unchanged.
 
-Checks actually run at b26c0ab: scripts/check.ps1 PASS (zero lint warnings/errors,
+Checks actually run at05f1d16: scripts/check.ps1 PASS (zero lint warnings/errors,
 all gameplay/catalog tests, three builds, source mappings, documentation links);
 scripts/build-ui-preview.ps1 PASS. Read-only review caught a small-desktop score
 overlap and undersized medium-landscape controls; both were fixed before this
@@ -227,11 +227,11 @@ Earlier Studio receipts above remain evidence only for their recorded source.
 - Objective: finish desktop and landscape runtime/visual verification of the annotated retouch.
 - Checkout / branch / PR: checkout above; task/RBX-031-shop-prototype; draft PR32.
 - Main re-fetched: 44762e38b5b4e3ad2f89c789ae6a7a6b6f6d4560; accepted15 remains unchanged, proposal16.
-- Implementation SHA: b26c0abf66b68e86effa6f038258ee25bf750e2d.
+- Implementation SHA: 05f1d16deda43a0721a51e318990a9e4503678ae.
 - Checks: source/build PASS as above; retouch Studio, physical-device and multiplayer NOT RUN.
 - Target / sync: fresh root build/Pop-a-Peg-UI-RETOUCH.rbxlx; sole coordinator operator, no Rojo/port.
-- Preview SHA256: 49177CA90EF87D97E9EAA922FDA4108FFAC3C101BE23A98C4293130E63CBCF99.
-- Normal game: root build/Pop-a-Peg-FULL-UI-RETOUCH.rbxlx; SHA256 EDC387B7C3129BC9A274B6298C079BECEAFDF151E382268563DD46A051E737A0.
+- Preview SHA256: BFAF9E03A1E54439597ED34C73674ED1808006168BAEC1B232BFA0E84179FA53.
+- Normal game: root build/Pop-a-Peg-FULL-UI-RETOUCH.rbxlx; SHA256 873C3F0FE1D5705721E643F09381E2271B8E78C7289C49B71750D16AD4755605.
 - Preservation: old UI-PLAYTEST907b1894 saved through Studio as build/Pop-a-Peg-UI-PLAYTEST-preserved-20261108.rbxl and closed. Old UI-PREVIEW0061e41d is stopped in Edit. Remaining sessions preserved.
 - Blocker: Studio initially reported its maximum window count. Own failed launches were closed; desktop capture of the remaining preview then failed with "window crop is outside captured monitor". User was asked to open UI-RETOUCH visibly. No core Source replacement attempted.
 - Next executable action: list Studio sessions, select UI-RETOUCH by exact ID, run UiRetouchAudit and UiPreviewAudit on HD1080 and two landscape phone presets, inspect screenshots and music pointer toggle, then record exact source and results.

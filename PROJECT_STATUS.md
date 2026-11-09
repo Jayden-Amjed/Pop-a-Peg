@@ -7,7 +7,7 @@ Objective: Apply the annotated UI retouch and verify desktop/landscape behavior.
 Active proposal: [RBX-031](tasks/RBX-031-shop-prototype.md), Codex coordinator,
 branch task/RBX-031-shop-prototype, [draft PR32](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/32).
 Main re-fetched at 44762e38b5b4e3ad2f89c789ae6a7a6b6f6d4560; accepted State15 unchanged.
-Current retouch implementation: b26c0abf66b68e86effa6f038258ee25bf750e2d.
+Current retouch implementation: 05f1d16deda43a0721a51e318990a9e4503678ae.
 Source checks and preview build PASS. Retouch Studio validation is pending opening
 the fresh local `build/Pop-a-Peg-UI-RETOUCH.rbxlx`. The desktop tool cannot capture
 the old preview window (outside captured monitor); user was asked to open the
