@@ -1,41 +1,42 @@
 # Current project state
 
-State Version: 14 (accepted RBX-027; RBX-029 proposes15, not yet accepted).
+State Version: 14 (accepted RBX-027; RBX-029 proposes 15, not yet accepted).
 Reviewed: 2026-11-08, America/Los_Angeles
-Objective: Adopt Blender models in gameplay and ground effects at their physical emitters.
+Objective: Blender gameplay adoption, grounded effects, useful drain growth and readable previews.
 
-Accepted source: b75e8a736b500fd41543d699e3b47987dd56042d (GitHub-confirmed PR28 merge).
+Accepted main: 6ef9576dd038ff5f4efa998c4034a559e46d5dcf.
 Active task: [RBX-029](tasks/RBX-029-blender-game.md), Codex coordinator.
 Branch: task/RBX-029-blender-game; [PR30](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/30).
-Studio-tested source: 7f7339bd3bacb427a840ed43bb2295fd6eae32f3.
-Merge: predecessor MERGED; current task IN PROGRESS. Table below is accepted predecessor evidence.
+Implementation: 7eb6c18a971e4f33cb0a2896c23d4ce7fe816897.
+Merge: NOT MERGED. Experience publication: NOT RUN.
 
-| Capability | Verified state |
+| Capability | Current evidence |
 | --- | --- |
-| Blender models | Eight revised silhouettes/mechanisms; Coral Spark and Breeze Fan labels |
-| Activation effects | All78 have authored treatments; 27 mechanism refinements; bounded pools and exact restoration |
-| Gallery sound | All78 phrases; 12 timbre families; 45-semitone register; real Studio playback/output passes |
-| Studio | All78 imported motion, effect and camera checks; 808 press/cap poses; real GUI controls verified |
-| Catalog | 78 models, 477 MeshParts, 127664 triangles; 12 immutable upload archives |
-| Native/game boundary | Native art and animation frozen; all src/ and default game mapping unchanged |
-| Existing game | Eight-player hub, restock wallet and scoring unchanged; no monetization work |
+| Blender gameplay | 78 models /477 MeshParts mapped through game adapters; build/source checks pass |
+| Physical effects | Quota plate contact; Synth/Relay body pop; all78 placement checks pass (702 Studio poses) |
+| Final adapter | All78 Studio lifecycle/loading/framing checks pass:68096 model corners,12884 effect checks |
+| Drain growth | Seed Bank/Rain Catcher/Monsoon bank next-shot growth;15 contracts pass in CLI and Studio |
+| Owner access | Exact ID583716264 gets40 equipment pools and13 evolution previews; save/isolation checks pass in CLI and Studio |
+| UI | Larger shop/choice/hover previews, adaptive perk rows, larger desktop hub; layout checks pass |
+| Resume | Completed seeded/restocked board restored after hub resume; CLI and Studio resolver tests pass |
+| Native reference | Eight frozen sources match07be76a57335fa3aaa05009c91bd2e36ed05dd0e |
 
-[Current evidence and limitations](docs/evidence/RBX-027/REVIEW.md).
-[All-item treatments](docs/MODEL_TREATMENTS.md); [gallery controls](docs/CATALOG_GALLERY.md).
-Historical predecessor details remain in [RBX-025](tasks/RBX-025-review-audio.md).
+Playtest file: repository-root `build/Pop-a-Peg-PLAYTEST.rbxlx`.
+It matches `.worktrees/blender-game/build/dev.rbxlx`, source7eb6c18.
+SHA256:A3378DA49F64BA4C9DD481B5E754F56A73B02861C6468E27287C8A83D6D785E6.
 
-Studio: coordinatorQA9f7afcd3 stopped in Edit with final source and models.
-No live Rojo/sync. User gallery4a95dbcb and saved experience preserved.
-Final review file: `.worktrees/blender-effects/build/peg-blender-effects.rbxlx`.
-SHA256: `12366dd766e60bc83fbd659ace0895d15367babfa48f53957072e3ecbc90f5de`.
-The new-window instance warning prevented opening another Studio; all28 built
-scripts match the tested existing session.
-Checks: required local checks, catalog/archive regression and native guard pass;
-GitHub CI42535294924 passed at28c5d200a25c1620150badb21ae35e74b576a6cb.
-Blockers: none. Subjective listening remains human review. Existing avatar
-asset203785492 type warning remains; no new script errors observed.
-Published: original model asset107372484175276 Approved; no experience update.
-Next action: finish GameItemModels integration and physical emitter audit, then
-verify all78 mounts and a real hub/run/shop flow in isolated gameQA db4acb6d.
-User explicitly authorizes Blender gameplay adoption; native source stays frozen.
+Studio c35ab669 opened the correct file; all71 script identities match the build.
+Owner badge confirmed; real remote-driven run reached round2 before losing.
+Background screen captures show GUI but omit 3D rendering; model geometry/loading
+is checked independently. Set3dRenderingEnabled was denied by RobloxScript
+capability; no retry or workaround. Final isolated presentation fixture pending.
+Gallery9f7afcd3 remains coordinator-owned. No live Rojo. User stopped desktop
+Computer Use; subsequent tests use only background Studio MCP.
+Older saved Pop a Peggle experience115816779411929 was inspected only.
+
+Checks: required check.ps1 PASS at7eb6c18; catalog/native/mapping/placement and
+hub-reveal checks PASS. Final GitHub CI pending.
+[Evidence](docs/evidence/RBX-029/REVIEW.md) and [drain rules](docs/DRAIN_ITEM_AUDIT.md).
+Next action: finish background presentation fixture, review final changes, push
+and merge PR30, then accept State Version15. No additional approval gate.
 Repository administration: main unprotected; temporary default remains starter.

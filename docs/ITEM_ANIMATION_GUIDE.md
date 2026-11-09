@@ -122,6 +122,9 @@ Front and Side views for lids, fish, telescopes and nested assemblies. Record ID
 pose, strength, camera and the exact tested source commit with feedback.
 
 Previews fit a sampled full-motion envelope once and retain a stationary camera.
+Game cards fit the moving model geometry with a small margin; decorative burst
+tips may crop at the card edge so far-reaching particles do not shrink the item.
+The gallery fits both geometry and effects for inspection.
 Do not resize the camera every frame to follow a bounce. In game previews,
 retriggers coalesce into a following activation so a new proc cannot rewind a half-finished
 spin. The inspector's explicit TRIGGER remains a deliberate playback restart.

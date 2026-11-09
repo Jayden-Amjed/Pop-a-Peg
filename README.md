@@ -21,6 +21,12 @@ and playtests; Git records reviewed implementation and verification evidence.
 See [PROJECT_STATUS](PROJECT_STATUS.md) for the **only current dashboard**, including
 what has actually passed, active ownership, and the next task.
 
+Current local playtest: open `build/Pop-a-Peg-PLAYTEST.rbxlx` in Studio and press
+Play. The coordinator copies the verified task build there; normal builds still
+emit `build/dev.rbxlx`. Account583716264 has temporary all-equipment access until
+the owner requests ordinary progression again. This is a generated local file,
+not a Roblox experience publication.
+
 To review the Blender catalog, open the [78-model animation inspector](docs/CATALOG_GALLERY.md).
 It includes search, camera views, slow motion, silent pose scrubbing, detail zoom,
 per-item sound with mute/volume controls, a temporary-effects toggle, and copyable

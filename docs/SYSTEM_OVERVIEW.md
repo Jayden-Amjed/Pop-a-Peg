@@ -527,10 +527,23 @@ uses the motion adapter too. Only the selected model plus
 an optional native comparison mounts in viewports. `PreviewLighting` is shared
 with normal item cards; `UiTheme` adds restrained contrast. Gameplay uses the same
 Blender models and motion through GameItemModels. It preloads shared mesh sets,
-caches each ID's full performance bounds, lazily creates effect pools and retains
+caches each ID's moving-geometry bounds, lazily creates effect pools and retains
 observable frozen-native fallback if a remote mesh load fails. Native sources
 remain unchanged. Source files, upload receipts, runtime copies, tests and publication
 remain distinct; see the task and dashboard for current verification.
+
+Gameplay cameras stay fixed and frame the complete sampled mechanism movement.
+Decorative particle tips may reach/crop at card edges; gallery framing includes
+their complete bounds. Wider shop/choice previews, adaptive owned-perk rows and
+larger desktop hub panels improve readability without shrinking compact controls.
+
+Natural-drain growth on Seed Bank, Rain Catcher and Monsoon Loom banks a bounded
+next-shot benefit after all restocks. Each peg receives at most one saved double;
+baseline and quota stay unchanged. See [drain rules and client fields](DRAIN_ITEM_AUDIT.md).
+`PlaytestAccess` currently enables all40 equipment pools and13 evolution previews
+only for user583716264. It projects temporary access without writing grants to the
+real profile. Disable its server flag and restart for ordinary access. Coins,
+chests, item levels, level5 evolution requirements and earned records remain normal.
 
 ## Development and publication
 
