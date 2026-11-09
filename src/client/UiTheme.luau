@@ -92,10 +92,6 @@ function Theme.decorate(object, color, z)
     shadow.BackgroundTransparency = 0.55
     shadow.Size = UDim2.fromScale(1, 1)
     Theme.corner(shadow, 16)
-    local shine = Theme.frame(object, "Bevel", Color3.new(1, 1, 1), z + 1)
-    shine.BackgroundTransparency = 0.25
-    shine.Position = UDim2.fromOffset(3, 3)
-    shine.Size = UDim2.new(1, -6, 0, 2)
     Theme.make("UIGradient", {
         Color = ColorSequence.new({
             ColorSequenceKeypoint.new(0, Color3.new(1, 1, 1)),
@@ -109,6 +105,18 @@ end
 
 function Theme.plate(parent, name, color, z)
     return Theme.decorate(Theme.frame(parent, name, color, z), color, z)
+end
+
+-- Recessed compartments share the rounded silhouette; no floating highlight strips.
+function Theme.inset(parent, name, color, z, radius)
+    local object = Theme.frame(parent, name, color or Theme.colors.ice, z)
+    Theme.corner(object, radius or 10)
+    Theme.stroke(object, Theme.colors.edge, 1)
+    Theme.make("UIGradient", {
+        Color = ColorSequence.new(Color3.fromRGB(228, 241, 246), Color3.new(1, 1, 1)),
+        Rotation = 90,
+    }, object)
+    return object
 end
 
 function Theme.tile(parent, name, color, z)
