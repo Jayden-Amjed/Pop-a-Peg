@@ -22,6 +22,31 @@ local function overlaps(a, b)
 end
 
 return function()
+    for _, size in { { 1919, 1022 }, { 1366, 710 }, { 1100, 620 } } do
+        local w, h = size[1], size[2]
+        local layout = Layout.desktop(w, h)
+        local regions = {}
+        for _, area in layout do
+            assert(inside(area, w, h), "Desktop HUD escaped safe area")
+            table.insert(regions, area)
+        end
+        for index, area in regions do
+            for other = index + 1, #regions do
+                assert(not overlaps(area, regions[other]), "Desktop HUD regions overlap")
+            end
+        end
+        assert(
+            math.abs(layout.controls.x + layout.controls.w / 2 - w / 2) < 0.01,
+            "Actions must center on the screen"
+        )
+        for _, key in { "round", "score", "restocks", "perks", "wallet", "balls", "stats" } do
+            assert(layout[key].y > layout.rack.y + layout.rack.h, "Side HUD intrudes into rack")
+        end
+        assert(
+            layout.perks.y + layout.perks.h < layout.speeds.y,
+            "Perks intrude into speed controls"
+        )
+    end
     for _, size in
         {
             { 315, 130, false, false },

@@ -4,6 +4,36 @@ local function rect(x, y, w, h)
     return { x = x, y = y, w = w, h = h }
 end
 
+function Layout.desktop(w, h)
+    local leftW = math.clamp(w * 0.185, 225, 290)
+    local rightW = math.clamp(w * 0.205, 250, 315)
+    local rackW, rackH = math.min(1480, w - 300), math.clamp(h * 0.20, 124, 216)
+    local sideY = h < 800 and rackH + 22 or math.max(rackH + 42, h * 0.29)
+    local available = h - 114 - sideY
+    local roundH = math.min(96, available * 0.16)
+    local scoreH, restockH = available * 0.34, available * 0.17
+    local rightX, scoreY = w - rightW - 22, sideY + roundH + 8
+    local restockY = scoreY + scoreH + 8
+    local perksY = restockY + restockH + 8
+    local walletH, ballsH =
+        math.clamp(available * 0.20, 84, 112), math.clamp(available * 0.22, 84, 120)
+    local controlsW = math.min(600, w * 0.44)
+    return {
+        rack = rect((w - rackW) / 2, 2, rackW, rackH),
+        round = rect(rightX, sideY, rightW, roundH),
+        score = rect(rightX, scoreY, rightW, scoreH),
+        restocks = rect(rightX, restockY, rightW, restockH),
+        perks = rect(rightX, perksY, rightW, h - 114 - perksY),
+        wallet = rect(22, sideY, leftW, walletH),
+        balls = rect(22, sideY + walletH + 8, leftW, ballsH),
+        stats = rect(22, sideY + walletH + ballsH + 16, leftW, h < 800 and 146 or 166),
+        board = rect(leftW + 44, rackH + 38, w - leftW - rightW - 88, h - rackH - 146),
+        controls = rect((w - controlsW) / 2, h - 96, controlsW, 72),
+        speeds = rect(rightX, h - 96, math.min(300, rightW), 72),
+        sound = rect(22, h - 88, 64, 64),
+    }
+end
+
 function Layout.safeRect(w, h, left, top, right, bottom)
     return rect(left, top, math.max(1, w - left - right), math.max(1, h - top - bottom))
 end
@@ -61,8 +91,8 @@ function Layout.portrait(w, h)
         rack = rect(pad, 48, width, 54),
         resources = rect(pad, 106, width, 30),
         score = rect(pad, 140, width, 58),
-        board = rect(pad, 204, width, math.max(1, h - 308)),
-        controls = rect(pad, h - 100, width, 44),
+        board = rect(pad, 200, width, math.max(1, h - 312)),
+        controls = rect(pad, h - 108, width, 52),
         extras = extras,
         details = rect(pad, 52, width, math.min(330, h - 160)),
         shop = rect(pad, 50, width, h - 56),
@@ -84,6 +114,7 @@ function Layout.landscape(w, h)
     if h < 300 then
         right.resources.h = 26
         right.score.y, right.score.h = 136, 42
+        right.controls.y, right.controls.h = h - 104, 48
     end
     right.details = rect(8, 48, w - 16, h - 104)
     right.shop = rect(8, 50, w - 16, h - 56)

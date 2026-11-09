@@ -523,6 +523,8 @@ function Presentation:_buildHud()
     self.coinScale = make("UIScale", { Scale = 1 }, self.wallet)
     blockAim(self.wallet)
     self.coinModel = self:_viewport(self.wallet, "Coin", "coin", 1, 5)
+    self.coinModel:SetAttribute("ShopPreview", true)
+    self:_mount(self.coinModel, "coin", 1)
     self.coinCaption = heading(self.wallet, "Caption", "COINS", 22, C.board, 5)
     self.coins = heading(self.wallet, "Amount", "0", 56, C.ink, 5)
     self.reservePlate = plate(self.left, "ReserveRack", C.paper, 3)
@@ -533,6 +535,8 @@ function Presentation:_buildHud()
     self.reserveIcons = {}
     for index = 1, 5 do
         self.reserveIcons[index] = self:_viewport(self.reservePlate, "Ball" .. index, "ball", 1, 5)
+        self.reserveIcons[index]:SetAttribute("ShopPreview", true)
+        self:_mount(self.reserveIcons[index], "ball", 1)
     end
     self.stats = label(self.left, "ShotStats", "0 POPS   0 WALLS", 19, C.paper, 5)
     self.timer = label(self.left, "Time", "00:00.00", 18, C.muted, 5)
@@ -643,8 +647,7 @@ function Presentation:_buildHud()
             { button = cell, viewport = viewport, name = name, count = count, flash = 0 }
     end
 
-    self.controls = frame(self.root, "Controls", nil, 10)
-    self.controls.BackgroundTransparency = 1
+    self.controls = plate(self.root, "Controls", C.paper, 10)
     blockAim(self.controls)
     self.jumbleButton = button(self.controls, "Jumble", "JUMBLE", C.blue, function()
         self:_send("jumble")
@@ -653,6 +656,8 @@ function Presentation:_buildHud()
         self:_primaryAction()
     end, 12)
     self.speedButtons = {}
+    self.speedGroup = plate(self.root, "SpeedControls", C.paper, 10)
+    blockAim(self.speedGroup)
     for index, speed in { 1, 2, 4 } do
         self.speedButtons[index] = button(
             self.root,
@@ -667,15 +672,39 @@ function Presentation:_buildHud()
             12
         )
     end
-    self.soundButton = button(self.root, "Sound", "SOUND ON", C.ice, function()
+    self.soundButton = button(self.root, "Sound", "", C.ice, function()
         self.muted = not self.muted
-        self.soundButton.Text = (self.shortWide and "SFX " or "SOUND ")
-            .. (self.muted and "OFF" or "ON")
+        self.soundSlash.Visible = self.muted
+        self.soundButton:SetAttribute("Muted", self.muted)
         if self.feedback then
             self.feedback:setMuted(self.muted)
         end
     end, 12)
-    self.soundButton.TextSize = 17
+    local music = frame(self.soundButton, "Music", nil, 14)
+    music.BackgroundTransparency = 1
+    music.Size, music.Position = UDim2.fromScale(0.68, 0.68), UDim2.fromScale(0.16, 0.16)
+    for _, notePart in
+        {
+            { "StemLeft", 0.38, 0.20, 0.09, 0.56, 0 },
+            { "StemRight", 0.73, 0.12, 0.09, 0.56, 0 },
+            { "Beam", 0.38, 0.16, 0.44, 0.11, -12 },
+            { "NoteLeft", 0.14, 0.65, 0.32, 0.22, -20 },
+            { "NoteRight", 0.49, 0.57, 0.32, 0.22, -20 },
+        }
+    do
+        local glyph = frame(music, notePart[1], C.ink, 14)
+        glyph.Position, glyph.Size =
+            UDim2.fromScale(notePart[2], notePart[3]), UDim2.fromScale(notePart[4], notePart[5])
+        glyph.Rotation = notePart[6]
+        corner(glyph, 8)
+    end
+    self.soundSlash = frame(self.soundButton, "MutedSlash", C.negative, 15)
+    self.soundSlash.AnchorPoint = Vector2.new(0.5, 0.5)
+    self.soundSlash.Position = UDim2.fromScale(0.5, 0.5)
+    self.soundSlash.Size = UDim2.new(0.84, 0, 0, 4)
+    self.soundSlash.Rotation = -45
+    self.soundSlash.Visible = false
+    corner(self.soundSlash, 2)
     self.help = label(self.root, "Help", "AIM • CLICK THE BOARD OR PRESS SPACE", 18, C.paper, 12)
     self.help.TextColor3 = C.ink
     self.help.BackgroundColor3, self.help.BackgroundTransparency = C.paper, 0.08
@@ -784,9 +813,6 @@ function Presentation:_layout()
         local uiW = w - uiX - 12
         local invTop = self.shortWide and top + 20 or top + 190
         invWidth, invHeight = uiW, 88
-        if choosing then
-            invHeight = self.shortWide and 60 or 64
-        end
         if choosing and self.mobile then
             invTop = top + 20
         end
@@ -845,18 +871,18 @@ function Presentation:_layout()
                     uiX,
                     resourceTop + 150,
                     uiW,
-                    math.min(88, h - 110 - resourceTop - 150)
+                    math.min(88, h - 132 - resourceTop - 150)
                 )
             end
             setRect(self.statsPanel, 12, statsY, uiX - 26, 100)
-            local cw = math.max(235, uiW - 156)
+            local cw = uiW
             setRect(self.controls, uiX, h - 66, cw, 50)
             setRect(self.jumbleButton, 0, 0, cw * 0.4 - 4, 50)
             setRect(self.primary, cw * 0.4 + 4, 0, cw * 0.6 - 4, 50)
             for index, speedButton in self.speedButtons do
-                setRect(speedButton, w - 152 + (index - 1) * 47, h - 66, 41, 50)
+                setRect(speedButton, w - 159 + (index - 1) * 50, h - 121, 44, 44)
             end
-            setRect(self.soundButton, uiX, h - 102, 68, 28)
+            setRect(self.soundButton, uiX, h - 121, 44, 44)
         else
             setRect(self.roundPlate, 12, top + 146, uiW, 26)
             setRect(self.roundLabel, 6, 0, uiW - 12, 26)
@@ -877,109 +903,92 @@ function Presentation:_layout()
         end
         self.primary.TextSize, self.jumbleButton.TextSize = 24, 20
     else
-        local leftW = math.clamp(w * 0.185, 225, 290)
-        local rightW = math.clamp(w * 0.205, 250, 315)
-        local rackSpace = w - leftW - rightW - 64
-        invWidth = math.min(shop and 1100 or 1320, rackSpace)
-        invHeight = choosing and 94 or math.clamp(h * 0.17, 124, 180)
-        setRect(self.brand, 22, top + 16, leftW, 42)
-        self.brand.Font = Enum.Font.FredokaOne
+        local g = RunLayout.desktop(w, h)
+        local function place(object, area)
+            setRect(object, area.x, area.y, area.w, area.h)
+        end
+        invWidth, invHeight = g.rack.w, g.rack.h
+        place(self.inventory, g.rack)
+        setRect(self.swapHelp, g.rack.x, g.rack.y + g.rack.h + 6, g.rack.w, 20)
+        local brandW = math.max(110, g.rack.x - 32)
+        setRect(self.brand, 22, 14, brandW, 48)
+        self.brand.TextScaled = true
         self.brand.TextSize = 37
-        setRect(self.tag, 24, top + 60, leftW, 24)
-        self.tag.TextSize = 17
-        setRect(
-            self.inventory,
-            leftW + 32 + (rackSpace - invWidth) / 2,
-            top + 22,
-            invWidth,
-            invHeight
-        )
-        setRect(self.swapHelp, self.inventory.Position.X.Offset, top, invWidth, 20)
-        setRect(self.roundPlate, w - rightW - 22, top + 20, rightW, 98)
-        setRect(self.stageLabel, 14, 6, rightW - 28, 20)
-        setRect(self.stageProgress, 14, 86, rightW - 28, 5)
-        setRect(self.roundLabel, 14, 26, rightW - 28, 34)
-        self.roundLabel.TextSize = 30
+        setRect(self.tag, 22, 66, brandW, 24)
+        self.tag.Visible = w >= 1400
+        self.tag.TextSize = 15
+        place(self.roundPlate, g.round)
+        local rw, rh = g.round.w, g.round.h
+        setRect(self.stageLabel, 12, 5, rw - 24, 18)
+        setRect(self.roundLabel, 12, 24, rw - 24, rh >= 80 and 32 or 25)
+        self.roundLabel.TextSize = rh >= 80 and 30 or 24
         self.roundLabel.TextXAlignment = Enum.TextXAlignment.Left
-        setRect(self.phaseLabel, 14, 61, rightW - 28, 22)
-        local resourceTop = top + 148
-        setRect(self.left, 22, resourceTop, leftW, 600)
-        setRect(self.wallet, 0, 0, leftW, 82)
-        setRect(self.coinModel, 8, 6, 78, 70)
-        setRect(self.coinCaption, 94, 6, leftW - 104, 25)
-        setRect(self.coins, 94, 29, leftW - 104, 48)
-        self.coins.TextSize = 44
-        setRect(self.reservePlate, 0, 94, leftW, 78)
-        setRect(self.reserveCaption, 12, 5, leftW - 90, 26)
+        self.phaseLabel.Visible = rh >= 80
+        setRect(self.phaseLabel, 12, 57, rw - 24, 20)
+        setRect(self.stageProgress, 12, rh - 9, rw - 24, 4)
+        setRect(self.left, 0, 0, w, h)
+        place(self.wallet, g.wallet)
+        local lw, wh = g.wallet.w, g.wallet.h
+        setRect(self.coinModel, 5, 3, wh - 6, wh - 6)
+        setRect(self.coinCaption, wh + 2, 9, lw - wh - 12, 25)
+        setRect(self.coins, wh + 2, 32, lw - wh - 12, wh - 38)
+        self.coins.TextSize = 48
+        place(self.reservePlate, g.balls)
+        local bh = g.balls.h
+        setRect(self.reserveCaption, 10, 5, lw - 90, 26)
         self.reserveCaption.Text, self.reserveCaption.TextSize = "BALLS LEFT", 21
-        setRect(self.reserves, leftW - 76, 5, 64, 26)
+        setRect(self.reserves, lw - 76, 5, 66, 26)
         self.reserves.TextSize = 25
         for index, icon in self.reserveIcons do
             icon.Visible = true
-            setRect(icon, 8 + (index - 1) * ((leftW - 16) / 5), 32, (leftW - 16) / 5, 40)
+            setRect(icon, 7 + (index - 1) * ((lw - 14) / 5), 31, (lw - 14) / 5, bh - 35)
         end
-        setRect(self.statsPanel, 22, resourceTop + 186, leftW, 166)
-        setRect(self.right, w - rightW - 22, resourceTop, rightW, 570)
-        setRect(self.scorePlate, 0, 0, rightW, 236)
-        setRect(self.scoreCaption, 16, 10, rightW - 32, 30)
-        self.scoreCaption.Text, self.scoreCaption.TextSize = "SHOT SCORE", 23
-        setRect(self.score, 16, 42, rightW - 32, 62)
-        setRect(self.quota, 16, 110, rightW - 32, 30)
+        place(self.statsPanel, g.stats)
+        setRect(self.right, 0, 0, w, h)
+        place(self.scorePlate, g.score)
+        local sw, sh = g.score.w, g.score.h
+        setRect(self.scoreCaption, 12, 7, sw - 24, 26)
+        self.scoreCaption.Text, self.scoreCaption.TextSize = "SHOT SCORE", 22
+        local numberH = sh >= 170 and 52 or math.min(32, sh - 99)
+        setRect(self.score, 14, 34, sw - 28, numberH)
+        setRect(self.quota, 14, 35 + numberH, sw - 28, 24)
         self.quota.TextXAlignment = Enum.TextXAlignment.Left
-        setRect(self.progressCaption, 16, 146, rightW - 32, 26)
-        setRect(self.progress, 15, 178, rightW - 30, 44)
-        setRect(self.restockPlate, 0, 250, rightW, h < 850 and 138 or 210)
-        setRect(self.restockCaption, 14, 8, rightW - 28, 28)
-        self.restockCaption.TextSize = 20
-        self.restockCaption.TextXAlignment = Enum.TextXAlignment.Left
-        setRect(self.restockModel, 4, 40, 100, 85)
-        setRect(self.restockCount, 110, 44, rightW - 122, 68)
-        self.restockCount.TextSize = 50
+        self.progressCaption.Visible = sh >= 190
+        setRect(self.progressCaption, 14, sh - 75, sw - 28, 22)
+        setRect(self.progress, 14, sh - (sh >= 170 and 48 or 35), sw - 28, sh >= 170 and 36 or 27)
+        place(self.restockPlate, g.restocks)
+        local restH = g.restocks.h
+        setRect(self.restockCaption, 10, 5, sw - 20, 24)
+        self.restockCaption.TextSize = 19
+        self.restockCaption.TextXAlignment = Enum.TextXAlignment.Center
+        setRect(self.restockModel, 9, 28, math.min(84, restH - 30), restH - 31)
+        setRect(self.restockCount, 94, 28, sw - 104, restH - 32)
+        self.restockCount.TextSize = restH >= 90 and 48 or 32
         self.restockCount.TextXAlignment = Enum.TextXAlignment.Left
-        self.restockHint.Visible = h >= 850
-        setRect(self.restockHint, 14, 160, rightW - 28, 38)
-        for index, icon in self.stackIcons do
-            setRect(
-                icon,
-                12 + (index - 1) * ((rightW - 24) / 8),
-                h < 850 and 109 or 127,
-                (rightW - 24) / 8,
-                30
-            )
+        self.restockHint.Visible = false
+        for _, icon in self.stackIcons do
+            icon.Visible = false
         end
-        setRect(self.perksPanel, w - rightW - 22, resourceTop + 474, rightW, 174)
-        setRect(self.best, 4, 660, rightW - 8, 27)
-        setRect(self.profile, 4, 691, rightW - 8, 24)
-        if self.lowDesktop then
-            self.restockHint.Visible = false
-            setRect(self.scorePlate, 0, 0, rightW, 172)
-            setRect(self.scoreCaption, 14, 5, rightW - 28, 26)
-            setRect(self.score, 14, 30, rightW - 28, 50)
-            setRect(self.quota, 14, 83, rightW - 28, 28)
-            self.progressCaption.Visible = false
-            setRect(self.progress, 14, 121, rightW - 28, 38)
-            setRect(self.restockPlate, 0, 184, rightW, 96)
-            setRect(self.restockCaption, 12, 2, rightW - 24, 24)
-            setRect(self.restockModel, 4, 28, 90, 60)
-            setRect(self.restockCount, 106, 30, rightW - 118, 54)
-            setRect(self.perksPanel, w - rightW - 22, resourceTop + 292, rightW, 130)
-        end
-        boardRect = {
-            x = leftW + 44,
-            y = top + 22 + invHeight + 14,
-            w = w - leftW - rightW - 88,
-            h = h - (top + 22 + invHeight + 14) - 96,
-        }
-        local cw = math.min(440, boardRect.w)
-        setRect(self.controls, boardRect.x + (boardRect.w - cw) / 2, h - 83, cw, 54)
-        setRect(self.jumbleButton, 0, 0, cw * 0.36 - 5, 54)
-        setRect(self.primary, cw * 0.36 + 5, 0, cw * 0.64 - 5, 54)
-        self.primary.TextSize, self.jumbleButton.TextSize = 28, 23
+        place(self.perksPanel, g.perks)
+        self.best.Visible, self.profile.Visible = false, false
+        boardRect = g.board
+        place(self.controls, g.controls)
+        setRect(self.jumbleButton, 8, 8, (g.controls.w - 24) * 0.38, 56)
+        setRect(self.primary, 16 + (g.controls.w - 24) * 0.38, 8, (g.controls.w - 24) * 0.62, 56)
+        self.primary.TextSize, self.jumbleButton.TextSize = 32, 25
         for index, speedButton in self.speedButtons do
-            setRect(speedButton, w - rightW - 22 + (index - 1) * 66, h - 79, 58, 48)
+            local cellW = (g.speeds.w - 32) / 3
+            setRect(
+                speedButton,
+                g.speeds.x + 8 + (index - 1) * (cellW + 8),
+                g.speeds.y + 8,
+                cellW,
+                56
+            )
+            speedButton.TextSize = 28
         end
-        setRect(self.soundButton, 24, h - 79, 148, 48)
-        setRect(self.help, boardRect.x - 40, h - 25, boardRect.w + 80, 20)
+        place(self.soundButton, g.sound)
+        setRect(self.help, boardRect.x, h - 19, boardRect.w, 16)
     end
     -- Keep session navigation beside, rather than over, the rack instructions.
     local navigationWidth = math.min(112, invWidth * 0.28)
@@ -1033,8 +1042,15 @@ function Presentation:_layout()
         self.restockCount.TextSize = 18
         boardRect = layout.board
         place(self.controls, layout.controls)
-        setRect(self.jumbleButton, 0, 0, layout.controls.w * 0.34 - 3, 44)
-        setRect(self.primary, layout.controls.w * 0.34 + 3, 0, layout.controls.w * 0.66 - 3, 44)
+        local controlPadY = (layout.controls.h - 44) / 2
+        setRect(self.jumbleButton, 4, controlPadY, (layout.controls.w - 16) * 0.34, 44)
+        setRect(
+            self.primary,
+            12 + (layout.controls.w - 16) * 0.34,
+            controlPadY,
+            (layout.controls.w - 16) * 0.66,
+            44
+        )
         for index, speedButton in self.speedButtons do
             place(speedButton, layout.extras[index])
         end
@@ -1085,6 +1101,34 @@ function Presentation:_layout()
         self.left.Visible, self.right.Visible = true, true
     end
     -- Main's return button uses physical viewport coordinates.
+    local speedX, speedY, speedRight, speedBottom = math.huge, math.huge, 0, 0
+    for _, control in self.speedButtons do
+        local p, s = control.Position, control.Size
+        speedX, speedY = math.min(speedX, p.X.Offset), math.min(speedY, p.Y.Offset)
+        speedRight, speedBottom =
+            math.max(speedRight, p.X.Offset + s.X.Offset),
+            math.max(speedBottom, p.Y.Offset + s.Y.Offset)
+    end
+    local speedPad = compact and 3 or 8
+    setRect(
+        self.speedGroup,
+        speedX - speedPad,
+        speedY - speedPad,
+        speedRight - speedX + speedPad * 2,
+        speedBottom - speedY + speedPad * 2
+    )
+    for _, control in self.speedButtons do
+        control.Position = UDim2.fromOffset(
+            control.Position.X.Offset - speedX + speedPad,
+            control.Position.Y.Offset - speedY + speedPad
+        )
+        control.Parent = self.speedGroup
+    end
+    if compact and not self.foldHud then
+        local cw = self.controls.Size.X.Offset
+        setRect(self.jumbleButton, 3, 3, (cw - 15) * 0.38, 44)
+        setRect(self.primary, 12 + (cw - 15) * 0.38, 3, (cw - 15) * 0.62, 44)
+    end
     self.sessionNavigation.x += origin.X
     self.sessionNavigation.y += origin.Y
     for _, panel in { self.statsPanel, self.perksPanel } do
@@ -1100,7 +1144,7 @@ function Presentation:_layout()
     end
     local columns = compact and 3 or 2
     local statW = (self.statsPanel.Size.X.Offset - 20) / columns
-    local rowH = compact and 18 or 22
+    local rowH = compact and 18 or math.min(22, (self.statsPanel.Size.Y.Offset - 28) / 6)
     setRect(self.statsTitle, 10, 2, self.statsPanel.Size.X.Offset - 20, 21)
     self.statsTitle.TextSize = compact and 16 or 18
     for index, field in
@@ -1430,10 +1474,12 @@ function Presentation:_renderControls()
             shortHint and "Items trigger automatically"
             or "Your equipment works together automatically"
         )
-    self.soundButton.Text = (self.shortWide and "SFX " or "SOUND ")
-        .. (self.muted and "OFF" or "ON")
+    self.soundButton.Text = ""
+    self.soundSlash.Visible = self.muted == true
+    self.soundButton:SetAttribute("Muted", self.muted == true)
     local playable = (phase == "aim" or phase == "flight") and not self.busy
     self.controls.Visible = playable
+    self.speedGroup.Visible = phase == "aim" or phase == "flight"
     self.jumbleButton.Visible = phase == "aim"
     Theme.setEnabled(self.jumbleButton, state.canJumble == true and playable, C.blue)
     self.primary.Text = phase == "flight" and "END SHOT" or "LAUNCH!"
@@ -1603,7 +1649,12 @@ function Presentation:_updateModal()
         setRect(title, 12, 2, width - 24, 30)
         subtitle.Visible = false
     end
-    local bodyTop = tinyChoice and 36 or (self.shortWide and 70 or 112)
+    local choicePhase = phase == "perk" or phase == "event"
+    if choicePhase then
+        subtitle.Visible = false
+    end
+    local bodyTop = choicePhase and (tinyChoice and 36 or 62)
+        or (tinyChoice and 36 or (self.shortWide and 70 or 112))
     local footerY = height - (tinyChoice and 44 or (self.shortWide and 54 or 67))
     local body = make("ScrollingFrame", {
         Name = "Content",
@@ -1632,7 +1683,7 @@ function Presentation:_updateModal()
     if phase == "perk" or phase == "event" then
         title.Text = phase == "perk" and "CHOOSE YOUR PERK"
             or (state.eventTitle or "CHOOSE YOUR REWARD")
-        subtitle.Text = "Make your next combo even stronger. Pick one."
+        subtitle.Text = ""
         local choices = phase == "perk" and state.perkOffers or state.eventChoices
         body.ScrollingEnabled = false
         body.ScrollBarThickness = 0
@@ -1666,57 +1717,72 @@ function Presentation:_updateModal()
             local function place(object, area)
                 setRect(object, area.x, area.y, area.w, area.h)
             end
-            local model = self:_viewport(card, "Reward", id, 1, 27)
+            local well = Theme.inset(card, "ModelBox", C.ice, 26)
+            place(well, positions.model)
+            local model = self:_viewport(well, "Reward", id, 1, 27)
             model:SetAttribute("ShopPreview", true)
             self:_mount(model, id, 1)
-            place(model, positions.model)
-            local name = label(card, "Name", data.name, positions.nameFont, C.ink, 28)
-            name.Font = Enum.Font.FredokaOne
-            name.TextXAlignment = positions.stacked and Enum.TextXAlignment.Center
-                or Enum.TextXAlignment.Left
+            setRect(model, 3, 3, positions.model.w - 6, positions.model.h - 6)
+            local name = Theme.ribbon(card, "Name", data.name, positions.nameFont, 28)
             name.TextWrapped, name.TextScaled = true, true
             make(
                 "UITextSizeConstraint",
-                { MinTextSize = positions.tight and 16 or 18, MaxTextSize = positions.nameFont },
+                { MinTextSize = 13, MaxTextSize = positions.nameFont },
                 name
             )
             place(name, positions.name)
-            name.BackgroundColor3, name.BackgroundTransparency = C.aqua, 0
-            corner(name, 10)
             local detail = phase == "perk" and Catalog.detail(id, 1)
             if detail then
+                local box = Theme.inset(card, "TriggerBox", C.paper, 26)
+                place(box, positions.trigger)
                 local trigger =
-                    label(card, "Trigger", detail.trigger, positions.triggerFont, C.trigger, 28)
+                    label(box, "Trigger", detail.trigger, positions.triggerFont, C.trigger, 28)
                 trigger.Font = Enum.Font.SourceSansBold
                 trigger.TextWrapped, trigger.TextScaled = true, true
+                trigger.TextXAlignment = Enum.TextXAlignment.Center
+                trigger.Size, trigger.Position = UDim2.new(1, -8, 1, 0), UDim2.fromOffset(4, 0)
                 make(
                     "UITextSizeConstraint",
-                    { MinTextSize = 14, MaxTextSize = positions.triggerFont },
+                    { MinTextSize = 12, MaxTextSize = positions.triggerFont },
                     trigger
                 )
-                trigger.TextXAlignment = positions.stacked and Enum.TextXAlignment.Center
-                    or Enum.TextXAlignment.Left
-                place(trigger, positions.trigger)
             end
-            local effect = detail and detail.effects[1]
-            local description = label(
-                card,
-                "Effect",
-                effect and effect.text or data.description,
-                positions.effectFont,
-                id == "overtime" and C.negative or C.positive,
-                28
-            )
-            description.TextWrapped, description.TextScaled = true, true
-            make(
-                "UITextSizeConstraint",
-                { MinTextSize = positions.tight and 14 or 17, MaxTextSize = positions.effectFont },
-                description
-            )
-            description.TextXAlignment = positions.stacked and Enum.TextXAlignment.Center
-                or Enum.TextXAlignment.Left
-            description.TextYAlignment = Enum.TextYAlignment.Center
-            place(description, positions.effect)
+            local effects = detail and detail.effects
+                or {
+                    {
+                        text = data.description,
+                        tone = id == "overtime" and "negative" or "positive",
+                    },
+                }
+            local effectGap = #effects > 1 and 4 or 0
+            local effectH = (positions.effect.h - effectGap * (#effects - 1)) / #effects
+            for effectIndex, effect in effects do
+                local box = Theme.inset(card, "EffectBox" .. effectIndex, C.paper, 26)
+                setRect(
+                    box,
+                    positions.effect.x,
+                    positions.effect.y + (effectIndex - 1) * (effectH + effectGap),
+                    positions.effect.w,
+                    effectH
+                )
+                local description = label(
+                    box,
+                    effectIndex == 1 and "Effect" or "Effect" .. effectIndex,
+                    effect.text,
+                    positions.effectFont,
+                    C[effect.tone] or C.ink,
+                    28
+                )
+                description.TextWrapped, description.TextScaled = true, true
+                description.TextXAlignment = Enum.TextXAlignment.Center
+                description.Size, description.Position =
+                    UDim2.new(1, -8, 1, 0), UDim2.fromOffset(4, 0)
+                make(
+                    "UITextSizeConstraint",
+                    { MinTextSize = 12, MaxTextSize = positions.effectFont },
+                    description
+                )
+            end
             local choose = button(card, "Choose", "CHOOSE", C.mint, function()
                 self:_send(phase == "perk" and "choosePerk" or "chooseEvent", { index = index })
             end, 29)

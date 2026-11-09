@@ -43,6 +43,8 @@ try {
     [xml]$place = Get-Content build/dev.rbxlx -Raw
     $mappings = @(
         @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/ShopView'; Class = 'ModuleScript'; Source = 'src/client/ShopView.luau' },
+        @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/ItemDetailCard'; Class = 'ModuleScript'; Source = 'src/client/ItemDetailCard.luau' },
+        @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/ItemDetailLayout'; Class = 'ModuleScript'; Source = 'src/client/ItemDetailLayout.luau' },
         @{ Path = 'StarterPlayer/StarterPlayerScripts/Client/RunLayout'; Class = 'ModuleScript'; Source = 'src/client/RunLayout.luau' },
         @{ Path = 'ServerScriptService/Server/ProfileRepository'; Class = 'ModuleScript'; Source = 'src/server/ProfileRepository.luau' },
         @{ Path = 'ReplicatedStorage/Shared/ChestProgression'; Class = 'ModuleScript'; Source = 'src/shared/ChestProgression.luau' },

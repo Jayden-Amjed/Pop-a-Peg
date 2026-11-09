@@ -107,7 +107,7 @@ local ok, failure = xpcall(function()
                                 if card:IsA("Frame") and card.Name:match("^Choice") then
                                     choices += 1
                                     inside(card, content)
-                                    inside(card.Reward, card)
+                                    inside(card:FindFirstChild("Reward", true), card)
                                     inside(card.Choose, card)
                                     assert(
                                         card.Choose.AbsoluteSize.Y >= 43.5,
