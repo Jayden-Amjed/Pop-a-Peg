@@ -102,11 +102,26 @@ assert(Blender.Profiles ~= Native.Profiles, "Gallery aliases the native profile 
 
 local neutral = { x = 0, y = 0, z = 0, rx = 0, ry = 0, rz = 0, scale = 1 }
 for _, id in { "relay", "lagoon_synth" } do
-    for i = 0, 40 do
-        assert(
-            encode(Blender.bodySample(id, i / 40, 2)) == encode(neutral),
-            "Fixed frame moved: " .. id
-        )
+    local fixed = Blender.sample(id, "Fixed", 0, 1, 0, 0, 0)
+    for _, strength in { 0, 0.25, 1, 2 } do
+        local minimum, maximum = 1, 1
+        for i = 0, 100 do
+            local t = i / 100
+            local body = Blender.bodySample(id, t, strength)
+            minimum, maximum = math.min(minimum, body.scale), math.max(maximum, body.scale)
+            assert(body.scale >= 0.8 and body.scale < 1.5, "Unbounded body pop: " .. id)
+            assert(
+                encode(Blender.sample(id, "Fixed", t, strength, 0, 0, 0)) == encode(fixed),
+                "Fixed assembly moved inside its reacting body: " .. id
+            )
+            if i == 0 or i == 100 or strength == 0 then
+                assert(encode(body) == encode(neutral), "Body did not restore: " .. id)
+            end
+        end
+        if strength >= 1 then
+            assert(minimum <= 0.91, "Missing anticipation contraction: " .. id)
+            assert(maximum >= 1.23, "Missing visible whole-model pop: " .. id)
+        end
     end
 end
 local off = Blender.sample("dew_lantern", "LanternDrop", 0, 1, 0, 1.1, 0)
@@ -128,7 +143,7 @@ for _, id in { "bubble_wand", "burst_capsule", "coin_press", "chest_common", "ch
 end
 print(
     string.format(
-        "PASS catalog effects: %d IDs, %d deterministic samples, unique geometry, 40-part bound, exact rest, native freeze, fixed mounts, light switch and travelling waveform",
+        "PASS catalog effects: %d IDs, %d deterministic samples, unique geometry, 40-part bound, exact rest, native freeze, coherent body pops, local fixed mounts, light switch and travelling waveform",
         count,
         totalSamples
     )
