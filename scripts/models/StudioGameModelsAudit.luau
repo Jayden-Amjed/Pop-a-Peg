@@ -1,10 +1,13 @@
 -- Run only in a dedicated game Client. Exercises the actual gameplay adapter,
 -- not the gallery adapter alone. No gameplay state, remotes or profiles change.
-return function(first, last)
+return function(first, last, overrideModels)
     first, last = first or 1, last or 78
     local playerGui = game.Players.LocalPlayer.PlayerGui
-    local Client = game.Players.LocalPlayer.PlayerScripts:WaitForChild("Client")
-    local Models = require(Client.GameItemModels)
+    local Models = overrideModels
+    if not Models then
+        local Client = game.Players.LocalPlayer.PlayerScripts:WaitForChild("Client")
+        Models = require(Client.GameItemModels)
+    end
     local Catalog = require(game.ReplicatedStorage.CatalogLibrary.CatalogInfo)
     local report = {
         ok = false,
@@ -71,6 +74,9 @@ return function(first, last)
                 task.wait(0.02)
             until Models.loadStatus(entry.id) ~= "Loading" or os.clock() > deadline
             handle:step(0)
+            local framing = handle:inspect()
+            item.cameraDistance, item.legacyCameraDistance =
+                framing.cameraDistance, framing.legacyCameraDistance
             assert(
                 Models.loadStatus(entry.id) == "Ready",
                 "Imported meshes did not load: " .. Models.loadStatus(entry.id)

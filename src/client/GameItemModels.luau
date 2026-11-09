@@ -12,7 +12,10 @@ local Native = require(script.Parent.ItemModels)
 local Lighting = require(script.Parent.PreviewLighting)
 local Playback = require(script.Parent.GameModelPlayback)
 local Loader = require(script.Parent.GameModelLoader)
+local PreviewFit = require(script.Parent.GamePreviewFit)
 local GameItemModels = {}
+local VIEW_DIRECTION = Vector3.new(0.72, 0.43, 1).Unit
+local VIEW_ROTATION = CFrame.lookAt(Vector3.zero, -VIEW_DIRECTION)
 
 local aliases = {
     ball = "life",
@@ -139,8 +142,65 @@ local function measure(model, motion, canonical, reduced)
         end
         motion:apply(0, 1, CFrame.identity)
         effects:destroy()
+    else
+        -- Reduced motion retains only its four-percent uniform scale pulse.
+        low, high = low * 1.04, high * 1.04
     end
-    local envelope = { focus = (low + high) / 2, radius = (high - low).Magnitude / 2 }
+    local corners, originRadius = {}, 0
+    for x = 0, 1 do
+        for y = 0, 1 do
+            for z = 0, 1 do
+                local corner = Vector3.new(
+                    if x == 0 then low.X else high.X,
+                    if y == 0 then low.Y else high.Y,
+                    if z == 0 then low.Z else high.Z
+                )
+                table.insert(corners, corner)
+                originRadius = math.max(originRadius, corner.Magnitude)
+            end
+        end
+    end
+    local points = {}
+    local samples = if reduced then 1 else 64
+    for sample = 0, samples - 1 do
+        local pose = if reduced
+            then { x = 0, y = 0, pitch = 0, yaw = 0, roll = 0 }
+            else Idle.idleSample(sample / samples * math.pi * 2)
+        local rotation = CFrame.Angles(pose.pitch, pose.yaw, pose.roll)
+        local tx, ty = pose.x * motion.restSize.X, pose.y * motion.restSize.Y
+        for _, corner in corners do
+            local projected = VIEW_ROTATION:VectorToObjectSpace(rotation:VectorToWorldSpace(corner))
+            if canonical == "split_prism" and not reduced then
+                -- Prism may aim at any screen angle while its idle translation
+                -- stays fixed. A radial support covers the complete aim roll.
+                local radius = math.sqrt(projected.X ^ 2 + projected.Y ^ 2)
+                table.insert(points, { tx - radius, ty - radius, projected.Z })
+                table.insert(points, { tx + radius, ty + radius, projected.Z })
+            else
+                table.insert(points, { projected.X + tx, projected.Y + ty, projected.Z })
+            end
+        end
+    end
+    local padding = { 0, 0, 0 }
+    if not reduced then
+        -- Any idle phase is within half a sample. Bound the between-sample
+        -- displacement using the known sinusoid/Euler derivative limits.
+        local halfStep, idle = math.pi / samples, Idle.Idle
+        local angle = (idle.pitch + 2 * idle.yaw + 2 * idle.roll) * halfStep
+        local drift = 2 * originRadius * math.sin(angle / 2)
+        padding = {
+            drift + 2 * idle.lateral * motion.restSize.X * halfStep,
+            drift + idle.vertical * motion.restSize.Y * halfStep,
+            drift,
+        }
+    end
+    local fitted = PreviewFit.new(points, padding)
+    local center = fitted.center
+    local envelope = {
+        focus = VIEW_ROTATION:PointToWorldSpace(Vector3.new(center[1], center[2], center[3])),
+        fit = fitted,
+        radius = (high - low).Magnitude / 2,
+    }
     envelopes[key] = envelope
     return envelope
 end
@@ -195,11 +255,10 @@ function GameItemModels.mount(viewport, id, level, options)
             else 1
         local half = math.rad(camera.FieldOfView / 2)
         local limiting = math.min(half, math.atan(math.tan(half) * aspect))
-        local distance = envelope.radius * 1.13 / math.sin(limiting)
-        camera.CFrame = CFrame.lookAt(
-            envelope.focus + Vector3.new(0.72, 0.43, 1).Unit * distance,
-            envelope.focus
-        )
+        local distance = envelope.fit:distance(aspect, camera.FieldOfView)
+        handle.cameraDistance = distance
+        handle.legacyCameraDistance = envelope.radius * 1.13 / math.sin(limiting)
+        camera.CFrame = CFrame.lookAt(envelope.focus + VIEW_DIRECTION * distance, envelope.focus)
     end
 
     local function loadState()
@@ -378,6 +437,8 @@ function GameItemModels.mount(viewport, id, level, options)
             visibleEffects = if effects then effects.activeCount else 0,
             rootPose = rootPose,
             camera = if fallback then viewport.CurrentCamera else camera,
+            cameraDistance = self.cameraDistance,
+            legacyCameraDistance = self.legacyCameraDistance,
         }
     end
 
