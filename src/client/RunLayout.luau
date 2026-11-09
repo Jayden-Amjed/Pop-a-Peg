@@ -8,6 +8,34 @@ function Layout.safeRect(w, h, left, top, right, bottom)
     return rect(left, top, math.max(1, w - left - right), math.max(1, h - top - bottom))
 end
 
+function Layout.perks(w, h, count, compact, folded)
+    -- Desktop uses only occupied rows. Small screens keep their established
+    -- eight-slot geometry so expanding details does not reshuffle the HUD.
+    local columns = folded and 4 or (compact and 8 or math.clamp(count, 1, 4))
+    local rows = folded and 2 or (compact and 1 or math.ceil(math.max(1, count) / columns))
+    local headerH, nameH = h < 70 and 18 or 23, h < 70 and 0 or 16
+    local cw = (w - 12 - (columns - 1) * 4) / columns
+    local ch = (h - headerH - 8 - (rows - 1) * 4) / rows
+    local result = { headerH = headerH, cells = {} }
+    for index = 1, count do
+        local modelH = math.min(cw - 2, ch - nameH)
+        table.insert(result.cells, {
+            card = rect(
+                6 + ((index - 1) % columns) * (cw + 4),
+                headerH + 3 + math.floor((index - 1) / columns) * (ch + 4),
+                cw,
+                ch
+            ),
+            model = if compact or folded
+                then rect((cw - modelH) / 2, 0, modelH, modelH)
+                else rect(1, 0, cw - 2, ch - nameH),
+            name = rect(2, ch - nameH, cw - 4, nameH),
+            count = rect(cw - 24, 0, 22, 16),
+        })
+    end
+    return result
+end
+
 -- Fullscreen rendering can extend beyond Camera.ViewportSize on cutout devices.
 -- full/safe are in core-UI coordinates; board is local to the safe root.
 function Layout.cameraFrame(full, safe, board)
