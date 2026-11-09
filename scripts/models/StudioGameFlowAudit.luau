@@ -112,8 +112,8 @@ return function()
         end
         view.feedback:setMuted(true)
         snapshot()
-        assert(not view.compact, "Desktop flow audit requires a desktop-sized Studio viewport")
         report.safeArea = { w = view.viewport.X, h = view.viewport.Y }
+        report.compact, report.folded = view.compact, view.foldHud
         ready()
 
         stage = "Seed Bank natural drain and automatic retry"
@@ -166,17 +166,14 @@ return function()
             string.find(view.phaseLabel.Text, "8 SEEDED PEGS", 1, true),
             "Seed readiness label missing"
         )
-        table.insert(
-            report.stages,
-            {
-                name = stage,
-                seeds = #run.activeSeeds,
-                receipt = receiptId,
-                drainFixture = "Launched normally, placed just above drain, then Simulation.step detected drain",
-            }
-        )
+        table.insert(report.stages, {
+            name = stage,
+            seeds = #run.activeSeeds,
+            receipt = receiptId,
+            drainFixture = "Launched normally, placed just above drain, then Simulation.step detected drain",
+        })
 
-        stage = "Full desktop rack and owned perks"
+        stage = "Full rack and owned perks at actual viewport"
         run.slots, run.coins = 7, 100
         local equipment = {
             "seed_bank",
@@ -208,19 +205,19 @@ return function()
             local cell = view.perkCells[id]
             inside(cell.button, view.perksPanel)
             inside(cell.viewport, cell.button)
-            assert(
-                math.abs(cell.button.AbsolutePosition.Y - firstPerk.button.AbsolutePosition.Y) < 1,
-                "Four desktop perks reserve an empty second row"
-            )
+            if not view.compact then
+                assert(
+                    math.abs(cell.button.AbsolutePosition.Y - firstPerk.button.AbsolutePosition.Y)
+                        < 1,
+                    "Four desktop perks reserve an empty second row"
+                )
+            end
         end
-        table.insert(
-            report.stages,
-            {
-                name = stage,
-                rackModel = rect(view.itemSlots[1].viewport),
-                perkModel = rect(firstPerk.viewport),
-            }
-        )
+        table.insert(report.stages, {
+            name = stage,
+            rackModel = rect(view.itemSlots[1].viewport),
+            perkModel = rect(firstPerk.viewport),
+        })
 
         stage = "Four equipment and two supplies shop fixture"
         -- Offer and route setup are fixtures, while purchasing/continuing use Run.action.
