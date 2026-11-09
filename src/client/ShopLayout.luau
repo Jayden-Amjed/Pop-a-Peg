@@ -108,10 +108,10 @@ function Layout.card(width, height, consumable)
     }
 end
 
-function Layout.equations(width, height, count)
-    count = math.clamp(count, 0, 2)
+function Layout.equations(width, height, count, showTitle)
+    count = math.max(0, count)
     local compact = height < 20 + count * 64
-    local titleH = compact and 13 or 20
+    local titleH = showTitle == false and 0 or (compact and 13 or 20)
     local result = { title = rect(0, 0, width, count > 0 and titleH or 0), rows = {} }
     if count == 0 then
         return result

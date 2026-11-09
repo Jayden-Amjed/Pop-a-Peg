@@ -1,6 +1,9 @@
 local Layout = if script
     then require(game:GetService("Players").LocalPlayer.PlayerScripts.Client.ShopLayout)
     else require("../src/client/ShopLayout")
+local DetailLayout = if script
+    then require(game:GetService("Players").LocalPlayer.PlayerScripts.Client.ItemDetailLayout)
+    else require("../src/client/ItemDetailLayout")
 return function()
     local function inside(a, b)
         assert(a.w >= 0 and a.h >= 0, "Negative shop region")
@@ -79,7 +82,7 @@ return function()
         end
     end
     -- Shared recipe geometry must remain compatible with the inspector.
-    for count = 0, 2 do
+    for count = 0, 4 do
         local layout = Layout.equations(350, 20 + count * 80, count)
         assert(#layout.rows == count, "Missing recipe rows")
         for _, row in layout.rows do
@@ -88,6 +91,22 @@ return function()
                 for _, r in group do
                     inside(r, { x = 0, y = 0, w = 350, h = 20 + count * 80 })
                 end
+            end
+        end
+    end
+    for _, size in { { 236, 620 }, { 340, 600 }, { 560, 244 }, { 1220, 650 } } do
+        local layout = DetailLayout.compute(size[1], size[2], { 22, 44, 22, 44 }, 4)
+        assert(#layout.effects == 4, "Detail card omitted effects")
+        assert(layout.recipes.h >= 4 * 100, "Detail card omitted recipes")
+        local bounds = { x = 0, y = 0, w = size[1], h = layout.contentHeight }
+        local regions = { layout.model, layout.name, layout.recipes }
+        for _, r in layout.effects do
+            table.insert(regions, r)
+        end
+        for i, r in regions do
+            inside(r, bounds)
+            for j = i + 1, #regions do
+                separate(r, regions[j])
             end
         end
     end
