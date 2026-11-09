@@ -18,6 +18,8 @@
         "BlenderChoreography": { "$path": "scripts/models/BlenderChoreography.luau" },
         "CatalogEffects": { "$path": "scripts/models/CatalogEffects.luau" },
         "CatalogEffectProfiles": { "$path": "scripts/models/CatalogEffectProfiles.luau" },
+        "CatalogEffectAnchors": { "$path": "scripts/models/CatalogEffectAnchors.luau" },
+        "StudioEffectPlacementAudit": { "$path": "scripts/models/StudioEffectPlacementAudit.luau" },
         "StudioEffectsAudit": { "$path": "scripts/models/StudioEffectsAudit.luau" },
         "GallerySoundBank": { "$path": "scripts/models/GallerySoundBank.luau" },
         "GallerySoundEngine": { "$path": "scripts/models/GallerySoundEngine.luau" },

@@ -68,8 +68,9 @@ For Blender pilots, use the separate [model workflow](BLENDER_PILOTS.md).
 `setup-blender.ps1` installs a checksum-pinned portable Blender; `build-models.ps1`
 exports existing `.blend` files and audits them. `-Regenerate` explicitly replaces
 editable sources from Python. Candidate exports do not change uploaded assets.
-The pilot gallery builds from `blender-pilots.project.json`; normal game builds
-retain native models. Capture only the reviewed pilot folder with Studio's
+The pilot gallery builds from `blender-pilots.project.json`; from RBX-029, normal
+game builds adopt the reviewed catalog through GameItemModels while native source
+stays frozen. Capture only the reviewed model folder with Studio's
 SerializationService and record asset identity/provenance before promoting its
 `.rbxm`. This bounded model handoff is separate from shared-script syncback.
 

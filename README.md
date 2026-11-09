@@ -24,8 +24,9 @@ what has actually passed, active ownership, and the next task.
 To review the Blender catalog, open the [78-model animation inspector](docs/CATALOG_GALLERY.md).
 It includes search, camera views, slow motion, silent pose scrubbing, detail zoom,
 per-item sound with mute/volume controls, a temporary-effects toggle, and copyable
-feedback. Native geometry and animation are frozen; new art work stays in the
-Blender/gallery layer.
+feedback. Native geometry and animation are frozen references. The actual game
+uses the reviewed Blender catalog through a dedicated adapter, sharing its motion
+and effects with the gallery.
 The [animation guide](docs/ITEM_ANIMATION_GUIDE.md) defines each model's expressive
 trigger performance and the Blender-specific choreography and effects layer.
 
@@ -299,7 +300,8 @@ the local source does not change that account-level place setting.
 ## Blender model pilots
 
 Wave Spring, Seed Bank and Meadow Chest have an isolated, playable comparison
-gallery. Production models remain native while the pilots are evaluated.
+gallery. The game now uses the complete reviewed Blender catalog through
+GameItemModels; this older lab remains useful for the original three comparisons.
 See [setup, editable sources and Studio testing](docs/BLENDER_PILOTS.md).
 
 ```powershell

@@ -1,8 +1,9 @@
 # Blender pilot model lab
 
 Wave Spring, Seed Bank and Meadow Chest now have original Blender models and a
-separate Studio comparison gallery. The normal game still uses its native models.
-This pilot tests mesh quality, restoration and animation before catalog adoption.
+separate Studio comparison gallery. This RBX-019 lab tested mesh quality,
+restoration and animation before adoption. From RBX-029 the normal game uses the
+complete reviewed Blender catalog; the native reference remains frozen.
 Use the [style guide](MODEL_STYLE_GUIDE.md) for art decisions and
 [RBX-019](../tasks/RBX-019-blender-pilots.md) for exact verification evidence.
 

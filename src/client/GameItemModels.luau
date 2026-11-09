@@ -56,7 +56,10 @@ local loader = Loader.new({
             end
         end
         assert(#fetch > 0, "Catalog template has no remote meshes: " .. id)
-        content:PreloadAsync(fetch, function(assetId, status)
+        -- Preserve the MeshPart content type. Passing bare MeshId strings here
+        -- requests the wrong asset type in Studio and rejects otherwise valid
+        -- meshes; the same models preload successfully as typed instances.
+        content:PreloadAsync({ template }, function(assetId, status)
             if status ~= Enum.AssetFetchStatus.Success then
                 fail(tostring(assetId) .. ": " .. tostring(status))
             end

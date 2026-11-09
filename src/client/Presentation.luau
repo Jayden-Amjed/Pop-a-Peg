@@ -11,7 +11,7 @@ local Catalog = require(Shared:WaitForChild("Catalog"))
 local Format = require(Shared:WaitForChild("Format"))
 local Simulation = require(Shared:WaitForChild("Simulation"))
 local Theme = require(script.Parent.UiTheme)
-local ItemModels = require(script.Parent.ItemModels)
+local ItemModels = require(script.Parent.GameItemModels)
 local Feedback = require(script.Parent.Feedback)
 local Selection = require(script.Parent.InventorySelection)
 local ShopLayout = require(script.Parent.ShopLayout)
@@ -1412,6 +1412,10 @@ function Presentation:_renderControls()
     })[phase] or ""
     if state.stageCleared and (phase == "result" or phase == "victory") then
         self.phaseLabel.Text = "LEVEL " .. tostring(state.stageCleared.index) .. " COMPLETE!"
+    elseif phase == "aim" and #(state.activeSeeds or {}) > 0 then
+        self.phaseLabel.Text = "READY • " .. #state.activeSeeds .. " SEEDED PEGS"
+    elseif (state.pendingSeeds or 0) > 0 and phase ~= "flight" then
+        self.phaseLabel.Text = tostring(state.pendingSeeds) .. " SEEDS BANKED FOR NEXT SHOT"
     end
     self.help.Text = phase == "flight" and "LET THE COMBO PLAY • [E] END SHOT"
         or "AIM • CLICK THE BOARD OR PRESS SPACE"

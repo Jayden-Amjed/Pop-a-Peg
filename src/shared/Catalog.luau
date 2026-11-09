@@ -394,7 +394,7 @@ local additions = {
     },
     {
         "mist_fan",
-        "Mist Fan",
+        "Breeze Fan",
         "uncommon",
         7,
         "time",
@@ -405,7 +405,7 @@ local additions = {
     },
     {
         "coral_fork",
-        "Coral Fork",
+        "Coral Spark",
         "uncommon",
         7,
         "double",

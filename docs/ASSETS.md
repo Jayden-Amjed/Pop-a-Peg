@@ -1,13 +1,15 @@
 # Model and sound sources
 
-Production board, equipment, perk, consumable, and currency models are original
-native Roblox geometry generated from source. They require no private visual asset
-IDs. The isolated Blender galleries have the separate dependencies below.
+The board and arcade architecture use original native Roblox geometry. Equipment,
+perks, Supplies, chests and currency previews now use the original Blender catalog
+through GameItemModels. They depend on the owner-account MeshIds documented below.
+The frozen native catalog remains available for explicit load failure fallback
+and review comparison. Source art and import receipts are shared by game/gallery.
 
 ## Complete Blender catalog (RBX-021)
 
 The [catalog inspector](CATALOG_GALLERY.md) adds 75 original Blender models and
-reuses the three accepted pilots. Its 78 models contain 477 MeshParts and 124,332
+reuses the three accepted pilots. At RBX-021 its 78 models contained 477 MeshParts and 124,332
 triangles in total; only the selected preview and optional native comparison are
 mounted for rendering. No downloaded models, third-party textures or AI images
 were used. Sources, individual audit manifests and exact uploaded bytes are in
@@ -34,7 +36,7 @@ bound receipt. Three calibration cubes measure scale/orientation; normalized loc
 clones restore colors, transparency, explicit pivots and nonphysical flags. The raw
 packages stay unchanged. The aggregate
 [runtime folder](../art/catalog/CatalogAssets.rbxm) is engine-serialized and mapped
-only by the gallery project. `validate_catalog.py` verifies the archived chain;
+by both the game and gallery projects. `validate_catalog.py` verifies the archived chain;
 these receipts do not independently download and rehash Roblox's mesh bytes.
 Owner-account Studio loading passed for all 477 meshes. Another account's access
 remains unverified. Asset upload did not publish or update the game experience.
@@ -52,7 +54,8 @@ plus a calibration cube. [studio-import.json](../art/models/studio-import.json)
 records every observed MeshId, geometry signature, source mapping and upload proof.
 The engine-serialized [BlenderPilots.rbxm](../art/models/BlenderPilots.rbxm)
 contains normalized local copies of the 25 pilot pieces. It preserves those MeshIds
-and is mapped only by `blender-pilots.project.json`; production defaults stay native.
+and is mapped only by `blender-pilots.project.json`. The same three designs are
+included in the complete `CatalogAssets.rbxm` used by the game from RBX-029.
 
 Import correction was observed, not assumed: the 1-stud cube arrived at 0.28 studs,
 all materials were gray, and front-facing geometry was reversed. The local copies
@@ -66,7 +69,7 @@ See [Blender pilot workflow](BLENDER_PILOTS.md) for restoration and revision ste
 Asset upload is separate from publishing an experience; no experience update was
 published by this task.
 
-## Native production assets
+## Native environment and preserved reference assets
 
 `HubWorld` builds an original aquarium arcade: eight detailed cabinets,
 walkable pearl/aqua atrium, safety glazing, paths, plants, seating, arches, gallery,

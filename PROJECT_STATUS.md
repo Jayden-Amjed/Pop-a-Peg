@@ -1,14 +1,14 @@
 # Current project state
 
-State Version: 14 (accepted RBX-027; advanced once from predecessor13).
+State Version: 14 (accepted RBX-027; RBX-029 proposes15, not yet accepted).
 Reviewed: 2026-11-08, America/Los_Angeles
-Objective: Review the accepted Blender model treatments, transient effects and varied sound.
+Objective: Adopt Blender models in gameplay and ground effects at their physical emitters.
 
 Accepted source: b75e8a736b500fd41543d699e3b47987dd56042d (GitHub-confirmed PR28 merge).
-Latest task: [RBX-027](tasks/RBX-027-blender-effects.md), completed by Codex coordinator.
-Branch: task/RBX-027-blender-effects; [PR28](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/28).
+Active task: [RBX-029](tasks/RBX-029-blender-game.md), Codex coordinator.
+Branch: task/RBX-029-blender-game; [PR30](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/30).
 Studio-tested source: 7f7339bd3bacb427a840ed43bb2295fd6eae32f3.
-Merge: MERGED; GitHub confirmed true for PR28 at the expected head28c5d200.
+Merge: predecessor MERGED; current task IN PROGRESS. Table below is accepted predecessor evidence.
 
 | Capability | Verified state |
 | --- | --- |
@@ -35,6 +35,7 @@ GitHub CI42535294924 passed at28c5d200a25c1620150badb21ae35e74b576a6cb.
 Blockers: none. Subjective listening remains human review. Existing avatar
 asset203785492 type warning remains; no new script errors observed.
 Published: original model asset107372484175276 Approved; no experience update.
-Next action: inspect the final gallery and tag per-item feedback. Continue future
-art revisions in the Blender layer; native reference remains frozen.
+Next action: finish GameItemModels integration and physical emitter audit, then
+verify all78 mounts and a real hub/run/shop flow in isolated gameQA db4acb6d.
+User explicitly authorizes Blender gameplay adoption; native source stays frozen.
 Repository administration: main unprotected; temporary default remains starter.
