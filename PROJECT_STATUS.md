@@ -16,6 +16,8 @@ Required checks PASS. Final Studio audits PASS on all15 screens at1920x1080,
 Model samples178/171/170 all Blender Ready. Eight action flows include actual
 chest animation/reveal and workshop research. Pointer perk choice and chest opening PASS.
 Eleven normalized source fingerprints match files. [Evidence](docs/evidence/RBX-031/full-ui-desktop.json).
+Normal Play/Launch advanced to round2; Arcade/Resume preserved it. CI129 succeeded
+at c4a9578b7d2441e1855b25162c314a739a432b83 (same implementation source).
 Physical-device and multiplayer testing NOT RUN. Existing203785492 asset warning remains.
 No merge or publication for this task; accepted RBX-029 evidence below is retained.
 
@@ -24,7 +26,8 @@ Screen selector: root `build/Pop-a-Peg-UI-PREVIEW.rbxlx`; press Play and use **U
 Preview session0061e41d-a6ef-42a6-9480-977ce8a50bde; coordinator is sole Studio
 operator, no Rojo. Its synthetic account and resources are temporary; both normal
 entry scripts are disabled in the delivered preview. See task for normal-entrypoint
-smoke-test evidence and exact file hashes. User testing is next; no implementation blocker.
+smoke-test evidence and exact file hashes. Simulator reset; preview Play is running
+with the screen selector open. User testing is next; no implementation blocker.
 
 Accepted source: 212c76260a5a6ce44dfd8ba5d10bd3ab77a25c4e.
 Latest completed task: [RBX-029](tasks/RBX-029-blender-game.md), Codex coordinator.

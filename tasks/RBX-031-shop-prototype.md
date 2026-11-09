@@ -145,6 +145,7 @@ Normal-entrypoint smoke in the same disposable session: temporarily disabled the
 fixture and enabled the unchanged normal server/client Main scripts and avatars.
 Both expected initialization logs appeared; pointer Play mounted the real run,
 pointer Launch sent a server-owned shot, which scored and advanced to round2.
+Pointer Arcade returned to the hub with RESUME RUN; Resume restored round2 at aim.
 Normal entrypoint flags are restored to preview defaults after this smoke;
 the generated normal build already has normal entrypoints enabled.
 Final console has only the existing asset203785492 type warning, no game script errors.
@@ -169,10 +170,15 @@ Roblox publication. Accepted State15 remains; this branch still proposes16.
 - Main re-fetched: 44762e38b5b4e3ad2f89c789ae6a7a6b6f6d4560, accepted15 unchanged.
 - Evidence SHA / proposed version: 74f9b0ae0383c34721eda9518b304b2e2162f040;16.
 - Checks / limitations: final checks and Studio audits PASS as above; physical hardware/multiplayer NOT RUN.
-- Studio target / sync: UI-PREVIEW session0061e41d; sole coordinator operator; no live Rojo or port.
+- Studio target / sync: UI-PREVIEW session0061e41d; sole coordinator operator; no live Rojo or port. Simulator reset; Play running with the UI PREVIEW menu open for the user. Normal Main scripts disabled and fixture enabled were rechecked.
 - Normal game file: repository-root `build/Pop-a-Peg-FULL-UI.rbxlx`; SHA256 `00FB3EDFDCF123BF6C0419F5A8C84E91FF48B46CA667A49768FA5B22A381CFDC`.
 - Screen preview file: repository-root `build/Pop-a-Peg-UI-PREVIEW.rbxlx`; SHA256 `6206C3E60CD4A884BD4B5EFEBEEACA076BDEC026998FE1537C918379C38315E9`.
 - Both files match their worktree build outputs; original PLAYTEST and SHOP-PROTOTYPE preserved.
 - Blockers: none for user review; PR remains draft and unmerged.
 - Published experience / observed version: no publication requested or performed.
 - Next executable action: open FULL-UI and press Play, or open UI-PREVIEW and use its top-right selector for each screen.
+
+GitHub CI129 / run42555374151: SUCCESS for documentation head
+c4a9578b7d2441e1855b25162c314a739a432b83, with implementation74f9b0a unchanged.
+PR32 remains open/draft; GitHub head matches the pushed branch. This receipt is
+documentation-only and does not assert a merge or publication.
