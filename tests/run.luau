@@ -1,4 +1,5 @@
 local stages = require("./Stages.spec")
+local receiptBoard = require("./ReceiptBoard.spec")
 local arcadeSessions = require("./ArcadeSessions.spec")
 local hubLayout = require("./HubLayout.spec")
 local balance = require("./Balance.spec")
@@ -24,6 +25,7 @@ local restockMarket = require("./RestockMarket.spec")
 local seedBank = require("./SeedBank.spec")
 
 stages()
+receiptBoard()
 arcadeSessions()
 hubLayout()
 balance()
