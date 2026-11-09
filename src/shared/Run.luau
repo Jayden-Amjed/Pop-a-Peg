@@ -67,6 +67,13 @@ function Run:_event(kind, data)
     local entry = data or {}
     entry.id = self.eventSerial
     entry.kind = kind
+    if self.draining and kind == "trigger" and entry.action == "bank" then
+        entry.drainReplay = true
+    end
+    if self.drainGroup then
+        entry.drainReplay = true
+        table.insert(self.drainGroup.events, copy(entry))
+    end
     table.insert(self.events, entry)
     if #self.events > Run.Config.eventHistory then
         table.remove(self.events, 1)
@@ -305,7 +312,10 @@ function Run:_clear()
     self.clearBonus = true
     self:_addScore(self.score)
     self:_event("clear", { value = self.score, text = "Board clear: score doubled" })
-    self:_endShot("clear")
+    -- A drain-triggered clear must not discard the remaining queued activations.
+    if not self.draining then
+        self:_endShot("clear")
+    end
 end
 
 function Run:_pop(id, slot)
@@ -669,10 +679,26 @@ function Run:_processQueue()
         end
         local previousTrace = self.activationTrace
         self.activationTrace = entry.trace or ""
+        local beforeValues
+        if self.draining then
+            beforeValues = Board.copy(self.values)
+            self.drainGroup = { events = {}, changes = {} }
+        end
         if entry.kind == "item" then
             self:_activateItem(entry.index, entry.relayDepth, entry.channel)
         else
             self:_activatePerk(entry.index)
+        end
+        if self.drainGroup then
+            for id, value in ipairs(self.values) do
+                if value ~= beforeValues[id] then
+                    table.insert(self.drainGroup.changes, { pegId = id, value = value })
+                end
+            end
+            if #self.drainGroup.events > 0 then
+                table.insert(self.drainSteps, self.drainGroup)
+            end
+            self.drainGroup = nil
         end
         self.activationTrace = previousTrace
     end
@@ -695,6 +721,9 @@ function Run:_resetShot()
     end
     self.nextShotSeeds, self.seedRequests = {}, {}
     self.draining = false
+    self.drainStart = nil
+    self.drainSteps = {}
+    self.drainGroup = nil
     self.score = 0
     self.restocks = 0
     self.goalCrossings = 0
@@ -848,6 +877,8 @@ function Run:_endShot(reason)
             restoredValues = Board.copy(self.baseline),
             cycles = {},
             stats = copy(self.lastShotStats),
+            drainStart = copy(self.drainStart),
+            drainSteps = copy(self.drainSteps),
         },
     }
     if restocks > 0 then
@@ -936,13 +967,14 @@ function Run:_step(dt)
         if result == "drain" and not self.ending then
             self.ball.active = false
             self.draining = true
+            self.drainStart = { values = Board.copy(self.values), score = self.score }
             self:_signal("drain")
         end
     end
     if not self.ending then
         self:_processQueue()
         if self.ball and not self.ball.active and #self.queue == 0 then
-            self:_endShot("drain")
+            self:_endShot(if self.clearBonus then "clear" else "drain")
         end
     end
 end
@@ -1347,6 +1379,8 @@ function Run:_chooseEvent(index)
         self:_life(-1, "event")
         self:_coins(8)
     elseif choice.id == "grow" then
+        local before = Board.copy(self.baseline)
+        local coinsBefore, reservesBefore = self.coins, self.reserves
         local ids = {}
         for pegId, value in ipairs(self.baseline) do
             if value > 0 then
@@ -1357,6 +1391,54 @@ function Run:_chooseEvent(index)
         for order = 1, math.min(4, #ids) do
             self.baseline[ids[order]] = math.min(Run.Config.maxPeg, self.baseline[ids[order]] * 2)
         end
+        local changed = Board.copy(self.baseline)
+        local destinations = {}
+        for pegId in ipairs(self.baseline) do
+            destinations[pegId] = pegId
+        end
+        self.rng:shuffle(destinations)
+        local moves = {}
+        for from, to in ipairs(destinations) do
+            self.baseline[to] = changed[from]
+            table.insert(moves, { from = from, to = to, value = changed[from] })
+        end
+        local shuffled = Board.copy(self.baseline)
+        local _, cycle = Board.restock(self.baseline, self.round, self.rng, true)
+        cycle.index = 1
+        self:_life(1, "eventRestock")
+        self:_coins(1, "eventRestock")
+        -- Reassign banked growth to surviving pegs after the free restock, just
+        -- as normal settlement does. Temporary seeds must not become baseline.
+        self:_prepareSeeds()
+        local nextValues = Board.copy(self.baseline)
+        for _, seed in ipairs(self.nextShotSeeds) do
+            nextValues[seed.pegId] = seed.new
+        end
+        self.settlementSerial += 1
+        self.settlementReceipt = {
+            id = self.settlementSerial,
+            kind = "event",
+            eventId = choice.id,
+            eventName = choice.name,
+            round = self.round,
+            success = true,
+            earnedRestocks = 1,
+            coinsBefore = coinsBefore,
+            coinsAfter = self.coins,
+            reservesBefore = reservesBefore,
+            reservesAfter = self.reserves,
+            shotValues = before,
+            eventValues = changed,
+            shuffleMoves = moves,
+            restoredValues = shuffled,
+            cycles = { cycle },
+            finalValues = Board.copy(self.baseline),
+            nextShotSeeds = copy(self.nextShotSeeds),
+            nextShotValues = nextValues,
+        }
+        self.eventChoices = {}
+        self:_phase("result")
+        return true
     elseif choice.id == "upgrade" then
         local candidates = {}
         for slot, item in ipairs(self.inventory) do
@@ -1449,11 +1531,28 @@ function Run:action(kind, payload)
         if self.phase ~= "flight" or self.ending then
             return false, "No active shot."
         end
+        if self.draining then
+            return false, "Finishing the queued drain effects."
+        end
         self:_endShot("manual")
         return true
     elseif kind == "continue" then
+        if
+            input.receiptId ~= nil
+            and (
+                self.phase ~= "result"
+                or not self.settlementReceipt
+                or input.receiptId ~= self.settlementReceipt.id
+            )
+        then
+            return false, "That reward sequence has already finished."
+        end
         if self.phase == "result" then
-            self:_afterResult()
+            if self.settlementReceipt and self.settlementReceipt.kind == "event" then
+                self:_nextRoute()
+            else
+                self:_afterResult()
+            end
         elseif self.phase == "shop" then
             self:_nextRoute()
         else
@@ -1668,6 +1767,8 @@ function Run:snapshot()
         unlocks = unlockList(self.unlocks),
         boss = self.boss,
         settling = self.settlement ~= nil,
+        draining = self.draining and not self.ending,
+        drainStart = self.drainStart,
         settlementReceipt = self.settlementReceipt,
         pendingEffects = #self.queue,
         events = self.events,

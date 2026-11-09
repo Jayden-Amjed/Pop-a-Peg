@@ -6,6 +6,24 @@ end
 
 function Layout.chest(w, h)
     local gap, tabs = 6, {}
+    if w >= 480 and h < 220 then
+        local modelW = math.min(160, w * 0.26, h)
+        local x = modelW + 12
+        local rightW = w - x
+        for i = 1, 4 do
+            tabs[i] = rect(x + (i - 1) * ((rightW - 18) / 4 + gap), 0, (rightW - 18) / 4, 44)
+        end
+        return {
+            tabs = tabs,
+            model = rect(0, 0, modelW, h),
+            title = rect(x, 50, rightW, h - 100),
+            showDetail = false,
+            detail = rect(x, 50, rightW, h - 100),
+            buy = rect(x, h - 44, (rightW - 8) / 2, 44),
+            action = rect(x + (rightW + 8) / 2, h - 44, (rightW - 8) / 2, 44),
+            revealAction = rect(x, h - 44, rightW, 44),
+        }
+    end
     for i = 1, 4 do
         tabs[i] = rect((i - 1) * ((w - 18) / 4 + gap), 0, (w - 18) / 4, 44)
     end
@@ -24,6 +42,7 @@ function Layout.chest(w, h)
         detail = rect(x, y + 42, textW, math.max(16, usable - 42)),
         buy = rect(0, h - 44, (w - 8) / 2, 44),
         action = rect((w + 8) / 2, h - 44, (w - 8) / 2, 44),
+        revealAction = rect(0, h - 44, w, 44),
     }
 end
 

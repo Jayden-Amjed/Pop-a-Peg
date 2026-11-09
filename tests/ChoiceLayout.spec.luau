@@ -60,5 +60,18 @@ return function()
     end
     local tall = Layout.card(552, 602, true)
     assert(tall.model.h > 300, "Tall desktop choice retains the old 240px preview cap")
+    for _, size in { { 590, 108 }, { 790, 174 }, { 1124, 450 } } do
+        local result = Layout.result(size[1], size[2])
+        local regions = { result.model, result.round, result.records, result.unlocks }
+        for index, region in regions do
+            assert(
+                inside(region, { x = 0, y = 0, w = size[1], h = size[2] }),
+                "Result escaped body"
+            )
+            for other = index + 1, #regions do
+                assert(not overlaps(region, regions[other]), "Result model and stats overlap")
+            end
+        end
+    end
     print("PASS choice layout: two visible cards, bounded stats and CTAs without scrolling")
 end

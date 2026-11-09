@@ -55,7 +55,7 @@ loadingPanel.Position = UDim2.fromScale(0.5, 0.5)
 loadingPanel.Size = UDim2.new(0.86, 0, 0, 112)
 Theme.make("UISizeConstraint", { MaxSize = Vector2.new(420, 112) }, loadingPanel)
 local loadingTitle =
-    Theme.label(loadingPanel, "Title", "WELCOME TO THE ARCADE", 23, Theme.colors.ink, 5)
+    Theme.heading(loadingPanel, "Title", "WELCOME TO THE ARCADE", 23, Theme.colors.ink, 5)
 loadingTitle.Position, loadingTitle.Size = UDim2.fromOffset(16, 14), UDim2.new(1, -32, 0, 34)
 loadingTitle.TextScaled, loadingTitle.TextStrokeTransparency = true, 1
 Theme.make("UITextSizeConstraint", { MinTextSize = 15, MaxTextSize = 23 }, loadingTitle)

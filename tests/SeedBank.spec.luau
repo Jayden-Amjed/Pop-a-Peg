@@ -163,18 +163,18 @@ return function()
         drain(run, true)
         assert(run:action("continue"))
         equal(run.phase, "event")
-        local seeds = run:snapshot().nextShotSeeds
         assert(run:action("chooseEvent", { index = 2 }))
+        equal(run.phase, "result", "Board event waits for its distinct animation receipt")
+        local seeds = run:snapshot().nextShotSeeds
+        assert(#seeds > 0, "Free restock must retain banked growth on surviving pegs")
+        local preview = run.settlementReceipt.nextShotValues
+        assert(run:action("continue"))
         equal(run.phase, "aim")
-        local grown = 0
+        same(run.values, preview)
         for _, seed in ipairs(seeds) do
             local value = run.baseline[seed.pegId]
             equal(run.values[seed.pegId], math.min(Run.Config.maxPeg, value * 2))
-            if value > seed.old then
-                grown += 1
-            end
         end
-        assert(grown > 0, "Fixture must include event growth on a seeded peg")
         equal(run.quota, Board.quota(run.baseline, run.shopsVisited))
     end)
 

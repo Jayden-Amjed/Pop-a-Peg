@@ -3,6 +3,7 @@ local Shared = game:GetService("ReplicatedStorage"):WaitForChild("Shared")
 local Board = require(Shared.Board)
 local Format = require(Shared.Format)
 local Timeline = require(Shared.RewardTimeline)
+local RestockCurve = require(Shared.RestockCurve)
 local ReceiptBoard = require(script.Parent.ReceiptBoard)
 local Signatures = require(Shared.ItemFeedback)
 local ItemModels = require(script.Parent.GameItemModels)
@@ -61,6 +62,10 @@ end
 
 function Feedback:isBusy()
     return self.busy
+end
+
+function Feedback:getPlaybackSpeed()
+    return if self.busy then math.sqrt(self.snapshot and self.snapshot.speed or 1) else 1
 end
 
 function Feedback:setMuted(value)
@@ -164,7 +169,11 @@ function Feedback:_beam(slot, pegId, color, style, action)
     self.itemFxTimes[key] = self.elapsed
     local startPoint = self:_anchor("inventory", slot)
     local target = self:_anchor("peg", pegId)
-    self.host:pulseItem(slot, 0.7, { effect = style, direction = target - startPoint })
+    -- A recorded drain group already starts exactly one aimed performance.
+    -- Its target beams, and later banked-growth cues, must not queue repeats.
+    if not self.playingDrain and action ~= "bank" then
+        self.host:pulseItem(slot, 0.7, { effect = style, direction = target - startPoint })
+    end
     local reduced = GuiService.ReducedMotionEnabled
     local rays = if reduced
         then 1
@@ -316,7 +325,11 @@ function Feedback:_activateVisual(id, slot)
     end
     self.sounds:playItem(id)
     if slot then
-        self.host:pulseItem(slot, 1, { effect = profile.style })
+        self.host:pulseItem(slot, 1, {
+            effect = profile.style,
+            direction = self.playingDrain and self.drainDirections and self.drainDirections[slot]
+                or nil,
+        })
         local key = "slot:" .. slot
         if self.elapsed - (self.itemFxTimes[key] or -10) >= 0.12 then
             self.itemFxTimes[key] = self.elapsed
@@ -385,16 +398,17 @@ function Feedback:_pulsePerk(id)
 end
 
 function Feedback:_arriveScore(value)
-    if not self.snapshot or self.busy and self.timeline then
+    if not self.snapshot or self.busy and self.timeline and not self.playingDrain then
         return
     end
     self.displayScore = math.max(self.displayScore, math.min(value, self.snapshot.score))
     self.host:setCounterDisplay("score", self.displayScore)
     self:_pulseCounter("score")
-    local earned = math.min(
-        self.snapshot.maxRestocks or 10000,
-        math.floor(self.displayScore / math.max(1, self.snapshot.quota))
-    )
+    local earned = RestockCurve.compute(
+        self.displayScore,
+        self.snapshot.quota,
+        self.snapshot.maxRestocks
+    ).completed
     if earned > self.earned then
         local count = earned - self.earned
         self.earned = earned
@@ -414,7 +428,7 @@ function Feedback:_arriveScore(value)
 end
 
 function Feedback:_score(toScore, source)
-    if toScore <= self.queuedScore or self.timeline then
+    if toScore <= self.queuedScore or self.timeline and not self.playingDrain then
         return
     end
     local amount = toScore - self.queuedScore
@@ -469,7 +483,7 @@ function Feedback:_event(event)
             self:_activateVisual(id, slot)
         elseif event.action == "perk" then
             self:_pulsePerk(event.perkId)
-            self:_activateVisual(event.perkId, event.targetSlot or slot)
+            self:_activateVisual(event.perkId)
         end
         local pegId = event.targetPegId or event.pegId
         if pegId then
@@ -501,7 +515,7 @@ function Feedback:_event(event)
         end
     elseif event.kind == "perkTrigger" then
         self:_pulsePerk(event.perkId)
-        self:_activateVisual(event.perkId, event.targetSlot)
+        self:_activateVisual(event.perkId)
     elseif event.kind == "purchase" then
         self:_activateVisual(event.itemId, event.slot)
         if event.action == "evolve" and event.slot then
@@ -526,8 +540,13 @@ function Feedback:_reset(snapshot)
     self.generation += 1
     self:_clearFx()
     self.sounds:clearItems()
+    if self.host.clearItemActivations then
+        self.host:clearItemActivations()
+    end
     table.clear(self.itemFxTimes)
     self.timeline = nil
+    self.playingDrain = false
+    self.drainDirections = nil
     self.pendingReceipt = nil
     self.awaitingFinish = false
     self.advanceWait = nil
@@ -581,18 +600,41 @@ function Feedback:update(snapshot)
         self.host:setCounterDisplay("reserves", snapshot.reserves)
         self.sounds:play("launch")
     end
+    local receipt = snapshot.settlementReceipt
+    local pendingDrain = snapshot.draining
+        or receipt and receipt.id ~= self.completedReceipt and receipt.drainStart ~= nil
+    local drainStart = receipt and receipt.drainStart or snapshot.drainStart
+    if pendingDrain and drainStart and not self.timeline and not self.pendingReceipt then
+        self.busy = true
+        self.host:setBusy(true)
+        self.host:setBoardOverride(true)
+        self:_board(drainStart.values)
+        self.host:setCounterDisplay("score", drainStart.score)
+        self.host:setCounterDisplay(
+            "restocks",
+            RestockCurve.compute(drainStart.score, snapshot.quota, snapshot.maxRestocks).completed
+        )
+        self.host:setSettlement("QUEUING DRAIN EFFECTS…", 0, false)
+    end
     for _, event in ipairs(snapshot.events or {}) do
         if event.id > self.lastEvent then
             self.lastEvent = event.id
-            if previous and not self.timeline then
+            if previous and not self.timeline and not event.drainReplay then
                 self:_event(event)
             end
         end
     end
-    if snapshot.phase == "flight" or snapshot.phase == "result" or snapshot.phase == "gameover" then
+    if
+        not pendingDrain
+        and not self.timeline
+        and (
+            snapshot.phase == "flight"
+            or snapshot.phase == "result"
+            or snapshot.phase == "gameover"
+        )
+    then
         self:_score(snapshot.score, self:_anchor("ball"))
     end
-    local receipt = snapshot.settlementReceipt
     if
         receipt
         and receipt.id ~= self.completedReceipt
@@ -603,7 +645,13 @@ function Feedback:update(snapshot)
         self.pendingWait = 0
         self.busy = true
         self.host:setBusy(true)
-        self.host:setSettlement("COUNTING YOUR SHOT…", 0, false)
+        self.host:setBoardOverride(true)
+        self:_board(receipt.drainStart and receipt.drainStart.values or receipt.shotValues)
+        self.host:setSettlement(
+            if pendingDrain then "QUEUING DRAIN EFFECTS…" else "COUNTING YOUR SHOT…",
+            0,
+            false
+        )
     elseif
         previous
         and not self.busy
@@ -685,7 +733,19 @@ end
 function Feedback:_startTimeline(receipt)
     self.pendingReceipt = nil
     self.receipt = receipt
-    self.timeline = Timeline.plan(receipt)
+    self.timeline = Timeline.plan(receipt, function(group)
+        local duration = 0.55
+        for _, event in ipairs(group.events or {}) do
+            if event.action == "activate" or event.action == "perk" then
+                local id = event.perkId or event.itemId
+                local slot = if event.action == "perk" then nil else event.sourceSlot or event.slot
+                if self.host.getActivationDuration then
+                    duration = math.max(duration, self.host:getActivationDuration(id, slot))
+                end
+            end
+        end
+        return duration
+    end)
     self.timelineIndex = 0
     self.stepTime = 0
     self.credited = 0
@@ -695,7 +755,17 @@ function Feedback:_startTimeline(receipt)
     self.host:setCounterDisplay("reserves", self.displayReserves)
     self.host:setCounterDisplay("restocks", receipt.earnedRestocks)
     self.host:setBoardOverride(true)
-    self:_board(receipt.shotValues)
+    if receipt.drainStart then
+        self.displayScore, self.queuedScore = receipt.drainStart.score, receipt.drainStart.score
+        self.earned = RestockCurve.compute(
+            self.displayScore,
+            receipt.quota,
+            self.snapshot.maxRestocks
+        ).completed
+        self.host:setCounterDisplay("score", self.displayScore)
+        self.host:setCounterDisplay("restocks", self.earned)
+    end
+    self:_board(receipt.drainStart and receipt.drainStart.values or receipt.shotValues)
     self:_nextStep()
 end
 
@@ -703,6 +773,8 @@ function Feedback:_nextStep()
     self.timelineIndex += 1
     self.stepTime = 0
     local step = self.timeline[self.timelineIndex]
+    self.playingDrain = step and step.kind == "drain" or false
+    self.drainDirections = nil
     if not step then
         self.awaitingFinish = true
         return
@@ -711,7 +783,48 @@ function Feedback:_nextStep()
     if step.beforeValues then
         self:_board(step.beforeValues)
     end
-    if step.kind == "restore" then
+    if step.kind == "drain" then
+        self.drainDirections = {}
+        for _, event in ipairs(step.events or {}) do
+            local slot, pegId = event.sourceSlot or event.slot, event.targetPegId or event.pegId
+            if slot and pegId and not self.drainDirections[slot] then
+                self.drainDirections[slot] = self:_anchor("peg", pegId)
+                    - self:_anchor("inventory", slot)
+            end
+        end
+        self.host:setSettlement(
+            "DRAIN EFFECTS · " .. self.timelineIndex .. " / " .. #receipt.drainSteps,
+            0,
+            true
+        )
+        for _, event in ipairs(step.events or {}) do
+            self:_event(event)
+        end
+    elseif step.kind == "eventChange" then
+        self.host:setSettlement(string.upper(receipt.eventName or "FITTING NEW PEGS"), 0, true)
+        self.host:setCounterDisplay("score", 0)
+        for id, value in ipairs(step.afterValues) do
+            if value ~= step.beforeValues[id] then
+                local point = self:_anchor("peg", id)
+                self:_ring(point, GREEN, 42)
+                self:_label("×2", point + Vector2.new(0, -24), GREEN, 24)
+            end
+        end
+    elseif step.kind == "seed" then
+        self.host:setSettlement("GROWTH SAVED FOR YOUR NEXT SHOT", 0.95, true)
+        for _, seed in ipairs(step.seeds) do
+            self:_event({
+                kind = "trigger",
+                action = "bank",
+                slot = seed.slot,
+                itemId = seed.itemId,
+                pegId = seed.pegId,
+            })
+        end
+    elseif step.kind == "shuffle" then
+        self.host:setSettlement("SHUFFLING THE BOARD", 0.25, true)
+    elseif step.kind == "restore" then
+        self.host:setCounterDisplay("restocks", receipt.earnedRestocks)
         self.host:setSettlement(
             if receipt.earnedRestocks > 0
                 then "RESTOCK ×" .. Format.integer(receipt.earnedRestocks)
@@ -768,7 +881,18 @@ function Feedback:_nextStep()
 end
 
 function Feedback:_sampleStep(step, t)
-    if step.kind == "restore" or step.kind == "batch" then
+    if step.kind == "drain" or step.kind == "eventChange" or step.kind == "seed" then
+        self:_board(if t < 0.35 then step.beforeValues else step.afterValues)
+    elseif step.kind == "shuffle" then
+        local p = smooth(t)
+        for _, move in ipairs(step.moves or {}) do
+            local from, to = Board.Slots[move.from], Board.Slots[move.to]
+            self.host:setPeg(move.from, move.value, {
+                x = from.x + (to.x - from.x) * p,
+                y = from.y + (to.y - from.y) * p + math.sin(math.pi * p) * 1.1,
+            }, 1)
+        end
+    elseif step.kind == "restore" or step.kind == "batch" then
         local eased = smooth(t)
         local values = if t < 0.4 then step.beforeValues else step.afterValues
         local scale = if t < 0.4 then 1 - eased * 0.65 else 0.7 + smooth((t - 0.4) / 0.6) * 0.3
@@ -814,10 +938,14 @@ function Feedback:_finish()
     end
     self.completedReceipt = receipt.id
     self.timeline = nil
+    self.playingDrain = false
+    self.drainDirections = nil
     self.awaitingFinish = false
     self.receipt = nil
     self.busy = false
     self.displayCoins = receipt.coinsAfter
+    self.displayScore, self.queuedScore = 0, receipt.score or self.queuedScore
+    self.host:setCounterDisplay("score", 0)
     self.host:setCounterDisplay("coins", receipt.coinsAfter)
     self.host:setCounterDisplay("reserves", receipt.reservesAfter)
     self.host:setCounterDisplay("restocks", 0)
@@ -829,13 +957,17 @@ function Feedback:_finish()
     self.host:setBusy(false)
     if self.snapshot.phase == "result" and self.onAdvance then
         self.advanceWait = 0
-        self.onAdvance()
+        self.onAdvance(receipt.id)
     end
 end
 
 function Feedback:skip()
     if self.timeline then
         self:_clearFx()
+        self.sounds:clearItems()
+        if self.host.clearItemActivations then
+            self.host:clearItemActivations()
+        end
         self:_finish()
     end
 end
@@ -938,16 +1070,30 @@ function Feedback:step(dt)
                 break
             end
         end
-        if self.pendingWait >= 0.5 and not pointsInFlight then
+        local modelsActive = self.host.hasActiveItemAnimations
+            and self.host:hasActiveItemAnimations()
+        if self.pendingWait >= 0.5 and not pointsInFlight and not modelsActive then
             self:_startTimeline(self.pendingReceipt)
         end
     end
     if self.timeline and not self.awaitingFinish then
-        local speed = math.sqrt(self.snapshot.speed or 1)
+        local speed = self:getPlaybackSpeed()
         local step = self.timeline[self.timelineIndex]
         self.stepTime += dt * speed
         self:_sampleStep(step, math.clamp(self.stepTime / step.duration, 0, 1))
-        if self.stepTime >= step.duration then
+        local drainingModels = step.kind == "drain"
+            and self.host.hasActiveItemAnimations
+            and self.host:hasActiveItemAnimations()
+        local drainingPoints = false
+        if step.kind == "drain" then
+            for _, effect in ipairs(self.fx) do
+                if effect.reward == "score" or effect.reward == "restock" then
+                    drainingPoints = true
+                    break
+                end
+            end
+        end
+        if self.stepTime >= step.duration and not drainingModels and not drainingPoints then
             self:_board(step.afterValues)
             self:_nextStep()
         end
@@ -976,7 +1122,7 @@ function Feedback:step(dt)
             self.advanceWait += dt
             if self.advanceWait >= 1 then
                 self.advanceWait = 0
-                self.onAdvance()
+                self.onAdvance(receipt.id)
             end
         end
     end

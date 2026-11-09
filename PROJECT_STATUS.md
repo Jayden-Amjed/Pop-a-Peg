@@ -1,50 +1,49 @@
 # Current project state
 
-State Version: 15 (accepted RBX-029, advancing from 14 once).
+State Version: 16 (RBX-031 proposal; accepted predecessor remains 15).
 Reviewed: 2026-11-08, America/Los_Angeles
-Objective: Blender gameplay adoption, grounded effects, useful drain growth and readable previews.
+Objective: Restore UI colors while retaining Hold gradients, outlines, shadows and card layout.
+
+Active proposal: [RBX-031](tasks/RBX-031-shop-prototype.md), Codex coordinator,
+branch task/RBX-031-shop-prototype, [draft PR32](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/32).
+Main re-fetched44762e38b5b4e3ad2f89c789ae6a7a6b6f6d4560; accepted State15 unchanged.
+Implementation / Studio-tested source: aef368b37a499694fbc1f3ca02d3be47e5abbd22.
+Color/style audit: c1a2b2a47dadf3e3cb9ea4b6a3499ab72f7c34b0.
+
+Green actions, aqua titles, gold currency/Held/selection states, red costs and
+yellow triggers are restored. SurfaceColor retains intended fills across enabled,
+disabled and selected refreshes. Hold gradients, navy default outlines, rounded
+depth and card spacing remain; ready/result recipe tiles use mint/gold tints.
+Only six client color/style modules changed. Rack-only40%-smaller hover and the
+previous drain/event gameplay work remain intact; their historical verification
+at8a9b1a7 is preserved in the task.
+
+Windows scripts/check.ps1 and build-ui-preview.ps1 PASS at implementation.
+Studio3765c183-4057-43e6-89cb-d085ed12b6cb passed all15 screens' color/style and
+retouch/layout audits at HD1080, iPhone13 landscape and iPhone7 landscape:
+safe areas1919x1022,749x331,666x316;108/95/94 targeted semantic color checks;
+646/610/608 shared surfaces;242/230/229 Blender Ready model samples.
+Desktop eight-action flow audit PASS. All59 normalized source fingerprints match.
+[Style](docs/evidence/RBX-031/color-style-desktop.json),
+[layout](docs/evidence/RBX-031/color-retouch-desktop.json),
+[flow](docs/evidence/RBX-031/color-flow-desktop.json);
+all presets and initial test-fixture correction are recorded in the task.
+
+The already-open HOLD-UI session was updated through six bounded module edits and
+matches the color revision. It is stopped in Edit with preview defaults intact and
+simulation stopped. Root is sole Studio operator; no live Rojo/port or syncback.
+New generated files at repository root preserve the earlier builds:
+- Screen selector: `build/Pop-a-Peg-COLOR-UI.rbxlx`.
+- Normal game: `build/Pop-a-Peg-COLOR-GAMEPLAY.rbxlx`.
+
+No screen capture/recording used. New screenshot visual review, physical touch
+hardware and multiplayer NOT RUN. Normal-entrypoint/drain runtime checks were not
+repeated for this color-only follow-up; prior receipts remain historical.
+Exact build hashes, checks and handoff are in the task. Local/Studio results are
+separate from GitHub CI on the pushed branch. Unrelated root outputs are preserved.
 
 Accepted source: 212c76260a5a6ce44dfd8ba5d10bd3ab77a25c4e.
-Latest completed task: [RBX-029](tasks/RBX-029-blender-game.md), Codex coordinator.
-Branch: task/RBX-029-blender-game; [PR30](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/30).
-Implementation: 8fd0c679e47033970a434afafc6937ea666b26cd.
-Studio-tested source: 7eb6c18a971e4f33cb0a2896c23d4ce7fe816897 for gameplay;
-the later gallery-description-only update at 8fd0c67 matches all 71 current Edit scripts.
-Test helper: ce1a6474dfb6b75dfec248e46e8601033a011cc6.
-Merge: GitHub confirmed PR30 merged at 212c76260a5a6ce44dfd8ba5d10bd3ab77a25c4e.
-Published: no experience update.
-
-| Capability | Current evidence |
-| --- | --- |
-| Blender gameplay | 78 models / 477 MeshParts mapped through game adapters; source checks pass |
-| Physical effects | Quota plate contact; Synth/Relay body pop; all 78 placement checks pass (702 Studio poses) |
-| Final adapter | All 78 Studio lifecycle/loading/framing checks pass: 68,096 model corners, 12,884 effect checks |
-| Drain growth | Seed Bank/Rain Catcher/Monsoon bank next-shot growth; 15 contracts pass in CLI and Studio |
-| Owner access | ID 583716264 gets 40 equipment pools and 13 evolution previews; save/isolation checks pass |
-| UI | Larger previews and adaptive perk rows; actual compact Studio containment and flow checks pass |
-| Full rack upgrade | Studio fixture buys Seed Bank level 2 to 3 with seven occupied slots; other shop previews persist |
-| Resume | Completed seeded/restocked board restores after hub resume; CLI and Studio tests pass |
-| Native reference | Eight frozen sources match 07be76a57335fa3aaa05009c91bd2e36ed05dd0e |
-
-Playtest file: repository-root `build/Pop-a-Peg-PLAYTEST.rbxlx`.
-Exact copy of the task's generated `build/dev.rbxlx`.
-SHA256: 0ECD30A1FACDC87A27C70A83BB372E91FB2821289A4A661241CB98CAF683E1F0.
-
-Studio c35ab669 is in Edit mode with all 71 scripts verified against this build.
-Owner badge confirmed; real remote-driven run reached round 2 before losing.
-The isolated presentation fixture passes natural drain, eight seeded pegs,
-automatic retry, seven-slot rack, four perks, six shop offers, full-rack upgrade,
-and perk choice back to aim. Existing GUI/camera restored; no live profile writes.
-Actual viewport: 1046×524, safe area 1046×466; compact layout, not desktop visual proof.
-
-Background game captures omit 3D rendering; model geometry/loading is independently
-checked. Roblox denied Set3dRenderingEnabled; no retry/workaround.
-Gallery QA and game play are stopped. No live Rojo. All final checks used background
-Studio MCP; no desktop control. Older saved experience 115816779411929 was inspected only.
-
-Checks: required check.ps1 PASS at ce1a647; catalog, eight archive regressions,
-native/mapping/placement and hub-reveal checks PASS. GitHub CI run 42549187354
-PASS for final task head 673a0500a0502dda1c28c5b005c823a0012e88ad.
-[Evidence](docs/evidence/RBX-029/REVIEW.md) and [drain rules](docs/DRAIN_ITEM_AUDIT.md).
-Next action: user playtest the open local build; await feedback. No active blocker.
+Accepted task: [RBX-029](tasks/RBX-029-blender-game.md), merged through [PR30](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/30).
+Published: no experience update. RBX-031 remains unmerged; accepted State15 unchanged.
+Next action: press Play in the updated preview or open COLOR-GAMEPLAY for a normal run.
 Repository administration: main unprotected; temporary default remains starter.

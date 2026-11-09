@@ -12,6 +12,7 @@ local ItemModels = require(script.Parent.GameItemModels)
 local Layout = require(script.Parent.HubLayout)
 local HubAmbience = require(script.Parent.HubAmbience)
 local HubProgressionPanel = require(script.Parent.HubProgressionPanel)
+local ItemDetailCard = require(script.Parent.ItemDetailCard)
 local C = Theme.colors
 local Hub = {}
 Hub.__index = Hub
@@ -35,45 +36,30 @@ local function setRect(object, area)
     Theme.rect(object, area.x, area.y, area.w, area.h)
 end
 
-local function button(parent, name, value, color, callback, z)
-    local result = Theme.button(parent, name, value, color, callback, z or 8)
-    result.TextColor3 = C.ink
-    result.TextStrokeTransparency = 1
-    fitText(result, 22, 12)
-    local hovered, focused = false, false
-    local function highlight()
-        local border = result:FindFirstChildWhichIsA("UIStroke")
-        if border then
-            local active = result.Active and (hovered or focused)
-            border.Color = active and C.gold or C.edge
-            border.Thickness = active and 4 or 2
-        end
-    end
-    result.MouseEnter:Connect(function()
-        hovered = true
-        highlight()
-    end)
-    result.MouseLeave:Connect(function()
-        hovered = false
-        highlight()
-    end)
-    result.SelectionGained:Connect(function()
-        focused = true
-        highlight()
-    end)
-    result.SelectionLost:Connect(function()
-        focused = false
-        highlight()
-    end)
-    result:GetPropertyChangedSignal("Active"):Connect(highlight)
+local function heading(parent, name, value, size, color, z)
+    local label = (Theme.heading or Theme.label)(parent, name, value, size, color or C.ink, z or 7)
+    label.Font = Enum.Font.FredokaOne
+    label.TextStrokeTransparency = 1
+    return label
+end
+
+local function band(parent, name, x, y, w, h, color, z)
+    local result = Theme.inset(parent, name, color or C.aqua, z or 31, 10)
+    Theme.rect(result, x, y, w, h)
     return result
 end
 
+local function button(parent, name, value, color, callback, z)
+    local result = Theme.button(parent, name, value, color, callback, z or 8)
+    fitText(result, 22, 12)
+    return result
+end
 function Hub:_clearBody()
     for _, entry in self.models do
         entry.handle:destroy()
     end
     self.models = {}
+    self.recipeDetail = nil
     self.body:ClearAllChildren()
     self.rosterRows = nil
 end
@@ -89,6 +75,7 @@ function Hub:_model(parent, id, area, discovered)
     setRect(viewport, area)
     local handle = ItemModels.mount(viewport, id, Catalog.MaxLevel, {
         outline = false,
+        idlePreview = not string.match(id, "^chest_"),
         reducedMotion = GuiService.ReducedMotionEnabled,
     })
     if discovered == false then
@@ -103,6 +90,40 @@ function Hub:_model(parent, id, area, discovered)
     end
     table.insert(self.models, { viewport = viewport, handle = handle })
     return viewport, handle
+end
+
+-- Shared detail cards own their ViewportFrames; the hub owns each mounted handle.
+function Hub:_mount(viewport, id, level)
+    for index, entry in self.models do
+        if entry.viewport == viewport then
+            if entry.id == id and entry.level == level then
+                return entry.handle
+            end
+            entry.handle:destroy()
+            table.remove(self.models, index)
+            break
+        end
+    end
+    viewport:SetAttribute("NoOutline", true)
+    viewport:SetAttribute("ShopPreview", true)
+    local handle = ItemModels.mount(viewport, id, level, {
+        outline = false,
+        idlePreview = true,
+        reducedMotion = GuiService.ReducedMotionEnabled,
+    })
+    local definition = Catalog.Items[id]
+    if definition and definition.evolved and not self:_discovered(id) then
+        for _, part in handle.model:GetDescendants() do
+            if part:IsA("BasePart") then
+                part.Color = Color3.fromRGB(48, 94, 116)
+                part.Material = Enum.Material.SmoothPlastic
+                part.Transparency = 0
+                part.Reflectance = 0
+            end
+        end
+    end
+    table.insert(self.models, { viewport = viewport, handle = handle, id = id, level = level })
+    return handle
 end
 
 function Hub:_discovered(id)
@@ -149,8 +170,9 @@ function Hub:_gallery()
             Theme.rect(badge, 8, 6, area.w - 16, 20)
             local modelY, modelH = 27, math.max(22, area.h - 68)
             self:_model(card, recipe.id, { x = 8, y = modelY, w = area.w - 16, h = modelH }, owned)
-            local name = text(card, "Name", Catalog.Items[recipe.id].name, 22, C.ink, 33)
-            name.Font = Enum.Font.SourceSansBold
+            band(card, "NameBand", 6, area.h - 38, area.w - 12, 32, C.aqua, 32)
+            local name = heading(card, "Name", Catalog.Items[recipe.id].name, 22, C.ink, 33)
+            name.Font = Enum.Font.FredokaOne
             name.TextXAlignment = Enum.TextXAlignment.Center
             name.TextWrapped = true
             fitText(name, 22, 12)
@@ -180,76 +202,18 @@ function Hub:_recipe()
         return
     end
     local w, h = self.geometry.body.w, self.geometry.body.h
-    local compact = self.geometry.compact
     local owned = self:_discovered(recipe.id)
-    self.title.Text = string.upper(Catalog.Items[recipe.id].name)
+    self.title.Text = "EVOLUTION RECIPE"
     self.subtitle.Text = owned and "DISCOVERED · This display stays with you between runs"
         or "UNDISCOVERED · Evolve these two items during a run"
-    local showModels = not compact or self.recipePage ~= 2
-    local recipeH = if compact then h else math.min(280, h * 0.6)
-    local tileW = (w - 60) / 3
-    local ids = { recipe.ingredients[1], recipe.ingredients[2], recipe.id }
-    if showModels then
-        for index, id in ids do
-            local x = (index - 1) * (tileW + 30)
-            local tile = Theme.plate(self.body, "RecipePart" .. index, C.muted, 30)
-            Theme.rect(tile, x, 0, tileW, recipeH)
-            local status = text(
-                tile,
-                "Status",
-                index == 3 and "EVOLVED" or "LEVEL 5",
-                16,
-                index == 3 and C.positive or C.board,
-                33
-            )
-            status.TextXAlignment = Enum.TextXAlignment.Center
-            Theme.rect(status, 4, 4, tileW - 8, 18)
-            self:_model(
-                tile,
-                id,
-                { x = 6, y = 23, w = tileW - 12, h = math.max(22, recipeH - 60) },
-                index < 3 or owned
-            )
-            local name = text(tile, "Name", Catalog.Items[id].name, 20, C.ink, 33)
-            name.Font = Enum.Font.SourceSansBold
-            name.TextWrapped = true
-            name.TextXAlignment = Enum.TextXAlignment.Center
-            fitText(name, 20, 11)
-            Theme.rect(name, 5, recipeH - 36, tileW - 10, 31)
-            if index < 3 then
-                local symbol =
-                    text(self.body, "Operator" .. index, index == 1 and "+" or "=", 32, C.ink, 33)
-                symbol.TextXAlignment = Enum.TextXAlignment.Center
-                Theme.rect(symbol, x + tileW, recipeH * 0.42, 30, 40)
-            end
-        end
-    end
-    if not compact or not showModels then
-        local details = Catalog.detail(recipe.id, Catalog.MaxLevel)
-        local effects = Theme.plate(self.body, "Abilities", C.paper, 30)
-        local effectsY = compact and 0 or recipeH + 12
-        Theme.rect(effects, 0, effectsY, w, h - effectsY)
-        local availableH = h - effectsY - 16
-        local rowH = math.min(28, availableH / math.max(1, #details.effects))
-        for index, effect in details.effects do
-            local line = text(
-                effects,
-                "Effect" .. index,
-                (effect.tone == "trigger" and "" or "• ") .. effect.text,
-                19,
-                C[effect.tone] or C.ink,
-                33
-            )
-            line.Font = effect.tone == "trigger" and Enum.Font.SourceSansBold
-                or Enum.Font.SourceSansSemibold
-            fitText(line, 19, 11)
-            Theme.rect(line, 12, 8 + (index - 1) * rowH, w - 24, rowH)
-        end
-    end
-    self.previous.Visible, self.nextPage.Visible, self.back.Visible = false, compact, true
-    self.nextPage.Text = showModels and "STATS ›" or "MODELS ›"
-    Theme.setEnabled(self.nextPage, true, C.muted)
-    self.footer.Text = compact and (showModels and "L5 + L5" or "MAX LEVEL")
+    self.recipeDetail = ItemDetailCard.new(self.body, self, 30)
+    self.recipeDetail:update(recipe.id, Catalog.MaxLevel, { x = 0, y = 0, w = w, h = h }, {
+        recipes = { recipe },
+        recipeMode = "reference",
+        kindText = owned and "DISCOVERED · MAX POWER" or "UNDISCOVERED · MAX POWER",
+    })
+    self.previous.Visible, self.nextPage.Visible, self.back.Visible = false, false, true
+    self.footer.Text = self.geometry.compact and "L5 + L5 → EVOLUTION"
         or "Collection is permanent · Equipment power resets each run"
 end
 
@@ -272,13 +236,14 @@ function Hub:_records()
             local card = Theme.plate(self.body, "Record" .. index, C.muted, 30)
             local cardW = (w - 20) / 3
             Theme.rect(card, (index - 1) * (cardW + 10), 0, cardW, topH)
-            local caption = text(card, "Caption", stat.name, 16, C.board, 32)
+            local caption = text(card, "Caption", stat.name, 16, C.ink, 32)
             caption.Font = Enum.Font.SourceSansBold
             caption.TextXAlignment = Enum.TextXAlignment.Center
             fitText(caption, 16, 10)
             Theme.rect(caption, 4, 5, cardW - 8, 22)
-            local value = text(card, "Value", stat.value, compact and 28 or 42, C.ink, 32)
-            value.Font = Enum.Font.SourceSansBold
+            band(card, "CaptionBand", 5, 4, cardW - 10, 23, C.aqua, 31)
+            local value = heading(card, "Value", stat.value, compact and 28 or 42, C.ink, 32)
+            value.Font = Enum.Font.FredokaOne
             value.TextXAlignment = Enum.TextXAlignment.Center
             fitText(value, compact and 28 or 42, 15)
             Theme.rect(value, 4, 26, cardW - 8, topH - 30)
@@ -404,8 +369,9 @@ function Hub:_roster()
         local column, row = math.floor((index - 1) / rows), (index - 1) % rows
         local card = Theme.plate(self.body, "Station" .. index, C.paper, 30)
         Theme.rect(card, column * (rowW + 12), row * (rowH + 6), rowW, rowH)
-        local number = text(card, "Number", string.format("%02d", index), 26, C.board, 32)
-        number.Font = Enum.Font.SourceSansBold
+        band(card, "StationBadge", 5, 4, 39, math.max(12, rowH - 8), C.aqua, 31)
+        local number = heading(card, "Number", string.format("%02d", index), 26, C.ink, 32)
+        number.Font = Enum.Font.FredokaOne
         Theme.rect(number, 10, 0, 35, rowH)
         local name = text(card, "Player", "OPEN STATION", 21, C.ink, 32)
         name.TextTruncate = Enum.TextTruncate.AtEnd
@@ -435,7 +401,8 @@ function Hub:_refreshRoster()
         row.status.Text = player
                 and (player.view == "run" and ("IN RUN · ROUND " .. tostring(player.round or 1)) or "EXPLORING THE ARCADE")
             or "Ready for a player"
-        row.card.BackgroundColor3 = index == self.snapshot.hub.station and C.muted or C.paper
+        local ownStation = index == self.snapshot.hub.station
+        Theme.select(row.card, ownStation, ownStation and C.muted or C.paper)
         if index == self.snapshot.hub.station then
             row.name.Text ..= " · YOU"
         end
@@ -511,7 +478,7 @@ function Hub:_page(delta)
     elseif self.openPanel == "records" then
         self.recordsPage = self.recordsPage == 2 and 1 or 2
     elseif self.selected then
-        self.recipePage = self.recipePage == 2 and 1 or 2
+        return
     else
         self.page += delta
     end
@@ -529,7 +496,8 @@ function Hub:_layout()
     setRect(self.panel, geometry.panel)
     setRect(self.body, geometry.body)
     local w, h = geometry.panel.w, geometry.panel.h
-    Theme.rect(self.title, 18, 10, w - 84, 32)
+    Theme.rect(self.titleBand, 12, 7, w - 80, 36)
+    Theme.rect(self.title, 22, 9, w - 102, 32)
     Theme.rect(self.subtitle, 18, 44, w - 36, 25)
     Theme.rect(self.progressTrack, 18, 71, w - 36, 4)
     Theme.rect(self.closeButton, w - 60, 8, 44, 44)
@@ -581,21 +549,20 @@ function Hub.new(onAction)
     self.root = Theme.frame(self.gui, "Root", C.paper, 1)
     self.root.Size = UDim2.fromScale(1, 1)
     self.root.BackgroundTransparency = 1
-    self.brand = Theme.plate(self.root, "Brand", C.paper, 3)
-    self.brandTitle = text(self.brand, "Title", "AQUARIUM ARCADE", 26, C.ink)
-    self.brandTitle.Font = Enum.Font.SourceSansBold
-    fitText(self.brandTitle, 26, 15)
-    self.brandSubtitle =
-        text(self.brand, "Subtitle", "POP A PEG · BUILD A BIGGER BOUNCE", 13, C.board)
+    self.brand = Theme.plate(self.root, "Brand", C.aqua, 3)
+    self.brandTitle = heading(self.brand, "Title", "POP A PEG", 29, C.paper)
+    self.brandTitle.TextStrokeColor3, self.brandTitle.TextStrokeTransparency = C.ink, 0.35
+    fitText(self.brandTitle, 29, 15)
+    self.brandSubtitle = text(self.brand, "Subtitle", "AQUARIUM ARCADE", 13, C.ink)
     fitText(self.brandSubtitle, 13, 9)
-    self.wallet = button(self.root, "RestockWallet", "", C.paper, function()
+    self.wallet = button(self.root, "RestockWallet", "", C.gold, function()
         self.progression.mode = "chests"
         self:open("chests")
     end, 4)
-    self.walletLabel = text(self.wallet, "Label", "RESTOCKS · CHEST MARKET", 14, C.board)
+    self.walletLabel = text(self.wallet, "Label", "SAVED RESTOCKS", 14, C.ink)
     fitText(self.walletLabel, 14, 9)
-    self.walletValue = text(self.wallet, "Balance", "0", 30, C.ink)
-    self.walletValue.Font = Enum.Font.SourceSansBold
+    self.walletValue = heading(self.wallet, "Balance", "0", 30, C.ink)
+    self.walletValue.Font = Enum.Font.FredokaOne
     fitText(self.walletValue, 30, 15)
     self.crewPlate = Theme.plate(self.root, "CrewPlate", C.paper, 3)
     self.crew = button(self.crewPlate, "Crew", "PLAYERS · 0 / 8", C.muted, function()
@@ -634,11 +601,9 @@ function Hub.new(onAction)
     self.hint.TextXAlignment = Enum.TextXAlignment.Center
     fitText(self.hint, 15, 10)
     self.notice = text(self.root, "Notice", "", 20, C.ink, 12)
-    self.notice.BackgroundColor3 = C.paper
     self.notice.BackgroundTransparency = 0.05
     self.notice.Visible = false
-    Theme.corner(self.notice, 8)
-    Theme.stroke(self.notice, C.edge, 2)
+    Theme.decorate(self.notice, C.paper, 12, 8)
     self.notice.TextXAlignment = Enum.TextXAlignment.Center
     fitText(self.notice, 20, 12)
     self.shade = Theme.make("TextButton", {
@@ -659,14 +624,15 @@ function Hub.new(onAction)
     self.panel = Theme.plate(self.root, "Panel", C.paper, 25)
     self.panel.Active = true
     self.panel.Visible = false
-    self.title = text(self.panel, "Title", "", 29, C.ink, 28)
-    self.title.Font = Enum.Font.SourceSansBold
+    self.titleBand = band(self.panel, "TitleBand", 0, 0, 1, 1, C.aqua, 27)
+    self.title = heading(self.panel, "Title", "", 29, C.ink, 28)
+    self.title.Font = Enum.Font.FredokaOne
     fitText(self.title, 29, 16)
     self.subtitle = text(self.panel, "Subtitle", "", 17, C.board, 28)
     fitText(self.subtitle, 17, 10)
     self.progressTrack = Theme.frame(self.panel, "CollectionProgress", C.muted, 29)
     Theme.corner(self.progressTrack, 2)
-    self.progressFill = Theme.frame(self.progressTrack, "Fill", C.gold, 30)
+    self.progressFill = Theme.frame(self.progressTrack, "Fill", C.mint, 30)
     Theme.corner(self.progressFill, 2)
     self.closeButton = button(self.panel, "Close", "×", C.muted, function()
         self:close()
@@ -743,7 +709,7 @@ function Hub:update(snapshot)
     end
     self:_refreshPlay()
     self.crew.Text = "PLAYERS · " .. #(hub.players or {}) .. " / " .. tostring(hub.capacity or 8)
-    self.brandSubtitle.Text = "POP A PEG · "
+    self.brandSubtitle.Text = "ARCADE · "
         .. self.discoveries
         .. " / "
         .. #Catalog.Evolutions

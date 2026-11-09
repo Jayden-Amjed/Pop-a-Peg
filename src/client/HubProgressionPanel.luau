@@ -29,11 +29,22 @@ local function label(parent, name, value, area, color, maxSize)
 end
 local function button(parent, name, value, area, color, callback, z)
     local result = Theme.button(parent, name, value, color or C.mint, callback, z or 35)
-    result.TextColor3, result.TextStrokeTransparency = C.ink, 1
     result.TextScaled = true
     Theme.make("UITextSizeConstraint", { MinTextSize = 11, MaxTextSize = 23 }, result)
     place(result, area)
     return result
+end
+
+local function modelWell(host, name, id, area)
+    local well = Theme.plate(host.body, name, C.muted, 30)
+    place(well, area)
+    local inset = math.min(6, math.max(1, area.h * 0.08))
+    return host:_model(well, id, {
+        x = inset,
+        y = inset,
+        w = math.max(1, area.w - inset * 2),
+        h = math.max(1, area.h - inset * 2),
+    }, true)
 end
 local function metric(kind, value)
     value = math.max(0, math.floor(tonumber(value) or 0))
@@ -119,8 +130,9 @@ function Panel:renderChests()
     h:_clearBody()
     self.leaderRows = nil
     local balance = data.restockCredits or 0
-    h.title.Text = "CHEST MARKET · " .. Format.integer(balance) .. " RESTOCKS"
-    h.subtitle.Text = "Extra restocks saved across runs · Choose your chest · Open when ready"
+    h.title.Text = "CHEST MARKET"
+    h.subtitle.Text = Format.integer(balance)
+        .. " restocks saved · Buy a chest, then open it to discover equipment"
     local g = Layout.chest(h.geometry.body.w, h.geometry.body.h)
     for i, tier in tiers do
         local cost = 0
@@ -154,7 +166,7 @@ function Panel:renderChests()
     local reveal = self.reveal
     local rewardId = reveal and reveal.itemId
     local modelId = rewardId or ("chest_" .. self.tier)
-    local _, handle = h:_model(h.body, modelId, g.model, true)
+    local _, handle = modelWell(h, "ChestPreview", modelId, g.model)
     local heading, detail, actionText
     if reveal then
         heading = rewardId and ("UNLOCKED · " .. Catalog.Items[rewardId].name)
@@ -167,7 +179,7 @@ function Panel:renderChests()
             )
         actionText = "CONTINUE"
     else
-        heading = names[self.tier] .. " CHEST · " .. tostring(tierData.count) .. " READY"
+        heading = names[self.tier] .. " CHEST"
         detail = tierData.remaining > 0
                 and (tostring(tierData.remaining) .. " new discoveries in this chest pool. Every opening finds an unowned item.")
             or (
@@ -175,32 +187,25 @@ function Panel:renderChests()
                 .. tostring(tierData.researchValue)
                 .. " research for the workshop."
             )
-        detail ..= " Extra restocks beyond the first each shot become saved currency. Milestones also award chests."
+        detail ..= " " .. tostring(tierData.count) .. " owned. Milestone rewards also grant chests."
         actionText = tierData.count > 0 and ("OPEN · " .. tierData.count .. " OWNED")
             or "NO CHESTS OWNED"
     end
-    label(h.body, "ChestName", heading, g.title, C.ink, 30).Font = Enum.Font.SourceSansBold
+    label(h.body, "ChestName", heading, g.title, C.ink, 30).Font = Enum.Font.FredokaOne
     local description = label(h.body, "ChestDetail", detail, g.detail, C.board, 21)
     description.Visible = g.showDetail
-    self.actionButton = button(
-        h.body,
-        "OpenChest",
-        actionText,
-        g.action,
-        colors[self.tier],
-        function()
-            if self.reveal then
-                self.reveal = nil
-                self:renderChests()
-            else
-                self:request("openChest", { tier = self.tier }, handle)
-            end
+    self.actionButton = button(h.body, "OpenChest", actionText, g.action, C.mint, function()
+        if self.reveal then
+            self.reveal = nil
+            self:renderChests()
+        else
+            self:request("openChest", { tier = self.tier }, handle)
         end
-    )
+    end)
     Theme.setEnabled(
         self.actionButton,
         reveal ~= nil or (tierData.count > 0 and not self.pending),
-        colors[self.tier]
+        C.mint
     )
     local price = tierData.restockCost or 0
     self.buyButton = button(
@@ -208,7 +213,7 @@ function Panel:renderChests()
         "BuyChest",
         "BUY · " .. Format.integer(price) .. " RESTOCKS",
         g.buy,
-        C.mint,
+        C.aqua,
         function()
             self:request("buyChest", { tier = self.tier }, handle)
         end
@@ -217,10 +222,10 @@ function Panel:renderChests()
     Theme.setEnabled(
         self.buyButton,
         not self.pending and price > 0 and balance >= price and tierData.count < 10000,
-        C.mint
+        C.aqua
     )
     if reveal then
-        place(self.actionButton, { x = 0, y = g.action.y, w = h.geometry.body.w, h = g.action.h })
+        place(self.actionButton, g.revealAction)
     end
     local summary = balance < price and (Format.integer(price - balance) .. " MORE RESTOCKS TO BUY")
         or "BUY TO STORE · OPEN TO DISCOVER"
@@ -262,7 +267,7 @@ function Panel:renderWorkshop()
                 card,
                 "Tier",
                 string.upper(entry.tier) .. (entry.owned and " · OWNED" or " · LOCKED"),
-                { x = 5, y = 3, w = area.w - 10, h = badgeH },
+                { x = 5, y = area.h - badgeH - 3, w = area.w - 10, h = badgeH },
                 entry.owned and C.positive or C.board,
                 14
             ).TextXAlignment =
@@ -270,18 +275,21 @@ function Panel:renderWorkshop()
             h:_model(
                 card,
                 entry.id,
-                { x = 6, y = badgeH + 5, w = area.w - 12, h = math.max(16, area.h - badgeH - 40) },
+                { x = 6, y = 35, w = area.w - 12, h = math.max(16, area.h - badgeH - 40) },
                 entry.owned
             )
             local name = label(
                 card,
                 "Name",
                 Catalog.Items[entry.id].name,
-                { x = 4, y = area.h - 31, w = area.w - 8, h = 28 },
+                { x = 4, y = 4, w = area.w - 8, h = 28 },
                 C.ink,
                 22
             )
+            local nameBand = Theme.inset(card, "NameBand", C.aqua, 33, 9)
+            Theme.rect(nameBand, 4, 4, area.w - 8, 28)
             name.TextXAlignment = Enum.TextXAlignment.Center
+            name.Font = Enum.Font.FredokaOne
         end
     end
     self:footer("‹ PREV", "NEXT ›", self.page .. " / " .. pages)
@@ -311,7 +319,7 @@ function Panel:renderItem()
             or " · Discover in chests or spend research"
         )
     local g = Layout.item(h.geometry.body.w, h.geometry.body.h)
-    h:_model(h.body, entry.id, g.model, true)
+    modelWell(h, "ItemPreview", entry.id, g.model)
     local rows = { { text = detail.trigger, tone = "trigger" } }
     for _, effect in detail.effects do
         table.insert(rows, effect)

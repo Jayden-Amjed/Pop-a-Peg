@@ -1,0 +1,248 @@
+{
+  "normalization": "UTF8/LF/trimmed outer whitespace",
+  "algorithm": "byte count and CRC32 comparison",
+  "expected": {
+    "StarterPlayer.StarterPlayerScripts.Client.BoardArt": {
+      "bytes": 16296,
+      "crc32": 641008887
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.ChoiceLayout": {
+      "bytes": 2922,
+      "crc32": 840401138
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.CounterProgress": {
+      "bytes": 657,
+      "crc32": 1196662586
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.EvolutionDisplay": {
+      "bytes": 5884,
+      "crc32": 2199318386
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.Feedback": {
+      "bytes": 42486,
+      "crc32": 861098033
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.GameItemModels": {
+      "bytes": 19673,
+      "crc32": 3447804235
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.GameModelLoader": {
+      "bytes": 3107,
+      "crc32": 3165821635
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.GameModelPlayback": {
+      "bytes": 1940,
+      "crc32": 3820582699
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.GamePreviewFit": {
+      "bytes": 1563,
+      "crc32": 1495195724
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.GameSoundEffects": {
+      "bytes": 431,
+      "crc32": 1141366242
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.HoverInspector": {
+      "bytes": 5998,
+      "crc32": 2365474313
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.HubAmbience": {
+      "bytes": 4385,
+      "crc32": 2171143873
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.HubGuide": {
+      "bytes": 4495,
+      "crc32": 3720637306
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.HubLayout": {
+      "bytes": 2546,
+      "crc32": 4268782807
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.HubPresentation": {
+      "bytes": 32379,
+      "crc32": 3906137226
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.HubProgressionLayout": {
+      "bytes": 3299,
+      "crc32": 3028435743
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.HubProgressionPanel": {
+      "bytes": 19959,
+      "crc32": 2233200670
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.InventorySelection": {
+      "bytes": 2426,
+      "crc32": 1666712442
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.ItemChoreography": {
+      "bytes": 1427,
+      "crc32": 783128242
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.ItemDetailCard": {
+      "bytes": 5947,
+      "crc32": 1774017976
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.ItemDetailLayout": {
+      "bytes": 1314,
+      "crc32": 2754515380
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.ItemModels": {
+      "bytes": 91083,
+      "crc32": 985385382
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.ItemMotion": {
+      "bytes": 38643,
+      "crc32": 2620951069
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.Main": {
+      "bytes": 10842,
+      "crc32": 389071227
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.NativeAssemblies": {
+      "bytes": 5919,
+      "crc32": 142600271
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.Presentation": {
+      "bytes": 94033,
+      "crc32": 1709106204
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.PreviewLighting": {
+      "bytes": 1044,
+      "crc32": 3923194936
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.ReceiptBoard": {
+      "bytes": 1068,
+      "crc32": 3417468154
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.RunLayout": {
+      "bytes": 5613,
+      "crc32": 4259287515
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.ShopLayout": {
+      "bytes": 7270,
+      "crc32": 3143945001
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.ShopView": {
+      "bytes": 18612,
+      "crc32": 422869268
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.SoundEffects": {
+      "bytes": 8707,
+      "crc32": 1582902148
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.UiTheme": {
+      "bytes": 7180,
+      "crc32": 570716838
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.motion.Curves": {
+      "bytes": 911,
+      "crc32": 2968406281
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.motion.Mechanical": {
+      "bytes": 26493,
+      "crc32": 2763188496
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.motion.Nature": {
+      "bytes": 46528,
+      "crc32": 1649425258
+    },
+    "StarterPlayer.StarterPlayerScripts.Client.motion.Rewards": {
+      "bytes": 23167,
+      "crc32": 3535726428
+    },
+    "ReplicatedStorage.Shared.Board": {
+      "bytes": 3614,
+      "crc32": 108703487
+    },
+    "ReplicatedStorage.Shared.Catalog": {
+      "bytes": 33121,
+      "crc32": 101202653
+    },
+    "ReplicatedStorage.Shared.ChestProgression": {
+      "bytes": 8889,
+      "crc32": 2505628754
+    },
+    "ReplicatedStorage.Shared.Format": {
+      "bytes": 1921,
+      "crc32": 858199487
+    },
+    "ReplicatedStorage.Shared.ItemFeedback": {
+      "bytes": 11633,
+      "crc32": 447730754
+    },
+    "ReplicatedStorage.Shared.Leaderboards": {
+      "bytes": 1638,
+      "crc32": 1972012094
+    },
+    "ReplicatedStorage.Shared.Profile": {
+      "bytes": 5933,
+      "crc32": 2786937
+    },
+    "ReplicatedStorage.Shared.ProfileLease": {
+      "bytes": 1962,
+      "crc32": 3505808636
+    },
+    "ReplicatedStorage.Shared.RestockCurve": {
+      "bytes": 1415,
+      "crc32": 404644819
+    },
+    "ReplicatedStorage.Shared.RewardTimeline": {
+      "bytes": 3922,
+      "crc32": 1406153173
+    },
+    "ReplicatedStorage.Shared.Rng": {
+      "bytes": 939,
+      "crc32": 900265529
+    },
+    "ReplicatedStorage.Shared.Run": {
+      "bytes": 60087,
+      "crc32": 2979398762
+    },
+    "ReplicatedStorage.Shared.Simulation": {
+      "bytes": 7439,
+      "crc32": 4087705290
+    },
+    "ReplicatedStorage.Shared.Stages": {
+      "bytes": 2357,
+      "crc32": 982690974
+    },
+    "ServerScriptService.Server.ArcadeSessions": {
+      "bytes": 8039,
+      "crc32": 2732391616
+    },
+    "ServerScriptService.Server.HubWorld": {
+      "bytes": 39020,
+      "crc32": 3920721840
+    },
+    "ServerScriptService.Server.LeaderboardService": {
+      "bytes": 3441,
+      "crc32": 4106760492
+    },
+    "ServerScriptService.Server.Main": {
+      "bytes": 13412,
+      "crc32": 4078405166
+    },
+    "ServerScriptService.Server.PlaytestAccess": {
+      "bytes": 1717,
+      "crc32": 2902701346
+    },
+    "ServerScriptService.Server.ProfileRepository": {
+      "bytes": 3151,
+      "crc32": 3045419916
+    },
+    "ServerScriptService.Server.ProfileStore": {
+      "bytes": 862,
+      "crc32": 3170333635
+    },
+    "StarterPlayer.StarterPlayerScripts.UiPreview": {
+      "bytes": 11667,
+      "crc32": 2265233078
+    }
+  },
+  "result": {
+    "checked": 59,
+    "mismatches": []
+  },
+  "source": "aef368b37a499694fbc1f3ca02d3be47e5abbd22",
+  "studioId": "3765c183-4057-43e6-89cb-d085ed12b6cb"
+}

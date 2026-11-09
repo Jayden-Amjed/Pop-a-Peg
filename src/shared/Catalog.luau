@@ -150,7 +150,7 @@ item(
     2,
     "halfScore",
     "Score four times the lowest peg value. Upgrade: eight times.",
-    "Every 2 unscored halves"
+    "Every 2 pegs halved by items"
 )
 item(
     "resonator",
@@ -421,7 +421,7 @@ local additions = {
         7,
         "halve",
         4,
-        "Every 4 unscored halves",
+        "Every 4 pegs halved by items",
         "Ocean Currents",
         { { effect = "right", fixed = true }, { effect = "lowestDouble" } },
     },
@@ -755,7 +755,7 @@ perk(
     3,
     "last",
     "Activate your rightmost occupied slot.",
-    "Every 3 unscored halves"
+    "Every 3 pegs halved by items"
 )
 perk(
     "last_word",
@@ -793,7 +793,7 @@ Catalog.Events = {
             {
                 id = "grow",
                 name = "Fit new pegs",
-                description = "Double four pegs for the next round.",
+                description = "Double four random pegs, shuffle, then restock free: +1 coin and +1 ball (up to 5).",
             },
         },
     },
@@ -819,7 +819,7 @@ Catalog.Events = {
             {
                 id = "grow",
                 name = "Improve the board",
-                description = "Double four pegs for the next round.",
+                description = "Double four random pegs, shuffle, then restock free: +1 coin and +1 ball (up to 5).",
             },
         },
     },

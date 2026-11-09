@@ -24,35 +24,53 @@ function Layout.compute(width, height, count)
 end
 
 function Layout.card(width, height, perk)
-    local stacked, tight = height >= 360, height < 178
+    local stacked, tight = height >= 320, height < 178
+    local pad = tight and 3 or 10
     local buttonH = stacked and 48 or 44
-    local buttonY = height - buttonH - (tight and 5 or 10)
+    local buttonY = height - buttonH - pad
+    local nameH = stacked and 40 or (height < 135 and 18 or (tight and 24 or 34))
+    local modelY = pad + nameH + (tight and 3 or 8)
     local result = {
-        choose = rect(tight and 6 or 12, buttonY, width - (tight and 12 or 24), buttonH),
+        choose = rect(pad, buttonY, width - pad * 2, buttonH),
+        name = rect(pad, pad, width - pad * 2, nameH),
         stacked = stacked,
         tight = tight,
-        nameFont = stacked and 33 or (tight and 19 or 27),
-        triggerFont = tight and 16 or 22,
-        effectFont = tight and 15 or 22,
+        nameFont = stacked and 31 or (tight and 19 or 25),
+        triggerFont = tight and 15 or 21,
+        effectFont = tight and 15 or 21,
     }
     if stacked then
-        local model = height - 236
-        result.model = rect(12, 4, width - 24, model)
-        result.name = rect(12, model + 8, width - 24, 44)
-        result.trigger = rect(14, model + 56, width - 28, perk and 38 or 0)
-        local y = model + (perk and 98 or 56)
-        result.effect = rect(14, y, width - 28, buttonY - y - 8)
+        local modelH = height - (perk and 246 or 204)
+        result.model = rect(pad, modelY, width - pad * 2, modelH)
+        local y = modelY + modelH + 8
+        result.trigger = rect(pad, y, width - pad * 2, perk and 34 or 0)
+        y += perk and 42 or 0
+        result.effect = rect(pad, y, width - pad * 2, buttonY - y - 8)
     else
-        local model = tight and 48 or math.min(128, height - 62, width * 0.31)
-        local textX = model + (tight and 14 or 18)
-        local textW = width - textX - 8
-        result.model = rect(tight and 5 or 8, tight and 7 or 8, model, model)
-        result.name = rect(textX, 2, textW, tight and 20 or 40)
-        result.trigger = rect(textX, tight and 22 or 46, textW, perk and (tight and 16 or 38) or 0)
-        local y = perk and (tight and 40 or 88) or (tight and 26 or 50)
-        result.effect = rect(textX, y, textW, buttonY - y - (tight and 3 or 6))
+        local contentH = buttonY - modelY - (tight and 3 or 8)
+        local modelW = math.min(136, width * 0.34)
+        local textX = pad + modelW + (tight and 4 or 8)
+        local textW = width - textX - pad
+        result.model = rect(pad, modelY, modelW, contentH)
+        local triggerH = perk and math.min(tight and 24 or 36, math.max(14, contentH * 0.34)) or 0
+        result.trigger = rect(textX, modelY, textW, triggerH)
+        local effectY = modelY + (perk and triggerH + (tight and 3 or 6) or 0)
+        result.effect = rect(textX, effectY, textW, modelY + contentH - effectY)
     end
     return result
+end
+
+function Layout.result(width, height)
+    local model = math.min(220, height - 12, width * 0.28)
+    local x, textW = model + 24, width - model - 36
+    local roundH = math.min(58, height * 0.28)
+    local recordsH = math.min(84, height * 0.34)
+    return {
+        model = rect(6, (height - model) / 2, model, model),
+        round = rect(x, 4, textW, roundH),
+        records = rect(x, roundH + 10, textW, recordsH),
+        unlocks = rect(x, roundH + recordsH + 16, textW, height - roundH - recordsH - 20),
+    }
 end
 
 return Layout

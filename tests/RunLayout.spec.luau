@@ -22,6 +22,38 @@ local function overlaps(a, b)
 end
 
 return function()
+    for _, size in { { 1919, 1022 }, { 1366, 710 }, { 749, 331 }, { 666, 316 }, { 568, 284 } } do
+        local full = Layout.inspector(size[1], size[2], false)
+        local hover = Layout.inspector(size[1], size[2], true)
+        assert(full.w <= size[1] - 20 and full.h <= size[2] - 20, "Inspection escaped safe area")
+        assert(hover.w <= full.w * 0.6 and hover.h <= full.h * 0.6, "Rack hover did not shrink40%")
+        assert(hover.w >= 270 and hover.h > 150, "Rack hover lost its readable scrolling region")
+    end
+    for _, size in { { 1919, 1022 }, { 1366, 710 }, { 1100, 620 } } do
+        local w, h = size[1], size[2]
+        local layout = Layout.desktop(w, h)
+        local regions = {}
+        for _, area in layout do
+            assert(inside(area, w, h), "Desktop HUD escaped safe area")
+            table.insert(regions, area)
+        end
+        for index, area in regions do
+            for other = index + 1, #regions do
+                assert(not overlaps(area, regions[other]), "Desktop HUD regions overlap")
+            end
+        end
+        assert(
+            math.abs(layout.controls.x + layout.controls.w / 2 - w / 2) < 0.01,
+            "Actions must center on the screen"
+        )
+        for _, key in { "round", "score", "restocks", "perks", "wallet", "balls", "stats" } do
+            assert(layout[key].y > layout.rack.y + layout.rack.h, "Side HUD intrudes into rack")
+        end
+        assert(
+            layout.perks.y + layout.perks.h < layout.speeds.y,
+            "Perks intrude into speed controls"
+        )
+    end
     for _, size in
         {
             { 315, 130, false, false },
@@ -106,10 +138,11 @@ return function()
             "Return-button safe root conversion drifted"
         )
         for supplies = 0, 2 do
-            local shop = Shop.compute(layout.shop.w, layout.shop.h, supplies)
+            local shopWindow = Shop.window(w, h)
+            local shop = Shop.compute(shopWindow.w, shopWindow.h, supplies)
             assert(#shop.cards == 4 + supplies, "Mobile shop hides offers")
             for index, card in shop.cards do
-                assert(inside(card, layout.shop.w, layout.shop.h), "Mobile offer escaped modal")
+                assert(inside(card, shopWindow.w, shopWindow.h), "Mobile offer escaped modal")
                 for recipes = 0, (index <= 4 and 2 or 0) do
                     local fields = Shop.card(card.w, card.h, index > 4, recipes)
                     assert(fields.purchase.h >= 44, "Mobile buy control is not touch sized")
@@ -121,7 +154,10 @@ return function()
                         "Mobile purchase covers item"
                     )
                     if recipes > 0 then
-                        assert(fields.evolutions.h >= 24, "Recipes have no usable inspection route")
+                        assert(
+                            fields.inspect.h >= 27,
+                            "Recipes require a usable tap inspection route"
+                        )
                     end
                 end
             end

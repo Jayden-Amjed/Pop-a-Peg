@@ -33,8 +33,10 @@ sound cues use public Roblox audio IDs documented in [Asset sources](ASSETS.md).
 | `src/client/RunLayout.luau` | `StarterPlayer.StarterPlayerScripts.Client.RunLayout` | Pure core-safe portrait/landscape geometry for the board, controls, rack and details. |
 | `src/client/BoardArt.luau` | `StarterPlayer.StarterPlayerScripts.Client.BoardArt` | Original pearl/aqua enclosure and attached settlement monitor, separate from collision rules. |
 | `src/client/HoverInspector.luau` | `StarterPlayer.StarterPlayerScripts.Client.HoverInspector` | Reusable hover, focus, and touch inspection with ordered effect rows and modeled evolution recipes. |
+| `src/client/ItemDetailCard.luau` | `StarterPlayer.StarterPlayerScripts.Client.ItemDetailCard` | Shared model/name/effect/evolution compartments for shop inspection, hover inspector and gallery recipe detail; scrolls long content. |
+| `src/client/ItemDetailLayout.luau` | `StarterPlayer.StarterPlayerScripts.Client.ItemDetailLayout` | Pure measured compartment geometry, including every effect and recipe at readable sizes. |
 | `src/client/EvolutionDisplay.luau` | `StarterPlayer.StarterPlayerScripts.Client.EvolutionDisplay` | Shared ingredient + ingredient = result model rows with live level/readiness labels. |
-| `src/client/UiTheme.luau` | `StarterPlayer.StarterPlayerScripts.Client.UiTheme` | Shared interface colors and native GUI constructors. |
+| `src/client/UiTheme.luau` | `StarterPlayer.StarterPlayerScripts.Client.UiTheme` | Shared pearl/aqua panels, cartoon headings, button states and native GUI constructors across run and arcade screens. |
 | `src/client/GameItemModels.luau`, `GameModelPlayback.luau` | Client modules with matching names | Gameplay Blender clones, asset preloading, cached framing, bounded activation queue and cleanup. |
 | `art/catalog/CatalogAssets.rbxm`, `scripts/models/` runtime modules | `ReplicatedStorage.CatalogAssets`, `CatalogLibrary` | Reviewed meshes and shared Blender choreography, physical effect anchors and instruments. |
 | `src/client/ItemModels.luau` | `StarterPlayer.StarterPlayerScripts.Client.ItemModels` | Frozen native reference and explicit remote-load failure fallback. |
@@ -42,8 +44,9 @@ sound cues use public Roblox audio IDs documented in [Asset sources](ASSETS.md).
 | `src/client/ItemChoreography.luau`, `src/client/motion/` | Client modules with matching names | 78 distinct body/mechanism performances and shared smooth timing curves. |
 | `src/client/NativeAssemblies.luau` | `StarterPlayer.StarterPlayerScripts.Client.NativeAssemblies` | Native attachment pivots and groups; no geometry changes. |
 | `src/client/InventorySelection.luau` | `StarterPlayer.StarterPlayerScripts.Client.InventorySelection` | Pure select, deselect, swap-request, and invalid-phase rules. |
-| `src/client/ShopLayout.luau` | `StarterPlayer.StarterPlayerScripts.Client.ShopLayout` | Fixed offer, evolution-equation, and action regions for shops without scrolling. |
-| `src/client/ChoiceLayout.luau` | `StarterPlayer.StarterPlayerScripts.Client.ChoiceLayout` | Two visible perk/event choices with bounded model, effect and button regions. |
+| `src/client/ShopLayout.luau` | `StarterPlayer.StarterPlayerScripts.Client.ShopLayout` | Responsive offer/Supplies/drawer geometry and shared inspector recipe equations. |
+| `src/client/ShopView.luau` | `StarterPlayer.StarterPlayerScripts.Client.ShopView` | Original pearl/aqua shop presentation; existing Catalog and Run rules own decisions. |
+| `src/client/ChoiceLayout.luau` | `StarterPlayer.StarterPlayerScripts.Client.ChoiceLayout` | Two visible perk/event choices and result summaries with bounded models, text and actions. |
 | `src/client/Feedback.luau` | `StarterPlayer.StarterPlayerScripts.Client.Feedback` | Score flights, trigger cues, counter display, and receipt-driven board animation. |
 | `src/client/SoundEffects.luau` | `StarterPlayer.StarterPlayerScripts.Client.SoundEffects` | Bounded sound pools, cue timing, preload, and mute control. |
 | `src/client/GameSoundEffects.luau` | `StarterPlayer.StarterPlayerScripts.Client.GameSoundEffects` | Uses reviewed item instruments on the gameplay sound instance without changing the native bank. |
@@ -229,6 +232,9 @@ operations remain fixed rather than scaling with the item's level.
 `HoverInspector` renders triggers in yellow, benefits in green and costs in red,
 without a paragraph interpreting the tradeoff. An evolved item lists each of its
 two triggers followed by that channel's effects.
+Only explicitly registered rack anchors open passive pointer inspection, at60%
+of the prior panel dimensions. Explicit selection/touch/focus retains full-size
+details and readable fonts; the content scrolls instead of scaling the text.
 
 | Hybrid | Ordered effects and cost |
 | --- | --- |
@@ -322,7 +328,7 @@ it consumes that choice for five coins without granting a perk. Shop and perk
 interfaces display these server-owned rules rather than deriving separate prices
 or upgrade eligibility.
 `EvolutionDisplay` renders up to two square-model equations per base equipment
-card and inspection panel: ingredient + ingredient = result. Ingredient labels are
+inspection panel: ingredient + ingredient = result. Ingredient labels are
 **NEED**, **L1/5** through **L4/5**, or **READY**; result labels use **EVOLVED** or
 compact **EVO**. Readiness refreshes from authoritative inventory snapshots.
 Perks, Supplies and evolved items omit recipe sections. Supplies retain **On purchase**
@@ -366,15 +372,29 @@ visible through shops and choices until the next aim snapshot. Skip completes th
 presentation with the same authoritative rewards. Terminal results open the run
 summary instead of continuing. There is no ordinary result confirmation modal.
 
+Natural drain adds durable ordered activation groups with sparse peg changes and
+cue events to the receipt. Their model performances and score arrivals finish
+before restoration; rolling event-history limits do not discard the drain replay.
+Target beams do not retrigger an already-playing drain model. Skip clears model,
+FX and audio queues before applying final values. Automatic continue carries its
+receipt ID, preventing a delayed retry from consuming the next shop route.
+Growth events produce a separate receipt: apply four random peg doubles, visibly
+shuffle, then one free refill/merge with a coin and capped ball. Event receipts
+do not add saved restock credits or advance another round; banked seeds remain
+temporary next-shot growth.
+
 `Presentation` exposes the board, counters, controls, and viewport anchors to
 `Feedback`; `GameItemModels` mounts the reviewed Blender catalog, `CatalogMotion`
-and `BlenderChoreography` animate its groups, and `UiTheme` supplies GUI styling. `ShopLayout` keeps four
-equipment cards and up to two Supplies in distinct groups without a fixed bottom
-inspection panel. Reclaimed space enlarges the main models and labels. The rack
-grows during play and contracts for shops and choices; perk and event choices use
-the same white surfaces and larger text/model treatment. Selection, purchase
+and `BlenderChoreography` animate its groups, and `UiTheme` supplies GUI styling.
+`ShopView` owns the original pearl/aqua shop skin. `ShopLayout` keeps four equipment
+cards above a horizontal Supplies strip. Large desktops have an inspection sidebar;
+landscape phones open details on tap. A modal rack drawer preserves all seven slots,
+selling and slot purchases, with an input-blocking scrim and safe global Z layers.
+Shop previews fit their idle motion envelope and ignore activation pulses; gameplay
+mounts retain their full activation envelope. The rack keeps larger previews across play,
+perk and event choices, using the shared Hold-style pearl surfaces. Selection, purchase
 eligibility, and held/sold state update existing cards instead of destroying their
-models. `HoverInspector` opens on pointer entry or UI focus, and pins open on touch;
+models. `HoverInspector` opens on rack pointer entry or UI focus, and pins open on touch;
 it closes when its anchor disappears or an explicit close action occurs.
 `InventorySelection` clears a selection after a swap request, holds further
 rack actions until acknowledgment or timeout, and rejects selection changes outside
@@ -384,9 +404,9 @@ the perk identified by an activation event.
 `RunLayout` uses coordinates relative to the core-safe root for portrait and short
 landscape screens. The board projection, counters, launch controls and session
 navigation use that same area. Compact details expose shot statistics and owned
-perks, while a rack toggle preserves selling/reordering during shops without
-permanently shrinking every offer. Compact evolution summaries open the complete
-inspector. Layout contracts and native viewport checks are complementary; neither
+perks, while the shop's rack drawer preserves selling/reordering without permanently
+shrinking every offer. Item inspection opens the complete recipe/effect panel.
+Layout contracts and native viewport checks are complementary; neither
 alone establishes physical touch-device behavior.
 
 The Blender catalog contains 78 distinct original models: 40 equipment, 13 evolved,
@@ -423,9 +443,13 @@ Score, coin, and restock arrivals pulse their counters. Launching spends a ball
 directly in the reserve display; only restored balls use reward flights. Perk
 highlights and counter pulses follow authoritative events and displayed arrivals,
 so they do not change balances or trigger timing.
-The score and restock panels retain their white base through count changes and
-scale pulses. Wallet, reserve and trigger panels can remain blue; numerical state
-does not recolor the white counter surfaces.
+The score, restock, wallet, reserve and trigger panels retain their assigned colors
+through count changes and scale pulses. Titles, buttons and nested item/evolution
+compartments share Hold's gradient, navy outline and rounded shadow while keeping
+green actions, aqua headings and gold rewards/holds. SurfaceColor retains each
+intended fill across disabled/selected refreshes; disabled controls use gray.
+Trigger/benefit/cost text remains yellow/green/red; recipe ready/result tiles use
+mint/gold tints with navy outlines.
 
 `ItemFeedback` defines distinct catalog motifs and visual signatures by stable ID,
 including four-note motifs for the 13 evolutions. Item activations produce dense

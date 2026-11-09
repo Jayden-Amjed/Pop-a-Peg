@@ -1,0 +1,59 @@
+{
+  "ok": true,
+  "blockedAnchors": 62,
+  "rackCases": [
+    {
+      "passive": [
+        270,
+        468
+      ],
+      "name": "Aim",
+      "full": [
+        450,
+        780
+      ]
+    },
+    {
+      "passive": [
+        270,
+        468
+      ],
+      "name": "Shop drawer",
+      "full": [
+        450,
+        780
+      ]
+    }
+  ],
+  "targets": 325,
+  "explicitDetails": 1,
+  "restored": true,
+  "surfaces": 646,
+  "elapsedSeconds": 2.63348990000668,
+  "tones": {
+    "trigger": 7,
+    "negative": 1,
+    "positive": 6
+  },
+  "screens": [
+    "Aim",
+    "Shop",
+    "Perks",
+    "Event",
+    "Defeat",
+    "Victory",
+    "Arcade",
+    "Collection",
+    "Recipe",
+    "Records",
+    "Help",
+    "Chests",
+    "Workshop",
+    "Rankings",
+    "Crew"
+  ],
+  "semanticColors": 108,
+  "source": "aef368b37a499694fbc1f3ca02d3be47e5abbd22",
+  "studioId": "3765c183-4057-43e6-89cb-d085ed12b6cb",
+  "auditSource": "c1a2b2a47dadf3e3cb9ea4b6a3499ab72f7c34b0"
+}

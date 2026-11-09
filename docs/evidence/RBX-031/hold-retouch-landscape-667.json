@@ -1,0 +1,40 @@
+{
+  "ok": true,
+  "checks": [
+    "Score target and meter remain readable",
+    "Aim groups, side HUD, and mute presentation",
+    "Perks card compartments and rack continuity",
+    "Event card compartments and rack continuity",
+    "Compact coins remain readable when unaffordable and clear after sale",
+    "Shop insets, Supplies, trailing coins, complete inspection",
+    "Gallery recipe uses complete item detail with return",
+    "Workshop names above model windows",
+    "Shared highlight cleanup across all15 screens"
+  ],
+  "width": 666,
+  "models": 229,
+  "elapsedSeconds": 2.612002100002428,
+  "restored": true,
+  "height": 316,
+  "largestEffectCount": 6,
+  "screens": [
+    "Aim",
+    "Perks",
+    "Event",
+    "Shop",
+    "Recipe",
+    "Workshop",
+    "Defeat",
+    "Victory",
+    "Arcade",
+    "Collection",
+    "Records",
+    "Help",
+    "Chests",
+    "Rankings",
+    "Crew"
+  ],
+  "largestRecipeCount": 2,
+  "studioId": "3765c183-4057-43e6-89cb-d085ed12b6cb",
+  "source": "8a9b1a723bad80f9ccd23e9517c09bd97aa67e31"
+}
