@@ -1,0 +1,146 @@
+{
+  "source": "05f1d16deda43a0721a51e318990a9e4503678ae",
+  "studio": "cdcbb509-40c9-42ce-98d6-6d5cc363469f",
+  "normalization": "CRLF to LF; trim outer whitespace; UTF-8 bytes",
+  "method": "CRC32 and byte count; Studio Play source compared to filesystem",
+  "matched": true,
+  "sources": {
+    "UiPreview": {
+      "bytes": 11667,
+      "crc32": 2265233078
+    },
+    "HubLayout": {
+      "bytes": 2546,
+      "crc32": 4268782807
+    },
+    "GameModelLoader": {
+      "bytes": 3107,
+      "crc32": 3165821635
+    },
+    "HubProgressionLayout": {
+      "bytes": 3299,
+      "crc32": 3028435743
+    },
+    "GameItemModels": {
+      "bytes": 18594,
+      "crc32": 4139390075
+    },
+    "EvolutionDisplay": {
+      "bytes": 5719,
+      "crc32": 2642066921
+    },
+    "GamePreviewFit": {
+      "bytes": 1563,
+      "crc32": 1495195724
+    },
+    "SoundEffects": {
+      "bytes": 8707,
+      "crc32": 1582902148
+    },
+    "NativeAssemblies": {
+      "bytes": 5919,
+      "crc32": 142600271
+    },
+    "HubAmbience": {
+      "bytes": 4385,
+      "crc32": 2171143873
+    },
+    "Main": {
+      "bytes": 10842,
+      "crc32": 389071227
+    },
+    "GameModelPlayback": {
+      "bytes": 1940,
+      "crc32": 3820582699
+    },
+    "GameSoundEffects": {
+      "bytes": 431,
+      "crc32": 1141366242
+    },
+    "ItemDetailLayout": {
+      "bytes": 1314,
+      "crc32": 2754515380
+    },
+    "HubPresentation": {
+      "bytes": 32426,
+      "crc32": 1957577481
+    },
+    "RunLayout": {
+      "bytes": 5168,
+      "crc32": 676988038
+    },
+    "CounterProgress": {
+      "bytes": 657,
+      "crc32": 1196662586
+    },
+    "ItemModels": {
+      "bytes": 91083,
+      "crc32": 985385382
+    },
+    "BoardArt": {
+      "bytes": 16296,
+      "crc32": 641008887
+    },
+    "ShopLayout": {
+      "bytes": 7270,
+      "crc32": 3143945001
+    },
+    "ItemMotion": {
+      "bytes": 38643,
+      "crc32": 2620951069
+    },
+    "HubGuide": {
+      "bytes": 4495,
+      "crc32": 3720637306
+    },
+    "ItemDetailCard": {
+      "bytes": 5712,
+      "crc32": 3909814050
+    },
+    "HubProgressionPanel": {
+      "bytes": 19994,
+      "crc32": 999948308
+    },
+    "ReceiptBoard": {
+      "bytes": 1068,
+      "crc32": 3417468154
+    },
+    "ShopView": {
+      "bytes": 18559,
+      "crc32": 411641153
+    },
+    "Feedback": {
+      "bytes": 36215,
+      "crc32": 346993224
+    },
+    "InventorySelection": {
+      "bytes": 2426,
+      "crc32": 1666712442
+    },
+    "HoverInspector": {
+      "bytes": 5398,
+      "crc32": 2547040315
+    },
+    "ItemChoreography": {
+      "bytes": 1427,
+      "crc32": 783128242
+    },
+    "UiTheme": {
+      "bytes": 6732,
+      "crc32": 2248389190
+    },
+    "PreviewLighting": {
+      "bytes": 1044,
+      "crc32": 3923194936
+    },
+    "Presentation": {
+      "bytes": 92346,
+      "crc32": 2985314446
+    },
+    "ChoiceLayout": {
+      "bytes": 2922,
+      "crc32": 840401138
+    }
+  },
+  "differences": []
+}

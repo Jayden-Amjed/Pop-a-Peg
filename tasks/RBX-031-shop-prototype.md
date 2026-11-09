@@ -2,14 +2,14 @@
 
 - Task ID: RBX-031
 - Owner: Codex coordinator (sole Studio operator); read-only shop reviewer
-- Status: IN PROGRESS
+- Status: READY FOR REVIEW
 - Reservation / issue: https://github.com/Jayden-Amjed/Pop-a-Peg/issues/31
 - Reviewed: 2026-11-08 (America/Los_Angeles)
 - Starting main: 44762e38b5b4e3ad2f89c789ae6a7a6b6f6d4560
 - Branch: task/RBX-031-shop-prototype
 - Worktree / checkout: C:\Users\Amjedd\Documents\ChatGPT\Pop a Peg\.worktrees\shop-prototype
 - PR: https://github.com/Jayden-Amjed/Pop-a-Peg/pull/32 (draft for user playtest)
-- Implementation evidence SHA: 05f1d16deda43a0721a51e318990a9e4503678ae (annotated retouch; Studio pending); historical full UI74f9b0ae0383c34721eda9518b304b2e2162f040
+- Implementation evidence SHA: 05f1d16deda43a0721a51e318990a9e4503678ae (annotated retouch; Studio verified); historical full UI74f9b0ae0383c34721eda9518b304b2e2162f040
 - Confirmed merge SHA: NOT MERGED
 
 ## Objective and scope
@@ -21,7 +21,7 @@ music mute glyph, common Recipe detail card and workshop name placement. Shared
 straight white Bevel strips removed. Root owns Theme/run UI/Studio; retouch_shop,
 retouch_hub and retouch_review own disjoint shop/detail, hub and audit paths in
 separate worktrees based on accepted main plus explicit dependency96ac86a.
-Prior full-UI evidence below remains historical until the retouch checks finish.
+Prior full-UI evidence below remains historical; fresh retouch evidence is recorded below.
 
 Follow-up 2026-11-08: user requests the UI across everything, with additional
 detail/refinement. Scope now includes shared theme, play HUD/rack, perks/events,
@@ -213,26 +213,90 @@ a fixed return to Gallery. Workshop only moves names above models. Shared
 surfaces use contained gradients and rounded borders instead of white Bevel strips.
 Results/victory and collection gallery layouts are otherwise unchanged.
 
-Checks actually run at05f1d16: scripts/check.ps1 PASS (zero lint warnings/errors,
-all gameplay/catalog tests, three builds, source mappings, documentation links);
-scripts/build-ui-preview.ps1 PASS. Read-only review caught a small-desktop score
-overlap and undersized medium-landscape controls; both were fixed before this
-check. UiRetouchAudit adds structural checks for the annotated requirements and
-all15-screen highlight cleanup, but has NOT RUN in Studio on this source yet.
-Earlier Studio receipts above remain evidence only for their recorded source.
+Checks actually run: scripts/check.ps1 PASS at05f1d16 and again at
+997988317ea859ec56f5cc31be3e40d29bef7de9 (zero lint warnings/errors, all
+gameplay/catalog contracts, three builds, mappings and documentation links).
+scripts/build-ui-preview.ps1 PASS at05f1d16; production source unchanged since.
+Read-only review caught score/level overlap and undersized medium-landscape
+controls; both were fixed before these checks. The latter and shortest fallback
+have source/layout coverage, not separate runtime device receipts.
+
+### Retouch Studio verification
+
+User opened fresh local UI-RETOUCH. Selected and verified unpublished session
+cdcbb509-40c9-42ce-98d6-6d5cc363469f, with root as sole operator and no Rojo.
+All34 normalized client/fixture source fingerprints match the filesystem:
+[byte-count/CRC32 evidence](../docs/evidence/RBX-031/retouch-source-fingerprints.json).
+Normalization uses LF and trimmed outer whitespace; this is source comparison,
+not a cryptographic integrity claim.
+
+UiRetouchAudit at9979883 and UiPreviewAudit at05f1d16 both PASS:
+
+| Preset | Actual safe area | Retouch model samples | Flow model samples | Evidence |
+| --- | --- | --- | --- | --- |
+| HD1080 (1920x1080) | 1919x1022 | 242 | 192 | [Retouch](../docs/evidence/RBX-031/retouch-desktop.json), [Flow](../docs/evidence/RBX-031/retouch-flow-desktop.json) |
+| iPhone13 landscape (844x390) | 749x331 | 230 | 183 | [Retouch](../docs/evidence/RBX-031/retouch-landscape-844.json), [Flow](../docs/evidence/RBX-031/retouch-flow-landscape-844.json) |
+| iPhone7 landscape (667x375) | 666x316 | 229 | 182 | [Retouch](../docs/evidence/RBX-031/retouch-landscape-667.json), [Flow](../docs/evidence/RBX-031/retouch-flow-landscape-667.json) |
+
+All15 screens checked: Aim, Perks, Event, Shop, Recipe, Workshop, Defeat, Victory,
+Arcade, Collection, Records, Help, Chests, Rankings and Crew. Every sampled model
+was Blender Ready. These are repeated model samples, not distinct model counts.
+Retouch audits check control/HUD containment,44px actions, readable target/meter,
+name-first choice compartments, catalog trigger/effect text and colors, complete
+inspection/equations, scrolling reachability, Recipe return and Workshop order.
+Worst fixture inspection includes six effects and two recipes. Phone audits
+also exercise unaffordable purchase, upgrade and sold compact currency states.
+All screens are checked for removed Bevel strips; each audit restores Aim.
+
+Full-flow audits exercise eight local preview-controller actions: choosePerk,
+chooseEvent, restart, endless, buyChest, openChest, researchItem and startRun.
+Chest animation/reveal and charged research/reward complete before assertions.
+These synthetic local flows do not establish multiplayer/production-remote coverage.
+The initial desktop flow run was interrupted by the operator selecting Aim while
+it was still executing, causing researchItem timeout. The complete sequential
+rerun passed, followed by both phone runs without concurrent screen changes.
+
+Actual Studio screenshots visually inspected desktop Aim/Perks/Shop/Recipe/
+Workshop/music; iPhone13 Aim/Perks/Shop; and iPhone7 Spare Parts. Real Blender
+models, inset spacing, name-first choices and grouped controls rendered.
+Simulator screenshots are fit to the Studio window; audit dimensions above
+describe the actual simulated safe-area geometry.
+
+Manual MCP pointer clicks independently verified Recipe's Gallery return
+(changed panel title to EVOLUTION AQUARIUM) and the music toggle both ways
+(Muted attribute and visible diagonal slash track the same state).
+
+### Normal entrypoint smoke and restoration
+
+In this disposable session only, stopped Play and temporarily enabled normal
+client/server Main plus character spawning, disabling UiPreview. Expected client
+and server startup logs appeared. Actual pointer Play mounted the normal run;
+Launch entered KEEP THE COMBO GOING and settled back to READY TO LAUNCH at round1
+with0/10 score (the shot missed; no round-advance claim). Arcade exposed RESUME RUN;
+Resume restored round1 at aim and preserved muted=true/slash=true with the
+GameFeedback sound group at volume0. Pointer unmute cleared the slash and restored
+volume0.7. Final console had no game-script errors, only the existing203785492
+asset-type warning.
+
+Stopped normal Play, then restored fixture enabled, normal client/server scripts
+disabled, CharacterAutoLoads=false, and stopped device simulation. Rechecked
+those properties. The session is left in Edit for the user to press Play.
+No Studio source edits were promoted, and delivered file hashes remain unchanged.
+Physical touch hardware and multiplayer checks: NOT RUN.
 
 ## Latest Handoff
 
-- Owner / next owner: Codex coordinator; waiting for user to open the fresh file visibly.
-- Objective: finish desktop and landscape runtime/visual verification of the annotated retouch.
+- Owner / next owner: Codex coordinator → user for playtest feedback.
+- Objective: annotated retouch implemented, checked and Studio verified; ready for review.
 - Checkout / branch / PR: checkout above; task/RBX-031-shop-prototype; draft PR32.
-- Main re-fetched: 44762e38b5b4e3ad2f89c789ae6a7a6b6f6d4560; accepted15 remains unchanged, proposal16.
-- Implementation SHA: 05f1d16deda43a0721a51e318990a9e4503678ae.
-- Checks: source/build PASS as above; retouch Studio, physical-device and multiplayer NOT RUN.
-- Target / sync: fresh root build/Pop-a-Peg-UI-RETOUCH.rbxlx; sole coordinator operator, no Rojo/port.
+- Main re-fetched: 44762e38b5b4e3ad2f89c789ae6a7a6b6f6d4560; accepted15 unchanged, proposal16.
+- Implementation / Studio-tested SHA: 05f1d16deda43a0721a51e318990a9e4503678ae.
+- Retouch audit SHA: 997988317ea859ec56f5cc31be3e40d29bef7de9.
+- Checks: source/build PASS; three retouch audits, three flow audits, manual pointer checks and bounded normal-entry smoke PASS as above; physical-device/multiplayer NOT RUN.
+- Target / sync: root build/Pop-a-Peg-UI-RETOUCH.rbxlx, sessioncdcbb509-40c9-42ce-98d6-6d5cc363469f; sole coordinator operator, no Rojo/port. Play stopped in Edit; preview defaults restored; simulation stopped.
 - Preview SHA256: BFAF9E03A1E54439597ED34C73674ED1808006168BAEC1B232BFA0E84179FA53.
 - Normal game: root build/Pop-a-Peg-FULL-UI-RETOUCH.rbxlx; SHA256 873C3F0FE1D5705721E643F09381E2271B8E78C7289C49B71750D16AD4755605.
-- Preservation: old UI-PLAYTEST907b1894 saved through Studio as build/Pop-a-Peg-UI-PLAYTEST-preserved-20261108.rbxl and closed. Old UI-PREVIEW0061e41d is stopped in Edit. Remaining sessions preserved.
-- Blocker: Studio initially reported its maximum window count. Own failed launches were closed; desktop capture of the remaining preview then failed with "window crop is outside captured monitor". User was asked to open UI-RETOUCH visibly. No core Source replacement attempted.
-- Next executable action: list Studio sessions, select UI-RETOUCH by exact ID, run UiRetouchAudit and UiPreviewAudit on HD1080 and two landscape phone presets, inspect screenshots and music pointer toggle, then record exact source and results.
+- Preservation: old UI-PLAYTEST907b1894 saved as build/Pop-a-Peg-UI-PLAYTEST-preserved-20261108.rbxl and closed previously; old UI-PREVIEW0061e41d no longer listed after user opened fresh retouch. Other historical sessions/files and unrelated root outputs preserved.
+- Previous blocker resolved: user opened the fresh file; Studio MCP captures and runtime tests succeeded. No remaining blocker for review.
+- Next executable action: press Play in the open UI-RETOUCH and use UI PREVIEW, or open FULL-UI-RETOUCH for the normal game.
 - Merge / Roblox publication: neither requested nor performed.
