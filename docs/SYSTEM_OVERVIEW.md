@@ -443,10 +443,13 @@ Score, coin, and restock arrivals pulse their counters. Launching spends a ball
 directly in the reserve display; only restored balls use reward flights. Perk
 highlights and counter pulses follow authoritative events and displayed arrivals,
 so they do not change balances or trigger timing.
-The score, restock, wallet, reserve and trigger panels retain the shared Hold-style
-pearl surface through count changes and scale pulses. Titles, buttons and nested
-item/evolution compartments use the same gradient, navy outline and rounded shadow;
-semantic text, meters and selected/disabled states remain distinct.
+The score, restock, wallet, reserve and trigger panels retain their assigned colors
+through count changes and scale pulses. Titles, buttons and nested item/evolution
+compartments share Hold's gradient, navy outline and rounded shadow while keeping
+green actions, aqua headings and gold rewards/holds. SurfaceColor retains each
+intended fill across disabled/selected refreshes; disabled controls use gray.
+Trigger/benefit/cost text remains yellow/green/red; recipe ready/result tiles use
+mint/gold tints with navy outlines.
 
 `ItemFeedback` defines distinct catalog motifs and visual signatures by stable ID,
 including four-note motifs for the 13 evolutions. Item activations produce dense

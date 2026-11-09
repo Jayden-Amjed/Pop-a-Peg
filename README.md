@@ -48,6 +48,8 @@ their current source and Studio verification state before comparing versions.
 
 The Hold-style and drain/event follow-up uses local `build/Pop-a-Peg-HOLD-UI.rbxlx`
 (screen selector) and `build/Pop-a-Peg-HOLD-GAMEPLAY.rbxlx` (normal game).
+The color-restored revision uses `build/Pop-a-Peg-COLOR-UI.rbxlx` and
+`build/Pop-a-Peg-COLOR-GAMEPLAY.rbxlx`; it keeps the Hold finish and card layout.
 
 To review the Blender catalog, open the [78-model animation inspector](docs/CATALOG_GALLERY.md).
 It includes search, camera views, slow motion, silent pose scrubbing, detail zoom,
@@ -291,9 +293,10 @@ transitions until the next launch or a manual **Next Round** click in the shop.
 
 Shops and perk/event choices use their own buttons. An owned-perk strip keeps
 chosen perks visible and highlights their activations. The rack retains larger
-models across play and choices. Hold-style pearl gradients, navy outlines and
-rounded shadows carry through panels, buttons and nested item compartments.
-Trigger/effect colors and selected/disabled states remain distinct. Both perk/event
+models across play and choices. Hold-style gradients, navy outlines and rounded
+shadows carry through panels, buttons and nested item compartments, retaining
+green actions, aqua titles, gold rewards/holds and colored trigger/effect text.
+Disabled controls are gray; active colors return when enabled. Both perk/event
 choices and their action buttons fit without scrolling, including short windows.
 Score and restock panels retain their pearl surfaces as counters update and bounce.
 

@@ -9,12 +9,18 @@
 - Branch: task/RBX-031-shop-prototype
 - Worktree / checkout: C:\Users\Amjedd\Documents\ChatGPT\Pop a Peg\.worktrees\shop-prototype
 - PR: https://github.com/Jayden-Amjed/Pop-a-Peg/pull/32 (draft for user playtest)
-- Implementation evidence SHA: 8a9b1a723bad80f9ccd23e9517c09bd97aa67e31 (Hold-style/drain/event follow-up; Studio verified)
+- Implementation evidence SHA: aef368b37a499694fbc1f3ca02d3be47e5abbd22 (color restoration with Hold finish; Studio verified)
 - Confirmed merge SHA: NOT MERGED
 
 ## Objective and scope
 
-Latest user follow-up: match the Hold button gradient, outline and shadow across
+Latest correction: restore all prior semantic UI colors while keeping the Hold
+gradient, navy outline, rounded shadow and established card layout. Root owns
+the six client style/color modules and Studio. hold_style reviewed palette history;
+retouch_review updated the existing audit in its separate worktree, based on
+accepted main plus explicit b361ce3 dependency. Previous gameplay/hover behavior stays intact.
+
+Previous user follow-up: match the Hold button gradient, outline and shadow across
 applicable containers, titles, evolution cells and purchase controls; passive
 inspection only from UI rack items, about40% smaller; ordered natural-drain
 activation playback before settlement; replace confusing item-halving wording;
@@ -412,7 +418,7 @@ review, physical touch hardware, multiplayer and a separate medium-landscape
 runtime preset: NOT RUN. Local fixture tests do not establish production-remote
 coverage; the normal smoke above covers only its stated path.
 
-## Latest Handoff
+## Historical Hold-style handoff
 
 - Owner / next owner: Codex coordinator → user for playtest feedback.
 - Objective: Hold-style/rack hover/drain/event follow-up implemented, checked and Studio verified.
@@ -427,3 +433,58 @@ coverage; the normal smoke above covers only its stated path.
 - Both root files hash-match current generated worktree outputs. Historical builds/sessions and unrelated root outputs preserved.
 - Blockers:none for review. Next executable action: press Play in HOLD-UI and use UI PREVIEW; open HOLD-GAMEPLAY for a normal run.
 - Merge / Roblox publication: neither requested nor performed. Local/Studio evidence is distinct from CI on the pushed branch.
+
+## Color restoration — 2026-11-08
+
+Implementation / Studio-tested source:aef368b37a499694fbc1f3ca02d3be47e5abbd22.
+Color audit:c1a2b2a47dadf3e3cb9ea4b6a3499ab72f7c34b0.
+The shared surface helper previously discarded color arguments and forced ice.
+It now remembers SurfaceColor, honors action/title/state colors, and uses gray
+only while disabled. The Hold gradient, navy default border, rounded4px depth and
+card layout remain. Green actions, aqua bands, gold currencies/held/selected rack,
+navy help/settlement and yellow/green/red effect text are retained. Recipe cells
+show mint readiness and gold outcomes with the same navy outline. No gameplay,
+models or layout geometry changed.
+
+scripts/check.ps1 and build-ui-preview.ps1 PASS on implementation; zero lint
+warnings/errors, gameplay/model contracts, builds, mappings and documentation.
+Read-only palette review completed. Initial audit used a rack-bound Gain Dial
+probe whose resolver substituted its real rack item; it reported no negative
+text coverage. Fixed to use an unbound visible anchor and assert Gain Dial's
+identity. Final exact audit source passed all three presets sequentially.
+
+| Preset / safe area | Shared surfaces / semantic colors | Ready model samples | Evidence |
+| --- | --- | --- | --- |
+| HD1080 /1919x1022 |646 /108 |242 |[Style](../docs/evidence/RBX-031/color-style-desktop.json), [Layout](../docs/evidence/RBX-031/color-retouch-desktop.json) |
+| iPhone13 landscape /749x331 |610 /95 |230 |[Style](../docs/evidence/RBX-031/color-style-landscape-844.json), [Layout](../docs/evidence/RBX-031/color-retouch-landscape-844.json) |
+| iPhone7 landscape /666x316 |608 /94 |229 |[Style](../docs/evidence/RBX-031/color-style-landscape-667.json), [Layout](../docs/evidence/RBX-031/color-retouch-landscape-667.json) |
+
+Each run checks all15 screens, exact Hold gradient/depth/default outline, semantic
+fills, gray disabled controls, Held gold, Launch green→End Shot gold→Launch green,
+aqua name/title bands, hub currency/actions, mint/gold recipe states and actual
+yellow/green/red catalog text. Rack passive sizing remains40% smaller; non-rack
+hover remains blocked. [Desktop flow](../docs/evidence/RBX-031/color-flow-desktop.json)
+also passes all eight actions including chest reveal and research,192 model samples.
+
+Verified existing HOLD-UI Edit source against the prior59-source manifest before
+six bounded module edits; afterward all59 match current source:
+[fingerprints](../docs/evidence/RBX-031/color-source-fingerprints.json).
+No user changes or native art overwritten. No live Rojo/syncback or screen captures.
+This is GUI-property/model/runtime evidence, not a new screenshot visual review.
+Physical touch hardware, multiplayer and repeated normal-entrypoint/drain runtime
+tests NOT RUN for this color-only change. Prior gameplay receipts remain above.
+
+## Latest Handoff
+
+- Owner / next owner: Codex coordinator → user for color/feel feedback.
+- Objective: original semantic colors restored with Hold styling retained; ready for review.
+- Checkout / branch / PR: same shop-prototype worktree / task/RBX-031-shop-prototype / draft PR32.
+- Main re-fetched44762e38b5b4e3ad2f89c789ae6a7a6b6f6d4560; accepted15/proposed16 unchanged.
+- Source:aef368b37a499694fbc1f3ca02d3be47e5abbd22; color audit:c1a2b2a47dadf3e3cb9ea4b6a3499ab72f7c34b0.
+- Checks: source/build PASS; three color/style and three layout audits PASS; desktop flow PASS. Final docs/diff checks PASS. Unrun checks stated above.
+- Studio:3765c183-4057-43e6-89cb-d085ed12b6cb, still named HOLD-UI but its in-memory source is the color revision. Stopped in Edit, preview defaults intact, simulation stopped; sole root operator; no Rojo/port.
+- Preview file:root build/Pop-a-Peg-COLOR-UI.rbxlx; SHA256:736A3E7BE1B1CC92A4E4D39921050B6CFFD32BBBACA0CE05B50F23F88F3841A2.
+- Normal file:root build/Pop-a-Peg-COLOR-GAMEPLAY.rbxlx; SHA256:8DBC791D6797FDC275AB9F24B2BF905679814B1C53E456EC23B99F796A57FF33.
+- Earlier builds/session source on disk remain preserved; use the COLOR files when reopening. Root outputs unchanged.
+- Blockers:none. Next: press Play in updated open preview, or open COLOR-GAMEPLAY for a normal run.
+- Merge / publication: neither requested nor performed. CI tracks the pushed branch separately.
