@@ -61,4 +61,7 @@ Final playtest SHA256:
 Required local checks pass at ce1a647, including documentation fields repaired
 after CI run 42548015630 failed its status-field contract. Eight catalog archive
 regressions were rerun and pass, as do catalog integrity, native freeze, source
-mapping, physical placement and actual hub reveal checks. Final GitHub CI pending.
+mapping, physical placement and actual hub reveal checks. GitHub CI run
+42549187354 passes on final task head 673a0500a0502dda1c28c5b005c823a0012e88ad.
+GitHub confirms PR30 merged at 212c76260a5a6ce44dfd8ba5d10bd3ab77a25c4e.
+This bounded completion receipt changes documentation only. No experience published.

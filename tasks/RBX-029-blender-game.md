@@ -1,7 +1,7 @@
 # RBX-029 — Blender gameplay and useful drain growth
 
 - Owner: Codex coordinator; sole Studio operator
-- Status: READY FOR REVIEW
+- Status: MERGED
 - Starting main: 6ef9576dd038ff5f4efa998c4034a559e46d5dcf; accepted State Version14
 - Branch: task/RBX-029-blender-game
 - PR: https://github.com/Jayden-Amjed/Pop-a-Peg/pull/30
@@ -70,5 +70,8 @@ Deliverable: repository-root build/Pop-a-Peg-PLAYTEST.rbxlx, exact integration
 build copy. SHA256:0ECD30A1FACDC87A27C70A83BB372E91FB2821289A4A661241CB98CAF683E1F0.
 Final check.ps1 PASS at ce1a647; eight archive regressions and catalog guards PASS.
 See evidence for actual compact viewport, fixture details and repaired CI doc fields.
-Next: push/check CI, merge PR30, record
-GitHub-confirmed acceptance once from14 to15. Merge:NOT MERGED. Publication:NOT RUN.
+GitHub CI run 42549187354 PASS on final task head
+673a0500a0502dda1c28c5b005c823a0012e88ad.
+GitHub confirmed PR30 MERGED at 212c76260a5a6ce44dfd8ba5d10bd3ab77a25c4e.
+Accepted State Version 15 once from 14. Publication: NOT RUN.
+Next: user playtest the open local build and provide feedback. No active blocker.

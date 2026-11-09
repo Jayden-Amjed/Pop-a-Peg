@@ -1,17 +1,17 @@
 # Current project state
 
-State Version: 14 (accepted RBX-027; RBX-029 proposes 15).
+State Version: 15 (accepted RBX-029, advancing from 14 once).
 Reviewed: 2026-11-08, America/Los_Angeles
 Objective: Blender gameplay adoption, grounded effects, useful drain growth and readable previews.
 
-Accepted source: 6ef9576dd038ff5f4efa998c4034a559e46d5dcf.
-Active task: [RBX-029](tasks/RBX-029-blender-game.md), Codex coordinator.
+Accepted source: 212c76260a5a6ce44dfd8ba5d10bd3ab77a25c4e.
+Latest completed task: [RBX-029](tasks/RBX-029-blender-game.md), Codex coordinator.
 Branch: task/RBX-029-blender-game; [PR30](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/30).
 Implementation: 8fd0c679e47033970a434afafc6937ea666b26cd.
 Studio-tested source: 7eb6c18a971e4f33cb0a2896c23d4ce7fe816897 for gameplay;
 the later gallery-description-only update at 8fd0c67 matches all 71 current Edit scripts.
 Test helper: ce1a6474dfb6b75dfec248e46e8601033a011cc6.
-Merge: NOT MERGED.
+Merge: GitHub confirmed PR30 merged at 212c76260a5a6ce44dfd8ba5d10bd3ab77a25c4e.
 Published: no experience update.
 
 | Capability | Current evidence |
@@ -43,7 +43,8 @@ Gallery QA and game play are stopped. No live Rojo. All final checks used backgr
 Studio MCP; no desktop control. Older saved experience 115816779411929 was inspected only.
 
 Checks: required check.ps1 PASS at ce1a647; catalog, eight archive regressions,
-native/mapping/placement and hub-reveal checks PASS. Final GitHub CI pending.
+native/mapping/placement and hub-reveal checks PASS. GitHub CI run 42549187354
+PASS for final task head 673a0500a0502dda1c28c5b005c823a0012e88ad.
 [Evidence](docs/evidence/RBX-029/REVIEW.md) and [drain rules](docs/DRAIN_ITEM_AUDIT.md).
-Next action: push, confirm final CI, merge PR30, accept State Version 15.
+Next action: user playtest the open local build; await feedback. No active blocker.
 Repository administration: main unprotected; temporary default remains starter.
