@@ -5,6 +5,9 @@ local Profile = if Shared then require(Shared.Profile) else require("../shared/P
 local Chests = if Shared
     then require(Shared.ChestProgression)
     else require("../shared/ChestProgression")
+local PlaytestAccess = if script
+    then require(script.Parent.PlaytestAccess)
+    else require("./PlaytestAccess")
 
 local ArcadeSessions = { Capacity = 8 }
 ArcadeSessions.__index = ArcadeSessions
@@ -45,14 +48,18 @@ end
 function ArcadeSessions:capture(session)
     if session.run then
         Chests.observe(session)
-        session.profile = Profile.merge(session.profile, session.run:profile())
+        session.profile = Profile.merge(
+            session.profile,
+            PlaytestAccess.captureProfile(session.run:profile(), session.temporaryRunAccess)
+        )
     end
     return Profile.clean(session.profile)
 end
 
 function ArcadeSessions:_newRun(session, seed)
     self:capture(session)
-    session.run = Run.new(seed or 1, session.profile)
+    session.temporaryRunAccess = PlaytestAccess.active(session.userId)
+    session.run = Run.new(seed or 1, PlaytestAccess.runProfile(session.userId, session.profile))
     session.runId += 1
     session.lastEvent = 0
     session.rewardedMilestones = {}
@@ -87,6 +94,9 @@ function ArcadeSessions:action(userId, kind, payload, seed)
         end
         if session.profileStatus == "unavailable" or session.profileStatus == "locked" then
             return false, "Saving is unavailable. Your chests are safe; try again shortly."
+        end
+        if kind == "researchItem" and PlaytestAccess.active(userId) then
+            return false, "All equipment is available during your temporary playtest."
         end
         if type(payload.requestId) ~= "string" or #payload.requestId > 96 then
             return false, "Request a chest action again."
@@ -195,19 +205,27 @@ function ArcadeSessions:snapshot(userId)
         snapshot.runId = session.runId
         snapshot.chestsEarned = table.clone(session.profile.chests)
         snapshot.restockCredits = session.profile.restockCredits
+        snapshot.temporaryAccess = session.temporaryRunAccess == true
         return snapshot
     end
-    local profile = self:capture(session)
+    local profile = PlaytestAccess.viewProfile(userId, self:capture(session))
     profile.chestReceipts = nil -- The private retry ledger is not needed by the UI.
+    local chests = Chests.snapshot(session.profile)
+    if PlaytestAccess.active(userId) then
+        for _, entry in chests.unlocks do
+            entry.owned = true
+        end
+    end
     return {
         sessionView = "hub",
+        temporaryAccess = PlaytestAccess.active(userId),
         hub = {
             capacity = ArcadeSessions.Capacity,
             station = session.station,
             players = self:roster(),
             profile = profile,
             canResume = self:canResume(session),
-            chests = Chests.snapshot(session.profile),
+            chests = chests,
         },
     }
 end

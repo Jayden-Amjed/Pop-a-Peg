@@ -1,6 +1,9 @@
 local ArcadeSessions = if script
     then require(game:GetService("ServerScriptService").Server.ArcadeSessions)
     else require("../src/server/ArcadeSessions")
+local playtestAccess = if script
+    then require(script.Parent["PlaytestAccess.spec"])
+    else require("./PlaytestAccess.spec")
 
 return function()
     local arcade = ArcadeSessions.new()
@@ -81,4 +84,5 @@ return function()
     print(
         "PASS arcade sessions: eight stations, isolation, pause/resume, records, departure and reuse"
     )
+    playtestAccess()
 end
