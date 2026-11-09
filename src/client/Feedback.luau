@@ -169,7 +169,11 @@ function Feedback:_beam(slot, pegId, color, style, action)
     self.itemFxTimes[key] = self.elapsed
     local startPoint = self:_anchor("inventory", slot)
     local target = self:_anchor("peg", pegId)
-    self.host:pulseItem(slot, 0.7, { effect = style, direction = target - startPoint })
+    -- A recorded drain group already starts exactly one aimed performance.
+    -- Its target beams, and later banked-growth cues, must not queue repeats.
+    if not self.playingDrain and action ~= "bank" then
+        self.host:pulseItem(slot, 0.7, { effect = style, direction = target - startPoint })
+    end
     local reduced = GuiService.ReducedMotionEnabled
     local rays = if reduced
         then 1
@@ -321,7 +325,11 @@ function Feedback:_activateVisual(id, slot)
     end
     self.sounds:playItem(id)
     if slot then
-        self.host:pulseItem(slot, 1, { effect = profile.style })
+        self.host:pulseItem(slot, 1, {
+            effect = profile.style,
+            direction = self.playingDrain and self.drainDirections and self.drainDirections[slot]
+                or nil,
+        })
         local key = "slot:" .. slot
         if self.elapsed - (self.itemFxTimes[key] or -10) >= 0.12 then
             self.itemFxTimes[key] = self.elapsed
@@ -507,7 +515,7 @@ function Feedback:_event(event)
         end
     elseif event.kind == "perkTrigger" then
         self:_pulsePerk(event.perkId)
-        self:_activateVisual(event.perkId, event.targetSlot)
+        self:_activateVisual(event.perkId)
     elseif event.kind == "purchase" then
         self:_activateVisual(event.itemId, event.slot)
         if event.action == "evolve" and event.slot then
@@ -538,6 +546,7 @@ function Feedback:_reset(snapshot)
     table.clear(self.itemFxTimes)
     self.timeline = nil
     self.playingDrain = false
+    self.drainDirections = nil
     self.pendingReceipt = nil
     self.awaitingFinish = false
     self.advanceWait = nil
@@ -765,6 +774,7 @@ function Feedback:_nextStep()
     self.stepTime = 0
     local step = self.timeline[self.timelineIndex]
     self.playingDrain = step and step.kind == "drain" or false
+    self.drainDirections = nil
     if not step then
         self.awaitingFinish = true
         return
@@ -774,6 +784,14 @@ function Feedback:_nextStep()
         self:_board(step.beforeValues)
     end
     if step.kind == "drain" then
+        self.drainDirections = {}
+        for _, event in ipairs(step.events or {}) do
+            local slot, pegId = event.sourceSlot or event.slot, event.targetPegId or event.pegId
+            if slot and pegId and not self.drainDirections[slot] then
+                self.drainDirections[slot] = self:_anchor("peg", pegId)
+                    - self:_anchor("inventory", slot)
+            end
+        end
         self.host:setSettlement(
             "DRAIN EFFECTS · " .. self.timelineIndex .. " / " .. #receipt.drainSteps,
             0,
@@ -921,6 +939,7 @@ function Feedback:_finish()
     self.completedReceipt = receipt.id
     self.timeline = nil
     self.playingDrain = false
+    self.drainDirections = nil
     self.awaitingFinish = false
     self.receipt = nil
     self.busy = false
