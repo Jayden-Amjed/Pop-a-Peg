@@ -33,6 +33,14 @@ offers normal, full-rack and evolution scenarios. All changes stay in the test
 run's memory; ordinary entry scripts and profile saving are disabled in this
 opt-in build. The normal `default.project.json` mapping does not include it.
 
+Full UI review (RBX-031): run `scripts/build-ui-preview.ps1`, open
+`build/Pop-a-Peg-UI-PREVIEW.rbxlx`, and press Play. The **UI PREVIEW** menu jumps
+among 15 gameplay and arcade screens using temporary in-memory data and actual
+Blender models. Chest opening and workshop research work through their normal UI.
+Both ordinary entry scripts are disabled; no profile writes or gameplay remotes
+run in this opt-in fixture. For normal play, the coordinator's generated local
+copy is `build/Pop-a-Peg-FULL-UI.rbxlx`. See the dashboard for checked source and limits.
+
 To review the Blender catalog, open the [78-model animation inspector](docs/CATALOG_GALLERY.md).
 It includes search, camera views, slow motion, silent pose scrubbing, detail zoom,
 per-item sound with mute/volume controls, a temporary-effects toggle, and copyable

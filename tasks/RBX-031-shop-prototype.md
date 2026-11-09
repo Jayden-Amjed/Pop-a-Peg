@@ -1,4 +1,4 @@
-# RBX-031 — Desktop and landscape shop prototype
+# RBX-031 — Desktop and landscape full-game UI
 
 - Task ID: RBX-031
 - Owner: Codex coordinator (sole Studio operator); read-only shop reviewer
@@ -9,10 +9,18 @@
 - Branch: task/RBX-031-shop-prototype
 - Worktree / checkout: C:\Users\Amjedd\Documents\ChatGPT\Pop a Peg\.worktrees\shop-prototype
 - PR: https://github.com/Jayden-Amjed/Pop-a-Peg/pull/32 (draft for user playtest)
-- Implementation evidence SHA: 67967deb334519bea95fd36df9fbc793bc50b0ab
+- Implementation evidence SHA: 74f9b0ae0383c34721eda9518b304b2e2162f040 (full UI); original shop67967deb334519bea95fd36df9fbc793bc50b0ab
 - Confirmed merge SHA: NOT MERGED
 
 ## Objective and scope
+
+Follow-up 2026-11-08: user requests the UI across everything, with additional
+detail/refinement. Scope now includes shared theme, play HUD/rack, perks/events,
+defeat/victory, inspector/recipes, loading/navigation, and all arcade/progression
+panels. Proposal remains State16 above accepted15. Coordinator owns theme/run UI
+and Studio; ui_hub owns only hub presentation; ui_review_fixture owns only new
+UI preview/build/audit files in separate worktrees. Earlier shop evidence below
+remains historical; full UI evidence and the latest handoff are below.
 
 Implement an original pearl/aqua cartoon shop close to the accepted visual
 concepts, with real Blender model previews, desktop and landscape mobile layouts.
@@ -29,6 +37,9 @@ No experience publication or merge requested.
 - [x] Required source checks and representative Studio interactions pass.
 - [x] Desktop and landscape device layouts verified; limitations recorded.
 - [x] Reproducible opt-in fixture opens directly to the shop for user testing.
+- [x] Shared theme covers gameplay HUD, perks/events, results, inspection and all arcade panels.
+- [x] Desktop and two landscape phone presets pass all 15 screens, chest reveal and research.
+- [x] Normal build and a 15-screen preview build supplied for Studio testing.
 
 ## Dependencies and overlapping paths
 
@@ -75,7 +86,7 @@ Physical touch hardware and full multi-player server flows: NOT RUN. The fixture
 uses the real Run action implementation locally; server code/rules are unchanged.
 No purchased art, native model/choreography edits, merge or publication.
 
-## Handoff
+## Historical shop handoff
 
 - Owner / next owner: Codex coordinator
 - Objective / completed work: original responsive shop, actual model previews, isolated fixture and three-device QA complete
@@ -94,3 +105,74 @@ SHA256: CBAA5946F87ECBB817837899D7F748FBE2A784E3259882036D635E4D7FFF3294.
 Device simulation reset to default after comparisons. No live Rojo; ordinary game
 playtest file and every prior Studio session preserved. User-facing handoff opens
 the standard local test shop; restarting Play resets its temporary coins/rack.
+
+## Full UI checks and implementation
+
+Final implementation: 74f9b0ae0383c34721eda9518b304b2e2162f040.
+Integrated hub commit17beb86 and preview/build commit758a955; shared/run changes
+a99030d; final landscape chest refinement74f9b0a. The shared palette, Fredoka
+headings, outlined pearl panels and aqua ribbons now cover gameplay HUD/rack,
+shop, perk/event choices, defeat/victory, inspections/recipes, connection card,
+arcade navigation, collection, records, help, crew, rankings, chests and research.
+Compact results fit without scrolling. Phone choice models use available height;
+chests/rewards get a dedicated side column while retaining44px buttons.
+
+`scripts/check.ps1` PASS after final code: zero lint warnings/errors, full gameplay,
+catalog, loading/framing/audio/motion/effects contracts, three builds, mappings and
+documentation checks. `scripts/build-ui-preview.ps1` PASS; normal entrypoints
+disabled, landscape orientation, temporary synthetic profile with no saves/remotes.
+All11 changed client/fixture source fingerprints match Studio after CRLF/outer
+whitespace normalization: byte counts plus CRC32, recorded in
+[source evidence](../docs/evidence/RBX-031/full-ui-source-fingerprints.json).
+
+Final Studio session0061e41d-a6ef-42a6-9480-977ce8a50bde audits:
+
+| Preset | Core-safe area | Screens | Blender Ready samples | Evidence |
+| --- | --- | --- | --- | --- |
+| HD1080 | 1919x1022 | 15 | 178 | [Desktop](../docs/evidence/RBX-031/full-ui-desktop.json) |
+| iPhone13 landscape | 749x331 | 15 | 171 | [Cutout phone](../docs/evidence/RBX-031/full-ui-landscape-844.json) |
+| iPhone7 landscape | 666x316 | 15 | 170 | [Small phone](../docs/evidence/RBX-031/full-ui-landscape-667.json) |
+
+Each checks HUD/modal bounds, shop cards,44px perk/event actions and model loading;
+then chooses a perk/event, restarts, enters Endless, buys/opens a chest through
+panel pending/reveal logic, researches a locked blueprint and starts a run.
+Chest animation completes before the reward/CONTINUE view; research charges the
+correct amount and shows its reward. Actual pointer perk choice returns to aim;
+actual Open click reveals Rain Catcher and enables Continue.
+Visual inspection covered desktop HUD/perks/chests and landscape perks/results/chests.
+
+Normal-entrypoint smoke in the same disposable session: temporarily disabled the
+fixture and enabled the unchanged normal server/client Main scripts and avatars.
+Both expected initialization logs appeared; pointer Play mounted the real run,
+pointer Launch sent a server-owned shot, which scored and advanced to round2.
+Normal entrypoint flags are restored to preview defaults after this smoke;
+the generated normal build already has normal entrypoints enabled.
+Final console has only the existing asset203785492 type warning, no game script errors.
+
+Early fixture-only failures (numeric rewardedEndless seeded as a table, temporary
+equipment ownership leaking into the synthetic profile, stale test profile
+references) were fixed before these final audits. Review also caught and fixed
+an empty notice panel and an unbounded result summary. Automatic approval review
+rejected bulk core-source replacement in the old shop session; that path was
+abandoned for the fresh disposable UI preview. Later changes there were bounded,
+reviewed and source-verified. Existing sessions and native source remain preserved.
+
+Physical touch hardware and multiplayer server checks: NOT RUN. Simulator QA is
+not a physical-device claim. No kit purchase, balance/profile changes, merge or
+Roblox publication. Accepted State15 remains; this branch still proposes16.
+
+## Latest Handoff
+
+- Owner / next owner: Codex coordinator → user for playtest feedback.
+- Objective / completed work: shared cartoon UI across run/arcade, responsive refinements, 15-screen preview and three-preset QA.
+- Checkout / branch / PR: checkout above; task/RBX-031-shop-prototype; draft PR32.
+- Main re-fetched: 44762e38b5b4e3ad2f89c789ae6a7a6b6f6d4560, accepted15 unchanged.
+- Evidence SHA / proposed version: 74f9b0ae0383c34721eda9518b304b2e2162f040;16.
+- Checks / limitations: final checks and Studio audits PASS as above; physical hardware/multiplayer NOT RUN.
+- Studio target / sync: UI-PREVIEW session0061e41d; sole coordinator operator; no live Rojo or port.
+- Normal game file: repository-root `build/Pop-a-Peg-FULL-UI.rbxlx`; SHA256 `00FB3EDFDCF123BF6C0419F5A8C84E91FF48B46CA667A49768FA5B22A381CFDC`.
+- Screen preview file: repository-root `build/Pop-a-Peg-UI-PREVIEW.rbxlx`; SHA256 `6206C3E60CD4A884BD4B5EFEBEEACA076BDEC026998FE1537C918379C38315E9`.
+- Both files match their worktree build outputs; original PLAYTEST and SHOP-PROTOTYPE preserved.
+- Blockers: none for user review; PR remains draft and unmerged.
+- Published experience / observed version: no publication requested or performed.
+- Next executable action: open FULL-UI and press Play, or open UI-PREVIEW and use its top-right selector for each screen.

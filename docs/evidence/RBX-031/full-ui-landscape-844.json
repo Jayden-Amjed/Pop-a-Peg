@@ -1,0 +1,96 @@
+{
+  "source": "74f9b0ae0383c34721eda9518b304b2e2162f040",
+  "studio": "0061e41d-a6ef-42a6-9480-977ce8a50bde",
+  "preset": "iPhone13 landscape",
+  "modelSamples": 171,
+  "restored": true,
+  "elapsedSeconds": 8.131242999996175,
+  "ok": true,
+  "actions": [
+    "choosePerk",
+    "chooseEvent",
+    "restart",
+    "endless",
+    "buyChest",
+    "openChest",
+    "researchItem",
+    "startRun"
+  ],
+  "screens": [
+    {
+      "height": 331,
+      "name": "Aim",
+      "width": 749
+    },
+    {
+      "height": 331,
+      "name": "Shop",
+      "width": 749
+    },
+    {
+      "height": 331,
+      "name": "Perks",
+      "width": 749
+    },
+    {
+      "height": 331,
+      "name": "Event",
+      "width": 749
+    },
+    {
+      "height": 331,
+      "name": "Defeat",
+      "width": 749
+    },
+    {
+      "height": 331,
+      "name": "Victory",
+      "width": 749
+    },
+    {
+      "height": 331,
+      "name": "Arcade",
+      "width": 749
+    },
+    {
+      "height": 331,
+      "name": "Collection",
+      "width": 749
+    },
+    {
+      "height": 331,
+      "name": "Recipe",
+      "width": 749
+    },
+    {
+      "height": 331,
+      "name": "Records",
+      "width": 749
+    },
+    {
+      "height": 331,
+      "name": "Help",
+      "width": 749
+    },
+    {
+      "height": 331,
+      "name": "Chests",
+      "width": 749
+    },
+    {
+      "height": 331,
+      "name": "Workshop",
+      "width": 749
+    },
+    {
+      "height": 331,
+      "name": "Rankings",
+      "width": 749
+    },
+    {
+      "height": 331,
+      "name": "Crew",
+      "width": 749
+    }
+  ]
+}

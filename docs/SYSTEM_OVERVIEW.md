@@ -34,7 +34,7 @@ sound cues use public Roblox audio IDs documented in [Asset sources](ASSETS.md).
 | `src/client/BoardArt.luau` | `StarterPlayer.StarterPlayerScripts.Client.BoardArt` | Original pearl/aqua enclosure and attached settlement monitor, separate from collision rules. |
 | `src/client/HoverInspector.luau` | `StarterPlayer.StarterPlayerScripts.Client.HoverInspector` | Reusable hover, focus, and touch inspection with ordered effect rows and modeled evolution recipes. |
 | `src/client/EvolutionDisplay.luau` | `StarterPlayer.StarterPlayerScripts.Client.EvolutionDisplay` | Shared ingredient + ingredient = result model rows with live level/readiness labels. |
-| `src/client/UiTheme.luau` | `StarterPlayer.StarterPlayerScripts.Client.UiTheme` | Shared interface colors and native GUI constructors. |
+| `src/client/UiTheme.luau` | `StarterPlayer.StarterPlayerScripts.Client.UiTheme` | Shared pearl/aqua panels, cartoon headings, button states and native GUI constructors across run and arcade screens. |
 | `src/client/GameItemModels.luau`, `GameModelPlayback.luau` | Client modules with matching names | Gameplay Blender clones, asset preloading, cached framing, bounded activation queue and cleanup. |
 | `art/catalog/CatalogAssets.rbxm`, `scripts/models/` runtime modules | `ReplicatedStorage.CatalogAssets`, `CatalogLibrary` | Reviewed meshes and shared Blender choreography, physical effect anchors and instruments. |
 | `src/client/ItemModels.luau` | `StarterPlayer.StarterPlayerScripts.Client.ItemModels` | Frozen native reference and explicit remote-load failure fallback. |
@@ -44,7 +44,7 @@ sound cues use public Roblox audio IDs documented in [Asset sources](ASSETS.md).
 | `src/client/InventorySelection.luau` | `StarterPlayer.StarterPlayerScripts.Client.InventorySelection` | Pure select, deselect, swap-request, and invalid-phase rules. |
 | `src/client/ShopLayout.luau` | `StarterPlayer.StarterPlayerScripts.Client.ShopLayout` | Responsive offer/Supplies/drawer geometry and shared inspector recipe equations. |
 | `src/client/ShopView.luau` | `StarterPlayer.StarterPlayerScripts.Client.ShopView` | Original pearl/aqua shop presentation; existing Catalog and Run rules own decisions. |
-| `src/client/ChoiceLayout.luau` | `StarterPlayer.StarterPlayerScripts.Client.ChoiceLayout` | Two visible perk/event choices with bounded model, effect and button regions. |
+| `src/client/ChoiceLayout.luau` | `StarterPlayer.StarterPlayerScripts.Client.ChoiceLayout` | Two visible perk/event choices and result summaries with bounded models, text and actions. |
 | `src/client/Feedback.luau` | `StarterPlayer.StarterPlayerScripts.Client.Feedback` | Score flights, trigger cues, counter display, and receipt-driven board animation. |
 | `src/client/SoundEffects.luau` | `StarterPlayer.StarterPlayerScripts.Client.SoundEffects` | Bounded sound pools, cue timing, preload, and mute control. |
 | `src/client/GameSoundEffects.luau` | `StarterPlayer.StarterPlayerScripts.Client.GameSoundEffects` | Uses reviewed item instruments on the gameplay sound instance without changing the native bank. |

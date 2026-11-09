@@ -1,0 +1,53 @@
+{
+  "source": "74f9b0ae0383c34721eda9518b304b2e2162f040",
+  "studio": "0061e41d-a6ef-42a6-9480-977ce8a50bde",
+  "normalization": "CRLF to LF; trim outer whitespace; UTF-8 bytes",
+  "method": "CRC32 and byte count; Studio Play source compared to filesystem",
+  "matched": true,
+  "sources": {
+    "UiPreview": {
+      "bytes": 11667,
+      "crc32": 2265233078
+    },
+    "HubPresentation": {
+      "bytes": 33737,
+      "crc32": 2634706217
+    },
+    "HoverInspector": {
+      "bytes": 8179,
+      "crc32": 2709769548
+    },
+    "HubProgressionPanel": {
+      "bytes": 20004,
+      "crc32": 1969501104
+    },
+    "EvolutionDisplay": {
+      "bytes": 5374,
+      "crc32": 1375616549
+    },
+    "Main": {
+      "bytes": 10842,
+      "crc32": 389071227
+    },
+    "ShopView": {
+      "bytes": 16418,
+      "crc32": 1557191631
+    },
+    "UiTheme": {
+      "bytes": 6453,
+      "crc32": 3486822071
+    },
+    "HubProgressionLayout": {
+      "bytes": 3299,
+      "crc32": 3028435743
+    },
+    "Presentation": {
+      "bytes": 89849,
+      "crc32": 4153141677
+    },
+    "ChoiceLayout": {
+      "bytes": 2766,
+      "crc32": 1846787958
+    }
+  }
+}

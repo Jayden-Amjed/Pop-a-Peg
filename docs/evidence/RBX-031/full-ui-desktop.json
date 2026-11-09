@@ -1,0 +1,96 @@
+{
+  "source": "74f9b0ae0383c34721eda9518b304b2e2162f040",
+  "studio": "0061e41d-a6ef-42a6-9480-977ce8a50bde",
+  "preset": "HD1080",
+  "modelSamples": 178,
+  "restored": true,
+  "elapsedSeconds": 7.896681399994122,
+  "ok": true,
+  "actions": [
+    "choosePerk",
+    "chooseEvent",
+    "restart",
+    "endless",
+    "buyChest",
+    "openChest",
+    "researchItem",
+    "startRun"
+  ],
+  "screens": [
+    {
+      "height": 1022,
+      "name": "Aim",
+      "width": 1919
+    },
+    {
+      "height": 1022,
+      "name": "Shop",
+      "width": 1919
+    },
+    {
+      "height": 1022,
+      "name": "Perks",
+      "width": 1919
+    },
+    {
+      "height": 1022,
+      "name": "Event",
+      "width": 1919
+    },
+    {
+      "height": 1022,
+      "name": "Defeat",
+      "width": 1919
+    },
+    {
+      "height": 1022,
+      "name": "Victory",
+      "width": 1919
+    },
+    {
+      "height": 1022,
+      "name": "Arcade",
+      "width": 1919
+    },
+    {
+      "height": 1022,
+      "name": "Collection",
+      "width": 1919
+    },
+    {
+      "height": 1022,
+      "name": "Recipe",
+      "width": 1919
+    },
+    {
+      "height": 1022,
+      "name": "Records",
+      "width": 1919
+    },
+    {
+      "height": 1022,
+      "name": "Help",
+      "width": 1919
+    },
+    {
+      "height": 1022,
+      "name": "Chests",
+      "width": 1919
+    },
+    {
+      "height": 1022,
+      "name": "Workshop",
+      "width": 1919
+    },
+    {
+      "height": 1022,
+      "name": "Rankings",
+      "width": 1919
+    },
+    {
+      "height": 1022,
+      "name": "Crew",
+      "width": 1919
+    }
+  ]
+}
