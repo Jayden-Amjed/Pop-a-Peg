@@ -262,6 +262,11 @@ local ok, failure = xpcall(function()
         rackSizes[index] = cell.viewport.AbsoluteSize
     end
     if desktop then
+        inside(view.stageProgress, view.roundPlate)
+        if view.phaseLabel.Visible then
+            inside(view.phaseLabel, view.roundPlate)
+            separate(view.phaseLabel, view.stageProgress, "Phase label overlaps level progress")
+        end
         assert(
             math.abs(
                 view.controls.AbsolutePosition.X

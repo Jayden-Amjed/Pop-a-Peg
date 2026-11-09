@@ -923,7 +923,7 @@ function Presentation:_layout()
         setRect(self.roundLabel, 12, 24, rw - 24, rh >= 80 and 32 or 25)
         self.roundLabel.TextSize = rh >= 80 and 30 or 24
         self.roundLabel.TextXAlignment = Enum.TextXAlignment.Left
-        self.phaseLabel.Visible = rh >= 80
+        self.phaseLabel.Visible = rh >= 90
         setRect(self.phaseLabel, 12, 57, rw - 24, 20)
         setRect(self.stageProgress, 12, rh - 9, rw - 24, 4)
         setRect(self.left, 0, 0, w, h)
