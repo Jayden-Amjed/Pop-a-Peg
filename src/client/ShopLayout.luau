@@ -19,7 +19,7 @@ function Layout.compute(width, height, supplies)
     local bodyH = footerY - gap - top
     local sideW = width >= 1240 and height >= 640 and 260 or 0
     local contentW = width - pad * 2 - (sideW > 0 and sideW + gap or 0)
-    local supplyH = supplies > 0 and (compact and 52 or 104) or 0
+    local supplyH = supplies > 0 and (compact and math.min(86, bodyH - 82) or 112) or 0
     local itemH = bodyH - (supplies > 0 and supplyH + gap or 0)
     local result = {
         compact = compact,
@@ -59,19 +59,36 @@ end
 function Layout.card(width, height, consumable)
     local small = height < 230
     if consumable then
-        local side = math.min(height - 4, width * 0.22)
-        local buyW = math.max(64, math.min(110, width * 0.29))
+        if height < 70 then
+            local side = height - 6
+            local x = side + 8
+            local buyW = math.max(64, width * 0.29)
+            local textW = width - x - buyW - 10
+            return {
+                inspect = rect(3, 3, side, side),
+                model = rect(0, 0, side, side),
+                name = rect(x, 3, textW, 18),
+                level = rect(0, 0, 0, 0),
+                price = rect(x, 24, textW, height - 27),
+                purchase = rect(width - buyW - 3, (height - 44) / 2, buyW, 44),
+                nameOnCard = true,
+                short = true,
+            }
+        end
+        local pad = 5
+        local side = math.min(height - pad * 2, width * 0.3)
+        local rightX = side + pad * 2
+        local rightW = width - rightX - pad
+        local buyW = math.max(64, rightW * 0.48)
+        local actionY = height - pad - 44
         return {
-            inspect = rect(2, 2, width - buyW - 8, height - 4),
-            model = rect(0, 0, side, height - 4),
-            name = rect(side + 3, 0, width - buyW - side - 14, (height - 4) * 0.55),
-            level = rect(
-                side + 3,
-                (height - 4) * 0.55,
-                width - buyW - side - 14,
-                (height - 4) * 0.45
-            ),
-            purchase = rect(width - buyW - 3, (height - 44) / 2, buyW, 44),
+            inspect = rect(pad, pad, side, height - pad * 2),
+            model = rect(0, 0, side, height - pad * 2),
+            name = rect(rightX, pad, rightW, actionY - pad - 4),
+            level = rect(0, 0, 0, 0),
+            price = rect(rightX, actionY, rightW - buyW - 5, 44),
+            purchase = rect(width - pad - buyW, actionY, buyW, 44),
+            nameOnCard = true,
             short = true,
         }
     end

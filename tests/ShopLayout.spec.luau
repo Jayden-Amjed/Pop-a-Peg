@@ -70,7 +70,19 @@ return function()
                     content.model,
                     { x = 0, y = 0, w = content.inspect.w, h = content.inspect.h }
                 )
-                inside(content.name, { x = 0, y = 0, w = content.inspect.w, h = content.inspect.h })
+                inside(
+                    content.name,
+                    content.nameOnCard and localBounds
+                        or { x = 0, y = 0, w = content.inspect.w, h = content.inspect.h }
+                )
+                if index > 4 then
+                    inside(content.price, localBounds)
+                    separate(content.price, content.purchase)
+                    separate(content.price, content.inspect)
+                    separate(content.name, content.purchase)
+                    separate(content.name, content.price)
+                    assert(content.name.h >= 18, "Supply heading became unreadable")
+                end
                 if content.hold then
                     inside(content.hold, localBounds)
                     assert(content.hold.h >= 44 and content.hold.w >= 44, "Hold is not touch-sized")

@@ -3,6 +3,8 @@
 local Catalog = require(game:GetService("ReplicatedStorage").Shared.Catalog)
 local Theme = require(script.Parent.UiTheme)
 local Layout = require(script.Parent.ShopLayout)
+local ItemDetailCard = require(script.Parent.ItemDetailCard)
+local TextService = game:GetService("TextService")
 local Shop = {}
 local C = {
     ink = Theme.colors.ink,
@@ -105,18 +107,11 @@ function Shop.build(host, state, width, height, top)
     local wallet = surface(modal, "Wallet", C.ice, 24, 18)
     Theme.rect(wallet, header.x, header.y + 2, walletW, header.h - 4)
     local coin = viewport(wallet, "Coin", 26)
-    Theme.rect(coin, 2, 0, header.h - 4, header.h - 4)
+    Theme.rect(coin, walletW - header.h + 2, 0, header.h - 4, header.h - 4)
     host:_mount(coin, "coin", 1)
-    self.wallet = text(wallet, "Coins", "", layout.compact and 24 or 36, 27)
-    Theme.rect(self.wallet, header.h - 2, 0, walletW - header.h, header.h - 4)
-    local hint = text(modal, "InspectHint", "Tap an item\nfor details", 19, 25)
-    Theme.rect(
-        hint,
-        (width + titleW) / 2 + 10,
-        header.y,
-        (width - titleW) / 2 - header.x - 10,
-        header.h
-    )
+    self.wallet = text(wallet, "Coins", "", layout.compact and 28 or 44, 27)
+    Theme.rect(self.wallet, 8, 0, walletW - header.h - 6, header.h - 4)
+    self.walletCoin = coin
     if layout.groups.supplies then
         local strip = surface(modal, "Supplies", C.ice, 23, 16)
         place(strip, layout.groups.supplies)
@@ -138,24 +133,25 @@ function Shop.build(host, state, width, height, top)
             ZIndex = 28,
         }, card)
         place(inspect, pos.inspect)
-        local model = viewport(inspect, "Item", 29)
-        place(model, pos.model)
-        local name = text(inspect, "Name", "", pos.short and 18 or 25, 31)
-        if not supply then
-            local nameBand = Theme.frame(inspect, "NameBand", C.aqua, 30)
-            place(nameBand, pos.name)
-            Theme.corner(nameBand, 10)
-        end
-        place(name, pos.name)
+        local modelBox = Theme.inset(inspect, "ModelBox", C.ice, 28, 12)
+        place(modelBox, pos.model)
+        local model = viewport(modelBox, "Item", 29)
+        Theme.rect(model, 4, 4, math.max(1, pos.model.w - 8), math.max(1, pos.model.h - 8))
+        local nameParent = pos.nameOnCard and card or inspect
+        local nameBand = Theme.inset(nameParent, "NameBox", C.aqua, 30, 10)
+        place(nameBand, pos.name)
+        local name = text(nameBand, "Name", "", pos.short and 18 or 25, 31)
+        Theme.rect(name, 4, 0, pos.name.w - 8, pos.name.h)
         local level = text(inspect, "Level", "", pos.short and 12 or 16, 31)
         place(level, pos.level)
-        level.TextXAlignment = supply and Enum.TextXAlignment.Left or Enum.TextXAlignment.Right
-        local price
-        if not supply then
-            price = text(card, "Price", "", pos.short and 18 or 26, 31)
-            place(price, pos.price)
-            price.Visible = pos.price.h > 0
-        end
+        level.Visible = not supply
+        level.TextXAlignment = Enum.TextXAlignment.Right
+        local priceBox = Theme.inset(card, "PriceBox", C.paper, 29, 9)
+        place(priceBox, pos.price)
+        priceBox.Visible = pos.price.h > 0
+        local price = text(priceBox, "Price", "", pos.short and 21 or 30, 31)
+        local priceCoin = viewport(priceBox, "Coin", 31)
+        host:_mount(priceCoin, "coin", 1)
         local buy = button(card, "Buy", "Buy", C.green, function()
             local offer = host.snapshot and host.snapshot.shopOffers[index]
             if offer then
@@ -181,15 +177,33 @@ function Shop.build(host, state, width, height, top)
             local offer = host.snapshot and host.snapshot.shopOffers[index]
             return offer and offer.id, offer and host:_offerLevel(offer) or 1
         end
-        inspect.Activated:Connect(function()
+        local function selectOffer(anchor)
             host.selectedOffer, host.selectedSlot, host.selectedPerk = index, nil, nil
             host:_updateInventory()
             Shop.refresh(host, host.snapshot)
             local id, levelNow = resolve()
             if id and not layout.sidebar then
-                host.inspector:show(id, levelNow, inspect, true)
+                host.inspector:show(id, levelNow, anchor, true)
             end
+        end
+        inspect.Activated:Connect(function()
+            selectOffer(inspect)
         end)
+        if supply then
+            local nameInspect = Theme.make("TextButton", {
+                Name = "InspectName",
+                Text = "",
+                BackgroundTransparency = 1,
+                Size = UDim2.fromScale(1, 1),
+                ZIndex = 32,
+            }, nameBand)
+            nameInspect.Activated:Connect(function()
+                selectOffer(nameInspect)
+            end)
+            if not layout.sidebar then
+                host.inspector:bind(nameInspect, resolve)
+            end
+        end
         if not layout.sidebar then
             host.inspector:bind(inspect, resolve)
         end
@@ -197,9 +211,13 @@ function Shop.build(host, state, width, height, top)
             card = card,
             inspect = inspect,
             viewport = model,
+            modelBox = modelBox,
+            nameBox = nameBand,
             name = name,
             level = level,
             price = price,
+            priceBox = priceBox,
+            priceCoin = priceCoin,
             buy = buy,
             hold = hold,
             positions = pos,
@@ -213,28 +231,9 @@ function Shop.build(host, state, width, height, top)
         place(panel, r)
         local title = text(panel, "Title", "INSPECT ITEM", 24, 26)
         Theme.rect(title, 8, 8, r.w - 16, 36)
-        self.preview = viewport(panel, "Preview", 26)
-        Theme.rect(self.preview, 8, 48, r.w - 16, math.min(240, r.h * 0.38))
-        local y = 54 + math.min(240, r.h * 0.38)
-        self.detailName = text(panel, "Name", "", 25, 27)
-        Theme.rect(self.detailName, 10, y, r.w - 20, 54)
-        self.detailTrigger = text(panel, "Trigger", "", 19, 27)
-        Theme.rect(self.detailTrigger, 12, y + 58, r.w - 24, 56)
-        self.detailBody = text(panel, "Effect", "", 19, 27)
-        Theme.rect(self.detailBody, 14, y + 116, r.w - 28, math.max(30, r.h - y - 184))
-        self.detailBody.TextYAlignment = Enum.TextYAlignment.Top
-        self.detailButton = button(panel, "Inspect", "All details + recipes", C.aqua, function()
-            local index = host.selectedOffer or 1
-            local offer = host.snapshot.shopOffers[index]
-            if offer then
-                host.inspector:show(offer.id, host:_offerLevel(offer), self.detailButton, true)
-            end
-        end, 32)
-        Theme.rect(self.detailButton, 12, r.h - 60, r.w - 24, 48)
-        host.inspector:bind(self.detailButton, function()
-            local offer = host.snapshot and host.snapshot.shopOffers[host.selectedOffer or 1]
-            return offer and offer.id, offer and host:_offerLevel(offer) or 1
-        end)
+        self.detailCard = ItemDetailCard.new(panel, host, 26)
+        self.detailArea = { x = 10, y = 48, w = r.w - 20, h = r.h - 60 }
+        self.preview = self.detailCard.viewport
     end
     local footer = layout.footer
     local fw = (footer.w - 20) / 3
@@ -243,9 +242,11 @@ function Shop.build(host, state, width, height, top)
         Theme.rect(control, footer.x + (index - 1) * (fw + 10), footer.y, fw, footer.h)
         return control
     end
-    self.reroll = action("Reroll", "Reroll • 1 coin", 1, C.ice, function()
+    self.reroll = action("Reroll", "Reroll  1", 1, C.ice, function()
         host:_send("reroll")
     end)
+    self.rerollCoin = viewport(self.reroll, "Coin", 35)
+    host:_mount(self.rerollCoin, "coin", 1)
     self.rack = action("Rack", "Your rack", 2, C.ice, function()
         host.shopRackOpen = not host.shopRackOpen
         host.inspector:hide()
@@ -333,8 +334,7 @@ function Shop.refresh(host, state)
             local level = host:_offerLevel(offer)
             host:_mount(cell.viewport, offer.id, level)
             cell.name.Text = data.name
-            cell.level.Text = data.consumable and (tostring(offer.price) .. " coins • Supply")
-                or (data.evolved and "EVOLVED · L5" or "L" .. level .. " / 5")
+            cell.level.Text = data.evolved and "EVOLVED · L5" or "L" .. level .. " / 5"
             local intent = Catalog.purchaseState(state.inventory, state.slots, offer, state.coins)
             local captions = {
                 purchase = "Buy",
@@ -348,15 +348,32 @@ function Shop.refresh(host, state)
                 unavailable = "Unavailable",
             }
             local caption = captions[intent.action] or "Unavailable"
-            if data.consumable then
-                caption = caption .. (intent.action == "use" and " • " .. intent.price or "")
-            elseif cell.short and (intent.action == "purchase" or intent.action == "upgrade") then
+            if
+                not data.consumable
+                and cell.short
+                and (intent.action == "purchase" or intent.action == "upgrade")
+            then
                 caption = caption .. " • " .. intent.price
             end
             enabled(cell.buy, intent.allowed, caption, C.green)
             if cell.price then
-                cell.price.Text = data.evolved and "FREE EVOLUTION"
-                    or tostring(offer.price or 0) .. " coins"
+                cell.price.Text = data.evolved and "FREE EVOLUTION" or tostring(offer.price or 0)
+                cell.priceCoin.Visible = not data.evolved and cell.priceBox.Visible
+                local priceW, priceH = cell.positions.price.w, cell.positions.price.h
+                local icon = math.min(40, priceH)
+                local numberW = math.min(
+                    priceW - icon,
+                    math.max(22, #cell.price.Text * (cell.short and 13 or 18))
+                )
+                local start = (priceW - numberW - icon) / 2
+                Theme.rect(
+                    cell.price,
+                    data.evolved and 2 or start,
+                    0,
+                    data.evolved and priceW - 4 or numberW,
+                    priceH
+                )
+                Theme.rect(cell.priceCoin, start + numberW, 0, icon, icon)
             end
             if cell.hold then
                 enabled(
@@ -371,21 +388,30 @@ function Shop.refresh(host, state)
     end
     if self.preview then
         local offer = state.shopOffers[host.selectedOffer or 1] or state.shopOffers[1]
-        local detail = Catalog.detail(offer.id, host:_offerLevel(offer))
-        host:_mount(self.preview, offer.id, host:_offerLevel(offer))
-        self.detailName.Text, self.detailTrigger.Text = detail.name, detail.trigger
-        local effects = {}
-        for _, effect in detail.effects do
-            table.insert(effects, effect.text)
-        end
-        self.detailBody.Text = table.concat(effects, "\n\n")
+        self.detailCard:update(offer.id, host:_offerLevel(offer), self.detailArea)
     end
     enabled(
         self.reroll,
         (state.rerollsLeft or 0) > 0 and state.coins >= 1,
-        (state.rerollsLeft or 0) > 0 and "Reroll • 1 coin" or "No rerolls left",
+        (state.rerollsLeft or 0) > 0 and "Reroll  1" or "No rerolls left",
         C.ice
     )
+    local rerolls = (state.rerollsLeft or 0) > 0
+    local rw, rh = self.reroll.Size.X.Offset, self.reroll.Size.Y.Offset
+    local icon = math.min(40, rh - 6)
+    local labelW = math.min(
+        rw - icon - 8,
+        TextService:GetTextSize(
+            self.reroll.Caption.Text,
+            25,
+            Enum.Font.FredokaOne,
+            Vector2.new(1000, 100)
+        ).X + 6
+    )
+    local start = (rw - labelW - (rerolls and icon or 0)) / 2
+    Theme.rect(self.reroll.Caption, start, 0, labelW, rh)
+    Theme.rect(self.rerollCoin, start + labelW, (rh - icon) / 2, icon, icon)
+    self.rerollCoin.Visible = rerolls
     self.drawer.Visible = host.shopRackOpen == true
     self.scrim.Visible = self.drawer.Visible
     self.rack.Caption.Text = host.shopRackOpen and "Close rack" or "Your rack"
