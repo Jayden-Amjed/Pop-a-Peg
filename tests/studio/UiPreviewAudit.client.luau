@@ -156,19 +156,72 @@ local ok, failure = xpcall(function()
     action("endless")
     assert(controller.run.endlessMode and controller.run.phase == "aim", "Endless failed")
     chooseScreen("Chests")
+    local panel = controller.hub.progression
+    local function request(kind, payload, handle)
+        panel:request(kind, payload, handle)
+        assert(panel.pending and not panel.actionButton.Active, "Missing pending UI")
+        waitFor(function()
+            return panel.pending == nil
+        end, kind .. " presentation", 12)
+        assert(controller.lastFailure == nil, tostring(controller.lastFailure))
+        table.insert(report.actions, kind)
+    end
     local profile = controller.session.profile
     local count, credits = profile.chests.common, profile.restockCredits
-    action("buyChest", { tier = "common", requestId = Http:GenerateGUID(false) })
+    request("buyChest", { tier = "common" })
+    profile = controller.session.profile
     assert(
         profile.chests.common == count + 1 and profile.restockCredits == credits - 100,
         "Chest purchase failed"
     )
-    local owned = #profile.itemUnlocks
-    action("openChest", { tier = "common", requestId = Http:GenerateGUID(false) })
+    local owned, research = #profile.itemUnlocks, profile.research
+    request("openChest", { tier = "common" }, controller.hub.models[1].handle)
+    profile = controller.session.profile
     assert(
-        profile.chests.common == count and #profile.itemUnlocks == owned + 1,
+        profile.chests.common == count
+            and (#profile.itemUnlocks == owned + 1 or profile.research == research + 1),
         "Chest discovery failed"
     )
+    assert(
+        panel.reveal and panel.actionButton.Active and panel.actionButton.Text == "CONTINUE",
+        "Missing chest reward UI"
+    )
+    assert(
+        controller.hub.body.ChestName.Text:match("UNLOCKED")
+            or controller.hub.body.ChestName.Text == "RESEARCH COLLECTED",
+        "Missing chest reward title"
+    )
+    modelsReady()
+    chooseScreen("Workshop")
+    panel = controller.hub.progression
+    local locked
+    for _, entry in panel:data().unlocks do
+        if not entry.owned and entry.cost <= controller.session.profile.research then
+            locked = entry
+            break
+        end
+    end
+    assert(locked, "Fixture needs a researchable blueprint")
+    panel.itemId, panel.mode = locked.id, "item"
+    panel:renderItem()
+    task.wait(0.05)
+    inside(panel.actionButton, controller.hub.body)
+    modelsReady()
+    local beforeResearch = controller.session.profile.research
+    request("researchItem", { id = locked.id })
+    assert(
+        table.find(controller.session.profile.itemUnlocks, locked.id),
+        "Research did not unlock blueprint"
+    )
+    assert(
+        controller.session.profile.research == beforeResearch - locked.cost,
+        "Research cost mismatch"
+    )
+    assert(
+        panel.reveal and panel.reveal.itemId == locked.id and panel.actionButton.Text == "CONTINUE",
+        "Missing research reveal"
+    )
+    modelsReady()
     chooseScreen("Arcade")
     action("startRun")
     assert(controller.view and controller.session.view == "run", "Hub Play did not open run")

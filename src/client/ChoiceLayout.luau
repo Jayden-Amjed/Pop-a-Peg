@@ -43,7 +43,8 @@ function Layout.card(width, height, perk)
         local y = model + (perk and 98 or 56)
         result.effect = rect(14, y, width - 28, buttonY - y - 8)
     else
-        local model = tight and 48 or math.min(128, height - 62, width * 0.31)
+        local model = tight and math.min(96, buttonY - 14, width * 0.27)
+            or math.min(128, height - 62, width * 0.31)
         local textX = model + (tight and 14 or 18)
         local textW = width - textX - 8
         result.model = rect(tight and 5 or 8, tight and 7 or 8, model, model)
@@ -53,6 +54,19 @@ function Layout.card(width, height, perk)
         result.effect = rect(textX, y, textW, buttonY - y - (tight and 3 or 6))
     end
     return result
+end
+
+function Layout.result(width, height)
+    local model = math.min(220, height - 12, width * 0.28)
+    local x, textW = model + 24, width - model - 36
+    local roundH = math.min(58, height * 0.28)
+    local recordsH = math.min(84, height * 0.34)
+    return {
+        model = rect(6, (height - model) / 2, model, model),
+        round = rect(x, 4, textW, roundH),
+        records = rect(x, roundH + 10, textW, recordsH),
+        unlocks = rect(x, roundH + recordsH + 16, textW, height - roundH - recordsH - 20),
+    }
 end
 
 return Layout

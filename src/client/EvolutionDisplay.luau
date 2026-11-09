@@ -16,7 +16,7 @@ function Display.new(parent, host, z, inspectTiles)
     self.frame = Theme.frame(parent, "Evolutions", nil, z)
     self.frame.BackgroundTransparency = 1
     self.title = Theme.label(self.frame, "Title", "EVOLUTIONS • L5 + L5", 17, C.ink, z + 2)
-    self.title.Font = Enum.Font.SourceSansBold
+    self.title.Font = Enum.Font.FredokaOne
     self.title.TextXAlignment = Enum.TextXAlignment.Center
     self.title.TextScaled = true
     Theme.make("UITextSizeConstraint", { MinTextSize = 10, MaxTextSize = 17 }, self.title)
@@ -36,6 +36,7 @@ function Display.new(parent, host, z, inspectTiles)
                 ZIndex = z + 3,
             }, box)
             viewport:SetAttribute("NoOutline", true)
+            viewport:SetAttribute("ShopPreview", true)
             row.boxes[column], row.statuses[column], row.viewports[column] = box, status, viewport
             if column < 3 then
                 local symbol = Theme.label(

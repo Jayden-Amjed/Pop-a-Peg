@@ -196,11 +196,13 @@ local function refresh()
 end
 
 local function seedRun()
-    session.run = Run.new(31031, { itemUnlocks = Catalog.ItemIds })
+    local runProfile = Profile.clean(session.profile)
+    runProfile.itemUnlocks = table.clone(Catalog.ItemIds)
+    session.run = Run.new(31031, runProfile)
     session.runId += 1
-    session.temporaryRunAccess = false
+    session.temporaryRunAccess = true
     session.lastEvent, session.rewardedRestockReceipt = 0, 0
-    session.rewardedMilestones, session.rewardedEndless = {}, {}
+    session.rewardedMilestones, session.rewardedEndless = {}, 0
     session.terminalRewarded = false
     local run = session.run
     run.round, run.coins, run.slots = 11, 30, 5

@@ -5,33 +5,24 @@ local Theme = require(script.Parent.UiTheme)
 local Layout = require(script.Parent.ShopLayout)
 local Shop = {}
 local C = {
-    ink = Color3.fromRGB(16, 55, 78),
-    paper = Color3.fromRGB(243, 252, 255),
-    aqua = Color3.fromRGB(13, 199, 211),
-    ice = Color3.fromRGB(204, 237, 245),
-    green = Color3.fromRGB(102, 210, 13),
-    gold = Color3.fromRGB(255, 208, 65),
+    ink = Theme.colors.ink,
+    paper = Theme.colors.paper,
+    aqua = Theme.colors.aqua,
+    ice = Theme.colors.ice,
+    green = Theme.colors.mint,
+    gold = Theme.colors.gold,
     gray = Color3.fromRGB(191, 210, 217),
 }
 local function place(object, r)
     Theme.rect(object, r.x, r.y, r.w, r.h)
 end
 local function surface(parent, name, color, z, radius)
-    local panel = Theme.frame(parent, name, color, z)
-    Theme.corner(panel, radius or 16)
-    Theme.stroke(panel, C.ink, 2)
-    local shadow = Theme.frame(panel, "Depth", C.ink, z - 1)
-    shadow.Position, shadow.Size = UDim2.fromOffset(0, 4), UDim2.fromScale(1, 1)
-    shadow.BackgroundTransparency = 0.48
-    Theme.corner(shadow, radius or 16)
-    Theme.make("UIGradient", {
-        Rotation = 90,
-        Color = ColorSequence.new({
-            ColorSequenceKeypoint.new(0, Color3.new(1, 1, 1)),
-            ColorSequenceKeypoint.new(0.45, Color3.new(1, 1, 1)),
-            ColorSequenceKeypoint.new(1, Color3.fromRGB(204, 227, 239)),
-        }),
-    }, panel)
+    local panel = Theme.plate(parent, name, color, z)
+    for _, child in panel:GetDescendants() do
+        if child:IsA("UICorner") then
+            child.CornerRadius = UDim.new(0, radius or 16)
+        end
+    end
     return panel
 end
 local function text(parent, name, value, size, z)

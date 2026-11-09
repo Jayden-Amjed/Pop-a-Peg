@@ -19,8 +19,7 @@ function Inspector.new(host)
     panel:SetAttribute("BlocksAim", true)
     panel.Visible = false
     self.panel = panel
-    self.title = Theme.label(panel, "Name", "", 28, C.ink, 82)
-    self.title.Font = Enum.Font.SourceSansBold
+    self.title = Theme.heading(panel, "Name", "", 28, C.ink, 82)
     self.title.TextWrapped = true
     self.title.TextScaled = true
     self.titleScale =
@@ -29,7 +28,7 @@ function Inspector.new(host)
     self.trigger = Theme.label(panel, "Trigger", "", 21, C.trigger, 82)
     self.trigger.Font = Enum.Font.SourceSansBold
     self.trigger.TextWrapped = true
-    self.close = Theme.button(panel, "Close", "×", C.panel, function()
+    self.close = Theme.button(panel, "Close", "×", C.ice, function()
         self:hide()
     end, 84)
     self.close.TextSize = 24
