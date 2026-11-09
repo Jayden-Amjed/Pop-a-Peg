@@ -1438,7 +1438,7 @@ function Presentation:_renderCounters()
         pops = "Pops",
         walls = "Walls",
         doubles = "Doubles",
-        halves = "Halves",
+        halves = "Item halves",
         quotas = "Quotas",
         time = "Time",
         first = "First hit",
@@ -2242,7 +2242,19 @@ function Presentation:step(dt)
             viewport.Visible
             and (not self.modal or not viewport:IsDescendantOf(self.modal) or self.overlay.Visible)
         then
-            mounted.handle:step(dt)
+            local playbackSpeed = if self.feedback.getPlaybackSpeed
+                    and (
+                        viewport:IsDescendantOf(self.inventory)
+                        or viewport:IsDescendantOf(self.perksPanel)
+                    )
+                then self.feedback:getPlaybackSpeed()
+                else 1
+            local remaining = math.min(dt, 0.1) * playbackSpeed
+            repeat
+                local slice = math.min(remaining, 0.1)
+                mounted.handle:step(slice)
+                remaining -= slice
+            until remaining <= 0
         end
     end
     for id, cell in self.perkCells do
