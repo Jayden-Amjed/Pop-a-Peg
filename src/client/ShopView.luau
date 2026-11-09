@@ -360,7 +360,7 @@ function Shop.refresh(host, state)
                 cell.price.Text = data.evolved and "FREE EVOLUTION" or tostring(offer.price or 0)
                 cell.priceCoin.Visible = not data.evolved and cell.priceBox.Visible
                 local priceW, priceH = cell.positions.price.w, cell.positions.price.h
-                local icon = math.min(40, priceH)
+                local icon = math.min(40, priceH, priceW * 0.48)
                 local numberW = math.min(
                     priceW - icon,
                     math.max(22, #cell.price.Text * (cell.short and 13 or 18))
@@ -400,7 +400,7 @@ function Shop.refresh(host, state)
     local rw, rh = self.reroll.Size.X.Offset, self.reroll.Size.Y.Offset
     local icon = math.min(40, rh - 6)
     local labelW = math.min(
-        rw - icon - 8,
+        rw - (rerolls and icon or 0) - 8,
         TextService:GetTextSize(
             self.reroll.Caption.Text,
             25,
