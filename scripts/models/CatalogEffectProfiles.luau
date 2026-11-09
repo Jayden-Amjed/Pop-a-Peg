@@ -395,7 +395,7 @@ add(
     "aqua",
     "lime"
 )
-add("quota_bonus", "radial", "quota stamped point rays", 0.32, 6, 0.53, 0.28, 0.22, "gold", "lime")
+add("quota_bonus", "radial", "quota tray contact impact", 0.28, 6, 0.53, 0.28, 0.22, "gold", "lime")
 add(
     "rain_catcher",
     "bubble",
@@ -665,6 +665,11 @@ function Effects.sample(id, t, strength, context)
     end
     context = context or {}
     local gain = envelope(t, p.peak)
+    if id == "quota_bonus" then
+        -- The pad lands at .25 and dwells through .29. No anticipatory impact
+        -- floats above the paper while the stamp is still travelling down.
+        gain = smooth(0.245, 0.265, t) * (1 - smooth(0.32, 0.62, t))
+    end
     if gain < 0.002 then
         return out
     end
@@ -693,15 +698,15 @@ function Effects.sample(id, t, strength, context)
             })
         end
     end
-    local function ring(center, radius, color, alpha, axis, segments, phase)
+    local function ring(center, radius, color, alpha, axis, segments, phase, map)
         segments = segments or 10
         for n = 0, segments - 1 do
             local function at(angle)
                 local x, y = math.cos(angle) * radius, math.sin(angle) * radius
-                if axis == "Y" then
-                    return point(center[1] + x, center[2], center[3] + y)
-                end
-                return point(center[1] + x, center[2] + y, center[3])
+                local q = if axis == "Y"
+                    then point(center[1] + x, center[2], center[3] + y)
+                    else point(center[1] + x, center[2] + y, center[3])
+                return if map then map(q) else q
             end
             line(
                 at((n / segments) * TAU + (phase or 0)),
@@ -725,7 +730,52 @@ function Effects.sample(id, t, strength, context)
             previous = q
         end
     end
-    if id == "split_prism" then
+    if id == "quota_bonus" then
+        local release = smooth(0.25, 0.60, t)
+        -- A horizontal shock on the paper/tray surface, with small ink-like
+        -- flecks. The renderer pins its origin to the fixed plate under the pad.
+        ring(point(0, 0, 0), 0.05 + release * 0.34, "gold", 0.92, "Y", 12)
+        for i = 1, 8 do
+            local angle = i * TAU / 8
+            local r = 0.05 + release * (0.19 + (i % 3) * 0.035)
+            local q =
+                point(math.cos(angle) * r, math.sin(release * math.pi) * 0.035, math.sin(angle) * r)
+            ball(q, 0.018, i % 2 == 0 and "gold" or "lime", 0.9)
+            line(q, point(q[1] * 0.75, q[2], q[3] * 0.75), 0.009, "pearl", 0.7)
+        end
+    elseif id == "tap_driver" then
+        local punch = smooth(0.21, 0.39, t)
+        for i = 1, p.count do
+            local angle = i * TAU / p.count
+            local r = 0.07 + punch * 0.18
+            line(
+                point(math.cos(angle) * r, math.sin(angle) * r, 0.18),
+                point(
+                    math.cos(angle) * (r + 0.09),
+                    math.sin(angle) * (r + 0.09),
+                    0.18 + punch * 0.13
+                ),
+                0.014,
+                i % 2 == 0 and "gold" or "blue",
+                0.9
+            )
+        end
+    elseif id == "tuning_oil" then
+        for i = 1, 3 do
+            local fall = math.clamp((t - 0.18 - i * 0.08) / 0.45, 0, 1)
+            if fall > 0 and fall < 1 then
+                local q = point(0, 0, fall * 0.50)
+                ball(q, 0.022 + (1 - fall) * 0.015, "gold", (1 - fall) * 0.9)
+                line(point(0, 0, math.max(0, q[3] - 0.065)), q, 0.009, "ice", (1 - fall) * 0.7)
+            end
+        end
+    elseif id == "tide_valve" then
+        for i = 1, 8 do
+            local pulse = (travel + i / 8) % 1
+            local q = point(math.sin(i * 2.1) * 0.04, math.cos(i * 1.7) * 0.05, pulse * 0.48)
+            line(q, point(q[1], q[2], q[3] + 0.08), 0.012, i % 2 == 0 and "aqua" or "ice", 0.82)
+        end
+    elseif id == "split_prism" then
         -- One incident ray resolves into three spatially separated colours.
         line(point(-0.36, 0.08, 0.10), point(0, 0.08, 0.10), 0.016, "pearl", 0.9)
         for i, color in { "gold", "aqua", "coral" } do
@@ -822,8 +872,11 @@ function Effects.sample(id, t, strength, context)
         for i = 1, 7 do
             local angle = i * TAU / 7
             local r = 0.05 + struck * travel * 0.39
-            local q =
-                point(math.cos(angle) * r, 0.025 + math.sin(angle) * r * 0.18, math.sin(angle) * r)
+            local q = point(
+                math.cos(angle) * r,
+                math.abs(math.sin(angle)) * r * 0.025,
+                math.sin(angle) * r
+            )
             ball(q, 0.022, "gold", 0.92)
             line(q, point(q[1] * 0.78, q[2] + 0.018, q[3] * 0.78), 0.008, "pearl", 0.75)
         end
@@ -936,12 +989,47 @@ function Effects.sample(id, t, strength, context)
             local progress = math.clamp((t - start) / 0.42, 0, 1)
             if t > start and progress < 1 then
                 local origin = i % 2 == 0 and left or right
+                local cone = context.cones and context.cones[i % 2 + 1]
                 ring(
-                    point(origin[1], origin[2], origin[3] + progress * 0.42),
+                    if cone
+                        then point(0, 0, progress * 0.42)
+                        else point(origin[1], origin[2], origin[3] + progress * 0.42),
                     0.10 + progress * 0.28,
                     i % 2 == 0 and p.color or p.accent,
                     (1 - progress) * 0.88,
                     "Z",
+                    10,
+                    nil,
+                    cone
+                )
+            end
+        end
+    elseif id == "ocean_orchestra" and context.cones then
+        for i = 1, 3 do
+            local progress = math.clamp((t - 0.18 - (i - 1) * 0.08) / 0.50, 0, 1)
+            if progress > 0 and progress < 1 then
+                ring(
+                    point(0, 0, progress * 0.35),
+                    0.07 + progress * 0.15,
+                    i == 2 and "gold" or "aqua",
+                    (1 - progress) * 0.9,
+                    "Z",
+                    10,
+                    nil,
+                    context.cones[i]
+                )
+            end
+        end
+    elseif id == "spring_coil" then
+        for i = 1, p.count do
+            local progress = math.clamp((t - p.peak + 0.08 - (i - 1) * 0.07) / 0.46, 0, 1)
+            if progress > 0 and progress < 1 then
+                ring(
+                    point(0, p.lift, 0.19),
+                    0.10 + progress * p.spread,
+                    i % 2 == 0 and p.accent or p.color,
+                    (1 - progress) * 0.85,
+                    "Y",
                     10
                 )
             end
@@ -1164,6 +1252,14 @@ function Effects.sample(id, t, strength, context)
                     else nil
             end
             accent.a, accent.b = shifted(accent.a), shifted(accent.b)
+        end
+    end
+    if context.transform then
+        for _, accent in out do
+            accent.a = context.transform(accent.a)
+            if accent.b then
+                accent.b = context.transform(accent.b)
+            end
         end
     end
     return out
