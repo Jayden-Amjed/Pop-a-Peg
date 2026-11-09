@@ -159,6 +159,13 @@ function Shop.build(host, state, width, height, top)
             end
         end, 32)
         place(buy, pos.purchase)
+        local buyPrice, buyCoin
+        if not supply and pos.short then
+            buyPrice = text(buy, "Price", "", 19, 35)
+            buyCoin = viewport(buy, "Coin", 35)
+            buyPrice.Visible, buyCoin.Visible = false, false
+            host:_mount(buyCoin, "coin", 1)
+        end
         local hold
         if not supply then
             hold = button(card, "Hold", "Hold", C.ice, function()
@@ -219,6 +226,8 @@ function Shop.build(host, state, width, height, top)
             priceBox = priceBox,
             priceCoin = priceCoin,
             buy = buy,
+            buyPrice = buyPrice,
+            buyCoin = buyCoin,
             hold = hold,
             positions = pos,
             short = pos.short,
@@ -348,14 +357,29 @@ function Shop.refresh(host, state)
                 unavailable = "Unavailable",
             }
             local caption = captions[intent.action] or "Unavailable"
-            if
-                not data.consumable
-                and cell.short
-                and (intent.action == "purchase" or intent.action == "upgrade")
-            then
-                caption = caption .. " • " .. intent.price
-            end
             enabled(cell.buy, intent.allowed, caption, C.green)
+            if cell.buyPrice then
+                local showCost = intent.action == "purchase" or intent.action == "upgrade"
+                cell.buyPrice.Visible, cell.buyCoin.Visible = showCost, showCost
+                if showCost then
+                    cell.buyPrice.Text = tostring(intent.price)
+                    local cost = Layout.compactCost(
+                        cell.positions.purchase.w,
+                        cell.positions.purchase.h,
+                        #cell.buyPrice.Text
+                    )
+                    place(cell.buy.Caption, cost.caption)
+                    place(cell.buyPrice, cost.price)
+                    place(cell.buyCoin, cost.coin)
+                    cell.buyPrice.TextColor3 = cell.buy.Caption.TextColor3
+                    cell.buyPrice.TextStrokeColor3 = C.ink
+                    cell.buyPrice.TextStrokeTransparency = cell.buy.Caption.TextStrokeTransparency
+                    cell.buyPrice.TextTransparency = cell.buy.Caption.TextTransparency
+                else
+                    cell.buy.Caption.Position = UDim2.fromOffset(4, 0)
+                    cell.buy.Caption.Size = UDim2.new(1, -8, 1, 0)
+                end
+            end
             if cell.price then
                 cell.price.Text = data.evolved and "FREE EVOLUTION" or tostring(offer.price or 0)
                 cell.priceCoin.Visible = not data.evolved and cell.priceBox.Visible

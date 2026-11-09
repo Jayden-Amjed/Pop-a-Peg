@@ -125,6 +125,19 @@ function Layout.card(width, height, consumable)
     }
 end
 
+function Layout.compactCost(width, height, digits)
+    local captionH = 18
+    local priceH = height - captionH - 4
+    local icon = math.min(22, priceH)
+    local numberW = math.min(width - icon - 10, math.max(16, digits * 12))
+    local x = (width - numberW - icon) / 2
+    return {
+        caption = rect(3, 1, width - 6, captionH),
+        price = rect(x, captionH + 2, numberW, priceH),
+        coin = rect(x + numberW, captionH + 2, icon, icon),
+    }
+end
+
 function Layout.equations(width, height, count, showTitle)
     count = math.max(0, count)
     local compact = height < 20 + count * 64

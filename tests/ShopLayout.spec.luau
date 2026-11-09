@@ -89,6 +89,22 @@ return function()
                     separate(content.hold, content.purchase)
                     separate(content.hold, content.inspect)
                     assert(content.model.h >= 24, "Equipment preview collapsed")
+                    if content.short then
+                        local cost = Layout.compactCost(content.purchase.w, content.purchase.h, 2)
+                        for _, r in cost do
+                            inside(
+                                r,
+                                { x = 0, y = 0, w = content.purchase.w, h = content.purchase.h }
+                            )
+                        end
+                        separate(cost.caption, cost.price)
+                        separate(cost.price, cost.coin)
+                        assert(
+                            cost.price.h >= 20 and cost.coin.h >= 20,
+                            "Compact price or trailing coin collapsed"
+                        )
+                        assert(cost.coin.x >= cost.price.x + cost.price.w, "Coin must follow price")
+                    end
                 end
             end
         end
