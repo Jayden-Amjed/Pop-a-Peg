@@ -22,6 +22,13 @@ local function overlaps(a, b)
 end
 
 return function()
+    for _, size in { { 1919, 1022 }, { 1366, 710 }, { 749, 331 }, { 666, 316 }, { 568, 284 } } do
+        local full = Layout.inspector(size[1], size[2], false)
+        local hover = Layout.inspector(size[1], size[2], true)
+        assert(full.w <= size[1] - 20 and full.h <= size[2] - 20, "Inspection escaped safe area")
+        assert(hover.w <= full.w * 0.6 and hover.h <= full.h * 0.6, "Rack hover did not shrink40%")
+        assert(hover.w >= 270 and hover.h > 150, "Rack hover lost its readable scrolling region")
+    end
     for _, size in { { 1919, 1022 }, { 1366, 710 }, { 1100, 620 } } do
         local w, h = size[1], size[2]
         local layout = Layout.desktop(w, h)

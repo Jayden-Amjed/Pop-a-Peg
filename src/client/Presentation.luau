@@ -442,9 +442,9 @@ function Presentation:_buildHud()
     )
     self.swapHelp.TextXAlignment = Enum.TextXAlignment.Center
     self.swapHelp.TextScaled = true
-    self.swapHelp.BackgroundColor3 = C.ink
-    self.swapHelp.BackgroundTransparency = 0.15
-    corner(self.swapHelp, 6)
+    self.swapHelp.TextColor3 = C.ink
+    self.swapHelp.BackgroundTransparency = 0
+    Theme.decorate(self.swapHelp, C.ice, 31)
     make("UITextSizeConstraint", { MinTextSize = 14, MaxTextSize = 18 }, self.swapHelp)
     self.itemSlots = {}
     for index = 1, 7 do
@@ -509,12 +509,9 @@ function Presentation:_buildHud()
             name = name,
         }
         self.inspector:bind(cell, function()
-            if self.snapshot and self.snapshot.phase == "shop" and self.shopRackOpen then
-                return nil, 1
-            end
             local item = self.snapshot and self.snapshot.inventory[index]
             return item and item.id ~= "" and item.id or nil, item and item.level or 1
-        end)
+        end, { rack = true })
     end
 
     self.left = frame(self.root, "Resources", nil, 2)
@@ -707,20 +704,19 @@ function Presentation:_buildHud()
     corner(self.soundSlash, 2)
     self.help = label(self.root, "Help", "AIM • CLICK THE BOARD OR PRESS SPACE", 18, C.paper, 12)
     self.help.TextColor3 = C.ink
-    self.help.BackgroundColor3, self.help.BackgroundTransparency = C.paper, 0.08
-    corner(self.help, 10)
+    self.help.BackgroundTransparency = 0
+    Theme.decorate(self.help, C.ice, 12)
     self.help.TextXAlignment = Enum.TextXAlignment.Center
     self.notice = label(self.root, "Notice", "", 24, C.gold, 70)
     self.notice.TextXAlignment = Enum.TextXAlignment.Center
     self.notice.TextWrapped = true
     self.notice.Visible = false
     self.notice.TextColor3 = C.ink
-    self.notice.BackgroundColor3, self.notice.BackgroundTransparency = C.paper, 0.04
-    corner(self.notice, 12)
-    stroke(self.notice, C.ink, 2)
-    self.settlement = frame(self.root, "Settlement", C.board, 55)
+    self.notice.BackgroundTransparency = 0
+    Theme.decorate(self.notice, C.ice, 70)
+    self.settlement = plate(self.root, "Settlement", C.ice, 55)
     self.settlement.BackgroundTransparency = 1
-    self.settlementOutline = stroke(self.settlement, C.paper, 2)
+    self.settlementOutline = self.settlement:FindFirstChildWhichIsA("UIStroke")
     self.settlementOutline.Transparency = 1
     self.settlement.Visible = false
     blockAim(self.settlement)
@@ -1397,8 +1393,6 @@ function Presentation:_renderCounters()
     self.progress.BackgroundColor3 = completed > 0 and layers[progress.previousLayer] or C.ink
     self.progressFill.BackgroundColor3 = layers[progress.nextLayer]
     self.progressFill.Size = UDim2.fromScale(progress.fraction, 1)
-    self.scorePlate.BackgroundColor3 = C.paper
-    self.restockPlate.BackgroundColor3 = C.paper
     self.restockHint.Text = progress.capped and "All restocks earned this shot!"
         or "Each next restock costs twice as much"
     for index, viewport in self.reserveIcons do
@@ -1477,7 +1471,8 @@ function Presentation:_renderControls()
     self.soundButton.Text = ""
     self.soundSlash.Visible = self.muted == true
     self.soundButton:SetAttribute("Muted", self.muted == true)
-    local playable = (phase == "aim" or phase == "flight") and not self.busy
+    local draining = phase == "flight" and state.ball and not state.ball.active
+    local playable = (phase == "aim" or phase == "flight") and not self.busy and not draining
     self.controls.Visible = playable
     self.speedGroup.Visible = phase == "aim" or phase == "flight"
     self.jumbleButton.Visible = phase == "aim"
@@ -1494,6 +1489,9 @@ function Presentation:_renderControls()
         gameover = "RUN COMPLETE",
         victory = "VICTORY!",
     })[phase] or ""
+    if draining then
+        self.phaseLabel.Text = "FINISHING ITEM EFFECTS"
+    end
     if state.stageCleared and (phase == "result" or phase == "victory") then
         self.phaseLabel.Text = "LEVEL " .. tostring(state.stageCleared.index) .. " COMPLETE!"
     elseif phase == "aim" and #(state.activeSeeds or {}) > 0 then
@@ -1821,8 +1819,8 @@ function Presentation:_updateModal()
         )
         records.TextXAlignment = Enum.TextXAlignment.Center
         records.TextWrapped, records.TextScaled = true, true
-        records.BackgroundColor3, records.BackgroundTransparency = C.ice, 0
-        corner(records, 12)
+        records.BackgroundTransparency = 0
+        Theme.decorate(records, C.ice, 27)
         make("UITextSizeConstraint", { MinTextSize = 14, MaxTextSize = 24 }, records)
         place(records, layout.records)
         local names = {}
@@ -1961,6 +1959,8 @@ function Presentation:_layoutSettlement()
     setRect(self.settlement, x, y, w, h)
     self.settlement.BackgroundTransparency = compact and 0 or 1
     self.settlementOutline.Transparency = compact and 0 or 1
+    self.settlement.Depth.Visible = compact
+    self.settlementText.TextColor3 = compact and C.ink or C.paper
     self.settlementText.TextScaled = true
     setRect(self.settlementText, 4, 2, w - 8, h - 10)
     self.settlementProgress.Position = UDim2.fromOffset(4, h - 5)
@@ -1987,6 +1987,36 @@ function Presentation:pulseItem(slot, strength, params)
             mounted.handle:pulse(strength or 1, params)
         end
         cell.flash = 0.3
+    end
+end
+
+function Presentation:getActivationDuration(id, slot)
+    local cell = Catalog.Perks[id] and self.perkCells[id] or self.itemSlots[slot]
+    local mounted = cell and self.models[cell.viewport]
+    return mounted and mounted.handle.activationDuration or 0.8
+end
+
+function Presentation:hasActiveItemAnimations()
+    for _, collection in { self.itemSlots, self.perkCells } do
+        for _, cell in collection do
+            local mounted = self.models[cell.viewport]
+            if mounted and mounted.handle.isAnimating and mounted.handle:isAnimating() then
+                return true
+            end
+        end
+    end
+    return false
+end
+
+function Presentation:clearItemActivations()
+    for _, collection in { self.itemSlots, self.perkCells } do
+        for _, cell in collection do
+            local mounted = self.models[cell.viewport]
+            if mounted and mounted.handle.resetActivation then
+                mounted.handle:resetActivation()
+            end
+            cell.flash = 0
+        end
     end
 end
 
@@ -2044,7 +2074,7 @@ function Presentation:_primaryAction()
     end
     if self.snapshot.phase == "aim" then
         self:_send("launch", { angle = self.aim })
-    elseif self.snapshot.phase == "flight" then
+    elseif self.snapshot.phase == "flight" and self.snapshot.ball and self.snapshot.ball.active then
         self:_send("endShot")
     end
 end
@@ -2081,6 +2111,8 @@ function Presentation:_bindInput()
                 input.KeyCode == Enum.KeyCode.E
                 and self.snapshot
                 and self.snapshot.phase == "flight"
+                and self.snapshot.ball
+                and self.snapshot.ball.active
             then
                 self:_send("endShot")
             end
@@ -2218,7 +2250,7 @@ function Presentation:step(dt)
         if cell.button.Visible then
             local border = cell.button:FindFirstChildWhichIsA("UIStroke")
             border.Color = cell.flash > 0 and C.gold
-                or (self.selectedPerk == id and C.gold or C.edge)
+                or (self.selectedPerk == id and C.aqua or C.ink)
             border.Thickness = (cell.flash > 0 or self.selectedPerk == id) and 5 or 2
         end
     end
@@ -2231,7 +2263,7 @@ function Presentation:step(dt)
             cell.border.Color = C.gold
             cell.border.Thickness = 5
         else
-            cell.border.Color = self.selectedSlot == index and C.gold or C.edge
+            cell.border.Color = self.selectedSlot == index and C.aqua or C.ink
             cell.border.Thickness = self.selectedSlot == index and 5 or 3
         end
     end

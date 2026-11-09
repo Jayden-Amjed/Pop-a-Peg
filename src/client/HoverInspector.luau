@@ -4,6 +4,7 @@ local UserInputService = game:GetService("UserInputService")
 local Catalog = require(game:GetService("ReplicatedStorage").Shared.Catalog)
 local Theme = require(script.Parent.UiTheme)
 local ItemDetailCard = require(script.Parent.ItemDetailCard)
+local Layout = require(script.Parent.RunLayout)
 local C = Theme.colors
 local Inspector = {}
 Inspector.__index = Inspector
@@ -13,6 +14,7 @@ function Inspector.new(host)
         host = host,
         effectLabels = {},
         resolvers = setmetatable({}, { __mode = "k" }),
+        rackAnchors = setmetatable({}, { __mode = "k" }),
     }, Inspector)
     local panel = Theme.plate(host.root, "HoverStats", C.paper, 80)
     panel:SetAttribute("BlocksAim", true)
@@ -47,6 +49,9 @@ function Inspector:hide()
 end
 
 function Inspector:show(id, level, anchor, pinned)
+    if not pinned and not self.rackAnchors[anchor] then
+        return
+    end
     local detail = Catalog.detail(id, level)
     if not detail then
         return
@@ -58,8 +63,9 @@ function Inspector:show(id, level, anchor, pinned)
     self:refresh()
 end
 
-function Inspector:bind(control, resolve)
+function Inspector:bind(control, resolve, options)
     self.resolvers[control] = resolve
+    self.rackAnchors[control] = options and options.rack == true or nil
     control.InputBegan:Connect(function(input)
         if input.UserInputType == Enum.UserInputType.Touch then
             local id, level = resolve()
@@ -69,6 +75,9 @@ function Inspector:bind(control, resolve)
         end
     end)
     control.MouseEnter:Connect(function()
+        if not self.rackAnchors[control] then
+            return
+        end
         local id, level = resolve()
         if id then
             self:show(id, level, control, false)
@@ -107,13 +116,20 @@ function Inspector:refresh()
         self.id, self.level, self.detail = id, level or 1, current
     end
     local size = self.host.viewport or Vector2.new(1280, 720)
-    local small = size.Y < 500
-    local width = math.min(small and 640 or 450, size.X - 20)
-    local height = math.min(size.Y - 20, small and 360 or 780)
+    local passiveRack = self.rackAnchors[self.anchor] and not self.pinned
+    local bounds = Layout.inspector(size.X, size.Y, passiveRack)
+    local width, height = bounds.w, bounds.h
     self.panel.Size = UDim2.fromOffset(width, height)
-    Theme.rect(self.title, 14, 8, width - 80, 36)
+    self.panel:SetAttribute("PassiveRack", passiveRack == true)
+    self.close.Visible = not passiveRack
+    Theme.rect(self.title, 14, 6, width - (passiveRack and 28 or 80), passiveRack and 28 or 36)
     Theme.rect(self.close, width - 54, 7, 44, 44)
-    self.card:update(self.id, self.level, { x = 12, y = 54, w = width - 24, h = height - 66 })
+    local top = passiveRack and 40 or 54
+    self.card:update(
+        self.id,
+        self.level,
+        { x = 12, y = top, w = width - 24, h = height - top - 12 }
+    )
 
     self:_position()
 end

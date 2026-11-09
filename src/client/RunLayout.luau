@@ -38,6 +38,16 @@ function Layout.safeRect(w, h, left, top, right, bottom)
     return rect(left, top, math.max(1, w - left - right), math.max(1, h - top - bottom))
 end
 
+-- Passive rack inspection occupies less of the board. Explicitly opened details
+-- retain their full reading area and touch targets.
+function Layout.inspector(w, h, passiveRack)
+    local small = h < 500
+    local width = math.min(small and 640 or 450, w - 20)
+    local height = math.min(h - 20, small and 360 or 780)
+    local scale = passiveRack and 0.6 or 1
+    return { w = math.floor(width * scale), h = math.floor(height * scale) }
+end
+
 function Layout.perks(w, h, count, compact, folded)
     -- Desktop uses only occupied rows. Small screens keep their established
     -- eight-slot geometry so expanding details does not reshuffle the HUD.
