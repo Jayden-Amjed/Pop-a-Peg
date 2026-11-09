@@ -41,6 +41,11 @@ Both ordinary entry scripts are disabled; no profile writes or gameplay remotes
 run in this opt-in fixture. For normal play, the coordinator's generated local
 copy is `build/Pop-a-Peg-FULL-UI.rbxlx`. See the dashboard for checked source and limits.
 
+The annotated retouch is supplied locally as `build/Pop-a-Peg-UI-RETOUCH.rbxlx`
+(screen selector) and `build/Pop-a-Peg-FULL-UI-RETOUCH.rbxlx` (normal game).
+These are generated copies of the same build outputs; check the dashboard for
+their current source and Studio verification state before comparing versions.
+
 To review the Blender catalog, open the [78-model animation inspector](docs/CATALOG_GALLERY.md).
 It includes search, camera views, slow motion, silent pose scrubbing, detail zoom,
 per-item sound with mute/volume controls, a temporary-effects toggle, and copyable

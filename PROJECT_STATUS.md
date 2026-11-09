@@ -2,12 +2,24 @@
 
 State Version: 16 (RBX-031 proposal; accepted predecessor remains 15).
 Reviewed: 2026-11-08, America/Los_Angeles
-Objective: Consistent cartoon UI across gameplay and arcade, ready for desktop/landscape user testing.
+Objective: Apply the annotated UI retouch and verify desktop/landscape behavior.
 
 Active proposal: [RBX-031](tasks/RBX-031-shop-prototype.md), Codex coordinator,
 branch task/RBX-031-shop-prototype, [draft PR32](https://github.com/Jayden-Amjed/Pop-a-Peg/pull/32).
 Main re-fetched at 44762e38b5b4e3ad2f89c789ae6a7a6b6f6d4560; accepted State15 unchanged.
-Full UI implementation and Studio-tested source: 74f9b0ae0383c34721eda9518b304b2e2162f040.
+Current retouch implementation: b26c0abf66b68e86effa6f038258ee25bf750e2d.
+Source checks and preview build PASS. Retouch Studio validation is pending opening
+the fresh local `build/Pop-a-Peg-UI-RETOUCH.rbxlx`. The desktop tool cannot capture
+the old preview window (outside captured monitor); user was asked to open the
+new file visibly. No live Rojo. Old preview0061e41d is stopped in Edit mode.
+Older UI-PLAYTEST was saved as `build/Pop-a-Peg-UI-PLAYTEST-preserved-20261108.rbxl`
+and closed to free a Studio slot. Other historical sessions remain preserved.
+Retouch adds complete inline details/equations, inset model windows, larger
+trailing coins, name-first perk/event cards, stable larger rack, lower HUD,
+boxed controls and music toggle. Results/victory and collection gallery stay
+as previously designed; workshop only moves its title above the model.
+
+Historical full-UI Studio-tested source: 74f9b0ae0383c34721eda9518b304b2e2162f040.
 Pearl/aqua theme covers the run HUD/rack, shop, perks, events, results, inspection,
 loading and all arcade/progression panels. Compact choices and chest previews
 retain visible models beside their actions. Native geometry and game rules unchanged.
@@ -26,8 +38,8 @@ Screen selector: root `build/Pop-a-Peg-UI-PREVIEW.rbxlx`; press Play and use **U
 Preview session0061e41d-a6ef-42a6-9480-977ce8a50bde; coordinator is sole Studio
 operator, no Rojo. Its synthetic account and resources are temporary; both normal
 entry scripts are disabled in the delivered preview. See task for normal-entrypoint
-smoke-test evidence and exact file hashes. Simulator reset; preview Play is running
-with the screen selector open. User testing is next; no implementation blocker.
+smoke-test evidence and exact file hashes. These runtime results describe the
+historical source above, not the pending retouch validation.
 
 Accepted source: 212c76260a5a6ce44dfd8ba5d10bd3ab77a25c4e.
 Latest completed task: [RBX-029](tasks/RBX-029-blender-game.md), Codex coordinator.
@@ -71,5 +83,5 @@ Checks: required check.ps1 PASS at ce1a647; catalog, eight archive regressions,
 native/mapping/placement and hub-reveal checks PASS. GitHub CI run 42549187354
 PASS for final task head 673a0500a0502dda1c28c5b005c823a0012e88ad.
 [Evidence](docs/evidence/RBX-029/REVIEW.md) and [drain rules](docs/DRAIN_ITEM_AUDIT.md).
-Next action: user tests RBX-031 FULL-UI or the UI-PREVIEW screen selector; await feedback.
+Next action: open UI-RETOUCH visibly, then run the retouch and full-flow Studio audits.
 Repository administration: main unprotected; temporary default remains starter.

@@ -2,17 +2,26 @@
 
 - Task ID: RBX-031
 - Owner: Codex coordinator (sole Studio operator); read-only shop reviewer
-- Status: READY FOR REVIEW
+- Status: IN PROGRESS
 - Reservation / issue: https://github.com/Jayden-Amjed/Pop-a-Peg/issues/31
 - Reviewed: 2026-11-08 (America/Los_Angeles)
 - Starting main: 44762e38b5b4e3ad2f89c789ae6a7a6b6f6d4560
 - Branch: task/RBX-031-shop-prototype
 - Worktree / checkout: C:\Users\Amjedd\Documents\ChatGPT\Pop a Peg\.worktrees\shop-prototype
 - PR: https://github.com/Jayden-Amjed/Pop-a-Peg/pull/32 (draft for user playtest)
-- Implementation evidence SHA: 74f9b0ae0383c34721eda9518b304b2e2162f040 (full UI); original shop67967deb334519bea95fd36df9fbc793bc50b0ab
+- Implementation evidence SHA: b26c0abf66b68e86effa6f038258ee25bf750e2d (annotated retouch; Studio pending); historical full UI74f9b0ae0383c34721eda9518b304b2e2162f040
 - Confirmed merge SHA: NOT MERGED
 
 ## Objective and scope
+
+Active annotated retouch follow-up: shop currency/model margins/complete inspection,
+structured Supplies and perk/event cards (confirmed name above model), larger stable
+rack, lower side HUD, larger currency/life icons, grouped action/speed controls,
+music mute glyph, common Recipe detail card and workshop name placement. Shared
+straight white Bevel strips removed. Root owns Theme/run UI/Studio; retouch_shop,
+retouch_hub and retouch_review own disjoint shop/detail, hub and audit paths in
+separate worktrees based on accepted main plus explicit dependency96ac86a.
+Prior full-UI evidence below remains historical until the retouch checks finish.
 
 Follow-up 2026-11-08: user requests the UI across everything, with additional
 detail/refinement. Scope now includes shared theme, play HUD/rack, perks/events,
@@ -162,7 +171,7 @@ Physical touch hardware and multiplayer server checks: NOT RUN. Simulator QA is
 not a physical-device claim. No kit purchase, balance/profile changes, merge or
 Roblox publication. Accepted State15 remains; this branch still proposes16.
 
-## Latest Handoff
+## Historical full-UI handoff
 
 - Owner / next owner: Codex coordinator → user for playtest feedback.
 - Objective / completed work: shared cartoon UI across run/arcade, responsive refinements, 15-screen preview and three-preset QA.
@@ -182,3 +191,48 @@ GitHub CI129 / run42555374151: SUCCESS for documentation head
 c4a9578b7d2441e1855b25162c314a739a432b83, with implementation74f9b0a unchanged.
 PR32 remains open/draft; GitHub head matches the pushed branch. This receipt is
 documentation-only and does not assert a merge or publication.
+
+## Annotated retouch implementation and checks
+
+Source b26c0abf66b68e86effa6f038258ee25bf750e2d implements the annotated follow-up.
+The user clarified that Perks and Spare Parts names belong above their models.
+Both choice types now use separate name/model/trigger-effect/action compartments.
+The rack keeps the same larger model region across aim and choices; gameplay
+activation playback remains enabled. Desktop side stacks sit below the raised
+rack, and Launch/Jumble and speed buttons have their own larger rounded panels.
+The music glyph uses a red diagonal slash when muted and preserves existing
+sound-toggle behavior. Currency and life previews are larger.
+
+Shop equipment has an inset model window. Numeric prices precede real coin models,
+including narrow purchase buttons. Supplies use the annotated left-model and
+right-name/price/action structure. Shared ItemDetailCard owns the model, name,
+colored catalog trigger/effect rows and every applicable evolution equation.
+Long content scrolls at readable type sizes. Shop inspection is inline; the
+extra details button and hint are removed. Recipe detail reuses this card with
+a fixed return to Gallery. Workshop only moves names above models. Shared
+surfaces use contained gradients and rounded borders instead of white Bevel strips.
+Results/victory and collection gallery layouts are otherwise unchanged.
+
+Checks actually run at b26c0ab: scripts/check.ps1 PASS (zero lint warnings/errors,
+all gameplay/catalog tests, three builds, source mappings, documentation links);
+scripts/build-ui-preview.ps1 PASS. Read-only review caught a small-desktop score
+overlap and undersized medium-landscape controls; both were fixed before this
+check. UiRetouchAudit adds structural checks for the annotated requirements and
+all15-screen highlight cleanup, but has NOT RUN in Studio on this source yet.
+Earlier Studio receipts above remain evidence only for their recorded source.
+
+## Latest Handoff
+
+- Owner / next owner: Codex coordinator; waiting for user to open the fresh file visibly.
+- Objective: finish desktop and landscape runtime/visual verification of the annotated retouch.
+- Checkout / branch / PR: checkout above; task/RBX-031-shop-prototype; draft PR32.
+- Main re-fetched: 44762e38b5b4e3ad2f89c789ae6a7a6b6f6d4560; accepted15 remains unchanged, proposal16.
+- Implementation SHA: b26c0abf66b68e86effa6f038258ee25bf750e2d.
+- Checks: source/build PASS as above; retouch Studio, physical-device and multiplayer NOT RUN.
+- Target / sync: fresh root build/Pop-a-Peg-UI-RETOUCH.rbxlx; sole coordinator operator, no Rojo/port.
+- Preview SHA256: 49177CA90EF87D97E9EAA922FDA4108FFAC3C101BE23A98C4293130E63CBCF99.
+- Normal game: root build/Pop-a-Peg-FULL-UI-RETOUCH.rbxlx; SHA256 EDC387B7C3129BC9A274B6298C079BECEAFDF151E382268563DD46A051E737A0.
+- Preservation: old UI-PLAYTEST907b1894 saved through Studio as build/Pop-a-Peg-UI-PLAYTEST-preserved-20261108.rbxl and closed. Old UI-PREVIEW0061e41d is stopped in Edit. Remaining sessions preserved.
+- Blocker: Studio initially reported its maximum window count. Own failed launches were closed; desktop capture of the remaining preview then failed with "window crop is outside captured monitor". User was asked to open UI-RETOUCH visibly. No core Source replacement attempted.
+- Next executable action: list Studio sessions, select UI-RETOUCH by exact ID, run UiRetouchAudit and UiPreviewAudit on HD1080 and two landscape phone presets, inspect screenshots and music pointer toggle, then record exact source and results.
+- Merge / Roblox publication: neither requested nor performed.

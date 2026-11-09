@@ -33,6 +33,8 @@ sound cues use public Roblox audio IDs documented in [Asset sources](ASSETS.md).
 | `src/client/RunLayout.luau` | `StarterPlayer.StarterPlayerScripts.Client.RunLayout` | Pure core-safe portrait/landscape geometry for the board, controls, rack and details. |
 | `src/client/BoardArt.luau` | `StarterPlayer.StarterPlayerScripts.Client.BoardArt` | Original pearl/aqua enclosure and attached settlement monitor, separate from collision rules. |
 | `src/client/HoverInspector.luau` | `StarterPlayer.StarterPlayerScripts.Client.HoverInspector` | Reusable hover, focus, and touch inspection with ordered effect rows and modeled evolution recipes. |
+| `src/client/ItemDetailCard.luau` | `StarterPlayer.StarterPlayerScripts.Client.ItemDetailCard` | Shared model/name/effect/evolution compartments for shop inspection, hover inspector and gallery recipe detail; scrolls long content. |
+| `src/client/ItemDetailLayout.luau` | `StarterPlayer.StarterPlayerScripts.Client.ItemDetailLayout` | Pure measured compartment geometry, including every effect and recipe at readable sizes. |
 | `src/client/EvolutionDisplay.luau` | `StarterPlayer.StarterPlayerScripts.Client.EvolutionDisplay` | Shared ingredient + ingredient = result model rows with live level/readiness labels. |
 | `src/client/UiTheme.luau` | `StarterPlayer.StarterPlayerScripts.Client.UiTheme` | Shared pearl/aqua panels, cartoon headings, button states and native GUI constructors across run and arcade screens. |
 | `src/client/GameItemModels.luau`, `GameModelPlayback.luau` | Client modules with matching names | Gameplay Blender clones, asset preloading, cached framing, bounded activation queue and cleanup. |
