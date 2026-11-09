@@ -357,7 +357,10 @@ local function gameplayColors(view)
     view.snapshot = original
     view:_renderControls()
     semanticSurface(view, view.primary, C.mint)
-    view.inspector:show("gain_dial", 1, view.itemSlots[1].button, true)
+    -- An unbound visible anchor preserves this explicit test item; rack anchors
+    -- resolve their equipped item again when the inspector refreshes.
+    view.inspector:show("gain_dial", 1, view.wallet, true)
+    assert(view.inspector.card.detail.id == "gain_dial", "Cost-color fixture resolved another item")
     detailSurfaces(view, view.inspector.card)
     view.inspector:hide()
 end
