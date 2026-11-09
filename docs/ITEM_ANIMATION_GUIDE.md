@@ -5,13 +5,16 @@ a decisive action, then a smaller recovery.
 Every registered model has its own authored performance, including utilities,
 Supplies, perks, chests, events and all thirteen evolutions.
 
-From RBX-027 onward, this direction is applied to the **Blender gallery only**.
-The user's native-model freeze includes native geometry and animation; its
+RBX-027 established the separate Blender review layer. RBX-029 explicitly adopts
+that catalog and behavior into the game through `GameItemModels`; the game and
+inspector now consume the same Blender choreography and effect sources.
+The user's native-model freeze still includes native geometry and animation; its
 accepted source `07be76a` is recorded in `art/catalog/native-reference.json`.
 Do not implement new review notes in `src/client/ItemModels`, `ItemMotion`,
-`NativeAssemblies`, `ItemChoreography` or the native `motion/` families. Gallery
-sound also stays separate from the normal game's unchanged feedback modules.
-Geometry revisions belong in Blender sources and their import evidence.
+`NativeAssemblies`, `ItemChoreography` or the native `motion/` families.
+`GameSoundEffects` wraps the authored bank/engine for game use without rewriting
+the original `SoundEffects` implementation. Geometry revisions belong in Blender
+sources and their import evidence.
 
 ## Motion language
 
@@ -42,8 +45,8 @@ The per-model tables preserve the accepted baseline action and its purpose:
 translation as fractions of resting dimensions, radian rotations and uniform scale. `part`
 supplies articulation in authored model units. Shared quintic pulses and completed
 turns provide smooth timing; each item chooses its own timing, axes and mechanism.
-The gallery's `BlenderChoreography` reads that baseline without changing it and
-adds Blender-only articulation, body reactions and durations through `CatalogMotion`.
+`BlenderChoreography` reads that baseline without changing it and adds Blender
+articulation, body reactions and durations through `CatalogMotion` in both consumers.
 Articulation precedes coherent whole-object movement; scaling changes positions
 and dimensions together. The baseline tables are historical direction, not a
 complete inventory of later Blender overrides.
@@ -63,13 +66,13 @@ The eleven focused RBX-027 treatments establish the level of detail to use:
 | Coral Spark (`coral_fork`) | A conductive strike with lightning joining the two rods. |
 | Dew Lantern | A switch-on beat, warmer illuminated core and halo. |
 | Ocean Chorus (`encore`) | Cone recoil followed by expanding speaker echoes. |
-| Lagoon Synth | A traveling sine phase within a stationary display. |
+| Lagoon Synth | A traveling sine phase within its display, with a coherent contraction, main chord pop and smaller reply across the assembled cabinet. |
 | Landing Shell (`landing_fund`) | Pearl and shell-detail glints with its treasure reveal. |
 | Lily Pad | Camera-readable leaves, an opening bloom and dew accents. |
 | Breeze Fan (`mist_fan`) | A paper-plane rotor with a streaming wake. |
 | Ozone Orb | A free-floating charge and crossing ion trails. |
 | Pearl Diver | A hexagonal frame, central pearl and orbiting colored arms/trails. |
-| Current Relay (`relay`) | A rotating energized coil while the mount stays still. |
+| Current Relay (`relay`) | An energized spinning coil inside a locally fixed mount; the whole assembly contracts, pops on discharge and rebounds. |
 | Soft Current (`soft_saw`) | A free water roll with a curling foam wake. |
 
 The catalog also gives mechanisms, nature items, evolutions, perks, Supplies and
@@ -79,13 +82,30 @@ on accumulated particle simulation, clocks or per-frame object creation. Effects
 must disappear at both endpoints, hold during pause/scrub and clean up when the
 model changes. Include their bounds when fitting the stationary preview camera.
 
+`CatalogEffectAnchors` attaches each emission to its modeled source surface and
+direction. Check both position and orientation through articulation: cone echoes
+point out of a moving speaker, nozzle spray follows its outlet, and a press impact
+spreads from the plate it strikes. Keep a short contact clearance from opaque
+surfaces. Quota Bonus completes its .433-stud stroke at every positive strength,
+holding the printed tray surface during phases .25–.29; the impact belongs to
+that contact interval. Strength changes the expressive body reaction, not whether
+the die reaches the plate. A zero-strength pose stays at rest.
+
+For Relay, charge contracts at phase .13, discharge enlarges at .27 and a smaller
+rebound peaks at .55. Synth contracts at .12, pops on its main chord at .27 and
+answers with a smaller .50 beat. Their fixed parts stay fixed within each reacting
+assembly; the whole device's size and spacing change together. Review the wave's
+screen bounds and electrical contacts during those body reactions.
+
 `GallerySoundBank` authors one distinct phrase per ID across 12 timbre families:
 glass, bell, reed, electric, water, air, wood, bass, organ, pluck, sonar and metal.
 Use spectrum, attack, decay, rhythm, pitch movement and register to suggest the
 object's action. A low coil buzz, a dry clock tick, a bell-like shell reward and
 an airy rotor should differ in more than note transposition. The bank layers
 partials from the existing sine asset and, where appropriate, quiet existing
-physical cues; it does not alter the native/game bank or upload new assets.
+physical cues. The gallery and `GameSoundEffects` use this bank through the
+instance-local engine; the original native bank/source and asset identities stay
+unchanged, and no new audio upload is needed.
 
 `GallerySoundTimeline` places the attack on the mechanism's meaningful beat.
 Changing preview speed moves that attack with the pose without transposing the
@@ -102,8 +122,8 @@ Front and Side views for lids, fish, telescopes and nested assemblies. Record ID
 pose, strength, camera and the exact tested source commit with feedback.
 
 Previews fit a sampled full-motion envelope once and retain a stationary camera.
-Do not resize the camera every frame to follow a bounce. In the frozen normal
-game, retriggers coalesce into a following activation so a new proc cannot rewind a half-finished
+Do not resize the camera every frame to follow a bounce. In game previews,
+retriggers coalesce into a following activation so a new proc cannot rewind a half-finished
 spin. The inspector's explicit TRIGGER remains a deliberate playback restart.
 Reduced-motion native previews use a small uniform 4% pulse without spins or
 articulation; the model still returns to its original pose.
@@ -115,8 +135,9 @@ contact during compression. Chests keep their lids shut until pose .52, open
 quickly by .60, hold through .88 and return to rest; tier durations are 3.4–4.2s.
 Its chest timing uses accelerating rattles, an impact at .56 and reveal at .64.
 That pass made hub reward replacement wait on `handle:isAnimating()` so slow
-frames cannot skip the opening. These historical changes remain in the frozen
-baseline; new gallery overrides do not revise them in gameplay. See
+frames cannot skip the opening. The game adapter must preserve that completion
+contract when using Blender models. These earlier mechanisms remain part of the
+read-only baseline sampled by the Blender layer. See
 [RBX-025 review](evidence/RBX-025/REVIEW.md).
 
 Automated checks cover all IDs, distinct sampled trajectories, finite transforms,

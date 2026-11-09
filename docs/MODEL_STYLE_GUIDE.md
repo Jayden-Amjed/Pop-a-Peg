@@ -5,17 +5,18 @@ It defines the intended art quality; passing a geometry script alone does not
 establish that a model looks good. See [modeling workflow](MODELING_WORKFLOW.md)
 for the Blender pipeline and [asset provenance](ASSETS.md) for sources.
 
-**Current scope: Blender models and the catalog gallery only.** The user has
-frozen native models, animations and effects; the entire `src/` tree is read-only
-for this review work. Native comparison remains a reference, not an invitation to
-update it. Refine each Blender object according to its own mechanism and feedback;
-preserve accepted geometry on unrelated models. Production migration is outside
-this pass.
+**Current scope: the Blender catalog in both the game and its inspection gallery.**
+RBX-029 explicitly authorizes game adoption through `GameItemModels`, with shared
+Blender motion/effect sources. Native builders and native choreography remain
+frozen as a fallback/reference; new integration code does not authorize changing
+those original assets. Refine each Blender object according to its mechanism and
+feedback, preserving accepted geometry on unrelated models.
 
 The first implemented examples are the three [RBX-019 Blender pilots](BLENDER_PILOTS.md).
 Their editable sources and Studio images illustrate the palette, continuous coil,
-clear seed display and hollow hinged chest. They are evaluation assets; adopting
-them into the production catalog is a separate integration decision.
+clear seed display and hollow hinged chest. RBX-029 adopts the catalog into game
+previews; asset upload, checked integration and experience publication remain
+separate facts recorded in the current dashboard.
 
 The [full catalog inspector](CATALOG_GALLERY.md) extends this to all 78 renderables.
 Use its front/side/rear views, pose slider and zoom to review clean silhouettes,
@@ -100,15 +101,28 @@ Check rest, quarter, half, three-quarter and end poses plus repeated activations
 Coils compress along their axis; clock hands rotate about their hub; lids open
 around a hinge. Pivots and clearance must support these movements without clipping.
 
-Put new Blender-only performances in `scripts/models/BlenderChoreography.luau`
-and the catalog adapter, leaving shared/native definitions unchanged. Give each
+Put new Blender performances in `scripts/models/BlenderChoreography.luau`
+and the catalog adapter shared by the gallery and game, leaving native definitions unchanged. Give each
 object a purposeful anticipation, action and recovery rather than a common
-spin or pulse. A mounted relay can spin its winding while its mount stays still;
-a floating ring can orbit a pearl; a paper rotor can accelerate around its hub.
+spin or pulse. A relay's winding spins inside its local fixed mount while the
+assembled device contracts and pops; the synth's cabinet and screen share its
+musical body bounce while keys and the displayed wave act locally. A floating
+ring can orbit a pearl; a paper rotor can accelerate around its hub.
 Keep temporary lightning, sound-wave rings and travelling display waves in
 `CatalogEffectProfiles.luau` / `CatalogEffects.luau`, not baked into the mesh as
 permanent duplicate geometry. Effects belong to the action, use a bounded lifetime
 and return to an empty/rest state on completion, restart or model change.
+
+Place each effect at the functional part that causes it. A press impact begins
+on the struck plate during contact; sound waves leave speaker cones; spray leaves
+the nozzle; beams leave lenses; electricity joins exposed terminals. Declare the
+source surface, direction and moving assembly in `CatalogEffectAnchors`, then
+evaluate them through the posed part's frame and scale. An effect must follow a
+rotating emitter's direction as well as its position. Keep surface effects just
+clear of the visible surface so they neither clip inside it nor float away.
+Review origin, direction and timing at rest, contact/action and recovery, including
+reduced strength and the actual small card. Quota Bonus's die reaches its printed
+tray surface during the .25–.29 contact interval; the impact is tied to that beat.
 
 Retain catalog IDs and explicit `MotionGroup` names. Define `MotionPivot` for
 articulated parts in the model's authored coordinate space. The current adapter
@@ -147,6 +161,8 @@ native assets. Imported triangle counts need an additional export audit.
 - [ ] Glass and any contour pass show no ghost shape or displaced duplicate.
 - [ ] Named moving groups have correct pivots and clearance through all poses;
   repeated triggers restore frame, size and color without drift.
+- [ ] Every transient effect has a deliberate physical emitter/contact surface,
+  follows its moving orientation, and appears on the correct action beat.
 - [ ] Physics flags, bounds, catalog ID and motion contract pass runtime checks.
 - [ ] Model/texture/preview-copy counts recorded; busy UI checked in Studio at
   desktop and phone sizes, with reduced motion and normal motion.
