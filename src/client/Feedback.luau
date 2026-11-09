@@ -3,9 +3,10 @@ local Shared = game:GetService("ReplicatedStorage"):WaitForChild("Shared")
 local Board = require(Shared.Board)
 local Format = require(Shared.Format)
 local Timeline = require(Shared.RewardTimeline)
+local ReceiptBoard = require(script.Parent.ReceiptBoard)
 local Signatures = require(Shared.ItemFeedback)
-local ItemModels = require(script.Parent.ItemModels)
-local SoundEffects = require(script.Parent.SoundEffects)
+local ItemModels = require(script.Parent.GameItemModels)
+local SoundEffects = require(script.Parent.GameSoundEffects)
 local Theme = require(script.Parent.UiTheme)
 local GuiService = game:GetService("GuiService")
 
@@ -494,6 +495,8 @@ function Feedback:_event(event)
                     color,
                     24
                 )
+            elseif event.action == "bank" then
+                self:_label("SAVED ×2", point + Vector2.new(0, -24), GREEN, 24)
             end
         end
     elseif event.kind == "perkTrigger" then
@@ -536,7 +539,18 @@ function Feedback:_reset(snapshot)
     self.earned = snapshot.restocks or 0
     self.host:setBusy(false)
     self.host:setSettlement(nil)
-    self.host:finishBoardOverride(snapshot)
+    local values, restored, continueResult = ReceiptBoard.resolve(snapshot, self.completedReceipt)
+    if restored then
+        self:_board(values)
+        self.host:setBoardOverride(true)
+    else
+        self.host:finishBoardOverride(snapshot)
+    end
+    if continueResult and self.onAdvance then
+        -- The settled result has no choice button. Resume the existing guarded
+        -- retry if we left for the arcade before its continue was acknowledged.
+        self.advanceWait = 0
+    end
     for kind, value in pairs({
         score = self.displayScore,
         coins = self.displayCoins,
@@ -809,7 +823,7 @@ function Feedback:_finish()
     self.host:setCounterDisplay("restocks", 0)
     -- Shop and choice snapshots still contain the spent shot's values. Keep the
     -- restored board visible until the next aim snapshot releases this override.
-    self:_board(receipt.finalValues)
+    self:_board(receipt.nextShotValues or receipt.finalValues)
     self.host:setBoardOverride(true)
     self.host:setSettlement(nil)
     self.host:setBusy(false)

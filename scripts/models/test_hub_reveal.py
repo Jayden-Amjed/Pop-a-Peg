@@ -24,7 +24,7 @@ local function require(key) return modules[key] end
 local game = {}
 function game:GetService(name)
     if name == "HttpService" then return { GenerateGUID = function() return "test-request" end } end
-    return { Shared = Shared }
+    return { Shared = Shared, CatalogLibrary = { BlenderChoreography = "ItemMotion" } }
 end
 local Panel = (function()
 """

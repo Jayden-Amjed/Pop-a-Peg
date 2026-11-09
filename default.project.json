@@ -7,7 +7,24 @@
     "$className": "DataModel",
     "ReplicatedStorage": {
       "Shared": { "$path": "src/shared" },
-      "Assets": { "$path": "assets" }
+      "Assets": { "$path": "assets" },
+      "CatalogAssets": { "$path": "art/catalog/CatalogAssets.rbxm" },
+      "CatalogLibrary": {
+        "$className": "Folder",
+        "CatalogInfo": { "$path": "scripts/models/CatalogInfo.luau" },
+        "CatalogMotion": { "$path": "scripts/models/CatalogMotion.luau" },
+        "BlenderChoreography": { "$path": "scripts/models/BlenderChoreography.luau" },
+        "CatalogEffects": { "$path": "scripts/models/CatalogEffects.luau" },
+        "CatalogEffectProfiles": { "$path": "scripts/models/CatalogEffectProfiles.luau" },
+        "CatalogEffectAnchors": { "$path": "scripts/models/CatalogEffectAnchors.luau" },
+        "StudioGameModelsAudit": { "$path": "scripts/models/StudioGameModelsAudit.luau" },
+        "StudioEffectPlacementAudit": { "$path": "scripts/models/StudioEffectPlacementAudit.luau" },
+        "ItemMotion": { "$path": "src/client/ItemMotion.luau" },
+        "ItemChoreography": { "$path": "src/client/ItemChoreography.luau" },
+        "motion": { "$path": "src/client/motion" },
+        "GallerySoundBank": { "$path": "scripts/models/GallerySoundBank.luau" },
+        "GallerySoundEngine": { "$path": "scripts/models/GallerySoundEngine.luau" }
+      }
     },
     "ServerScriptService": {
       "Server": { "$path": "src/server" }

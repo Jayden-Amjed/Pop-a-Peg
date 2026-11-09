@@ -23,6 +23,17 @@ return function()
             description .. " stays inside bounds"
         )
     end
+    local desktop = Layout.compute(1920, 1080)
+    assert(
+        desktop.panel.w == 1280 and desktop.panel.h == 800,
+        "Desktop hub does not use the larger model inspection space"
+    )
+    assert(desktop.cells[1].h - 68 >= 250, "Desktop evolution preview remains undersized")
+    local portrait = Layout.compute(800, 1000)
+    assert(
+        portrait.panel.w == 760 and portrait.panel.h == 660,
+        "Desktop expansion changed the established tablet layout"
+    )
     local function separate(a, b)
         return a.x + a.w <= b.x + 0.001
             or b.x + b.w <= a.x + 0.001

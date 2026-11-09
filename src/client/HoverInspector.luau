@@ -125,7 +125,7 @@ function Inspector:refresh()
     local width = math.min(small and 380 or 430, size.X - 20)
     local recipeCount = math.min(2, #(data.evolutions or {}))
     local recipeHeight = recipeCount > 0
-            and ((small and 14 or 20) + recipeCount * (small and 44 or 80))
+            and ((small and 14 or 20) + recipeCount * (small and 44 or (size.Y >= 760 and 96 or 80)))
         or 0
     local font = small and 17 or 21
     local titleH = small and 32 or 42

@@ -8,7 +8,7 @@ local Shared = game:GetService("ReplicatedStorage").Shared
 local Catalog = require(Shared.Catalog)
 local Format = require(Shared.Format)
 local Theme = require(script.Parent.UiTheme)
-local ItemModels = require(script.Parent.ItemModels)
+local ItemModels = require(script.Parent.GameItemModels)
 local Layout = require(script.Parent.HubLayout)
 local HubAmbience = require(script.Parent.HubAmbience)
 local HubProgressionPanel = require(script.Parent.HubProgressionPanel)
@@ -748,6 +748,9 @@ function Hub:update(snapshot)
         .. " / "
         .. #Catalog.Evolutions
         .. " DISCOVERIES"
+    if snapshot.temporaryAccess then
+        self.brandSubtitle.Text = "ALL ITEMS UNLOCKED • PLAYTEST"
+    end
     self.stationLabel.Text = hub.station
             and string.format(
                 "%02d · %s WING",

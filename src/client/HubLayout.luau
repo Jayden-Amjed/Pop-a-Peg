@@ -5,8 +5,9 @@ local Layout = {}
 function Layout.compute(width: number, height: number)
     local w, h = math.max(280, width), math.max(240, height)
     local margin = if w < 600 then 10 else 20
-    local panelW = math.min(1040, w - margin * 2)
-    local panelH = math.min(660, h - margin * 2)
+    local desktop = w >= 1100
+    local panelW = math.min(desktop and 1280 or 1040, w - margin * 2)
+    local panelH = math.min(desktop and 800 or 660, h - margin * 2)
     local columns = if panelW < 620 then 2 else 3
     local rows = if panelH < 400 then 1 else 2
     local bodyW, bodyH = panelW - 32, panelH - 148

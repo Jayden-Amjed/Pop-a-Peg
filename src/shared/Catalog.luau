@@ -230,8 +230,8 @@ item(
     6,
     "drain",
     1,
-    "doubleMany",
-    "Double four pegs. Upgrade: eight pegs.",
+    "bankDoubleMany",
+    "Double four pegs. On natural drain, also seed four distinct pegs for the next shot.",
     "On ball drain"
 )
 item(
@@ -354,7 +354,7 @@ local additions = {
         "On ball drain",
         "Morning Dew",
         {
-            { effect = "lowestDouble" },
+            { effect = "bankLowestDouble" },
             { effect = "pulseScore" },
             { effect = "halveHighest", fixed = true },
         },
@@ -394,7 +394,7 @@ local additions = {
     },
     {
         "mist_fan",
-        "Mist Fan",
+        "Breeze Fan",
         "uncommon",
         7,
         "time",
@@ -405,7 +405,7 @@ local additions = {
     },
     {
         "coral_fork",
-        "Coral Fork",
+        "Coral Spark",
         "uncommon",
         7,
         "double",
@@ -581,7 +581,7 @@ local additions = {
         "On ball drain",
         "Homecoming",
         {
-            { effect = "doubleMany" },
+            { effect = "bankDoubleMany" },
             { effect = "right", fixed = true },
             { effect = "halveHighest", fixed = true },
         },
@@ -863,6 +863,18 @@ local detailEffects = {
     doubleMany = function(level)
         return "Double " .. amount(4, 8, level) .. " random pegs", "positive"
     end,
+    bankDoubleMany = function(level)
+        return "Double "
+            .. amount(4, 8, level)
+            .. " random pegs; on natural drain, seed that many next-shot pegs (max once per peg)",
+            "positive"
+    end,
+    bankLowestDouble = function(level)
+        return "Double the lowest peg "
+            .. amount(1, 2, level)
+            .. " times; on natural drain, seed that many lowest next-shot pegs (max once per peg)",
+            "positive"
+    end,
     lowestDouble = function(level)
         return "Double the lowest peg " .. amount(1, 2, level) .. " times", "positive"
     end,
@@ -1048,11 +1060,14 @@ function Catalog.detail(id, level)
         level = Catalog.MaxLevel
     end
     local effects = {}
-    local function addOperations(operations, power)
+    local function addOperations(operations, power, event)
         for _, operation in ipairs(operations) do
             local render = detailEffects[operation.effect]
             assert(render, "Missing inspection effect: " .. operation.effect)
             local text, tone = render(operation.fixed and 1 or power)
+            if event == "drain" and operation.effect == "halveHighest" then
+                text = "Halve the highest live peg once"
+            end
             if operation.fixed then
                 text = string.gsub(text, " %(↑ [^)]+%)", "")
             end
@@ -1062,10 +1077,14 @@ function Catalog.detail(id, level)
     if definition.channels then
         for _, channel in ipairs(definition.channels) do
             table.insert(effects, { text = channel.triggerText, tone = "trigger" })
-            addOperations(channel.operations, Catalog.MaxLevel)
+            addOperations(channel.operations, Catalog.MaxLevel, channel.trigger.event)
         end
     else
-        addOperations(definition.operations or { { effect = definition.effect } }, level)
+        addOperations(
+            definition.operations or { { effect = definition.effect } },
+            level,
+            definition.trigger and definition.trigger.event
+        )
     end
     if definition.effect == "upgrade" then
         table.insert(effects, { text = "If none qualify: gain 4 coins", tone = "positive" })

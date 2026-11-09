@@ -22,6 +22,43 @@ local function overlaps(a, b)
 end
 
 return function()
+    for _, size in
+        {
+            { 315, 130, false, false },
+            { 315, 174, false, false },
+            { 262, 130, false, false },
+            { 640, 88, true, false },
+            { 430, 50, true, false },
+            { 350, 170, true, true },
+        }
+    do
+        for count = 0, 8 do
+            local layout = Layout.perks(size[1], size[2], count, size[3], size[4])
+            assert(#layout.cells == count, "Perk layout reserves invisible cards")
+            for index, cell in layout.cells do
+                assert(inside(cell.card, size[1], size[2]), "Owned perk escaped its panel")
+                assert(inside(cell.model, cell.card.w, cell.card.h), "Perk model escaped its card")
+                assert(inside(cell.count, cell.card.w, cell.card.h), "Perk count escaped its card")
+                if cell.name.h > 0 then
+                    assert(inside(cell.name, cell.card.w, cell.card.h), "Perk name escaped card")
+                    assert(not overlaps(cell.model, cell.name), "Perk model covers its name")
+                end
+                for other = index + 1, #layout.cells do
+                    assert(not overlaps(cell.card, layout.cells[other].card), "Owned perks overlap")
+                end
+            end
+        end
+    end
+    local sparse = Layout.perks(315, 130, 4, false, false)
+    assert(
+        sparse.cells[1].model.h >= 80 and sparse.cells[4].card.y == sparse.cells[1].card.y,
+        "Four desktop perks still lose half their height to an empty row"
+    )
+    local fullPerks = Layout.perks(315, 130, 8, false, false)
+    assert(
+        fullPerks.cells[5].card.y > fullPerks.cells[1].card.y,
+        "Full perk pool did not retain two rows"
+    )
     local cases = {
         { 360, 640, 0, 44, 0, 34, true },
         { 390, 844, 0, 59, 0, 34, true },

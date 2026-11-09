@@ -29,6 +29,12 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'Gallery audio contracts failed' }
     & .\.tools\luau.exe scripts/models/test_gallery_sound_bank.luau
     if ($LASTEXITCODE -ne 0) { throw 'Gallery instrument contracts failed' }
+    & .\.tools\luau.exe scripts/models/test_game_item_playback.luau
+    if ($LASTEXITCODE -ne 0) { throw 'Game model playback contracts failed' }
+    & .\.tools\luau.exe scripts/models/test_game_model_loader.luau
+    if ($LASTEXITCODE -ne 0) { throw 'Game model loader contracts failed' }
+    & .\.tools\luau.exe scripts/models/test_game_preview_fit.luau
+    if ($LASTEXITCODE -ne 0) { throw 'Game preview fit contracts failed' }
     & "$PSScriptRoot/build.ps1"
     & .\.tools\rojo.exe build catalog-gallery.project.json --output build\peg-catalog-gallery.rbxlx
     if ($LASTEXITCODE -ne 0) { throw 'Catalog gallery build failed' }

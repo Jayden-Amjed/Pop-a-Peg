@@ -1,10 +1,10 @@
 # Modeling workflow: Blender catalog and frozen native reference
 
-The normal game uses its existing native builders. **Native models, animations
-and effects are frozen by the user's instruction; do not edit the `src/` tree for
-catalog review work.** Author and refine the [Blender catalog](CATALOG_GALLERY.md)
-and its separate inspector. Native comparison is read-only. This work does not
-replace game models or imply a production migration.
+RBX-029 explicitly adopts the [Blender catalog](CATALOG_GALLERY.md) into game
+previews through `GameItemModels`. The game and separate inspector consume the
+same imported catalog and Blender motion/effect sources. **Original native
+builders and choreography remain frozen** as fallback/reference; keep new
+integration separate from those files. Game adoption does not publish an experience.
 Follow the [style guide](MODEL_STYLE_GUIDE.md), [ownership policy](SYSTEM_OVERVIEW.md#ownership-and-restoration)
 and [Studio workflow](WORKFLOW.md#agent-workflow-through-mcp).
 
@@ -16,7 +16,7 @@ Blender CLI/Python API and Roblox Studio MCP; no Blender MCP is required.
 Follow the [catalog guide](CATALOG_GALLERY.md) for all 78 models, preserved-source
 exports, import receipts and individual animation feedback. The earlier
 [pilot guide](BLENDER_PILOTS.md) retains the three-model comparison workflow.
-The separate gallery uses imported meshes. Earlier tasks retain their own Studio
+The game and separate gallery use imported meshes. Earlier tasks retain their own Studio
 evidence; each new revision needs its own loading and visual checks. Model upload
 does not publish an experience, and a successful Blender render does not establish
 that the current Studio revision has passed review.
@@ -32,7 +32,8 @@ that the current Studio revision has passed review.
 These pilots established the original comparison workflow. Compare lighting,
 camera, size and rest pose with the frozen native reference where useful, while
 reviewing Blender-only motion on its own merits. Keep revisions within the
-agreed runtime budget; current feedback changes the gallery, not native gameplay.
+agreed runtime budget. Check updated Blender behavior in the gallery and actual
+game cards while keeping the native comparison unchanged.
 
 ## Author, export and inspect
 
@@ -82,9 +83,14 @@ agreed runtime budget; current feedback changes the gallery, not native gameplay
    and center the model. Its current motion code enumerates direct `BasePart`
    children, so glTF wrapper Models cannot simply be dropped into it unchanged.
    Put new articulation in `scripts/models/BlenderChoreography.luau` and
-   `CatalogMotion.luau`; shared/native motion stays read-only. Keep transient
+   `CatalogMotion.luau`; native motion stays read-only. Keep transient
    effects in `CatalogEffectProfiles.luau` and `CatalogEffects.luau`, separate from
-   the authored mesh. A functional light may brighten locally and briefly while
+   the authored mesh. `CatalogEffectAnchors` records physical origins, directions
+   and attachment groups: inspect the modeled plate, nozzle, cone, lens or contact
+   before assigning the effect. Transform that attachment through the posed
+   assembly, including its rotation and scale. Gate impacts to actual contact,
+   and verify the contact at reduced strength as well as normal strength.
+   A functional light may brighten locally and briefly while
    the object keeps contrasting mass; verify exact material/color restoration.
    Keep Luau-driven idle and activation for these rigid models. Bone animation is
    a separate future path, not an automatic part of mesh import.
@@ -104,15 +110,18 @@ Current catalog layout, with the original pilot sources retained:
 | --- | --- |
 | `art/catalog/<id>/<id>.blend` and `manifest.json` | Current editable catalog source, hash, geometry audit, groups and pivots |
 | `art/models/<id>/<id>.blend` and `manifest.json` | Accepted Wave Spring, Seed Bank and Meadow Chest pilot sources; ordinary catalog builds preserve them |
-| `scripts/models/` | Targeted revision recipes, non-destructive export, gallery-only motion/effects and inspection tools |
+| `scripts/models/` | Targeted revision recipes, non-destructive export, Blender motion/effects shared by game and gallery, and inspection tools |
 | `build/model-exports/` / `build/catalog-exports/` | Regenerable export candidates and inspection images; not import receipts |
-| `art/catalog/CatalogAssets.rbxm` | Engine-serialized imported runtime folder mapped into the isolated catalog gallery |
+| `art/catalog/CatalogAssets.rbxm` | Engine-serialized imported runtime folder mapped into game and gallery |
+| `src/client/GameItemModels.luau` | Game lifecycle/viewport adapter consuming the imported catalog and shared Blender behavior |
+| `src/client/GameSoundEffects.luau` | Game wrapper for the authored sound bank/engine; preserves the original SoundEffects implementation |
 | `art/catalog/revisions/index.json` | Active receipt selection plus predecessor source/manifest archive mappings |
 | `art/catalog/uploaded/` and `art/models/uploaded/` | Immutable uploaded GLB bytes and observed import evidence |
 
 Keep `.blend` authoring files outside the Rojo-mapped `assets` subtree. The `.rbxm`
 is the runtime import result, not a competing editable geometry source. The catalog
-adapter uses stable IDs; the normal game continues using its frozen native assets.
+adapter uses stable IDs in the gallery and game. Native sources remain unchanged
+and available for reference/fallback.
 Restoration is documented in `ASSETS.md`. A local GLB is not automatically a deployable Roblox
 mesh: asset ownership, access, moderation and observed IDs must be recorded after
 the actual import. A fresh clone must be able to identify every dependency.

@@ -370,6 +370,63 @@ function Run:_halve(id, slot)
     self:_signal("halve")
 end
 
+-- Only these horticulture effects carry growth across a natural drain. The
+-- ordinary doubles still feed this shot's causal chain; bank requests are
+-- assigned to distinct surviving pegs after restoration and restocks finish.
+function Run:_bankGrowth(index, count, lowest)
+    if not self.draining then
+        return
+    end
+    local item = self.inventory[index]
+    for _ = 1, math.min(count, #Board.Slots - #self.seedRequests) do
+        table.insert(self.seedRequests, {
+            slot = index,
+            itemId = item.id,
+            lowest = lowest,
+        })
+    end
+end
+
+function Run:_prepareSeeds()
+    local candidates = {}
+    for id, value in ipairs(self.baseline) do
+        if value > 0 and value < Run.Config.maxPeg then
+            table.insert(candidates, id)
+        end
+    end
+    self.nextShotSeeds = {}
+    for _, request in ipairs(self.seedRequests) do
+        if #candidates == 0 then
+            break
+        end
+        local selected = self.rng:integer(1, #candidates)
+        if request.lowest then
+            selected = 1
+            for index, id in ipairs(candidates) do
+                if self.baseline[id] < self.baseline[candidates[selected]] then
+                    selected = index
+                end
+            end
+        end
+        local id = table.remove(candidates, selected)
+        local before = self.baseline[id]
+        local after = math.min(Run.Config.maxPeg, before * 2)
+        table.insert(self.nextShotSeeds, {
+            pegId = id,
+            old = before,
+            new = after,
+            slot = request.slot,
+            itemId = request.itemId,
+        })
+        self:_itemEvent(request.slot, "bank", id, {
+            old = before,
+            new = after,
+            value = after,
+            text = "Seeded for next shot",
+        })
+    end
+end
+
 function Run:_allowActivation()
     if self.activationCount >= Run.Config.maxActivationsPerShot then
         if not self.activationCapped then
@@ -449,13 +506,20 @@ function Run:_applyEffect(effect, index, level, relayDepth, context)
         for _ = 1, level do
             self:_pop(self:_randomPeg(), index)
         end
-    elseif effect == "double" or effect == "doubleMany" then
-        for _ = 1, level * (if effect == "doubleMany" then 4 else 1) do
+    elseif effect == "double" or effect == "doubleMany" or effect == "bankDoubleMany" then
+        local count = level * (if effect == "double" then 1 else 4)
+        for _ = 1, count do
             self:_double(self:_randomPeg(), index)
         end
-    elseif effect == "lowestDouble" then
+        if effect == "bankDoubleMany" then
+            self:_bankGrowth(index, count, false)
+        end
+    elseif effect == "lowestDouble" or effect == "bankLowestDouble" then
         for _ = 1, level do
             self:_double(self:_extremePeg(false), index)
+        end
+        if effect == "bankLowestDouble" then
+            self:_bankGrowth(index, level, true)
         end
     elseif effect == "halve" then
         for _ = 1, level * 2 do
@@ -616,6 +680,21 @@ end
 
 function Run:_resetShot()
     self.values = Board.copy(self.baseline)
+    self.activeSeeds = {}
+    for _, seed in ipairs(self.nextShotSeeds or {}) do
+        local before = self.values[seed.pegId]
+        local after = math.min(Run.Config.maxPeg, before * 2)
+        if after > before then
+            -- Apply a multiplier to the current baseline, not the receipt's old
+            -- value: Gardening and other between-shot rewards must be preserved.
+            self.values[seed.pegId] = after
+            local applied = copy(seed)
+            applied.old, applied.new = before, after
+            table.insert(self.activeSeeds, applied)
+        end
+    end
+    self.nextShotSeeds, self.seedRequests = {}, {}
+    self.draining = false
     self.score = 0
     self.restocks = 0
     self.goalCrossings = 0
@@ -821,6 +900,12 @@ function Run:_settle()
     end
     if settlement.remaining == 0 then
         settlement.receipt.finalValues = Board.copy(self.baseline)
+        self:_prepareSeeds()
+        settlement.receipt.nextShotSeeds = copy(self.nextShotSeeds)
+        settlement.receipt.nextShotValues = Board.copy(self.baseline)
+        for _, seed in ipairs(self.nextShotSeeds) do
+            settlement.receipt.nextShotValues[seed.pegId] = seed.new
+        end
         self.settlementReceipt = settlement.receipt
         self.settlement = nil
         self:_phase(if self.reserves <= 0 then "gameover" else "result")
@@ -850,6 +935,7 @@ function Run:_step(dt)
         end
         if result == "drain" and not self.ending then
             self.ball.active = false
+            self.draining = true
             self:_signal("drain")
         end
     end
@@ -1567,6 +1653,9 @@ function Run:snapshot()
         pops = self.pops,
         wallHits = self.wallHits,
         doubles = self.doubles,
+        pendingSeeds = #self.nextShotSeeds,
+        nextShotSeeds = self.nextShotSeeds,
+        activeSeeds = self.activeSeeds,
         halves = self.halves,
         clearBonus = self.clearBonus,
         shotStats = self:_shotStats(),

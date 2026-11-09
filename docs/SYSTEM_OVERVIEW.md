@@ -3,8 +3,8 @@
 An eight-player aquarium arcade connects each player's server-owned run to a
 locally rendered 3D board. The client
 aims and requests actions; the server simulates every bounce, scores every pop,
-and chooses all upgrade offers. Native parts and GUI elements restore the complete
-visual presentation without external models or images. Standard Roblox avatars
+and chooses all upgrade offers. Native parts form the board and arcade; item
+previews use imported Blender MeshParts with recorded asset dependencies. Standard Roblox avatars
 walk through the shared hub. Short
 sound cues use public Roblox audio IDs documented in [Asset sources](ASSETS.md).
 
@@ -35,7 +35,9 @@ sound cues use public Roblox audio IDs documented in [Asset sources](ASSETS.md).
 | `src/client/HoverInspector.luau` | `StarterPlayer.StarterPlayerScripts.Client.HoverInspector` | Reusable hover, focus, and touch inspection with ordered effect rows and modeled evolution recipes. |
 | `src/client/EvolutionDisplay.luau` | `StarterPlayer.StarterPlayerScripts.Client.EvolutionDisplay` | Shared ingredient + ingredient = result model rows with live level/readiness labels. |
 | `src/client/UiTheme.luau` | `StarterPlayer.StarterPlayerScripts.Client.UiTheme` | Shared interface colors and native GUI constructors. |
-| `src/client/ItemModels.luau` | `StarterPlayer.StarterPlayerScripts.Client.ItemModels` | Original native equipment, perk, currency, and control models with viewport animation. |
+| `src/client/GameItemModels.luau`, `GameModelPlayback.luau` | Client modules with matching names | Gameplay Blender clones, asset preloading, cached framing, bounded activation queue and cleanup. |
+| `art/catalog/CatalogAssets.rbxm`, `scripts/models/` runtime modules | `ReplicatedStorage.CatalogAssets`, `CatalogLibrary` | Reviewed meshes and shared Blender choreography, physical effect anchors and instruments. |
+| `src/client/ItemModels.luau` | `StarterPlayer.StarterPlayerScripts.Client.ItemModels` | Frozen native reference and explicit remote-load failure fallback. |
 | `src/client/ItemMotion.luau` | `StarterPlayer.StarterPlayerScripts.Client.ItemMotion` | Per-model moving groups, activation samples, and paused/resumed figure-eight idle motion. |
 | `src/client/ItemChoreography.luau`, `src/client/motion/` | Client modules with matching names | 78 distinct body/mechanism performances and shared smooth timing curves. |
 | `src/client/NativeAssemblies.luau` | `StarterPlayer.StarterPlayerScripts.Client.NativeAssemblies` | Native attachment pivots and groups; no geometry changes. |
@@ -44,6 +46,7 @@ sound cues use public Roblox audio IDs documented in [Asset sources](ASSETS.md).
 | `src/client/ChoiceLayout.luau` | `StarterPlayer.StarterPlayerScripts.Client.ChoiceLayout` | Two visible perk/event choices with bounded model, effect and button regions. |
 | `src/client/Feedback.luau` | `StarterPlayer.StarterPlayerScripts.Client.Feedback` | Score flights, trigger cues, counter display, and receipt-driven board animation. |
 | `src/client/SoundEffects.luau` | `StarterPlayer.StarterPlayerScripts.Client.SoundEffects` | Bounded sound pools, cue timing, preload, and mute control. |
+| `src/client/GameSoundEffects.luau` | `StarterPlayer.StarterPlayerScripts.Client.GameSoundEffects` | Uses reviewed item instruments on the gameplay sound instance without changing the native bank. |
 | `src/shared/ItemFeedback.luau` | `ReplicatedStorage.Shared.ItemFeedback` | Per-item/perk note motifs, timing, visual accents, and effect styles. |
 | `src/shared/RewardTimeline.luau` | `ReplicatedStorage.Shared.RewardTimeline` | Pure visual planning for restore, refill, merge, and batched reward steps. |
 | `src/shared/Profile.luau` | `ReplicatedStorage.Shared.Profile` | Profile v2 cleaning, old ownership migration and record-only run merges. |
@@ -364,8 +367,8 @@ presentation with the same authoritative rewards. Terminal results open the run
 summary instead of continuing. There is no ordinary result confirmation modal.
 
 `Presentation` exposes the board, counters, controls, and viewport anchors to
-`Feedback`; `ItemModels` supplies reusable native 3D visuals, `ItemMotion` animates
-their moving groups, and `UiTheme` supplies GUI styling. `ShopLayout` keeps four
+`Feedback`; `GameItemModels` mounts the reviewed Blender catalog, `CatalogMotion`
+and `BlenderChoreography` animate its groups, and `UiTheme` supplies GUI styling. `ShopLayout` keeps four
 equipment cards and up to two Supplies in distinct groups without a fixed bottom
 inspection panel. Reclaimed space enlarges the main models and labels. The rack
 grows during play and contracts for shops and choices; perk and event choices use
@@ -386,7 +389,7 @@ permanently shrinking every offer. Compact evolution summaries open the complete
 inspector. Layout contracts and native viewport checks are complementary; neither
 alone establishes physical touch-device behavior.
 
-`ItemModels` registers 78 distinct original models: 40 equipment, 13 evolved,
+The Blender catalog contains 78 distinct original models: 40 equipment, 13 evolved,
 eight perk, three Supply and 14 utility/reward designs. Perks do not reuse equipment
 geometry. Four chest builders have tier-specific bodies, lids and hinge activation
 profiles; four dedicated event emblems replace equipment aliases. Equipment
@@ -412,7 +415,9 @@ is harmlessly ignored. A weak ownership table retires an existing viewport handl
 before replacement, and stale disposal cannot clear a newer camera. Preserve
 authored moving groups and model identity when applying the
 [model style guide](MODEL_STYLE_GUIDE.md). The [Blender workflow](MODELING_WORKFLOW.md)
-is a proposed pilot path, not an implemented mesh loader or completed conversion.
+documents the implemented conversion. `GameModelLoader` preloads the shared mesh
+sets with four concurrent jobs and a 15-second timeout. Failed loads expose their
+state and use the frozen native reference as a fallback.
 
 Score, coin, and restock arrivals pulse their counters. Launching spends a ball
 directly in the reserve display; only restored balls use reward flights. Perk
@@ -430,7 +435,8 @@ purchase triggers its own celebration. Decorative effects stop at 184 active
 entries within a 240-entry total budget, reserving capacity for 56 score/reward
 arrivals. Reduced motion limits a burst to three particles with no orbiting path.
 These visual limits are independent of the authoritative activation budget.
-`SoundEffects` schedules their notes through bounded voice and note pools, limits
+`GameSoundEffects` supplies the reviewed 78-phrase bank through the existing
+`SoundEffects` bounded voice and note pools, limits
 cue frequency, supports mute, and leaves gameplay functional if audio cannot load.
 Targeted beams use explicit source/target IDs; restarts clear pending visual and
 item-audio work. Asset IDs, creators, and restoration requirements live in
@@ -485,7 +491,7 @@ No purchase receipt handler is enabled in this task.
 | Models | An intentionally adopted `.rbxm` or `.rbxmx` in `assets/` may be authoritative, mapped beneath `ReplicatedStorage.Assets`. Record ownership and any additional placement mapping; do not keep a competing authoritative Studio copy. |
 | Terrain | Not represented by this starter's source. A later terrain task must choose a source place template or documented terrain export and prove restoration; a saved generated place alone is not source. |
 | Place templates | Intentional `.rbxl`/`.rbxlx` source templates may be versioned outside `build/` when needed. Define how code is injected and how a fresh clone restores them before adopting one. |
-| External asset IDs | Public audio dependencies and provenance are recorded in [Asset sources](ASSETS.md). Source control cannot supply asset access; verify loading in the target experience. Production visual models require no external IDs. The separate Blender pilot gallery uses recorded owner-account MeshIds; missing audio does not block normal play. |
+| External asset IDs | Audio and mesh dependencies are recorded in [Asset sources](ASSETS.md). Source control cannot supply asset access; verify loading in the target experience. Game item previews and the galleries use recorded owner-account MeshIds. Failed mesh loads use an observable native fallback; missing audio does not block play. |
 | Generated places / temporary exports | `build/` and `scratch/` are ignored. Regenerate builds; review exports before promoting intentional changes. |
 | Tools | `.tools/` is ignored; `scripts/setup.ps1` restores pinned binaries. |
 
@@ -513,14 +519,31 @@ three stay under `art/models/`. Ten initial uploads and the immutable RBX-025 an
 RBX-027 revision receipts cover the active meshes.
 `CatalogMotion` uses `BlenderChoreography`, which layers Blender-only performances
 over the frozen native definitions without modifying them. `CatalogEffects` uses
-78 per-item designs from `CatalogEffectProfiles` in a bounded sibling part pool.
+78 per-item designs from `CatalogEffectProfiles` and physical surface/assembly
+anchors from `CatalogEffectAnchors` in a bounded sibling part pool.
 `GallerySoundBank` and `GallerySoundEngine` provide 78 authored phrases across 12
 timbre families while reusing the existing audio assets. The original pilot gallery
 uses the motion adapter too. Only the selected model plus
 an optional native comparison mounts in viewports. `PreviewLighting` is shared
-with normal item cards; `UiTheme` adds restrained contrast. Gameplay still uses
-frozen native geometry and animation. Source files, upload receipts, runtime copies, tests and publication
+with normal item cards; `UiTheme` adds restrained contrast. Gameplay uses the same
+Blender models and motion through GameItemModels. It preloads shared mesh sets,
+caches each ID's moving-geometry bounds, lazily creates effect pools and retains
+observable frozen-native fallback if a remote mesh load fails. Native sources
+remain unchanged. Source files, upload receipts, runtime copies, tests and publication
 remain distinct; see the task and dashboard for current verification.
+
+Gameplay cameras stay fixed and frame the complete sampled mechanism movement.
+Decorative particle tips may reach/crop at card edges; gallery framing includes
+their complete bounds. Wider shop/choice previews, adaptive owned-perk rows and
+larger desktop hub panels improve readability without shrinking compact controls.
+
+Natural-drain growth on Seed Bank, Rain Catcher and Monsoon Loom banks a bounded
+next-shot benefit after all restocks. Each peg receives at most one saved double;
+baseline and quota stay unchanged. See [drain rules and client fields](DRAIN_ITEM_AUDIT.md).
+`PlaytestAccess` currently enables all40 equipment pools and13 evolution previews
+only for user583716264. It projects temporary access without writing grants to the
+real profile. Disable its server flag and restart for ordinary access. Coins,
+chests, item levels, level5 evolution requirements and earned records remain normal.
 
 ## Development and publication
 

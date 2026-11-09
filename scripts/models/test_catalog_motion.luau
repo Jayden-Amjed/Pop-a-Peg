@@ -251,6 +251,30 @@ for strength = 1, 2 do
         end
     end
 end
+-- Quota's visible impact belongs on its paper tray. Even reduced positive
+-- strength completes the mechanical stroke; strength shapes body recoil instead.
+local quotaPivot = V.new(0.35, 1.48, 0)
+local ink = part("Stamp", V.new(0.35, 0.94, 0), quotaPivot, nil, V.new(0.77, 0.10, 0.69))
+local quotaHead = part("Stamp", V.new(0.35, 1.10, 0), quotaPivot, nil, V.new(0.74, 0.26, 0.66))
+local paper = part("Fixed", V.new(0.23, 0.451, 0), V.new(), nil, V.new(0.65, 0.012, 0.035))
+local quota = controller("quota_bonus", { ink, quotaHead, paper })
+for _, strength in { 0.1, 0.25, 1, 2 } do
+    for step = 0, 100 do
+        local phase = step / 100
+        quota:apply(phase, strength, CF.new())
+        local gap = ink.CFrame.Position.Y
+            - ink.Size.Y / 2
+            - (paper.CFrame.Position.Y + paper.Size.Y / 2)
+        assert(gap >= -0.000001, "Quota die penetrated its tray")
+        near(quotaHead.CFrame.Position.Y - ink.CFrame.Position.Y, 0.16, "Quota stamp split")
+        if phase >= 0.25 and phase <= 0.29 then
+            near(gap, 0, "Quota effect beat does not coincide with tray contact")
+        end
+    end
+end
+quota:apply(0.27, 0, CF.new())
+near(ink.CFrame.Position.Y, 0.94, "Zero-strength quota did not stay at rest")
+
 -- Separate materials in the removed cap must travel as one rigid object.
 local capPivot = V.new(0, 1.765, 0)
 local capPearl = part("BurstCap", V.new(0, 1.95, 0), capPivot)
@@ -284,6 +308,55 @@ local keyA = part("SynthKey", V.new(-0.5, 0, 0), V.new(-0.5, 0, 0))
 local keyB = part("SynthKey", V.new(0.5, 0, 0), V.new(0.5, 0, 0))
 controller("lagoon_synth", { keyA, keyB }):apply(0.25, 1, CF.new())
 assert(math.abs(keyA.CFrame.r[6] - keyB.CFrame.r[6]) > 0.01, "Independent key phases collapsed")
+
+-- The relay/synth's mount is fixed relative to the device, not the viewport.
+-- Their new whole-device pops must grow connected spacing and dimensions by the
+-- same factor, then restore exactly without feeding posed geometry back as rest.
+for _, id in { "relay", "lagoon_synth" } do
+    local left = part("Fixed", V.new(-0.5, 0, 0), V.new(), nil, V.new(1, 1, 1))
+    local right = part("Fixed", V.new(0.5, 0, 0), V.new(), nil, V.new(1, 1, 1))
+    local model = {}
+    function model:GetAttribute(name)
+        return if name == "ItemId" then id else nil
+    end
+    function model:GetDescendants()
+        return { left, right }
+    end
+    function model:GetBoundingBox()
+        return CF.new(), V.new(2, 1, 1)
+    end
+    local raw = Adapter.new(model, types)
+    local root = CF.new(3, -2, 1) * CF.Angles(0.2, -0.3, 0.1)
+    for _, strength in { 0, 1, 2 } do
+        for step = 0, 100 do
+            local phase = step / 100
+            raw:apply(phase, strength, root)
+            local body = Motion.bodySample(id, phase, strength)
+            local reaction = root
+                * CF.new(body.x * 2, body.y, body.z)
+                * CF.Angles(body.rx, body.ry, body.rz)
+            nearFrame(left.CFrame, reaction * CF.new(-0.5 * body.scale, 0, 0), "Mount frame drift")
+            nearFrame(
+                right.CFrame,
+                reaction * CF.new(0.5 * body.scale, 0, 0),
+                "Cabinet frame drift"
+            )
+            near(left.Size.X, body.scale, "Left mount did not resize")
+            near(right.Size.X, body.scale, "Right mount did not resize")
+            near(
+                distance(left.CFrame.Position, right.CFrame.Position),
+                (left.Size.X + right.Size.X) / 2,
+                "Whole-model pop split connected fixed parts"
+            )
+        end
+    end
+    raw:apply(0.27, 1, root)
+    assert(left.Size.X > 1.23, "Main pop too small at normal strength")
+    raw:apply(0.73, 2, root)
+    raw:apply(0, 1, root)
+    nearFrame(left.CFrame, root * CF.new(-0.5, 0, 0), "Backward scrub failed to restore mount")
+    nearVector(left.Size, V.new(1, 1, 1), "Backward scrub failed to restore size")
+end
 
 -- Exercise all 78 profile adapters at both strengths and restore exact originals.
 local profiles = 0

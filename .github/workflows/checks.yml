@@ -30,3 +30,7 @@ jobs:
           python scripts/models/test_hub_reveal.py --luau .tools/luau.exe
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           python scripts/models/verify_native_reference.py
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python scripts/models/verify_game_catalog.py
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python scripts/models/test_effect_placement.py --luau .tools/luau.exe

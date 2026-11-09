@@ -9,10 +9,11 @@ the relevant [modeling workflow](docs/MODELING_WORKFLOW.md). Verify actual rende
 geometry and motion; generated output or a successful audit alone is not visual acceptance.
 
 User direction from RBX-027: freeze native item geometry and native animation.
-Continue model, motion and effect reviews in Blender/catalog-specific modules.
-Do not propagate gallery revisions through shared native choreography, item
-builders or gameplay sound. Only an explicit later user instruction lifts this
-boundary. Native comparison remains a preserved reference, not a second target.
+Continue model, motion and effect work in Blender/catalog-specific modules.
+RBX-029 explicitly authorizes adopting these models, motion, effects and sound
+through new game adapters and call-site/mapping changes. Keep original native
+builders and choreography unchanged. Native comparison remains a preserved
+reference, not a second modeling target.
 
 Human instructions determine authorization and scope. Resolve disagreements by
 preferring actual implementation and reproducible behavior, then executed checks,

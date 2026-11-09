@@ -36,8 +36,8 @@ function Layout.card(width, height, perk)
         effectFont = tight and 15 or 22,
     }
     if stacked then
-        local model = math.min(240, height - 236)
-        result.model = rect((width - model) / 2, 4, model, model)
+        local model = height - 236
+        result.model = rect(12, 4, width - 24, model)
         result.name = rect(12, model + 8, width - 24, 44)
         result.trigger = rect(14, model + 56, width - 28, perk and 38 or 0)
         local y = model + (perk and 98 or 56)

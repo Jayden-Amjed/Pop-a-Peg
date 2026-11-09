@@ -118,7 +118,7 @@ function Layout.equations(width, height, count)
     local statusH = compact and math.min(12, rowH - 11) or 17
     local symbolW = compact and 12 or 16
     local boxSize =
-        math.floor(math.max(8, math.min(62, rowH - statusH - 3, (width - symbolW * 2 - 8) / 3)))
+        math.floor(math.max(8, math.min(76, rowH - statusH - 3, (width - symbolW * 2 - 8) / 3)))
     local columnW = (width - symbolW * 2) / 3
     for index = 1, count do
         local y = titleH + (index - 1) * rowH

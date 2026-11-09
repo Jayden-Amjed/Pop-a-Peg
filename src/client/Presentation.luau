@@ -11,7 +11,7 @@ local Catalog = require(Shared:WaitForChild("Catalog"))
 local Format = require(Shared:WaitForChild("Format"))
 local Simulation = require(Shared:WaitForChild("Simulation"))
 local Theme = require(script.Parent.UiTheme)
-local ItemModels = require(script.Parent.ItemModels)
+local ItemModels = require(script.Parent.GameItemModels)
 local Feedback = require(script.Parent.Feedback)
 local Selection = require(script.Parent.InventorySelection)
 local ShopLayout = require(script.Parent.ShopLayout)
@@ -1189,11 +1189,8 @@ function Presentation:_updatePerks()
     end
     self.perksEmpty.Visible = #order == 0
     local w, h = self.perksPanel.Size.X.Offset, self.perksPanel.Size.Y.Offset
-    local columns = self.foldHud and 4 or (self.compact and 8 or 4)
-    local rows = self.foldHud and 2 or (self.compact and 1 or 2)
-    local headerH = h < 70 and 18 or 23
-    local cw = (w - 12 - (columns - 1) * 4) / columns
-    local ch = (h - headerH - 8 - (rows - 1) * 4) / rows
+    local layout = RunLayout.perks(w, h, #order, self.compact, self.foldHud)
+    local headerH = layout.headerH
     setRect(self.perksTitle, 7, 1, w * 0.42, headerH)
     self.perksTitle.TextSize = h < 70 and 14 or 18
     self.perksTitle.Text = "PERKS • " .. total
@@ -1206,20 +1203,20 @@ function Presentation:_updatePerks()
     self.perksEmpty.TextXAlignment = Enum.TextXAlignment.Center
     for index, id in order do
         local cell = self.perkCells[id]
-        setRect(
-            cell.button,
-            6 + ((index - 1) % columns) * (cw + 4),
-            headerH + 3 + math.floor((index - 1) / columns) * (ch + 4),
-            cw,
-            ch
-        )
-        local nameH = h < 70 and 0 or 16
-        local modelH = math.min(cw - 2, ch - nameH)
-        setRect(cell.viewport, (cw - modelH) / 2, 0, modelH, modelH)
-        setRect(cell.name, 2, ch - nameH, cw - 4, nameH)
-        cell.name.Visible = nameH > 0
+        local geometry = layout.cells[index]
+        for _, entry in
+            {
+                { cell.button, geometry.card },
+                { cell.viewport, geometry.model },
+                { cell.name, geometry.name },
+                { cell.count, geometry.count },
+            }
+        do
+            local area = entry[2]
+            setRect(entry[1], area.x, area.y, area.w, area.h)
+        end
+        cell.name.Visible = geometry.name.h > 0
         cell.name.TextSize = self.compact and 13 or 15
-        setRect(cell.count, cw - 24, 0, 22, 16)
     end
 end
 
@@ -1412,6 +1409,10 @@ function Presentation:_renderControls()
     })[phase] or ""
     if state.stageCleared and (phase == "result" or phase == "victory") then
         self.phaseLabel.Text = "LEVEL " .. tostring(state.stageCleared.index) .. " COMPLETE!"
+    elseif phase == "aim" and #(state.activeSeeds or {}) > 0 then
+        self.phaseLabel.Text = "READY • " .. #state.activeSeeds .. " SEEDED PEGS"
+    elseif (state.pendingSeeds or 0) > 0 and phase ~= "flight" then
+        self.phaseLabel.Text = tostring(state.pendingSeeds) .. " SEEDS BANKED FOR NEXT SHOT"
     end
     self.help.Text = phase == "flight" and "LET THE COMBO PLAY • [E] END SHOT"
         or "AIM • CLICK THE BOARD OR PRESS SPACE"
@@ -1678,8 +1679,7 @@ function Presentation:_layoutShopCard(cell, data, recipeCount, canCycle)
     local nameH = short and 26 or 48
     local triggerH = not data.consumable and (short and 0 or 36) or 0
     local modelH = math.max(20, bandH - nameH - triggerH - 10)
-    local modelSize = math.min(rect.w - 12, modelH)
-    setRect(cell.viewport, (rect.w - modelSize) / 2 - 3, 3, modelSize, modelH)
+    setRect(cell.viewport, 3, 3, positions.inspect.w - 6, modelH)
     setRect(cell.name, 5, modelH + 2, rect.w - 16, nameH)
     setRect(cell.trigger, 5, modelH + nameH + 5, rect.w - 16, triggerH)
     setRect(cell.level, 3, 0, rect.w - 16, short and 13 or 18)

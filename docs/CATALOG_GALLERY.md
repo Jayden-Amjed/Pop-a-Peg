@@ -7,15 +7,18 @@ Search by display name or ID, inspect one model closely, and export feedback tie
 to a particular pose. Only the selected model and its optional native comparison
 are mounted in the preview.
 
-The normal game retains its native geometry. The gallery evaluates the Blender
-catalog; it does not adopt that geometry into gameplay or publish an experience.
+The normal game adopts the Blender catalog through `GameItemModels` in RBX-029.
+The gallery remains an isolated tool for detailed model review; opening it does
+not start the game server or publish an experience.
 The [animation direction](ITEM_ANIMATION_GUIDE.md) gives all 78 models individual
 whole-object reactions, articulation and brief effects. From RBX-027 onward,
-new motion, effects and sound live in gallery-only modules. Native geometry and
+new motion, effects and sound were authored in separate Blender modules. RBX-029
+uses those same sources in game previews through new adapters. Native geometry and
 animation are a frozen reference at source `07be76a`; the hash manifest
 `art/catalog/native-reference.json` records that boundary. The Blender adapter
-can reuse those read-only baseline samples, then add its own behavior. Changing
-the gallery does not update the normal game's models, motion or sound.
+can reuse those read-only baseline samples, then add its own behavior. Review
+changes in the inspector and actual game layouts because both consume the shared
+Blender behavior; preserve the native comparison.
 Use [PROJECT_STATUS](../PROJECT_STATUS.md) for current accepted state and
 [RBX-021](../tasks/RBX-021-catalog-lab.md) for exact checks, source SHAs, Studio
 evidence. See [RBX-023](../tasks/RBX-023-expressive-motion.md) for the expressive
@@ -73,11 +76,18 @@ does not grant another account permission to the remote meshes.
 All 78 entries have an explicit effect design in `CatalogEffectProfiles` and an
 authored sound phrase in `GallerySoundBank`. Effects match the object's function:
 lightning bridges Coral Spark's rods, Ocean Chorus emits cone echoes, Lagoon Synth
-shows a traveling phase through a stationary wave, and seeds, water, clocks and
+shows a traveling phase inside its bouncing screen, and seeds, water, clocks and
 chests use their own accents. These are deterministic pose samples, so pause and
 scrub hold the effect at the same pose as the mechanism. The renderer reuses at
 most 40 effect parts for the selected Blender model and removes them on disposal.
 Use **FX OFF** to inspect the underlying mesh and its movement separately.
+
+`CatalogEffectAnchors` places each emission at its functional surface and transforms
+its direction with the posed assembly. Inspect press impacts on their plates,
+cone echoes at speaker mouths, spray at nozzles and beams at lenses. Quota Bonus's
+impact accompanies contact at phases .25–.29. Relay and Synth now have coherent
+whole-device pops as well as their local mechanisms; inspect the anticipation
+around .12–.13, main pop at .27 and smaller follow-through around .50–.55.
 
 Gallery sound varies spectrum, register, timing and envelope as well as melody.
 Each ID has a distinct phrase; it does not simply transpose one shared beep.
@@ -102,7 +112,8 @@ partial counts, register, phrase duration and optional attack cue for review.
 These are additive approximations made from the existing licensed C4 sine asset,
 with selected established cue assets adding quiet physical attacks. They require
 no new audio upload. Gallery playback uses a separate bank and an instance-local
-adapter around the unchanged game sound pool; it does not rewrite game motifs.
+adapter around the unchanged original sound pool. `GameSoundEffects` adopts the
+same authored bank/engine in gameplay without editing the native implementation.
 It caps tone voices at 12, pending partials at 32 and summed tone gain at 0.32.
 The authored phrases span 45 semitones and last at most 1.06 seconds before any
 separate sampled cue tail. These bounds describe the implementation, not a claim
@@ -119,8 +130,9 @@ pop, opened and reseated the capsule cap, and added a crank plus seated squashab
 coin to the Blender press. Chest performances last 3.4/3.6/3.9/4.2 seconds by tier, with
 closed anticipation through pose .52, fast opening, held reveal and recovery.
 That pass also made the hub wait for actual model playback completion before
-replacing the chest. These are historical baseline changes; RBX-027 does not
-propagate its gallery revisions back into the hub or native renderer.
+replacing the chest. These are historical baseline changes. RBX-029's game adapter
+preserves that completion contract while adopting Blender models; native reference
+geometry and animation stay unchanged.
 
 Start with **REST** and inspect all four camera views for silhouette, seams,
 unintended intersections and floating connections. Play **TRIGGER** at normal
@@ -132,7 +144,7 @@ pose so a changed shadowed face is not confused with a changed material.
 The inspector displays triangle count, render-piece count and motion profile.
 Its individual model view supports detailed review; passing it does not replace
 checking the busiest shop, small recipe icons, rack sizing or mobile performance
-before production adoption.
+when updating the actual game's previews.
 
 ## Give feedback that can be reproduced
 
@@ -184,15 +196,18 @@ source policy and upload records.
 | `scripts/models/catalog_rewards.py` | 8 perk, 3 chest and 4 event builders. |
 | `scripts/models/CatalogInfo.luau` | Generated gallery names, categories, source paths and counts. |
 | `scripts/models/CatalogGallery.client.luau` | Searchable inspector, playback controls and session feedback export. |
-| `scripts/models/CatalogMotion.luau` | Imported-model adapter using gallery-only `BlenderChoreography`. |
+| `scripts/models/CatalogMotion.luau` | Imported-model adapter using `BlenderChoreography` in game and gallery. |
 | `scripts/models/BlenderChoreography.luau` | Blender articulation and whole-object overrides; reads frozen native samples as a baseline without modifying them. |
 | `scripts/models/CatalogEffectProfiles.luau` | Explicit pose-addressable effect designs for all 78 IDs. |
-| `scripts/models/CatalogEffects.luau` | Bounded transient-effect renderer attached only to the Blender preview. |
+| `scripts/models/CatalogEffects.luau` | Bounded transient-effect renderer shared by Blender previews in game and gallery. |
+| `scripts/models/CatalogEffectAnchors.luau` | Physical emitter/contact surfaces, directions and moving assembly attachments. |
 | `scripts/models/GallerySoundBank.luau` | Per-ID sound phrases, additive timbres, envelopes and review descriptors. |
-| `scripts/models/GallerySoundEngine.luau` | Gallery-local tone scheduling over the unchanged game voice pools. |
+| `scripts/models/GallerySoundEngine.luau` | Instance-local authored tone scheduling over the unchanged original voice pools. |
 | `scripts/models/GallerySoundTimeline.luau` | Animation-pose timing for gallery sound attacks. |
 | `art/catalog/native-reference.json` | Frozen native source hashes and predecessor SHA. |
 | `src/client/PreviewLighting.luau` | Shared Balanced/Original preview-lighting presets. |
+| `src/client/GameItemModels.luau` | Game viewport/lifecycle adapter for the imported catalog and shared Blender motion/effects. |
+| `src/client/GameSoundEffects.luau` | Game wrapper adopting the authored bank/engine while preserving the native source. |
 
 The three [Blender pilots](BLENDER_PILOTS.md) are reused rather than regenerated
 by the catalog builder. Their existing source hashes must match the accepted
@@ -254,7 +269,8 @@ For a changed model, retain the exact GLB, source hashes and observed import dat
 for its new upload. `bind_catalog_import.py` binds those observations into a new
 receipt; `NormalizeCatalogImport.luau` normalizes local clones using the imported
 calibration geometry. Preserve the raw package and previous receipt, then export
-the normalized catalog folder to `art/catalog/CatalogAssets.rbxm` and rebuild the gallery.
+the normalized catalog folder to `art/catalog/CatalogAssets.rbxm` and rebuild the
+gallery and game.
 Do not point an old upload receipt at changed geometry. These tools associate
 observed MeshIds with source/export bytes; they do not independently download and
 rehash Roblox's remote mesh bytes. Follow [MODELING_WORKFLOW](MODELING_WORKFLOW.md)
@@ -284,7 +300,7 @@ Source coordinates use Blender X right, Y back and Z up, with front at -Y;
 normalization maps them to Roblox `(X, Z, -Y)`. Shared pivots keep connected
 material pieces together; separate pivots preserve individual moving mechanisms.
 The runtime adapter restores frame, size and color at activation endpoints.
-Transient gallery accents disappear at rest and at the activation endpoint;
+Transient Blender accents disappear at rest and at the activation endpoint;
 they are not additional imported mesh pieces. Viewport accents simulate light,
 arcs and waves with geometry and color rather than promising scene illumination
 or cast shadows. Sampled preview framing includes their bounds.

@@ -49,8 +49,16 @@ return function()
                     layout.choose.h >= 32 and layout.effect.h >= 24,
                     "Choice stats or CTA too small"
                 )
+                if layout.stacked then
+                    assert(
+                        layout.model.w >= card.w - 24 and layout.effect.h >= 72,
+                        "Stacked preview wastes card width or takes effect text space"
+                    )
+                end
             end
         end
     end
+    local tall = Layout.card(552, 602, true)
+    assert(tall.model.h > 300, "Tall desktop choice retains the old 240px preview cap")
     print("PASS choice layout: two visible cards, bounded stats and CTAs without scrolling")
 end

@@ -7,28 +7,9 @@ local Motion = if script
     then require(script.Parent.BlenderChoreography)
     else require("./BlenderChoreography")
 local CatalogEffects = {}
-
--- Attach accents to the functional assembly rather than the model's base.
-local attachments = {
-    coin_press = "MintCoin",
-    seed_bank = "Seed",
-    survey_lens = "Lens",
-    split_prism = "Prism",
-    gain_dial = "Knob",
-    clockwork = "MinuteHand",
-    growth_array = "Coral",
-    nectar_pump = "NectarDrop",
-    rain_catcher = "RainWater",
-    pulse_cell = "ChargeBar",
-    goldfish = "FishTail",
-    landing_fund = "CatchCoin",
-    lily_pad = "LilyHeart",
-    mist_fan = "PaperRotor",
-    pearl_diver = "DiverPearl",
-    ozone_orb = "OzoneShell",
-    soft_saw = "Current",
-    bubble_wand = "Bubble",
-}
+local Anchors = if script
+    then require(script.Parent.CatalogEffectAnchors)
+    else require("./CatalogEffectAnchors")
 local function finite(value, fallback)
     return if type(value) == "number"
             and value >= -math.huge
@@ -49,14 +30,31 @@ function CatalogEffects.new(model, id)
             if #records == 0 then
                 center = authored - part.Position
             end
+            local low, high = Vector3.one * math.huge, -Vector3.one * math.huge
+            for x = -1, 1, 2 do
+                for y = -1, 1, 2 do
+                    for z = -1, 1, 2 do
+                        local point = part.CFrame:PointToWorldSpace(
+                            part.Size * Vector3.new(x, y, z) * 0.5
+                        ) + center
+                        low, high = low:Min(point), high:Max(point)
+                    end
+                end
+            end
             table.insert(records, {
                 part = part,
                 frame = part.CFrame,
                 authored = authored,
                 group = part:GetAttribute("MotionGroup") or "Fixed",
+                size = part.Size,
+                low = { low.X, low.Y, low.Z },
+                high = { high.X, high.Y, high.Z },
             })
         end
     end
+    local placement, origin, anchorIndex = Anchors.resolve(id, records)
+    local anchor = anchorIndex and records[anchorIndex]
+    local sourceOrigin = origin and Vector3.new(origin[1], origin[2], origin[3])
     local poolModel = Instance.new("Model")
     poolModel.Name = "CatalogEffects"
     poolModel:SetAttribute("CatalogEffect", true)
@@ -73,7 +71,8 @@ function CatalogEffects.new(model, id)
         pool[i] = part
     end
     poolModel.Parent = model.Parent
-    local controller = { model = poolModel, profile = profile.name, activeCount = 0 }
+    local controller =
+        { model = poolModel, profile = profile.name, activeCount = 0, placement = placement }
     local disposed = false
     local function normalized(v)
         return { v.X / size.X, v.Y / size.Y, v.Z / size.Z }
@@ -113,6 +112,51 @@ function CatalogEffects.new(model, id)
             return if count > 0 then localPoint(sum / count) else nil
         end
         local context = {}
+        local function posedPoint(record, sourcePosition)
+            local relative = record.frame:PointToObjectSpace(sourcePosition - center)
+            return record.part.CFrame:PointToWorldSpace(relative * (record.part.Size / record.size))
+        end
+        local function attachmentMap(record, sourcePosition, bias, axis, follow)
+            local position, rotation
+            if follow then
+                position = posedPoint(record, sourcePosition)
+                rotation = (record.part.CFrame - record.part.Position)
+                    * (record.frame - record.frame.Position):Inverse()
+            else
+                position = root:PointToWorldSpace((sourcePosition - center) * body.scale)
+                rotation = root - root.Position
+            end
+            if axis == "+X" then
+                rotation *= CFrame.Angles(0, math.pi / 2, 0)
+            elseif axis == "+Y" then
+                rotation *= CFrame.Angles(-math.pi / 2, 0, 0)
+            elseif axis == "-Y" then
+                rotation *= CFrame.Angles(math.pi / 2, 0, 0)
+            end
+            bias = bias or { 0, 0, 0 }
+            return function(q)
+                local offset = Vector3.new(
+                    (q[1] - bias[1]) * size.X,
+                    (q[2] - bias[2]) * size.Y,
+                    (q[3] - bias[3]) * size.Z
+                ) * body.scale
+                return localPoint(position + rotation:VectorToWorldSpace(offset))
+            end
+        end
+        if origin then
+            context.transform = attachmentMap(
+                anchor,
+                sourceOrigin,
+                placement.bias,
+                placement.axis,
+                placement.mode == "attachment" and placement.follow ~= false
+            )
+            local posed = if placement.mode == "attachment" and placement.follow ~= false
+                then posedPoint(anchor, sourceOrigin)
+                else root:PointToWorldSpace((sourceOrigin - center) * body.scale)
+            self.anchorPosition = posed
+            self.anchorSource = sourceOrigin
+        end
         if id == "coral_fork" then
             context.left, context.right = groupPoint("CoralTip", -1), groupPoint("CoralTip", 1)
         elseif id == "relay" then
@@ -129,8 +173,43 @@ function CatalogEffects.new(model, id)
         elseif id == "encore" then
             context.left = groupPoint("Horn", -1, Vector3.new(-0.54, 1.52, 0.30))
             context.right = groupPoint("Horn", 1, Vector3.new(0.54, 1.52, 0.30))
-        elseif attachments[id] then
-            context.offset = groupPoint(attachments[id])
+            context.cones = {}
+            for index, side in { -1, 1 } do
+                for _, record in records do
+                    if record.group == "Horn" and (record.authored.X < 0) == (side < 0) then
+                        context.cones[index] = attachmentMap(
+                            record,
+                            Vector3.new(side * 0.54, 1.52, 0.30),
+                            nil,
+                            nil,
+                            true
+                        )
+                        break
+                    end
+                end
+            end
+        elseif id == "ocean_orchestra" then
+            context.cones = {}
+            for index, x in { -0.58, 0, 0.58 } do
+                local nearest, distance
+                for _, record in records do
+                    if record.group == "EvolvedHorn" then
+                        local d = math.abs(record.authored.X - x)
+                        if not distance or d < distance then
+                            nearest, distance = record, d
+                        end
+                    end
+                end
+                if nearest then
+                    context.cones[index] = attachmentMap(
+                        nearest,
+                        Vector3.new(x, x == 0 and 1.70 or 1.45, 0),
+                        nil,
+                        "+Y",
+                        true
+                    )
+                end
+            end
         end
         local accents = Profiles.sample(id, t, strength, context)
         self.activeCount = #accents

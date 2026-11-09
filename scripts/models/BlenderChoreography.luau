@@ -1,4 +1,4 @@
--- Gallery-only motion. The accepted native ItemMotion is a read-only fallback.
+-- Blender motion. The accepted native ItemMotion is a read-only fallback.
 local Native = if script
     then require(script.Parent.ItemMotion)
     else require("../../src/client/ItemMotion")
@@ -43,9 +43,29 @@ function Blender.bodySample(id, t, strength)
     end
     local a = math.min(strength, 1.5)
     local bloom = C.pulse(t, 0.13, 0.40, 0.92) * a
-    if id == "relay" or id == "lagoon_synth" then
-        -- The mount/display do not spin, translate or inflate with their mechanism.
-        return v
+    if id == "relay" then
+        -- Charge compresses the whole assembled device, then the discharge pops
+        -- it outward. Mount and winding share this reaction; only the winding
+        -- spins in the device's local frame, so its seated supports stay intact.
+        local charge = C.pulse(t, 0.02, 0.13, 0.24) * a
+        local discharge = C.pulse(t, 0.15, 0.27, 0.47) * a
+        local rebound = C.pulse(t, 0.42, 0.55, 0.75) * a
+        local settle = C.ring(t, 0.50, 0.98, 2) * a
+        v.scale = 1 - charge * 0.12 + discharge * 0.27 + rebound * 0.08 + settle * 0.02
+        v.y = -charge * 0.025 + discharge * 0.085 + rebound * 0.025
+        v.z, v.rx = -discharge * 0.025, -charge * 0.04 + discharge * 0.065 + settle * 0.025
+    elseif id == "lagoon_synth" then
+        -- A short downbeat grows into a two-beat musical pop, then a small tail.
+        -- The cabinet/display move coherently; key travel and the sine phase
+        -- remain local to their actual keys and screen throughout the bounce.
+        local downbeat = C.pulse(t, 0.02, 0.12, 0.23) * a
+        local chord = C.pulse(t, 0.15, 0.27, 0.44) * a
+        local reply = C.pulse(t, 0.38, 0.50, 0.73) * a
+        local tail = C.pulse(t, 0.65, 0.76, 0.98) * a
+        v.scale = 1 - downbeat * 0.10 + chord * 0.24 + reply * 0.13 + tail * 0.035
+        v.y = -downbeat * 0.025 + chord * 0.095 + reply * 0.045 + tail * 0.012
+        v.rx = downbeat * 0.055 - chord * 0.075 + reply * 0.035
+        v.rz = C.ring(t, 0.20, 0.96, 1) * a * 0.035
     elseif id == "coral_fork" then
         v.y, v.rz, v.scale = bloom * 0.04, C.ring(t, 0.17, 0.95, 3) * a * 0.045, 1 + bloom * 0.07
     elseif id == "dew_lantern" then
@@ -90,7 +110,16 @@ function Blender.sample(id, group, t, strength, x, y, z)
         end
         local force = math.min(strength, 1.5)
         local accent = C.pulse(t, 0.17, 0.38, 0.90) * force
-        if id == "survey_lens" and group == "Lens" then
+        if id == "quota_bonus" and group == "Stamp" then
+            -- Contact is geometric: reducing the expressive strength must not
+            -- leave the die hovering above the tray while its impact fires.
+            -- The source pad bottom is Y=.89 and printed tray surface Y=.457.
+            -- Hold that contact from .25 to .29; body recoil still uses strength.
+            local strike = C.phase(t, 0.18, 0.25) - C.phase(t, 0.29, 0.48)
+            value.y = 0.16 * C.pulse(t, 0, 0.13, 0.23)
+                - 0.433 * strike
+                + 0.07 * C.pulse(t, 0.48, 0.62, 0.86)
+        elseif id == "survey_lens" and group == "Lens" then
             value.scale *= 1 + accent * 0.06 -- iris visibly focuses
         elseif id == "split_prism" and group == "Prism" then
             value.glow += accent * 0.5
