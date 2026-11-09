@@ -22,6 +22,8 @@ return function()
             { 342, 568 },
             { 342, 772 },
             { 756, 310 },
+            { 666, 316 },
+            { 749, 331 },
             { 720, 402 },
             { 1024, 700 },
             {
@@ -37,7 +39,7 @@ return function()
             inside(tab, w, h)
             assert(tab.h >= 44, "tier touch target")
         end
-        for _, key in { "model", "title", "action", "buy" } do
+        for _, key in { "model", "title", "action", "buy", "revealAction" } do
             inside(chest[key], w, h)
         end
         assert(chest.action.h >= 44, "opening touch target")
@@ -47,6 +49,13 @@ return function()
         )
         assert(separate(chest.title, chest.action), "chest title leaves action clear")
         assert(separate(chest.model, chest.title), "portrait model leaves heading clear")
+        assert(separate(chest.model, chest.revealAction), "reward button leaves model visible")
+        if w >= 480 and h < 220 then
+            assert(chest.model.h >= 120 and chest.model.w >= 120, "landscape chest remains visible")
+            for _, tab in chest.tabs do
+                assert(separate(chest.model, tab), "tier tabs leave model clear")
+            end
+        end
         if chest.showDetail then
             inside(chest.detail, w, h)
             assert(
@@ -80,6 +89,6 @@ return function()
         end
     end
     print(
-        "PASS hub progression layout: seven safe areas, chest opening, research grid/details and paginated rankings"
+        "PASS hub progression layout: nine safe areas, chest opening, research grid/details and paginated rankings"
     )
 end

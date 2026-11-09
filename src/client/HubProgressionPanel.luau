@@ -225,7 +225,7 @@ function Panel:renderChests()
         C.aqua
     )
     if reveal then
-        place(self.actionButton, { x = 0, y = g.action.y, w = h.geometry.body.w, h = g.action.h })
+        place(self.actionButton, g.revealAction)
     end
     local summary = balance < price and (Format.integer(price - balance) .. " MORE RESTOCKS TO BUY")
         or "BUY TO STORE · OPEN TO DISCOVER"
