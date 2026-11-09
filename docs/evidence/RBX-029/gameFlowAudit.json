@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "modelChecks": 1168,
+  "restored": true,
+  "safeArea": {
+    "w": 1046,
+    "h": 466
+  },
+  "stages": {
+    "1": {
+      "name": "Seed Bank natural drain and automatic retry",
+      "seeds": 8,
+      "drainFixture": "Launched normally, placed just above drain, then Simulation.step detected drain",
+      "receipt": 1
+    },
+    "2": {
+      "perkModel": {
+        "y": 300,
+        "h": 35,
+        "w": 35,
+        "x": 471
+      },
+      "name": "Full rack and owned perks at actual viewport",
+      "rackModel": {
+        "y": 36,
+        "h": 53,
+        "w": 73,
+        "x": 458
+      }
+    },
+    "3": {
+      "offers": 6,
+      "upgradedLevel": 3,
+      "name": "Four equipment and two supplies shop fixture",
+      "model": {
+        "y": 198,
+        "h": 64,
+        "w": 64,
+        "x": 32
+      }
+    },
+    "4": {
+      "perks": 5,
+      "name": "Perk choice fixture and return to aim",
+      "model": {
+        "y": 184,
+        "h": 128,
+        "w": 128,
+        "x": 40
+      }
+    }
+  },
+  "elapsedSeconds": 1.603376400002162,
+  "fixture": true,
+  "failures": [],
+  "folded": false,
+  "compact": true
+}
